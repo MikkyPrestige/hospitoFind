@@ -1,4 +1,4 @@
-import * as dotenv from "dotenv";
+import dotenv from "dotenv";
 import express from "express";
 import connectDB from "./database/db.js";
 import cors from "cors";
@@ -14,8 +14,11 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
+// Body Parser
+// app.use(express.urlencoded({ extended: true }));
+
 // Connect Database
-connectDB();
+await connectDB();
 
 // Routes
 app.use("/api/hospitals", hospitalRouter);
