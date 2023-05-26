@@ -15,7 +15,6 @@ type Hours = {
 };
 
 type Hospital = {
-  id: number;
   name: string;
   address: Address;
   phoneNumber: string;
