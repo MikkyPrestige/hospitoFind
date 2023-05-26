@@ -1,94 +1,99 @@
 [
   {
-    "name": "Hospital A",
-    "address": {
-      "street": "123 Main St",
-      "city": "Anytown",
-      "state": "CA",
-      "zip": "12345"
-    },
-    "phoneNumber": "123-456-7890",
-    "website": "http://www.example.com",
-    "email": "hospitalA@gmail.com",
-    "services": [
-      "Emergency",
-      "Surgery",
-      "Radiology",
-      "Dialysis"
-    ],
-    "hours": [
-      {
-        "day": "Monday",
-        "open": "8:00 AM",
-        "close": "5:00 PM"
+    "id": 0,
+    "properties": {
+      "name": "Hospital A",
+      "address": {
+        "street": "123 Main St",
+        "city": "Anytown",
+        "state": "CA",
+        "zip": "12345"
       },
-      {
-        "day": "Tuesday",
-        "open": "8:00 AM",
-        "close": "5:00 PM"
-      },
-      {
-        "day": "Wednesday",
-        "open": "8:00 AM",
-        "close": "5:00 PM"
-      },
-      {
-        "day": "Thursday",
-        "open": "8:00 AM",
-        "close": "5:00 PM"
-      },
-      {
-        "day": "Friday",
-        "open": "8:00 AM",
-        "close": "5:00 PM"
-      }
-    ],
-    "ratings": 4
+      "phoneNumber": "123-456-7890",
+      "website": "http://www.example.com",
+      "email": "hospitalA@gmail.com",
+      "services": [
+        "Emergency",
+        "Surgery",
+        "Radiology",
+        "Dialysis"
+      ],
+      "hours": [
+        {
+          "day": "Monday",
+          "open": "8:00 AM",
+          "close": "5:00 PM"
+        },
+        {
+          "day": "Tuesday",
+          "open": "8:00 AM",
+          "close": "5:00 PM"
+        },
+        {
+          "day": "Wednesday",
+          "open": "8:00 AM",
+          "close": "5:00 PM"
+        },
+        {
+          "day": "Thursday",
+          "open": "8:00 AM",
+          "close": "5:00 PM"
+        },
+        {
+          "day": "Friday",
+          "open": "8:00 AM",
+          "close": "5:00 PM"
+        }
+      ],
+      "ratings": 4
+    }
   },
   {
-    "name": "Hospital B",
-    "address": {
-      "street": "123 Main St",
-      "city": "Anytown",
-      "state": "CA",
-      "zip": "12345"
-    },
-    "phoneNumber": "123-456-7890",
-    "website": "http://www.example.com",
-    "email": "hospitalA@gmail.com",
-    "services": [
-      "Emergency",
-      "Surgery",
-      "Radiology",
-      "Dialysis"
-    ],
-    "hours": [
-      {
-        "day": "Monday",
-        "open": "8:00 AM",
-        "close": "5:00 PM"
+    "id": 1,
+    "properties": {
+      "name": "Hospital B",
+      "address": {
+        "street": "456 Elm St",
+        "city": "Othertown",
+        "state": "CA",
+        "zip": "67890"
       },
-      {
-        "day": "Tuesday",
-        "open": "8:00 AM",
-        "close": "5:00 PM"
-      },
-      {
-        "day": "Wednesday",
-        "open": "8:00 AM",
-        "close": "5:00 PM"
-      },
-      {
-        "day": "Thursday",
-        "open": "8:00 AM",
-        "close": "5:00 PM"
-      },
-      {
-        "day": "Friday",
-        "open": "8:00 AM",
-        "close": "5:00 PM"
-      }
-    ],
-    "ratings": 3
+      "phoneNumber": "987-654-3210",
+      "website": "http://www.examplehospitalb.com",
+      "email": "hospitalB@gmail.com",
+      "services": [
+        "Emergency",
+        "Orthopedics",
+        "Cardiology"
+      ],
+      "hours": [
+        {
+          "day": "Monday",
+          "open": "9:00 AM",
+          "close": "6:00 PM"
+        },
+        {
+          "day": "Tuesday",
+          "open": "9:00 AM",
+          "close": "6:00 PM"
+        },
+        {
+          "day": "Wednesday",
+          "open": "9:00 AM",
+          "close": "6:00 PM"
+        },
+        {
+          "day": "Thursday",
+          "open": "9:00 AM",
+          "close": "6:00 PM"
+        },
+        {
+          "day": "Friday",
+          "open": "9:00 AM",
+          "close": "6:00 PM"
+        }
+      ],
+      "ratings": 5
+    }
   }
 ]
