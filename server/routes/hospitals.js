@@ -5,7 +5,7 @@ import {
   updateHospital,
   deleteHospital,
 } from "../controllers/hospitalController.js";
-import authenticate from "../middleware/authenticate.js";
+// import authenticate from "../middleware/authenticate.js";
 
 const router = express.Router();
 
@@ -14,7 +14,7 @@ const router = express.Router();
 // @access  Public
 router.get("/", getHospitals);
 
-router.use(authenticate);
+// router.use(authenticate);
 // @route   POST api/hospitals
 // @desc    Add new hospital
 // @access  Public
