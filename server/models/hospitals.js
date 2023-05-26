@@ -8,15 +8,13 @@ const hospitalSchema = new Schema({
     required: true,
   },
   address: {
-    type: Object,
-    required: true,
-
     street: {
       type: String,
       required: true,
     },
     city: {
       type: String,
+      required: true,
     },
     state: {
       type: String,
@@ -30,55 +28,37 @@ const hospitalSchema = new Schema({
     type: String,
     required: true,
   },
+  website: {
+    type: String,
+  },
   email: {
     type: String,
     required: true,
-  },
-  website: {
-    type: String,
   },
   services: {
     type: [String],
   },
   hours: {
-    type: Object,
+    type: [
+      {
+        day: {
+          type: String,
+          required: true,
+        },
+        open: {
+          type: String,
+          required: true,
+        },
+        close: {
+          type: String,
+          required: true,
+        },
+      },
+    ],
     required: true,
-
-    monday: {
-      type: String,
-      required: true,
-    },
-    tuesday: {
-      type: String,
-      required: true,
-    },
-    wednesday: {
-      type: String,
-      required: true,
-    },
-    thursday: {
-      type: String,
-      required: true,
-    },
-    friday: {
-      type: String,
-      required: true,
-    },
-    saturday: {
-      type: String,
-      required: true,
-    },
-    sunday: {
-      type: String,
-      required: true,
-    },
   },
   ratings: {
     type: Number,
-  },
-  timestamps: {
-    type: Date,
-    default: Date.now,
   },
 });
 

@@ -2,9 +2,11 @@ import dotenv from "dotenv";
 import express from "express";
 import connectDB from "./database/db.js";
 import cors from "cors";
-import fs from "fs";
-import fetch from "node-fetch";
+// import fs from "fs";
+// import fetch from "node-fetch";
+// import chokidar from "chokidar";
 import hospitalRouter from "./routes/hospitals.js";
+// import Hospital from "./models/hospitals.js";
 
 dotenv.config();
 
@@ -14,39 +16,56 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-// Body Parser
-// app.use(express.urlencoded({ extended: true }));
-
-// Connect Database
-await connectDB();
-
 // Routes
 app.use("/api/hospitals", hospitalRouter);
 
-const PORT = process.env.PORT;
+// Populate database with data from json
+// const populateDatabase = async () => {
+//   try {
+//     const jsonData = fs.readFileSync("./data/hospitals.json", "utf8");
+//     const hospitals = JSON.parse(jsonData);
+//     console.log("Data read from the json file");
 
-// Start server
-app.listen(PORT, () => console.log(`Server started on port ${PORT}`));
+// Clear the existing hospitals collection in the database
+// await Hospital.deleteMany();
 
-// Populate database with data from hospitalData.json
-const jsonData = fs.readFileSync("./data/hospitals.json", "utf8");
-const hospitals = JSON.parse(jsonData);
+// Insert the hospitals data into the database
+//     await Hospital.insertMany(hospitals);
+//     console.log("Data populated into the database");
+//     // });
+//   } catch (err) {
+//     console.error(err.message);
+//   }
+// };
 
-const url = "http://localhost:5000/api/hospitals";
+// Watch for changes in the json file
+// const watcher = chokidar.watch("./data/hospitals.json");
 
-hospitals.forEach(async (hospital) => {
+// watcher.on("change", () => {
+//   console.log("JSON file changed, updating database...");
+//   populateDatabase();
+// });
+
+// Connect Database
+// await connectDB();
+// connectDB().then(() => {
+//   // Populate data into the database on server startup
+//   populateDatabase().then(() => {
+//     app.listen(process.env.PORT, () => {
+//       console.log(`Server started on port ${process.env.PORT}`);
+//     });
+//   });
+// });
+
+const start = async () => {
   try {
-    await fetch(url, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(hospital),
+    await connectDB();
+    app.listen(process.env.PORT, () => {
+      console.log(`Server started on port ${process.env.PORT}`);
     });
-
-    const data = await response.json();
-    console.log(data);
   } catch (err) {
     console.error(err.message);
   }
-});
+};
+
+start();
