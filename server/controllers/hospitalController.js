@@ -10,6 +10,35 @@ export const getHospitals = async (req, res) => {
   }
 };
 
+export const searchHospitals = async (req, res) => {
+  try {
+    const { city, state } = req.query;
+    const query = {};
+    if (city) query['address.city'] = { $regex: new RegExp(city, 'i') };
+    if (state) query['address.state'] = { $regex: new RegExp(state, 'i') };
+
+    const hospitals = await Hospital.find(query);
+    res.json(hospitals);
+  } catch (err) {
+    console.error(err.message);
+    res.status(500).json({ error: 'Server Error' });
+  }
+};
+
+
+// export const searchHospitals = async (req, res) => {
+//   try {
+//     const { location } = req.query;
+//     const hospitals = await Hospital.find({
+//       'address.city': { $regex: new RegExp(location, 'i') },
+//     });
+//     res.json(hospitals);
+//   } catch (err) {
+//     console.error(err.message);
+//     res.status(500).json({ error: 'Server Error' });
+//   }
+// };
+
 export const addHospital = async (req, res) => {
   const {
     name,

@@ -1,28 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { getHospitals } from '@/services/api';
-
-type Address = {
-  street: string;
-  city: string;
-  state: string;
-  zip: string;
-};
-
-type Hours = {
-  day: string;
-  open: string;
-  close: string;
-};
-
-type Hospital = {
-  name: string;
-  address: Address;
-  phoneNumber: string;
-  email: string;
-  website: string;
-  hours: Hours[];
-  ratings: number;
-};
+import { Hospital, Hours } from '@/services/types';
 
 const HospitalList: React.FC = () => {
   const [hospitals, setHospitals] = useState<Hospital[]>([]);
@@ -53,6 +31,9 @@ const HospitalList: React.FC = () => {
           <p>Phone: {hospital.phoneNumber}</p>
           <p>Email: {hospital.email}</p>
           <p>Website: {hospital.website}</p>
+          <ul>Services: {hospital.services.map((service: string) => (
+            <li key={service}>{service}</li>
+          ))}</ul>
           <ul>Hours: {hospital.hours.map((hour: Hours) => (
             <li key={hour.day}>
               <span>{hour.day}</span>{" "}

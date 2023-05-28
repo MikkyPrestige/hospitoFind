@@ -1,0 +1,56 @@
+
+import { searchHospitals } from '@/services/api';
+import { Hospital, LocationInput } from '@/services/types';
+
+const SearchForm: React.FC = () => {
+  const [location, setLocation] = useState<string>('');
+  const [hospitals, setHospitals] = useState<Hospital[]>([]);
+
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    const locationInput: LocationInput = {};
+    const response = await searchHospitals(locationInput);
+    setHospitals(response.data);
+  };
+
+  return (
+    <div>
+      <form onSubmit={handleSubmit}>
+        <input
+          type="text"
+          placeholder="Enter your location"
+          value={location}
+          onChange={(e) => setLocation(e.target.value)}
+        />
+        <button type="submit">Search</button>
+      </form>
+      {hospitals.map((hospital, id) => (
+        <div key={id}>
+          <h3>Hospital: {hospital.name}</h3>
+          <p>Street: {hospital.address.street}</p>
+          <p>City: {hospital.address.city}</p>
+          <p>State: {hospital.address.state}</p>
+          <p>ZIP: {hospital.address.zip}</p>
+          <p>Phone: {hospital.phoneNumber}</p>
+          <p>Email: {hospital.email}
+          </p>
+          <p>Website: {hospital.website}</p>
+          <ul>Services: {hospital.services.map((service: string) => (
+            <li key={service}>{service}</li>
+          ))}</ul>
+          <ul>Hours: {hospital.hours.map((hour: any) => (
+            <li key={hour.day}>
+              <span>{hour.day}</span>{" "}
+              <span>{hour.open}</span>{" - "}
+              <span>{hour.close}</span>
+            </li>
+          ))}
+          </ul>
+          <p>Rating: {hospital.ratings}</p>
+        </div>
+      ))}
+    </div>
+  );
+};
+
+export default SearchForm;
