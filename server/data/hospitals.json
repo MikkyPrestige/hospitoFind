@@ -1,185 +1,2398 @@
 [
   {
-    "name": "Hospital A",
+    "name": "Abia State University Teaching Hospital",
     "address": {
-      "street": "123 Main St",
-      "city": "Anytown",
-      "state": "CA",
-      "zip": "12345"
+      "street": "Umueze Road Abayi, Aba",
+      "city": "Aba",
+      "state": "Abia"
     },
-    "phoneNumber": "123-456-7890",
-    "website": "http://www.example.com",
-    "email": "hospitalA@gmail.com",
+    "phoneNumber": "082233714, +234 826 00000, +234 806 500000",
+    "website": "abiastateuniversity.edu.ng, absuthng.org",
+    "email": "info@absuthng.org",
+    "type": "Public",
     "services": [
-      "Emergency",
+      "Health Care Training",
       "Surgery",
-      "Radiology",
-      "Dialysis"
+      "Internal medicine",
+      "Vesicovaginal fistula (VVF) surgery and",
+      "HIV Care including Antiretroviral Treatment program",
+      "Obstetrics",
+      "Pediatrics",
+      "Gynecology",
+      "Ophthalmology"
     ],
-    "hours": [
+    "Perks" : [""],
+     "hours": [
       {
         "day": "Monday",
-        "open": "8:00 AM",
-        "close": "5:00 PM"
+        "open": "24 Hours"
       },
       {
         "day": "Tuesday",
-        "open": "8:00 AM",
-        "close": "5:00 PM"
+        "open": "24 Hours"
       },
       {
         "day": "Wednesday",
-        "open": "8:00 AM",
-        "close": "5:00 PM"
+        "open": "24 Hours"
       },
       {
         "day": "Thursday",
-        "open": "8:00 AM",
-        "close": "5:00 PM"
+        "open": "24 Hours"
       },
       {
         "day": "Friday",
-        "open": "8:00 AM",
-        "close": "5:00 PM"
+        "open": "24 Hours"
+      },
+      {
+        "day": "Saturday",
+        "open": "24 Hours"
+      },
+      {
+        "day": "Sunday",
+        "open": "24 Hours"
       }
-    ],
-    "ratings": 4
+    ]
   },
   {
-    "name": "Hospital B",
+    "name": "Federal Medical Centre",
     "address": {
-      "street": "456 Elm St",
-      "city": "Othertown",
-      "state": "CA",
-      "zip": "67890"
+      "street": "Aba Road Umuahia",
+      "city": "Umuahia",
+      "state": "Abia"
     },
-    "phoneNumber": "987-654-3210",
-    "website": "http://www.examplehospitalb.com",
-    "email": "hospitalB@gmail.com",
+    "phoneNumber": "+2348038089468",
+    "website": "http://fmc-umuahia.com.ng",
+    "email": "fmcumuahia@fmc-umuahia.com.ng, fmcnhisumuahia@yahoo.com",
+    "type": "Public",
     "services": [
-      "Emergency",
-      "Orthopedics",
-      "Cardiology"
+      "Dental Clinic",
+      "Eye Clinic",
+      "Medical Services: Gastroenterology, Hematology",
+      "Surgical Services: General Surgery, Anaesthesia, Pediatric Surgery",
+      "Obstetrics and Gynecology Services: Obstetrics, Gynecology, Fertility/Assisted Reproductive Techniques",
+      "Pediatrics Services: Gastroenterology, Nephrology, Oncology, Endocrinology",
+      "Specific Clinical Services: Antenatal Care (ANC), Immunization, HIV/ AIDS, Non-Communicable Diseases, Family Planning, Intensive Care, Communicable Diseases, Hepatitis, Accidents and Emergency, Nutrition, Health Education, Community Mobilization, Maternal and newborn care",
+      "Onsite Laboratory",
+       "Outpatient Services",
+      "Inpatient Services",
+      "Onsite Laboratory",
+      "Onsite Imaging",
+      "Onsite Pharmacy",
+      "Ambulance Service"
     ],
-    "hours": [
-      {
+    "Perks" : [
+      "Child Friendly",
+      "Free Parking",
+      "Debit Cards"
+    ],
+     "hours": [
+        {
         "day": "Monday",
-        "open": "9:00 AM",
-        "close": "6:00 PM"
+        "open": "24 Hours"
       },
       {
         "day": "Tuesday",
-        "open": "9:00 AM",
-        "close": "6:00 PM"
+        "open": "24 Hours"
       },
       {
         "day": "Wednesday",
-        "open": "9:00 AM",
-        "close": "6:00 PM"
+        "open": "24 Hours"
       },
       {
         "day": "Thursday",
-        "open": "9:00 AM",
-        "close": "6:00 PM"
+        "open": "24 Hours"
       },
       {
         "day": "Friday",
-        "open": "9:00 AM",
-        "close": "6:00 PM"
+        "open": "24 Hours"
+      },
+      {
+        "day": "Saturday",
+        "open": "24 Hours"
+      },
+      {
+        "day": "Sunday",
+        "open": "24 Hours"
       }
-    ],
-    "ratings": 5
+    ]
   },
   {
-    "name": "Hospital C",
+    "name": "LIFE CARE CLINICS LTD",
     "address": {
-      "street": "789 Oak St",
-      "city": "Somewhere",
-      "state": "CA",
-      "zip": "13579"
+      "street": "8, Eziukwu Road, P.O.Box 4742, Aba",
+      "city": "Aba",
+      "state": "Abia"
     },
-    "phoneNumber": "123-456-7890",
-    "website": "http://www.examplehospitalc.com",
-    "email": "hospitalC@gmail.com",
+    "phoneNumber": "08034229951, 08181315899, 08033166678",
+    "website": "",
+    "email": "lifecareclinicsltdaba@yahoo.com",
+    "type": "Private",
     "services": [
-      "Emergency",
-      "Surgery",
-      "Radiology",
-      "Dialysis"
+      "Medical Services: Gastroenterology, Hematology",
+      "Surgical Services: General Surgery Anesthesia Pediatric Surgery",
+      "Obstetrics and Gynecology Services: Obstetrics Gynecology Fertility/Assisted Reproductive Techniques",
+      "Pediatrics Services: Gastroenterology Nephrology Oncology Endocrinology",
+      "Specific Clinical Services: Antenatal Care (ANC), Immunization, HIV/ AIDS, Non-Communicable Diseases, Family Planning, Intensive Care, Communicable Diseases, Hepatitis, Accidents and Emergency, Nutrition, Health Education, Community Mobilization, Maternal and newborn care",
+      "Onsite Laboratory",
+      "Onsite Imaging",
+      "Onsite Pharmacy",
+      "Ambulance Service"
     ],
-    "hours": [
-      {
+    "Perks" : [
+      "Free Parking",
+      "Debit Cards"
+    ],
+     "hours": [
+       {
         "day": "Monday",
-        "open": "8:00 AM",
-        "close": "5:00 PM"
+        "open": "24 Hours"
       },
       {
         "day": "Tuesday",
-        "open": "8:00 AM",
-        "close": "5:00 PM"
+        "open": "24 Hours"
       },
       {
         "day": "Wednesday",
-        "open": "8:00 AM",
-        "close": "5:00 PM"
+        "open": "24 Hours"
       },
       {
         "day": "Thursday",
-        "open": "8:00 AM",
-        "close": "5:00 PM"
+        "open": "24 Hours"
       },
       {
         "day": "Friday",
-        "open": "8:00 AM",
-        "close": "5:00 PM"
+        "open": "24 Hours"
+      },
+      {
+        "day": "Saturday",
+        "open": "24 Hours"
+      },
+      {
+        "day": "Sunday",
+        "open": "24 Hours"
       }
-    ],
-    "ratings": 5
+    ]
   },
   {
-    "name": "Hospital D",
+    "name": "Living Word Mission Hospital",
     "address": {
-      "street": "123 Main St",
-      "city": "Anytown",
-      "state": "CA",
-      "zip": "12345"
+      "street": "5/7, Umuocham Rd, off Aba-Owerri Rd, Aba",
+      "city": "Aba",
+      "state": "Abia"
     },
-    "phoneNumber": "123-456-7890",
-    "website": "http://www.examplehospitald.com",
-    "email": "hospitalD@gmail.com",
+    "phoneNumber": "0803 4954 556, 0803 799 9992",
+    "website": "livingwordmissionhospital@yahoo.com",
+    "email": "",
+    "type": "Private",
     "services": [
-      "Emergency",
-      "Surgery",
-      "Radiology",
-      "Dialysis"
+      "Dental Clinic",
+      "Eye Clinic",
+      "Onsite Laboratory",
+      "Onsite Pharmacy",
+      "Ambulance Service"
+    ],
+     "Perks" : [
+      "Child Friendly",
+      "Free Parking",
+      "Debit Cards"
+    ],
+     "hours": [
+        {
+        "day": "Monday",
+        "open": "24 Hours"
+      },
+      {
+        "day": "Tuesday",
+        "open": "24 Hours"
+      },
+      {
+        "day": "Wednesday",
+        "open": "24 Hours"
+      },
+      {
+        "day": "Thursday",
+        "open": "24 Hours"
+      },
+      {
+        "day": "Friday",
+        "open": "24 Hours"
+      },
+      {
+        "day": "Saturday",
+        "open": "24 Hours"
+      },
+      {
+        "day": "Sunday",
+        "open": "24 Hours"
+      }
+    ]
+  },
+  {
+    "name": "Mendel Hospital",
+    "address": {
+      "street": "20 Tenant Road, Aba",
+      "city": "Aba",
+      "state": "Abia"
+    },
+    "phoneNumber": "082-234441, 0803 7105 051",
+    "website": "",
+    "email": "mendel.hosiptal@yahoo.com",
+    "type": "Private",
+    "services": [
+     "General hospital services"
+    ],
+     "Perks" : [""],
+     "hours": [
+        {
+        "day": "Monday",
+        "open": ""
+      },
+      {
+        "day": "Tuesday",
+        "open": ""
+      },
+      {
+        "day": "Wednesday",
+        "open": ""
+      },
+      {
+        "day": "Thursday",
+        "open": ""
+      },
+      {
+        "day": "Friday",
+        "open": ""
+      },
+      {
+        "day": "Saturday",
+        "open": ""
+      },
+      {
+        "day": "Sunday",
+        "open": ""
+      }
+    ]
+  },
+  {
+    "name": "New Era Hospital Limited",
+    "address": {
+      "street": "213/215 Azikiwe road, P.O.Box 2390, Aba",
+      "city": "Aba",
+      "state": "Abia"
+    },
+    "phoneNumber": " 08059506712, 08037022637, 07033807294",
+    "website": "",
+    "email": "newera6000@yahoo.com",
+    "type": "Private",
+    "services": [
+      "Eye Clinic",
+      "Dental Clinic",
+      "Medical Services: Gastroenterology, Hematology",
+      "Surgical Services: General Surgery, Anaesthesia, Pediatrics Surgery",
+      "Obstetrics and Gynecology Services: Obstetrics, Gynecology, Fertility/Assisted Reproductive Techniques",
+      "Pediatrics Services: Gastroenterology, Nephrology, Oncology, Endocrinology",
+      "Specific Clinical Services: Antenatal Care (ANC), Immunization, HIV/ AIDS, Non-Communicable Diseases, Family Planning, Intensive Care, Communicable Diseases, Hepatitis, Accidents and Emergency, Nutrition, Health Education, Community Mobilization, Maternal and newborn care",
+       "Onsite Laboratory",
+      "Onsite Imaging",
+      "Onsite Pharmacy",
+      "Ambulance Service"
+    ],
+      "Perks" : [
+        "Child Friendly",
+        "Debit Cards"
+      ],
+    "hours": [
+    {
+        "day": "Monday",
+        "open": "24 Hours"
+      },
+      {
+        "day": "Tuesday",
+        "open": "24 Hours"
+      },
+      {
+        "day": "Wednesday",
+        "open": "24 Hours"
+      },
+      {
+        "day": "Thursday",
+        "open": "24 Hours"
+      },
+      {
+        "day": "Friday",
+        "open": "24 Hours"
+      },
+      {
+        "day": "Saturday",
+        "open": "24 Hours"
+      },
+      {
+        "day": "Sunday",
+        "open": "24 Hours"
+      }
+    ]
+  },
+  {
+    "name": "Nigerian Christian Hospital",
+    "address": {
+      "street": "18 ABA IKOT-EKPENE ROAD, OBINGWA L.G.A, PO BOX 823",
+      "city": "Aba",
+      "state": "Abia"
+    },
+    "phoneNumber": "08082290603",
+    "website": "https://sites.google.com/a/davidlipscomb.org/west-end-m/Home/nigerian-christian-hospital",
+    "email": "tom.ihcf@sbcglobal.net",
+    "type": "Missionary",
+    "services": [
+      "Medical",
+      "Obstetrical",
+      "Surgical",
+      "Pediatric",
+      "Outpatient Services"
+    ],
+     "Perks" : [
+      "Teaching and Preaching the message of Jesus",
+      "Training ground for young Doctors and Nurses, both Nigerian and expatriate",
+      "You will find many opportunities, both medical and non-medical, to serve on this large Hospital compound"
     ],
     "hours": [
       {
         "day": "Monday",
-        "open": "8:00 AM",
-        "close": "5:00 PM"
+        "open": "8:00 AM - 5:00 PM"
       },
       {
         "day": "Tuesday",
-        "open": "8:00 AM",
-        "close": "5:00 PM"
+        "open": "8:00 AM - 5:00 PM"
       },
       {
         "day": "Wednesday",
-        "open": "8:00 AM",
-        "close": "5:00 PM"
+        "open": "8:00 AM - 5:00 PM"
       },
       {
         "day": "Thursday",
-        "open": "8:00 AM",
-        "close": "5:00 PM"
+        "open": "8:00 AM - 5:00 PM"
       },
       {
         "day": "Friday",
-        "open": "8:00 AM",
-        "close": "5:00 PM"
+        "open": "8:00 AM - 5:00 PM"
+      },
+      {
+        "day": "Saturday",
+        "open": "Closed"
+      },
+      {
+        "day": "Sunday",
+        "open": "Closed"
       }
+    ]
+  },
+  {
+    "name": "Alpha Inland Hospital",
+    "address": {
+      "street": "36, Glass Industry Road",
+      "city": "Aba",
+      "state": "Abia"
+    },
+    "phoneNumber": "82-227362, 0803 7336 880",
+    "website": "",
+    "email": "drenweremadu@yahoo.com",
+    "type": "Private",
+    "services": [
+      "Eye Care",
+      "Cancer Management",
+      "Dental Care",
+      "Preventive Healthcare."
     ],
-    "ratings": 4
-  }
+      "Perks" : [""],
+    "hours": [
+        {
+        "day": "Monday",
+        "open": "8:00 AM - 5:00 PM"
+      },
+      {
+        "day": "Tuesday",
+        "open": "8:00 AM - 5:00 PM"
+      },
+      {
+        "day": "Wednesday",
+        "open": "8:00 AM - 5:00 PM"
+      },
+      {
+        "day": "Thursday",
+        "open": "8:00 AM - 5:00 PM"
+      },
+      {
+        "day": "Friday",
+        "open": "8:00 AM - 5:00 PM"
+      },
+      {
+        "day": "Saturday",
+        "open": "Closed"
+      },
+      {
+        "day": "Sunday",
+        "open": "Closed"
+      }
+    ]
+  },
+  {
+    "name": "St. Anthony's Hospital",
+    "address": {
+      "street": "62/80 Etche Road",
+      "city": "Aba",
+      "state": "Abia"
+    },
+    "phoneNumber": "234 82 230974",
+    "website": "",
+    "email": "",
+    "type": "Private",
+    "services": [
+      "General hospital services"
+    ],
+      "Perks" : [""],
+    "hours": [
+      {
+        "day": "Monday",
+        "open": "24 Hours"
+      },
+      {
+        "day": "Tuesday",
+        "open": "24 Hours"
+      },
+      {
+        "day": "Wednesday",
+        "open": "24 Hours"
+      },
+      {
+        "day": "Thursday",
+        "open": "24 Hours"
+      },
+      {
+        "day": "Friday",
+        "open": "24 Hours"
+      },
+      {
+        "day": "Saturday",
+        "open": "24 Hours"
+      },
+      {
+        "day": "Sunday",
+        "open": "24 Hours"
+      }
+    ]
+  },
+  {
+    "name": "Zikora Medical Center",
+    "address": {
+      "street": "Ogbor hill, 3 Ezimba Road",
+      "city": "Aba",
+      "state": "Abia"
+    },
+    "phoneNumber": "082-232468",
+    "website": "",
+    "email": "",
+    "type": "Private",
+    "services": [
+      "General hospital services"
+    ],
+      "Perks" : [""],
+    "hours": [
+      {
+        "day": "Monday",
+        "open": ""
+      },
+      {
+        "day": "Tuesday",
+        "open": ""
+      },
+      {
+        "day": "Wednesday",
+        "open": ""
+      },
+      {
+        "day": "Thursday",
+        "open": ""
+      },
+      {
+        "day": "Friday",
+        "open": ""
+      },
+      {
+        "day": "Saturday",
+        "open": ""
+      },
+      {
+        "day": "Sunday",
+        "open": ""
+      }
+    ]
+  },
+  {
+    "name": "NGOZI HOSPITAL",
+    "address": {
+      "street": "16 WARRI STREET",
+      "city": "Umuahia",
+      "state": "Abia"
+    },
+    "phoneNumber": "",
+    "website": "",
+    "email": "",
+    "type": "Business Name",
+    "services": [
+      "General hospital services"
+    ],
+      "Perks" : [""],
+    "hours": [
+     {
+        "day": "Monday",
+        "open": ""
+      },
+      {
+        "day": "Tuesday",
+        "open": ""
+      },
+      {
+        "day": "Wednesday",
+        "open": ""
+      },
+      {
+        "day": "Thursday",
+        "open": ""
+      },
+      {
+        "day": "Friday",
+        "open": ""
+      },
+      {
+        "day": "Saturday",
+        "open": ""
+      },
+      {
+        "day": "Sunday",
+        "open": ""
+      }
+    ]
+  },
+  {
+    "name": "Ekeoma Memorial Hospital",
+    "address": {
+      "street": "15, Scotland Crescent Aba",
+      "city": "Aba",
+      "state": "Abia"
+    },
+    "phoneNumber": "08063592871, +234 803 707 9432",
+    "website": "",
+    "email": "stephenonwere@yahoo.com",
+    "type": "Private",
+    "services": [
+      "Medical Services: Gastroenterology, Hematology",
+      "Surgical Services: General Surgery, Anaesthesia, Pediatric Surgery",
+      "Obstetrics and Gynecology Services: Obstetrics, Gynecology, Fertility/Assisted Reproductive Techniques",
+      "Pediatrics Services: Gastroenterology, Nephrology, Oncology, Endocrinology",
+      "Specific Clinical Services: Antenatal Care (ANC), Immunization, HIV/ AIDS, Non-Communicable Diseases, Family Planning, Intensive Care, Communicable Diseases, Hepatitis, Accidents and Emergency, Nutrition, Health Education, Community Mobilization, Maternal and newborn care",
+      "Onsite Laboratory",
+       "Outpatient Services",
+      "Inpatient Services",
+      "Onsite Laboratory",
+      "Onsite Imaging",
+      "Onsite Pharmacy",
+      "Ambulance Service"
+    ],
+     "Perks" : [
+        "Child Friendly",
+        "Free Parking",
+        "Debit Cards"
+      ],
+    "hours": [
+       {
+        "day": "Monday",
+        "open": "24 Hours"
+      },
+      {
+        "day": "Tuesday",
+        "open": "24 Hours"
+      },
+      {
+        "day": "Wednesday",
+        "open": "24 Hours"
+      },
+      {
+        "day": "Thursday",
+        "open": "24 Hours"
+      },
+      {
+        "day": "Friday",
+        "open": "24 Hours"
+      },
+      {
+        "day": "Saturday",
+        "open": "24 Hours"
+      },
+      {
+        "day": "Sunday",
+        "open": "24 Hours"
+      }
+    ]
+  },
+  {
+    "name": "Healing Cross Hospital",
+    "address": {
+      "street": "Km 2 Bende Road",
+      "city": "Umuahia",
+      "state": "Abia"
+    },
+    "phoneNumber": "08037418928",
+    "website": "",
+    "email": "",
+    "type": "Private",
+    "services": [
+      "General hospital services"
+    ],
+    "Perks": [
+      "Wheelchair-accessible entrance"
+    ],
+    "hours": [
+      {
+        "day": "Monday",
+        "open": "8:00 AM - 5:00 PM"
+      },
+      {
+        "day": "Tuesday",
+        "open": "8:00 AM - 5:00 PM"
+      },
+      {
+        "day": "Wednesday",
+        "open": "8:00 AM - 5:00 PM"
+      },
+      {
+        "day": "Thursday",
+        "open": "8:00 AM - 5:00 PM"
+      },
+      {
+        "day": "Friday",
+        "open": "8:00 AM - 5:00 PM"
+      },
+      {
+        "day": "Saturday",
+        "open": "Closed"
+      },
+      {
+        "day": "Sunday",
+        "open": "Closed"
+      }
+    ]
+  },
+  {
+    "name": "Hammersmith Medical Centre",
+    "address": {
+      "street": "Block 3, Amuzukwu Road Niger Road",
+      "city": "Umuahia",
+      "state": "Abia"
+    },
+    "phoneNumber": "088-221029, 0805 7307 927, 0803 7804 967",
+    "website": "",
+    "email": "",
+    "type": "Private",
+    "services": [
+      "General Hospital services",
+      "Health services",
+      "Centre for health care",
+      "Laboratory"
+    ],
+    "Perks": [
+      "Accepts Credit Cards",
+      "Street Parking",
+      "Pet Friendly",
+      "Reservation"
+    ],
+    "hours": [
+        {
+        "day": "Monday",
+        "open": "24 Hours"
+      },
+      {
+        "day": "Tuesday",
+        "open": "24 Hours"
+      },
+      {
+        "day": "Wednesday",
+        "open": "24 Hours"
+      },
+      {
+        "day": "Thursday",
+        "open": "24 Hours"
+      },
+      {
+        "day": "Friday",
+        "open": "24 Hours"
+      },
+      {
+        "day": "Saturday",
+        "open": "24 Hours"
+      },
+      {
+        "day": "Sunday",
+        "open": "24 Hours"
+      }
+    ]
+  },
+  {
+    "name": "Madonna Catholic Hospital",
+    "address": {
+      "street": "Aba Road Umuahia, P.O. Box 99, Umuahia North",
+      "city": "Umuahia",
+      "state": "Abia"
+    },
+    "phoneNumber": "08037473770, 07030602513, 08067459271, 08037753667",
+    "website": "info@mchumuahia.com",
+    "email": "madonnacatholichospitalumuahia@gmail.com",
+    "type": "Private",
+    "services": [
+      "Cardiology: Adult congenital heart disease (ACHD), and Respiratory medicine.",
+      "Pediatrics Services: Gastroenterology, Oncology",
+      "Obstetrics and Gynaecology: Routine care, Birth control, Fertility, Gynecologic cancer",
+      "Dietetic Services",
+      "Radiolo9gy",
+      "Physiotherapy",
+      "Dermatology",
+      "Laboratory Service",
+      "Mortuary Service"
+    ],
+    "Perks": [
+      "Emergency Service 24/7"
+    ],
+    "hours": [
+       {
+        "day": "Monday",
+        "open": "24 Hours"
+      },
+      {
+        "day": "Tuesday",
+        "open": "24 Hours"
+      },
+      {
+        "day": "Wednesday",
+        "open": "24 Hours"
+      },
+      {
+        "day": "Thursday",
+        "open": "24 Hours"
+      },
+      {
+        "day": "Friday",
+        "open": "24 Hours"
+      },
+      {
+        "day": "Saturday",
+        "open": "24 Hours"
+      },
+      {
+        "day": "Sunday",
+        "open": "24 Hours"
+      }
+    ]
+  },
+  {
+    "name": "Horstman Hospital Limited",
+    "address": {
+      "street": "32, Okigwe Road Aba",
+      "city": "Aba",
+      "state": "Abia"
+    },
+    "phoneNumber": "0813 430 0192, 0813 430 0192",
+    "website": "",
+    "email": "",
+    "type": "Private",
+    "services": [
+     "Medical Services: Gastroenterology, Hematology",
+      "Surgical Services: General Surgery, Anaesthesia, Pediatric Surgery",
+      "Obstetrics and Gynecology Services: Obstetrics, Gynecology, Fertility/Assisted Reproductive Techniques",
+      "Pediatrics Services: Gastroenterology, Nephrology, Oncology, Endocrinology",
+      "Specific Clinical Services: Antenatal Care (ANC), Immunization, HIV/ AIDS, Non-Communicable Diseases, Family Planning, Intensive Care, Communicable Diseases, Hepatitis, Accidents and Emergency, Nutrition, Health Education, Community Mobilization, Maternal and newborn care",
+      "Onsite Laboratory",
+       "Outpatient Services",
+      "Inpatient Services",
+      "Onsite Laboratory",
+      "Onsite Imaging",
+      "Onsite Pharmacy",
+      "Ambulance Service"
+    ],
+    "Perks": [
+      "Debit Cards",
+      "Free Parking",
+      "Child Friendly"
+    ],
+    "hours": [
+      {
+        "day": "Monday",
+        "open": "24 Hours"
+      },
+      {
+        "day": "Tuesday",
+        "open": "24 Hours"
+      },
+      {
+        "day": "Wednesday",
+        "open": "24 Hours"
+      },
+      {
+        "day": "Thursday",
+        "open": "24 Hours"
+      },
+      {
+        "day": "Friday",
+        "open": "24 Hours"
+      },
+      {
+        "day": "Saturday",
+        "open": "24 Hours"
+      },
+      {
+        "day": "Sunday",
+        "open": "24 Hours"
+      }
+    ]
+  },
+  {
+    "name": "Obioma Hospital Maternity and Laboratory",
+    "address": {
+      "street": "21 School Road, Umuahia",
+      "city": "Umuahia",
+      "state": "Abia"
+    },
+    "phoneNumber": "+234 803 584 2805",
+    "website": "http://obiomahospital.gnbo.com.ng",
+    "email": "obiomahm@yahoo.com",
+    "type": "Private",
+    "services": [
+     "Medical Services: Gastroenterology, Hematology",
+      "Surgical Services: General Surgery, Anaesthesia, Pediatric Surgery",
+      "Obstetrics and Gynecology Services: Obstetrics, Gynecology, Fertility/Assisted Reproductive Techniques",
+      "Pediatrics Services: Gastroenterology, Nephrology, Oncology, Endocrinology",
+      "Specific Clinical Services: Antenatal Care (ANC), Immunization, HIV/ AIDS, Non-Communicable Diseases, Family Planning, Intensive Care, Communicable Diseases, Hepatitis, Accidents and Emergency, Nutrition, Health Education, Community Mobilization, Maternal and newborn care",
+      "Onsite Laboratory",
+      "Outpatient Services",
+      "Inpatient Services",
+      "Onsite Laboratory",
+      "Onsite Imaging",
+      "Onsite Pharmacy",
+      "Ambulance Service"
+    ],
+    "Perks": [
+      "Debit Cards",
+      "Free Parking"
+    ],
+    "hours": [
+      {
+        "day": "Monday",
+        "open": "24 Hours"
+      },
+      {
+        "day": "Tuesday",
+        "open": "24 Hours"
+      },
+      {
+        "day": "Wednesday",
+        "open": "24 Hours"
+      },
+      {
+        "day": "Thursday",
+        "open": "24 Hours"
+      },
+      {
+        "day": "Friday",
+        "open": "24 Hours"
+      },
+      {
+        "day": "Saturday",
+        "open": "24 Hours"
+      },
+      {
+        "day": "Sunday",
+        "open": "24 Hours"
+      }
+    ]
+  },
+  {
+    "name": "Blessed Haven Hospital Limited",
+    "address": {
+      "street": "50, Omoba Road, Ogbor Hill",
+      "city": "Aba",
+      "state": "Abia"
+    },
+    "phoneNumber": "",
+    "website": "",
+    "email": "",
+    "type": "Private",
+    "services": [
+      "Health services",
+      "Centre for health care",
+      "General Hospital services",
+      "Onsite Pharmacy"
+    ],
+    "Perks": [
+      "Debit Cards",
+      "Child Friendly"
+    ],
+    "hours": [
+       {
+        "day": "Monday",
+        "open": "24 Hours"
+      },
+      {
+        "day": "Tuesday",
+        "open": "24 Hours"
+      },
+      {
+        "day": "Wednesday",
+        "open": "24 Hours"
+      },
+      {
+        "day": "Thursday",
+        "open": "24 Hours"
+      },
+      {
+        "day": "Friday",
+        "open": "24 Hours"
+      },
+      {
+        "day": "Saturday",
+        "open": "24 Hours"
+      },
+      {
+        "day": "Sunday",
+        "open": "24 Hours"
+      }
+    ]
+  },
+  {
+    "name": "Mercy Specialist Hospital",
+    "address": {
+      "street": "Ahiaeke Ndume, Umuahia",
+      "city": "Umuahia",
+      "state": "Abia"
+    },
+    "phoneNumber": "123-456-7878",
+    "website": "mercyspecialisthospital.org",
+    "email": "info@mercyspecialisthospital.org",
+    "type": "Missionary",
+    "services": [
+      "General Hospital services",
+      "Onsite Pharmacy"
+    ],
+    "Perks": [
+      "Debit Cards",
+      "Free Parking",
+      "Child Friendly"
+    ],
+    "hours": [
+      {
+        "day": "Monday",
+        "open": "24 Hours"
+      },
+      {
+        "day": "Tuesday",
+        "open": "24 Hours"
+      },
+      {
+        "day": "Wednesday",
+        "open": "24 Hours"
+      },
+      {
+        "day": "Thursday",
+        "open": "24 Hours"
+      },
+      {
+        "day": "Friday",
+        "open": "24 Hours"
+      },
+      {
+        "day": "Saturday",
+        "open": "24 Hours"
+      },
+      {
+        "day": "Sunday",
+        "open": "24 Hours"
+      }
+    ]
+  },
+  {
+    "name": "Uzondu Hospital and Polyclinic",
+    "address": {
+      "street": "NO 8, OFALI AGWI ROAD, AMAEKPU OHAFIA",
+      "city": "Ohafia",
+      "state": "Abia"
+    },
+    "phoneNumber": "0806 372 1409",
+    "website": "",
+    "email": "",
+    "type": "Public",
+    "services": [
+      "Health servicesand",
+      "Centre for health care",
+      "general hospital services"
+    ],
+    "Perks": [
+      "Debit Cards",
+      "Child Friendly",
+      "Free Parking",
+      "Wheelchair-accessible"
+    ],
+    "hours": [
+      {
+        "day": "Monday",
+        "open": "24 Hours"
+      },
+      {
+        "day": "Tuesday",
+        "open": "24 Hours"
+      },
+      {
+        "day": "Wednesday",
+        "open": "24 Hours"
+      },
+      {
+        "day": "Thursday",
+        "open": "24 Hours"
+      },
+      {
+        "day": "Friday",
+        "open": "24 Hours"
+      },
+      {
+        "day": "Saturday",
+        "open": "24 Hours"
+      },
+      {
+        "day": "Sunday",
+        "open": "24 Hours"
+      }
+    ]
+  },
+  {
+    "name": "The Lords Foundation Clinic",
+    "address": {
+      "street": "5a Hill Top Road",
+      "city": "Aba",
+      "state": "Abia"
+    },
+    "phoneNumber": "+234 82 22 1938",
+    "website": "",
+    "email": "",
+    "type": "Private",
+    "services": [
+      "Health service",
+      "Centre for health care",
+      "General hospital services",
+      "Onsite Pharmacy"
+    ],
+    "Perks": [
+      "Accepts Credit Cards",
+      "Child Friendly",
+      "Street Parking",
+      "Reservation"
+    ],
+    "hours": [
+      {
+        "day": "Monday",
+        "open": "24 Hours"
+      },
+      {
+        "day": "Tuesday",
+        "open": "24 Hours"
+      },
+      {
+        "day": "Wednesday",
+        "open": "24 Hours"
+      },
+      {
+        "day": "Thursday",
+        "open": "24 Hours"
+      },
+      {
+        "day": "Friday",
+        "open": "24 Hours"
+      },
+      {
+        "day": "Saturday",
+        "open": "24 Hours"
+      },
+      {
+        "day": "Sunday",
+        "open": "24 Hours"
+      }
+    ]
+  },
+  {
+    "name": "Abia State Specialist Hospital & Diagnostic Centre",
+    "address": {
+      "street": "42 Aba road, Umuahia",
+      "city": "Umuahia",
+      "state": "Abia"
+    },
+    "phoneNumber": "+234 805 237 0612",
+    "website": "https://www.facebook.com/ashdcumuahia, abiaspecialisthospital.com.ng",
+    "email": "Abiainfo@abiaspecialisthospital.com.ng",
+    "type": "Public",
+    "services": [
+      "Dialysis",
+      "Birth Centers",
+      "Digonistics Testing",
+      "General Medical Practice",
+      "Emergency Care",
+      "Pharmacy",
+      "Laboratory Service"
+    ],
+    "Perks": [
+      "The first Dialysis Centre in the South East zone of the country",
+      "Ultra modern with much-in-demand diagnostic machines, where affordable and quality health care is offered.",
+      "Lot of facilities and equipment that has redirected medical tourism to its doors.",
+      "Very safe location."
+    ],
+    "hours": [
+      {
+        "day": "Monday",
+        "open": "7:00 AM - 6:00 PM"
+      },
+      {
+        "day": "Tuesday",
+        "open": "7:00 AM - 6:00 PM"
+      },
+      {
+        "day": "Wednesday",
+        "open": "7:00 AM - 6:00 PM"
+      },
+      {
+        "day": "Thursday",
+        "open": "7:00 AM - 6:00 PM"
+      },
+      {
+        "day": "Friday",
+        "open": "7:00 AM - 6:00 PM"
+      },
+      {
+        "day": "Saturday",
+        "open": "Closed"
+      },
+      {
+        "day": "Sunday",
+        "open": "Closed"
+      }
+    ]
+  },
+  {
+    "name": "",
+    "address": {
+      "street": "",
+      "city": "",
+      "state": ""
+    },
+    "phoneNumber": "",
+    "website": "",
+    "email": "",
+    "type": "",
+    "services": [
+      "",
+      "",
+      "",
+      ""
+    ],
+    "hours": [
+      {
+        "day": "Monday",
+        "open": "0:00 AM",
+        "close": "0:00 PM"
+      },
+      {
+        "day": "Tuesday",
+        "open": "0:00 AM",
+        "close": "0:00 PM"
+      },
+      {
+        "day": "Wednesday",
+        "open": "0:00 AM",
+        "close": "0:00 PM"
+      },
+      {
+        "day": "Thursday",
+        "open": "0:00 AM",
+        "close": "0:00 PM"
+      },
+      {
+        "day": "Friday",
+        "open": "0:00 AM",
+        "close": "0:00 PM"
+      }
+    ]
+  },
+  {
+    "name": "",
+    "address": {
+      "street": "",
+      "city": "",
+      "state": ""
+    },
+    "phoneNumber": "",
+    "website": "",
+    "email": "",
+    "type": "",
+    "services": [
+      "",
+      "",
+      "",
+      ""
+    ],
+    "hours": [
+      {
+        "day": "Monday",
+        "open": "0:00 AM",
+        "close": "0:00 PM"
+      },
+      {
+        "day": "Tuesday",
+        "open": "0:00 AM",
+        "close": "0:00 PM"
+      },
+      {
+        "day": "Wednesday",
+        "open": "0:00 AM",
+        "close": "0:00 PM"
+      },
+      {
+        "day": "Thursday",
+        "open": "0:00 AM",
+        "close": "0:00 PM"
+      },
+      {
+        "day": "Friday",
+        "open": "0:00 AM",
+        "close": "0:00 PM"
+      }
+    ]
+  },
+  {
+    "name": "",
+    "address": {
+      "street": "",
+      "city": "",
+      "state": ""
+    },
+    "phoneNumber": "",
+    "website": "",
+    "email": "",
+    "type": "",
+    "services": [
+      "",
+      "",
+      "",
+      ""
+    ],
+    "hours": [
+      {
+        "day": "Monday",
+        "open": "0:00 AM",
+        "close": "0:00 PM"
+      },
+      {
+        "day": "Tuesday",
+        "open": "0:00 AM",
+        "close": "0:00 PM"
+      },
+      {
+        "day": "Wednesday",
+        "open": "0:00 AM",
+        "close": "0:00 PM"
+      },
+      {
+        "day": "Thursday",
+        "open": "0:00 AM",
+        "close": "0:00 PM"
+      },
+      {
+        "day": "Friday",
+        "open": "0:00 AM",
+        "close": "0:00 PM"
+      }
+    ]
+  },
+  {
+    "name": "",
+    "address": {
+      "street": "",
+      "city": "",
+      "state": ""
+    },
+    "phoneNumber": "",
+    "website": "",
+    "email": "",
+    "type": "",
+    "services": [
+      "",
+      "",
+      "",
+      ""
+    ],
+    "hours": [
+      {
+        "day": "Monday",
+        "open": "0:00 AM",
+        "close": "0:00 PM"
+      },
+      {
+        "day": "Tuesday",
+        "open": "0:00 AM",
+        "close": "0:00 PM"
+      },
+      {
+        "day": "Wednesday",
+        "open": "0:00 AM",
+        "close": "0:00 PM"
+      },
+      {
+        "day": "Thursday",
+        "open": "0:00 AM",
+        "close": "0:00 PM"
+      },
+      {
+        "day": "Friday",
+        "open": "0:00 AM",
+        "close": "0:00 PM"
+      }
+    ]
+  },
+  {
+    "name": "",
+    "address": {
+      "street": "",
+      "city": "",
+      "state": ""
+    },
+    "phoneNumber": "",
+    "website": "",
+    "email": "",
+    "type": "",
+    "services": [
+      "",
+      "",
+      "",
+      ""
+    ],
+    "hours": [
+      {
+        "day": "Monday",
+        "open": "0:00 AM",
+        "close": "0:00 PM"
+      },
+      {
+        "day": "Tuesday",
+        "open": "0:00 AM",
+        "close": "0:00 PM"
+      },
+      {
+        "day": "Wednesday",
+        "open": "0:00 AM",
+        "close": "0:00 PM"
+      },
+      {
+        "day": "Thursday",
+        "open": "0:00 AM",
+        "close": "0:00 PM"
+      },
+      {
+        "day": "Friday",
+        "open": "0:00 AM",
+        "close": "0:00 PM"
+      }
+    ]
+  },
+  {
+    "name": "",
+    "address": {
+      "street": "",
+      "city": "",
+      "state": ""
+    },
+    "phoneNumber": "",
+    "website": "",
+    "email": "",
+    "type": "",
+    "services": [
+      "",
+      "",
+      "",
+      ""
+    ],
+    "hours": [
+      {
+        "day": "Monday",
+        "open": "0:00 AM",
+        "close": "0:00 PM"
+      },
+      {
+        "day": "Tuesday",
+        "open": "0:00 AM",
+        "close": "0:00 PM"
+      },
+      {
+        "day": "Wednesday",
+        "open": "0:00 AM",
+        "close": "0:00 PM"
+      },
+      {
+        "day": "Thursday",
+        "open": "0:00 AM",
+        "close": "0:00 PM"
+      },
+      {
+        "day": "Friday",
+        "open": "0:00 AM",
+        "close": "0:00 PM"
+      }
+    ]
+  },
+  {
+    "name": "",
+    "address": {
+      "street": "",
+      "city": "",
+      "state": ""
+    },
+    "phoneNumber": "",
+    "website": "",
+    "email": "",
+    "type": "",
+    "services": [
+      "",
+      "",
+      "",
+      ""
+    ],
+    "hours": [
+      {
+        "day": "Monday",
+        "open": "0:00 AM",
+        "close": "0:00 PM"
+      },
+      {
+        "day": "Tuesday",
+        "open": "0:00 AM",
+        "close": "0:00 PM"
+      },
+      {
+        "day": "Wednesday",
+        "open": "0:00 AM",
+        "close": "0:00 PM"
+      },
+      {
+        "day": "Thursday",
+        "open": "0:00 AM",
+        "close": "0:00 PM"
+      },
+      {
+        "day": "Friday",
+        "open": "0:00 AM",
+        "close": "0:00 PM"
+      }
+    ]
+  },
+  {
+    "name": "",
+    "address": {
+      "street": "",
+      "city": "",
+      "state": ""
+    },
+    "phoneNumber": "",
+    "website": "",
+    "email": "",
+    "type": "",
+    "services": [
+      "",
+      "",
+      "",
+      ""
+    ],
+    "hours": [
+      {
+        "day": "Monday",
+        "open": "0:00 AM",
+        "close": "0:00 PM"
+      },
+      {
+        "day": "Tuesday",
+        "open": "0:00 AM",
+        "close": "0:00 PM"
+      },
+      {
+        "day": "Wednesday",
+        "open": "0:00 AM",
+        "close": "0:00 PM"
+      },
+      {
+        "day": "Thursday",
+        "open": "0:00 AM",
+        "close": "0:00 PM"
+      },
+      {
+        "day": "Friday",
+        "open": "0:00 AM",
+        "close": "0:00 PM"
+      }
+    ]
+  },
+  {
+    "name": "",
+    "address": {
+      "street": "",
+      "city": "",
+      "state": ""
+    },
+    "phoneNumber": "",
+    "website": "",
+    "email": "",
+    "type": "",
+    "services": [
+      "",
+      "",
+      "",
+      ""
+    ],
+    "hours": [
+      {
+        "day": "Monday",
+        "open": "0:00 AM",
+        "close": "0:00 PM"
+      },
+      {
+        "day": "Tuesday",
+        "open": "0:00 AM",
+        "close": "0:00 PM"
+      },
+      {
+        "day": "Wednesday",
+        "open": "0:00 AM",
+        "close": "0:00 PM"
+      },
+      {
+        "day": "Thursday",
+        "open": "0:00 AM",
+        "close": "0:00 PM"
+      },
+      {
+        "day": "Friday",
+        "open": "0:00 AM",
+        "close": "0:00 PM"
+      }
+    ]
+  },
+  {
+    "name": "",
+    "address": {
+      "street": "",
+      "city": "",
+      "state": ""
+    },
+    "phoneNumber": "",
+    "website": "",
+    "email": "",
+    "type": "",
+    "services": [
+      "",
+      "",
+      "",
+      ""
+    ],
+    "hours": [
+      {
+        "day": "Monday",
+        "open": "0:00 AM",
+        "close": "0:00 PM"
+      },
+      {
+        "day": "Tuesday",
+        "open": "0:00 AM",
+        "close": "0:00 PM"
+      },
+      {
+        "day": "Wednesday",
+        "open": "0:00 AM",
+        "close": "0:00 PM"
+      },
+      {
+        "day": "Thursday",
+        "open": "0:00 AM",
+        "close": "0:00 PM"
+      },
+      {
+        "day": "Friday",
+        "open": "0:00 AM",
+        "close": "0:00 PM"
+      }
+    ]
+  },
+  {
+    "name": "",
+    "address": {
+      "street": "",
+      "city": "",
+      "state": ""
+    },
+    "phoneNumber": "",
+    "website": "",
+    "email": "",
+    "type": "",
+    "services": [
+      "",
+      "",
+      "",
+      ""
+    ],
+    "hours": [
+      {
+        "day": "Monday",
+        "open": "0:00 AM",
+        "close": "0:00 PM"
+      },
+      {
+        "day": "Tuesday",
+        "open": "0:00 AM",
+        "close": "0:00 PM"
+      },
+      {
+        "day": "Wednesday",
+        "open": "0:00 AM",
+        "close": "0:00 PM"
+      },
+      {
+        "day": "Thursday",
+        "open": "0:00 AM",
+        "close": "0:00 PM"
+      },
+      {
+        "day": "Friday",
+        "open": "0:00 AM",
+        "close": "0:00 PM"
+      }
+    ]
+  },
+  {
+    "name": "",
+    "address": {
+      "street": "",
+      "city": "",
+      "state": ""
+    },
+    "phoneNumber": "",
+    "website": "",
+    "email": "",
+    "type": "",
+    "services": [
+      "",
+      "",
+      "",
+      ""
+    ],
+    "hours": [
+      {
+        "day": "Monday",
+        "open": "0:00 AM",
+        "close": "0:00 PM"
+      },
+      {
+        "day": "Tuesday",
+        "open": "0:00 AM",
+        "close": "0:00 PM"
+      },
+      {
+        "day": "Wednesday",
+        "open": "0:00 AM",
+        "close": "0:00 PM"
+      },
+      {
+        "day": "Thursday",
+        "open": "0:00 AM",
+        "close": "0:00 PM"
+      },
+      {
+        "day": "Friday",
+        "open": "0:00 AM",
+        "close": "0:00 PM"
+      }
+    ]
+  },
+  {
+    "name": "",
+    "address": {
+      "street": "",
+      "city": "",
+      "state": ""
+    },
+    "phoneNumber": "",
+    "website": "",
+    "email": "",
+    "type": "",
+    "services": [
+      "",
+      "",
+      "",
+      ""
+    ],
+    "hours": [
+      {
+        "day": "Monday",
+        "open": "0:00 AM",
+        "close": "0:00 PM"
+      },
+      {
+        "day": "Tuesday",
+        "open": "0:00 AM",
+        "close": "0:00 PM"
+      },
+      {
+        "day": "Wednesday",
+        "open": "0:00 AM",
+        "close": "0:00 PM"
+      },
+      {
+        "day": "Thursday",
+        "open": "0:00 AM",
+        "close": "0:00 PM"
+      },
+      {
+        "day": "Friday",
+        "open": "0:00 AM",
+        "close": "0:00 PM"
+      }
+    ]
+  },
+  {
+    "name": "",
+    "address": {
+      "street": "",
+      "city": "",
+      "state": ""
+    },
+    "phoneNumber": "",
+    "website": "",
+    "email": "",
+    "type": "",
+    "services": [
+      "",
+      "",
+      "",
+      ""
+    ],
+    "hours": [
+      {
+        "day": "Monday",
+        "open": "0:00 AM",
+        "close": "0:00 PM"
+      },
+      {
+        "day": "Tuesday",
+        "open": "0:00 AM",
+        "close": "0:00 PM"
+      },
+      {
+        "day": "Wednesday",
+        "open": "0:00 AM",
+        "close": "0:00 PM"
+      },
+      {
+        "day": "Thursday",
+        "open": "0:00 AM",
+        "close": "0:00 PM"
+      },
+      {
+        "day": "Friday",
+        "open": "0:00 AM",
+        "close": "0:00 PM"
+      }
+    ]
+  },
+  {
+    "name": "",
+    "address": {
+      "street": "",
+      "city": "",
+      "state": ""
+    },
+    "phoneNumber": "",
+    "website": "",
+    "email": "",
+    "type": "",
+    "services": [
+      "",
+      "",
+      "",
+      ""
+    ],
+    "hours": [
+      {
+        "day": "Monday",
+        "open": "0:00 AM",
+        "close": "0:00 PM"
+      },
+      {
+        "day": "Tuesday",
+        "open": "0:00 AM",
+        "close": "0:00 PM"
+      },
+      {
+        "day": "Wednesday",
+        "open": "0:00 AM",
+        "close": "0:00 PM"
+      },
+      {
+        "day": "Thursday",
+        "open": "0:00 AM",
+        "close": "0:00 PM"
+      },
+      {
+        "day": "Friday",
+        "open": "0:00 AM",
+        "close": "0:00 PM"
+      }
+    ]
+  },
+  {
+    "name": "",
+    "address": {
+      "street": "",
+      "city": "",
+      "state": ""
+    },
+    "phoneNumber": "",
+    "website": "",
+    "email": "",
+    "type": "",
+    "services": [
+      "",
+      "",
+      "",
+      ""
+    ],
+    "hours": [
+      {
+        "day": "Monday",
+        "open": "0:00 AM",
+        "close": "0:00 PM"
+      },
+      {
+        "day": "Tuesday",
+        "open": "0:00 AM",
+        "close": "0:00 PM"
+      },
+      {
+        "day": "Wednesday",
+        "open": "0:00 AM",
+        "close": "0:00 PM"
+      },
+      {
+        "day": "Thursday",
+        "open": "0:00 AM",
+        "close": "0:00 PM"
+      },
+      {
+        "day": "Friday",
+        "open": "0:00 AM",
+        "close": "0:00 PM"
+      }
+    ]
+  },
+  {
+    "name": "",
+    "address": {
+      "street": "",
+      "city": "",
+      "state": ""
+    },
+    "phoneNumber": "",
+    "website": "",
+    "email": "",
+    "type": "",
+    "services": [
+      "",
+      "",
+      "",
+      ""
+    ],
+    "hours": [
+      {
+        "day": "Monday",
+        "open": "0:00 AM",
+        "close": "0:00 PM"
+      },
+      {
+        "day": "Tuesday",
+        "open": "0:00 AM",
+        "close": "0:00 PM"
+      },
+      {
+        "day": "Wednesday",
+        "open": "0:00 AM",
+        "close": "0:00 PM"
+      },
+      {
+        "day": "Thursday",
+        "open": "0:00 AM",
+        "close": "0:00 PM"
+      },
+      {
+        "day": "Friday",
+        "open": "0:00 AM",
+        "close": "0:00 PM"
+      }
+    ]
+  },
+  {
+    "name": "",
+    "address": {
+      "street": "",
+      "city": "",
+      "state": ""
+    },
+    "phoneNumber": "",
+    "website": "",
+    "email": "",
+    "type": "",
+    "services": [
+      "",
+      "",
+      "",
+      ""
+    ],
+    "hours": [
+      {
+        "day": "Monday",
+        "open": "0:00 AM",
+        "close": "0:00 PM"
+      },
+      {
+        "day": "Tuesday",
+        "open": "0:00 AM",
+        "close": "0:00 PM"
+      },
+      {
+        "day": "Wednesday",
+        "open": "0:00 AM",
+        "close": "0:00 PM"
+      },
+      {
+        "day": "Thursday",
+        "open": "0:00 AM",
+        "close": "0:00 PM"
+      },
+      {
+        "day": "Friday",
+        "open": "0:00 AM",
+        "close": "0:00 PM"
+      }
+    ]
+  },
+  {
+    "name": "",
+    "address": {
+      "street": "",
+      "city": "",
+      "state": ""
+    },
+    "phoneNumber": "",
+    "website": "",
+    "email": "",
+    "type": "",
+    "services": [
+      "",
+      "",
+      "",
+      ""
+    ],
+    "hours": [
+      {
+        "day": "Monday",
+        "open": "0:00 AM",
+        "close": "0:00 PM"
+      },
+      {
+        "day": "Tuesday",
+        "open": "0:00 AM",
+        "close": "0:00 PM"
+      },
+      {
+        "day": "Wednesday",
+        "open": "0:00 AM",
+        "close": "0:00 PM"
+      },
+      {
+        "day": "Thursday",
+        "open": "0:00 AM",
+        "close": "0:00 PM"
+      },
+      {
+        "day": "Friday",
+        "open": "0:00 AM",
+        "close": "0:00 PM"
+      }
+    ]
+  },
+  {
+    "name": "",
+    "address": {
+      "street": "",
+      "city": "",
+      "state": ""
+    },
+    "phoneNumber": "",
+    "website": "",
+    "email": "",
+    "type": "",
+    "services": [
+      "",
+      "",
+      "",
+      ""
+    ],
+    "hours": [
+      {
+        "day": "Monday",
+        "open": "0:00 AM",
+        "close": "0:00 PM"
+      },
+      {
+        "day": "Tuesday",
+        "open": "0:00 AM",
+        "close": "0:00 PM"
+      },
+      {
+        "day": "Wednesday",
+        "open": "0:00 AM",
+        "close": "0:00 PM"
+      },
+      {
+        "day": "Thursday",
+        "open": "0:00 AM",
+        "close": "0:00 PM"
+      },
+      {
+        "day": "Friday",
+        "open": "0:00 AM",
+        "close": "0:00 PM"
+      }
+    ]
+  },
+  {
+    "name": "",
+    "address": {
+      "street": "",
+      "city": "",
+      "state": ""
+    },
+    "phoneNumber": "",
+    "website": "",
+    "email": "",
+    "type": "",
+    "services": [
+      "",
+      "",
+      "",
+      ""
+    ],
+    "hours": [
+      {
+        "day": "Monday",
+        "open": "0:00 AM",
+        "close": "0:00 PM"
+      },
+      {
+        "day": "Tuesday",
+        "open": "0:00 AM",
+        "close": "0:00 PM"
+      },
+      {
+        "day": "Wednesday",
+        "open": "0:00 AM",
+        "close": "0:00 PM"
+      },
+      {
+        "day": "Thursday",
+        "open": "0:00 AM",
+        "close": "0:00 PM"
+      },
+      {
+        "day": "Friday",
+        "open": "0:00 AM",
+        "close": "0:00 PM"
+      }
+    ]
+  },
+  {
+    "name": "",
+    "address": {
+      "street": "",
+      "city": "",
+      "state": ""
+    },
+    "phoneNumber": "",
+    "website": "",
+    "email": "",
+    "type": "",
+    "services": [
+      "",
+      "",
+      "",
+      ""
+    ],
+    "hours": [
+      {
+        "day": "Monday",
+        "open": "0:00 AM",
+        "close": "0:00 PM"
+      },
+      {
+        "day": "Tuesday",
+        "open": "0:00 AM",
+        "close": "0:00 PM"
+      },
+      {
+        "day": "Wednesday",
+        "open": "0:00 AM",
+        "close": "0:00 PM"
+      },
+      {
+        "day": "Thursday",
+        "open": "0:00 AM",
+        "close": "0:00 PM"
+      },
+      {
+        "day": "Friday",
+        "open": "0:00 AM",
+        "close": "0:00 PM"
+      }
+    ]
+  },
+  {
+    "name": "",
+    "address": {
+      "street": "",
+      "city": "",
+      "state": ""
+    },
+    "phoneNumber": "",
+    "website": "",
+    "email": "",
+    "type": "",
+    "services": [
+      "",
+      "",
+      "",
+      ""
+    ],
+    "hours": [
+      {
+        "day": "Monday",
+        "open": "0:00 AM",
+        "close": "0:00 PM"
+      },
+      {
+        "day": "Tuesday",
+        "open": "0:00 AM",
+        "close": "0:00 PM"
+      },
+      {
+        "day": "Wednesday",
+        "open": "0:00 AM",
+        "close": "0:00 PM"
+      },
+      {
+        "day": "Thursday",
+        "open": "0:00 AM",
+        "close": "0:00 PM"
+      },
+      {
+        "day": "Friday",
+        "open": "0:00 AM",
+        "close": "0:00 PM"
+      }
+    ]
+  },
+  {
+    "name": "",
+    "address": {
+      "street": "",
+      "city": "",
+      "state": ""
+    },
+    "phoneNumber": "",
+    "website": "",
+    "email": "",
+    "type": "",
+    "services": [
+      "",
+      "",
+      "",
+      ""
+    ],
+    "hours": [
+      {
+        "day": "Monday",
+        "open": "0:00 AM",
+        "close": "0:00 PM"
+      },
+      {
+        "day": "Tuesday",
+        "open": "0:00 AM",
+        "close": "0:00 PM"
+      },
+      {
+        "day": "Wednesday",
+        "open": "0:00 AM",
+        "close": "0:00 PM"
+      },
+      {
+        "day": "Thursday",
+        "open": "0:00 AM",
+        "close": "0:00 PM"
+      },
+      {
+        "day": "Friday",
+        "open": "0:00 AM",
+        "close": "0:00 PM"
+      }
+    ]
+  },
+  {
+    "name": "",
+    "address": {
+      "street": "",
+      "city": "",
+      "state": ""
+    },
+    "phoneNumber": "",
+    "website": "",
+    "email": "",
+    "type": "",
+    "services": [
+      "",
+      "",
+      "",
+      ""
+    ],
+    "hours": [
+      {
+        "day": "Monday",
+        "open": "0:00 AM",
+        "close": "0:00 PM"
+      },
+      {
+        "day": "Tuesday",
+        "open": "0:00 AM",
+        "close": "0:00 PM"
+      },
+      {
+        "day": "Wednesday",
+        "open": "0:00 AM",
+        "close": "0:00 PM"
+      },
+      {
+        "day": "Thursday",
+        "open": "0:00 AM",
+        "close": "0:00 PM"
+      },
+      {
+        "day": "Friday",
+        "open": "0:00 AM",
+        "close": "0:00 PM"
+      }
+    ]
+  },
+  {
+    "name": "",
+    "address": {
+      "street": "",
+      "city": "",
+      "state": ""
+    },
+    "phoneNumber": "",
+    "website": "",
+    "email": "",
+    "type": "",
+    "services": [
+      "",
+      "",
+      "",
+      ""
+    ],
+    "hours": [
+      {
+        "day": "Monday",
+        "open": "0:00 AM",
+        "close": "0:00 PM"
+      },
+      {
+        "day": "Tuesday",
+        "open": "0:00 AM",
+        "close": "0:00 PM"
+      },
+      {
+        "day": "Wednesday",
+        "open": "0:00 AM",
+        "close": "0:00 PM"
+      },
+      {
+        "day": "Thursday",
+        "open": "0:00 AM",
+        "close": "0:00 PM"
+      },
+      {
+        "day": "Friday",
+        "open": "0:00 AM",
+        "close": "0:00 PM"
+      }
+    ]
+  },
+  {
+    "name": "",
+    "address": {
+      "street": "",
+      "city": "",
+      "state": ""
+    },
+    "phoneNumber": "",
+    "website": "",
+    "email": "",
+    "type": "",
+    "services": [
+      "",
+      "",
+      "",
+      ""
+    ],
+    "hours": [
+      {
+        "day": "Monday",
+        "open": "0:00 AM",
+        "close": "0:00 PM"
+      },
+      {
+        "day": "Tuesday",
+        "open": "0:00 AM",
+        "close": "0:00 PM"
+      },
+      {
+        "day": "Wednesday",
+        "open": "0:00 AM",
+        "close": "0:00 PM"
+      },
+      {
+        "day": "Thursday",
+        "open": "0:00 AM",
+        "close": "0:00 PM"
+      },
+      {
+        "day": "Friday",
+        "open": "0:00 AM",
+        "close": "0:00 PM"
+      }
+    ]
+  },
 ]
