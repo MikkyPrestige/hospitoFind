@@ -4321,7 +4321,7 @@
    {
     "name": "Mobihealth",
     "address": {
-      "street": "Suite E1 Bobsar Complex, Plot 1035 Michika Street, Area 11 Garki Abuja",
+      "street": "Suite E1 Bobsar Complex, Plot 1035 Michika Street, Area 11",
       "city": "Garki",
       "state": "Abuja"
     },
@@ -4349,6 +4349,62 @@
       "Make bookings online for diagnostics tests and consult a doctor for early diagnosis and get a timely medical prescription",
       "Have access to over 100k doctor and get the best advice for your health",
       "Mobihealth offers you free referrals"
+    ],
+    "hours": [
+      {
+        "day": "Monday",
+        "open": "24 Hours"
+      },
+      {
+        "day": "Tuesday",
+        "open": "24 Hours"
+      },
+      {
+        "day": "Wednesday",
+        "open": "24 Hours"
+      },
+      {
+        "day": "Thursday",
+        "open": "24 Hours"
+      },
+      {
+        "day": "Friday",
+        "open": "24 Hours"
+      },
+      {
+        "day": "Saturday",
+        "open": "24 Hours"
+      },
+      {
+        "day": "Sunday",
+        "open": "24 Hours"
+      }
+    ]
+  },
+  {
+    "name": "Royal Specialist Hospital",
+    "address": {
+      "street": "No. 2 Kukawa Street Off Gimbiya street, Area 11",
+      "city": "Garki",
+      "state": "Abuja"
+    },
+    "phoneNumber": "+2348134712000",
+    "website": "royalspecialisthospital.com",
+    "email": "info@royalspecialist.com",
+    "type": "Private",
+    "services": [
+      "Dental care",
+      "Immunization",
+      "Internal Medicine",
+      "Laboratory Services",
+      "Obstetrics & Gynecology",
+      "Paediatrics",
+      "Surgery"
+    ],
+    "comments": [
+      "Friendly environment and welcoming staff!",
+      "Well equipped hospital",
+      "Wheelchair-accessible"
     ],
     "hours": [
       {
@@ -5060,16 +5116,933 @@
     ]
   },
    {
-    "name": "",
+    "name": "Maryland Healthcare Hospital",
     "address": {
-      "street": "",
-      "city": "",
-      "state": ""
+      "street": "Rumuokwurusi, 14 Elechi Amadi Road",
+      "city": "Port Harcourt",
+      "state": "Rivers"
+    },
+    "phoneNumber": "0907 448 7448",
+    "website": "marylandhealthcare.com.ng",
+    "email": "",
+    "type": "Private",
+    "services": [
+      "General Medicine",
+      "Geriatrics Care",
+      "Health and Wellness",
+      "Laboratory",
+      "Paediatrics (Child) Care",
+      "Accident and Emergency",
+      "Pharmaceutical",
+      "Consultation and Planning"
+    ],
+    "comments": [
+      "Identifies as women-led",
+      "Wheelchair-accessible",
+      "Maryland Health Care offers a wide range of medical services and its equipped with medical laboratory, maternity facilities, surgical theater, ambulance, etc. The clinic also provides health care services for various HMOs in Nigeria",
+      "24 hours service with reliable medical personnel"
+    ],
+    "hours": [
+       {
+        "day": "Monday",
+        "open": "24 Hours"
+      },
+      {
+        "day": "Tuesday",
+        "open": "24 Hours"
+      },
+      {
+        "day": "Wednesday",
+        "open": "24 Hours"
+      },
+      {
+        "day": "Thursday",
+        "open": "24 Hours"
+      },
+      {
+        "day": "Friday",
+        "open": "24 Hours"
+      },
+      {
+        "day": "Saturday",
+        "open": "24 Hours"
+      },
+      {
+        "day": "Sunday",
+        "open": "24 Hours"
+      }
+    ]
+  },
+   {
+    "name": "Mediethics Medical solutions LTD",
+    "address": {
+      "street": "3 Benin Street, D/Line",
+      "city": "Port Harcourt",
+      "state": "Rivers"
+    },
+    "phoneNumber": "+2348130660041, +2348090472888, +2348090456888",
+    "website": "mmshealthcare.ng",
+    "email": "ask@mmshealthcare.ng, healthwisehospital@gmail.com",
+    "type": "Private",
+    "services": [
+      "GeriCare: Home based doctor's visit, Home Nursing care, Home Diagnostics Service, Physiotherapy and rehabilitation, 24/7 Emergency call Services, Chronic disease management",
+      "Family Medicine",
+      "Internal Medicine",
+      "Surgery",
+      "Obstetrics & Gynaecology",
+      "LABORATORY/ INVESTIGATIVE MEDICINE",
+      "Occupational medicine",
+      "PAEDIATRICS, CHILD HEALTH & IMMUNIZATION"
+    ],
+    "comments": [""],
+    "hours": [
+      {
+        "day": "Monday",
+        "open": "24 Hours"
+      },
+      {
+        "day": "Tuesday",
+        "open": "24 Hours"
+      },
+      {
+        "day": "Wednesday",
+        "open": "24 Hours"
+      },
+      {
+        "day": "Thursday",
+        "open": "24 Hours"
+      },
+      {
+        "day": "Friday",
+        "open": "24 Hours"
+      },
+      {
+        "day": "Saturday",
+        "open": "24 Hours"
+      },
+      {
+        "day": "Sunday",
+        "open": "24 Hours"
+      }
+    ]
+  },
+   {
+    "name": "New Mile One Hospital",
+    "address": {
+      "street": "15 Emenike Street, Mile 1",
+      "city": "Port Harcourt",
+      "state": "Rivers"
+    },
+    "phoneNumber": "234 84 485184, 08056041910",
+    "website": "",
+    "email": "",
+    "type": "Private",
+    "services": [""],
+    "comments": [
+      "Saving lives is their priorities"
+    ],
+    "hours": [
+      {
+        "day": "Monday",
+        "open": ""
+      },
+      {
+        "day": "Tuesday",
+        "open": ""
+      },
+      {
+        "day": "Wednesday",
+        "open": ""
+      },
+      {
+        "day": "Thursday",
+        "open": ""
+      },
+      {
+        "day": "Friday",
+        "open": ""
+      },
+      {
+        "day": "Saturday",
+        "open": ""
+      },
+      {
+        "day": "Sunday",
+        "open": ""
+      }
+    ]
+  },
+   {
+    "name": "Onne Medical Centre",
+    "address": {
+      "street": "Harbour Road, Onne Nchia Eleme",
+      "city": "Onne",
+      "state": "Rivers"
+    },
+    "phoneNumber": "0806 715 8834",
+    "website": "",
+    "email": "samudonsac@hotmail.com",
+    "type": "Private",
+    "services": [""],
+    "comments": ["Onne Medical Centre is a health organization established with the aim of providing medical assistance in Onne Community"],
+    "hours": [
+      {
+        "day": "Monday",
+        "open": "24 Hours"
+      },
+      {
+        "day": "Tuesday",
+        "open": "24 Hours"
+      },
+      {
+        "day": "Wednesday",
+        "open": "24 Hours"
+      },
+      {
+        "day": "Thursday",
+        "open": "24 Hours"
+      },
+      {
+        "day": "Friday",
+        "open": "24 Hours"
+      },
+      {
+        "day": "Saturday",
+        "open": "24 Hours"
+      },
+      {
+        "day": "Sunday",
+        "open": "24 Hours"
+      }
+    ]
+  },
+   {
+    "name": "Gbeye Hospital and Maternity",
+    "address": {
+      "street": "17, Ahoada Road",
+      "city": "Omoku",
+      "state": "Rivers"
+    },
+    "phoneNumber": "+234 803 873 6693, +234 812 901 1922",
+    "website": "gbeyehospital.com",
+    "email": "info@gbeyehospital.com",
+    "type": "Private",
+    "services": [
+      "Emergency Services",
+      "Medical Counseling",
+      "Premium Healthcare",
+      "Nutrition Laboratory",
+      "Medical diagnostics",
+      "X-ray ECG",
+      "Ultra sound scan",
+      "Medical advisory",
+      "Morgue",
+      "Training of medical personnel"
+    ],
+    "comments": ["Procurement and supplies of hi-tech medical equipment and appropriate consumables; installation, maintenance and repairs of hospital equipment"],
+    "hours": [
+      {
+        "day": "Monday",
+        "open": "24 Hours"
+      },
+      {
+        "day": "Tuesday",
+        "open": "24 Hours"
+      },
+      {
+        "day": "Wednesday",
+        "open": "24 Hours"
+      },
+      {
+        "day": "Thursday",
+        "open": "24 Hours"
+      },
+      {
+        "day": "Friday",
+        "open": "24 Hours"
+      },
+      {
+        "day": "Saturday",
+        "open": "24 Hours"
+      },
+      {
+        "day": "Sunday",
+        "open": "24 Hours"
+      }
+    ]
+  },
+   {
+    "name": "SAVE A LIFE Mission Hospital",
+    "address": {
+      "street": "38 Uyo Street, Off Stadium Rd, Rumuomasi",
+      "city": "Port Harcourt",
+      "state": "Rivers"
+    },
+    "phoneNumber": "07044000138",
+    "website": "savealifehospital.com",
+    "email": "info@savealifehospital.com",
+    "type": "Private",
+    "services": [
+      "Kidney: Lithotripsy, Dialysis, Transplant, Laparascopic Renal Surgery",
+      "Infertility: Gynae Surgeries, IVI, IVF/ICSI, Surrogacy, Sex Selection",
+      "Obesity/Gastro: Bariatric Surgery, Endoscopy, Laparoscopic Intestinal Tumor Resection",
+      "Heart: Angiogram, Angioplasty, Pace Maker Procedure, Valvular Replacement, Heart Surgeries",
+      "Spine/Orthopedic: Minimally invasive spine surgery (MISS), Painless and minimal Knee Replacement Surgery, Anatomical hip replacement, surgery, Fixation Surgery for fractures, Arthroplasty",
+      "Prostrate Bladder: Laser Laser prostatectomy, Urethroplasty, cystoscopic resection of bladder tumor, Percutaneous nephrolithotomy",
+      "Others: Intensive care management, Neonatal Care, Preterm Care with ventilator C-PAP"
+    ],
+    "comments": [
+      "Savealife Mission Hospital is a 150 bedded multispecialty hospital equipped with the latest technology in Medicine. We cheer a clear vision of reversing medical tourism towards Africa",
+      "It is an ultra modern facility equipped to cater for all cases in gynaecology, urology, orthopedic/spine, gastro enterology, ENT, cardiology and ophthalmology, etc, using the latest technology in medicine. It has comfortable standard, deluxe, executive and presidential suites, delivering hospitality at its best",
+      "The vision of the hospital is to make Nigeria a global Healthcare destination through the provision of world-class healthcare services powered by superior technology in medicine"
+    ],
+    "hours": [
+      {
+        "day": "Monday",
+        "open": "24 Hours"
+      },
+      {
+        "day": "Tuesday",
+        "open": "24 Hours"
+      },
+      {
+        "day": "Wednesday",
+        "open": "24 Hours"
+      },
+      {
+        "day": "Thursday",
+        "open": "24 Hours"
+      },
+      {
+        "day": "Friday",
+        "open": "24 Hours"
+      },
+      {
+        "day": "Saturday",
+        "open": "24 Hours"
+      },
+      {
+        "day": "Sunday",
+        "open": "24 Hours"
+      }
+    ]
+  },
+   {
+    "name": "First Rivers Hospital",
+    "address": {
+      "street": "7/9 OLD ABA ROAD (250 ABA /PH EXPRESS WAY) RUMUOMASI",
+      "city": "Port Harcourt",
+      "state": "Rivers"
+    },
+    "phoneNumber": "+234 815 849 3600,  0803 705 8080, 0803 747 2138",
+    "website": "firstrivers.com",
+    "email": "info@firstrivers.com, martinnezus@yahoo.com",
+    "type": "",
+    "services": ["With modern equipment and through skilled and efficient staff, FRH is committed to the provision of compelling quality timeless medical services to patients"],
+    "comments": [
+      "Our objective is to maximally exploit medical sciences in the art of health management and preservation of life with regards to The Ultimate Intelligence",
+      "Our core values are to offer Fast medical interventions, maintain high professional Integrity, Respect the person and right of our patients, observe all Safety considerations in the process of task execution, and employ a Team approach to health management",
+      "The new face of First Rivers Hospital has really changed alot of things, friendly, dedicated and professional staffs, latest modern medical facilities, neat, safe & serene environment and very quick responses to emergencies. One of the best hospitals in the Garden City",
+      "Pretty organized. The computerized operations makes for quick turn around. The staff were courteous. Service was quick",
+      "Fair service delivery, could do better in terms of reduced waiting time"
+    ],
+    "hours": [
+      {
+        "day": "Monday",
+        "open": "24 Hours"
+      },
+      {
+        "day": "Tuesday",
+        "open": "24 Hours"
+      },
+      {
+        "day": "Wednesday",
+        "open": "24 Hours"
+      },
+      {
+        "day": "Thursday",
+        "open": "24 Hours"
+      },
+      {
+        "day": "Friday",
+        "open": "24 Hours"
+      },
+      {
+        "day": "Saturday",
+        "open": "24 Hours"
+      },
+      {
+        "day": "Sunday",
+        "open": "24 Hours"
+      }
+    ]
+  },
+   {
+    "name": "Anchor Hospital",
+    "address": {
+      "street": "Km 15, Port-Harcourt/Aba,Near Eleme Junction, Umurolu",
+      "city": "Port Harcourt",
+      "state": "Rivers"
+    },
+    "phoneNumber": "+234 803 310 3672",
+    "website": "",
+    "email": "",
+    "type": "Private",
+    "services": [""],
+    "comments": ["Anchor Hospital is among the best health centres with durable and skilled staff making use of the foremost medical facilities in carrying out treatment"],
+    "hours": [
+      {
+        "day": "Monday",
+        "open": "24 Hours"
+      },
+      {
+        "day": "Tuesday",
+        "open": "24 Hours"
+      },
+      {
+        "day": "Wednesday",
+        "open": "24 Hours"
+      },
+      {
+        "day": "Thursday",
+        "open": "24 Hours"
+      },
+      {
+        "day": "Friday",
+        "open": "24 Hours"
+      },
+      {
+        "day": "Saturday",
+        "open": "24 Hours"
+      },
+      {
+        "day": "Sunday",
+        "open": "24 Hours"
+      }
+    ]
+  },
+   {
+    "name": "Rivers State University Teaching Hospital (RSUTH)",
+    "address": {
+      "street": "Harley Street, Port Harcourt 500101",
+      "city": "Port Harcourt",
+      "state": "Rivers"
+    },
+    "phoneNumber": "0815 149 1555, 0815 149 1574",
+    "website": "rsuth.ng",
+    "email": "",
+    "type": "Public",
+    "services": [
+      "Ear, Nose, Throat (ENT)",
+      "Pharmacy",
+      "Paediatrics",
+      "FAMILY MEDICINE",
+      "OPHTALMOLOGY/LENS",
+      "Dental Care",
+      "Internal Medicine",
+      "Radiology",
+      "Obstetrics & Gynaecology",
+      "Patholgy",
+      "Catering",
+      "Emmergency and Accident"
+    ],
+    "comments": [
+      "Rivers State University Teaching Hospital formally Braithwaite Memorial Specialist Hospital (BMSH) is a government owned hospital, was named after Eldred Curwen Braithwaite, a British doctor and a pioneer of surgery. It is located in Old GRA, Rivers State a neighbourhood of Port Harcourt and is operated by Rivers State Hospital Management Board",
+      "Fairly great service. The nurses are a bit calm and attend promptly to patients",
+      "The registration/folder opening process is not really stressful",
+      "The ambience is great with nice structures and good facilities. The compound is generally neat and there's a spacious parking lot and security system"
+    ],
+    "hours": [
+      {
+        "day": "Monday",
+        "open": "24 Hours"
+      },
+      {
+        "day": "Tuesday",
+        "open": "24 Hours"
+      },
+      {
+        "day": "Wednesday",
+        "open": "24 Hours"
+      },
+      {
+        "day": "Thursday",
+        "open": "24 Hours"
+      },
+      {
+        "day": "Friday",
+        "open": "24 Hours"
+      },
+      {
+        "day": "Saturday",
+        "open": "24 Hours"
+      },
+      {
+        "day": "Sunday",
+        "open": "24 Hours"
+      }
+    ]
+  },
+   {
+    "name": "Alex Ekwueme Federal University Teaching Hospital Abakaliki (AEFUTHA)",
+    "address": {
+      "street": "No. 1, Chidume Street, Behind State Prison Headquarters",
+      "city": "Abakaliki",
+      "state": "Ebonyi"
+    },
+    "phoneNumber": "+234 903 2419 744, +234 813 8317 048",
+    "website": "aefutha.gov.ng",
+    "email": "enquiries@aefutha.gov.ng, admin@aefutha.gov.ng",
+    "type": "Public",
+    "services": [
+      "Paediatrics",
+      "Laboratory Service",
+      "Radiology",
+      "General Surgery",
+      "Dentistry",
+      "Pharmacy",
+      "Obstetrics & Gynaecology",
+      "Ophthalmology",
+      "Nursing Services",
+      "Training & Education: School of Nursing, School of Midwifery, Internship training, Residency Training"
+    ],
+    "comments": [""],
+    "hours": [
+      {
+        "day": "Monday",
+        "open": "24 Hours"
+      },
+      {
+        "day": "Tuesday",
+        "open": "24 Hours"
+      },
+      {
+        "day": "Wednesday",
+        "open": "24 Hours"
+      },
+      {
+        "day": "Thursday",
+        "open": "24 Hours"
+      },
+      {
+        "day": "Friday",
+        "open": "24 Hours"
+      },
+      {
+        "day": "Saturday",
+        "open": "24 Hours"
+      },
+      {
+        "day": "Sunday",
+        "open": "24 Hours"
+      }
+    ]
+  },
+   {
+    "name": "Christ The King Hospital",
+    "address": {
+      "street": "85 Afikpo Road",
+      "city": "Abakaliki",
+      "state": "Ebonyi"
+    },
+    "phoneNumber": "+234 4330 0411, 080 3595 911",
+    "website": "",
+    "email": "",
+    "type": "Private",
+    "services": [
+      "Paediatrics",
+      "Gynecology",
+      "Training of medical personnel"
+    ],
+    "comments": [""],
+    "hours": [
+      {
+        "day": "Monday",
+        "open": "24 Hours"
+      },
+      {
+        "day": "Tuesday",
+        "open": "24 Hours"
+      },
+      {
+        "day": "Wednesday",
+        "open": "24 Hours"
+      },
+      {
+        "day": "Thursday",
+        "open": "24 Hours"
+      },
+      {
+        "day": "Friday",
+        "open": "24 Hours"
+      },
+      {
+        "day": "Saturday",
+        "open": "24 Hours"
+      },
+      {
+        "day": "Sunday",
+        "open": "24 Hours"
+      }
+    ]
+  },
+   {
+    "name": "National Obstetric Fistula Centre",
+    "address": {
+      "street": "Abakaliki Rd, Ntezi Abba 480108",
+      "city": "Abakaliki",
+      "state": "Ebonyi"
+    },
+    "phoneNumber": "+234(0)813-653-3679, +234(0)803-867-9354",
+    "website": "nofic.org.ng",
+    "email": "contact@nofic.org.ng",
+    "type": "Public",
+    "services": [
+      "Repair of Obstetric Fistula",
+      "Repair of Uterine Prolapse",
+      "Gynaecological Surgeries",
+      "Invitro Fertilization (IVF)",
+      "Renal Dialysis",
+      "Family Planning",
+      "Physiotherapy",
+      "Laboratory and Radiological services",
+      "Obstetric Fistula Rehabilitation & Vocational Skill Acquisition",
+      "Breast & Cervical, and Prostate Cancer Screening",
+      "Antenatal & Postnatal Services",
+      "Training of Doctors & Paramedicals in Reproductive Health",
+      "Community Awareness Campaign, Advocacy & Resource Mobilization"
+    ],
+    "comments": ["The National Obstetric Fistula Centre, Abakaliki (NOFIC) was established in 2011 by the Federal Government of Nigeria as the first national health facility for the treatment, rehabilitation, research, reintegration of and training in obstetric fistula mainly and related reproductive health issues"],
+    "hours": [
+      {
+        "day": "Monday",
+        "open": "24 Hours"
+      },
+      {
+        "day": "Tuesday",
+        "open": "24 Hours"
+      },
+      {
+        "day": "Wednesday",
+        "open": "24 Hours"
+      },
+      {
+        "day": "Thursday",
+        "open": "24 Hours"
+      },
+      {
+        "day": "Friday",
+        "open": "24 Hours"
+      },
+      {
+        "day": "Saturday",
+        "open": "24 Hours"
+      },
+      {
+        "day": "Sunday",
+        "open": "24 Hours"
+      }
+    ]
+  },
+   {
+    "name": "Ebonyi State University Teaching Hospital (ESUTH)",
+    "address": {
+      "street": "Km 2, Abakaliki - Enugu Expressway",
+      "city": "Abakaliki",
+      "state": "Ebonyi"
     },
     "phoneNumber": "",
     "website": "",
     "email": "",
-    "type": "",
+    "type": "Public",
+    "services": [""],
+    "comments": [
+      "The General Hospital caters for everyone in her capacity",
+      "The mission of the hospital is to ensure the provision of safe, quality, affordable, adequate, equitable and accessible health services to all people in Nigeria"
+    ],
+    "hours": [
+      {
+        "day": "Monday",
+        "open": "24 Hours"
+      },
+      {
+        "day": "Tuesday",
+        "open": "24 Hours"
+      },
+      {
+        "day": "Wednesday",
+        "open": "24 Hours"
+      },
+      {
+        "day": "Thursday",
+        "open": "24 Hours"
+      },
+      {
+        "day": "Friday",
+        "open": "24 Hours"
+      },
+      {
+        "day": "Saturday",
+        "open": "24 Hours"
+      },
+      {
+        "day": "Sunday",
+        "open": "24 Hours"
+      }
+    ]
+  },
+   {
+    "name": "General Hospital Onueke",
+    "address": {
+      "street": "Onueke Urban Onueke urban Ezza South",
+      "city": "Onueke",
+      "state": "Ebonyi"
+    },
+    "phoneNumber": "0803-565-3320",
+    "website": "",
+    "email": "",
+    "type": "Public",
+    "services": [
+      "Medical Services: Infectious Diseases, Family Medicine",
+      "Surgical Services: General Surgery",
+      "Pediatrics Services: Gastroenterology",
+      "Ambulance Service",
+      "Special Clinical Services: Antenatal Care (ANC), Immunization, HIV/ AIDS Services, Tuberculosis, Non Communicable Diseases, Family Planning, Nutrition, Health Education and Community Mobilization, Maternal and newborn care",
+      "Obstetrics & Gynecology Services: Gynecology",
+      "Onsite Laboratory",
+      "Mortuary Service"
+    ],
+    "comments": ["Facility Level: General Hospital Onueke is a Secondary Health Care Centre"],
+    "hours": [
+      {
+        "day": "Monday",
+        "open": "24 Hours"
+      },
+      {
+        "day": "Tuesday",
+        "open": "24 Hours"
+      },
+      {
+        "day": "Wednesday",
+        "open": "24 Hours"
+      },
+      {
+        "day": "Thursday",
+        "open": "24 Hours"
+      },
+      {
+        "day": "Friday",
+        "open": "24 Hours"
+      },
+      {
+        "day": "Saturday",
+        "open": "24 Hours"
+      },
+      {
+        "day": "Sunday",
+        "open": "24 Hours"
+      }
+    ]
+  },
+   {
+    "name": "Mater Misericordiae Hospital",
+    "address": {
+      "street": "12 Mater Road Afipo",
+      "city": "Afikpo",
+      "state": "Ebonyi"
+    },
+    "phoneNumber": "+234 806 326 7858, 0806 435 7167",
+    "website": "matersomn.org",
+    "email": "sonafikpo@yahoo.com",
+    "type": "Private",
+    "services": [""],
+    "comments": [
+      "It is a hospital owned and managed by the Catholic diocese of Abakaliki",
+      "It has a very large compound that houses the Nursing school, mortuary and Hospital. Mater hospital is big and well fenced with all the facilities needed within the compound."
+    ],
+    "hours": [
+      {
+        "day": "Monday",
+        "open": "24 Hours"
+      },
+      {
+        "day": "Tuesday",
+        "open": "24 Hours"
+      },
+      {
+        "day": "Wednesday",
+        "open": "24 Hours"
+      },
+      {
+        "day": "Thursday",
+        "open": "24 Hours"
+      },
+      {
+        "day": "Friday",
+        "open": "24 Hours"
+      },
+      {
+        "day": "Saturday",
+        "open": "24 Hours"
+      },
+      {
+        "day": "Sunday",
+        "open": "24 Hours"
+      }
+    ]
+  },
+   {
+    "name": "Ezzamgbo General Hospital",
+    "address": {
+      "street": "Enugu-Abakaliki Road, Idembia Izi",
+      "city": "Abakaliki",
+      "state": "Ebonyi"
+    },
+    "phoneNumber": "",
+    "website": "",
+    "email": "",
+    "type": "Public",
+    "services": ["Health & Medical"],
+    "comments": [""],
+    "hours": [
+      {
+        "day": "Monday",
+        "open": "24 Hours"
+      },
+      {
+        "day": "Tuesday",
+        "open": "24 Hours"
+      },
+      {
+        "day": "Wednesday",
+        "open": "24 Hours"
+      },
+      {
+        "day": "Thursday",
+        "open": "24 Hours"
+      },
+      {
+        "day": "Friday",
+        "open": "24 Hours"
+      },
+      {
+        "day": "Saturday",
+        "open": "24 Hours"
+      },
+      {
+        "day": "Sunday",
+        "open": "24 Hours"
+      }
+    ]
+  },
+   {
+    "name": "Nakowa Specialist Hospital",
+    "address": {
+      "street": "No 16 Lagos Street",
+      "city": "Maiduguri",
+      "state": "Borno"
+    },
+    "phoneNumber": "+234 76 23 1585",
+    "website": "",
+    "email": "",
+    "type": "Private",
+    "services": [
+      "Medical Services",
+      "Pediatric Care Services",
+      "General Surgery"
+    ],
+    "comments": [""],
+    "hours": [
+      {
+        "day": "Monday",
+        "open": "24 Hours"
+      },
+      {
+        "day": "Tuesday",
+        "open": "24 Hours"
+      },
+      {
+        "day": "Wednesday",
+        "open": "24 Hours"
+      },
+      {
+        "day": "Thursday",
+        "open": "24 Hours"
+      },
+      {
+        "day": "Friday",
+        "open": "24 Hours"
+      },
+      {
+        "day": "Saturday",
+        "open": "24 Hours"
+      },
+      {
+        "day": "Sunday",
+        "open": "24 Hours"
+      }
+    ]
+  },
+   {
+    "name": "Borno Medical Centre",
+    "address": {
+      "street": "81 Sir Kashim Ibrahim Way",
+      "city": "Maiduguri",
+      "state": "Borno"
+    },
+    "phoneNumber": "0803 605 0833",
+    "website": "",
+    "email": "",
+    "type": "Public",
+    "services": [
+      "Medical Care",
+      "Gynacology",
+      "Oncology",
+      "Surgical Services"
+    ],
+    "comments": [""],
+    "hours": [
+      {
+        "day": "Monday",
+        "open": "24 Hours"
+      },
+      {
+        "day": "Tuesday",
+        "open": "24 Hours"
+      },
+      {
+        "day": "Wednesday",
+        "open": "24 Hours"
+      },
+      {
+        "day": "Thursday",
+        "open": "24 Hours"
+      },
+      {
+        "day": "Friday",
+        "open": "24 Hours"
+      },
+      {
+        "day": "Saturday",
+        "open": "24 Hours"
+      },
+      {
+        "day": "Sunday",
+        "open": "24 Hours"
+      }
+    ]
+  },
+   {
+    "name": "Kanem Hospital and Maternity",
+    "address": {
+      "street": "152, Tafawa Balewa Street Lamisula Junction, Mafoni Ward",
+      "city": "Maiduguri",
+      "state": "Borno"
+    },
+    "phoneNumber": "076234287, 08036002204",
+    "website": "",
+    "email": "",
+    "type": "Private",
     "services": [""],
     "comments": [""],
     "hours": [
@@ -5102,20 +6075,32 @@
         "open": "24 Hours"
       }
     ]
-  }
+  },
    {
-    "name": "",
+    "name": "Royal Specialist Hospital",
     "address": {
-      "street": "",
-      "city": "",
-      "state": ""
+      "street": "Gombe road after Giwa barracks",
+      "city": "Maiduguri",
+      "state": "Borno"
     },
-    "phoneNumber": "",
-    "website": "",
-    "email": "",
-    "type": "",
-    "services": [""],
-    "comments": [""],
+    "phoneNumber": "+234810066590",
+    "website": "royalspecialisthospital.com",
+    "email": "info@royalspecialist.com",
+    "type": "Private",
+    "services": [
+      "Dental care",
+      "Immunization",
+      "Internal Medicine",
+      "Laboratory Services",
+      "Obstetrics & Gynecology",
+      "Paediatrics",
+      "Surgery"
+    ],
+    "comments": [
+      "Friendly environment and welcoming staff!",
+      "Well equipped hospital",
+      "Wheelchair-accessible"
+    ],
     "hours": [
       {
         "day": "Monday",
@@ -5146,108 +6131,23 @@
         "open": "24 Hours"
       }
     ]
-  }
+  },
    {
-    "name": "",
+    "name": "State Specialist Hospital",
     "address": {
-      "street": "",
-      "city": "",
-      "state": ""
+      "street": "Barno, Hausari 600282",
+      "city": "Maiduguri",
+      "state": "Borno"
     },
-    "phoneNumber": "",
+    "phoneNumber": "+234 703 333 9753",
     "website": "",
     "email": "",
-    "type": "",
+    "type": "Public",
     "services": [""],
-    "comments": [""],
-    "hours": [
-      {
-        "day": "Monday",
-        "open": "24 Hours"
-      },
-      {
-        "day": "Tuesday",
-        "open": "24 Hours"
-      },
-      {
-        "day": "Wednesday",
-        "open": "24 Hours"
-      },
-      {
-        "day": "Thursday",
-        "open": "24 Hours"
-      },
-      {
-        "day": "Friday",
-        "open": "24 Hours"
-      },
-      {
-        "day": "Saturday",
-        "open": "24 Hours"
-      },
-      {
-        "day": "Sunday",
-        "open": "24 Hours"
-      }
-    ]
-  }
-   {
-    "name": "",
-    "address": {
-      "street": "",
-      "city": "",
-      "state": ""
-    },
-    "phoneNumber": "",
-    "website": "",
-    "email": "",
-    "type": "",
-    "services": [""],
-    "comments": [""],
-    "hours": [
-      {
-        "day": "Monday",
-        "open": "24 Hours"
-      },
-      {
-        "day": "Tuesday",
-        "open": "24 Hours"
-      },
-      {
-        "day": "Wednesday",
-        "open": "24 Hours"
-      },
-      {
-        "day": "Thursday",
-        "open": "24 Hours"
-      },
-      {
-        "day": "Friday",
-        "open": "24 Hours"
-      },
-      {
-        "day": "Saturday",
-        "open": "24 Hours"
-      },
-      {
-        "day": "Sunday",
-        "open": "24 Hours"
-      }
-    ]
-  }
-   {
-    "name": "",
-    "address": {
-      "street": "",
-      "city": "",
-      "state": ""
-    },
-    "phoneNumber": "",
-    "website": "",
-    "email": "",
-    "type": "",
-    "services": [""],
-    "comments": [""],
+    "comments": [
+      "The #1 State owned government hospital with specialist medical personnels in different fields",
+      "This is a standard and well equipped with a modern high-tech equipment to be used for different specialised medical treatment's.this Hospital have enough send an experience doctors for Different kind of treatment and they are doing the rooms are well equipped and decorated for better ventilation"
+    ],
     "hours": [
       {
         "day": "Monday",
@@ -5367,17 +6267,850 @@
       }
     ]
   },
-   {
-    "name": "",
+  {
+    "name": "Royal Specialist Hospital",
     "address": {
-      "street": "",
-      "city": "",
-      "state": ""
+      "street": "No. 1, Agatu street, Otukpo, Benue state No. 21 federal road",
+      "city": "Otukpo",
+      "state": "Benue"
+    },
+    "phoneNumber": "+2347084780003, +2349034447532",
+    "website": "royalspecialisthospital.com",
+    "email": "info@royalspecialist.com",
+    "type": "Private",
+    "services": [
+      "Dental care",
+      "Immunization",
+      "Internal Medicine",
+      "Laboratory Services",
+      "Obstetrics & Gynecology",
+      "Paediatrics",
+      "Surgery"
+    ],
+    "comments": [
+      "Friendly environment and welcoming staff!",
+      "Well equipped hospital",
+      "Wheelchair-accessible"
+    ],
+    "hours": [
+      {
+        "day": "Monday",
+        "open": "24 Hours"
+      },
+      {
+        "day": "Tuesday",
+        "open": "24 Hours"
+      },
+      {
+        "day": "Wednesday",
+        "open": "24 Hours"
+      },
+      {
+        "day": "Thursday",
+        "open": "24 Hours"
+      },
+      {
+        "day": "Friday",
+        "open": "24 Hours"
+      },
+      {
+        "day": "Saturday",
+        "open": "24 Hours"
+      },
+      {
+        "day": "Sunday",
+        "open": "24 Hours"
+      }
+    ]
+  },
+   {
+    "name": "University of Maiduguri Teaching Hospital (UMTH)",
+    "address": {
+      "street": "Bama Road Maiduguri, P.M.B 1414",
+      "city": "Maiduguri",
+      "state": "Borno"
+    },
+    "phoneNumber": "+234 909 305 0548",
+    "website": "umth.org.ng",
+    "email": "info@umth.org.ng",
+    "type": "Public",
+    "services": [
+      "Anaesthesia",
+      "Chemical Pathology",
+      "Community Medicine",
+      "Dental Surgery",
+      "Ear Nose and Throat (ENT)",
+      "General Out Patient Department (GOPD)",
+      "Haematology",
+      "Histopathology",
+      "Immunology",
+      "Internal Medicine",
+      "Radiology",
+      "Paediatrics",
+      " Surgery",
+      "Obstetric & Gynaecology",
+      "Orthopaedics",
+      "Opthalmology",
+      "Pharmacy",
+      "Accident & Emergency (A&E)"
+    ],
+    "comments": [
+      "The University of Maiduguri Teaching Hospital is an agency/parastatal under the Federal Ministry of Health",
+      "The biggest hospital in the city, neat and spacious, only stress is finding out places, distances between places is much",
+      "It's the only teaching hospital in Maiduguri and they render efficient medical services",
+      "One of the major public tertiary healthcare centres in the North-East Nigeria that provide professional healthcare and medical services"
+    ],
+    "hours": [
+      {
+        "day": "Monday",
+        "open": "24 Hours"
+      },
+      {
+        "day": "Tuesday",
+        "open": "24 Hours"
+      },
+      {
+        "day": "Wednesday",
+        "open": "24 Hours"
+      },
+      {
+        "day": "Thursday",
+        "open": "24 Hours"
+      },
+      {
+        "day": "Friday",
+        "open": "24 Hours"
+      },
+      {
+        "day": "Saturday",
+        "open": "24 Hours"
+      },
+      {
+        "day": "Sunday",
+        "open": "24 Hours"
+      }
+    ]
+  },
+   {
+    "name": "NEW FOUNDATION HOSPITAL",
+    "address": {
+      "street": "No 340 Shehu Umar Road, Sabo Lamba Ward",
+      "city": "Maiduguri",
+      "state": "Borno"
+    },
+    "phoneNumber": "+234 803 417 4667",
+    "website": "",
+    "email": "",
+    "type": "Private",
+    "services": [""],
+    "comments": ["This hospital have gotten a new look that is very commendable"],
+    "hours": [
+      {
+        "day": "Monday",
+        "open": "24 Hours"
+      },
+      {
+        "day": "Tuesday",
+        "open": "24 Hours"
+      },
+      {
+        "day": "Wednesday",
+        "open": "24 Hours"
+      },
+      {
+        "day": "Thursday",
+        "open": "24 Hours"
+      },
+      {
+        "day": "Friday",
+        "open": "24 Hours"
+      },
+      {
+        "day": "Saturday",
+        "open": "24 Hours"
+      },
+      {
+        "day": "Sunday",
+        "open": "24 Hours"
+      }
+    ]
+  },
+   {
+    "name": "First Fertility Hospital",
+    "address": {
+      "street": "Plot BNB5827 Samuel Rufus Street, Ankpa Quarters, Township 970251",
+      "city": "Makurdi",
+      "state": "Benue"
+    },
+    "phoneNumber": "0909 946 6012, 08034339111",
+    "website": "firstfertilityhospital.com",
+    "email": "",
+    "type": "Private",
+    "services": ["We are a specialized gynecologist and obstetric hospital set up to care for reproductive health needs of women which include infertility challenges, endoscopic surgeries and the management of high risk pregnancies in women"],
+    "comments": [
+      "Its a fertility hospital where IVF is done and its a mother and child hospital as well",
+      "They are good team players, make their patients comfortable and they more than deliver on the services they have been setup to deliver"
+    ],
+    "hours": [
+      {
+        "day": "Monday",
+        "open": "24 Hours"
+      },
+      {
+        "day": "Tuesday",
+        "open": "24 Hours"
+      },
+      {
+        "day": "Wednesday",
+        "open": "24 Hours"
+      },
+      {
+        "day": "Thursday",
+        "open": "24 Hours"
+      },
+      {
+        "day": "Friday",
+        "open": "24 Hours"
+      },
+      {
+        "day": "Saturday",
+        "open": "24 Hours"
+      },
+      {
+        "day": "Sunday",
+        "open": "24 Hours"
+      }
+    ]
+  },
+   {
+    "name": "Madonna Hospital",
+    "address": {
+      "street": "Behind Union Bank of Nigeria, New Otukpo Road, P. O. Box 503",
+      "city": "Maiduguri",
+      "state": "Benue"
+    },
+    "phoneNumber": "+2347038502653, +2348027473188, +2348131838557",
+    "website": "madonnahospitalmakurdi.com.ng",
+    "email": "info@madonnahospitalmakurdi.com.ng",
+    "type": "Private",
+    "services": [
+      "Out-Patient",
+      "Paediatrics: The Paediatrics Department has two Neonatal wards (in-born and out-born) equipped with Photo-Therapy stands and 8 Incubators There are also two Paediatric Wards with 6 beds each. The department provides child welfare services including Immunization and growth monitoring",
+      "Maternity: The unit has an Obstetrics/Gynaecology ward with Six (6) beds, labour Room equipped with neonatal resuscitation equipments",
+      "GENERAL WARDS: The four (4) General Wards have Six (6) Beds each. All the Wards are connected to Cable TV",
+      "PRIVATE WARDS: There are two fully air-conditioned rooms with cable TV connectivity and refrigerator",
+      "VIP WARDS: There are Nine (9) well furnished, Air-conditioned rooms with independent Cable TV and a refrigerator",
+      "Radiology",
+      "Laboratory: The laboratory is equipped with state of the art equipments in the running of Haematology, Chemistry, Immunology, Microbiology and Parasitology. There is an air-conditioned waiting room with Cable TV where patients can relax while waiting for their results",
+      "Physiotherapy: Physiotherapy services is available in the facility",
+      "Pharmacy: There are two well stocked Pharmacies (Main and Mini). It has a sterile compounding unit attached to it",
+      "Mortuary: The hospital has a Mortuary for morgue services",
+      "Theatre: The MAJOR THEATRE is equipped with Diathermy Machines, Electro-hydrolyic Operating Table; the latest Model of Anaesthetic Machine with Ventilator, Vaporizer, and Patient Monitors. The MINOR THEATRE is used for Minor Procedures. Doctors Consulting Room. Endoscopy Suite",
+      "LAUNDRY UNIT: The hospital has its own laundry unit to ensure clean patient’s linens",
+      "POWER SUPPLY: The hospital is connected to the public power supply through a dedicated Transformer. It has a 114, 13 KVA Sound Proof Generator and 9KVA Gasoline generator with solar inverter generator installed at various blocks of the hospital to guaranteeing 24hrs power supply"
+    ],
+    "comments": [
+      "Madonna hospital, a subsidiary of Madonna Health Services Limited is located in the heart of Makurdi the Benue State Capital",
+      "Madonna hospital is also a GLOBAL FUND site for free comprehensive HIV/AIDS services. It is a National Health Insurance Scheme (NHIS) accredited facility for Primary and Secondary services in addition to having Corporate Clients and Private Health insurance Schemes"
+    ],
+    "hours": [
+      {
+        "day": "Monday",
+        "open": "24 Hours"
+      },
+      {
+        "day": "Tuesday",
+        "open": "24 Hours"
+      },
+      {
+        "day": "Wednesday",
+        "open": "24 Hours"
+      },
+      {
+        "day": "Thursday",
+        "open": "24 Hours"
+      },
+      {
+        "day": "Friday",
+        "open": "24 Hours"
+      },
+      {
+        "day": "Saturday",
+        "open": "24 Hours"
+      },
+      {
+        "day": "Sunday",
+        "open": "24 Hours"
+      }
+    ]
+  },
+   {
+    "name": "General Hospital",
+    "address": {
+      "street": "North Bank market",
+      "city": "Makurdi",
+      "state": "Benue"
     },
     "phoneNumber": "",
     "website": "",
     "email": "",
-    "type": "",
+    "type": "Public",
+    "services": [""],
+    "comments": ["The General Hospital caters for everyone in her capacity. The mission of the hospital is to ensure the provision of safe, quality, affordable, adequate, equitable and accessible health services to all people in Nigeria"],
+    "hours": [
+      {
+        "day": "Monday",
+        "open": "24 Hours"
+      },
+      {
+        "day": "Tuesday",
+        "open": "24 Hours"
+      },
+      {
+        "day": "Wednesday",
+        "open": "24 Hours"
+      },
+      {
+        "day": "Thursday",
+        "open": "24 Hours"
+      },
+      {
+        "day": "Friday",
+        "open": "24 Hours"
+      },
+      {
+        "day": "Saturday",
+        "open": "24 Hours"
+      },
+      {
+        "day": "Sunday",
+        "open": "24 Hours"
+      }
+    ]
+  },
+   {
+    "name": "Benue State University Teaching Hospital (BSUTH)",
+    "address": {
+      "street": "3 Makurdi-Gboko Rd, Walmayo 970101",
+      "city": "Makurdi",
+      "state": "Benue"
+    },
+    "phoneNumber": "+234 07089547856, 08134889931, 08066841838",
+    "website": "bsuth.org.ng",
+    "email": "inquiries@bsuth.org.ng",
+    "type": "Public",
+    "services": [
+      "Heamodialysis",
+      "Endoscopy",
+      "Echocardiography",
+      "CT scanning",
+      "Medical care services",
+      "Training of medical students"
+    ],
+    "comments": ["Received accreditation from the Medical and Dental Council of Nigeria to be a suitable place for the training of medical students"],
+    "hours": [
+      {
+        "day": "Monday",
+        "open": "24 Hours"
+      },
+      {
+        "day": "Tuesday",
+        "open": "24 Hours"
+      },
+      {
+        "day": "Wednesday",
+        "open": "24 Hours"
+      },
+      {
+        "day": "Thursday",
+        "open": "24 Hours"
+      },
+      {
+        "day": "Friday",
+        "open": "24 Hours"
+      },
+      {
+        "day": "Saturday",
+        "open": "24 Hours"
+      },
+      {
+        "day": "Sunday",
+        "open": "24 Hours"
+      }
+    ]
+  },
+   {
+    "name": "General Hospital, Vandekeiya",
+    "address": {
+      "street": "Vandeikya town",
+      "city": "Vandeikya",
+      "state": "Benue"
+    },
+    "phoneNumber": "",
+    "website": "",
+    "email": "",
+    "type": "Public",
+    "services": [""],
+    "comments": ["The General Hospital caters for everyone in her capacity. The mission of the hospital is to ensure the provision of safe, quality, affordable, adequate, equitable and accessible health services to all people in Nigeria"],
+    "hours": [
+      {
+        "day": "Monday",
+        "open": "24 Hours"
+      },
+      {
+        "day": "Tuesday",
+        "open": "24 Hours"
+      },
+      {
+        "day": "Wednesday",
+        "open": "24 Hours"
+      },
+      {
+        "day": "Thursday",
+        "open": "24 Hours"
+      },
+      {
+        "day": "Friday",
+        "open": "24 Hours"
+      },
+      {
+        "day": "Saturday",
+        "open": "24 Hours"
+      },
+      {
+        "day": "Sunday",
+        "open": "24 Hours"
+      }
+    ]
+  },
+   {
+    "name": "St. Daniels Hospital",
+    "address": {
+      "street": "No 5 Ochalefu street behind new garage 972231",
+      "city": "Otukpo",
+      "state": "Benue"
+    },
+    "phoneNumber": "0808 965 9337, 0802 767 4480, 0816 399 1065",
+    "website": "saintdanielhospital.business.site",
+    "email": "stdanielhospital@yahoo.co.uk",
+    "type": "Private",
+    "services": [
+      "Medical",
+      "Surgical",
+      "Laboratory",
+      "Ultrasound",
+      "X-Ray",
+      "Home care for elderly and aged patients with chronic illnesses"
+    ],
+    "comments": ["Wheelchair-accessible"],
+    "hours": [
+      {
+        "day": "Monday",
+        "open": "24 Hours"
+      },
+      {
+        "day": "Tuesday",
+        "open": "24 Hours"
+      },
+      {
+        "day": "Wednesday",
+        "open": "24 Hours"
+      },
+      {
+        "day": "Thursday",
+        "open": "24 Hours"
+      },
+      {
+        "day": "Friday",
+        "open": "24 Hours"
+      },
+      {
+        "day": "Saturday",
+        "open": "24 Hours"
+      },
+      {
+        "day": "Sunday",
+        "open": "24 Hours"
+      }
+    ]
+  },
+   {
+    "name": "Myom Hospital",
+    "address": {
+      "street": "NO.28, GENERAL HOSPITAL ROAD, GBOKO EAST, P.O Box 744",
+      "city":"Gboko",
+      "state": "Benue"
+    },
+    "phoneNumber": "+234 44 470 071, 0806-424-2045",
+    "website": "",
+    "email": "",
+    "type": "Private",
+    "services": [
+      "Medical Services: Hematology",
+      "Surgical Services: General Surgery, Neuro-Surgery",
+      "Pediatrics Services: Gastroenterology, Pulmonology",
+      "Ambulance Service",
+      "Special Clinical Services: Antenatal Care (ANC), Immunization, HIV/ AIDS Services, Family Planning, Intensive Care Services , Accidents and Emergency",
+      "Obstetrics & Gynecology Services: Obstetrics, Gynecology, Fertility/Assisted Reproductive Techniques",
+      "Onsite Laboratory",
+      "Onsite Pharmacy"
+    ],
+    "comments": ["Facility Level: Myom Hospital is a Secondary Health Care Centre"],
+    "hours": [
+      {
+        "day": "Monday",
+        "open": "24 Hours"
+      },
+      {
+        "day": "Tuesday",
+        "open": "24 Hours"
+      },
+      {
+        "day": "Wednesday",
+        "open": "24 Hours"
+      },
+      {
+        "day": "Thursday",
+        "open": "24 Hours"
+      },
+      {
+        "day": "Friday",
+        "open": "24 Hours"
+      },
+      {
+        "day": "Saturday",
+        "open": "24 Hours"
+      },
+      {
+        "day": "Sunday",
+        "open": "24 Hours"
+      }
+    ]
+  },
+   {
+    "name": "Faith Foundation Specialist Clinic",
+    "address": {
+      "street": "57 Ndidem Usang ISO Rd, Calabar Municipal",
+      "city": "Calabar",
+      "state": "Cross River"
+    },
+    "phoneNumber": "087-239436, 08033580726, 08023744014, 08034019721",
+    "website": "faithfoundationmedical.com",
+    "email": "executive@faithfoundationmedical.com, faithfoundationclinic57@yahoo.com",
+    "type": "Private",
+    "services": ["Specialist and Maternity hospital"],
+    "comments": ["Its well groomed hospital with all the equipment. Clean and current when it comes to service delivery"],
+    "hours": [
+      {
+        "day": "Monday",
+        "open": "24 Hours"
+      },
+      {
+        "day": "Tuesday",
+        "open": "24 Hours"
+      },
+      {
+        "day": "Wednesday",
+        "open": "24 Hours"
+      },
+      {
+        "day": "Thursday",
+        "open": "24 Hours"
+      },
+      {
+        "day": "Friday",
+        "open": "24 Hours"
+      },
+      {
+        "day": "Saturday",
+        "open": "24 Hours"
+      },
+      {
+        "day": "Sunday",
+        "open": "24 Hours"
+      }
+    ]
+  },
+   {
+    "name": "Bakor Medical Centre",
+    "address": {
+      "street": "124 Murtala Mohammed Highway, Opposite NNPC Mega Station, Federal Housing Estate",
+      "city": "Calabar",
+      "state": "Cross River"
+    },
+    "phoneNumber": "+234 809 096 8401, +234 809 233 7055, +234 912 036 3659",
+    "website": "bakorhospitals.com",
+    "email": "info@bakorhospitals.com, bmc.admin@bakorhospitals.com",
+    "type": "Private",
+    "services": [
+      "Out-patient clinics",
+      "In-patient care",
+      "Surgical Services",
+      "Family healthcare",
+      "Women’s healthcare (Ante-Natal, Post-Natal care, Gynecological Services)",
+      "DNA Services",
+      "Family Planning",
+      "Children’s healthcare including: Infant welfare (immunization)",
+      "Mental health counseling",
+      "Acute and Urgent care 24/7",
+      "Diagnostic and Laboratory services",
+      "Ambulance service",
+      "Medical examinations for Pre-employment, Pre-travel, insurance and school admission",
+      "Health Education and Support groups (hypertension classes, diabetic classes, health and wellness classes)",
+      "Mobile services (home care visits)",
+      "Seafarers Medical Certification",
+      "Insurance medical care",
+      "Comprehensive HIV Services (Counselling, Testing and Treatment)",
+      "Birth Registration",
+      "Eye examination",
+      "Clinical research/Clinical Trials"
+    ],
+    "comments": [
+      "An exceptional leader in Cross River State who has proven himself amongst his contemporaries as a force to be reckoned with both in the medical profession and the general society",
+      "Dr. Sylvester E.N Ebaye is a medical guru who has proven himself a worthy  leader and untiring philanthropist",
+      "An exceptional Family Physician whose gentle and wonderful nature makes him an excellent and calming medical professional, perfectly complimenting his clinical expertise"
+    ],
+    "hours": [
+      {
+        "day": "Monday",
+        "open": "24 Hours"
+      },
+      {
+        "day": "Tuesday",
+        "open": "24 Hours"
+      },
+      {
+        "day": "Wednesday",
+        "open": "24 Hours"
+      },
+      {
+        "day": "Thursday",
+        "open": "24 Hours"
+      },
+      {
+        "day": "Friday",
+        "open": "24 Hours"
+      },
+      {
+        "day": "Saturday",
+        "open": "24 Hours"
+      },
+      {
+        "day": "Sunday",
+        "open": "24 Hours"
+      }
+    ]
+  },
+   {
+    "name": "General Hospital, Calabar",
+    "address": {
+      "street": "113 Mary Slessor Avenue, Efut Ekondo",
+      "city": "Calabar",
+      "state": "Cross River"
+    },
+    "phoneNumber": "087 776 451",
+    "website": "",
+    "email": "",
+    "type": "Public",
+    "services": [
+      "Maternity",
+      "Surgery",
+      "Obstetric & Gynaecology",
+      "Emergency",
+      "Facility Level: Calabar General Hospital is a Secondary Health Care Centre"
+    ],
+    "comments": [
+      "Wheelchair-accessible",
+      "Beautiful environment and some of the doctors (workers) very nice and friendly"
+    ],
+    "hours": [
+      {
+        "day": "Monday",
+        "open": "24 Hours"
+      },
+      {
+        "day": "Tuesday",
+        "open": "24 Hours"
+      },
+      {
+        "day": "Wednesday",
+        "open": "24 Hours"
+      },
+      {
+        "day": "Thursday",
+        "open": "24 Hours"
+      },
+      {
+        "day": "Friday",
+        "open": "24 Hours"
+      },
+      {
+        "day": "Saturday",
+        "open": "24 Hours"
+      },
+      {
+        "day": "Sunday",
+        "open": "24 Hours"
+      }
+    ]
+  },
+   {
+    "name": "Danex Hospital",
+    "address": {
+      "street": "5 Danex Road, off Ikom-Calabar Highway, Ugep",
+      "city": "Ugep",
+      "state": "Cross River"
+    },
+    "phoneNumber": "0803 591 0169, 0817 591 0169",
+    "website": "",
+    "email": "",
+    "type": "Private",
+    "services": ["Danex Medical Centre offers medical services in general patient treatment such as medical laboratory, general surgery, gynecology, radiology and other medical treatment services"],
+    "comments": [""],
+    "hours": [
+      {
+        "day": "Monday",
+        "open": "24 Hours"
+      },
+      {
+        "day": "Tuesday",
+        "open": "24 Hours"
+      },
+      {
+        "day": "Wednesday",
+        "open": "24 Hours"
+      },
+      {
+        "day": "Thursday",
+        "open": "24 Hours"
+      },
+      {
+        "day": "Friday",
+        "open": "24 Hours"
+      },
+      {
+        "day": "Saturday",
+        "open": "24 Hours"
+      },
+      {
+        "day": "Sunday",
+        "open": "24 Hours"
+      }
+    ]
+  },
+   {
+    "name": "County Specialist Hospital",
+    "address": {
+      "street": "11, Calabar Road Fourconner Square Ikom",
+      "city": "Ikom",
+      "state": "Cross River"
+    },
+    "phoneNumber": "07035022715, 08177143218, 234-8028985004",
+    "website": "",
+    "email": "County Specialist Hospital",
+    "type": "Private",
+    "services": [
+      "Gynaecology",
+      "Trauma Surgery",
+      "X Ray",
+      "Electrocardiography",
+      "Scanning",
+      "Photocopy Services"
+    ],
+    "comments": [""],
+    "hours": [
+      {
+        "day": "Monday",
+        "open": "24 Hours"
+      },
+      {
+        "day": "Tuesday",
+        "open": "24 Hours"
+      },
+      {
+        "day": "Wednesday",
+        "open": "24 Hours"
+      },
+      {
+        "day": "Thursday",
+        "open": "24 Hours"
+      },
+      {
+        "day": "Friday",
+        "open": "24 Hours"
+      },
+      {
+        "day": "Saturday",
+        "open": "24 Hours"
+      },
+      {
+        "day": "Sunday",
+        "open": "24 Hours"
+      }
+    ]
+  },
+   {
+    "name": "Calabar Specialist Hospital",
+    "address": {
+      "street": "Summit Hills Development Area, Off Murtala Muhammed Highway",
+      "city": "Calabar",
+      "state": "Cross River"
+    },
+    "phoneNumber": "",
+    "website": "",
+    "email": "",
+    "type": "Public",
+    "services": [
+      "Geared towards the delivery of qualitative, efficient and prompt medical care",
+      "Offers services to those in need of care, expert advice, and/or additional options for patient care, prevention of illness, and informed choices for a healthy lifestyle"],
+    "comments": [
+      "Their wards are conducive for patients' relaxation and their staff are both warm and efficient in carrying out their work. This place also has a secured car park for about 80 vehicles",
+      "This referral, state-of-the-art, multi-discipline hospital. Located in the serene environment of the Summit Hills that is easily accessible",
+      "It boasts of 105 inpatient beds, 5 ICU Beds and 4 NICU beds. It also has 4 Operating Theaters",
+      "Most common visitors: The sick, the aged, pregnant and nursing mothers, medical practitioners"
+    ],
+    "hours": [
+      {
+        "day": "Monday",
+        "open": "24 Hours"
+      },
+      {
+        "day": "Tuesday",
+        "open": "24 Hours"
+      },
+      {
+        "day": "Wednesday",
+        "open": "24 Hours"
+      },
+      {
+        "day": "Thursday",
+        "open": "24 Hours"
+      },
+      {
+        "day": "Friday",
+        "open": "24 Hours"
+      },
+      {
+        "day": "Saturday",
+        "open": "24 Hours"
+      },
+      {
+        "day": "Sunday",
+        "open": "24 Hours"
+      }
+    ]
+  },
+   {
+    "name": "Niima Consultant Clinic",
+    "address": {
+      "street": "Niima Close, Off Airport Road G.R.A, P.O.Box 3018,",
+      "city": "Bauchi",
+      "state": "Bauchi"
+    },
+    "phoneNumber": "077-543587, 08036270075",
+    "website": "",
+    "email": "niimaconsultantshosp@yahoo.com",
+    "type": "Private",
     "services": [""],
     "comments": [""],
     "hours": [
@@ -5412,17 +7145,247 @@
     ]
   },
    {
-    "name": "",
+    "name": "Bauchi State Specialist Hospital",
     "address": {
-      "street": "",
-      "city": "",
-      "state": ""
+      "street": "Dan Iya Bauchi",
+      "city": "Bauchi",
+      "state": "Bauchi"
     },
     "phoneNumber": "",
     "website": "",
     "email": "",
-    "type": "",
-    "services": [""],
+    "type": "Public",
+    "services": [
+      "Medical Services: Gastroenterology, Hematology, Neurology",
+      "Surgical Services: Ophthalmology, General Surgery, Cardiothoracic Surgery, Neuro-Surgery, Urology, Pediatric Surgery, Pathology",
+      "Pediatrics Services: Gastroenterology, Neonatology",
+      "Special Clinical Services: Antenatal Care (ANC), Immunization, HIV/ AIDS Services, Tuberculosis, Non Communicable Diseases, Family Planning, Intensive Care Services , Communicable Diseases, Hepatitis, Child Survival, Accidents and Emergency, Nutrition, Health Education and Community Mobilization, Maternal and newborn care, Scanning"
+    ],
+    "comments": [
+      "Facility Level: Bauchi Specialist Hospital is a Tertiary Health Care Centre",
+      "Its old Tatari Ali polytechnic where specialist hospital is build and it become one among the modern hospital in Bauchi State"
+    ],
+    "hours": [
+      {
+        "day": "Monday",
+        "open": "24 Hours"
+      },
+      {
+        "day": "Tuesday",
+        "open": "24 Hours"
+      },
+      {
+        "day": "Wednesday",
+        "open": "24 Hours"
+      },
+      {
+        "day": "Thursday",
+        "open": "24 Hours"
+      },
+      {
+        "day": "Friday",
+        "open": "24 Hours"
+      },
+      {
+        "day": "Saturday",
+        "open": "24 Hours"
+      },
+      {
+        "day": "Sunday",
+        "open": "24 Hours"
+      }
+    ]
+  },
+   {
+    "name": "Federal Medical Centre Azare",
+    "address": {
+      "street": "No. 5 Sule Katagum Road",
+      "city": "Azare",
+      "state": "Bauchi"
+    },
+    "phoneNumber": "+234 8036161249, 08036892083",
+    "website": "fmcazare.gov.ng",
+    "email": "fmcazare2000@gmail.com, fmcazare2000@gmail.com",
+    "type": "Public",
+    "services": [
+      "Medicine: Outpatients Clinic 24hrs Emergency Coverage Inpatient Ward Service Diagnostics: Daily Electro-Cardiology (ECG) Weekly Echo-Cardiography",
+      "Dental Services: Outpatient Clinic Extraction Filling Scaling and Polishing Surgical Extraction Dental Surgery Splinting IMF (Multiple Fracture) Tooth Replacement",
+      "NHIS Services: Consultations Services Laboratory Services Pharmaceutical Services Radiology Services Patient Couseling Providing secondary services to NHIS clients by referring patients to specialty clinics for other services.",
+      "Pathology: Medical Microbiology Acid Fast Bacilli Blood Culture CSF Microscopy Gene Expert Microscopy Culture and Sensitivity (Urine, Sputum, Stool) Montaux Test MP/Widal Test Rheumatoid Factor Semen Analysis Skin Snip",
+      "Radiology: ULTRASONOGRAPHY: Musculo-skeletal scan Obstetrics and Gynaecology abdominal scan pelvic scan chest ultrasonography ocular scan vascular scan (doppler study) breast scan scrotal scan, etc.",
+      "Ophthalmology: Consultation on various Eye Ailments Medical Treatment of Eye Diseases Refraction Optical Correction of Refractive Errors"
+    ],
+    "comments": [
+      "It is a federal institution which provide tertiary healthcare service deliver to the people",
+      "It is a fully-functional 300-bedded hospital with state-of-the-art medical equipment",
+      "The mandate of the Centre is to provide excellent healthcare services, training and research using professional staff and modern technology"
+    ],
+    "hours": [
+     {
+        "day": "Monday",
+        "open": "8:00 AM - 4:00 PM"
+      },
+      {
+        "day": "Tuesday",
+        "open": "8:00 AM - 4:00 PM"
+      },
+      {
+        "day": "Wednesday",
+        "open": "8:00 AM - 4:00 PM"
+      },
+      {
+        "day": "Thursday",
+        "open": "8:00 AM - 4:00 PM"
+      },
+      {
+        "day": "Friday",
+        "open": "8:00 AM - 4:00 PM"
+      },
+      {
+        "day": "Saturday",
+        "open": ""
+      },
+      {
+        "day": "Sunday",
+        "open": ""
+      }
+    ]
+  },
+   {
+    "name": "Pahlycon Hospital",
+    "address": {
+      "street": "Sabunwa Kasuwa Railway road",
+      "city": "Bauchi",
+      "state": "Bauchi"
+    },
+    "phoneNumber": "08065811873",
+    "website": "",
+    "email": "",
+    "type": "Private",
+    "services": [
+      "Blood bank",
+      "Ambulance service"
+    ],
+    "comments": [
+      "Users have reported the following experiences for Pahlycon Hosipital: Experience at the facility was good",
+      "Modes of payment: Cash"
+    ],
+    "hours": [
+      {
+        "day": "Monday",
+        "open": ""
+      },
+      {
+        "day": "Tuesday",
+        "open": ""
+      },
+      {
+        "day": "Wednesday",
+        "open": ""
+      },
+      {
+        "day": "Thursday",
+        "open": ""
+      },
+      {
+        "day": "Friday",
+        "open": ""
+      },
+      {
+        "day": "Saturday",
+        "open": ""
+      },
+      {
+        "day": "Sunday",
+        "open": ""
+      }
+    ]
+  },
+   {
+    "name": "Al-Ameen Hospital",
+    "address": {
+      "street": "Former AMSAD Hospital, 02 Nassarawa Road",
+      "city": "Bauchi",
+      "state": "Bauchi"
+    },
+    "phoneNumber": "+234 803 865 2037, 0703 789 8673, 0816 6601660",
+    "website": "",
+    "email": "info@alameennigeria.com",
+    "type": "Private",
+    "services": [
+      "Routine outpatient medical consultation",
+      "Specialist medical consultation (by appointment)",
+      "Local Referral",
+      "International referral (Saudi Arabia only)",
+      "Automated laboratory services (24 hours)",
+      "Ultrasound Scan",
+      "Ante-natal care",
+      "Health Insurance",
+      "Medical screening and Medical reports",
+      "Child health services (vaccinations & wellness clinic)",
+      "Public health research (clinical and community based)",
+      "Emergency bed service"
+        ],
+    "comments": ["Modes of Payment: Cash"],
+    "hours": [
+      {
+        "day": "Monday",
+        "open": ""
+      },
+      {
+        "day": "Tuesday",
+        "open": ""
+      },
+      {
+        "day": "Wednesday",
+        "open": ""
+      },
+      {
+        "day": "Thursday",
+        "open": ""
+      },
+      {
+        "day": "Friday",
+        "open": ""
+      },
+      {
+        "day": "Saturday",
+        "open": ""
+      },
+      {
+        "day": "Sunday",
+        "open": ""
+      }
+    ]
+  },
+   {
+    "name": "Abubakar Tafawa Balewa University Teaching Hospital (ATBUTH)",
+    "address": {
+      "street": "Off Yandoka Street, Hospital Road",
+      "city": "Bauchi",
+      "state": "Bauchi"
+    },
+    "phoneNumber": "077543500",
+    "website": "atbuth.ng",
+    "email": "info@atbuth.ng",
+    "type": "Public",
+    "services": [
+      "Internal Medicine",
+      "Family Medicine",
+      "Community Medicine",
+      "Radiology",
+      "Opthalmology",
+      "Othopedic",
+      "Surgery",
+      "Obstetric and Gynaecology",
+      "Ear, Nose and Throat",
+      "Paediatric",
+      "Psychiatry",
+      "MGIDR Laboratory",
+      "Physiotherapy",
+      "Medical Social Services",
+      "Health Information Management"
+    ],
     "comments": [""],
     "hours": [
       {
@@ -5456,18 +7419,65 @@
     ]
   },
    {
-    "name": "",
+    "name": "Mount Olive Hospital",
     "address": {
-      "street": "",
-      "city": "",
-      "state": ""
+      "street": "8 Ebong Essien Street, off Ikot Ekpene Rd",
+      "city": "Uyo",
+      "state": "Akwa Ibom"
     },
-    "phoneNumber": "",
+    "phoneNumber": "085-200590, 202202, 08022232072",
     "website": "",
     "email": "",
-    "type": "",
-    "services": [""],
+    "type": "Private",
+    "services": [
+      "Health Care",
+      "Personal service"
+    ],
     "comments": [""],
+    "hours": [
+      {
+        "day": "Monday",
+        "open": ""
+      },
+      {
+        "day": "Tuesday",
+        "open": ""
+      },
+      {
+        "day": "Wednesday",
+        "open": ""
+      },
+      {
+        "day": "Thursday",
+        "open": ""
+      },
+      {
+        "day": "Friday",
+        "open": ""
+      },
+      {
+        "day": "Saturday",
+        "open": ""
+      },
+      {
+        "day": "Sunday",
+        "open": ""
+      }
+    ]
+  },
+   {
+    "name": "St Athanasius Hospital",
+    "address": {
+      "street": "No 1 Ufeh Street, Federal Housing Estate Off clement Isong Street",
+      "city": "Uyo",
+      "state": "Akwa Ibom"
+    },
+    "phoneNumber": "0803 792 0924, 0802 314 7926, 0803 923 5370",
+    "website": "",
+    "email": "",
+    "type": "Private",
+    "services": ["St Athanasius Hospital is a private hospital that is dully approved to provide medical services on surgery and general medical practice"],
+    "comments": ["Wheelchair-accessible"],
     "hours": [
       {
         "day": "Monday",
@@ -5498,19 +7508,19 @@
         "open": "24 Hours"
       }
     ]
-  }
+  },
    {
-    "name": "",
+    "name": "Nduye Medical Services",
     "address": {
-      "street": "",
-      "city": "",
-      "state": ""
+      "street": "29 Ekpene Ukpa Street",
+      "city": "Eket",
+      "state": "Akwa Ibom"
     },
-    "phoneNumber": "",
+    "phoneNumber": "0803 231 5931",
     "website": "",
-    "email": "",
-    "type": "",
-    "services": [""],
+    "email": "abraham_inyangudoh@yahoo.com",
+    "type": "Private",
+    "services": ["Provides medical services in the areas of consultation and counselling, medical checkup and other services"],
     "comments": [""],
     "hours": [
       {
@@ -5544,18 +7554,2216 @@
     ]
   },
    {
-    "name": "",
+    "name": "Samaritan Clinic & Hospital",
     "address": {
-      "street": "",
-      "city": "",
-      "state": ""
+      "street": "7 Ekong Uko",
+      "city": "Eket",
+      "state": "Akwa Ibom"
+    },
+    "phoneNumber": "+234(806) 475 2204, 085-701160, 08023347227",
+    "website": "samaritanclinics.com",
+    "email": "CMO@SAMARITANCLINICS.COM",
+    "type": "Private",
+    "services": [
+      "Medical treatment and Medical certification in industrial health",
+      "Drug and Alchohol test",
+      "TB screening",
+      "Audiometry",
+      "Ultrasound",
+      "X Ray",
+      "Medical retainership",
+      "First aid training and oxygen administration",
+      "Ambulance Service",
+      "Laboratory Service",
+      "Pharmacy"
+    ],
+    "comments": ["The wards are made up of private wards, general and children’s ward"],
+    "hours": [
+      {
+        "day": "Monday",
+        "open": "24 Hours"
+      },
+      {
+        "day": "Tuesday",
+        "open": "24 Hours"
+      },
+      {
+        "day": "Wednesday",
+        "open": "24 Hours"
+      },
+      {
+        "day": "Thursday",
+        "open": "24 Hours"
+      },
+      {
+        "day": "Friday",
+        "open": "24 Hours"
+      },
+      {
+        "day": "Saturday",
+        "open": "24 Hours"
+      },
+      {
+        "day": "Sunday",
+        "open": "24 Hours"
+      }
+    ]
+  },
+   {
+    "name": "Peace Hospital",
+    "address": {
+      "street": "2 Bishop Street",
+      "city": "Jimeta",
+      "state": "Adamawa"
+    },
+    "phoneNumber": "+234 75 625 932",
+    "website": "",
+    "email": "",
+    "type": "Private",
+    "services": [""],
+    "comments": [
+      "Peace hospital is one of the foremost private hospitals in Jimeta Adamawa state. The hospital still pride itself as one of the best as well",
+      "It is well organised and the staffs can be friendly on a good day",
+      "It is usually crowded maybe because its good and affordable. The staff should learn crowd management."
+    ],
+    "hours": [
+      {
+        "day": "Monday",
+        "open": "24 Hours"
+      },
+      {
+        "day": "Tuesday",
+        "open": "24 Hours"
+      },
+      {
+        "day": "Wednesday",
+        "open": "24 Hours"
+      },
+      {
+        "day": "Thursday",
+        "open": "24 Hours"
+      },
+      {
+        "day": "Friday",
+        "open": "24 Hours"
+      },
+      {
+        "day": "Saturday",
+        "open": "24 Hours"
+      },
+      {
+        "day": "Sunday",
+        "open": "24 Hours"
+      }
+    ]
+  },
+   {
+    "name": "Adamawa-German Medical Centre",
+    "address": {
+      "street": "Hospital Road, Jimeta 640022",
+      "city": "Yola",
+      "state": "Adamawa"
+    },
+    "phoneNumber": "+2348165713406, +2348032543651, 0703 872 0124",
+    "website": "",
+    "email": "agmcyola2@gmail.com",
+    "type": "Private",
+    "services": [
+      "Operation Theatres",
+      "Diagnostic",
+      "X-ray",
+      "Mammography",
+      "Sonography",
+      "Ergometry"
+    ],
+    "comments": [
+      "A high quality surgical and laboratory equipped hospital with wide range of health care assistance",
+      "Hi-Tech medical facilities available and friendly German Doctors as well"
+    ],
+    "hours": [
+      {
+        "day": "Monday",
+        "open": "24 Hours"
+      },
+      {
+        "day": "Tuesday",
+        "open": "24 Hours"
+      },
+      {
+        "day": "Wednesday",
+        "open": "24 Hours"
+      },
+      {
+        "day": "Thursday",
+        "open": "24 Hours"
+      },
+      {
+        "day": "Friday",
+        "open": "24 Hours"
+      },
+      {
+        "day": "Saturday",
+        "open": "24 Hours"
+      },
+      {
+        "day": "Sunday",
+        "open": "24 Hours"
+      }
+    ]
+  },
+   {
+    "name": "General Hospital Michika",
+    "address": {
+      "street": "Opposite GDSS Jang Michika 2",
+      "city": "Michika",
+      "state": "Adamawa"
+    },
+    "phoneNumber": "0808-202-3154",
+    "website": "",
+    "email": "",
+    "type": "Public",
+    "services": [
+      "Medical Services: Gastroenterology,Dermatology,Hematology,Infectious Diseases",
+      "Surgical Services: General Surgery, Pathology",
+      "Pediatrics Services: Gastroenterology, Pulmonology, Neonatology",
+      "Special Clinical Services: Antenatal Care (ANC), Immunization, HIV/ AIDS Services, Tuberculosis, Non Communicable Diseases, Family Planning, Intensive Care Services , Communicable Diseases, Hepatitis, Child Survival, Accidents and Emergency, Nutrition, Health Education and Community Mobilization, Maternal and newborn care",
+      "Obstetrics & Gynecology Services: Obstetrics, Gynecology, Fertility/Assisted Reproductive Techniques",
+      "Ambulance Service",
+      "Onsite Laboratory",
+      "Onsite Imaging",
+      "Mortuary Service"
+    ],
+    "comments": ["Facility Level: Michika General Hospital is a Secondary Health Care Centre"],
+    "hours": [
+      {
+        "day": "Monday",
+        "open": "24 Hours"
+      },
+      {
+        "day": "Tuesday",
+        "open": "24 Hours"
+      },
+      {
+        "day": "Wednesday",
+        "open": "24 Hours"
+      },
+      {
+        "day": "Thursday",
+        "open": "24 Hours"
+      },
+      {
+        "day": "Friday",
+        "open": "24 Hours"
+      },
+      {
+        "day": "Saturday",
+        "open": "24 Hours"
+      },
+      {
+        "day": "Sunday",
+        "open": "24 Hours"
+      }
+    ]
+  },
+   {
+    "name": "General Hospital Numan",
+    "address": {
+      "street": "Numan",
+      "city": "Numan",
+      "state": "Adamawa"
     },
     "phoneNumber": "",
     "website": "",
     "email": "",
-    "type": "",
+    "type": "Public",
     "services": [""],
     "comments": [""],
+    "hours": [
+      {
+        "day": "Monday",
+        "open": ""
+      },
+      {
+        "day": "Tuesday",
+        "open": ""
+      },
+      {
+        "day": "Wednesday",
+        "open": ""
+      },
+      {
+        "day": "Thursday",
+        "open": ""
+      },
+      {
+        "day": "Friday",
+        "open": ""
+      },
+      {
+        "day": "Saturday",
+        "open": ""
+      },
+      {
+        "day": "Sunday",
+        "open": ""
+      }
+    ]
+  },
+   {
+    "name": "Federal Medical Centre",
+    "address": {
+      "street": "Yola Bye-Pass Road, Madumari",
+      "city": "Yola",
+      "state": "Adamawa"
+    },
+    "phoneNumber": "+234 803 670 2021",
+    "website": "fmcyola.gov.ng",
+    "email": "",
+    "type": "Public",
+    "services": ["This is a multi-specialist hospital that has grown to become one of Nigeria’s leading hospitals, providing reliable, affordable, effective and high quality healthcare for all patients"],
+    "comments": ["The facility is not only fully furnished but provided with state-of-the-art equipment in the theatres, laboratories, radio-diagnosis, Special Care Baby Unit (SCBU), Dialysis Unit etc, which are intended to provide patient-friendly and conducive working environment for its staff"],
+    "hours": [
+      {
+        "day": "Monday",
+        "open": "24 Hours"
+      },
+      {
+        "day": "Tuesday",
+        "open": "24 Hours"
+      },
+      {
+        "day": "Wednesday",
+        "open": "24 Hours"
+      },
+      {
+        "day": "Thursday",
+        "open": "24 Hours"
+      },
+      {
+        "day": "Friday",
+        "open": "24 Hours"
+      },
+      {
+        "day": "Saturday",
+        "open": "24 Hours"
+      },
+      {
+        "day": "Sunday",
+        "open": "24 Hours"
+      }
+    ]
+  },
+   {
+    "name": "New Boshang Hospital ltd",
+    "address": {
+      "street": "Ngurore Street Karewa Extension Jimeta",
+      "city": "Yola",
+      "state": "Adamawa"
+    },
+    "phoneNumber": "0808 787 2226, 0806 984 1275",
+    "website": "boshanghospital.com",
+    "email": "newboshangclinicltd@gmail.com",
+    "type": "Private",
+    "services": ["Well equipped facilities providing specialized health care services and general surgery"],
+    "comments": ["Excellent Medical services rendered at a very affordable cost and instalment payments of bills for the less privileged in the society"],
+    "hours": [
+      {
+        "day": "Monday",
+        "open": "24 Hours"
+      },
+      {
+        "day": "Tuesday",
+        "open": "24 Hours"
+      },
+      {
+        "day": "Wednesday",
+        "open": "24 Hours"
+      },
+      {
+        "day": "Thursday",
+        "open": "24 Hours"
+      },
+      {
+        "day": "Friday",
+        "open": "24 Hours"
+      },
+      {
+        "day": "Saturday",
+        "open": "24 Hours"
+      },
+      {
+        "day": "Sunday",
+        "open": "24 Hours"
+      }
+    ]
+  },
+   {
+    "name": "Adetade Hospital",
+    "address": {
+      "street": "55, Okebola Street",
+      "city": "Ado-Ekiti",
+      "state": "Ekiti"
+    },
+    "phoneNumber": "0803 475 3037",
+    "website": "",
+    "email": "adetadehospital@gmail.com",
+    "type": "Private",
+    "services": [
+      "Obstetric & Gynaecology",
+      "Ultrasound Scanning services"
+    ],
+    "comments": [
+      "You get prompt attention and good quality care anytime of the day or night",
+      "There is also a standard Dental unit with Modern Facilities"
+  ],
+    "hours": [
+      {
+        "day": "Monday",
+        "open": "24 Hours"
+      },
+      {
+        "day": "Tuesday",
+        "open": "24 Hours"
+      },
+      {
+        "day": "Wednesday",
+        "open": "24 Hours"
+      },
+      {
+        "day": "Thursday",
+        "open": "24 Hours"
+      },
+      {
+        "day": "Friday",
+        "open": "24 Hours"
+      },
+      {
+        "day": "Saturday",
+        "open": "24 Hours"
+      },
+      {
+        "day": "Sunday",
+        "open": "24 Hours"
+      }
+    ]
+  },
+   {
+    "name": "St. Gregory’s Hospital",
+    "address": {
+      "street": "No22, Basiri Street, Km2, Iyin Rd",
+      "city": "Ado-Ekiti",
+      "state": "Ekiti"
+    },
+    "phoneNumber": "08033580364",
+    "website": "stgregoryshospital.com",
+    "email": "doctor@stgregoryshospital.com",
+    "type": "Private",
+    "services": [
+      "Emergency",
+      "Out-patient",
+      "In-Patient",
+      "Ambulance",
+      "ElectroCardiography (ECG)",
+      "Family Planning",
+      "Paediatrics",
+      "X-Ray",
+      "General Surgery",
+      "Obstetric & Gynaecology",
+      "Ultrasound Diagnostic",
+      "Clinical laboratory",
+      "General Practice",
+      "NHIS Services"
+    ],
+    "comments": [
+      "If you’d like to visit a patient, please contact the patient information desk at the hospital or call us on 08033580364 for more information",
+      "Accommodate visitors where it is appropriate to do so, and provide waiting rooms for families to use while patients are undergoing surgery or other procedures. These rooms are open daily from 7am to 10pm"
+    ],
+    "hours": [
+      {
+        "day": "Monday",
+        "open": "24 Hours"
+      },
+      {
+        "day": "Tuesday",
+        "open": "24 Hours"
+      },
+      {
+        "day": "Wednesday",
+        "open": "24 Hours"
+      },
+      {
+        "day": "Thursday",
+        "open": "24 Hours"
+      },
+      {
+        "day": "Friday",
+        "open": "24 Hours"
+      },
+      {
+        "day": "Saturday",
+        "open": "24 Hours"
+      },
+      {
+        "day": "Sunday",
+        "open": "24 Hours"
+      }
+    ]
+  },
+   {
+    "name": "FEDERAL TEACHING HOSPITAL IDO-EKITI",
+    "address": {
+      "street": "P.M.B 201",
+      "city": "Ido-Ekiti",
+      "state": "Ekiti"
+    },
+    "phoneNumber": "09062386341",
+    "website": "fethi.gov.ng",
+    "email": "",
+    "type": "Public",
+    "services": [
+      "Accident & Emergency",
+      "Haematology & Blood Transfusion",
+      "Surgery",
+      "Family Medicine",
+      "Dentistry",
+      "Radiology",
+      "Dietetic",
+      "Medicine",
+      "Physiotherapy",
+      "Pharmacy",
+      "Paediatrics",
+      "EAR, NOSE & THROAT (OTO-RHINO-LARYNGOLOGY)",
+      "CHEMICAL PATHOLOGY"
+    ],
+    "comments": [""],
+    "hours": [
+      {
+        "day": "Monday",
+        "open": "24 Hours"
+      },
+      {
+        "day": "Tuesday",
+        "open": "24 Hours"
+      },
+      {
+        "day": "Wednesday",
+        "open": "24 Hours"
+      },
+      {
+        "day": "Thursday",
+        "open": "24 Hours"
+      },
+      {
+        "day": "Friday",
+        "open": "24 Hours"
+      },
+      {
+        "day": "Saturday",
+        "open": "24 Hours"
+      },
+      {
+        "day": "Sunday",
+        "open": "24 Hours"
+      }
+    ]
+  },
+   {
+    "name": "Federal Medical Center",
+    "address": {
+      "street": "Fayose Housing Estate, Ilawe Road",
+      "city": "Ado-Ekiti",
+      "state": "Ekiti"
+    },
+    "phoneNumber": "+234 814 055 3912",
+    "website": "",
+    "email": "",
+    "type": "Public",
+    "services": [
+      "Obstetric & Gynaecology",
+      "Ophthalmology",
+      "Orthopaedics",
+      "Paediatrics",
+      "Pharmacy",
+      "Radiology",
+      "Ear, Nose and Throat",
+      "Internal Medicine",
+      "Dental",
+      "Oral Surgery",
+      "Community Health",
+      "Anaesthesia",
+      "Mental Health"
+    ],
+    "comments": [""],
+    "hours": [
+      {
+        "day": "Monday",
+        "open": "24 Hours"
+      },
+      {
+        "day": "Tuesday",
+        "open": "24 Hours"
+      },
+      {
+        "day": "Wednesday",
+        "open": "24 Hours"
+      },
+      {
+        "day": "Thursday",
+        "open": "24 Hours"
+      },
+      {
+        "day": "Friday",
+        "open": "24 Hours"
+      },
+      {
+        "day": "Saturday",
+        "open": "24 Hours"
+      },
+      {
+        "day": "Sunday",
+        "open": "24 Hours"
+      }
+    ]
+  },
+   {
+    "name": "State Specialist Hospital",
+    "address": {
+      "street": "Ise-Ekiti Road",
+      "city": "Ikere Ekiti",
+      "state": "Ekiti"
+    },
+    "phoneNumber": "0803 374 3597, +234 805 828 7173",
+    "website": "",
+    "email": "",
+    "type": "Public",
+    "services": ["Provides general medical care and health services"],
+    "comments": [
+      "Wheelchair-accessible",
+      "Serene environment with courteous staff"
+    ],
+    "hours": [
+      {
+        "day": "Monday",
+        "open": "24 Hours"
+      },
+      {
+        "day": "Tuesday",
+        "open": "24 Hours"
+      },
+      {
+        "day": "Wednesday",
+        "open": "24 Hours"
+      },
+      {
+        "day": "Thursday",
+        "open": "24 Hours"
+      },
+      {
+        "day": "Friday",
+        "open": "24 Hours"
+      },
+      {
+        "day": "Saturday",
+        "open": "24 Hours"
+      },
+      {
+        "day": "Sunday",
+        "open": "24 Hours"
+      }
+    ]
+  },
+   {
+    "name": "Kenechukwu Specialist Hospital",
+    "address": {
+      "street": "Plot 31/32 Thinkers Estate, Thinker’s Corner Behind Nike Grammar School",
+      "city": "Abakpa",
+      "state": "Enugu"
+    },
+    "phoneNumber": "08064511682, 07057732223",
+    "website": "",
+    "email": "kenehosp@yahoo.com",
+    "type": "Private",
+    "services": [""],
+    "comments": [
+      "Wheelchair-accessible",
+      "A clean & affordable hospital"
+    ],
+    "hours": [
+      {
+        "day": "Monday",
+        "open": "24 Hours"
+      },
+      {
+        "day": "Tuesday",
+        "open": "24 Hours"
+      },
+      {
+        "day": "Wednesday",
+        "open": "24 Hours"
+      },
+      {
+        "day": "Thursday",
+        "open": "24 Hours"
+      },
+      {
+        "day": "Friday",
+        "open": "24 Hours"
+      },
+      {
+        "day": "Saturday",
+        "open": "24 Hours"
+      },
+      {
+        "day": "Sunday",
+        "open": "24 Hours"
+      }
+    ]
+  },
+   {
+    "name": "Akulue Memorial Hospital",
+    "address": {
+      "street": "16/18 Akule Raod, Onuiyi",
+      "city": "Nsukka",
+      "state": "Enugu"
+    },
+    "phoneNumber": "0816 063 6646",
+    "website": "",
+    "email": "",
+    "type": "Public",
+    "services": ["Medical Center"],
+    "comments": [""],
+    "hours": [
+      {
+        "day": "Monday",
+        "open": ""
+      },
+      {
+        "day": "Tuesday",
+        "open": ""
+      },
+      {
+        "day": "Wednesday",
+        "open": ""
+      },
+      {
+        "day": "Thursday",
+        "open": ""
+      },
+      {
+        "day": "Friday",
+        "open": ""
+      },
+      {
+        "day": "Saturday",
+        "open": ""
+      },
+      {
+        "day": "Sunday",
+        "open": ""
+      }
+    ]
+  },
+   {
+    "name": "Enugu State University Teaching Hospital (ESUTH) Parklane",
+    "address": {
+      "street": "ESUTH Teaching Hospital Parklane, P.M.B. 1030",
+      "city": "Enugu",
+      "state": "Enugu"
+    },
+    "phoneNumber": "+234 814 268 0000",
+    "website": "esuth.org",
+    "email": "parklanehospitalenugu@yahoo.com",
+    "type": "Public",
+    "services": [
+      "Pharmacy",
+      "SCHOOL OF MIDWIFERY",
+      "Obstetric & Gynaecology",
+      "Internal Medicine",
+      "HISTOPATHOLOGY: Laboratory Unit, Mortuary Unit, Forensic unit/Assault clinic",
+      "MEDICAL SOCIAL SERVICES",
+      "Nutrition & Dietetics",
+      "Surgery",
+      "Paediatrics"
+    ],
+    "comments": [
+      "Awesome Environment...really cool and calm even on the busiest school days.Very optimal learning environment",
+      "This is hospital has lots of people traffic,the environment is very neat. It is expensive. Special cases are Also treated. ESUT medical students also reside and study there",
+      "Low parking space"
+    ],
+    "hours": [
+      {
+        "day": "Monday",
+        "open": "24 Hours"
+      },
+      {
+        "day": "Tuesday",
+        "open": "24 Hours"
+      },
+      {
+        "day": "Wednesday",
+        "open": "24 Hours"
+      },
+      {
+        "day": "Thursday",
+        "open": "24 Hours"
+      },
+      {
+        "day": "Friday",
+        "open": "24 Hours"
+      },
+      {
+        "day": "Saturday",
+        "open": "24 Hours"
+      },
+      {
+        "day": "Sunday",
+        "open": "24 Hours"
+      }
+    ]
+  },
+   {
+    "name": "Federal Teaching Hospital",
+    "address": {
+      "street": "Ashaka Road Rd, 620261",
+      "city": "Gombe",
+      "state": "Gombe"
+    },
+    "phoneNumber": "08036085361",
+    "website": "fthgombe.gov.ng",
+    "email": "cmd@fthgombe.gov.ng",
+    "type": "Public",
+    "services": [
+      "Medicine:- ECG, Echocardiography, Holter monitoring, Dialysis, Upper and Lower GIT Endoscopy",
+      "Surgery:- Lower GIT Endoscopy, Endoscopic surgery, cryotherapy/cryoshape therapy for keloids and related lesion",
+      "ENT:- Audiometry, Tymponometry",
+      "Oncology:- Brachytherapy",
+      "Obstetrics & Gynaecology:-  Colposcopy, endoscopic Surgery, cryotherapy",
+      "Ophthalmology:- Oculoplastic Surgeries",
+      "Dental Surgery",
+      "Accident & Emergency [A & E]",
+      "General Out-patient [Family Medicine]",
+      "Radiology:- MRI, CT, Mammography, flouroscopy",
+      "Physiotherapy",
+      "Pharmacy",
+      "Nursing Services",
+      "Laboratories:- PCR, Immunohistochemistry, Hormonal Assay, Tumor Markers, Bone Marrow Studies, Acute Phase Reactants, Quantitative Rhfactor, Neonatal diagnosis of sickle cell anemia",
+      "Histopathology: Immunohistochemistry",
+      "Paediatrics:- Phototherapy, Exchange Blood Transfusion"
+    ],
+    "comments": [
+      "Federal Medical Center now Federal Teaching Hospital, Gombe is a federal government of Nigeria medical centre located in Gombe. And it's widely consider as the largest and the best hospital in Gombe state",
+      "Strategically placed in the heart of Gombe. The teaching hospital is easily accessible to all and sundry. They provide a wide range of healthcare needs to the public",
+      "This is tertiary health institution that carters for the health of Gombe people and serve as a learning and research field for Resident doctors and medical students of Gombe State, University"
+    ],
+    "hours": [
+      {
+        "day": "Monday",
+        "open": "24 Hours"
+      },
+      {
+        "day": "Tuesday",
+        "open": "24 Hours"
+      },
+      {
+        "day": "Wednesday",
+        "open": "24 Hours"
+      },
+      {
+        "day": "Thursday",
+        "open": "24 Hours"
+      },
+      {
+        "day": "Friday",
+        "open": "24 Hours"
+      },
+      {
+        "day": "Saturday",
+        "open": "24 Hours"
+      },
+      {
+        "day": "Sunday",
+        "open": "24 Hours"
+      }
+    ]
+  },
+   {
+    "name": "Metro Clinic",
+    "address": {
+      "street": "Goodluck Ebele Jonathan Road",
+      "city": "Gombe",
+      "state": "Gombe"
+    },
+    "phoneNumber": "",
+    "website": "",
+    "email": "",
+    "type": "Private",
+    "services": ["Hospital activities"],
+    "comments": ["Wheelchair Accessible"],
+    "hours": [
+      {
+        "day": "Monday",
+        "open": "24 Hours"
+      },
+      {
+        "day": "Tuesday",
+        "open": "24 Hours"
+      },
+      {
+        "day": "Wednesday",
+        "open": "24 Hours"
+      },
+      {
+        "day": "Thursday",
+        "open": "24 Hours"
+      },
+      {
+        "day": "Friday",
+        "open": "24 Hours"
+      },
+      {
+        "day": "Saturday",
+        "open": "24 Hours"
+      },
+      {
+        "day": "Sunday",
+        "open": "24 Hours"
+      }
+    ]
+  },
+   {
+    "name": "AHAJAS Memorial Hospital",
+    "address": {
+      "street": "Behind Hammadu Kafi Primary School, Southern Bypass",
+      "city": "Gombe",
+      "state": "Gombe"
+    },
+    "phoneNumber": "+234 806 472 1014",
+    "website": "",
+    "email": "",
+    "type": "Private",
+    "services": [
+      "Medical Services",
+      "Laboratory diagnostic",
+      "Screening and Tests",
+      "X-ray",
+      "Pharmacy"
+    ],
+    "comments": [
+      "The Hospital is very beautiful and neat, their charges are also fair, both the rich middle class people and poor can afford this place",
+      "Very easy to locate as its not far away from the main road. Well equipped and well furnished",
+      "The hospital has a good facilities and conducive environment for a patients to recovered in a short time. Well ventilation system and not noisy place"
+    ],
+    "hours": [
+      {
+        "day": "Monday",
+        "open": "24 Hours"
+      },
+      {
+        "day": "Tuesday",
+        "open": "24 Hours"
+      },
+      {
+        "day": "Wednesday",
+        "open": "24 Hours"
+      },
+      {
+        "day": "Thursday",
+        "open": "24 Hours"
+      },
+      {
+        "day": "Friday",
+        "open": "24 Hours"
+      },
+      {
+        "day": "Saturday",
+        "open": "24 Hours"
+      },
+      {
+        "day": "Sunday",
+        "open": "24 Hours"
+      }
+    ]
+  },
+   {
+    "name": "Miyetti Hospital",
+    "address": {
+      "street": "Abacha Rd",
+      "city": "Gombe",
+      "state": "Gombe"
+    },
+    "phoneNumber": "",
+    "website": "",
+    "email": "miyettihospital@yahoo.com",
+    "type": "Private",
+    "services": [
+      "Pathology",
+      "Orthopaedic",
+      "Cardiology",
+      "Ambulance Service",
+      "Pharmacy",
+      "Diabetic Care"
+    ],
+    "comments": ["Good services & nice environment"],
+    "hours": [
+      {
+        "day": "Monday",
+        "open": "24 Hours"
+      },
+      {
+        "day": "Tuesday",
+        "open": "24 Hours"
+      },
+      {
+        "day": "Wednesday",
+        "open": "24 Hours"
+      },
+      {
+        "day": "Thursday",
+        "open": "24 Hours"
+      },
+      {
+        "day": "Friday",
+        "open": "24 Hours"
+      },
+      {
+        "day": "Saturday",
+        "open": "24 Hours"
+      },
+      {
+        "day": "Sunday",
+        "open": "24 Hours"
+      }
+    ]
+  },
+   {
+    "name": "Umezuruike Hospital",
+    "address": {
+      "street": "No 21/22 Umezuruike Street",
+      "city": "Owerri",
+      "state": "Imo"
+    },
+    "phoneNumber": "+2348133907095",
+    "website": "umezuruikehospital.com",
+    "email": "info@umezuruikehospital.com, umezhospital@yahoo.com",
+    "type": "Private",
+    "services": [
+      "General out-patient clinic",
+      "Surgical out-patient clinic",
+      "Antenatal / postnatal clinic",
+      "Pediatric out-patient clinic",
+      "Ultrasonography services with two MINDRAY 3DC-N3 ultrasound  machines manned by trained sonographers and sonologists",
+      "X-ray services: fully equipped to carry out routine and specialized procedures including requests from outside the hospital",
+      "Laboratory services: The laboratory is equipped to carry out virtually all laboratory tests and takes requests from outside the hospital",
+      "Ear Nose and Throat (ENT) Clinic",
+      "Electrocardiography services",
+      "Eye clinic for various eye diseases",
+      "Echo cardiography"
+    ],
+    "comments": [
+      "Umezuruike hospital is a 50-bed hospital for both ordinary and private room admissions in the various specialties of Medicine, Surgery, Obstetrics and Gynaecology and Paediatrics",
+      "A modern air conditioned fully equipped ambulance is stand by 24 hours a day with trained ambulance drivers"
+    ],
+    "hours": [
+      {
+        "day": "Monday",
+        "open": "24 Hours"
+      },
+      {
+        "day": "Tuesday",
+        "open": "24 Hours"
+      },
+      {
+        "day": "Wednesday",
+        "open": "24 Hours"
+      },
+      {
+        "day": "Thursday",
+        "open": "24 Hours"
+      },
+      {
+        "day": "Friday",
+        "open": "24 Hours"
+      },
+      {
+        "day": "Saturday",
+        "open": "24 Hours"
+      },
+      {
+        "day": "Sunday",
+        "open": "24 Hours"
+      }
+    ]
+  },
+   {
+    "name": "Federal Medical Center Owerri",
+    "address": {
+      "street": "105 Orlu Rd, P.M.B 1010",
+      "city": "Owerri",
+      "state": "Imo"
+    },
+    "phoneNumber": "083 232 738, 0702 847 5638, 0806 342 5154",
+    "website": "",
+    "email": "contact@fcmowerri.com.ng",
+    "type": "Public",
+    "services": [
+      "Paediatrics",
+      "Obstetrics and Gynaecology",
+      "Medicine",
+      "Family Medicine",
+      "Internal Medicine",
+      "Anesthesia",
+      "Ophthalmology",
+      "Pharmacy",
+      "Radiology",
+      "Surgery",
+      "Clinical Chemistry",
+      "Nutrition and Dietetics",
+      "Orthopedics",
+      "Physiotherapy"
+    ],
+    "comments": [
+      "FMC Owerri is a tertiary institution located within the Imo State Capital, and offers all forms of healthcare services",
+      "All the major clinical units are up and running, and as well the laboratory services",
+      "They also train healthcare professionals of various cardres.Aside the limitation of space (it is actually relatively small), everything else is okay"
+    ],
+    "hours": [
+      {
+        "day": "Monday",
+        "open": "24 Hours"
+      },
+      {
+        "day": "Tuesday",
+        "open": "24 Hours"
+      },
+      {
+        "day": "Wednesday",
+        "open": "24 Hours"
+      },
+      {
+        "day": "Thursday",
+        "open": "24 Hours"
+      },
+      {
+        "day": "Friday",
+        "open": "24 Hours"
+      },
+      {
+        "day": "Saturday",
+        "open": "24 Hours"
+      },
+      {
+        "day": "Sunday",
+        "open": "24 Hours"
+      }
+    ]
+  },
+   {
+    "name": "Federal Medical Centre jigawa",
+    "address": {
+      "street": "P.M.B 1022, Along kano - Maiduguri Road",
+      "city": "Birnin Kudu",
+      "state": "Jigawa"
+    },
+    "phoneNumber": "+2348036304601 +2348028377672",
+    "website": "fmcbkd.gov.ng",
+    "email": "info@fmcbkd.gov.ng",
+    "type": "Public",
+    "services": ["Medical Services"],
+    "comments": ["Its a very nice place to work, because u get to know more when it comes to hospitality, they are very accommodating,you learn more about patients, the Doctors and nurses how the carry out their job functions,go to ward rounds,attends to patients,relatives and caregivers"],
+    "hours": [
+      {
+        "day": "Monday",
+        "open": "24 Hours"
+      },
+      {
+        "day": "Tuesday",
+        "open": "24 Hours"
+      },
+      {
+        "day": "Wednesday",
+        "open": "24 Hours"
+      },
+      {
+        "day": "Thursday",
+        "open": "24 Hours"
+      },
+      {
+        "day": "Friday",
+        "open": "24 Hours"
+      },
+      {
+        "day": "Saturday",
+        "open": "24 Hours"
+      },
+      {
+        "day": "Sunday",
+        "open": "24 Hours"
+      }
+    ]
+  },
+   {
+    "name": "General Hospital Dutse ",
+    "address": {
+      "street": "Along Dustse-wakanukuguma Road, Sabon Gari Danmasara",
+      "city": "Dutse ",
+      "state": "Jigawa"
+    },
+    "phoneNumber": "",
+    "website": "",
+    "email": "",
+    "type": "Public",
+    "services": ["The General Hospital caters for everyone in her capacity. The mission of the hospital is to ensure the provision of safe, quality, affordable, adequate, equitable and accessible health services to all people in Nigeria"],
+    "comments": [""],
+    "hours": [
+      {
+        "day": "Monday",
+        "open": "24 Hours"
+      },
+      {
+        "day": "Tuesday",
+        "open": "24 Hours"
+      },
+      {
+        "day": "Wednesday",
+        "open": "24 Hours"
+      },
+      {
+        "day": "Thursday",
+        "open": "24 Hours"
+      },
+      {
+        "day": "Friday",
+        "open": "24 Hours"
+      },
+      {
+        "day": "Saturday",
+        "open": "24 Hours"
+      },
+      {
+        "day": "Sunday",
+        "open": "24 Hours"
+      }
+    ]
+  },
+   {
+    "name": "Sefa Specialist Hospital",
+    "address": {
+      "street": "5 College Road",
+      "city": "Badiko",
+      "state": "Kaduna"
+    },
+    "phoneNumber": "+234 703 0446 088, +234 62 410 937, 0803 305 7195",
+    "website": "sefaspecialisthospital.com",
+    "email": "info@sefaspecialisthospital.com",
+    "type": "Private",
+    "services": ["Sefa Specialist Hospital provide experts surgeons, physicians, pediatricians, obstetricians, etc, to attend to various health issues"],
+    "comments": ["Wheelchair Accessible"],
+    "hours": [
+      {
+        "day": "Monday",
+        "open": "24 Hours"
+      },
+      {
+        "day": "Tuesday",
+        "open": "24 Hours"
+      },
+      {
+        "day": "Wednesday",
+        "open": "24 Hours"
+      },
+      {
+        "day": "Thursday",
+        "open": "24 Hours"
+      },
+      {
+        "day": "Friday",
+        "open": "24 Hours"
+      },
+      {
+        "day": "Saturday",
+        "open": "24 Hours"
+      },
+      {
+        "day": "Sunday",
+        "open": "24 Hours"
+      }
+    ]
+  },
+   {
+    "name": "Zaria Almadina Clinic",
+    "address": {
+      "street": "28 Queen Elizabeth Road, G.R.A",
+      "city": "Zaria",
+      "state": "Kaduna"
+    },
+    "phoneNumber": "+234 806-083-9148",
+    "website": "info@almadinazaria.com",
+    "email": "almadinazaria.com",
+    "type": "Private",
+    "services": [
+      "Pharmacy",
+      "Paediatrics",
+      "Gynaecology",
+      "Ophthalmology",
+      "Surgery",
+      "Laboratory",
+      "Urology",
+      "Rheumatology"
+    ],
+    "comments": ["Qualitative and affordable healthcare solutions"],
+    "hours": [
+      {
+        "day": "Monday",
+        "open": "24 Hours"
+      },
+      {
+        "day": "Tuesday",
+        "open": "24 Hours"
+      },
+      {
+        "day": "Wednesday",
+        "open": "24 Hours"
+      },
+      {
+        "day": "Thursday",
+        "open": "24 Hours"
+      },
+      {
+        "day": "Friday",
+        "open": "24 Hours"
+      },
+      {
+        "day": "Saturday",
+        "open": "24 Hours"
+      },
+      {
+        "day": "Sunday",
+        "open": "24 Hours"
+      }
+    ]
+  },
+   {
+    "name": "Continental Medical Centre",
+    "address": {
+      "street": "Adekunle Fajuyi Road",
+      "city": "Ibadan",
+      "state": "Oyo"
+    },
+    "phoneNumber": "0812 403 7406, +234 706 652 7133",
+    "website": "continentalmedcentre.com",
+    "email": "",
+    "type": "Private",
+    "services": [
+      "General Physician Doctors",
+      "Paediatricians"
+    ],
+    "comments": [""],
+    "hours": [
+      {
+        "day": "Monday",
+        "open": "24 Hours"
+      },
+      {
+        "day": "Tuesday",
+        "open": "24 Hours"
+      },
+      {
+        "day": "Wednesday",
+        "open": "24 Hours"
+      },
+      {
+        "day": "Thursday",
+        "open": "24 Hours"
+      },
+      {
+        "day": "Friday",
+        "open": "24 Hours"
+      },
+      {
+        "day": "Saturday",
+        "open": "24 Hours"
+      },
+      {
+        "day": "Sunday",
+        "open": "24 Hours"
+      }
+    ]
+  },
+   {
+    "name": "Onward Specialist Hospital",
+    "address": {
+      "street": "Dr D. A. Laosebikan St. Off Ilobu Rd, Oke Agunbelewo, P.O Box 506",
+      "city": "Osogbo",
+      "state": "Osun"
+    },
+    "phoneNumber": "+234(0)908 490 4233, +234(0)901 224 8337",
+    "website": "onwardsphospital.org",
+    "email": "onwardsphosp@yahoo.com, audit.onwardhospital@gmail.com",
+    "type": "Private",
+    "services": [
+      "General Medicine",
+      "Surgery",
+      "Maternal and Child Health",
+      "Laboratory",
+      "Blood Bank",
+      "X-Ray Services",
+      "Endoscopy",
+      "Ultrasound",
+      "Ambulance Service",
+      "Pharmacy",
+      "ECG and Echo",
+      "Nutritional & Catering Services"
+    ],
+    "comments": ["An accredited healthcare provider for the National Health Insurance Scheme (NHIS)"],
+    "hours": [
+      {
+        "day": "Monday",
+        "open": "24 Hours"
+      },
+      {
+        "day": "Tuesday",
+        "open": "24 Hours"
+      },
+      {
+        "day": "Wednesday",
+        "open": "24 Hours"
+      },
+      {
+        "day": "Thursday",
+        "open": "24 Hours"
+      },
+      {
+        "day": "Friday",
+        "open": "24 Hours"
+      },
+      {
+        "day": "Saturday",
+        "open": "24 Hours"
+      },
+      {
+        "day": "Sunday",
+        "open": "24 Hours"
+      }
+    ]
+  },
+   {
+    "name": "St John And Mary Hospital",
+    "address": {
+      "street": "2, Adebayo Oni Lane, Isikan",
+      "city": "Akure",
+      "state": "Ondo"
+    },
+    "phoneNumber": "0803 350 4658, 0808 333 8262",
+    "website": "",
+    "email": "docbayooni2@yahoo.com",
+    "type": "Private",
+    "services": ["Offering specialized and affordable healthcare services"],
+    "comments": ["Its an old hospital, A little improvement on facility"],
+    "hours": [
+      {
+        "day": "Monday",
+        "open": "24 Hours"
+      },
+      {
+        "day": "Tuesday",
+        "open": "24 Hours"
+      },
+      {
+        "day": "Wednesday",
+        "open": "24 Hours"
+      },
+      {
+        "day": "Thursday",
+        "open": "24 Hours"
+      },
+      {
+        "day": "Friday",
+        "open": "24 Hours"
+      },
+      {
+        "day": "Saturday",
+        "open": "24 Hours"
+      },
+      {
+        "day": "Sunday",
+        "open": "24 Hours"
+      }
+    ]
+  },
+   {
+    "name": "Federal Medical Centre Abeokuta",
+    "address": {
+      "street": "Olabisi Onabanjo Way, Idi-Aba",
+      "city": "Abeokuta",
+      "state": "Ogun"
+    },
+    "phoneNumber": "08033398341, 08062426088, 08034226334",
+    "website": "fmcabeokuta.net",
+    "email": "info@fmcabeokuta.org",
+    "type": "Public",
+    "services": [
+      "Routine and emergency diagnostic and therapeutic clinical services covering different specialties including obstetrics and gynaecology, paediatrics, neurology, cardiology, endocrinology, gastroenterology, nephrology, psychiatry, general and oncologic surgery, orthopaedics and trauma, plastic surgery, urology, ophthalmology, oral and maxillofacial surgery, radiology, general dentistry, anaesthesia, pain and palliative medicine, community medicine and primary care, family medicine, pathology, pharmaceutical care and physiotherapy",
+      "In partnership with the Institute of Human Virology (IHVN) Abuja, patients with HIV/AIDS are offered a wide range of diagnostic, therapeutic, rehabilitative, palliative and social services in a multidisciplinary setting"
+    ],
+    "comments": [""],
+    "hours": [
+      {
+        "day": "Monday",
+        "open": "24 Hours"
+      },
+      {
+        "day": "Tuesday",
+        "open": "24 Hours"
+      },
+      {
+        "day": "Wednesday",
+        "open": "24 Hours"
+      },
+      {
+        "day": "Thursday",
+        "open": "24 Hours"
+      },
+      {
+        "day": "Friday",
+        "open": "24 Hours"
+      },
+      {
+        "day": "Saturday",
+        "open": "24 Hours"
+      },
+      {
+        "day": "Sunday",
+        "open": "24 Hours"
+      }
+    ]
+  },
+   {
+    "name": "General Hospital Minna",
+    "address": {
+      "street": "1 Hospital Road",
+      "city": "Minna",
+      "state": "Niger"
+    },
+    "phoneNumber": "0802 562 5895",
+    "website": "",
+    "email": "",
+    "type": "Public",
+    "services": ["The General Hospital caters for everyone in her capacity. The mission of the hospital is to ensure the provision of safe, quality, affordable, adequate, equitable and accessible health services to all people in Nigeria"],
+    "comments": [
+      "The structure restructuring and General renovation is visible and commendable",
+      "Good hospital with great staff and support strength. Planned layout with loads of space for ventilation and ease of movement. 24 hours stand by generator set and solar systems attached to key areas"
+    ],
+    "hours": [
+      {
+        "day": "Monday",
+        "open": "24 Hours"
+      },
+      {
+        "day": "Tuesday",
+        "open": "24 Hours"
+      },
+      {
+        "day": "Wednesday",
+        "open": "24 Hours"
+      },
+      {
+        "day": "Thursday",
+        "open": "24 Hours"
+      },
+      {
+        "day": "Friday",
+        "open": "24 Hours"
+      },
+      {
+        "day": "Saturday",
+        "open": "24 Hours"
+      },
+      {
+        "day": "Sunday",
+        "open": "24 Hours"
+      }
+    ]
+  },
+   {
+    "name": "Mararaba Adonai Hospital",
+    "address": {
+      "street": "2 Adonai Close, Old Karu Road",
+      "city": "Mararaba",
+      "state": "Nasarawa"
+    },
+    "phoneNumber": "+2348022853066, +2348095236014",
+    "website": "adonaihospital.com",
+    "email": "info@adonaihospital.com",
+    "type": "Private",
+    "services": [
+      "Family Planning",
+      "Obstetrics and Gynaecology",
+      "General Surgery Services",
+      "Dental Services",
+      "Immunization",
+      "Eye Clinic Services",
+      "Paediatric care",
+      "IVF",
+      "Laboratory",
+      "Cardiology",
+      "Scanning Services"
+    ],
+    "comments": ["Adonai has had 2 decades of successful healthcare delivery to varying population groups within the Mararaba- Abuja locale and beyond"],
+    "hours": [
+      {
+        "day": "Monday",
+        "open": "24 Hours"
+      },
+      {
+        "day": "Tuesday",
+        "open": "24 Hours"
+      },
+      {
+        "day": "Wednesday",
+        "open": "24 Hours"
+      },
+      {
+        "day": "Thursday",
+        "open": "24 Hours"
+      },
+      {
+        "day": "Friday",
+        "open": "24 Hours"
+      },
+      {
+        "day": "Saturday",
+        "open": "24 Hours"
+      },
+      {
+        "day": "Sunday",
+        "open": "24 Hours"
+      }
+    ]
+  },
+   {
+    "name": "Sauki Clinic and Hospital",
+    "address": {
+      "street": "Near Hill Station Junction Jenta Adamu Jos North",
+      "city": "Jos",
+      "state": "Plateau"
+    },
+    "phoneNumber": "0906-000-1956",
+    "website": "",
+    "email": "",
+    "type": "Private",
+    "services": [
+      "Medical Services: Cardiology,Infectious Diseases,Family Medicine",
+      "Surgical Services: General Surgery, Anesthesia, Radiology",
+      "Paediatrics",
+      "Ambulance Service",
+      "Obstetric & Gynaecology",
+      "Onsite Imaging",
+      "Onsite Laboratory",
+      "Onsite Pharmacy",
+      "Special Clinical Services: Antenatal Care (ANC), Immunization, HIV/ AIDS Services, Non Communicable Diseases, Family Planning, Intensive Care Services , Hepatitis, Accidents and Emergency, Nutrition, Health Education and Community Mobilization, Maternal and newborn care"
+    ],
+    "comments": ["Facility Level: Sauki Clinic and Hospital is a Secondary Health Care Centre"],
+    "hours": [
+      {
+        "day": "Monday",
+        "open": "24 Hours"
+      },
+      {
+        "day": "Tuesday",
+        "open": "24 Hours"
+      },
+      {
+        "day": "Wednesday",
+        "open": "24 Hours"
+      },
+      {
+        "day": "Thursday",
+        "open": "24 Hours"
+      },
+      {
+        "day": "Friday",
+        "open": "24 Hours"
+      },
+      {
+        "day": "Saturday",
+        "open": "24 Hours"
+      },
+      {
+        "day": "Sunday",
+        "open": "24 Hours"
+      }
+    ]
+  },
+   {
+    "name": "Federal Medical Center Lokoja",
+    "address": {
+      "street": "Lokoja-Ankpa Road",
+      "city": "Lokoja",
+      "state": "Kogi"
+    },
+    "phoneNumber": "+234 58 220 020",
+    "website": "fmclokoja.org.ng",
+    "email": "FMCLKJ@gmail.com ",
+    "type": "Public",
+    "services": [
+      "Obstetric & Gynaecology",
+      "Internal Medicine",
+      "Pharmacy",
+      "Dental",
+      "Radiology",
+      "Physiotherapy",
+      "LABORATORY",
+      "Ambulance Service",
+      "Consultant Report"
+    ],
+    "comments": ["Facility Level: Lokoja Federal Medical Centre is a Tertiary Health Care Centre"],
+    "hours": [
+      {
+        "day": "Monday",
+        "open": "24 Hours"
+      },
+      {
+        "day": "Tuesday",
+        "open": "24 Hours"
+      },
+      {
+        "day": "Wednesday",
+        "open": "24 Hours"
+      },
+      {
+        "day": "Thursday",
+        "open": "24 Hours"
+      },
+      {
+        "day": "Friday",
+        "open": "24 Hours"
+      },
+      {
+        "day": "Saturday",
+        "open": "24 Hours"
+      },
+      {
+        "day": "Sunday",
+        "open": "24 Hours"
+      }
+    ]
+  },
+   {
+    "name": "Medcare Hospital",
+    "address": {
+      "street": "182, Pipeline Road, Gaa-Akanbi, adjacent CBN Quarters",
+      "city": "Ilorin",
+      "state": "Kwara"
+    },
+    "phoneNumber": "09084131959, 08062544440, 0808 622 5307",
+    "website": "medcareng.com",
+    "email": "medcarehospital@gmail, medcarehospitalsng@gmail.com",
+    "type": "Private",
+    "services": [
+      "Medical Services: Cardiology, Gastroenterology, Nephrology, Endocrinology, Geriatrics, Pulmonology, Psychiatry/Behavioral Medicine, Family Medicine",
+      "Surgical Services: General Surgery, Anesthesia, Otorhinolaryngology (ENT)",
+      "Pediatrics Services: Neonatology",
+      "Obstetric & Gynaecology",
+      "Special Clinical Services: Antenatal Care (ANC), Immunization, HIV/ AIDS Services, Tuberculosis, Non Communicable Diseases, Family Planning, Hepatitis, Accidents and Emergency",
+      "Onsite Laboratory",
+      "Onsite Pharmacy"
+    ],
+    "comments": ["Facility Level: MED Care Hospital is a Secondary Health Care Centre"],
+    "hours": [
+      {
+        "day": "Monday",
+        "open": "24 Hours"
+      },
+      {
+        "day": "Tuesday",
+        "open": "24 Hours"
+      },
+      {
+        "day": "Wednesday",
+        "open": "24 Hours"
+      },
+      {
+        "day": "Thursday",
+        "open": "24 Hours"
+      },
+      {
+        "day": "Friday",
+        "open": "24 Hours"
+      },
+      {
+        "day": "Saturday",
+        "open": "24 Hours"
+      },
+      {
+        "day": "Sunday",
+        "open": "24 Hours"
+      }
+    ]
+  },
+   {
+    "name": "Sir Yahaya Memorial Hospital",
+    "address": {
+      "street": "Haliru Abdu Raod, P.M.B 1006",
+      "city": "Birnin Kebbi",
+      "state": "Kebbi"
+    },
+    "phoneNumber": "+234 803 597 8511",
+    "website": "siryahayahospital.com",
+    "email": "",
+    "type": "Public",
+    "services": [
+      "Emergency",
+      "General health care",
+      "Children health care",
+      "Adult Health care",
+      "Medical laboratory",
+      "Pharmacy",
+      "Medical Services"
+    ],
+    "comments": [" Its has a great view, its a convenient environment for both patients and doctors, its a Condusive atmosphere for health and medical activities"],
+    "hours": [
+      {
+        "day": "Monday",
+        "open": "24 Hours"
+      },
+      {
+        "day": "Tuesday",
+        "open": "24 Hours"
+      },
+      {
+        "day": "Wednesday",
+        "open": "24 Hours"
+      },
+      {
+        "day": "Thursday",
+        "open": "24 Hours"
+      },
+      {
+        "day": "Friday",
+        "open": "24 Hours"
+      },
+      {
+        "day": "Saturday",
+        "open": "24 Hours"
+      },
+      {
+        "day": "Sunday",
+        "open": "24 Hours"
+      }
+    ]
+  },
+   {
+    "name": "Standard Specialist Hospital",
+    "address": {
+      "street": "Lautai Road, Plot 155 Wudil Rd, City Centre",
+      "city": "Kano City",
+      "state": "Kano"
+    },
+    "phoneNumber": "0810 875 1568, +23464310915",
+    "website": "",
+    "email": "standardspecialisthospitals@yahoo.com",
+    "type": "Private",
+    "services": [
+      "Out Patient Care",
+      "Emergency Services",
+      "Paediatric care",
+      "Obstetric & Gynaecology",
+      "Radiology"
+    ],
+    "comments": ["Wheelchair Accessible"],
+    "hours": [
+      {
+        "day": "Monday",
+        "open": "24 Hours"
+      },
+      {
+        "day": "Tuesday",
+        "open": "24 Hours"
+      },
+      {
+        "day": "Wednesday",
+        "open": "24 Hours"
+      },
+      {
+        "day": "Thursday",
+        "open": "24 Hours"
+      },
+      {
+        "day": "Friday",
+        "open": "24 Hours"
+      },
+      {
+        "day": "Saturday",
+        "open": "24 Hours"
+      },
+      {
+        "day": "Sunday",
+        "open": "24 Hours"
+      }
+    ]
+  },
+   {
+    "name": "Wudil General Hospital",
+    "address": {
+      "street": "Gaya Raod",
+      "city": "Wudil",
+      "state": "Kano"
+    },
+    "phoneNumber": "",
+    "website": "",
+    "email": "",
+    "type": "Public",
+    "services": ["General Hospital services"],
+    "comments": ["Wheelchair Accessible"],
+    "hours": [
+      {
+        "day": "Monday",
+        "open": "24 Hours"
+      },
+      {
+        "day": "Tuesday",
+        "open": "24 Hours"
+      },
+      {
+        "day": "Wednesday",
+        "open": "24 Hours"
+      },
+      {
+        "day": "Thursday",
+        "open": "24 Hours"
+      },
+      {
+        "day": "Friday",
+        "open": "24 Hours"
+      },
+      {
+        "day": "Saturday",
+        "open": "24 Hours"
+      },
+      {
+        "day": "Sunday",
+        "open": "24 Hours"
+      }
+    ]
+  },
+   {
+    "name": "Federal Medical Centre Katsina",
+    "address": {
+      "street": "Murtala Mohammed Way Dandagoro",
+      "city": "Katsina",
+      "state": "Katsina"
+    },
+    "phoneNumber": "+2348036379783, 08035946691 ",
+    "website": "fmckatsina.gov.ng",
+    "email": "",
+    "type": "Public",
+    "services": ["General Medical service"],
+    "comments": ["Federal Medical Center provides the primary health care and tertiary health care to the people"],
+    "hours": [
+      {
+        "day": "Monday",
+        "open": "24 Hours"
+      },
+      {
+        "day": "Tuesday",
+        "open": "24 Hours"
+      },
+      {
+        "day": "Wednesday",
+        "open": "24 Hours"
+      },
+      {
+        "day": "Thursday",
+        "open": "24 Hours"
+      },
+      {
+        "day": "Friday",
+        "open": "24 Hours"
+      },
+      {
+        "day": "Saturday",
+        "open": "24 Hours"
+      },
+      {
+        "day": "Sunday",
+        "open": "24 Hours"
+      }
+    ]
+  },
+   {
+    "name": "Sokoto clinic",
+    "address": {
+      "street": "46, Abdullahi Fodio Road",
+      "city": "Sokoto",
+      "state": "Sokoto"
+    },
+    "phoneNumber": "701 076 0119, 060-231012, 0818 971 4151",
+    "website": "",
+    "email": "",
+    "type": "Private",
+    "services": ["Medical Services"],
+    "comments": [""],
+    "hours": [
+      {
+        "day": "Monday",
+        "open": "24 Hours"
+      },
+      {
+        "day": "Tuesday",
+        "open": "24 Hours"
+      },
+      {
+        "day": "Wednesday",
+        "open": "24 Hours"
+      },
+      {
+        "day": "Thursday",
+        "open": "24 Hours"
+      },
+      {
+        "day": "Friday",
+        "open": "24 Hours"
+      },
+      {
+        "day": "Saturday",
+        "open": "24 Hours"
+      },
+      {
+        "day": "Sunday",
+        "open": "24 Hours"
+      }
+    ]
+  },
+   {
+    "name": "Usmanu Danfodiyo Teaching Hospital",
+    "address": {
+      "street": "1, Garba Nadama Road, PMB: 23270",
+      "city": "Sokoto",
+      "state": "Sokoto"
+    },
+    "phoneNumber": "+234CALLUDUTH, +23480808080",
+    "website": "uduth.org.ng",
+    "email": "info@uduth.org.ng",
+    "type": "Public",
+    "services": [
+      "General Out Patient Clinic (GOPD)",
+      "Medical Out-patient Clinic (MOPD)",
+      "Surgery",
+      "Anaesthesiology",
+      "Neuro Surgery",
+      "Radiology",
+      "Ear Nose and Throat (ENT) Clinic",
+      "Dental",
+      "Nursing Services",
+      "Medical Library",
+      "Family Medicine",
+      "Community Medicine",
+      "Obstetrics & Gynaecology",
+      "Accident & Emergency",
+      "Paediatrics",
+      "Radiotherapy",
+      "Opthalmology",
+      "Pharmacy",
+      "Psychiatry"
+    ],
+    "comments": [""],
+    "hours": [
+      {
+        "day": "Monday",
+        "open": "24 Hours"
+      },
+      {
+        "day": "Tuesday",
+        "open": "24 Hours"
+      },
+      {
+        "day": "Wednesday",
+        "open": "24 Hours"
+      },
+      {
+        "day": "Thursday",
+        "open": "24 Hours"
+      },
+      {
+        "day": "Friday",
+        "open": "24 Hours"
+      },
+      {
+        "day": "Saturday",
+        "open": "24 Hours"
+      },
+      {
+        "day": "Sunday",
+        "open": "24 Hours"
+      }
+    ]
+  },
+   {
+    "name": "Federal Medical Centre Jalingo",
+    "address": {
+      "street": "Off Barde way, PMB 1061",
+      "city": "Jalingo",
+      "state": "Taraba"
+    },
+    "phoneNumber": "09134195527, 09134201316",
+    "website": "fmcjalingo.gov.ng",
+    "email": "info@fmcjalingo.gov.ng",
+    "type": "Public",
+    "services": [
+      "ANAESTHESIA DEPARTMENT",
+      "DENTISTRY DEPARTMENT",
+      "FAMILY MEDICINE DEPARTMENT",
+      "INTERNAL MEDICINE DEPARTMENT",
+      "MEDICAL SOCIAL SERVICES DEPARTMENT",
+      "MEDICAL LABORATORY SERVICES DEPARTMENT",
+      "NURSING SERVICES DEPARTMENT",
+      "NUTRITION AND DIETETICS DEPARTMENT",
+      "OBSTETRICS AND GYNAECOLOGY DEPARTMENT",
+      "OPHTHALMOLOGY DEPARTMENT",
+      "PAEDIATRICS DEPARTMENT",
+      "PATHOLOGY DEPARTMENT",
+      "PHARMACY DEPARTMENT",
+      "PHYSIOTHERAPY DEPARTMENT",
+      "RADIOLOGY DEPARTMENT",
+      "SURGERY DEPARTMENT",
+      "WORKS AND MAINTENANCE DEPARTMENT"
+    ],
+    "comments": [""],
+    "hours": [
+      {
+        "day": "Monday",
+        "open": "24 Hours"
+      },
+      {
+        "day": "Tuesday",
+        "open": "24 Hours"
+      },
+      {
+        "day": "Wednesday",
+        "open": "24 Hours"
+      },
+      {
+        "day": "Thursday",
+        "open": "24 Hours"
+      },
+      {
+        "day": "Friday",
+        "open": "24 Hours"
+      },
+      {
+        "day": "Saturday",
+        "open": "24 Hours"
+      },
+      {
+        "day": "Sunday",
+        "open": "24 Hours"
+      }
+    ]
+  },
+   {
+    "name": "Federal Medical Centre, Nguru",
+    "address": {
+      "street": "NNPC Road Leme Aboekuta",
+      "city": "Nguru",
+      "state": "Yobe"
+    },
+    "phoneNumber": "0803 912 6371",
+    "website": "",
+    "email": "",
+    "type": "Public",
+    "services": ["Medical Services"],
+    "comments": [""],
+    "hours": [
+      {
+        "day": "Monday",
+        "open": "24 Hours"
+      },
+      {
+        "day": "Tuesday",
+        "open": "24 Hours"
+      },
+      {
+        "day": "Wednesday",
+        "open": "24 Hours"
+      },
+      {
+        "day": "Thursday",
+        "open": "24 Hours"
+      },
+      {
+        "day": "Friday",
+        "open": "24 Hours"
+      },
+      {
+        "day": "Saturday",
+        "open": "24 Hours"
+      },
+      {
+        "day": "Sunday",
+        "open": "24 Hours"
+      }
+    ]
+  },
+   {
+    "name": "DAULA HOSPITAL & MATERNITY HOME",
+    "address": {
+      "street": "Kaura Namoda, Lebin Lebin, Tundun Wada",
+      "city": "Gashua",
+      "state": "Zamfara"
+    },
+    "phoneNumber": "08036917466",
+    "website": "",
+    "email": "DAULAHOSPITAL@YAHOO.COM, DAULAHOSPITAL@HOTMAIL.COM",
+    "type": "Private",
+    "services": ["General Hospital services"],
+    "comments": [""],
+    "hours": [
+      {
+        "day": "Monday",
+        "open": ""
+      },
+      {
+        "day": "Tuesday",
+        "open": ""
+      },
+      {
+        "day": "Wednesday",
+        "open": ""
+      },
+      {
+        "day": "Thursday",
+        "open": ""
+      },
+      {
+        "day": "Friday",
+        "open": ""
+      },
+      {
+        "day": "Saturday",
+        "open": ""
+      },
+      {
+        "day": "Sunday",
+        "open": ""
+      }
+    ]
+  },
+   {
+    "name": "Poly Medical And Diagnostic Centre",
+    "address": {
+      "street": "26 Premier Road Gusau Tudun Wada",
+      "city": "Gashua",
+      "state": "Zamfara"
+    },
+    "phoneNumber": "0813-242-8656, 07030286672",
+    "website": "",
+    "email": "",
+    "type": "Private",
+    "services": ["General Medical service"],
+    "comments": [
+      "Facility Level: Poly Diagnostic Centre is a Primary Health Care Centre",
+      "Wheelchair Accessible"
+    ],
     "hours": [
       {
         "day": "Monday",
