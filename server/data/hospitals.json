@@ -21,8 +21,10 @@
       "Gynecology",
       "Ophthalmology"
     ],
-    "comments" : [""],
-     "hours": [
+    "comments": [
+      ""
+    ],
+    "hours": [
       {
         "day": "Monday",
         "open": "24 Hours"
@@ -73,20 +75,20 @@
       "Pediatrics Services: Gastroenterology, Nephrology, Oncology, Endocrinology",
       "Specific Clinical Services: Antenatal Care (ANC), Immunization, HIV/ AIDS, Non-Communicable Diseases, Family Planning, Intensive Care, Communicable Diseases, Hepatitis, Accidents and Emergency, Nutrition, Health Education, Community Mobilization, Maternal and newborn care",
       "Onsite Laboratory",
-       "Outpatient Services",
+      "Outpatient Services",
       "Inpatient Services",
       "Onsite Laboratory",
       "Onsite Imaging",
       "Onsite Pharmacy",
       "Ambulance Service"
     ],
-    "comments" : [
+    "comments": [
       "Child Friendly",
       "Free Parking",
       "Debit Cards"
     ],
-     "hours": [
-        {
+    "hours": [
+      {
         "day": "Monday",
         "open": "24 Hours"
       },
@@ -138,12 +140,12 @@
       "Onsite Pharmacy",
       "Ambulance Service"
     ],
-    "comments" : [
+    "comments": [
       "Free Parking",
       "Debit Cards"
     ],
-     "hours": [
-       {
+    "hours": [
+      {
         "day": "Monday",
         "open": "24 Hours"
       },
@@ -191,13 +193,13 @@
       "Onsite Pharmacy",
       "Ambulance Service"
     ],
-     "comments" : [
+    "comments": [
       "Child Friendly",
       "Free Parking",
       "Debit Cards"
     ],
-     "hours": [
-        {
+    "hours": [
+      {
         "day": "Monday",
         "open": "24 Hours"
       },
@@ -239,11 +241,13 @@
     "email": "mendel.hosiptal@yahoo.com",
     "type": "Private",
     "services": [
-     "General hospital services"
+      "General hospital services"
     ],
-     "comments" : [""],
-     "hours": [
-        {
+    "comments": [
+      ""
+    ],
+    "hours": [
+      {
         "day": "Monday",
         "open": ""
       },
@@ -292,17 +296,17 @@
       "Obstetrics and Gynecology Services: Obstetrics, Gynecology, Fertility/Assisted Reproductive Techniques",
       "Pediatrics Services: Gastroenterology, Nephrology, Oncology, Endocrinology",
       "Specific Clinical Services: Antenatal Care (ANC), Immunization, HIV/ AIDS, Non-Communicable Diseases, Family Planning, Intensive Care, Communicable Diseases, Hepatitis, Accidents and Emergency, Nutrition, Health Education, Community Mobilization, Maternal and newborn care",
-       "Onsite Laboratory",
+      "Onsite Laboratory",
       "Onsite Imaging",
       "Onsite Pharmacy",
       "Ambulance Service"
     ],
-      "comments" : [
-        "Child Friendly",
-        "Debit Cards"
-      ],
+    "comments": [
+      "Child Friendly",
+      "Debit Cards"
+    ],
     "hours": [
-    {
+      {
         "day": "Monday",
         "open": "24 Hours"
       },
@@ -350,7 +354,7 @@
       "Pediatric",
       "Outpatient Services"
     ],
-     "comments" : [
+    "comments": [
       "Teaching and Preaching the message of Jesus",
       "Training ground for young Doctors and Nurses, both Nigerian and expatriate",
       "You will find many opportunities, both medical and non-medical, to serve on this large Hospital compound"
@@ -403,9 +407,11 @@
       "Dental Care",
       "Preventive Healthcare."
     ],
-      "comments" : [""],
+    "comments": [
+      ""
+    ],
     "hours": [
-        {
+      {
         "day": "Monday",
         "open": "8:00 AM - 5:00 PM"
       },
@@ -449,7 +455,9 @@
     "services": [
       "General hospital services"
     ],
-      "comments" : [""],
+    "comments": [
+      ""
+    ],
     "hours": [
       {
         "day": "Monday",
@@ -495,7 +503,9 @@
     "services": [
       "General hospital services"
     ],
-      "comments" : [""],
+    "comments": [
+      ""
+    ],
     "hours": [
       {
         "day": "Monday",
@@ -557,7 +567,9 @@
       "IVF",
       "Internships for medical doctors, radiographers, optometrists, and pharmacists"
     ],
-    "comments": ["Numerous brances in Warri, Delta state"],
+    "comments": [
+      "Numerous brances in Warri, Delta state"
+    ],
     "hours": [
       {
         "day": "Monday",
@@ -603,9 +615,11 @@
     "services": [
       "General hospital services"
     ],
-      "comments" : [""],
+    "comments": [
+      ""
+    ],
     "hours": [
-     {
+      {
         "day": "Monday",
         "open": ""
       },
@@ -653,20 +667,20 @@
       "Pediatrics Services: Gastroenterology, Nephrology, Oncology, Endocrinology",
       "Specific Clinical Services: Antenatal Care (ANC), Immunization, HIV/ AIDS, Non-Communicable Diseases, Family Planning, Intensive Care, Communicable Diseases, Hepatitis, Accidents and Emergency, Nutrition, Health Education, Community Mobilization, Maternal and newborn care",
       "Onsite Laboratory",
-       "Outpatient Services",
+      "Outpatient Services",
       "Inpatient Services",
       "Onsite Laboratory",
       "Onsite Imaging",
       "Onsite Pharmacy",
       "Ambulance Service"
     ],
-     "comments" : [
-        "Child Friendly",
-        "Free Parking",
-        "Debit Cards"
-      ],
+    "comments": [
+      "Child Friendly",
+      "Free Parking",
+      "Debit Cards"
+    ],
     "hours": [
-       {
+      {
         "day": "Monday",
         "open": "24 Hours"
       },
@@ -768,7 +782,7 @@
       "Reservation"
     ],
     "hours": [
-        {
+      {
         "day": "Monday",
         "open": "24 Hours"
       },
@@ -824,7 +838,7 @@
       "Emergency Service 24/7"
     ],
     "hours": [
-       {
+      {
         "day": "Monday",
         "open": "24 Hours"
       },
@@ -866,13 +880,13 @@
     "email": "",
     "type": "Private",
     "services": [
-     "Medical Services: Gastroenterology, Hematology",
+      "Medical Services: Gastroenterology, Hematology",
       "Surgical Services: General Surgery, Anaesthesia, Pediatric Surgery",
       "Obstetrics and Gynecology Services: Obstetrics, Gynecology, Fertility/Assisted Reproductive Techniques",
       "Pediatrics Services: Gastroenterology, Nephrology, Oncology, Endocrinology",
       "Specific Clinical Services: Antenatal Care (ANC), Immunization, HIV/ AIDS, Non-Communicable Diseases, Family Planning, Intensive Care, Communicable Diseases, Hepatitis, Accidents and Emergency, Nutrition, Health Education, Community Mobilization, Maternal and newborn care",
       "Onsite Laboratory",
-       "Outpatient Services",
+      "Outpatient Services",
       "Inpatient Services",
       "Onsite Laboratory",
       "Onsite Imaging",
@@ -927,7 +941,7 @@
     "email": "obiomahm@yahoo.com",
     "type": "Private",
     "services": [
-     "Medical Services: Gastroenterology, Hematology",
+      "Medical Services: Gastroenterology, Hematology",
       "Surgical Services: General Surgery, Anaesthesia, Pediatric Surgery",
       "Obstetrics and Gynecology Services: Obstetrics, Gynecology, Fertility/Assisted Reproductive Techniques",
       "Pediatrics Services: Gastroenterology, Nephrology, Oncology, Endocrinology",
@@ -997,7 +1011,7 @@
       "Child Friendly"
     ],
     "hours": [
-       {
+      {
         "day": "Monday",
         "open": "24 Hours"
       },
@@ -1256,7 +1270,9 @@
     "services": [
       "Hospital and Clinic Services"
     ],
-    "comments": [""],
+    "comments": [
+      ""
+    ],
     "hours": [
       {
         "day": "Monday",
@@ -1299,7 +1315,9 @@
     "website": "",
     "email": "",
     "type": "Private",
-    "services": [""],
+    "services": [
+      ""
+    ],
     "comments": [
       "Wheelchair-accessible"
     ],
@@ -1334,7 +1352,7 @@
       }
     ]
   },
-   {
+  {
     "name": "Synapse Oak Unit",
     "address": {
       "street": "No. 24, Senator Uche Ekwunife Crescent, by Valuation House/ Federal Ministry of Agriculture",
@@ -1425,7 +1443,7 @@
       "Friendly and Expert Doctors"
     ],
     "hours": [
-   {
+      {
         "day": "Monday",
         "open": "24 Hours"
       },
@@ -1476,7 +1494,7 @@
       "Allows clients to receive comprehensive care of their medical conditions through cross consultations with different specialities"
     ],
     "hours": [
-       {
+      {
         "day": "Monday",
         "open": "24 Hours"
       },
@@ -1526,7 +1544,7 @@
       "Onsite Pharmacy"
     ],
     "comments": [
-       "Free Parking",
+      "Free Parking",
       "Child Friendly",
       "Debit Cards"
     ],
@@ -1572,7 +1590,9 @@
     "website": "asueifai-hospital.business.site",
     "email": "asuefaihos@yahoo.com",
     "type": "Private",
-    "services": [""],
+    "services": [
+      ""
+    ],
     "comments": [
       "Wheelchair-accessible"
     ],
@@ -1685,7 +1705,7 @@
       "Easy and Affordable Billing"
     ],
     "hours": [
-   {
+      {
         "day": "Monday",
         "open": "9:00 AM - 10:00 PM"
       },
@@ -1715,7 +1735,7 @@
       }
     ]
   },
-    {
+  {
     "name": "Bayelsa Diagnostic Centre",
     "address": {
       "street": "22 Imgbi Road",
@@ -1740,7 +1760,7 @@
       "Radiology department houses a Toshiba Vantage 1.5 Tesla MRI and digital X-ray systems"
     ],
     "hours": [
-   {
+      {
         "day": "Monday",
         "open": "9:00 AM - 10:00 PM"
       },
@@ -1786,7 +1806,9 @@
       "Dental implants",
       "Cosmetic dentistry"
     ],
-    "comments": [""],
+    "comments": [
+      ""
+    ],
     "hours": [
       {
         "day": "Monday",
@@ -1903,7 +1925,7 @@
       "Wheelchair-accessible"
     ],
     "hours": [
-       {
+      {
         "day": "Monday",
         "open": "24 Hours"
       },
@@ -1946,11 +1968,13 @@
     "type": "Public",
     "services": [
       "Renal Dialysis & Transplant",
-    "International and Local dialysis training",
-  "Consultation services in dialysis unit set up",
-"Operation & Management"
-],
-    "comments": ["Publishes health news and healthcare jobs"],
+      "International and Local dialysis training",
+      "Consultation services in dialysis unit set up",
+      "Operation & Management"
+    ],
+    "comments": [
+      "Publishes health news and healthcare jobs"
+    ],
     "hours": [
       {
         "day": "Monday",
@@ -1982,7 +2006,7 @@
       }
     ]
   },
-   {
+  {
     "name": "Silhoutte Radiodiagnostic Consultants",
     "address": {
       "street": "567 Mbiama-Yenagoa Road",
@@ -2006,7 +2030,7 @@
       "Customer friendly and precise diagnostics"
     ],
     "hours": [
-     {
+      {
         "day": "Monday",
         "open": "8:00 AM - 6:00 PM"
       },
@@ -2066,7 +2090,7 @@
       "Comfortable rooms with 24 hours power supply"
     ],
     "hours": [
-       {
+      {
         "day": "Monday",
         "open": "24 Hours"
       },
@@ -2107,10 +2131,14 @@
     "website": "",
     "email": "stjoseph.catholichospital@yahoo.com",
     "type": "Public",
-    "services": ["General Hospital services"],
-    "comments": [""],
+    "services": [
+      "General Hospital services"
+    ],
+    "comments": [
+      ""
+    ],
     "hours": [
-       {
+      {
         "day": "Monday",
         "open": "24 Hours"
       },
@@ -2171,7 +2199,7 @@
       "Welcome feedback to improve service"
     ],
     "hours": [
-    {
+      {
         "day": "Monday",
         "open": "24 Hours"
       },
@@ -2233,7 +2261,7 @@
       "24 Hours Blood Bank"
     ],
     "hours": [
-       {
+      {
         "day": "Monday",
         "open": "24 Hours"
       },
@@ -2294,7 +2322,7 @@
       "Surgical Videos: Surgeries are electronic. For this reason, there is a video documentaries of each surgery performed. Patients can have copies of their videos for their own records"
     ],
     "hours": [
-       {
+      {
         "day": "Monday",
         "open": "24 Hours"
       },
@@ -2342,10 +2370,12 @@
       "Onsite Pharmacy",
       "Ambulance Service",
       "Mortuary Service"
-     ],
-    "comments": ["Affordable Services"],
+    ],
+    "comments": [
+      "Affordable Services"
+    ],
     "hours": [
-       {
+      {
         "day": "Monday",
         "open": "24 Hours"
       },
@@ -2395,7 +2425,7 @@
       "Wheelchair-accessible"
     ],
     "hours": [
-    {
+      {
         "day": "Monday",
         "open": "24 Hours"
       },
@@ -2456,7 +2486,7 @@
       "Innovation and the application of advance technology in medicine"
     ],
     "hours": [
-    {
+      {
         "day": "Monday",
         "open": "24 Hours"
       },
@@ -2501,9 +2531,11 @@
       "General body treatment",
       "Surgery"
     ],
-    "comments":[""],
+    "comments": [
+      ""
+    ],
     "hours": [
-     {
+      {
         "day": "Monday",
         "open": ""
       },
@@ -2547,9 +2579,11 @@
     "services": [
       "Medical Services"
     ],
-    "comments": [""],
+    "comments": [
+      ""
+    ],
     "hours": [
-   {
+      {
         "day": "Monday",
         "open": ""
       },
@@ -2612,7 +2646,7 @@
       "Clean and comfortable environment"
     ],
     "hours": [
-       {
+      {
         "day": "Monday",
         "open": "24 Hours"
       },
@@ -2666,9 +2700,11 @@
       "Orthopedics & Traumatology",
       "Internal medicine"
     ],
-    "comments": [""],
-  "hours": [
-     {
+    "comments": [
+      ""
+    ],
+    "hours": [
+      {
         "day": "Monday",
         "open": "8:00 AM - 6:00 PM"
       },
@@ -2737,7 +2773,7 @@
       "A transit home for patients relations and friends"
     ],
     "hours": [
-    {
+      {
         "day": "Monday",
         "open": "24 Hours"
       },
@@ -2778,10 +2814,14 @@
     "website": "",
     "email": "andyposki@gmail.com",
     "type": "Private",
-    "services": [""],
-    "comments": [""],
+    "services": [
+      ""
+    ],
+    "comments": [
+      ""
+    ],
     "hours": [
-    {
+      {
         "day": "Monday",
         "open": "24 Hours"
       },
@@ -2822,8 +2862,12 @@
     "website": "",
     "email": "",
     "type": "Private",
-    "services": [""],
-    "comments": [""],
+    "services": [
+      ""
+    ],
+    "comments": [
+      ""
+    ],
     "hours": [
       {
         "day": "Monday",
@@ -2866,9 +2910,11 @@
     "website": "",
     "email": "",
     "type": "Private",
-    "services": [""],
+    "services": [
+      ""
+    ],
     "hours": [
-    {
+      {
         "day": "Monday",
         "open": "8:00 AM - 5:00 PM"
       },
@@ -2909,10 +2955,14 @@
     "website": "mount-gilead-hospital.business.site",
     "email": " mtgilead2004@yahoo.com",
     "type": "Private",
-    "services": ["Medical Services"],
-    "comments": ["Affordable care using modern technological advances in medicine"],
+    "services": [
+      "Medical Services"
+    ],
+    "comments": [
+      "Affordable care using modern technological advances in medicine"
+    ],
     "hours": [
-  {
+      {
         "day": "Monday",
         "open": "24 Hours"
       },
@@ -2974,14 +3024,14 @@
       "Ambulance Service",
       "Mortuary Service"
     ],
-    "comments":[
+    "comments": [
       "Dual band DSTV cable entertainment to enable patients recuperate in comfort",
       "Two operating Theatres",
       "A Recovery Room",
       "A Delivery Suit"
     ],
     "hours": [
-   {
+      {
         "day": "Monday",
         "open": "24 Hours"
       },
@@ -3011,7 +3061,7 @@
       }
     ]
   },
-   {
+  {
     "name": "Irrua Specialist Teaching Hospital (ISTH)",
     "address": {
       "street": "KM 87 Benin Auchi Road, P.M.B. 08",
@@ -3071,7 +3121,7 @@
       }
     ]
   },
-   {
+  {
     "name": "Igbinedion University Teaching Hospital",
     "address": {
       "street": "P. O. Box 11, Ovia North East L.G.A",
@@ -3094,7 +3144,9 @@
       "Anaesthesia",
       "Community health"
     ],
-    "comments": ["A teaching hospital"],
+    "comments": [
+      "A teaching hospital"
+    ],
     "hours": [
       {
         "day": "Monday",
@@ -3126,7 +3178,7 @@
       }
     ]
   },
-   {
+  {
     "name": "Lily Hospitals",
     "address": {
       "street": "17 Edo-Osagie St, Oka 300102 | 16A Edo-Osagie Street GRA | 7 Boundary Road, GRA | 3 Afe Close, Off Ikpokpan Road",
@@ -3156,7 +3208,9 @@
       "IVF",
       "Internships for medical doctors, radiographers, optometrists, and pharmacists"
     ],
-    "comments": ["Numerous brances in Edo state"],
+    "comments": [
+      "Numerous brances in Edo state"
+    ],
     "hours": [
       {
         "day": "Monday",
@@ -3188,7 +3242,7 @@
       }
     ]
   },
-   {
+  {
     "name": "Bethel Faith Medical Centre",
     "address": {
       "street": "Plots 11 & 12 Jos Bazuaye, off Ekenwan road",
@@ -3208,9 +3262,11 @@
       "EMERGENCY",
       "RADIOLOGY"
     ],
-    "comments": [""],
+    "comments": [
+      ""
+    ],
     "hours": [
-{
+      {
         "day": "Monday",
         "open": "6:00 AM - 8:00 PM"
       },
@@ -3240,7 +3296,7 @@
       }
     ]
   },
-   {
+  {
     "name": "Michael Memorial Medical Centre",
     "address": {
       "street": "No 2 Dele Ezekiel street off Okhunmwun road, Iguosa",
@@ -3258,7 +3314,9 @@
       "Care of the elderly",
       "Half-way home service"
     ],
-    "comments": ["State-of-the-art specialist mental health and addiction clinic"],
+    "comments": [
+      "State-of-the-art specialist mental health and addiction clinic"
+    ],
     "hours": [
       {
         "day": "Monday",
@@ -3290,7 +3348,7 @@
       }
     ]
   },
-   {
+  {
     "name": "ISDA HOSPITAL",
     "address": {
       "street": "No. 4 Akhavbere Street, Off Benin Abraka Road, Idobo",
@@ -3301,8 +3359,12 @@
     "website": "",
     "email": "",
     "type": "Private",
-    "services": ["Full-service healthcare"],
-    "comments": [""],
+    "services": [
+      "Full-service healthcare"
+    ],
+    "comments": [
+      ""
+    ],
     "hours": [
       {
         "day": "Monday",
@@ -3334,7 +3396,7 @@
       }
     ]
   },
-   {
+  {
     "name": "ST. NICHOLAS HOSPITAL",
     "address": {
       "street": "57 Campbell Street, Lagos Island, ",
@@ -3356,7 +3418,9 @@
       "Intensive care unit",
       "Neurology"
     ],
-    "comments": ["Over 50 years experience in health care services"],
+    "comments": [
+      "Over 50 years experience in health care services"
+    ],
     "hours": [
       {
         "day": "Monday",
@@ -3388,7 +3452,7 @@
       }
     ]
   },
-   {
+  {
     "name": "Motayo Hospital",
     "address": {
       "street": "3, Owodunni street, off Amore street off Toyin street",
@@ -3456,7 +3520,7 @@
       }
     ]
   },
-   {
+  {
     "name": "Blooming Care Hospital",
     "address": {
       "street": "30, Baale Baale Animashaun road, Adebayo bus stop, Alakuko",
@@ -3507,7 +3571,7 @@
       }
     ]
   },
-   {
+  {
     "name": "Isioma Hospital",
     "address": {
       "street": "28 Molusi Avenue Shitta/Bankolemoh Surulere",
@@ -3527,7 +3591,9 @@
       "Onsite Laboratory",
       "Onsite Pharmacy"
     ],
-    "comments": ["Facility Level: Isioma Hospital is a Secondary Health Care Centre"],
+    "comments": [
+      "Facility Level: Isioma Hospital is a Secondary Health Care Centre"
+    ],
     "hours": [
       {
         "day": "Monday",
@@ -3559,7 +3625,7 @@
       }
     ]
   },
-   {
+  {
     "name": "General Hospital, Lagos Island",
     "address": {
       "street": "1 - 3 Broad St, Odan 102273",
@@ -3628,7 +3694,7 @@
       }
     ]
   },
-   {
+  {
     "name": "Ajeromi General Hospital",
     "address": {
       "street": "6, Cardoso Street, Awodiora, Ajegunle, Ajeromi-Ifelodun,",
@@ -3696,7 +3762,7 @@
       }
     ]
   },
-   {
+  {
     "name": "General Hospital, Ikorodu",
     "address": {
       "street": "Otunba TOS Benson Rd, Ikorodu Hospital Rd, Ijede",
@@ -3708,22 +3774,22 @@
     "email": "ghikorodu@yahoo.com, info@generalhospitalikorodu.org",
     "type": "Public",
     "services": [
-    "Dental DEPARTMENT",
-    "Medical Laboratory",
-    "General Out-patient Services (GOPD)",
-    "Medical Out-patient Department (MOPD)",
-    "Mortuary",
-    "Maternal & Child Center",
-    "Obstetrics and Gynaecology",
-    "Ophthalmology",
-    "Paediatrics",
-    "Physiotherapy",
-    "Radiology",
-    "Orthopedics",
-    "Surgery",
-    "Nursing Services",
-    "Ambulance Service"
-  ],
+      "Dental DEPARTMENT",
+      "Medical Laboratory",
+      "General Out-patient Services (GOPD)",
+      "Medical Out-patient Department (MOPD)",
+      "Mortuary",
+      "Maternal & Child Center",
+      "Obstetrics and Gynaecology",
+      "Ophthalmology",
+      "Paediatrics",
+      "Physiotherapy",
+      "Radiology",
+      "Orthopedics",
+      "Surgery",
+      "Nursing Services",
+      "Ambulance Service"
+    ],
     "comments": [
       "The hospital has state of the art equipments like Anaesthetic Machines, Blood Bank, X-ray Machines",
       "The hospital is quite affordable and patient-friendly providing free medical service for all emergencies for the first 24 hours",
@@ -3763,7 +3829,7 @@
       }
     ]
   },
-   {
+  {
     "name": "Lagos State University Teaching Hospital (LSUTH)",
     "address": {
       "street": "1 - 5, Oba Akinjobi Road",
@@ -3799,7 +3865,9 @@
       "Physiotherapy",
       "Medical Social Services"
     ],
-    "comments": ["Despite LASUTH’s relatively young age as a Teaching Hospital, evidence abounds that it is one of the foremost teaching hospitals in West Africa in terms of the high-quality services rendered by highly skilled professionals using state-of-the-art equipment"],
+    "comments": [
+      "Despite LASUTH’s relatively young age as a Teaching Hospital, evidence abounds that it is one of the foremost teaching hospitals in West Africa in terms of the high-quality services rendered by highly skilled professionals using state-of-the-art equipment"
+    ],
     "hours": [
       {
         "day": "Monday",
@@ -3831,7 +3899,7 @@
       }
     ]
   },
-   {
+  {
     "name": "Orile Agege General Hospital",
     "address": {
       "street": "3 Old Otta Rd, Orile Agege",
@@ -3870,7 +3938,7 @@
       "Lagos State Government General Hospital with a Class known for being the saviour of Pregnant Women & Children where the Low-income earners are highly dominated"
     ],
     "hours": [
-       {
+      {
         "day": "Monday",
         "open": "8:00 AM - 8:00 PM"
       },
@@ -3900,7 +3968,7 @@
       }
     ]
   },
-   {
+  {
     "name": "Epe General Hospital",
     "address": {
       "street": "Hospital Road",
@@ -3926,7 +3994,9 @@
       "Surgery",
       "VCT"
     ],
-    "comments": [""],
+    "comments": [
+      ""
+    ],
     "hours": [
       {
         "day": "Monday",
@@ -3958,7 +4028,7 @@
       }
     ]
   },
-   {
+  {
     "name": "The Synapse Magnolia",
     "address": {
       "street": "No.60 Babaponmile Street, Onipetesi (former Punch) Estate, through Petcostars Filling Station, Mangoro Bus Stop",
@@ -4021,7 +4091,7 @@
       }
     ]
   },
-   {
+  {
     "name": "Gbagada General Hospital",
     "address": {
       "street": " 1, Hospital Road, Gbagada, Kosofe",
@@ -4085,7 +4155,7 @@
       }
     ]
   },
-   {
+  {
     "name": "Ifako Ijaiye General Hospital",
     "address": {
       "street": "14 College Road",
@@ -4146,7 +4216,7 @@
       }
     ]
   },
-   {
+  {
     "name": "MariGold Hospital",
     "address": {
       "street": "12/14 Adeniyi Adefioye Street, Kilo",
@@ -4211,7 +4281,7 @@
       }
     ]
   },
-   {
+  {
     "name": "Cottage Medical Hospital",
     "address": {
       "street": "18, IWAYA ROAD, ONIKE",
@@ -4235,7 +4305,9 @@
       "Gynae consultaton & treatment",
       "Pharmacy"
     ],
-    "comments": [""],
+    "comments": [
+      ""
+    ],
     "hours": [
       {
         "day": "Monday",
@@ -4267,7 +4339,7 @@
       }
     ]
   },
-   {
+  {
     "name": "Regis & Reina Hospital",
     "address": {
       "street": "41 Industrial Avenue",
@@ -4286,7 +4358,9 @@
       "Medical Services",
       "Diagnotics"
     ],
-    "comments": ["Regis and Reina diagnostics is a center you can trust for your laboratory investigations and other health checks. The organization, the professionals, and the receptionists are good at what they do"],
+    "comments": [
+      "Regis and Reina diagnostics is a center you can trust for your laboratory investigations and other health checks. The organization, the professionals, and the receptionists are good at what they do"
+    ],
     "hours": [
       {
         "day": "Monday",
@@ -4318,7 +4392,7 @@
       }
     ]
   },
-   {
+  {
     "name": "Mobihealth",
     "address": {
       "street": "Suite E1 Bobsar Complex, Plot 1035 Michika Street, Area 11",
@@ -4437,7 +4511,7 @@
       }
     ]
   },
-   {
+  {
     "name": "SYNAPSE AZALEA",
     "address": {
       "street": "Plot 238, Kado Cadastral Zone B09",
@@ -4494,7 +4568,7 @@
       }
     ]
   },
-   {
+  {
     "name": "Synapse Mustard Centre",
     "address": {
       "street": "No. 10, Inuwa Wada Crescent, Off T.O.S Benson Street, Opposite LEA Primary School, Off Ngozi Okonjo-Iweala Way, Utako District",
@@ -4525,7 +4599,7 @@
       "Latest Technologies: The Repetitive Transcranial Magnetic Stimulation Machine (rTMS), is used for the treatment of drug addiction and/or psychotherapy",
       "A large range of food menus and catering which respond to every special dietary requirements",
       "Long stay supported accommodation"
-  ],
+    ],
     "hours": [
       {
         "day": "Monday",
@@ -4557,7 +4631,7 @@
       }
     ]
   },
-   {
+  {
     "name": "Supreme Vision Eye Clinic",
     "address": {
       "street": "Abia House, 2nd Floor, Right Wing 2, Central Business District",
@@ -4589,7 +4663,7 @@
       "Supreme vision eye clinic, besides its clinical services to the public, has been a point of clinical training to a handful of young health professionals. It has brought smiles to our hearts"
     ],
     "hours": [
-    {
+      {
         "day": "Monday",
         "open": "8:00 AM - 6:00 PM"
       },
@@ -4619,7 +4693,7 @@
       }
     ]
   },
-   {
+  {
     "name": "Living Stream Hospital",
     "address": {
       "street": "Plot 42, Phase 1 off University Road",
@@ -4630,8 +4704,12 @@
     "website": "",
     "email": "",
     "type": "Private",
-    "services": ["General Health care"],
-    "comments": [""],
+    "services": [
+      "General Health care"
+    ],
+    "comments": [
+      ""
+    ],
     "hours": [
       {
         "day": "Monday",
@@ -4663,7 +4741,7 @@
       }
     ]
   },
-   {
+  {
     "name": "University of Abuja Teaching Hospital",
     "address": {
       "street": "University of Abuja Teaching Hospital Gwagwalada, P.M.B. 228",
@@ -4675,18 +4753,20 @@
     "email": "info@uath.gov.ng",
     "type": "Public",
     "services": [
-     "In-Patient",
-     "Pharmaceutical",
-     "Mobile Clinic",
-     "Social Welfare",
-     "Out-Patient",
-     "Laboratory",
-     "Endoscopy",
-     "Radiological",
-     "Nursing",
-     "Anaesthetical"
+      "In-Patient",
+      "Pharmaceutical",
+      "Mobile Clinic",
+      "Social Welfare",
+      "Out-Patient",
+      "Laboratory",
+      "Endoscopy",
+      "Radiological",
+      "Nursing",
+      "Anaesthetical"
     ],
-    "comments": [""],
+    "comments": [
+      ""
+    ],
     "hours": [
       {
         "day": "Monday",
@@ -4718,7 +4798,7 @@
       }
     ]
   },
-   {
+  {
     "name": "Our Lady of Fatima Catholic Hospital",
     "address": {
       "street": "Ushafa Road, After Deeper Life Bible Church, 16-16 Bwari",
@@ -4740,7 +4820,9 @@
       "Onsite Pharmacy",
       "Mortuary Service"
     ],
-    "comments": ["Facility Level: Our Lady Of Fatima Catholic Hospital ( Bwari ) is a Secondary Health Care Centre"],
+    "comments": [
+      "Facility Level: Our Lady Of Fatima Catholic Hospital ( Bwari ) is a Secondary Health Care Centre"
+    ],
     "hours": [
       {
         "day": "Monday",
@@ -4794,9 +4876,9 @@
     ],
     "comments": [
       "First and only hospital along Umaru Musa Ya'radua Express road formerly known as Airport road, before entering into the main city. Silver-Fountain Medical Centre (REHOBOTH) is located at Kukuaba Abuja, Opposite Kushingoro, Along Airport Road",
-    "Silver-Fountain Medical Center facilitates medical treatment in Germany and Israel where necessary",
-  "The Medical Director is German trained Surgeon versed in Accident Surgery and Colo-rectal Surgery and has accumulatively post-qualification experience of well over 22 years"
-],
+      "Silver-Fountain Medical Center facilitates medical treatment in Germany and Israel where necessary",
+      "The Medical Director is German trained Surgeon versed in Accident Surgery and Colo-rectal Surgery and has accumulatively post-qualification experience of well over 22 years"
+    ],
     "hours": [
       {
         "day": "Monday",
@@ -4828,7 +4910,7 @@
       }
     ]
   },
-   {
+  {
     "name": "Abaji General Hospital",
     "address": {
       "street": "Opposite Abaji Motor Park, General Hospital Road",
@@ -4845,7 +4927,9 @@
       "Laboratory",
       "Pharmaceutical"
     ],
-    "comments": [""],
+    "comments": [
+      ""
+    ],
     "hours": [
       {
         "day": "Monday",
@@ -4877,7 +4961,7 @@
       }
     ]
   },
-   {
+  {
     "name": "Gwarinpa General Hospital",
     "address": {
       "street": "Jabi-Gwarinpa, Abuja Municipal",
@@ -4933,7 +5017,7 @@
       }
     ]
   },
-   {
+  {
     "name": "Nisa Premier Hospital",
     "address": {
       "street": "15/21 Alex Ekwueme Way",
@@ -5014,7 +5098,9 @@
       "Adult And Child ADHD Treatment",
       "Employee Assisted Program (EAP)"
     ],
-    "comments": ["At Synapse Japonica, our goal is to ensure that all individuals who come in contact with our services experience wholesome and full recovery from mental illnesses and addiction"],
+    "comments": [
+      "At Synapse Japonica, our goal is to ensure that all individuals who come in contact with our services experience wholesome and full recovery from mental illnesses and addiction"
+    ],
     "hours": [
       {
         "day": "Monday",
@@ -5046,7 +5132,7 @@
       }
     ]
   },
-   {
+  {
     "name": "University of Port Harcourt Teaching Hospital (UPTH)",
     "address": {
       "street": "East - West road, opposite Alakahia Junction, P.M.B. 6173",
@@ -5083,7 +5169,9 @@
       "Preventive dentistry",
       "Restorative dentistry"
     ],
-    "comments": ["The University of Port Harcourt Teaching Hospital treats well over 400,000 Out-patients per annum, over 10,000 In-patients per annum and over 3000 surgeries per annum"],
+    "comments": [
+      "The University of Port Harcourt Teaching Hospital treats well over 400,000 Out-patients per annum, over 10,000 In-patients per annum and over 3000 surgeries per annum"
+    ],
     "hours": [
       {
         "day": "Monday",
@@ -5115,7 +5203,7 @@
       }
     ]
   },
-   {
+  {
     "name": "Maryland Healthcare Hospital",
     "address": {
       "street": "Rumuokwurusi, 14 Elechi Amadi Road",
@@ -5143,7 +5231,7 @@
       "24 hours service with reliable medical personnel"
     ],
     "hours": [
-       {
+      {
         "day": "Monday",
         "open": "24 Hours"
       },
@@ -5173,7 +5261,7 @@
       }
     ]
   },
-   {
+  {
     "name": "Mediethics Medical solutions LTD",
     "address": {
       "street": "3 Benin Street, D/Line",
@@ -5194,7 +5282,9 @@
       "Occupational medicine",
       "PAEDIATRICS, CHILD HEALTH & IMMUNIZATION"
     ],
-    "comments": [""],
+    "comments": [
+      ""
+    ],
     "hours": [
       {
         "day": "Monday",
@@ -5226,7 +5316,7 @@
       }
     ]
   },
-   {
+  {
     "name": "New Mile One Hospital",
     "address": {
       "street": "15 Emenike Street, Mile 1",
@@ -5237,7 +5327,9 @@
     "website": "",
     "email": "",
     "type": "Private",
-    "services": [""],
+    "services": [
+      ""
+    ],
     "comments": [
       "Saving lives is their priorities"
     ],
@@ -5272,7 +5364,7 @@
       }
     ]
   },
-   {
+  {
     "name": "Onne Medical Centre",
     "address": {
       "street": "Harbour Road, Onne Nchia Eleme",
@@ -5283,8 +5375,12 @@
     "website": "",
     "email": "samudonsac@hotmail.com",
     "type": "Private",
-    "services": [""],
-    "comments": ["Onne Medical Centre is a health organization established with the aim of providing medical assistance in Onne Community"],
+    "services": [
+      ""
+    ],
+    "comments": [
+      "Onne Medical Centre is a health organization established with the aim of providing medical assistance in Onne Community"
+    ],
     "hours": [
       {
         "day": "Monday",
@@ -5316,7 +5412,7 @@
       }
     ]
   },
-   {
+  {
     "name": "Gbeye Hospital and Maternity",
     "address": {
       "street": "17, Ahoada Road",
@@ -5339,7 +5435,9 @@
       "Morgue",
       "Training of medical personnel"
     ],
-    "comments": ["Procurement and supplies of hi-tech medical equipment and appropriate consumables; installation, maintenance and repairs of hospital equipment"],
+    "comments": [
+      "Procurement and supplies of hi-tech medical equipment and appropriate consumables; installation, maintenance and repairs of hospital equipment"
+    ],
     "hours": [
       {
         "day": "Monday",
@@ -5371,7 +5469,7 @@
       }
     ]
   },
-   {
+  {
     "name": "SAVE A LIFE Mission Hospital",
     "address": {
       "street": "38 Uyo Street, Off Stadium Rd, Rumuomasi",
@@ -5427,7 +5525,7 @@
       }
     ]
   },
-   {
+  {
     "name": "First Rivers Hospital",
     "address": {
       "street": "7/9 OLD ABA ROAD (250 ABA /PH EXPRESS WAY) RUMUOMASI",
@@ -5438,7 +5536,9 @@
     "website": "firstrivers.com",
     "email": "info@firstrivers.com, martinnezus@yahoo.com",
     "type": "",
-    "services": ["With modern equipment and through skilled and efficient staff, FRH is committed to the provision of compelling quality timeless medical services to patients"],
+    "services": [
+      "With modern equipment and through skilled and efficient staff, FRH is committed to the provision of compelling quality timeless medical services to patients"
+    ],
     "comments": [
       "Our objective is to maximally exploit medical sciences in the art of health management and preservation of life with regards to The Ultimate Intelligence",
       "Our core values are to offer Fast medical interventions, maintain high professional Integrity, Respect the person and right of our patients, observe all Safety considerations in the process of task execution, and employ a Team approach to health management",
@@ -5477,7 +5577,7 @@
       }
     ]
   },
-   {
+  {
     "name": "Anchor Hospital",
     "address": {
       "street": "Km 15, Port-Harcourt/Aba,Near Eleme Junction, Umurolu",
@@ -5488,8 +5588,12 @@
     "website": "",
     "email": "",
     "type": "Private",
-    "services": [""],
-    "comments": ["Anchor Hospital is among the best health centres with durable and skilled staff making use of the foremost medical facilities in carrying out treatment"],
+    "services": [
+      ""
+    ],
+    "comments": [
+      "Anchor Hospital is among the best health centres with durable and skilled staff making use of the foremost medical facilities in carrying out treatment"
+    ],
     "hours": [
       {
         "day": "Monday",
@@ -5521,7 +5625,7 @@
       }
     ]
   },
-   {
+  {
     "name": "Rivers State University Teaching Hospital (RSUTH)",
     "address": {
       "street": "Harley Street, Port Harcourt 500101",
@@ -5583,7 +5687,7 @@
       }
     ]
   },
-   {
+  {
     "name": "Alex Ekwueme Federal University Teaching Hospital Abakaliki (AEFUTHA)",
     "address": {
       "street": "No. 1, Chidume Street, Behind State Prison Headquarters",
@@ -5606,7 +5710,9 @@
       "Nursing Services",
       "Training & Education: School of Nursing, School of Midwifery, Internship training, Residency Training"
     ],
-    "comments": [""],
+    "comments": [
+      ""
+    ],
     "hours": [
       {
         "day": "Monday",
@@ -5638,7 +5744,7 @@
       }
     ]
   },
-   {
+  {
     "name": "Christ The King Hospital",
     "address": {
       "street": "85 Afikpo Road",
@@ -5654,7 +5760,9 @@
       "Gynecology",
       "Training of medical personnel"
     ],
-    "comments": [""],
+    "comments": [
+      ""
+    ],
     "hours": [
       {
         "day": "Monday",
@@ -5686,7 +5794,7 @@
       }
     ]
   },
-   {
+  {
     "name": "National Obstetric Fistula Centre",
     "address": {
       "street": "Abakaliki Rd, Ntezi Abba 480108",
@@ -5712,7 +5820,9 @@
       "Training of Doctors & Paramedicals in Reproductive Health",
       "Community Awareness Campaign, Advocacy & Resource Mobilization"
     ],
-    "comments": ["The National Obstetric Fistula Centre, Abakaliki (NOFIC) was established in 2011 by the Federal Government of Nigeria as the first national health facility for the treatment, rehabilitation, research, reintegration of and training in obstetric fistula mainly and related reproductive health issues"],
+    "comments": [
+      "The National Obstetric Fistula Centre, Abakaliki (NOFIC) was established in 2011 by the Federal Government of Nigeria as the first national health facility for the treatment, rehabilitation, research, reintegration of and training in obstetric fistula mainly and related reproductive health issues"
+    ],
     "hours": [
       {
         "day": "Monday",
@@ -5744,7 +5854,7 @@
       }
     ]
   },
-   {
+  {
     "name": "Ebonyi State University Teaching Hospital (ESUTH)",
     "address": {
       "street": "Km 2, Abakaliki - Enugu Expressway",
@@ -5755,7 +5865,9 @@
     "website": "",
     "email": "",
     "type": "Public",
-    "services": [""],
+    "services": [
+      ""
+    ],
     "comments": [
       "The General Hospital caters for everyone in her capacity",
       "The mission of the hospital is to ensure the provision of safe, quality, affordable, adequate, equitable and accessible health services to all people in Nigeria"
@@ -5791,7 +5903,7 @@
       }
     ]
   },
-   {
+  {
     "name": "General Hospital Onueke",
     "address": {
       "street": "Onueke Urban Onueke urban Ezza South",
@@ -5812,7 +5924,9 @@
       "Onsite Laboratory",
       "Mortuary Service"
     ],
-    "comments": ["Facility Level: General Hospital Onueke is a Secondary Health Care Centre"],
+    "comments": [
+      "Facility Level: General Hospital Onueke is a Secondary Health Care Centre"
+    ],
     "hours": [
       {
         "day": "Monday",
@@ -5844,7 +5958,7 @@
       }
     ]
   },
-   {
+  {
     "name": "Mater Misericordiae Hospital",
     "address": {
       "street": "12 Mater Road Afipo",
@@ -5855,7 +5969,9 @@
     "website": "matersomn.org",
     "email": "sonafikpo@yahoo.com",
     "type": "Private",
-    "services": [""],
+    "services": [
+      ""
+    ],
     "comments": [
       "It is a hospital owned and managed by the Catholic diocese of Abakaliki",
       "It has a very large compound that houses the Nursing school, mortuary and Hospital. Mater hospital is big and well fenced with all the facilities needed within the compound."
@@ -5891,7 +6007,7 @@
       }
     ]
   },
-   {
+  {
     "name": "Ezzamgbo General Hospital",
     "address": {
       "street": "Enugu-Abakaliki Road, Idembia Izi",
@@ -5902,8 +6018,12 @@
     "website": "",
     "email": "",
     "type": "Public",
-    "services": ["Health & Medical"],
-    "comments": [""],
+    "services": [
+      "Health & Medical"
+    ],
+    "comments": [
+      ""
+    ],
     "hours": [
       {
         "day": "Monday",
@@ -5935,7 +6055,7 @@
       }
     ]
   },
-   {
+  {
     "name": "Nakowa Specialist Hospital",
     "address": {
       "street": "No 16 Lagos Street",
@@ -5951,7 +6071,9 @@
       "Pediatric Care Services",
       "General Surgery"
     ],
-    "comments": [""],
+    "comments": [
+      ""
+    ],
     "hours": [
       {
         "day": "Monday",
@@ -5983,7 +6105,7 @@
       }
     ]
   },
-   {
+  {
     "name": "Borno Medical Centre",
     "address": {
       "street": "81 Sir Kashim Ibrahim Way",
@@ -6000,7 +6122,9 @@
       "Oncology",
       "Surgical Services"
     ],
-    "comments": [""],
+    "comments": [
+      ""
+    ],
     "hours": [
       {
         "day": "Monday",
@@ -6032,7 +6156,7 @@
       }
     ]
   },
-   {
+  {
     "name": "Kanem Hospital and Maternity",
     "address": {
       "street": "152, Tafawa Balewa Street Lamisula Junction, Mafoni Ward",
@@ -6043,8 +6167,12 @@
     "website": "",
     "email": "",
     "type": "Private",
-    "services": [""],
-    "comments": [""],
+    "services": [
+      ""
+    ],
+    "comments": [
+      ""
+    ],
     "hours": [
       {
         "day": "Monday",
@@ -6076,7 +6204,7 @@
       }
     ]
   },
-   {
+  {
     "name": "Royal Specialist Hospital",
     "address": {
       "street": "Gombe road after Giwa barracks",
@@ -6132,7 +6260,7 @@
       }
     ]
   },
-   {
+  {
     "name": "State Specialist Hospital",
     "address": {
       "street": "Barno, Hausari 600282",
@@ -6143,7 +6271,9 @@
     "website": "",
     "email": "",
     "type": "Public",
-    "services": [""],
+    "services": [
+      ""
+    ],
     "comments": [
       "The #1 State owned government hospital with specialist medical personnels in different fields",
       "This is a standard and well equipped with a modern high-tech equipment to be used for different specialised medical treatment's.this Hospital have enough send an experience doctors for Different kind of treatment and they are doing the rooms are well equipped and decorated for better ventilation"
@@ -6179,7 +6309,7 @@
       }
     ]
   },
-   {
+  {
     "name": "",
     "address": {
       "street": "",
@@ -6190,8 +6320,12 @@
     "website": "",
     "email": "",
     "type": "",
-    "services": [""],
-    "comments": [""],
+    "services": [
+      ""
+    ],
+    "comments": [
+      ""
+    ],
     "hours": [
       {
         "day": "Monday",
@@ -6223,7 +6357,7 @@
       }
     ]
   },
-   {
+  {
     "name": "",
     "address": {
       "street": "",
@@ -6234,8 +6368,12 @@
     "website": "",
     "email": "",
     "type": "",
-    "services": [""],
-    "comments": [""],
+    "services": [
+      ""
+    ],
+    "comments": [
+      ""
+    ],
     "hours": [
       {
         "day": "Monday",
@@ -6323,7 +6461,7 @@
       }
     ]
   },
-   {
+  {
     "name": "University of Maiduguri Teaching Hospital (UMTH)",
     "address": {
       "street": "Bama Road Maiduguri, P.M.B 1414",
@@ -6391,7 +6529,7 @@
       }
     ]
   },
-   {
+  {
     "name": "NEW FOUNDATION HOSPITAL",
     "address": {
       "street": "No 340 Shehu Umar Road, Sabo Lamba Ward",
@@ -6402,8 +6540,12 @@
     "website": "",
     "email": "",
     "type": "Private",
-    "services": [""],
-    "comments": ["This hospital have gotten a new look that is very commendable"],
+    "services": [
+      ""
+    ],
+    "comments": [
+      "This hospital have gotten a new look that is very commendable"
+    ],
     "hours": [
       {
         "day": "Monday",
@@ -6435,7 +6577,7 @@
       }
     ]
   },
-   {
+  {
     "name": "First Fertility Hospital",
     "address": {
       "street": "Plot BNB5827 Samuel Rufus Street, Ankpa Quarters, Township 970251",
@@ -6446,7 +6588,9 @@
     "website": "firstfertilityhospital.com",
     "email": "",
     "type": "Private",
-    "services": ["We are a specialized gynecologist and obstetric hospital set up to care for reproductive health needs of women which include infertility challenges, endoscopic surgeries and the management of high risk pregnancies in women"],
+    "services": [
+      "We are a specialized gynecologist and obstetric hospital set up to care for reproductive health needs of women which include infertility challenges, endoscopic surgeries and the management of high risk pregnancies in women"
+    ],
     "comments": [
       "Its a fertility hospital where IVF is done and its a mother and child hospital as well",
       "They are good team players, make their patients comfortable and they more than deliver on the services they have been setup to deliver"
@@ -6482,7 +6626,7 @@
       }
     ]
   },
-   {
+  {
     "name": "Madonna Hospital",
     "address": {
       "street": "Behind Union Bank of Nigeria, New Otukpo Road, P. O. Box 503",
@@ -6544,7 +6688,7 @@
       }
     ]
   },
-   {
+  {
     "name": "General Hospital",
     "address": {
       "street": "North Bank market",
@@ -6555,8 +6699,12 @@
     "website": "",
     "email": "",
     "type": "Public",
-    "services": [""],
-    "comments": ["The General Hospital caters for everyone in her capacity. The mission of the hospital is to ensure the provision of safe, quality, affordable, adequate, equitable and accessible health services to all people in Nigeria"],
+    "services": [
+      ""
+    ],
+    "comments": [
+      "The General Hospital caters for everyone in her capacity. The mission of the hospital is to ensure the provision of safe, quality, affordable, adequate, equitable and accessible health services to all people in Nigeria"
+    ],
     "hours": [
       {
         "day": "Monday",
@@ -6588,7 +6736,7 @@
       }
     ]
   },
-   {
+  {
     "name": "Benue State University Teaching Hospital (BSUTH)",
     "address": {
       "street": "3 Makurdi-Gboko Rd, Walmayo 970101",
@@ -6607,7 +6755,9 @@
       "Medical care services",
       "Training of medical students"
     ],
-    "comments": ["Received accreditation from the Medical and Dental Council of Nigeria to be a suitable place for the training of medical students"],
+    "comments": [
+      "Received accreditation from the Medical and Dental Council of Nigeria to be a suitable place for the training of medical students"
+    ],
     "hours": [
       {
         "day": "Monday",
@@ -6639,7 +6789,7 @@
       }
     ]
   },
-   {
+  {
     "name": "General Hospital, Vandekeiya",
     "address": {
       "street": "Vandeikya town",
@@ -6650,8 +6800,12 @@
     "website": "",
     "email": "",
     "type": "Public",
-    "services": [""],
-    "comments": ["The General Hospital caters for everyone in her capacity. The mission of the hospital is to ensure the provision of safe, quality, affordable, adequate, equitable and accessible health services to all people in Nigeria"],
+    "services": [
+      ""
+    ],
+    "comments": [
+      "The General Hospital caters for everyone in her capacity. The mission of the hospital is to ensure the provision of safe, quality, affordable, adequate, equitable and accessible health services to all people in Nigeria"
+    ],
     "hours": [
       {
         "day": "Monday",
@@ -6683,7 +6837,7 @@
       }
     ]
   },
-   {
+  {
     "name": "St. Daniels Hospital",
     "address": {
       "street": "No 5 Ochalefu street behind new garage 972231",
@@ -6702,7 +6856,9 @@
       "X-Ray",
       "Home care for elderly and aged patients with chronic illnesses"
     ],
-    "comments": ["Wheelchair-accessible"],
+    "comments": [
+      "Wheelchair-accessible"
+    ],
     "hours": [
       {
         "day": "Monday",
@@ -6734,11 +6890,11 @@
       }
     ]
   },
-   {
+  {
     "name": "Myom Hospital",
     "address": {
       "street": "NO.28, GENERAL HOSPITAL ROAD, GBOKO EAST, P.O Box 744",
-      "city":"Gboko",
+      "city": "Gboko",
       "state": "Benue"
     },
     "phoneNumber": "+234 44 470 071, 0806-424-2045",
@@ -6755,7 +6911,9 @@
       "Onsite Laboratory",
       "Onsite Pharmacy"
     ],
-    "comments": ["Facility Level: Myom Hospital is a Secondary Health Care Centre"],
+    "comments": [
+      "Facility Level: Myom Hospital is a Secondary Health Care Centre"
+    ],
     "hours": [
       {
         "day": "Monday",
@@ -6787,7 +6945,7 @@
       }
     ]
   },
-   {
+  {
     "name": "Faith Foundation Specialist Clinic",
     "address": {
       "street": "57 Ndidem Usang ISO Rd, Calabar Municipal",
@@ -6798,8 +6956,12 @@
     "website": "faithfoundationmedical.com",
     "email": "executive@faithfoundationmedical.com, faithfoundationclinic57@yahoo.com",
     "type": "Private",
-    "services": ["Specialist and Maternity hospital"],
-    "comments": ["Its well groomed hospital with all the equipment. Clean and current when it comes to service delivery"],
+    "services": [
+      "Specialist and Maternity hospital"
+    ],
+    "comments": [
+      "Its well groomed hospital with all the equipment. Clean and current when it comes to service delivery"
+    ],
     "hours": [
       {
         "day": "Monday",
@@ -6831,7 +6993,7 @@
       }
     ]
   },
-   {
+  {
     "name": "Bakor Medical Centre",
     "address": {
       "street": "124 Murtala Mohammed Highway, Opposite NNPC Mega Station, Federal Housing Estate",
@@ -6901,7 +7063,7 @@
       }
     ]
   },
-   {
+  {
     "name": "General Hospital, Calabar",
     "address": {
       "street": "113 Mary Slessor Avenue, Efut Ekondo",
@@ -6954,7 +7116,7 @@
       }
     ]
   },
-   {
+  {
     "name": "Danex Hospital",
     "address": {
       "street": "5 Danex Road, off Ikom-Calabar Highway, Ugep",
@@ -6965,8 +7127,12 @@
     "website": "",
     "email": "",
     "type": "Private",
-    "services": ["Danex Medical Centre offers medical services in general patient treatment such as medical laboratory, general surgery, gynecology, radiology and other medical treatment services"],
-    "comments": [""],
+    "services": [
+      "Danex Medical Centre offers medical services in general patient treatment such as medical laboratory, general surgery, gynecology, radiology and other medical treatment services"
+    ],
+    "comments": [
+      ""
+    ],
     "hours": [
       {
         "day": "Monday",
@@ -6998,7 +7164,7 @@
       }
     ]
   },
-   {
+  {
     "name": "County Specialist Hospital",
     "address": {
       "street": "11, Calabar Road Fourconner Square Ikom",
@@ -7017,7 +7183,9 @@
       "Scanning",
       "Photocopy Services"
     ],
-    "comments": [""],
+    "comments": [
+      ""
+    ],
     "hours": [
       {
         "day": "Monday",
@@ -7049,7 +7217,7 @@
       }
     ]
   },
-   {
+  {
     "name": "Calabar Specialist Hospital",
     "address": {
       "street": "Summit Hills Development Area, Off Murtala Muhammed Highway",
@@ -7062,7 +7230,8 @@
     "type": "Public",
     "services": [
       "Geared towards the delivery of qualitative, efficient and prompt medical care",
-      "Offers services to those in need of care, expert advice, and/or additional options for patient care, prevention of illness, and informed choices for a healthy lifestyle"],
+      "Offers services to those in need of care, expert advice, and/or additional options for patient care, prevention of illness, and informed choices for a healthy lifestyle"
+    ],
     "comments": [
       "Their wards are conducive for patients' relaxation and their staff are both warm and efficient in carrying out their work. This place also has a secured car park for about 80 vehicles",
       "This referral, state-of-the-art, multi-discipline hospital. Located in the serene environment of the Summit Hills that is easily accessible",
@@ -7100,7 +7269,7 @@
       }
     ]
   },
-   {
+  {
     "name": "Niima Consultant Clinic",
     "address": {
       "street": "Niima Close, Off Airport Road G.R.A, P.O.Box 3018,",
@@ -7111,8 +7280,12 @@
     "website": "",
     "email": "niimaconsultantshosp@yahoo.com",
     "type": "Private",
-    "services": [""],
-    "comments": [""],
+    "services": [
+      ""
+    ],
+    "comments": [
+      ""
+    ],
     "hours": [
       {
         "day": "Monday",
@@ -7144,7 +7317,7 @@
       }
     ]
   },
-   {
+  {
     "name": "Bauchi State Specialist Hospital",
     "address": {
       "street": "Dan Iya Bauchi",
@@ -7196,7 +7369,7 @@
       }
     ]
   },
-   {
+  {
     "name": "Federal Medical Centre Azare",
     "address": {
       "street": "No. 5 Sule Katagum Road",
@@ -7221,7 +7394,7 @@
       "The mandate of the Centre is to provide excellent healthcare services, training and research using professional staff and modern technology"
     ],
     "hours": [
-     {
+      {
         "day": "Monday",
         "open": "8:00 AM - 4:00 PM"
       },
@@ -7251,7 +7424,7 @@
       }
     ]
   },
-   {
+  {
     "name": "Pahlycon Hospital",
     "address": {
       "street": "Sabunwa Kasuwa Railway road",
@@ -7301,7 +7474,7 @@
       }
     ]
   },
-   {
+  {
     "name": "Al-Ameen Hospital",
     "address": {
       "street": "Former AMSAD Hospital, 02 Nassarawa Road",
@@ -7325,8 +7498,10 @@
       "Child health services (vaccinations & wellness clinic)",
       "Public health research (clinical and community based)",
       "Emergency bed service"
-        ],
-    "comments": ["Modes of Payment: Cash"],
+    ],
+    "comments": [
+      "Modes of Payment: Cash"
+    ],
     "hours": [
       {
         "day": "Monday",
@@ -7358,7 +7533,7 @@
       }
     ]
   },
-   {
+  {
     "name": "Abubakar Tafawa Balewa University Teaching Hospital (ATBUTH)",
     "address": {
       "street": "Off Yandoka Street, Hospital Road",
@@ -7386,7 +7561,9 @@
       "Medical Social Services",
       "Health Information Management"
     ],
-    "comments": [""],
+    "comments": [
+      ""
+    ],
     "hours": [
       {
         "day": "Monday",
@@ -7418,7 +7595,7 @@
       }
     ]
   },
-   {
+  {
     "name": "Mount Olive Hospital",
     "address": {
       "street": "8 Ebong Essien Street, off Ikot Ekpene Rd",
@@ -7433,7 +7610,9 @@
       "Health Care",
       "Personal service"
     ],
-    "comments": [""],
+    "comments": [
+      ""
+    ],
     "hours": [
       {
         "day": "Monday",
@@ -7465,7 +7644,7 @@
       }
     ]
   },
-   {
+  {
     "name": "St Athanasius Hospital",
     "address": {
       "street": "No 1 Ufeh Street, Federal Housing Estate Off clement Isong Street",
@@ -7476,8 +7655,12 @@
     "website": "",
     "email": "",
     "type": "Private",
-    "services": ["St Athanasius Hospital is a private hospital that is dully approved to provide medical services on surgery and general medical practice"],
-    "comments": ["Wheelchair-accessible"],
+    "services": [
+      "St Athanasius Hospital is a private hospital that is dully approved to provide medical services on surgery and general medical practice"
+    ],
+    "comments": [
+      "Wheelchair-accessible"
+    ],
     "hours": [
       {
         "day": "Monday",
@@ -7509,7 +7692,7 @@
       }
     ]
   },
-   {
+  {
     "name": "Nduye Medical Services",
     "address": {
       "street": "29 Ekpene Ukpa Street",
@@ -7520,8 +7703,12 @@
     "website": "",
     "email": "abraham_inyangudoh@yahoo.com",
     "type": "Private",
-    "services": ["Provides medical services in the areas of consultation and counselling, medical checkup and other services"],
-    "comments": [""],
+    "services": [
+      "Provides medical services in the areas of consultation and counselling, medical checkup and other services"
+    ],
+    "comments": [
+      ""
+    ],
     "hours": [
       {
         "day": "Monday",
@@ -7553,7 +7740,7 @@
       }
     ]
   },
-   {
+  {
     "name": "Samaritan Clinic & Hospital",
     "address": {
       "street": "7 Ekong Uko",
@@ -7577,7 +7764,9 @@
       "Laboratory Service",
       "Pharmacy"
     ],
-    "comments": ["The wards are made up of private wards, general and children’s ward"],
+    "comments": [
+      "The wards are made up of private wards, general and children’s ward"
+    ],
     "hours": [
       {
         "day": "Monday",
@@ -7609,7 +7798,7 @@
       }
     ]
   },
-   {
+  {
     "name": "Peace Hospital",
     "address": {
       "street": "2 Bishop Street",
@@ -7620,7 +7809,9 @@
     "website": "",
     "email": "",
     "type": "Private",
-    "services": [""],
+    "services": [
+      ""
+    ],
     "comments": [
       "Peace hospital is one of the foremost private hospitals in Jimeta Adamawa state. The hospital still pride itself as one of the best as well",
       "It is well organised and the staffs can be friendly on a good day",
@@ -7657,7 +7848,7 @@
       }
     ]
   },
-   {
+  {
     "name": "Adamawa-German Medical Centre",
     "address": {
       "street": "Hospital Road, Jimeta 640022",
@@ -7711,7 +7902,7 @@
       }
     ]
   },
-   {
+  {
     "name": "General Hospital Michika",
     "address": {
       "street": "Opposite GDSS Jang Michika 2",
@@ -7733,7 +7924,9 @@
       "Onsite Imaging",
       "Mortuary Service"
     ],
-    "comments": ["Facility Level: Michika General Hospital is a Secondary Health Care Centre"],
+    "comments": [
+      "Facility Level: Michika General Hospital is a Secondary Health Care Centre"
+    ],
     "hours": [
       {
         "day": "Monday",
@@ -7765,7 +7958,7 @@
       }
     ]
   },
-   {
+  {
     "name": "General Hospital Numan",
     "address": {
       "street": "Numan",
@@ -7776,8 +7969,12 @@
     "website": "",
     "email": "",
     "type": "Public",
-    "services": [""],
-    "comments": [""],
+    "services": [
+      ""
+    ],
+    "comments": [
+      ""
+    ],
     "hours": [
       {
         "day": "Monday",
@@ -7809,7 +8006,7 @@
       }
     ]
   },
-   {
+  {
     "name": "Federal Medical Centre",
     "address": {
       "street": "Yola Bye-Pass Road, Madumari",
@@ -7820,8 +8017,12 @@
     "website": "fmcyola.gov.ng",
     "email": "",
     "type": "Public",
-    "services": ["This is a multi-specialist hospital that has grown to become one of Nigeria’s leading hospitals, providing reliable, affordable, effective and high quality healthcare for all patients"],
-    "comments": ["The facility is not only fully furnished but provided with state-of-the-art equipment in the theatres, laboratories, radio-diagnosis, Special Care Baby Unit (SCBU), Dialysis Unit etc, which are intended to provide patient-friendly and conducive working environment for its staff"],
+    "services": [
+      "This is a multi-specialist hospital that has grown to become one of Nigeria’s leading hospitals, providing reliable, affordable, effective and high quality healthcare for all patients"
+    ],
+    "comments": [
+      "The facility is not only fully furnished but provided with state-of-the-art equipment in the theatres, laboratories, radio-diagnosis, Special Care Baby Unit (SCBU), Dialysis Unit etc, which are intended to provide patient-friendly and conducive working environment for its staff"
+    ],
     "hours": [
       {
         "day": "Monday",
@@ -7853,7 +8054,7 @@
       }
     ]
   },
-   {
+  {
     "name": "New Boshang Hospital ltd",
     "address": {
       "street": "Ngurore Street Karewa Extension Jimeta",
@@ -7864,8 +8065,12 @@
     "website": "boshanghospital.com",
     "email": "newboshangclinicltd@gmail.com",
     "type": "Private",
-    "services": ["Well equipped facilities providing specialized health care services and general surgery"],
-    "comments": ["Excellent Medical services rendered at a very affordable cost and instalment payments of bills for the less privileged in the society"],
+    "services": [
+      "Well equipped facilities providing specialized health care services and general surgery"
+    ],
+    "comments": [
+      "Excellent Medical services rendered at a very affordable cost and instalment payments of bills for the less privileged in the society"
+    ],
     "hours": [
       {
         "day": "Monday",
@@ -7897,7 +8102,7 @@
       }
     ]
   },
-   {
+  {
     "name": "Adetade Hospital",
     "address": {
       "street": "55, Okebola Street",
@@ -7915,7 +8120,7 @@
     "comments": [
       "You get prompt attention and good quality care anytime of the day or night",
       "There is also a standard Dental unit with Modern Facilities"
-  ],
+    ],
     "hours": [
       {
         "day": "Monday",
@@ -7947,7 +8152,7 @@
       }
     ]
   },
-   {
+  {
     "name": "St. Gregory’s Hospital",
     "address": {
       "street": "No22, Basiri Street, Km2, Iyin Rd",
@@ -8009,7 +8214,7 @@
       }
     ]
   },
-   {
+  {
     "name": "FEDERAL TEACHING HOSPITAL IDO-EKITI",
     "address": {
       "street": "P.M.B 201",
@@ -8035,7 +8240,9 @@
       "EAR, NOSE & THROAT (OTO-RHINO-LARYNGOLOGY)",
       "CHEMICAL PATHOLOGY"
     ],
-    "comments": [""],
+    "comments": [
+      ""
+    ],
     "hours": [
       {
         "day": "Monday",
@@ -8067,7 +8274,7 @@
       }
     ]
   },
-   {
+  {
     "name": "Federal Medical Center",
     "address": {
       "street": "Fayose Housing Estate, Ilawe Road",
@@ -8093,7 +8300,9 @@
       "Anaesthesia",
       "Mental Health"
     ],
-    "comments": [""],
+    "comments": [
+      ""
+    ],
     "hours": [
       {
         "day": "Monday",
@@ -8125,7 +8334,7 @@
       }
     ]
   },
-   {
+  {
     "name": "State Specialist Hospital",
     "address": {
       "street": "Ise-Ekiti Road",
@@ -8136,7 +8345,9 @@
     "website": "",
     "email": "",
     "type": "Public",
-    "services": ["Provides general medical care and health services"],
+    "services": [
+      "Provides general medical care and health services"
+    ],
     "comments": [
       "Wheelchair-accessible",
       "Serene environment with courteous staff"
@@ -8172,7 +8383,7 @@
       }
     ]
   },
-   {
+  {
     "name": "Kenechukwu Specialist Hospital",
     "address": {
       "street": "Plot 31/32 Thinkers Estate, Thinker’s Corner Behind Nike Grammar School",
@@ -8183,7 +8394,9 @@
     "website": "",
     "email": "kenehosp@yahoo.com",
     "type": "Private",
-    "services": [""],
+    "services": [
+      ""
+    ],
     "comments": [
       "Wheelchair-accessible",
       "A clean & affordable hospital"
@@ -8219,7 +8432,7 @@
       }
     ]
   },
-   {
+  {
     "name": "Akulue Memorial Hospital",
     "address": {
       "street": "16/18 Akule Raod, Onuiyi",
@@ -8230,8 +8443,12 @@
     "website": "",
     "email": "",
     "type": "Public",
-    "services": ["Medical Center"],
-    "comments": [""],
+    "services": [
+      "Medical Center"
+    ],
+    "comments": [
+      ""
+    ],
     "hours": [
       {
         "day": "Monday",
@@ -8263,7 +8480,7 @@
       }
     ]
   },
-   {
+  {
     "name": "Enugu State University Teaching Hospital (ESUTH) Parklane",
     "address": {
       "street": "ESUTH Teaching Hospital Parklane, P.M.B. 1030",
@@ -8321,7 +8538,7 @@
       }
     ]
   },
-   {
+  {
     "name": "Federal Teaching Hospital",
     "address": {
       "street": "Ashaka Road Rd, 620261",
@@ -8386,7 +8603,7 @@
       }
     ]
   },
-   {
+  {
     "name": "Metro Clinic",
     "address": {
       "street": "Goodluck Ebele Jonathan Road",
@@ -8397,8 +8614,12 @@
     "website": "",
     "email": "",
     "type": "Private",
-    "services": ["Hospital activities"],
-    "comments": ["Wheelchair Accessible"],
+    "services": [
+      "Hospital activities"
+    ],
+    "comments": [
+      "Wheelchair Accessible"
+    ],
     "hours": [
       {
         "day": "Monday",
@@ -8430,7 +8651,7 @@
       }
     ]
   },
-   {
+  {
     "name": "AHAJAS Memorial Hospital",
     "address": {
       "street": "Behind Hammadu Kafi Primary School, Southern Bypass",
@@ -8484,7 +8705,7 @@
       }
     ]
   },
-   {
+  {
     "name": "Miyetti Hospital",
     "address": {
       "street": "Abacha Rd",
@@ -8503,7 +8724,9 @@
       "Pharmacy",
       "Diabetic Care"
     ],
-    "comments": ["Good services & nice environment"],
+    "comments": [
+      "Good services & nice environment"
+    ],
     "hours": [
       {
         "day": "Monday",
@@ -8535,7 +8758,7 @@
       }
     ]
   },
-   {
+  {
     "name": "Umezuruike Hospital",
     "address": {
       "street": "No 21/22 Umezuruike Street",
@@ -8594,7 +8817,7 @@
       }
     ]
   },
-   {
+  {
     "name": "Federal Medical Center Owerri",
     "address": {
       "street": "105 Orlu Rd, P.M.B 1010",
@@ -8657,7 +8880,7 @@
       }
     ]
   },
-   {
+  {
     "name": "Federal Medical Centre jigawa",
     "address": {
       "street": "P.M.B 1022, Along kano - Maiduguri Road",
@@ -8668,8 +8891,12 @@
     "website": "fmcbkd.gov.ng",
     "email": "info@fmcbkd.gov.ng",
     "type": "Public",
-    "services": ["Medical Services"],
-    "comments": ["Its a very nice place to work, because u get to know more when it comes to hospitality, they are very accommodating,you learn more about patients, the Doctors and nurses how the carry out their job functions,go to ward rounds,attends to patients,relatives and caregivers"],
+    "services": [
+      "Medical Services"
+    ],
+    "comments": [
+      "Its a very nice place to work, because u get to know more when it comes to hospitality, they are very accommodating,you learn more about patients, the Doctors and nurses how the carry out their job functions,go to ward rounds,attends to patients,relatives and caregivers"
+    ],
     "hours": [
       {
         "day": "Monday",
@@ -8701,8 +8928,8 @@
       }
     ]
   },
-   {
-    "name": "General Hospital Dutse ",
+  {
+    "name": "General Hospital Dutse",
     "address": {
       "street": "Along Dustse-wakanukuguma Road, Sabon Gari Danmasara",
       "city": "Dutse ",
@@ -8712,8 +8939,12 @@
     "website": "",
     "email": "",
     "type": "Public",
-    "services": ["The General Hospital caters for everyone in her capacity. The mission of the hospital is to ensure the provision of safe, quality, affordable, adequate, equitable and accessible health services to all people in Nigeria"],
-    "comments": [""],
+    "services": [
+      "The General Hospital caters for everyone in her capacity. The mission of the hospital is to ensure the provision of safe, quality, affordable, adequate, equitable and accessible health services to all people in Nigeria"
+    ],
+    "comments": [
+      ""
+    ],
     "hours": [
       {
         "day": "Monday",
@@ -8745,7 +8976,7 @@
       }
     ]
   },
-   {
+  {
     "name": "Sefa Specialist Hospital",
     "address": {
       "street": "5 College Road",
@@ -8756,8 +8987,12 @@
     "website": "sefaspecialisthospital.com",
     "email": "info@sefaspecialisthospital.com",
     "type": "Private",
-    "services": ["Sefa Specialist Hospital provide experts surgeons, physicians, pediatricians, obstetricians, etc, to attend to various health issues"],
-    "comments": ["Wheelchair Accessible"],
+    "services": [
+      "Sefa Specialist Hospital provide experts surgeons, physicians, pediatricians, obstetricians, etc, to attend to various health issues"
+    ],
+    "comments": [
+      "Wheelchair Accessible"
+    ],
     "hours": [
       {
         "day": "Monday",
@@ -8789,7 +9024,7 @@
       }
     ]
   },
-   {
+  {
     "name": "Zaria Almadina Clinic",
     "address": {
       "street": "28 Queen Elizabeth Road, G.R.A",
@@ -8810,7 +9045,9 @@
       "Urology",
       "Rheumatology"
     ],
-    "comments": ["Qualitative and affordable healthcare solutions"],
+    "comments": [
+      "Qualitative and affordable healthcare solutions"
+    ],
     "hours": [
       {
         "day": "Monday",
@@ -8842,7 +9079,7 @@
       }
     ]
   },
-   {
+  {
     "name": "Continental Medical Centre",
     "address": {
       "street": "Adekunle Fajuyi Road",
@@ -8857,7 +9094,9 @@
       "General Physician Doctors",
       "Paediatricians"
     ],
-    "comments": [""],
+    "comments": [
+      ""
+    ],
     "hours": [
       {
         "day": "Monday",
@@ -8889,7 +9128,7 @@
       }
     ]
   },
-   {
+  {
     "name": "Onward Specialist Hospital",
     "address": {
       "street": "Dr D. A. Laosebikan St. Off Ilobu Rd, Oke Agunbelewo, P.O Box 506",
@@ -8914,7 +9153,9 @@
       "ECG and Echo",
       "Nutritional & Catering Services"
     ],
-    "comments": ["An accredited healthcare provider for the National Health Insurance Scheme (NHIS)"],
+    "comments": [
+      "An accredited healthcare provider for the National Health Insurance Scheme (NHIS)"
+    ],
     "hours": [
       {
         "day": "Monday",
@@ -8946,7 +9187,7 @@
       }
     ]
   },
-   {
+  {
     "name": "St John And Mary Hospital",
     "address": {
       "street": "2, Adebayo Oni Lane, Isikan",
@@ -8957,8 +9198,12 @@
     "website": "",
     "email": "docbayooni2@yahoo.com",
     "type": "Private",
-    "services": ["Offering specialized and affordable healthcare services"],
-    "comments": ["Its an old hospital, A little improvement on facility"],
+    "services": [
+      "Offering specialized and affordable healthcare services"
+    ],
+    "comments": [
+      "Its an old hospital, A little improvement on facility"
+    ],
     "hours": [
       {
         "day": "Monday",
@@ -8990,7 +9235,7 @@
       }
     ]
   },
-   {
+  {
     "name": "Federal Medical Centre Abeokuta",
     "address": {
       "street": "Olabisi Onabanjo Way, Idi-Aba",
@@ -9005,7 +9250,9 @@
       "Routine and emergency diagnostic and therapeutic clinical services covering different specialties including obstetrics and gynaecology, paediatrics, neurology, cardiology, endocrinology, gastroenterology, nephrology, psychiatry, general and oncologic surgery, orthopaedics and trauma, plastic surgery, urology, ophthalmology, oral and maxillofacial surgery, radiology, general dentistry, anaesthesia, pain and palliative medicine, community medicine and primary care, family medicine, pathology, pharmaceutical care and physiotherapy",
       "In partnership with the Institute of Human Virology (IHVN) Abuja, patients with HIV/AIDS are offered a wide range of diagnostic, therapeutic, rehabilitative, palliative and social services in a multidisciplinary setting"
     ],
-    "comments": [""],
+    "comments": [
+      ""
+    ],
     "hours": [
       {
         "day": "Monday",
@@ -9037,7 +9284,7 @@
       }
     ]
   },
-   {
+  {
     "name": "General Hospital Minna",
     "address": {
       "street": "1 Hospital Road",
@@ -9048,7 +9295,9 @@
     "website": "",
     "email": "",
     "type": "Public",
-    "services": ["The General Hospital caters for everyone in her capacity. The mission of the hospital is to ensure the provision of safe, quality, affordable, adequate, equitable and accessible health services to all people in Nigeria"],
+    "services": [
+      "The General Hospital caters for everyone in her capacity. The mission of the hospital is to ensure the provision of safe, quality, affordable, adequate, equitable and accessible health services to all people in Nigeria"
+    ],
     "comments": [
       "The structure restructuring and General renovation is visible and commendable",
       "Good hospital with great staff and support strength. Planned layout with loads of space for ventilation and ease of movement. 24 hours stand by generator set and solar systems attached to key areas"
@@ -9084,7 +9333,7 @@
       }
     ]
   },
-   {
+  {
     "name": "Mararaba Adonai Hospital",
     "address": {
       "street": "2 Adonai Close, Old Karu Road",
@@ -9108,7 +9357,9 @@
       "Cardiology",
       "Scanning Services"
     ],
-    "comments": ["Adonai has had 2 decades of successful healthcare delivery to varying population groups within the Mararaba- Abuja locale and beyond"],
+    "comments": [
+      "Adonai has had 2 decades of successful healthcare delivery to varying population groups within the Mararaba- Abuja locale and beyond"
+    ],
     "hours": [
       {
         "day": "Monday",
@@ -9140,7 +9391,7 @@
       }
     ]
   },
-   {
+  {
     "name": "Sauki Clinic and Hospital",
     "address": {
       "street": "Near Hill Station Junction Jenta Adamu Jos North",
@@ -9162,7 +9413,9 @@
       "Onsite Pharmacy",
       "Special Clinical Services: Antenatal Care (ANC), Immunization, HIV/ AIDS Services, Non Communicable Diseases, Family Planning, Intensive Care Services , Hepatitis, Accidents and Emergency, Nutrition, Health Education and Community Mobilization, Maternal and newborn care"
     ],
-    "comments": ["Facility Level: Sauki Clinic and Hospital is a Secondary Health Care Centre"],
+    "comments": [
+      "Facility Level: Sauki Clinic and Hospital is a Secondary Health Care Centre"
+    ],
     "hours": [
       {
         "day": "Monday",
@@ -9194,7 +9447,7 @@
       }
     ]
   },
-   {
+  {
     "name": "Federal Medical Center Lokoja",
     "address": {
       "street": "Lokoja-Ankpa Road",
@@ -9216,7 +9469,9 @@
       "Ambulance Service",
       "Consultant Report"
     ],
-    "comments": ["Facility Level: Lokoja Federal Medical Centre is a Tertiary Health Care Centre"],
+    "comments": [
+      "Facility Level: Lokoja Federal Medical Centre is a Tertiary Health Care Centre"
+    ],
     "hours": [
       {
         "day": "Monday",
@@ -9248,7 +9503,7 @@
       }
     ]
   },
-   {
+  {
     "name": "Medcare Hospital",
     "address": {
       "street": "182, Pipeline Road, Gaa-Akanbi, adjacent CBN Quarters",
@@ -9268,7 +9523,9 @@
       "Onsite Laboratory",
       "Onsite Pharmacy"
     ],
-    "comments": ["Facility Level: MED Care Hospital is a Secondary Health Care Centre"],
+    "comments": [
+      "Facility Level: MED Care Hospital is a Secondary Health Care Centre"
+    ],
     "hours": [
       {
         "day": "Monday",
@@ -9300,7 +9557,7 @@
       }
     ]
   },
-   {
+  {
     "name": "Sir Yahaya Memorial Hospital",
     "address": {
       "street": "Haliru Abdu Raod, P.M.B 1006",
@@ -9320,7 +9577,9 @@
       "Pharmacy",
       "Medical Services"
     ],
-    "comments": [" Its has a great view, its a convenient environment for both patients and doctors, its a Condusive atmosphere for health and medical activities"],
+    "comments": [
+      " Its has a great view, its a convenient environment for both patients and doctors, its a Condusive atmosphere for health and medical activities"
+    ],
     "hours": [
       {
         "day": "Monday",
@@ -9352,7 +9611,7 @@
       }
     ]
   },
-   {
+  {
     "name": "Standard Specialist Hospital",
     "address": {
       "street": "Lautai Road, Plot 155 Wudil Rd, City Centre",
@@ -9370,7 +9629,9 @@
       "Obstetric & Gynaecology",
       "Radiology"
     ],
-    "comments": ["Wheelchair Accessible"],
+    "comments": [
+      "Wheelchair Accessible"
+    ],
     "hours": [
       {
         "day": "Monday",
@@ -9402,7 +9663,7 @@
       }
     ]
   },
-   {
+  {
     "name": "Wudil General Hospital",
     "address": {
       "street": "Gaya Raod",
@@ -9413,8 +9674,12 @@
     "website": "",
     "email": "",
     "type": "Public",
-    "services": ["General Hospital services"],
-    "comments": ["Wheelchair Accessible"],
+    "services": [
+      "General Hospital services"
+    ],
+    "comments": [
+      "Wheelchair Accessible"
+    ],
     "hours": [
       {
         "day": "Monday",
@@ -9446,7 +9711,7 @@
       }
     ]
   },
-   {
+  {
     "name": "Federal Medical Centre Katsina",
     "address": {
       "street": "Murtala Mohammed Way Dandagoro",
@@ -9457,8 +9722,12 @@
     "website": "fmckatsina.gov.ng",
     "email": "",
     "type": "Public",
-    "services": ["General Medical service"],
-    "comments": ["Federal Medical Center provides the primary health care and tertiary health care to the people"],
+    "services": [
+      "General Medical service"
+    ],
+    "comments": [
+      "Federal Medical Center provides the primary health care and tertiary health care to the people"
+    ],
     "hours": [
       {
         "day": "Monday",
@@ -9490,7 +9759,7 @@
       }
     ]
   },
-   {
+  {
     "name": "Sokoto clinic",
     "address": {
       "street": "46, Abdullahi Fodio Road",
@@ -9501,8 +9770,12 @@
     "website": "",
     "email": "",
     "type": "Private",
-    "services": ["Medical Services"],
-    "comments": [""],
+    "services": [
+      "Medical Services"
+    ],
+    "comments": [
+      ""
+    ],
     "hours": [
       {
         "day": "Monday",
@@ -9534,7 +9807,7 @@
       }
     ]
   },
-   {
+  {
     "name": "Usmanu Danfodiyo Teaching Hospital",
     "address": {
       "street": "1, Garba Nadama Road, PMB: 23270",
@@ -9566,7 +9839,9 @@
       "Pharmacy",
       "Psychiatry"
     ],
-    "comments": [""],
+    "comments": [
+      ""
+    ],
     "hours": [
       {
         "day": "Monday",
@@ -9598,7 +9873,7 @@
       }
     ]
   },
-   {
+  {
     "name": "Federal Medical Centre Jalingo",
     "address": {
       "street": "Off Barde way, PMB 1061",
@@ -9628,7 +9903,9 @@
       "SURGERY DEPARTMENT",
       "WORKS AND MAINTENANCE DEPARTMENT"
     ],
-    "comments": [""],
+    "comments": [
+      ""
+    ],
     "hours": [
       {
         "day": "Monday",
@@ -9660,7 +9937,7 @@
       }
     ]
   },
-   {
+  {
     "name": "Federal Medical Centre, Nguru",
     "address": {
       "street": "NNPC Road Leme Aboekuta",
@@ -9671,8 +9948,12 @@
     "website": "",
     "email": "",
     "type": "Public",
-    "services": ["Medical Services"],
-    "comments": [""],
+    "services": [
+      "Medical Services"
+    ],
+    "comments": [
+      ""
+    ],
     "hours": [
       {
         "day": "Monday",
@@ -9704,7 +9985,7 @@
       }
     ]
   },
-   {
+  {
     "name": "DAULA HOSPITAL & MATERNITY HOME",
     "address": {
       "street": "Kaura Namoda, Lebin Lebin, Tundun Wada",
@@ -9715,8 +9996,12 @@
     "website": "",
     "email": "DAULAHOSPITAL@YAHOO.COM, DAULAHOSPITAL@HOTMAIL.COM",
     "type": "Private",
-    "services": ["General Hospital services"],
-    "comments": [""],
+    "services": [
+      "General Hospital services"
+    ],
+    "comments": [
+      ""
+    ],
     "hours": [
       {
         "day": "Monday",
@@ -9748,7 +10033,7 @@
       }
     ]
   },
-   {
+  {
     "name": "Poly Medical And Diagnostic Centre",
     "address": {
       "street": "26 Premier Road Gusau Tudun Wada",
@@ -9759,7 +10044,9 @@
     "website": "",
     "email": "",
     "type": "Private",
-    "services": ["General Medical service"],
+    "services": [
+      "General Medical service"
+    ],
     "comments": [
       "Facility Level: Poly Diagnostic Centre is a Primary Health Care Centre",
       "Wheelchair Accessible"
