@@ -1,12 +1,11 @@
 import React, { useState } from 'react';
-import { LocationInput, Hospital, cities } from '@/services/types';
+import { LocationInput, Hospital, statesAndCities } from '@/services/types';
 import { searchHospitals } from '@/services/api';
 
 const SearchForm = () => {
   const [location, setLocation] = useState<LocationInput>({
     city: '',
-    state: '',
-    zip: '',
+    state: ''
   });
   const [hospitals, setHospitals] = useState<Hospital[]>([]);
   const [error, setError] = useState<string>('');
@@ -23,35 +22,55 @@ const SearchForm = () => {
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    try {
-      const query = location.city ? `city=${location.city}` : `state=${location.state}`;
-      const data = await searchHospitals(query);
-      setHospitals(data);
-    } catch (error) {
-      setError(error.message);
+    const query = location.city ? `city=${location.city}` : `state=${location.state}`;
+    const data = await searchHospitals(query);
+    if (!location.city && !location.state) {
+      setError('Please enter a city or state');
+      return
+    } else if (location.city && !statesAndCities.find(
+      (name) => name.city === location.city)) {
+      setError('Please enter a valid city');
+      return
+    } else if (location.state && !statesAndCities.find(
+      (name) => name.state === location.state)) {
+      setError('Please enter a valid state');
+      return
+    } else if (location.city && location.state && !statesAndCities.find(
+      (name) => name.city === location.city && name.state === location.state)) {
+      setError('Please enter a valid city and state');
+      return
     }
+    setHospitals(data);
+    setError('');
   };
 
   return (
     <div>
       <h1>Search Form</h1>
       <form onSubmit={handleSubmit}>
-        <label htmlFor="city">City</label>
+        <label htmlFor="statesAndCapitals">States & Capitals</label>
         <select onChange={handleSelect}>
-          <option value="">Select a city</option>
-          {cities.map((city) => (
-            <option key={`${city.name},${city.state}`} value={`${city.name},${city.state}`}>
-              {`${city.name}, ${city.state}`}
+          <option value="">Select a city & state</option>
+          {statesAndCities.map((name) => (
+            <option key={`${name.city},${name.state}`} value={`${name.city},${name.state}`}>
+              {`${name.city}, ${name.state}`}
             </option>
           ))}
         </select>
-        <label htmlFor="zip">ZIP</label>
+        <label htmlFor="state">State</label>
         <input
           type="text"
-          name="zip"
-          id="zip"
+          name="state"
+          value={location.state}
           onChange={handleInput}
-          value={location.zip}
+        />
+
+        <label htmlFor="city">City</label>
+        <input
+          type="text"
+          name="city"
+          value={location.city}
+          onChange={handleInput}
         />
         <button type="submit">Search</button>
       </form>
@@ -62,23 +81,22 @@ const SearchForm = () => {
           <p>Street: {hospital.address.street}</p>
           <p>City: {hospital.address.city}</p>
           <p>State: {hospital.address.state}</p>
-          <p>ZIP: {hospital.address.zip}</p>
           <p>Phone: {hospital.phoneNumber}</p>
           <p>Email: {hospital.email}
           </p>
           <p>Website: {hospital.website}</p>
-          <ul>Services: {hospital.services.map((service: string) => (
-            <li key={service}>{service}</li>
+          <ul>Services: {hospital.services.map((service: string, id: number) => (
+            <li key={id}>{service}</li>
+          ))}</ul>
+          <ul>Comments: {hospital.comments.map((comment: string, id: number) => (
+            <li key={id}>{comment}</li>
           ))}</ul>
           <ul>Hours: {hospital.hours.map((hour: any) => (
             <li key={hour.day}>
-              <span>{hour.day}</span>{" "}
-              <span>{hour.open}</span>{" - "}
-              <span>{hour.close}</span>
+              <span>{hour.day}</span>: <span>{hour.open}</span>
             </li>
           ))}
           </ul>
-          <p>Rating: {hospital.ratings}</p>
         </div>
       ))}
     </div>
