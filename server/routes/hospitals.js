@@ -1,33 +1,23 @@
 import express from "express";
 import {
   getHospitals,
+  searchHospitals,
   addHospital,
   updateHospital,
-  deleteHospital,
+  deleteHospital
 } from "../controllers/hospitalController.js";
-// import authenticate from "../middleware/authenticate.js";
 
-const router = express.Router();
+const hospitalRouter = express.Router();
 
-// @route   GET api/hospitals
-// @desc    Get all hospitals
-// @access  Public
-router.get("/", getHospitals);
+hospitalRouter.route("/")
+  .get(getHospitals)
+  .post(addHospital);
 
-// router.use(authenticate);
-// @route   POST api/hospitals
-// @desc    Add new hospital
-// @access  Public
-router.post("/add", addHospital);
+hospitalRouter.route("/search")
+  .get(searchHospitals)
 
-// @route   PUT api/hospitals/:id
-// @desc    Update hospital
-// @access  Public
-router.put("/update/:id", updateHospital);
+hospitalRouter.route("/:id")
+  .patch(updateHospital)
+  .delete(deleteHospital);
 
-// @route   DELETE api/hospitals/:id
-// @desc    Delete hospital
-// @access  Public
-router.delete("/delete/:id", deleteHospital);
-
-export default router;
+export default hospitalRouter;
