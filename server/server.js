@@ -31,7 +31,7 @@ app.use("/", express.static("public/views"));
 
 // Routes
 app.use("/", rootRouter)
-app.use("/api/hospitals", hospitalRouter);
+app.use("/hospitals", hospitalRouter);
 
 // 404
 app.all("*", (req, res) => {

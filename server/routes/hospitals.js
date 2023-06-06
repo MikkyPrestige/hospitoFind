@@ -2,22 +2,22 @@ import express from "express";
 import {
   getHospitals,
   searchHospitals,
-  // addHospital,
-  // updateHospital,
-  // deleteHospital,
+  addHospital,
+  updateHospital,
+  deleteHospital
 } from "../controllers/hospitalController.js";
-// import authenticate from "../middleware/authenticate.js";
 
-const router = express.Router();
+const hospitalRouter = express.Router();
 
-router.get("/", getHospitals);
+hospitalRouter.route("/")
+  .get(getHospitals)
+  .post(addHospital);
 
-router.get("/search", searchHospitals);
+hospitalRouter.route("/search")
+  .get(searchHospitals)
 
-// router.post("/add", addHospital);
+hospitalRouter.route("/:id")
+  .patch(updateHospital)
+  .delete(deleteHospital);
 
-// router.put("/update/:id", updateHospital);
-
-// router.delete("/delete/:id", deleteHospital);
-
-export default router;
+export default hospitalRouter;
