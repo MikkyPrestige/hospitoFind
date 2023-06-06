@@ -10,7 +10,6 @@ const hospitalSchema = new Schema({
   address: {
     street: {
       type: String,
-      required: true,
     },
     city: {
       type: String,
@@ -18,48 +17,36 @@ const hospitalSchema = new Schema({
     },
     state: {
       type: String,
-      required: true,
-    },
-    zip: {
-      type: String,
-    },
+      required: true
+    }
   },
   phoneNumber: {
-    type: String,
-    required: true,
+    type: String
   },
   website: {
-    type: String,
+    type: String
   },
   email: {
-    type: String,
-    required: true,
+    type: String
   },
   services: {
-    type: [String],
+    type: [String]
+  },
+  comments: {
+    type: [String]
   },
   hours: {
     type: [
       {
         day: {
           type: String,
-          required: true,
         },
         open: {
           type: String,
-          required: true,
-        },
-        close: {
-          type: String,
-          required: true,
-        },
+        }
       },
-    ],
-    required: true,
-  },
-  ratings: {
-    type: Number,
-  },
+    ]
+  }
 });
 
 const Hospital = mongoose.model("Hospital", hospitalSchema);

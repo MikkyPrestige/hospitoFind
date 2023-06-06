@@ -1,84 +1,59 @@
-const BASE_URL = 'http://localhost:5000/api';
+import { Hospital } from "./types";
+import axios from "axios";
 
-type Address = {
-  street: string;
-  city: string;
-  state: string;
-  zip: string;
-};
+const BASE_URL = 'http://localhost:5000/hospitals';
 
-type Hours = {
-  day: string;
-  open: string;
-  close: string;
-};
-
-type Hospital = {
-  name: string;
-  address: Address[];
-  phoneNumber: string;
-  email: string;
-  website: string;
-  hours: Hours[];
-  ratings: number;
-};
-
+// get all hospitals
 export async function getHospitals() {
   try {
-    const hospitals = await fetch(`${BASE_URL}/hospitals`);
-    return hospitals.json();
+    const response = await axios.get(`${BASE_URL}`);
+    const hospitals = response.data
+    return hospitals;
   } catch (error) {
     console.log(error);
   }
 }
 
+// get hospital by state or city
+export async function searchHospitals(query: string) {
+  try {
+    const response = await axios.get(`${BASE_URL}/search?${query}`);
+    const searchedHospitals = response.data;
+    return searchedHospitals;
+  } catch (error) {
+    console.log(error);
+  }
+}
+
+// add new hospital
 export async function addHospital(hospital: Hospital) {
   try {
-    const response = await fetch(`${BASE_URL}/hospitals`, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(hospital),
-    });
-    if (!response.ok) {
-      throw new Error('Failed to add hospital');
-    }
-    return response.json();
+    const response = await axios.post(`${BASE_URL}`, hospital);
+    const newHospital = response.data;
+    return newHospital;
   } catch (error) {
     console.log(error);
   }
 }
 
-// export async function updateHospital(id: number, hospital: Hospital) {
-//   try {
-//     const response = await fetch(`${BASE_URL}/hospitals/${id}`, {
-//       method: 'PUT',
-//       headers: {
-//         'Content-Type': 'application/json',
-//       },
-//       body: JSON.stringify(hospital),
-//     });
-//     return response.json();
-//   } catch (error) {
-//     console.log(error);
-//   }
-// }
+// update hospital
+export async function updateHospital(hospital: Hospital, id: number) {
+  try {
+    const response = await axios.patch(`${BASE_URL}/${id}`, hospital);
+    const updatedHospital = response.data;
+    return updatedHospital;
+  } catch (error) {
+    console.log(error);
+  }
+}
 
-// export async function deleteHospital(id: number) {
-//   try {
-//     const response = await fetch(`${BASE_URL}/hospitals/${id}`, {
-//       method: 'DELETE',
-//     });
-//     return response.json();
-//   } catch (error) {
-//     console.log(error);
-//   }
-// }
-
-export default {
-  getHospitals,
-  addHospital,
-  // updateHospital,
-  // deleteHospital,
-};
+// delete hospital
+export async function deleteHospital(id: number) {
+  try {
+    const response = await axios.delete(`${BASE_URL}/${id}`);
+    const deletedHospital = response.data;
+    return deletedHospital;
+  } catch (error) {
+    console.log(error);
+  }
+}
