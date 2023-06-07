@@ -36,6 +36,7 @@ const addHospital = asyncHandler(async (req, res) => {
     phoneNumber,
     website,
     email,
+    type,
     services,
     comments,
     hours
@@ -56,6 +57,7 @@ const addHospital = asyncHandler(async (req, res) => {
     phoneNumber,
     website,
     email,
+    type,
     services,
     comments,
     hours
@@ -79,6 +81,7 @@ const updateHospital = asyncHandler(async (req, res) => {
     phoneNumber,
     website,
     email,
+    type,
     services,
     comments,
     hours
@@ -105,6 +108,7 @@ const updateHospital = asyncHandler(async (req, res) => {
   hospital.phoneNumber = phoneNumber;
   hospital.website = website;
   hospital.email = email;
+  hospital.type = type;
   hospital.services = services;
   hospital.comments = comments;
   hospital.hours = hours;

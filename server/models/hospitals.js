@@ -29,6 +29,9 @@ const hospitalSchema = new Schema({
   email: {
     type: String
   },
+  type: {
+    type: String,
+  },
   services: {
     type: [String]
   },
