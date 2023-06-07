@@ -1,4 +1,10 @@
 // types file
+export interface ExportProps {
+  searchParams: {
+    city?: string;
+    state?: string;
+  };
+}
 export interface Address {
   street: string;
   city: string;

@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { LocationInput, Hospital, statesAndCities } from '@/services/types';
 import { searchHospitals } from '@/services/api';
+import ExportButton from './exportHospital';
 
 const SearchForm = () => {
   const [location, setLocation] = useState<LocationInput>({
@@ -73,6 +74,7 @@ const SearchForm = () => {
           onChange={handleInput}
         />
         <button type="submit">Search</button>
+        <ExportButton searchParams={location} />
       </form>
       {error && <p>{error}</p>}
       {hospitals.length > 0 && hospitals.map((hospital, id) => (
@@ -82,31 +84,25 @@ const SearchForm = () => {
           <p>City: {hospital.address.city}</p>
           <p>State: {hospital.address.state}</p>
           <p>Phone: {hospital.phoneNumber}</p>
+          <p>Website: {hospital.website}</p>
+          <p>Email: {hospital.email}</p>
           <p>Type: {hospital.type}</p>
+          <ul>Services: {hospital.services.map((service: string, id: number) => (
+            <li key={id}>{service}</li>
+          ))}</ul>
+          <ul>Comments: {hospital.comments.map((comment: string, id: number) => (
+            <li key={id}>{comment}</li>
+          ))}</ul>
+          <ul>Hours: {hospital.hours.map((hour: any, id: number) => (
+            <li key={id}>
+              <span>{hour.day}</span>: <span>{hour.open}</span>
+            </li>
+          ))}
+          </ul>
         </div>
-
-        // {
-        //   hospitals.map((hospital, id) => (
-        //     <div key={id}>
-        //       <p>Email: {hospital.email}
-        //       </p>
-        //       <p>Website: {hospital.website}</p>
-        //       <ul>Services: {hospital.services.map((service: string, id: number) => (
-        //         <li key={id}>{service}</li>
-        //       ))}</ul>
-        //       <ul>Comments: {hospital.comments.map((comment: string, id: number) => (
-        //         <li key={id}>{comment}</li>
-        //       ))}</ul>
-        //       <ul>Hours: {hospital.hours.map((hour: any) => (
-        //         <li key={hour.day}>
-        //           <span>{hour.day}</span>: <span>{hour.open}</span>
-        //         </li>
-        //       ))}
-        //       </ul>
-        //     </div>
       ))}
     </div>
-  );
-};
+  )
+}
 
 export default SearchForm;
