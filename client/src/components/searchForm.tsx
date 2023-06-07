@@ -82,6 +82,7 @@ const SearchForm = () => {
           <p>City: {hospital.address.city}</p>
           <p>State: {hospital.address.state}</p>
           <p>Phone: {hospital.phoneNumber}</p>
+          <p>Type: {hospital.type}</p>
         </div>
 
         // {

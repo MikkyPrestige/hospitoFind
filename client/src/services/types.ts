@@ -16,6 +16,7 @@ export interface Hospital {
   phoneNumber: string;
   email: string;
   website: string;
+  type: string;
   services: string[];
   comments: string[];
   hours: Hours[];
