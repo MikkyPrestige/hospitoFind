@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { LocationInput, Hospital, statesAndCities } from '@/services/types';
 import { searchHospitals } from '@/services/api';
 import ExportButton from './exportHospital';
+import ShareButton from './shareHospitals';
 
 const SearchForm = () => {
   const [location, setLocation] = useState<LocationInput>({
@@ -10,6 +11,7 @@ const SearchForm = () => {
   });
   const [hospitals, setHospitals] = useState<Hospital[]>([]);
   const [error, setError] = useState<string>('');
+  const [searching, setSearching] = useState<boolean>(false);
 
   const handleSelect = (e: React.ChangeEvent<HTMLSelectElement>) => {
     const [city, state] = e.target.value.split(',');
@@ -23,25 +25,31 @@ const SearchForm = () => {
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    setSearching(true);
     const query = location.city ? `city=${location.city}` : `state=${location.state}`;
     const data = await searchHospitals(query);
     if (!location.city && !location.state) {
       setError('Please enter a city or state');
+      setSearching(false)
       return
     } else if (location.city && !statesAndCities.find(
       (name) => name.city === location.city)) {
       setError('Please enter a valid city');
+      setSearching(false)
       return
     } else if (location.state && !statesAndCities.find(
       (name) => name.state === location.state)) {
       setError('Please enter a valid state');
+      setSearching(false)
       return
     } else if (location.city && location.state && !statesAndCities.find(
       (name) => name.city === location.city && name.state === location.state)) {
       setError('Please enter a valid city and state');
+      setSearching(false)
       return
     }
     setHospitals(data);
+    setSearching(false);
     setError('');
   };
 
@@ -73,9 +81,12 @@ const SearchForm = () => {
           value={location.city}
           onChange={handleInput}
         />
-        <button type="submit">Search</button>
+        <button type="submit" disabled={searching}>
+          {searching ? "Searching..." : "Search"}
+        </button>
         <ExportButton searchParams={location} />
       </form>
+      <ShareButton searchParams={location} />
       {error && <p>{error}</p>}
       {hospitals.length > 0 && hospitals.map((hospital, id) => (
         <div key={id}>
