@@ -1,5 +1,5 @@
 // types file
-export interface ExportProps {
+export interface SearchProps {
   searchParams: {
     city?: string;
     state?: string;

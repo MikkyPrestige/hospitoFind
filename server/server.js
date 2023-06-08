@@ -10,6 +10,7 @@ import { logger, logEvents } from "./middleware/logger.js";
 import errorHandler from "./middleware/errorHandler.js";
 import hospitalRouter from "./routes/hospitals.js";
 import exportRouter from "./routes/exportHospital.js";
+import shareRouter from "./routes/shareHospital.js";
 import rootRouter from "./routes/root.js";
 import { fileURLToPath } from "url";
 import { dirname } from "path";
@@ -34,6 +35,7 @@ app.use("/", express.static("public/views"));
 app.use("/", rootRouter)
 app.use("/hospitals", hospitalRouter);
 app.use("/hospitals/export", exportRouter);
+app.use("/hospitals/share", shareRouter);
 
 // 404
 app.all("*", (req, res) => {

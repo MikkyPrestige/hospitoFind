@@ -14,7 +14,7 @@ exportRouter.get("/", asyncHandler(async (req, res) => {
 
   const hospitals = await Hospital.find(query).lean();
 
-  const csvHospital = hospitals.map(hospital => ({
+  const csvData = hospitals.map(hospital => ({
     name: hospital.name,
     'address.street': hospital.address.street,
     'address.city': hospital.address.city,
@@ -49,7 +49,7 @@ exportRouter.get("/", asyncHandler(async (req, res) => {
   res.setHeader('Content-Type', 'text/csv');
   res.setHeader('Content-Disposition', 'attachment; filename="hospitals.csv"');
 
-  csvWriter.writeRecords(csvHospital)
+  csvWriter.writeRecords(csvData)
     .then(() => res.download("hospitals.csv"))
 }))
 
