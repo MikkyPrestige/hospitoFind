@@ -11,13 +11,13 @@ const hospitalRouter = express.Router();
 
 hospitalRouter.route("/")
   .get(getHospitals)
-  .post(addHospital);
+  .post(addHospital)
+  .patch(updateHospital)
 
 hospitalRouter.route("/search")
   .get(searchHospitals)
 
 hospitalRouter.route("/:id")
-  .patch(updateHospital)
   .delete(deleteHospital);
 
 export default hospitalRouter;

@@ -1,4 +1,10 @@
 // types file
+export interface SearchProps {
+  searchParams: {
+    city?: string;
+    state?: string;
+  };
+}
 export interface Address {
   street: string;
   city: string;
@@ -16,6 +22,7 @@ export interface Hospital {
   phoneNumber: string;
   email: string;
   website: string;
+  type: string;
   services: string[];
   comments: string[];
   hours: Hours[];

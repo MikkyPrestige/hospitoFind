@@ -1,48 +1,40 @@
 import mongoose from "mongoose";
+import asyncHandler from "express-async-handler";
 // import Hospital from "../models/hospitals.js";
 // import fs from "fs";
 // import fetch from "node-fetch";
 // import chokidar from "chokidar";
 
 // Populate database with data from json
-// const populateDatabase = async () => {
+// const populateDatabase = asyncHandler(async () => {
 //   const jsonData = fs.readFileSync("data/hospitals.json", "utf8");
 //   const hospitals = JSON.parse(jsonData);
 //   console.log("Data read from the json file");
 
 //   hospitals.forEach(async (hospitalData) => {
-//     try {
-//       const hospital = new Hospital(hospitalData);
-//       await hospital.save();
-//       console.log('Hospital saved:', hospital);
-//     } catch (err) {
-//       console.log('Error saving hospital:', err);
-//     }
+//     const hospital = new Hospital(hospitalData);
+//     await hospital.save();
+//     console.log(`${hospitals.length} hospitals saved`);
 //   });
-// Clear the existing hospitals collection in the database
+//   // Clear the existing hospitals collection in the database
 //   await Hospital.deleteMany();
+//   console.log(`${hospitals.length} hospitals deleted`);
 
 //   // Insert the hospitals data into the database
 //   await Hospital.insertMany(hospitals);
-//   console.log("Data populated into the database");
-// } catch (err) {
-//   console.error(err.message);
-// }
-// };
+//   console.log(`${hospitals.length} hospitals inserted`);
+// });
 
 // Connect to the database
-const connectDB = async () => {
-  try {
-    await mongoose.connect(process.env.VITE_dbURI, {
-      // useUnifiedTopology: true,
-      // useNewUrlParser: true,
-    });
-    // Populate the database with data from the json file
-    // await populateDatabase();
-  } catch (err) {
-    console.error(err.message);
-  }
-};
+const connectDB = asyncHandler(async () => {
+  await mongoose.connect(process.env.VITE_dbURI, {
+    // useUnifiedTopology: true,
+    // useNewUrlParser: true,
+  });
+  // Populate the database with data from the json file
+  // await populateDatabase();
+  // console.log("database populated");
+});
 
 export default connectDB;
 // Check if two hospitals are the same

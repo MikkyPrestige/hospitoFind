@@ -56,7 +56,7 @@
     ]
   },
   {
-    "name": "Federal Medical Centre (FMC)",
+    "name": "Federal Medical Centre Umuahia",
     "address": {
       "street": "Aba Road Umuahia",
       "city": "Umuahia",
@@ -121,7 +121,7 @@
   {
     "name": "LIFE CARE CLINICS LTD",
     "address": {
-      "street": "8, Eziukwu Road, P.O.Box 4742, Aba",
+      "street": "8, Eziukwu Road, P.O.Box 4742",
       "city": "Aba",
       "state": "Abia"
     },
@@ -178,7 +178,7 @@
   {
     "name": "Living Word Mission Hospital",
     "address": {
-      "street": "5/7, Umuocham Rd, off Aba-Owerri Rd, Aba",
+      "street": "5/7, Umuocham Rd, off Aba-Owerri Rd",
       "city": "Aba",
       "state": "Abia"
     },
@@ -232,7 +232,7 @@
   {
     "name": "Mendel Hospital",
     "address": {
-      "street": "20 Tenant Road, Aba",
+      "street": "20 Tenant Road",
       "city": "Aba",
       "state": "Abia"
     },
@@ -280,7 +280,7 @@
   {
     "name": "New Era Hospital Limited",
     "address": {
-      "street": "213/215 Azikiwe road, P.O.Box 2390, Aba",
+      "street": "213/215 Azikiwe road, P.O.Box 2390",
       "city": "Aba",
       "state": "Abia"
     },
@@ -6310,102 +6310,6 @@
     ]
   },
   {
-    "name": "",
-    "address": {
-      "street": "",
-      "city": "",
-      "state": ""
-    },
-    "phoneNumber": "",
-    "website": "",
-    "email": "",
-    "type": "",
-    "services": [
-      ""
-    ],
-    "comments": [
-      ""
-    ],
-    "hours": [
-      {
-        "day": "Monday",
-        "open": "24 Hours"
-      },
-      {
-        "day": "Tuesday",
-        "open": "24 Hours"
-      },
-      {
-        "day": "Wednesday",
-        "open": "24 Hours"
-      },
-      {
-        "day": "Thursday",
-        "open": "24 Hours"
-      },
-      {
-        "day": "Friday",
-        "open": "24 Hours"
-      },
-      {
-        "day": "Saturday",
-        "open": "24 Hours"
-      },
-      {
-        "day": "Sunday",
-        "open": "24 Hours"
-      }
-    ]
-  },
-  {
-    "name": "",
-    "address": {
-      "street": "",
-      "city": "",
-      "state": ""
-    },
-    "phoneNumber": "",
-    "website": "",
-    "email": "",
-    "type": "",
-    "services": [
-      ""
-    ],
-    "comments": [
-      ""
-    ],
-    "hours": [
-      {
-        "day": "Monday",
-        "open": "24 Hours"
-      },
-      {
-        "day": "Tuesday",
-        "open": "24 Hours"
-      },
-      {
-        "day": "Wednesday",
-        "open": "24 Hours"
-      },
-      {
-        "day": "Thursday",
-        "open": "24 Hours"
-      },
-      {
-        "day": "Friday",
-        "open": "24 Hours"
-      },
-      {
-        "day": "Saturday",
-        "open": "24 Hours"
-      },
-      {
-        "day": "Sunday",
-        "open": "24 Hours"
-      }
-    ]
-  },
-  {
     "name": "Royal Specialist Hospital",
     "address": {
       "street": "No. 1, Agatu street, Otukpo, Benue state No. 21 federal road",
@@ -9766,7 +9670,7 @@
       "city": "Sokoto",
       "state": "Sokoto"
     },
-    "phoneNumber": "701 076 0119, 060-231012, 0818 971 4151",
+    "phoneNumber": "0701 076 0119, 060-231012, 0818 971 4151",
     "website": "",
     "email": "",
     "type": "Private",
@@ -9903,9 +9807,7 @@
       "SURGERY DEPARTMENT",
       "WORKS AND MAINTENANCE DEPARTMENT"
     ],
-    "comments": [
-      ""
-    ],
+    "comments": [""],
     "hours": [
       {
         "day": "Monday",
