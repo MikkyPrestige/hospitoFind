@@ -1,8 +1,8 @@
 import express from "express";
 import ids from "short-id";
 import asyncHandler from "express-async-handler"
-import Hospital from "../models/hospitals.js";
-import ShareableLink from "../models/shareHospitals.js";
+import Hospital from "../models/hospitalsModel.js";
+import ShareableLink from "../models/shareModel.js";
 
 const shareRouter = express()
 

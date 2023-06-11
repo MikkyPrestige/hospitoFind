@@ -1,6 +1,6 @@
 import express from "express";
 import { createObjectCsvWriter } from "csv-writer";
-import Hospital from "../models/hospitals.js";
+import Hospital from "../models/hospitalsModel.js";
 import asyncHandler from "express-async-handler";
 
 const exportRouter = express.Router();

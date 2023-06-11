@@ -1,6 +1,6 @@
 import { useState } from "react";
 import axios from "axios";
-import { SearchProps, statesAndCities } from "@/services/types";
+import { SearchProps, statesAndCities } from "@/services/hospitalTypes";
 
 const BASE_URL = "http://localhost:5000/hospitals/export"
 

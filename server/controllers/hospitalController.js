@@ -1,4 +1,4 @@
-import Hospital from "../models/hospitals.js";
+import Hospital from "../models/hospitalsModel.js";
 import asyncHandler from "express-async-handler";
 
 // @desc Get all hospitals

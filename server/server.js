@@ -8,10 +8,12 @@ import corsOptions from "./config/corsOptions.js";
 import connectDB from "./config/db.js";
 import { logger, logEvents } from "./middleware/logger.js";
 import errorHandler from "./middleware/errorHandler.js";
-import hospitalRouter from "./routes/hospitals.js";
-import exportRouter from "./routes/exportHospital.js";
-import shareRouter from "./routes/shareHospital.js";
-import rootRouter from "./routes/root.js";
+import rootRouter from "./routes/rootRoute.js";
+import authRouter from "./routes/authRoute.js";
+import userRouter from "./routes/usersRoute.js";
+import hospitalRouter from "./routes/hospitalsRoute.js";
+import exportRouter from "./routes/exportRoute.js";
+import shareRouter from "./routes/shareRoute.js";
 import { fileURLToPath } from "url";
 import { dirname } from "path";
 const __dirname = dirname(fileURLToPath(import.meta.url));
@@ -33,6 +35,8 @@ app.use("/", express.static("public/views"));
 
 // Routes
 app.use("/", rootRouter)
+app.use("/auth", authRouter);
+app.use("/users", userRouter);
 app.use("/hospitals", hospitalRouter);
 app.use("/hospitals/export", exportRouter);
 app.use("/hospitals/share", shareRouter);
