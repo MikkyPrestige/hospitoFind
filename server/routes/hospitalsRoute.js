@@ -6,18 +6,19 @@ import {
   updateHospital,
   deleteHospital
 } from "../controllers/hospitalController.js";
+import verify from "../middleware/verify.js";
 
 const hospitalRouter = express.Router();
 
 hospitalRouter.route("/")
-  .get(getHospitals)
-  .post(addHospital)
-  .patch(updateHospital)
+  .get(verify, getHospitals)
+  .post(verify, addHospital)
+  .patch(verify, updateHospital)
 
 hospitalRouter.route("/search")
   .get(searchHospitals)
 
 hospitalRouter.route("/:id")
-  .delete(deleteHospital);
+  .delete(verify, deleteHospital);
 
 export default hospitalRouter;

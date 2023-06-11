@@ -1,4 +1,4 @@
-import { Hospital } from "./types";
+import { Hospital } from "./hospitalTypes";
 import axios from "axios";
 
 const BASE_URL = 'http://localhost:5000/hospitals';

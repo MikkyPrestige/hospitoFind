@@ -1,72 +1,116 @@
 import bcrypt from "bcrypt";
-import jwt from "jsonwebtoken";
-import User from "../models/user.js";
+import User from "../models/userModel.js";
+import asyncHandler from "express-async-handler";
 
-export const register = async (req, res) => {
-  try {
-    const { name, email, password } = req.body;
-    // Check if the email is already registered
-    const user = await User.findOne({ email });
-    if (user) {
-      return res.status(400).json({ message: "Email already registered" });
-    }
-    // Hash the password
-    const salt = await bcrypt.genSalt(10);
-    const hashedPassword = await bcrypt.hash(password, salt);
-
-    // Create a new user
-    const newUser = new User({
-      name,
-      email,
-      password: hashedPassword,
-    });
-
-    await newUser.save();
-
-    res.status(200).json({
-      user: {
-        id: newUser._id,
-        name: newUser.name,
-        email: newUser.email,
-      },
-    });
-  } catch (err) {
-    console.error(err.message);
-    res.status(500).send("Server Error");
+// @desc    Get all users
+// @route   GET /users
+// @access  Private
+const getUsers = asyncHandler(async (req, res) => {
+  const users = await User.find().select("-password").lean()
+  if (!users) {
+    return res.status(404).json({ message: "No users found" })
   }
-};
+  res.json(users);
+});
 
-export const login = async (req, res) => {
-  try {
-    const { email, password } = req.body;
-
-    // Check if the email is already registered
-    const user = await User.findOne({ email });
-    if (!user) {
-      return res.status(400).json({ message: "Invalid email or password" });
-    }
-
-    // Check if the password is correct
-    const validPassword = await bcrypt.compare(password, user.password);
-    if (!validPassword) {
-      return res.status(400).json({ message: "Invalid email or password" });
-    }
-
-    // Create a token
-    const token = jwt.sign({ id: user._id }, process.env.jwtSecret, {
-      expiresIn: 3600,
-    });
-
-    res.status(200).json({
-      token,
-      user: {
-        id: user._id,
-        name: user.name,
-        email: user.email,
-      },
-    });
-  } catch (err) {
-    console.error(err.message);
-    res.status(500).send("Server Error");
+// @desc    Create new user
+// @route   POST /users
+// @access  Private
+const createUser = asyncHandler(async (req, res) => {
+  const { name, username, password, email } = req.body
+  // confirm data
+  if (!name || !username || !password || !email) {
+    return res.status(400).json({ message: "Please fill in all fields" })
   }
-};
+
+  const duplicateUsername = await User.findOne({ username }).lean().exec()
+  if (duplicateUsername) {
+    return res.status(409).json({ message: "Username already taken" })
+  }
+
+  const duplicateEmail = await User.findOne({ email }).lean().exec()
+  if (duplicateEmail) {
+    return res.status(409).json({ message: "Email exists with another user" })
+  }
+
+  // hash password
+  const hashedPassword = await bcrypt.hash(password, 10)
+  // create user
+  const user = await User.create({
+    name,
+    username,
+    password: hashedPassword,
+    email
+  })
+  // send response
+  if (user) {
+    res.status(201).json({ message: `New user ${username} created` })
+  } else {
+    res.status(400).json({ message: "Invalid user data" })
+  }
+})
+
+
+// @desc    update user
+// @route   PATCH /users
+// @access  Private
+const updateUser = asyncHandler(async (req, res) => {
+  const { name, username, email, password } = req.body
+
+  if (!name || !username || !email || !password) {
+    return res.status(400).json({ message: "Please fill in all fields" })
+  }
+  const user = await User.findOne({ username }).exec();
+  if (!user) {
+    return res.status(404).json({ message: "User not found" });
+  }
+  // check if email is already taken by another user
+  const existingEmailUser = await User.findOne({ email: { $ne: user.email }, email }).exec();
+  if (existingEmailUser) {
+    return res.status(409).json({ message: "Email already taken" });
+  }
+
+  // check if password is correct
+  const isMatch = await bcrypt.compare(password, user.password)
+  if (!isMatch) {
+    return res.status(401).json({ message: "Invalid password" })
+  }
+
+  // update user
+  user.name = name
+  user.username = username
+  user.email = email
+
+  const updatedUser = await user.save()
+  res.status(201).json({ message: `${updatedUser.username} user updated` })
+})
+
+// @desc    Delete user
+// @route   DELETE /users
+// @access  Private
+const deleteUser = asyncHandler(async (req, res) => {
+  const { username } = req.body
+
+  // confirm data
+  if (!username) {
+    return res.status(400).json({ message: "Username is required" })
+  }
+
+  const user = await User.findOne({ username }).exec()
+  if (!user) {
+    return res.status(404).json({ message: "User not found" })
+  }
+
+  // delete user
+  const deletedUser = await user.deleteOne()
+  // send response
+  res.status(201).json({ message: `${deletedUser.username} user deleted` })
+})
+
+export default {
+  getUsers,
+  createUser,
+  updateUser,
+  deleteUser,
+}
+
