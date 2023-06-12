@@ -1,7 +1,8 @@
 import { useState, useEffect } from "react";
-import useLogin from "@/hooks/login";
+import useLogin from "@/hooks/logIn";
 import { Login } from "@/services/userTypes";
 import { useAuthContext } from "@/contexts/userContext";
+import Logout from "./logOutBtn";
 
 const LoginForm = () => {
   const [username, setUsername] = useState("");
@@ -9,7 +10,7 @@ const LoginForm = () => {
   const { loading, error, login } = useLogin();
   const { state } = useAuthContext();
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleLogin = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const user: Login = { username, password };
     login(user);
@@ -25,7 +26,8 @@ const LoginForm = () => {
   return (
     <div>
       {state.user && <p>{state.user}</p>}
-      <form onSubmit={handleSubmit}>
+      {/* <button onClick={() => loginWithRedirect()}>Login with Auth0</button> */}
+      <form onSubmit={handleLogin}>
         <input
           type="text"
           placeholder="username"
@@ -39,9 +41,10 @@ const LoginForm = () => {
           onChange={(e) => setPassword(e.target.value)}
         />
         <button type="submit" disabled={loading}>
-          {loading ? "Loading..." : "Login"}
+          {loading ? "Get In..." : "Login"}
         </button>
       </form>
+      <Logout />
       {error && <p>{error}</p>}
     </div>
   );

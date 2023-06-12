@@ -63,7 +63,7 @@ const refresh = asyncHandler(async (req, res) => {
 // @access Private
 const logout = asyncHandler(async (req, res) => {
   const cookies = req.cookies
-  if (!cookies?.jwt) return res.status(204)
+  if (!cookies?.jwt) return res.sendStatus(200)
 
   res.clearCookie("jwt", { httpOnly: true, sameSite: "none", secure: true }).json({ message: 'Cookie cleared' })
 })

@@ -7,6 +7,7 @@ import {
   deleteHospital
 } from "../controllers/hospitalController.js";
 import verify from "../middleware/verify.js";
+// import checkJwt from "../middleware/auth0.js";
 
 const hospitalRouter = express.Router();
 

@@ -7,7 +7,7 @@ const userRouter = express.Router();
 userRouter.route("/")
   .get(verify, userController.getUsers)
   .post(userController.createUser)
-  .patch(verify, userController.updateUser)
-  .delete(verify, userController.deleteUser)
+  .patch(userController.updateUser)
+  .delete(userController.deleteUser)
 
 export default userRouter;

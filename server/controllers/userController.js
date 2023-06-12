@@ -18,7 +18,6 @@ const getUsers = asyncHandler(async (req, res) => {
 // @access  Private
 const createUser = asyncHandler(async (req, res) => {
   const { name, username, password, email } = req.body
-  // confirm data
   if (!name || !username || !password || !email) {
     return res.status(400).json({ message: "Please fill in all fields" })
   }
@@ -35,6 +34,7 @@ const createUser = asyncHandler(async (req, res) => {
 
   // hash password
   const hashedPassword = await bcrypt.hash(password, 10)
+
   // create user
   const user = await User.create({
     name,
@@ -42,7 +42,7 @@ const createUser = asyncHandler(async (req, res) => {
     password: hashedPassword,
     email
   })
-  // send response
+
   if (user) {
     res.status(201).json({ message: `New user ${username} created` })
   } else {
@@ -89,11 +89,12 @@ const updateUser = asyncHandler(async (req, res) => {
 // @route   DELETE /users
 // @access  Private
 const deleteUser = asyncHandler(async (req, res) => {
-  const { username } = req.body
+  const { username, password } = req.body
 
-  // confirm data
   if (!username) {
     return res.status(400).json({ message: "Username is required" })
+  } else if (!password) {
+    return res.status(400).json({ message: "Password is required" })
   }
 
   const user = await User.findOne({ username }).exec()
@@ -101,9 +102,13 @@ const deleteUser = asyncHandler(async (req, res) => {
     return res.status(404).json({ message: "User not found" })
   }
 
-  // delete user
+  // check if password is correct
+  const isMatch = await bcrypt.compare(password, user.password)
+  if (!isMatch) {
+    return res.status(401).json({ message: "Invalid password" })
+  }
+
   const deletedUser = await user.deleteOne()
-  // send response
   res.status(201).json({ message: `${deletedUser.username} user deleted` })
 })
 
