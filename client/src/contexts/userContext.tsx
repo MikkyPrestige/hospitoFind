@@ -11,10 +11,10 @@ const AuthContext = createContext<AuthContextType | undefined>(undefined);
 const authReducer = (state: AuthState, action: AuthAction): AuthState => {
   switch (action.type) {
     case "REGISTER":
+      localStorage.setItem("user", action.payload?.user || "");
       return {
         ...state,
         user: action.payload?.user || state.user,
-        accessToken: action.payload?.accessToken || state.accessToken
       }
     case "LOGIN":
       // Retrieve the access token from the cookie
@@ -46,6 +46,8 @@ const authReducer = (state: AuthState, action: AuthAction): AuthState => {
         accessToken: null
       }
     case "LOGOUT":
+      // remove access token from cookie
+      document.cookie = `accessToken=; SameSite=None; Max-Age=0;`;
       localStorage.removeItem("user");
       localStorage.removeItem("accessToken");
       return {
@@ -58,7 +60,7 @@ const authReducer = (state: AuthState, action: AuthAction): AuthState => {
   }
 }
 
-const AuthProvider = ({ children }: { children: React.ReactNode }) => {
+const ContextProvider = ({ children }: { children: React.ReactNode }) => {
   const [state, dispatch] = useReducer(authReducer, initialState)
 
   return (
@@ -76,4 +78,4 @@ const useAuthContext = (): AuthContextType => {
   return context;
 };
 
-export { AuthProvider, useAuthContext }
+export { ContextProvider, useAuthContext }

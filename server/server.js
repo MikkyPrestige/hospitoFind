@@ -36,7 +36,7 @@ app.use("/", express.static("public/views"));
 // Routes
 app.use("/", rootRouter)
 app.use("/auth", authRouter);
-app.use("/users", userRouter);
+app.use("/user", userRouter);
 app.use("/hospitals", hospitalRouter);
 app.use("/hospitals/export", exportRouter);
 app.use("/hospitals/share", shareRouter);

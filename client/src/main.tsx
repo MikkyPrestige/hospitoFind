@@ -1,13 +1,16 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
-import App from './App.tsx'
+import App from '@/App.tsx'
 import '@/assets/styles/index.css'
-import { AuthProvider } from './contexts/userContext.tsx'
+import { ContextProvider } from '@/contexts/userContext.tsx'
+import AuthProvider from '@/config/auth0.tsx'
 
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
   <React.StrictMode>
     <AuthProvider>
-      <App />
+      <ContextProvider>
+        <App />
+      </ContextProvider>
     </AuthProvider>
   </React.StrictMode>,
 )
