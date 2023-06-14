@@ -12,14 +12,14 @@ import verify from "../middleware/verify.js";
 const hospitalRouter = express.Router();
 
 hospitalRouter.route("/")
-  .get(verify, getHospitals)
-  .post(verify, addHospital)
+  .get(getHospitals)
+  .post(addHospital)
   .patch(verify, updateHospital)
 
 hospitalRouter.route("/search")
   .get(searchHospitals)
 
-hospitalRouter.route("/:id")
-  .delete(verify, deleteHospital);
+hospitalRouter.route("/")
+  .delete(deleteHospital);
 
 export default hospitalRouter;
