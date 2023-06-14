@@ -122,8 +122,8 @@ const updateHospital = asyncHandler(async (req, res) => {
 // @access Public
 const deleteHospital = asyncHandler(async (req, res) => {
   // const hospital = await Hospital.findById(req.params.id).exec()
-  const { _id } = req.body
-  const hospital = await Hospital.findById(_id).exec()
+  const { name } = req.body
+  const hospital = await Hospital.findOne({ name }).exec()
 
   if (!hospital) {
     return res.status(404).json({ message: 'Hospital not found' })
