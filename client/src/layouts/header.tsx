@@ -1,17 +1,17 @@
-import { NavLink, NavLinkProps } from "react-router-dom";
+import { Link, NavLink, NavLinkProps } from "react-router-dom";
 import { MdClose } from "react-icons/md"
 import { FiMenu } from "react-icons/fi"
 import { useState } from "react";
 import Logo from "@/assets/images/logo.png";
 import { Avatar } from "@/components/avatar";
-
+import layoutSmall from "./style/nav/nav.module.css";
 interface NavLinksProps extends NavLinkProps {
   to: string;
 }
 
 export const Header = () => {
   return (
-    <div className="header">
+    <div>
       <LayoutMobile />
     </div>
   )
@@ -19,13 +19,11 @@ export const Header = () => {
 
 const NavLinks = ({ to, ...props }: NavLinksProps) => {
   let active = {
-    color: "red",
-    fontWeight: "bold"
+    color: "#08299B",
   }
 
   let pending = {
-    color: "black",
-    fontWeight: "normal"
+    color: "#000000",
   }
 
   return (
@@ -40,77 +38,70 @@ const NavLinks = ({ to, ...props }: NavLinksProps) => {
 }
 
 const LayoutMobile = () => {
-  const [showMenu, setShowMenu] = useState<boolean>(false)
-  const toggleMenu = () => setShowMenu(!showMenu)
+  const [showMenu, setShowMenu] = useState(false);
+  const toggleMenu = () => setShowMenu(!showMenu);
 
   return (
-    <div className="layout-mobile">
-      <div className="layout-mobile__header">
-        <div className="layout-mobile__header__logo">
-          <Avatar
-            image={Logo}
-            alt="logo"
-            style={{ width: "100%", height: "100%" }}
-          />
-        </div>
-        <div className="layout-mobile__header__menu">
-          <button onClick={toggleMenu} className="layout-mobile__header__menu__btn">
-            {showMenu ? <MdClose /> : <FiMenu />}
-          </button>
-          <nav
-            className={`layout-mobile__header__menu__nav ${showMenu ? "layout-mobile__header__menu__nav--show" : ""
-              }`}
-          >
-            <ul className="layout-mobile__header__menu__lists">
-              <li>
-                <NavLinks
-                  to="/"
-                  onClick={toggleMenu}
-                  className="layout-mobile__header__menu__list--item"
-                >
-                  Home
-                </NavLinks>
-              </li>
-              <li>
-                <NavLinks
-                  to="/about"
-                  onClick={toggleMenu}
-                  className="layout-mobile__header__menu__list--item"
-                >
-                  About
-                </NavLinks>
-              </li>
-              <li>
-                <NavLinks
-                  to="/find"
-                  onClick={toggleMenu}
-                  className="layout-mobile__header__menu__list--item"
-                >
-                  Find Hospital
-                </NavLinks>
-              </li>
-              <li>
-                <NavLinks
-                  to="/login"
-                  onClick={toggleMenu}
-                  className="layout-mobile__header__menu__list--item"
-                >
-                  Login
-                </NavLinks>
-              </li>
-              <li>
-                <NavLinks
-                  to="/signUp"
-                  onClick={toggleMenu}
-                  className="layout-mobile__header__menu__list--item"
-                >
-                  SignUp
-                </NavLinks>
-              </li>
-            </ul>
-          </nav>
-        </div>
+    <header className={layoutSmall.header}>
+      <Link to="/" className={layoutSmall.logo}>
+        <Avatar
+          image={Logo}
+          alt="logo"
+          style={{ width: "100%", height: "100%", borderRadius: "45%" }}
+        />
+      </Link>
+      <div className={layoutSmall.menu}>
+        <button onClick={toggleMenu} className={layoutSmall.toggle}>
+          {showMenu ? <MdClose className={layoutSmall.icon} /> : <FiMenu className={layoutSmall.icon} />}
+        </button>
+        <nav className={`${layoutSmall.nav} ${showMenu ? layoutSmall.show : ""}`}>
+          <ul className={layoutSmall.list}>
+            <li className={layoutSmall.item}>
+              <NavLinks
+                to="/"
+                onClick={toggleMenu}
+                className={layoutSmall.link}
+              >
+                Home
+              </NavLinks>
+            </li>
+            <li className={layoutSmall.item}>
+              <NavLinks
+                to="/about"
+                onClick={toggleMenu}
+                className={layoutSmall.link}
+              >
+                About
+              </NavLinks>
+            </li>
+            <li className={layoutSmall.item}>
+              <NavLinks
+                to="/find"
+                onClick={toggleMenu}
+                className={layoutSmall.find}
+              >
+                Find Hospital
+              </NavLinks>
+            </li>
+          </ul>
+          <div className={layoutSmall.container}>
+            <NavLinks
+              to="/login"
+              onClick={toggleMenu}
+              className={layoutSmall.content}
+            >
+              Login
+            </NavLinks>
+            <NavLinks
+              to="/signUp"
+              onClick={toggleMenu}
+              className={layoutSmall.content}
+            >
+              SignUp
+            </NavLinks>
+          </div>
+        </nav>
       </div>
-    </div>
+    </header>
   )
 }
