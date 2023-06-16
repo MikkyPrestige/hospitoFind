@@ -1,13 +1,6 @@
 @use "../../../assets/styles/mixins";
 @import "../../../assets/styles/variables";
 
-.layout {
-  position: relative;
-  top: 0;
-  left: 0;
-  z-index: 100;
-}
-
 .header {
   background-color: $color-white;
   width: 100%;
