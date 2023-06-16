@@ -1,0 +1,112 @@
+@use "../../../assets/styles/mixins";
+@import "../../../assets/styles/variables";
+
+.layout {
+  position: relative;
+  top: 0;
+  left: 0;
+  z-index: 100;
+}
+
+.header {
+  background-color: $color-white;
+  width: 100%;
+  height: 5rem;
+  @include mixins.flexRowSpaceBetween;
+  padding: 2rem;
+  box-shadow: 0 4px 4px rgba(14, 61, 183, 0.15);
+  position: fixed;
+  top: 0;
+
+  .logo {
+    width: 10rem;
+    height: 3.5rem;
+    margin-left: 2.5rem;
+    z-index: 1000;
+  }
+
+  .menu {
+    position: relative;
+
+    .toggle {
+      position: fixed;
+      top: .5rem;
+      right: 3.5rem;
+      z-index: 500;
+      background-color: $color-blue;
+      padding: 1rem;
+      border-radius: $border-radius;
+      transition: all 0.5s ease-in-out;
+      @include mixins.flexRow;
+
+      .icon {
+        font-size: $font-size-6;
+        font-weight: $font-weight-bd;
+        color: $color-white;
+      }
+    }
+
+    .nav {
+      position: fixed;
+      top: 0;
+      right: 0;
+      width: 0;
+      z-index: 200;
+      @include mixins.flexCol;
+      gap: 10rem;
+      overflow: hidden;
+    }
+
+    .show {
+      width: 100%;
+      height: 95%;
+      background-color: $color-gray;
+      transition: all 0.5s ease-in-out;
+    }
+
+    .list {
+      @include mixins.flexCol;
+      gap: 2rem;
+      list-style-type: none;
+
+      .item {
+        display: flex;
+        align-items: center;
+
+        .link {
+          font-family: $font-sans;
+          font-size: $font-size-5;
+          font-weight: $font-weight-md;
+          transition: all 0.5s ease-in-out;
+        }
+
+        .find {
+          font-family: $font-sans;
+          font-size: $font-size-5;
+          font-weight: $font-weight-md;
+          color: $color-black-b !important;
+          transition: all 0.5s ease-in-out;
+        }
+      }
+    }
+
+    .container {
+      width: 70%;
+      @include mixins.flexRow;
+      gap: 3rem;
+      margin: 0 auto;
+
+      .content {
+        border-radius: $border-radius-sm;
+        background-color: $color-blue;
+        color: $color-white !important;
+        font-family: $font-sans;
+        font-size: $font-size-6;
+        font-weight: $font-weight-md;
+        letter-spacing: -0.011em;
+        padding: .3rem 1.5rem;
+        transition: all 0.5s ease-in-out;
+      }
+    }
+  }
+}
