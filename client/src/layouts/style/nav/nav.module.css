@@ -71,13 +71,13 @@
   align-items: center;
 }
 .header .menu .list .item .link {
-  font-family: "DM Sans";
+  font-family: "DM Sans", sans-serif;
   font-size: 2rem;
   font-weight: 500;
   transition: all 0.5s ease-in-out;
 }
 .header .menu .list .item .find {
-  font-family: "DM Sans";
+  font-family: "DM Sans", sans-serif;
   font-size: 2rem;
   font-weight: 500;
   color: #1E1E1E !important;
@@ -96,7 +96,7 @@
   border-radius: 1rem;
   background-color: #08299B;
   color: #FFFFFF !important;
-  font-family: "DM Sans";
+  font-family: "DM Sans", sans-serif;
   font-size: 2.2rem;
   font-weight: 500;
   letter-spacing: -0.011em;
