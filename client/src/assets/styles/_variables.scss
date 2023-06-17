@@ -7,8 +7,10 @@ $color-gray: #C1C1C1;
 $color-blue: #08299B;
 
 // FONT FAMILY
-$font-sans: "DM Sans";
-$font-inter: "Inter";
+$font-sans: "DM Sans",
+sans-serif;
+$font-inter: "Inter",
+sans-serif;
 
 // FONT SIZE
 $font-size: 1rem;
@@ -26,9 +28,18 @@ $font-size-10: 3rem;
 // FONT WEIGHT
 $font-weight-sm: 300;
 $font-weight-md: 500;
+$font-weight-md-1: 600;
 $font-weight-bd: 700;
 $font-weight-bds: 900;
 
 // BORDER RADIUS
 $border-radius: 50%;
 $border-radius-sm: 1rem;
+$border-radius-md: 1.5rem;
+
+// LINE HEIGHT
+$line-height-1: 135%;
+$line-height-2: 150%;
+
+// LETTER SPACING
+$space: -0.011em;

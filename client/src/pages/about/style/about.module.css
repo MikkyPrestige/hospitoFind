@@ -1,0 +1,68 @@
+.bg {
+  background-color: #FFFFFF;
+  height: 100%;
+  width: 100%;
+  padding: 2rem 0;
+}
+.bg .wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2rem;
+  padding: 1rem;
+}
+.bg .wrapper .top {
+  width: 100%;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2rem;
+  font-family: "DM Sans", sans-serif;
+}
+.bg .wrapper .top .title {
+  font-size: 2.4rem;
+  font-weight: 500;
+  color: #000000;
+  line-height: 150%;
+  letter-spacing: -0.011em;
+}
+.bg .wrapper .top .title .span {
+  color: #08299B;
+  font-weight: 700;
+  font-size: 2.6rem;
+}
+.bg .wrapper .top .para {
+  font-size: 1.8rem;
+  font-weight: 500;
+  color: #000000;
+  line-height: 150%;
+  letter-spacing: -0.011em;
+  margin-bottom: 1rem;
+}
+.bg .wrapper .top .cta {
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: #FFFFFF;
+  line-height: 150%;
+  letter-spacing: -0.011em;
+}
+.bg .wrapper .img {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 2rem;
+  padding: 0 2rem;
+}
+.bg .wrapper .img .img_1 {
+  width: 100%;
+  transform: translateY(1rem);
+}
+.bg .wrapper .img .img_2 {
+  width: 100%;
+  transform: translateY(5rem);
+}/*# sourceMappingURL=about.module.css.map */

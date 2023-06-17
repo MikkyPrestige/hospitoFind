@@ -1,0 +1,71 @@
+@use "../../../assets/styles/mixins";
+@import "../../../assets/styles/variables";
+
+.bg {
+  background-color: $color-white;
+  height: 100%;
+  width: 100%;
+  padding: 2rem 0;
+
+  .wrapper {
+    @include mixins.flexCol;
+    gap: 2rem;
+    padding: 1rem;
+
+    .top {
+      width: 100%;
+      text-align: center;
+      @include mixins.flexCol;
+      gap: 2rem;
+      font-family: $font-sans;
+
+      .title {
+        font-size: $font-size-7;
+        font-weight: $font-weight-md;
+        color: $color-black;
+        line-height: $line-height-2;
+        letter-spacing: $space;
+
+        .span {
+          color: $color-blue;
+          font-weight: $font-weight-bd;
+          font-size: $font-size-8;
+        }
+      }
+
+      .para {
+        font-size: $font-size-4;
+        font-weight: $font-weight-md;
+        color: $color-black;
+        line-height: $line-height-2;
+        letter-spacing: $space;
+        margin-bottom: 1rem;
+      }
+
+      .cta {
+        font-size: $font-size-2;
+        font-weight: $font-weight-bd;
+        color: $color-white;
+        line-height: $line-height-2;
+        letter-spacing: $space;
+      }
+    }
+
+    .img {
+      width: 100%;
+      @include mixins.flexRow;
+      gap: 2rem;
+      padding: 0 2rem;
+
+      .img_1 {
+        width: 100%;
+        transform: translateY(1rem);
+      }
+
+      .img_2 {
+        width: 100%;
+        transform: translateY(5rem);
+      }
+    }
+  }
+}

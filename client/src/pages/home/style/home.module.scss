@@ -1,0 +1,136 @@
+@use "../../../assets/styles/mixins";
+@import "../../../assets/styles/variables";
+
+.bg {
+  background-color: $bg-color;
+  height: 100%;
+  width: 100%;
+  padding: 10rem 2rem 0;
+  @include mixins.flexCol;
+  gap: 1rem;
+  font-family: $font-inter;
+
+  .container {
+    width: 100%;
+    @include mixins.flexCol;
+    gap: 2rem;
+    padding: 0 3rem;
+    text-align: center;
+
+    .title {
+      font-size: $font-size-7;
+      font-weight: $font-weight-bd;
+      color: $color-blue;
+      line-height: $line-height-1;
+    }
+
+    .subtitle {
+      font-size: $font-size-3;
+      font-weight: $font-weight-md;
+      color: $color-black;
+      line-height: $line-height-1;
+    }
+
+    .cta {
+      font-size: $font-size-3;
+      font-weight: $font-weight-md-1;
+      letter-spacing: $space;
+      line-height: $line-height-1;
+      color: $color-white;
+      transition: all 0.5s ease-in-out;
+    }
+
+    .link {
+      font-size: $font-size-2;
+      font-weight: $font-weight-md;
+      font-style: italic;
+      letter-spacing: $space;
+      line-height: $line-height-2;
+      color: $color-black-b;
+      @include mixins.flexRow;
+      margin-bottom: 1rem;
+      transition: all 0.5s ease-in-out;
+
+      &:hover {
+        color: $color-black;
+      }
+
+      .icon {
+        width: 2rem;
+        height: 2rem;
+        fill: $color-blue;
+      }
+    }
+  }
+
+  .img {
+    width: 100%;
+    height: 100%;
+    margin-bottom: 1rem;
+  }
+
+  .search {
+    width: 100%;
+    @include mixins.flexCol;
+    gap: 1rem;
+
+    .heading {
+      font-size: $font-size-3;
+      font-weight: $font-weight-md;
+      color: $color-blue;
+      line-height: $line-height-2;
+      letter-spacing: $space;
+      text-align: center;
+    }
+
+    .label {
+      position: relative;
+      width: 100%;
+      @include mixins.flexRowSpaceBetween;
+      gap: 1rem;
+      margin-bottom: 5rem;
+
+      .icon_location {
+        position: absolute;
+        top: 1rem;
+        left: 2.5rem;
+        width: 1.5rem;
+        height: 1.5rem;
+        fill: $color-gray;
+      }
+
+      .input {
+        width: 100%;
+        height: 3.5rem;
+        border-radius: $border-radius-md;
+        font-size: $font-size-5;
+        font-weight: $font-weight-md;
+        color: $color-black-b;
+        text-align: center;
+        letter-spacing: $space;
+        line-height: $line-height-2;
+        background-color: $color-white;
+        transition: all 0.5s ease-in-out;
+
+        &:focus {
+          outline: none;
+          border: 1px solid $color-blue;
+        }
+      }
+
+      input::placeholder {
+        color: $color-gray;
+        font-size: $font-size-2;
+      }
+
+      .icon_search {
+        position: absolute;
+        top: 1rem;
+        right: 2.5rem;
+        width: 1.5rem;
+        height: 1.5rem;
+        fill: $color-black;
+      }
+    }
+  }
+}
