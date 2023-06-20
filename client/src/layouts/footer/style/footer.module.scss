@@ -1,0 +1,38 @@
+@use "../../../assets/styles/mixins";
+@import "../../../assets/styles/variables";
+
+.footer {
+  background-color: $color-bg;
+  width: 100%;
+  height: 100%;
+  @include mixins.flexRowSpaceBetween;
+  gap: 1rem;
+  padding: 2rem 5rem;
+
+  .box1 {
+    width: 40%;
+    text-align: start
+  }
+
+  .heading {
+    font-size: $font-size-6;
+    font-weight: $font-weight-md;
+    color: $color-blue;
+    letter-spacing: $space;
+    line-height: $line-height-2;
+    margin-bottom: 2rem;
+  }
+
+  .text {
+    font-size: $font-size-1;
+    font-weight: $font-weight-md;
+    color: $color-black;
+    letter-spacing: $space;
+    line-height: $line-height-1;
+  }
+
+  .box2 {
+    @include mixins.flexRow;
+    gap: 7rem;
+  }
+}
