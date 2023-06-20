@@ -16,7 +16,7 @@ function App() {
       <Suspense fallback={<p>Loading...</p>}>
         <Header />
         <AppRoutes />
-        {/* <Footer /> */}
+        <Footer />
         {/* <SearchForm /> */}
         {/* <UpdateForm /> */}
         {/* <Editor /> */}

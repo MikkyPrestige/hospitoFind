@@ -5,7 +5,7 @@
   background-color: $color-white;
   height: 100%;
   width: 100%;
-  padding: 2rem 0;
+  padding: 5rem 0;
 
   .wrapper {
     @include mixins.flexCol;
@@ -129,7 +129,7 @@
     height: 45rem;
     position: relative;
     overflow: hidden;
-    margin: 10rem auto;
+    margin: 5rem auto;
 
     .semiCircle {
       width: 100%;
@@ -157,7 +157,7 @@
     .heading {
       position: absolute;
       top: 8%;
-      right: 42.5%;
+      right: 37%;
       font-family: $font-sans;
       color: $color-blue;
       font-size: $font-size-5;
@@ -197,7 +197,7 @@
           position: absolute;
 
           .arrow_line {
-            width: 8rem;
+            width: 5rem;
             height: .2rem;
             background-color: $color-white;
           }
@@ -253,6 +253,7 @@
       width: 100%;
       height: 100%;
       @include mixins.flexRow;
+      flex-wrap: wrap;
       gap: 2.5rem;
 
       .review_box {
@@ -260,6 +261,7 @@
         background: $color-bg;
         border-radius: $border-radius-sm;
         width: 100%;
+        max-width: 40rem;
         height: 100%;
         @include mixins.flexColAlignStart;
         gap: .5rem;
@@ -338,7 +340,11 @@
 }
 
 .arrow3 {
-  top: 8.5rem;
-  left: 71%;
-  transform: rotate(50deg);
+  top: 9rem;
+  left: 70%;
+  transform: rotate(60deg);
+
+  :first-child {
+    width: 8rem !important;
+  }
 }
