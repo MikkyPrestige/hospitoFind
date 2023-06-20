@@ -7,15 +7,15 @@
   height: 100%;
   @include mixins.flexRowSpaceBetween;
   gap: 1rem;
-  padding: 2rem 5rem;
+  padding: 2rem;
 
   .box1 {
-    width: 40%;
+    width: 30%;
     text-align: start
   }
 
   .heading {
-    font-size: $font-size-6;
+    font-size: $font-size-5;
     font-weight: $font-weight-md;
     color: $color-blue;
     letter-spacing: $space;
@@ -23,7 +23,8 @@
     margin-bottom: 2rem;
   }
 
-  .text {
+  .link {
+    display: block;
     font-size: $font-size-1;
     font-weight: $font-weight-md;
     color: $color-black;

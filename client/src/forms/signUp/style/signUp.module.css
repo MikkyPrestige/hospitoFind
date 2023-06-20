@@ -89,6 +89,7 @@
   position: absolute;
   top: 3.5rem;
   right: 1rem;
+  cursor: pointer;
 }
 .section .wrapper .form .form_group .form_error {
   font-size: 1.2rem;

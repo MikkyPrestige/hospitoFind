@@ -6,23 +6,19 @@ export const Footer = () => {
     <section className={style.footer}>
       <div className={style.box1}>
         <h1 className={style.heading}>CareFinder</h1>
-        <p className={style.text}>Core Area
-          <br />
-          <a href="tel: +2348030849685">+234 803 0849 685</a>
-        </p>
+        <p className={style.link}>Core Area</p>
+        <Link to="tel: +2348030849685" className={style.link}>+234 803 0849 685</Link>
       </div>
       <div className={style.box2}>
         <div>
-          <h2 className={style.heading}>
-            <Link to="/about">About Us</Link>
-          </h2>
-          <p className={style.text}>News & Media</p>
-          <Link to="/contact" className={style.text}>Contact Us</Link>
+          <h2 className={style.heading}>About Us</h2>
+          <Link to="/about" className={style.link}>News & Media</Link>
+          <Link to="/contact" className={style.link}>Contact Us</Link>
         </div>
         <div>
           <h2 className={style.heading}>Quick Links</h2>
-          <Link to="/account" className={style.text}> My account</Link> <br />
-          <Link to="/library" className={style.text}>Library</Link>
+          <Link to="/account" className={style.link}> My account</Link>
+          <Link to="/library" className={style.link}>Library</Link>
         </div>
       </div>
     </section>

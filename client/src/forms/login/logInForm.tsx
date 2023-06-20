@@ -47,7 +47,7 @@ const LoginForm = () => {
   useEffect(() => {
     const user = localStorage.getItem("user");
     if (user) {
-      // console.log("Logged in user:", user);
+      console.log("Logged in user:", user);
     }
   }, [state.user]);
 

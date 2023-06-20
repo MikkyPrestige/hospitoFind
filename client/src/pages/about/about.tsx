@@ -16,7 +16,7 @@ import Reviewer2 from "@/assets/images/reviewer2.jpg";
 import Reviewer3 from "@/assets/images/reviewer3.jpg";
 import { Button } from "@/components/button";
 
-export const About = () => {
+const About = () => {
   const semiCircleOne = `${style.semiCircle} ${style.one}`;
   const semiCircleTwo = `${style.semiCircle} ${style.two}`;
   const semiCircleThree = `${style.semiCircle} ${style.three}`;
@@ -163,7 +163,7 @@ export const About = () => {
             </figure>
           </div>
           <div className={style.review_box}>
-            <p className={style.review_text}>I can't express how grateful i am for carefinder website. When i needed urgent medical care while traveling, it helped me locate the nearest hospital in a matter of  seconds. The accurate results and detailed directions saved me valuable time and ensured i received the care i needed</p>
+            <p className={style.review_text}>I can't express how grateful I am for Carefinder website. When i needed urgent medical care while traveling, it helped me locate the nearest hospital in a matter of  seconds. The accurate results and detailed directions saved me valuable time and ensured i received the care i needed</p>
             <div className={style.star}>
               <MdStarBorderPurple500 className={style.star_icon} />
               <MdStarBorderPurple500 className={style.star_icon} />
@@ -203,3 +203,5 @@ export const About = () => {
     </section>
   );
 }
+
+export default About;
