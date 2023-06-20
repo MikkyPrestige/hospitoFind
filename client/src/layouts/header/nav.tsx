@@ -4,7 +4,7 @@ import { FiMenu } from "react-icons/fi"
 import { useState } from "react";
 import Logo from "@/assets/images/logo.png";
 import { Avatar } from "@/components/avatar";
-import layoutSmall from "./style/nav/nav.module.css";
+import layoutSmall from "./style/nav.module.css";
 interface NavLinksProps extends NavLinkProps {
   to: string;
 }

@@ -7,7 +7,7 @@ import { Button } from "@/components/button"
 import style from "./style/home.module.css"
 import { About } from "../about/about"
 
-export const Home = () => {
+const Home = () => {
   return (
     <>
       <section className={style.bg}>
@@ -37,3 +37,5 @@ export const Home = () => {
     </>
   );
 }
+
+export default Home
