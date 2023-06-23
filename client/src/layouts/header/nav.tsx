@@ -1,15 +1,18 @@
 import { Link, NavLink, NavLinkProps } from "react-router-dom";
 import { MdClose } from "react-icons/md"
 import { FiMenu } from "react-icons/fi"
+import { VscAccount } from "react-icons/vsc"
+import { TbHomeHeart } from "react-icons/tb";
 import { useState } from "react";
-import Logo from "@/assets/images/logo.png";
+import Logo from "../../../public/images/logo.png";
+import Search from "../../../public/images/hospitalSearch.png";
 import { Avatar } from "@/components/avatar";
 import layoutSmall from "./style/nav.module.css";
 interface NavLinksProps extends NavLinkProps {
   to: string;
 }
 
-export const Header = () => {
+const Header = () => {
   return (
     <div>
       <LayoutMobile />
@@ -57,6 +60,7 @@ const LayoutMobile = () => {
         <nav className={`${layoutSmall.nav} ${showMenu ? layoutSmall.show : ""}`}>
           <ul className={layoutSmall.list}>
             <li className={layoutSmall.item}>
+              <TbHomeHeart className={layoutSmall.icon} />
               <NavLinks
                 to="/"
                 onClick={toggleMenu}
@@ -66,6 +70,11 @@ const LayoutMobile = () => {
               </NavLinks>
             </li>
             <li className={layoutSmall.item}>
+              <Avatar
+                image={Logo}
+                alt="logo"
+                style={{ width: "2.2rem", height: "2.2rem", borderRadius: "10%", objectFit: "cover" }}
+              />
               <NavLinks
                 to="/about"
                 onClick={toggleMenu}
@@ -75,6 +84,11 @@ const LayoutMobile = () => {
               </NavLinks>
             </li>
             <li className={layoutSmall.item}>
+              <Avatar
+                image={Search}
+                alt="logo"
+                style={{ width: "3rem", height: "3rem", borderRadius: "50%", objectFit: "cover" }}
+              />
               <NavLinks
                 to="/find"
                 onClick={toggleMenu}
@@ -82,6 +96,16 @@ const LayoutMobile = () => {
               >
                 Find Hospital
               </NavLinks>
+            </li>
+            <li className={layoutSmall.item}>
+              <VscAccount className={layoutSmall.icon} />
+              <NavLink
+                to="/dashboard"
+                className={layoutSmall.link}
+                onClick={toggleMenu}
+              >
+                Profile
+              </NavLink>
             </li>
           </ul>
           <div className={layoutSmall.container}>
@@ -105,3 +129,5 @@ const LayoutMobile = () => {
     </header>
   )
 }
+
+export default Header

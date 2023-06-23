@@ -1,5 +1,5 @@
 // Admin dashboard
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { useAuthContext } from "@/contexts/userContext";
 import { Button } from "@/components/button";
@@ -9,7 +9,7 @@ import { AiOutlineExport, AiOutlineUserDelete } from "react-icons/ai";
 import { TbHomeHeart } from "react-icons/tb";
 import { BsBuildingAdd, BsShareFill } from "react-icons/bs";
 import { Avatar } from "@/components/avatar";
-import UserPhoto from "../../assets/images/user.jpg";
+import UserPhoto from "../../../public/images/user.jpg";
 import SearchForm from "@/components/searchForm";
 import UpdateForm from "@/forms/upDateForm";
 import Export from "@/components/exportHospital";
@@ -21,11 +21,19 @@ import style from "./style/dashboard.module.css"
 
 const Dashboard = () => {
   const { state } = useAuthContext();
-  const [selected, setSelected] = useState<string>("");
+  const [selected, setSelected] = useState<string>("profile ");
 
   const handleSelected = (link: string) => {
     setSelected(link);
+    localStorage.setItem("selectedLink", link)
   }
+
+  useEffect(() => {
+    const storedSelectedLink = localStorage.getItem("selectedLink");
+    if (storedSelectedLink) {
+      setSelected(storedSelectedLink);
+    }
+  }, [])
 
   // STYLE
   const home = `${style.list} ${style.home}`;
@@ -62,21 +70,30 @@ const Dashboard = () => {
               <TbHomeHeart className={style.icon} /> Home
             </Link>
           </li>
-          <Logout />
           <li onClick={() => handleSelected("delete")} className={`${del} ${selected === "delete" ? style.active : ""}`}>
             <AiOutlineUserDelete className={style.icon} /> Delete Account
           </li>
         </ul>
       </nav>
-      <section>
-        <div className={style.profilePhoto}>
+      <section className={style.profile}>
+        <div className={style.photo}>
           <Avatar image={UserPhoto} alt="User Photo" style={{ width: "100%", height: "100%", borderRadius: "50%", objectFit: "cover" }} />
         </div>
-        {selected === "profile" && <div>
-          <h2>Profile</h2>
-          <h2>{state.name}</h2>
-          <h2>{state.username}</h2>
-          <h2>{state.email}</h2>
+        {selected === "profile" && <div className={style.details}>
+          <h2 className={style.heading}>PROFILE DETAILS</h2>
+          <div className={style.user}>
+            <h2 className={style.title}>Name</h2>
+            <p className={style.state}>{state?.name}</p>
+          </div>
+          <div className={style.user}>
+            <h2 className={style.title}>Username</h2>
+            <p className={style.state}>{state?.username}</p>
+          </div>
+          <div className={style.user}>
+            <h2 className={style.title}>Email Address</h2>
+            <p className={style.state}>{state?.email}</p>
+          </div>
+          <Logout />
         </div>}
         {selected === "find-hospital" && <div>
           <h2>Find Hospital</h2>

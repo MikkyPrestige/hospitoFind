@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import style from "./style/footer.module.css";
 
-export const Footer = () => {
+const Footer = () => {
   return (
     <section className={style.footer}>
       <div className={style.box1}>
@@ -24,3 +24,5 @@ export const Footer = () => {
     </section>
   )
 }
+
+export default Footer

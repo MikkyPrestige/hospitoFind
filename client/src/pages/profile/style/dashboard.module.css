@@ -1,18 +1,17 @@
 .dashboard {
   width: 100%;
-  height: 100%;
+  height: 100dvb;
   background-color: #FFFFFF;
   display: flex;
   flex-direction: row;
   align-items: flex-start;
   justify-content: space-between;
-  padding: 5rem 0;
+  padding: 1rem 0;
 }
 .dashboard .nav {
   flex-basis: 40%;
   height: 100%;
   display: grid;
-  padding: 2rem 0;
 }
 .dashboard .nav .logo {
   color: #08299B;
@@ -21,7 +20,6 @@
   font-family: "DM Sans", sans-serif;
   letter-spacing: -0.0275rem;
   line-height: 150%;
-  margin-bottom: 4rem;
 }
 .dashboard .nav .lists {
   display: flex;
@@ -31,6 +29,7 @@
   gap: 2rem;
   border-right: 1px solid #E0E4EC;
   width: 100%;
+  height: 80%;
 }
 .dashboard .nav .lists .list {
   list-style: none;
@@ -66,7 +65,55 @@
   background-color: #E0E4EC;
   border-radius: 1.5rem;
 }
-.dashboard .profilePhoto {
+.dashboard .profile {
+  flex-grow: 1;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 4rem;
+  transform: translateY(-12%);
+}
+.dashboard .profile .photo {
   width: 8rem;
   height: 8rem;
+}
+.dashboard .profile .details {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  gap: 1rem;
+  width: 100%;
+}
+.dashboard .profile .details .heading {
+  color: #08299B;
+  font-size: 1.8rem;
+  font-family: "DM Sans", sans-serif;
+  font-weight: 700;
+  letter-spacing: -0.01925rem;
+  line-height: 150%;
+  align-self: center;
+}
+.dashboard .profile .details .user {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  font-family: "DM Sans", sans-serif;
+  font-weight: 500;
+  font-size: 1.4rem;
+  line-height: 150%;
+  margin-bottom: 1.5rem;
+}
+.dashboard .profile .details .user .title {
+  color: #E0E4EC;
+  font-size: 1.4rem;
+  letter-spacing: -0.01375rem;
+}
+.dashboard .profile .details .user .state {
+  color: #000000;
+  letter-spacing: -0.01031rem;
 }/*# sourceMappingURL=dashboard.module.css.map */
