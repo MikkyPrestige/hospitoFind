@@ -3,6 +3,7 @@ import express from "express";
 import mongoose from "mongoose";
 import path from "path";
 import cookieParser from "cookie-parser";
+// import fileuploader from "express-fileupload";
 import cors from "cors";
 import corsOptions from "./config/corsOptions.js";
 import connectDB from "./config/db.js";
@@ -28,7 +29,9 @@ connectDB();
 // Init Middleware
 app.use(logger);
 app.use(cors(corsOptions));
+// app.use(cors({ exposedHeader: "id" }));
 app.use(express.json());
+// app.use(fileuploader());
 app.use(cookieParser());
 app.use("/", express.static("public"))
 app.use("/", express.static("public/views"));

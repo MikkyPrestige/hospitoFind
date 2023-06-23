@@ -1,0 +1,79 @@
+@use "../../../assets/styles/mixins";
+@import "../../../assets/styles/variables";
+
+.dashboard {
+  width: 100%;
+  height: 100%;
+  background-color: $color-white;
+  @include mixins.flexRowAlignFlexStart;
+  padding: 5rem 0;
+  // position: relative;
+
+  .nav {
+    flex-basis: 40%;
+    height: 100%;
+    display: grid;
+    padding: 2rem 0;
+
+    .logo {
+      color: $color-blue;
+      font-size: $font-size-8;
+      font-weight: $font-weight-bd;
+      font-family: $font-sans;
+      letter-spacing: -0.0275rem;
+      line-height: $line-height-2;
+      margin-bottom: 4rem;
+    }
+
+    .lists {
+      @include mixins.flexColAlignStart;
+      gap: 2rem;
+      border-right: 1px solid $color-bg;
+      width: 100%;
+
+      .list {
+        list-style: none;
+        @include mixins.flexRowFlexStart;
+        gap: 1rem;
+        color: $color-black;
+        font-size: $font-size-1;
+        font-family: $font-sans;
+        font-weight: $font-weight-bd;
+        letter-spacing: -0.01375rem;
+        line-height: $line-height-2;
+        height: 2.875rem;
+        width: 100%;
+        padding: 0 1rem;
+        cursor: pointer;
+
+        .icon {
+          font-size: $font-size-4;
+          color: $color-blue;
+        }
+      }
+
+      .del {
+        background-color: $color-red;
+        border-radius: $border-radius-md;
+      }
+
+      .home {
+        background-color: $color-blue-light;
+        border-radius: $border-radius-md;
+      }
+
+      .active {
+        background-color: $color-bg;
+        border-radius: $border-radius-md;
+      }
+    }
+  }
+
+  .profilePhoto {
+    width: 8rem;
+    height: 8rem;
+    //   position: absolute;
+    //  top: 7rem;
+    //  right: 5rem;
+  }
+}

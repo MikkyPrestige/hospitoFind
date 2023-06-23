@@ -1,0 +1,72 @@
+.dashboard {
+  width: 100%;
+  height: 100%;
+  background-color: #FFFFFF;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: space-between;
+  padding: 5rem 0;
+}
+.dashboard .nav {
+  flex-basis: 40%;
+  height: 100%;
+  display: grid;
+  padding: 2rem 0;
+}
+.dashboard .nav .logo {
+  color: #08299B;
+  font-size: 2.6rem;
+  font-weight: 700;
+  font-family: "DM Sans", sans-serif;
+  letter-spacing: -0.0275rem;
+  line-height: 150%;
+  margin-bottom: 4rem;
+}
+.dashboard .nav .lists {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  gap: 2rem;
+  border-right: 1px solid #E0E4EC;
+  width: 100%;
+}
+.dashboard .nav .lists .list {
+  list-style: none;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 1rem;
+  color: #000000;
+  font-size: 1.2rem;
+  font-family: "DM Sans", sans-serif;
+  font-weight: 700;
+  letter-spacing: -0.01375rem;
+  line-height: 150%;
+  height: 2.875rem;
+  width: 100%;
+  padding: 0 1rem;
+  cursor: pointer;
+}
+.dashboard .nav .lists .list .icon {
+  font-size: 1.8rem;
+  color: #08299B;
+}
+.dashboard .nav .lists .del {
+  background-color: #FF033E;
+  border-radius: 1.5rem;
+}
+.dashboard .nav .lists .home {
+  background-color: #88B3DB;
+  border-radius: 1.5rem;
+}
+.dashboard .nav .lists .active {
+  background-color: #E0E4EC;
+  border-radius: 1.5rem;
+}
+.dashboard .profilePhoto {
+  width: 8rem;
+  height: 8rem;
+}/*# sourceMappingURL=dashboard.module.css.map */

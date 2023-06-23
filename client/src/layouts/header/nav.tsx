@@ -17,7 +17,7 @@ export const Header = () => {
   )
 }
 
-const NavLinks = ({ to, ...props }: NavLinksProps) => {
+export const NavLinks = ({ to, ...props }: NavLinksProps) => {
   let active = {
     color: "#08299B",
   }

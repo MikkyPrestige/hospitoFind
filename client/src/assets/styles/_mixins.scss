@@ -33,6 +33,20 @@
   justify-content: space-evenly;
 }
 
+@mixin flexRowAlignFlexStart {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: space-between;
+}
+
+@mixin flexRowFlexStart {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+}
+
 @mixin flexColSpaceBetween {
   display: flex;
   flex-direction: column;

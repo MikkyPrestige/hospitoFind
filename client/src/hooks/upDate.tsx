@@ -18,7 +18,9 @@ const useUpdate = () => {
         dispatch({
           type: "UPDATE",
           payload: {
-            user: user.username
+            username: user.username,
+            name: user.name,
+            email: user.email
           }
         })
       })
