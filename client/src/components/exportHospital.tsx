@@ -49,7 +49,7 @@ const ExportButton = ({ searchParams }: SearchProps) => {
       setError("")
       setExporting(false);
     } catch (err) {
-      setError(err.response.data.message || err.message);
+      setError(err.message);
       // console.log(err)
       setExporting(false);
     }

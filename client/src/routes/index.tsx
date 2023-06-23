@@ -5,6 +5,8 @@ const Home = lazy(() => import("@/pages/home/home"));
 const About = lazy(() => import("@/pages/about/about"));
 const LogIn = lazy(() => import("@/forms/login/logInForm"));
 const SignUp = lazy(() => import("@/forms/signUp/signUpForm"));
+const Dashboard = lazy(() => import("@/pages/profile/dashboard"));
+// const Profile = lazy(() => import("@/hooks/profile"));
 
 export const AppRoutes = () => {
   return (
@@ -13,6 +15,8 @@ export const AppRoutes = () => {
       <Route path="/about" element={<About />} />
       <Route path="/login" element={<LogIn />} />
       <Route path="/signUp" element={<SignUp />} />
+      <Route path="/dashboard" element={<Dashboard />} />
+      {/* <Route path="/profile/:username" element={<Profile />} /> */}
     </Routes>
   );
 }

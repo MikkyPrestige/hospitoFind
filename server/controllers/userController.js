@@ -2,22 +2,43 @@ import bcrypt from "bcrypt";
 import User from "../models/userModel.js";
 import asyncHandler from "express-async-handler";
 
+// @desc    Get image
+// @route   GET /users/image
+// @access  Private
+// const getImage = asyncHandler(async (req, res) => {
+//   const { id } = req.params
+//   const user = await User.findById({ _id: id }).select("ProfileDp").lean().exec()
+//   // const user = await User.findById(id).select("ProfileDp").lean().exec();
+//   if (!user) return res.status(404).json({ message: "User not found" })
+//   res.set("Content-Type", user.ProfileDp.ContentType)
+//   res.status(200).send(user.ProfileDp.Data);
+// });
+
 // @desc    Get all users
 // @route   GET /users
 // @access  Private
 const getUsers = asyncHandler(async (req, res) => {
   const users = await User.find().select("-password").lean()
-  if (!users) {
-    return res.status(404).json({ message: "No users found" })
-  }
+  if (!users) return res.status(404).json({ message: "No users found" })
   res.json(users);
 });
+
+// // @desc     get user by id
+// // @route    GET /users/:id
+// // @access   Private
+// const getUser = asyncHandler(async (req, res) => {
+//   const { username } = req.body
+//   const user = await User.findOne({ username }).select("-password").lean().exec()
+//   // const user = await User.findById(id).select("-password").lean().exec();
+//   if (!user) return res.status(404).json({ message: "User not found" })
+//   res.send(user)
+// })
 
 // @desc    Create new user
 // @route   POST /users
 // @access  Private
 const createUser = asyncHandler(async (req, res) => {
-  const { name, username, password, email } = req.body
+  const { name, username, email, password } = req.body
   if (!name || !username || !password || !email) {
     return res.status(400).json({ message: "Please fill in all fields" })
   }
@@ -43,13 +64,14 @@ const createUser = asyncHandler(async (req, res) => {
     email
   })
 
-  if (user) {
-    res.status(201).json({ message: `New user ${username} created` })
-  } else {
-    res.status(400).json({ message: "Invalid user data" })
-  }
+  // extract data and mimetype
+  // const { data, mimetype } = req.files.file;
+  // user.ProfileDp.Data = data
+  // user.ProfileDp.ContentType = mimetype
+  // await user.save()
+  // res.header("id", user._id).sendStatus(201)
+  res.status(201).json({ message: `${user.username} user created` })
 })
-
 
 // @desc    update user
 // @route   PATCH /users
@@ -64,11 +86,13 @@ const updateUser = asyncHandler(async (req, res) => {
   if (!user) {
     return res.status(404).json({ message: "User not found" });
   }
+
   // check if email is already taken by another user
   const existingEmailUser = await User.findOne({ email: { $ne: user.email }, email }).exec();
   if (existingEmailUser) {
     return res.status(409).json({ message: "Email already taken" });
   }
+
 
   // check if password is correct
   const isMatch = await bcrypt.compare(password, user.password)
@@ -80,6 +104,10 @@ const updateUser = asyncHandler(async (req, res) => {
   user.name = name
   user.username = username
   user.email = email
+  // extract data and mimetype
+  // const { data, mimetype } = req.files.file;
+  // user.ProfileDp.Data = data
+  // user.ProfileDp.ContentType = mimetype
 
   const updatedUser = await user.save()
   res.status(201).json({ message: `${updatedUser.username} user updated` })
@@ -113,7 +141,9 @@ const deleteUser = asyncHandler(async (req, res) => {
 })
 
 export default {
+  // getImage,
   getUsers,
+  // getUser,
   createUser,
   updateUser,
   deleteUser,

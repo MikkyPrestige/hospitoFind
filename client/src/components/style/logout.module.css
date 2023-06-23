@@ -1,0 +1,36 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+}
+
+.btn {
+  background-color: #ff5a5f !important;
+  width: 100%;
+  font-size: 1.2rem;
+  line-height: 150%;
+  letter-spacing: -0.01375rem;
+  font-family: DM Sans, sans-serif;
+}
+
+.span {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 0.5rem;
+  color: #000;
+  font-weight: 700;
+}
+
+.icon {
+  fill: #08299b;
+  font-size: 1.8rem;
+}
+
+.error {
+  color: #ff033e;
+  font-size: 1.2rem;
+  font-weight: 500;
+}

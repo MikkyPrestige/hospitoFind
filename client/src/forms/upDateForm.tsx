@@ -8,6 +8,7 @@ const UpdateForm = () => {
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  // const [profileDp, setProfileDp] = useState(null as File | null);
   const { loading, error, update } = useUpdate();
   const { state } = useAuthContext();
 
@@ -31,12 +32,17 @@ const UpdateForm = () => {
       case "password":
         setPassword(e.target.value);
         break;
+      // case "profileDp":
+      //   if (e.target.files && e.target.files.length > 0) {
+      //     setProfileDp(e.target.files[0]);
+      //   }
+      //   break;
     }
   }
 
   return (
     <div>
-      {state.user && <p>{state.user}</p>}
+      {state.username && <p>{state.username}</p>}
       <form onSubmit={handleUpdate}>
         <input
           type="text"
@@ -66,6 +72,11 @@ const UpdateForm = () => {
           value={password}
           onChange={handleInput}
         />
+        {/* <input
+          type="file"
+          name="profileDp"
+          onChange={handleInput}
+        /> */}
         <button type="submit" disabled={loading}>
           {loading ? "Updating..." : "Update"}
         </button>

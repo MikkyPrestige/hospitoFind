@@ -25,7 +25,7 @@ export interface Hospital {
   type: string;
   services: string[];
   comments: string[];
-  hours: Hours;
+  hours: Hours[];
 }
 
 export type LocationInput = {

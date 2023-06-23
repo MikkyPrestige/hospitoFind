@@ -10,6 +10,7 @@ const SignUp = () => {
   const [name, setName] = useState("");
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
+  // const [profileDp, setProfileDp] = useState(null as File | null);
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [errors, setErrors] = useState<{ [key: string]: string }>({});
@@ -56,6 +57,7 @@ const SignUp = () => {
     setName("")
     setUsername("")
     setEmail("")
+    // setProfileDp(null)
     setPassword("")
     setConfirmPassword("")
     setErrors({})
@@ -73,6 +75,11 @@ const SignUp = () => {
       case "email":
         setEmail(value)
         break
+      // case "profileDp":
+      //   if (files) {
+      //     // setProfileDp(files[0])
+      //   }
+      //   break
       case "password":
         setPassword(value)
         break
@@ -84,9 +91,9 @@ const SignUp = () => {
 
   const handleSignUp = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    if (!validateForm()) return
     const user: User = { name, username, email, password };
     signUp(user);
+    if (!validateForm()) return
     resetForm()
   };
 
@@ -182,6 +189,15 @@ const SignUp = () => {
               )
             }
           </div>
+          {/* <div className={style.form_group}>
+            <label htmlFor="profileDp" className={style.form_label}>Profile Picture</label>
+            <input
+              type="file"
+              name="profileDp"
+              onChange={handleChange}
+              className={style.form_input}
+            />
+          </div> */}
           {
             error && (
               <p className={style.form_error}>{error}</p>

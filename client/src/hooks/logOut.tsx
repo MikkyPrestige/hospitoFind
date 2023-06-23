@@ -1,6 +1,7 @@
 import axios from "axios";
 import { useState } from "react";
 import { useAuthContext } from "@/contexts/userContext";
+import { useNavigate } from "react-router-dom";
 
 const BASE_URL = "http://localhost:5000/auth/logout"
 
@@ -8,6 +9,7 @@ const useLogout = () => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
   const { dispatch } = useAuthContext();
+  const navigate = useNavigate();
 
   const logout = async () => {
     setLoading(true);
@@ -15,6 +17,7 @@ const useLogout = () => {
     await axios.post(`${BASE_URL}`)
       .then(() => {
         dispatch({ type: "LOGOUT" })
+        navigate("/")
       })
       .catch((error) => {
         if (error.response) {

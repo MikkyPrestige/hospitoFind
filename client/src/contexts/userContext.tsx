@@ -2,7 +2,11 @@ import { useContext, createContext, useReducer } from "react";
 import { AuthState, AuthAction, AuthContextType } from "@/services/userTypes";
 
 const initialState: AuthState = {
-  user: localStorage.getItem("user") || null,
+  // id: localStorage.getItem("id") || null,
+  username: localStorage.getItem("username") || null,
+  name: localStorage.getItem("name") || null,
+  email: localStorage.getItem("email") || null,
+  // profileDp: JSON.parse(localStorage.getItem("profileDp") || "null"),
   accessToken: localStorage.getItem("accessToken") || null
 }
 
@@ -11,20 +15,36 @@ const AuthContext = createContext<AuthContextType | undefined>(undefined);
 const authReducer = (state: AuthState, action: AuthAction): AuthState => {
   switch (action.type) {
     case "REGISTER":
-      localStorage.setItem("user", action.payload?.user || "");
+      // localStorage.setItem("id", action.payload?.id || "")
+      localStorage.setItem("username", action.payload?.username || "");
+      localStorage.setItem("name", action.payload?.name || "");
+      localStorage.setItem("email", action.payload?.email || "");
+      // localStorage.setItem("profileDp", JSON.stringify(action.payload?.profileDp || null));
       return {
         ...state,
-        user: action.payload?.user || state.user,
+        // id: action.payload?.id || state.id,
+        username: action.payload?.username || state.username,
+        name: action.payload?.name || state.name,
+        email: action.payload?.email || state.email,
+        // profileDp: action.payload?.profileDp || state.profileDp
       }
     case "LOGIN":
       // Retrieve the access token from the cookie
       const accessTokenCookie = document.cookie.split("; ").find((cookies) => cookies.startsWith("accessToken="))
       const accessToken = accessTokenCookie?.split("=")[1] || ""
-      localStorage.setItem("user", action.payload?.user || "");
+      // localStorage.setItem("id", (action.payload?.id || ""));
+      localStorage.setItem("username", (action.payload?.username || ""));
+      localStorage.setItem("name", (action.payload?.name || ""));
+      localStorage.setItem("email", (action.payload?.email || ""));
+      // localStorage.setItem("profileDp", JSON.stringify(action.payload?.profileDp || null));
       localStorage.setItem("accessToken", accessToken);
       return {
         ...state,
-        user: action.payload?.user || state.user,
+        // id: action.payload?.id || state.id,
+        username: action.payload?.username || state.username,
+        name: action.payload?.name || state.name,
+        email: action.payload?.email || state.email,
+        // profileDp: action.payload?.profileDp || state.profileDp,
         accessToken: accessToken || state.accessToken
       }
     case "REFRESH":
@@ -34,25 +54,42 @@ const authReducer = (state: AuthState, action: AuthAction): AuthState => {
         accessToken: action.payload?.accessToken || state.accessToken
       }
     case "UPDATE":
-      localStorage.setItem("user", action.payload?.user || "");
+      localStorage.setItem("username", action.payload?.username || "");
+      localStorage.setItem("name", action.payload?.name || "");
+      localStorage.setItem("email", action.payload?.email || "");
+      // localStorage.setItem("profileDp", JSON.stringify(action.payload?.profileDp || null));
       return {
         ...state,
-        user: action.payload?.user || state.user
+        username: action.payload?.username || state.username,
+        name: action.payload?.name || state.name,
+        email: action.payload?.email || state.email,
+        // profileDp: action.payload?.profileDp || state.profileDp
       }
     case "DELETE":
       return {
         ...state,
-        user: null,
+        // id: null,
+        username: null,
+        name: null,
+        email: null,
+        // profileDp: null,
         accessToken: null
       }
     case "LOGOUT":
       // remove access token from cookie
       document.cookie = `accessToken=; SameSite=None; Max-Age=0;`;
-      localStorage.removeItem("user");
+      localStorage.removeItem("username");
+      localStorage.removeItem("name");
+      localStorage.removeItem("email");
+      // localStorage.removeItem("profileDp");
       localStorage.removeItem("accessToken");
       return {
         ...state,
-        user: null,
+        // id: null,
+        username: null,
+        name: null,
+        email: null,
+        // profileDp: null,
         accessToken: null
       }
     default:
@@ -66,7 +103,7 @@ const ContextProvider = ({ children }: { children: React.ReactNode }) => {
   return (
     <AuthContext.Provider value={{ state, dispatch }}>
       {children}
-    </AuthContext.Provider>
+    </AuthContext.Provider >
   )
 }
 

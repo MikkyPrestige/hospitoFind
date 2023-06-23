@@ -4,10 +4,14 @@ import verify from "../middleware/verify.js";
 
 const userRouter = express.Router();
 
+// userRouter.route("/image/:id")
+//   .get(userController.getImage)
+
 userRouter.route("/")
-  .get(verify, userController.getUsers)
+  .get(userController.getUsers)
+  // .get(userController.getUser)
   .post(userController.createUser)
   .patch(userController.updateUser)
-  .delete(userController.deleteUser)
+  .delete(verify, userController.deleteUser)
 
 export default userRouter;

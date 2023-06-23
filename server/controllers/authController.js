@@ -25,12 +25,25 @@ const login = asyncHandler(async (req, res) => {
     return res.status(401).json({ message: "Invalid credentials" })
   }
 
+  // create tokens
   const accessToken = jwt.sign({ "username": user.username }, process.env.ACCESS_TOKEN_SECRET, { expiresIn: "30m" })
   const refreshToken = jwt.sign({ "username": user.username }, process.env.REFRESH_TOKEN_SECRET, { expiresIn: "7d" })
 
   res.cookie("jwt", refreshToken, { httpOnly: true, sameSite: "none", secure: true, maxAge: 7 * 24 * 60 * 60 * 1000 })
+  // console.log(user.name)
+  // console.log(user.username)
+  // console.log(user.email)
+  // console.log(accessToken)
+  // console.log(user.ProfileDp)
 
-  res.json({ accessToken })
+  // res.header("id", user._id).sendStatus(201);
+  res.status(201).json({
+    accessToken,
+    name: user.name,
+    username: user.username,
+    email: user.email,
+    // profileDp: user.ProfileDp
+  })
 })
 
 // @desc Refresh token
@@ -66,6 +79,7 @@ const logout = asyncHandler(async (req, res) => {
   if (!cookies?.jwt) return res.sendStatus(200)
 
   res.clearCookie("jwt", { httpOnly: true, sameSite: "none", secure: true }).json({ message: 'Cookie cleared' })
+  res.status(201).json({ message: "Logged out" })
 })
 
 export default {

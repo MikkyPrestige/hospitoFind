@@ -1,8 +1,10 @@
 export interface User {
+  // id: string
   name: string
   username: string
   email: string
   password: string
+  // profileDp: File | null
 }
 
 export type Login = {
@@ -11,14 +13,22 @@ export type Login = {
 }
 
 export interface AuthState {
-  user: string | null
+  // id: string | null
+  name: string | null
+  username: string | null
+  email: string | null
+  // profileDp: File | null
   accessToken: string | null
 }
 
 export interface AuthAction {
   type: "REGISTER" | "LOGIN" | "REFRESH" | "UPDATE" | "DELETE" | "LOGOUT"
   payload?: {
-    user?: string
+    // id?: string
+    name?: string
+    username?: string
+    email?: string
+    // profileDp?: File
     accessToken?: string
   }
 }
