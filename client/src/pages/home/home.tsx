@@ -2,14 +2,17 @@ import { Link } from "react-router-dom"
 import { BsArrowRightShort, BsSearchHeart } from "react-icons/bs"
 import { TfiLocationPin } from "react-icons/tfi"
 import { Avatar } from "@/components/avatar"
-import Image from "@/assets/images/doctor-patient.jpg"
+import Image from "../../../public/images/doctor-patient.jpg";
 import { Button } from "@/components/button"
 import style from "./style/home.module.css"
-import About from "../about/about"
+import About from "../about/about";
+// import Header from "@/layouts/header/nav";
+// import Footer from "@/layouts/footer/footer";
 
 const Home = () => {
   return (
     <>
+      {/* <Header /> */}
       <section className={style.bg}>
         <div className={style.container}>
           <h1 className={style.title}>Find the nearest hospital to you and make an appointment</h1>
@@ -34,6 +37,7 @@ const Home = () => {
         </div>
       </section>
       <About />
+      {/* <Footer /> */}
     </>
   );
 }

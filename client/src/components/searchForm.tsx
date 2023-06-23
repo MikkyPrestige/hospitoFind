@@ -55,7 +55,7 @@ const SearchForm = () => {
 
   return (
     <div>
-      <h1>Search Form</h1>
+      <h1>Find Hospital</h1>
       <form onSubmit={handleSubmit}>
         <label htmlFor="statesAndCapitals">States & Capitals</label>
         <select onChange={handleSelect}>
@@ -90,6 +90,7 @@ const SearchForm = () => {
       {error && <p>{error}</p>}
       {hospitals.length > 0 && hospitals.map((hospital, id) => (
         <div key={id}>
+          <h2>Hospitals nearby</h2>
           <h3>Hospital: {hospital.name}</h3>
           <p>Street: {hospital.address.street}</p>
           <p>City: {hospital.address.city}</p>
