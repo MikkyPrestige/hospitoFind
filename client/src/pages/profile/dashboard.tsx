@@ -95,8 +95,8 @@ const Dashboard = () => {
           </div>
           <Logout />
         </div>}
-        {selected === "find-hospital" && <div>
-          <h2>Find Hospital</h2>
+        {selected === "find-hospital" && <div className={style.details}>
+          <h2 className={style.heading}>Find Hospital</h2>
           <SearchForm />
         </div>}
         {selected === "share-hospital" && <div>

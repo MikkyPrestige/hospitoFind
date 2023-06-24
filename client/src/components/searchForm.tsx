@@ -3,6 +3,12 @@ import { LocationInput, Hospital, statesAndCities } from '@/services/hospitalTyp
 import { searchHospitals } from '@/services/api';
 import ExportButton from './exportHospital';
 import ShareButton from './shareHospitals';
+import { NavLink } from 'react-router-dom';
+import { AiOutlineSearch } from "react-icons/ai";
+import style from "./style/searchForm.module.css";
+import { Avatar } from './avatar';
+import HospitalPic from "../../public/images/hospital.png";
+import { Button } from './button';
 
 const SearchForm = () => {
   const [location, setLocation] = useState<LocationInput>({
@@ -54,46 +60,60 @@ const SearchForm = () => {
   };
 
   return (
-    <div>
-      <h1>Find Hospital</h1>
-      <form onSubmit={handleSubmit}>
-        <label htmlFor="statesAndCapitals">States & Capitals</label>
-        <select onChange={handleSelect}>
-          <option value="">Select a city & state</option>
-          {statesAndCities.map((name) => (
-            <option key={`${name.city},${name.state}`} value={`${name.city},${name.state}`}>
-              {`${name.city}, ${name.state}`}
-            </option>
-          ))}
-        </select>
-        <label htmlFor="state">State</label>
-        <input
-          type="text"
-          name="state"
-          value={location.state}
-          onChange={handleInput}
-        />
-
-        <label htmlFor="city">City</label>
-        <input
-          type="text"
-          name="city"
-          value={location.city}
-          onChange={handleInput}
-        />
-        <button type="submit" disabled={searching}>
-          {searching ? "Searching..." : "Search"}
-        </button>
-        <ExportButton searchParams={location} />
-      </form>
-      <ShareButton searchParams={location} />
-      {error && <p>{error}</p>}
-      {hospitals.length > 0 && hospitals.map((hospital, id) => (
-        <div key={id}>
-          <h2>Hospitals nearby</h2>
-          <h3>Hospital: {hospital.name}</h3>
-          <p>Street: {hospital.address.street}</p>
-          <p>City: {hospital.address.city}</p>
+    <>
+      <section className={style.wrappper}>
+        <form onSubmit={handleSubmit} className={style.form}>
+          <input
+            type="text"
+            name="address"
+            value={location.city || location.state}
+            onChange={handleInput}
+            placeholder="Address"
+            className={style.input}
+          />
+          {/* <div> */}
+          {/* <label htmlFor="state">State</label>
+          <input
+            type="text"
+            name="state"
+            value={location.state}
+            onChange={handleInput}
+          /> */}
+          {/*
+          <label htmlFor="city">City</label>
+          <input
+            type="text"
+            name="city"
+            value={location.city}
+            onChange={handleInput}
+          /> */}
+          {/* </div> */}
+          <select onChange={handleSelect} className={style.select}>
+            <option value="">City & State</option>
+            {statesAndCities.map((name) => (
+              <option key={`${name.city},${name.state}`} value={`${name.city},${name.state}`}>
+                {`${name.city}, ${name.state}`}
+              </option>
+            ))}
+          </select>
+          <button type="submit" disabled={searching} className={style.cta}>
+            {searching ? "Searching..." : <AiOutlineSearch className={style.icon} />}
+          </button>
+        </form>
+        {error && <p className={style.error}>{error}</p>}
+      </section>
+      <ul className={style.hospitals}>
+        {hospitals.length > 0 && hospitals.map((hospital, id) => (
+          <li key={id} className={style.hospital}>
+            <div className={style.img}>
+              <Avatar image={HospitalPic} alt="hospital" style={{ width: "100%", height: "100%", borderRadius: "1.2rem", objectFit: "cover" }} />
+            </div>
+            <div className={style.addressContainer}>
+              <h3 className={style.address}>{hospital.name}</h3>
+              <h3 className={style.address}>{hospital.address.street}</h3>
+            </div>
+            <NavLink to="/" className={style.link}>See more</NavLink>
+            {/* <p>City: {hospital.address.city}</p>
           <p>State: {hospital.address.state}</p>
           <p>Phone: {hospital.phoneNumber}</p>
           <p>Website: {hospital.website}</p>
@@ -109,11 +129,16 @@ const SearchForm = () => {
             <li key={id}>
               <span>{hour.day}</span>: <span>{hour.open}</span>
             </li>
-          ))}
-          </ul>
-        </div>
-      ))}
-    </div>
+          ))} */}
+            {/* </ul> */}
+          </li>
+        ))}
+        {hospitals.length > 0 && <div className={style.container}>
+          <ShareButton searchParams={location} />
+          <ExportButton searchParams={location} />
+        </div>}
+      </ul>
+    </>
   )
 }
 
