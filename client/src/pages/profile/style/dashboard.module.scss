@@ -70,9 +70,9 @@
   .profile {
     flex-grow: 1;
     height: 100%;
-    @include mixins.flexCol;
+    @include mixins.flexColFlexStart;
     gap: 4rem;
-    transform: translateY(-12%);
+    padding: 2rem 0;
 
     .photo {
       width: 8rem;

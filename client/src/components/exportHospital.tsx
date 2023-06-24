@@ -1,6 +1,7 @@
 import { useState } from "react";
 import axios from "axios";
 import { SearchProps, statesAndCities } from "@/services/hospitalTypes";
+import style from "./style/share.module.css";
 
 const BASE_URL = "http://localhost:5000/hospitals/export"
 
@@ -56,11 +57,11 @@ const ExportButton = ({ searchParams }: SearchProps) => {
   };
 
   return (
-    <div>
-      <button disabled={exporting} onClick={handleExport}>
+    <div className={style.cta}>
+      <button disabled={exporting} onClick={handleExport} className={style.btn}>
         {exporting ? 'Exporting...' : 'Export Hospitals'}
       </button>
-      {error && <p>{error}</p>}
+      {error && <p className={style.error}>{error}</p>}
     </div>
   );
 }
