@@ -28,7 +28,12 @@ export interface Hospital {
   hours: Hours[];
 }
 
+export interface HospitalDetailsProps {
+  hospital: Hospital[];
+}
+
 export type LocationInput = {
+  address?: string;
   city?: string;
   state?: string;
 };

@@ -10,13 +10,13 @@ import { TbHomeHeart } from "react-icons/tb";
 import { BsBuildingAdd, BsShareFill } from "react-icons/bs";
 import { Avatar } from "@/components/avatar";
 import UserPhoto from "../../../public/images/user.jpg";
-import SearchForm from "@/components/searchForm";
+import SearchForm from "@/components/hospitalsConfig/searchForm";
 import UpdateForm from "@/forms/upDateForm";
-import Export from "@/components/exportHospital";
-import Share from "@/components/shareHospitals";
+import Export from "@/components/hospitalsConfig/exportHospital";
+import Share from "@/components/hospitalsConfig/shareHospitals";
 import Editor from "@/markDown/editor";
-import DeleteBtn from "@/components/deleteBtn";
-import Logout from "@/components/logOutBtn";
+import DeleteBtn from "@/forms/deleteBtn";
+import Logout from "@/forms/logOutBtn";
 import style from "./style/dashboard.module.css"
 
 const Dashboard = () => {

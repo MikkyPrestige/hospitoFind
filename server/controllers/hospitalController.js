@@ -13,16 +13,42 @@ const getHospitals = asyncHandler(async (req, res) => {
   return res.json(hospitals);
 })
 
+// @desc Get hospital by name
+// @route GET /api/hospitals/:name
+// @access Public
+const getHospitalByName = asyncHandler(async (req, res) => {
+  const { name } = req.params
+  const hospital = await Hospital.findOne({ name }).lean()
+  // If no hospital
+  if (!hospital) {
+    return res.status(400).json({ message: 'Hospital not found' })
+  }
+  return res.json(hospital);
+})
+
 // @desc Search for hospitals by cities or state
 // @route GET /api/hospitals/search?city=city&state=state
 // @access Public
 const searchHospitals = asyncHandler(async (req, res) => {
-  const { city, state } = req.query;
+  const { address, city, state } = req.query;
   const query = {};
+  if (address) {
+    query['$or'] = [
+      { name: { $regex: new RegExp(address, 'i') } },
+      { 'address.street': { $regex: new RegExp(address, 'i') } }
+    ]
+  };
   if (city) query['address.city'] = { $regex: new RegExp(city, 'i') };
   if (state) query['address.state'] = { $regex: new RegExp(state, 'i') };
 
   const hospitals = await Hospital.find(query);
+  if (!hospitals) {
+    return res.status(400).json({
+      success: false,
+      error: "No matching records"
+    });
+  }
+
   return res.json(hospitals);
 })
 
@@ -134,6 +160,7 @@ const deleteHospital = asyncHandler(async (req, res) => {
 
 export {
   getHospitals,
+  getHospitalByName,
   searchHospitals,
   addHospital,
   updateHospital,
