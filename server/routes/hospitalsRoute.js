@@ -1,6 +1,7 @@
 import express from "express";
 import {
   getHospitals,
+  getHospitalByName,
   searchHospitals,
   addHospital,
   updateHospital,
@@ -18,6 +19,9 @@ hospitalRouter.route("/")
 
 hospitalRouter.route("/search")
   .get(searchHospitals)
+
+hospitalRouter.route("/:name")
+  .get(getHospitalByName)
 
 hospitalRouter.route("/")
   .delete(deleteHospital);

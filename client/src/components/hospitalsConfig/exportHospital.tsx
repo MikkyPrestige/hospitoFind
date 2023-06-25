@@ -1,7 +1,7 @@
 import { useState } from "react";
 import axios from "axios";
 import { SearchProps, statesAndCities } from "@/services/hospitalTypes";
-import style from "./style/share.module.css";
+import style from "@/components/style/share.module.css";
 
 const BASE_URL = "http://localhost:5000/hospitals/export"
 

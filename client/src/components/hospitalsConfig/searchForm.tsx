@@ -3,18 +3,19 @@ import { LocationInput, Hospital, statesAndCities } from '@/services/hospitalTyp
 import { searchHospitals } from '@/services/api';
 import ExportButton from './exportHospital';
 import ShareButton from './shareHospitals';
-import { NavLink } from 'react-router-dom';
+import { NavLink, Outlet } from 'react-router-dom';
 import { AiOutlineSearch } from "react-icons/ai";
-import style from "./style/searchForm.module.css";
-import { Avatar } from './avatar';
-import HospitalPic from "../../public/images/hospital.png";
-import { Button } from './button';
+import style from "@/components/style/searchForm.module.css";
+import { Avatar } from '../avatar';
+import HospitalPic from "../../../public/images/hospital.png";
 
 const SearchForm = () => {
   const [location, setLocation] = useState<LocationInput>({
+    address: '',
     city: '',
     state: ''
   });
+
   const [hospitals, setHospitals] = useState<Hospital[]>([]);
   const [error, setError] = useState<string>('');
   const [searching, setSearching] = useState<boolean>(false);
@@ -32,62 +33,41 @@ const SearchForm = () => {
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setSearching(true);
-    const query = location.city ? `city=${location.city}` : `state=${location.state}`;
-    const data = await searchHospitals(query);
-    if (!location.city && !location.state) {
-      setError('Please enter a city or state');
-      setSearching(false)
-      return
-    } else if (location.city && !statesAndCities.find(
-      (name) => name.city === location.city)) {
-      setError('Please enter a valid city');
-      setSearching(false)
-      return
-    } else if (location.state && !statesAndCities.find(
-      (name) => name.state === location.state)) {
-      setError('Please enter a valid state');
-      setSearching(false)
-      return
-    } else if (location.city && location.state && !statesAndCities.find(
-      (name) => name.city === location.city && name.state === location.state)) {
-      setError('Please enter a valid city and state');
-      setSearching(false)
-      return
+    if (!location.address && !location.city && !location.state) {
+      setError('Please enter/select a Hospital Address or Name');
+      setHospitals([]);
+      setSearching(false);
+      return;
     }
-    setHospitals(data);
+    const query = `address=${location.address}&city=${location.city}&state=${location.state}`;
+    try {
+      const data = await searchHospitals(query);
+      if (data.length === 0) {
+        setError('Sorry! We could not find any results matching your criteria.\nPlease try again with different parameters');
+        setHospitals([]);
+      } else {
+        setHospitals(data);
+        setError('');
+      }
+    } catch (err) {
+      setHospitals([]);
+      setError('An error occurred while searching for hospitals', err.response.data.message);
+    }
     setSearching(false);
-    setError('');
   };
 
   return (
     <>
-      <section className={style.wrappper}>
+      <section className={style.wrapper}>
         <form onSubmit={handleSubmit} className={style.form}>
           <input
             type="text"
             name="address"
-            value={location.city || location.state}
+            value={location.address}
             onChange={handleInput}
-            placeholder="Address"
+            placeholder="Address / Hospital Name"
             className={style.input}
           />
-          {/* <div> */}
-          {/* <label htmlFor="state">State</label>
-          <input
-            type="text"
-            name="state"
-            value={location.state}
-            onChange={handleInput}
-          /> */}
-          {/*
-          <label htmlFor="city">City</label>
-          <input
-            type="text"
-            name="city"
-            value={location.city}
-            onChange={handleInput}
-          /> */}
-          {/* </div> */}
           <select onChange={handleSelect} className={style.select}>
             <option value="">City & State</option>
             {statesAndCities.map((name) => (
@@ -112,25 +92,7 @@ const SearchForm = () => {
               <h3 className={style.address}>{hospital.name}</h3>
               <h3 className={style.address}>{hospital.address.street}</h3>
             </div>
-            <NavLink to="/" className={style.link}>See more</NavLink>
-            {/* <p>City: {hospital.address.city}</p>
-          <p>State: {hospital.address.state}</p>
-          <p>Phone: {hospital.phoneNumber}</p>
-          <p>Website: {hospital.website}</p>
-          <p>Email: {hospital.email}</p>
-          <p>Type: {hospital.type}</p>
-          <ul>Services: {hospital.services.map((service: string, id: number) => (
-            <li key={id}>{service}</li>
-          ))}</ul>
-          <ul>Comments: {hospital.comments.map((comment: string, id: number) => (
-            <li key={id}>{comment}</li>
-          ))}</ul>
-          <ul>Hours: {hospital.hours.map((hour: any, id: number) => (
-            <li key={id}>
-              <span>{hour.day}</span>: <span>{hour.open}</span>
-            </li>
-          ))} */}
-            {/* </ul> */}
+            <NavLink to={`${hospital.name}`} className={style.link}>See more</NavLink>
           </li>
         ))}
         {hospitals.length > 0 && <div className={style.container}>
@@ -138,6 +100,7 @@ const SearchForm = () => {
           <ExportButton searchParams={location} />
         </div>}
       </ul>
+      <Outlet />
     </>
   )
 }
