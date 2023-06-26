@@ -6,7 +6,7 @@ const About = lazy(() => import("@/pages/about/about"));
 const LogIn = lazy(() => import("@/forms/login/logInForm"));
 const SignUp = lazy(() => import("@/forms/signUp/signUpForm"));
 const Dashboard = lazy(() => import("@/pages/profile/dashboard"));
-const HospitalInfo = lazy(() => import("@/components/hospitalsConfig/hospitalInfo"));
+const HospitalInfo = lazy(() => import("@/components/hospitalsConfig/info"));
 // const Profile = lazy(() => import("@/hooks/profile"));
 
 export const AppRoutes = () => {
@@ -16,7 +16,6 @@ export const AppRoutes = () => {
       <Route path="/about" element={<About />} />
       <Route path="/login" element={<LogIn />} />
       <Route path="/signUp" element={<SignUp />} />
-      {/* <Route path="/dashboard/*" element={<Dashboard />} /> */}
       <Route path="/dashboard">
         <Route index element={<Dashboard />} />
         <Route path=":name" element={<HospitalInfo />} />

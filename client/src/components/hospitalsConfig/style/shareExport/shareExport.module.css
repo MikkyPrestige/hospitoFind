@@ -1,0 +1,42 @@
+.cta {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+}
+.cta .btn {
+  background-color: #08299B;
+  color: #FFFFFF;
+  border: 1px solid #08299B;
+  border-radius: 1rem;
+  display: inline-block;
+  font-size: 1.4rem;
+  text-decoration: none;
+  text-transform: uppercase;
+  padding: 0.5rem 1rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+.cta .btn:hover {
+  background-color: #08299B;
+  color: #FFFFFF;
+}
+.cta .btn .icon {
+  width: 2rem;
+  height: 2rem;
+  fill: #1976d2;
+}
+.cta .link {
+  text-decoration: none;
+  color: #08299B;
+  font-size: 1.6rem;
+  font-weight: 700;
+}
+.cta .error {
+  color: #FF033E;
+  font-size: 1.2rem;
+  margin: 1rem 0;
+}/*# sourceMappingURL=share.module.css.map */

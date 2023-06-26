@@ -1,13 +1,13 @@
 import React, { useState } from 'react';
 import { LocationInput, Hospital, statesAndCities } from '@/services/hospitalTypes';
 import { searchHospitals } from '@/services/api';
-import ExportButton from './exportHospital';
-import ShareButton from './shareHospitals';
+import ExportButton from './export';
+import ShareButton from './share';
 import { NavLink, Outlet } from 'react-router-dom';
 import { AiOutlineSearch } from "react-icons/ai";
-import style from "@/components/style/searchForm.module.css";
+import style from "./style/search/search.module.css";
 import { Avatar } from '../avatar';
-import HospitalPic from "../../../public/images/hospital.png";
+import HospitalPic from "@/assets/images/hospital.png";
 
 const SearchForm = () => {
   const [location, setLocation] = useState<LocationInput>({
@@ -77,7 +77,7 @@ const SearchForm = () => {
             ))}
           </select>
           <button type="submit" disabled={searching} className={style.cta}>
-            {searching ? "Searching..." : <AiOutlineSearch className={style.icon} />}
+            {searching ? <div></div> : <AiOutlineSearch className={style.icon} />}
           </button>
         </form>
         {error && <p className={style.error}>{error}</p>}

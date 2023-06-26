@@ -1,0 +1,149 @@
+@use "../../../../assets/styles/mixins";
+@import "../../../../assets/styles/variables";
+
+.wrapper {
+  width: 100%;
+  height: 100%;
+  @include mixins.flexCol;
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+
+  .form {
+    width: 100%;
+    @include mixins.flexRow;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+    padding: 1rem;
+
+    .input {
+      flex-basis: 100%;
+      height: 3rem;
+      border-radius: 1.5rem;
+      border: 1px solid $color-gray;
+      background: $color-white;
+      padding: 1rem;
+      margin-bottom: 1rem;
+      font-size: $font-size-4;
+      font-family: $font-sans;
+      font-weight: $font-weight-bd;
+      line-height: $line-height-2;
+      letter-spacing: -0.02063rem;
+      color: $color-black;
+      outline: none;
+
+      &::placeholder {
+        color: $color-gray;
+        text-align: center;
+        font-size: $font-size-4;
+        font-family: $font-sans;
+        font-weight: $font-weight-bd;
+        line-height: $line-height-2;
+        letter-spacing: -0.02063rem;
+      }
+    }
+
+    .select {
+      flex-shrink: 1;
+      height: 3rem;
+      border-radius: 1rem;
+      border: 1px solid $color-gray;
+      background: $color-white;
+      font-size: $font-size-3;
+      font-family: $font-sans;
+      font-weight: $font-weight-bd;
+      letter-spacing: -0.02063rem;
+      color: $color-black;
+      outline: none;
+    }
+
+    .cta {
+      flex-shrink: 2;
+      width: 4.75rem;
+      height: 3rem;
+      border-radius: $border-radius-md;
+      border: 1px solid $color-gray;
+      background: $color-blue;
+      font-size: $font-size-4;
+      font-family: $font-sans;
+      font-weight: $font-weight-bd;
+      letter-spacing: -0.02063rem;
+      outline: none;
+      @include mixins.flexRow;
+
+      &:hover {
+        background: $color-white;
+        color: $color-blue;
+        border: 1px solid $color-blue;
+      }
+
+
+      .icon {
+        width: 1.875rem;
+        height: 1.875rem;
+        color: $color-white;
+
+        &:hover {
+          color: $color-blue;
+        }
+      }
+    }
+  }
+
+  .error {
+    color: $color-red;
+    font-size: $font-size-3;
+    font-family: $font-sans;
+    font-weight: $font-weight-bd;
+    letter-spacing: -0.02063rem;
+    text-align: center;
+  }
+}
+
+.hospitals {
+  width: 100%;
+  height: 100%;
+  @include mixins.flexCol;
+  gap: 3.5rem;
+  padding: 1rem;
+
+  .hospital {
+    width: 100%;
+    @include mixins.flexCol;
+    gap: 2rem;
+    text-align: center;
+  }
+
+  .img {
+    width: 13.9375rem;
+    height: 12.5625rem;
+  }
+
+  .addressContainer {
+    width: 100%;
+    @include mixins.flexCol;
+    gap: 1rem;
+    text-align: center;
+    font-family: $font-sans;
+    line-height: $line-height-2;
+    letter-spacing: -0.01031rem;
+    color: $color-black;
+
+    .address {
+      font-size: $font-size-3;
+      font-weight: $font-weight-md;
+    }
+  }
+
+  .link {
+    font-size: $font-size-2;
+    font-weight: $font-weight-md;
+    letter-spacing: -0.01031rem;
+    color: $color-blue;
+  }
+}
+
+.container {
+  width: 100%;
+  @include mixins.flexRow;
+  gap: 2rem;
+}

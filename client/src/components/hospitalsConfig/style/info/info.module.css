@@ -1,0 +1,144 @@
+.hospital {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  padding: 2rem;
+}
+.hospital .heading {
+  font-size: 2rem;
+  font-family: "Inter", sans-serif;
+  color: #000000;
+  text-transform: lowercase;
+}
+.hospital .heading_span {
+  font-weight: 700;
+  font-family: "Inter", sans-serif;
+  font-style: italic;
+  color: #08299B;
+  text-transform: capitalize;
+  margin-left: 0.5rem;
+}
+.hospital .wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2rem;
+  width: 100%;
+  height: 100%;
+}
+.hospital .wrapper .img {
+  width: 43.75rem;
+  height: 43.75rem;
+}
+.hospital .wrapper .details {
+  background-color: #DBE0EA;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2rem;
+  padding: 3rem 0 1rem;
+  border-radius: 1rem;
+}
+.hospital .wrapper .details .title {
+  width: 80%;
+  border-radius: 1rem;
+  border: 1px solid #45413C;
+  background: #F5F5F5;
+  text-align: center;
+  font-size: 1.8rem;
+  font-family: "DM Sans", sans-serif;
+  font-weight: 700;
+  color: #000000;
+  letter-spacing: -0.02063rem;
+  line-height: 150%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+}
+.hospital .wrapper .details .service {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  width: 80%;
+  border-radius: 1rem;
+  border: 1px solid #45413C;
+  background: #F5F5F5;
+}
+.hospital .wrapper .details .service_title {
+  font-size: 1.8rem;
+  font-family: "DM Sans", sans-serif;
+  font-weight: 700;
+  color: #000000;
+  letter-spacing: -0.02063rem;
+  line-height: 150%;
+}
+.hospital .wrapper .details .service .list {
+  list-style-type: circle;
+  list-style-position: inside;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  padding: 1rem;
+}
+.hospital .wrapper .details .service .list .item {
+  font-size: 1.6rem;
+  font-family: "DM Sans", sans-serif;
+  font-weight: 500;
+  color: #000000;
+  letter-spacing: -0.02063rem;
+  line-height: 150%;
+}
+.hospital .wrapper .details .service .time_list {
+  list-style-type: none;
+}
+.hospital .wrapper .details .service .time_list__item {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 5rem;
+  font-size: 1.6rem;
+  font-family: "DM Sans", sans-serif;
+  font-weight: 500;
+  color: #000000;
+  letter-spacing: -0.02063rem;
+  line-height: 150%;
+}
+.hospital .wrapper .details .btn {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  padding: 0.5rem 1rem;
+  border-radius: 2rem;
+  background: #88B3DB;
+  color: #FFFFFF;
+  font-size: 1.8rem;
+  font-family: "DM Sans", sans-serif;
+  font-weight: 500;
+  text-transform: uppercase;
+}
+.hospital .link {
+  padding: 0.3rem 1rem;
+  border-radius: 1.5rem;
+  background: #08299B;
+  color: #FFFFFF;
+  font-size: 1.8rem;
+  font-family: "DM Sans", sans-serif;
+  font-weight: 500;
+  letter-spacing: -0.02063rem;
+  line-height: 150%;
+}/*# sourceMappingURL=info.module.css.map */

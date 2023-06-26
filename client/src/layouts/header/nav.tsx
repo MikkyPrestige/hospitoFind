@@ -4,8 +4,8 @@ import { FiMenu } from "react-icons/fi"
 import { VscAccount } from "react-icons/vsc"
 import { TbHomeHeart } from "react-icons/tb";
 import { useState } from "react";
-import Logo from "../../../public/images/logo.png";
-import Search from "../../../public/images/hospitalSearch.png";
+import Logo from "@/assets/images/logo.png";
+import Search from "@/assets/images/hospitalSearch.png";
 import { Avatar } from "@/components/avatar";
 import layoutSmall from "./style/nav.module.css";
 interface NavLinksProps extends NavLinkProps {
