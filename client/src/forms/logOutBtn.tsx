@@ -1,6 +1,6 @@
 import useLogout from "@/hooks/logOut";
 import { IoMdLogOut } from "react-icons/io";
-import style from "@/components/style/logout.module.css";
+import style from "./style/logout.module.css";
 import { Button } from "../components/button";
 
 const Logout = () => {

@@ -1,5 +1,5 @@
 import { Avatar } from "./avatar"
-import Treatment from "../../public/images/treatment.jpg";
+import Treatment from "@/assets/images/treatment.jpg";
 import style from "./style/bg.module.css";
 
 export const BG = () => {

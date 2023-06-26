@@ -1,7 +1,8 @@
 import { useState } from "react";
 import axios from "axios";
 import { SearchProps, statesAndCities } from "@/services/hospitalTypes";
-import style from "@/components/style/share.module.css";
+import style from "./style/shareExport/shareExport.module.css";
+import { TiExport } from "react-icons/ti";
 
 const BASE_URL = "http://localhost:5000/hospitals/export"
 
@@ -59,7 +60,8 @@ const ExportButton = ({ searchParams }: SearchProps) => {
   return (
     <div className={style.cta}>
       <button disabled={exporting} onClick={handleExport} className={style.btn}>
-        {exporting ? 'Exporting...' : 'Export Hospitals'}
+        {exporting ? <div>Exporting...</div> : <TiExport className={style.icon} />}
+        Export
       </button>
       {error && <p className={style.error}>{error}</p>}
     </div>

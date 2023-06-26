@@ -1,0 +1,161 @@
+.wrapper {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+}
+.wrapper .form {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  padding: 1rem;
+}
+.wrapper .form .input {
+  flex-basis: 100%;
+  height: 3rem;
+  border-radius: 1.5rem;
+  border: 1px solid #C1C1C1;
+  background: #FFFFFF;
+  padding: 1rem;
+  margin-bottom: 1rem;
+  font-size: 1.8rem;
+  font-family: "DM Sans", sans-serif;
+  font-weight: 700;
+  line-height: 150%;
+  letter-spacing: -0.02063rem;
+  color: #000000;
+  outline: none;
+}
+.wrapper .form .input::-moz-placeholder {
+  color: #C1C1C1;
+  text-align: center;
+  font-size: 1.8rem;
+  font-family: "DM Sans", sans-serif;
+  font-weight: 700;
+  line-height: 150%;
+  letter-spacing: -0.02063rem;
+}
+.wrapper .form .input::placeholder {
+  color: #C1C1C1;
+  text-align: center;
+  font-size: 1.8rem;
+  font-family: "DM Sans", sans-serif;
+  font-weight: 700;
+  line-height: 150%;
+  letter-spacing: -0.02063rem;
+}
+.wrapper .form .select {
+  flex-shrink: 1;
+  height: 3rem;
+  border-radius: 1rem;
+  border: 1px solid #C1C1C1;
+  background: #FFFFFF;
+  font-size: 1.6rem;
+  font-family: "DM Sans", sans-serif;
+  font-weight: 700;
+  letter-spacing: -0.02063rem;
+  color: #000000;
+  outline: none;
+}
+.wrapper .form .cta {
+  flex-shrink: 2;
+  width: 4.75rem;
+  height: 3rem;
+  border-radius: 1.5rem;
+  border: 1px solid #C1C1C1;
+  background: #08299B;
+  font-size: 1.8rem;
+  font-family: "DM Sans", sans-serif;
+  font-weight: 700;
+  letter-spacing: -0.02063rem;
+  outline: none;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+.wrapper .form .cta:hover {
+  background: #FFFFFF;
+  color: #08299B;
+  border: 1px solid #08299B;
+}
+.wrapper .form .cta .icon {
+  width: 1.875rem;
+  height: 1.875rem;
+  color: #FFFFFF;
+}
+.wrapper .form .cta .icon:hover {
+  color: #08299B;
+}
+.wrapper .error {
+  color: #FF033E;
+  font-size: 1.6rem;
+  font-family: "DM Sans", sans-serif;
+  font-weight: 700;
+  letter-spacing: -0.02063rem;
+  text-align: center;
+}
+
+.hospitals {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 3.5rem;
+  padding: 1rem;
+}
+.hospitals .hospital {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2rem;
+  text-align: center;
+}
+.hospitals .img {
+  width: 13.9375rem;
+  height: 12.5625rem;
+}
+.hospitals .addressContainer {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  text-align: center;
+  font-family: "DM Sans", sans-serif;
+  line-height: 150%;
+  letter-spacing: -0.01031rem;
+  color: #000000;
+}
+.hospitals .addressContainer .address {
+  font-size: 1.6rem;
+  font-weight: 500;
+}
+.hospitals .link {
+  font-size: 1.4rem;
+  font-weight: 500;
+  letter-spacing: -0.01031rem;
+  color: #08299B;
+}
+
+.container {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 2rem;
+}/*# sourceMappingURL=search.module.css.map */

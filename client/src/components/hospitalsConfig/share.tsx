@@ -1,7 +1,8 @@
 import axios from "axios";
 import { SearchProps, statesAndCities } from "@/services/hospitalTypes";
 import { useState } from "react";
-import style from "@/components/style/share.module.css";
+import style from "./style/shareExport/shareExport.module.css";
+import { FcShare } from "react-icons/fc";
 
 const BASE_URL = "http://localhost:5000/hospitals/share"
 
@@ -56,7 +57,8 @@ const ShareButton = ({ searchParams }: SearchProps) => {
   return (
     <div className={style.cta}>
       <button type="submit" onClick={handleShare} disabled={generating} className={style.btn}>
-        {generating ? "Getting Your Link..." : "Share Hospitals"}
+        {generating ? <div className={style.loader}>Getting Your Link...</div> : <FcShare className={style.icon} />}
+        Share
       </button>
       {shareableLink &&
         <a href={shareableLink} target="_blank" rel="noreferrer" className={style.link}>

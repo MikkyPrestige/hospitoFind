@@ -4,15 +4,15 @@ import { SlShareAlt } from "react-icons/sl"
 import { MdStarBorderPurple500 } from "react-icons/md"
 import style from "./style/about.module.css";
 import { Avatar } from "@/components/avatar";
-import Doctor from "../../../public/images/patient-doctor.jpg";
-import Stethoscope from "../../../public/images/stethoscope.jpg";
-import Handset from "../../../public/images/handset.jpg";
-import Laptop from "../../../public/images/laptop.jpg";
-import Women from "../../../public/images/women.jpg";
-import Reviewer1 from "../../../public/images/reviewer1.jpg";
-import Reviewer2 from "../../../public/images/reviewer2.jpg";
-import Reviewer3 from "../../../public/images/reviewer3.jpg";
-import Patient from "../../../public/images/patient.jpg";
+import Doctor from "@/assets/images/patient-doctor.jpg";
+import Stethoscope from "@/assets/images/stethoscope.jpg";
+import Handset from "@/assets/images/handset.jpg";
+import Laptop from "@/assets/images/laptop.jpg";
+import Women from "@/assets/images/women.jpg";
+import Reviewer1 from "@/assets/images/reviewer1.jpg";
+import Reviewer2 from "@/assets/images/reviewer2.jpg";
+import Reviewer3 from "@/assets/images/reviewer3.jpg";
+import Patient from "@/assets/images/patient.jpg";
 import { Button } from "@/components/button";
 import Header from "@/layouts/header/nav";
 import Footer from "@/layouts/footer/footer";

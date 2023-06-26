@@ -2,7 +2,7 @@ import { Link } from "react-router-dom"
 import { BsArrowRightShort, BsSearchHeart } from "react-icons/bs"
 import { TfiLocationPin } from "react-icons/tfi"
 import { Avatar } from "@/components/avatar"
-import Image from "../../../public/images/doctor-patient.jpg";
+import Image from "@/assets/images/doctor-patient.jpg";
 import { Button } from "@/components/button"
 import style from "./style/home.module.css"
 import About from "../about/about";
