@@ -3,7 +3,10 @@ export interface SearchProps {
   searchParams: {
     city?: string;
     state?: string;
-  };
+    address?: string;
+    name?: string;
+  }
+
 }
 export interface Address {
   street: string;
@@ -28,8 +31,9 @@ export interface Hospital {
   hours: Hours[];
 }
 
-export interface HospitalDetailsProps {
-  hospital: Hospital[];
+export type FindInput = {
+  address?: string;
+  name?: string;
 }
 
 export type LocationInput = {

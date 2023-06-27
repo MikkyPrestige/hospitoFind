@@ -1,5 +1,5 @@
 import { Hospital } from "@/services/hospitalTypes";
-import { Avatar } from "../avatar";
+import { Avatar } from "@/components/avatar";
 import HospitalPic from "@/assets/images/hospital.png";
 import style from "./style/info/info.module.css";
 import { useEffect, useState } from "react";
