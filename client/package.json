@@ -12,6 +12,7 @@
   "dependencies": {
     "@auth0/auth0-react": "^2.1.0",
     "axios": "^1.4.0",
+    "mapbox-gl": "^2.15.0",
     "path": "^0.12.7",
     "prettier": "^2.8.8",
     "react": "^18.2.0",
@@ -25,6 +26,7 @@
   },
   "devDependencies": {
     "@types/jsonwebtoken": "^9.0.2",
+    "@types/mapbox-gl": "^2.7.11",
     "@types/react": "^18.2.11",
     "@types/react-dom": "^18.0.11",
     "@types/react-icons": "^3.0.0",
