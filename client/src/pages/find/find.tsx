@@ -1,6 +1,6 @@
 import { NavLink } from "react-router-dom";
 import { useState, useEffect, useRef } from "react";
-import { searchHospitals } from "@/services/api";
+import { findHospitals } from "@/services/api";
 import { FindInput, Hospital } from "@/services/hospitalTypes";
 import ShareButton from "@/hospitalsConfig/share";
 import ExportButton from "@/hospitalsConfig/export";
@@ -12,13 +12,15 @@ import mapboxgl from "mapbox-gl";
 import { accessToken } from "@/authConfig/mapbox";
 import 'mapbox-gl/dist/mapbox-gl.css';
 import style from "./style/find.module.css";
+import Header from "@/layouts/header/nav";
 
 const FindHospital = () => {
   const [hospitals, setHospitals] = useState<Hospital[]>([]);
   const [error, setError] = useState<string>("");
   const [searching, setSearching] = useState<boolean>(false);
   const [location, setLocation] = useState<FindInput>({
-    address: "",
+    street: "",
+    cityState: "",
     name: ""
   });
   const [map, setMap] = useState(null);
@@ -27,7 +29,8 @@ const FindHospital = () => {
   const handleInput = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
     setLocation({ ...location, [name]: value });
-  }
+  };
+
 
   useEffect(() => {
     const map = new mapboxgl.Map({
@@ -44,16 +47,16 @@ const FindHospital = () => {
   const handleSearch = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setSearching(true);
-    if (!location.address && !location.name) {
+    if (!location.street && !location.cityState && !location.name) {
       setError('Please enter a Hospital Address or Name');
       setHospitals([]);
       setSearching(false);
       return;
     }
-    const query = `address=${location.address}&name=${location.name}`;
-    // const query = `address=${location.address.street}&city=${location.address.city}&state=${location.address.state}&name=${location.name}`;
+    const query = `street=${location.street}&cityState=${location.cityState}&name=${location.name}`;
+    console.log(query)
     try {
-      const data = await searchHospitals(query);
+      const data = await findHospitals(query);
       if (data.length === 0) {
         setError('Sorry! We could not find any results matching your criteria.');
         setHospitals([]);
@@ -69,74 +72,78 @@ const FindHospital = () => {
   }
 
   return (
-    <section className={style.findSection}>
-      <h1 className={style.title}>Find Hospital</h1>
-      <div className={style.search}>
-        <div className={style.map}>
-          <div
-            ref={mapContainer}
-            style={{ width: "100%", height: "100%", borderRadius: "1rem" }}
-          ></div>
-        </div>
-        <div className={style.container}>
-          <form onSubmit={handleSearch} className={style.form}>
-            <input
-              type="text"
-              name="address"
-              placeholder="Hospital Address"
-              onChange={handleInput}
-              className={style.input}
-            />
-            <input
-              type="text"
-              name="name"
-              placeholder="Hospital Name"
-              onChange={handleInput}
-              className={style.input}
-            />
-            <button type="submit" disabled={searching} className={style.cta}>
-              <AiOutlineSearch className={style.icon} />
-            </button>
-          </form>
-          <div className={style.user}>
-            <Avatar image={User} alt="User Photo" style={{ width: "100%", height: "100%", borderRadius: "50%", objectFit: "cover" }} />
+    <>
+      <Header />
+      <section className={style.findSection}>
+        <h1 className={style.title}>Find Hospital</h1>
+        <div className={style.search}>
+          <div className={style.map}>
+            <div
+              ref={mapContainer}
+              style={{ width: "100%", height: "100%", borderRadius: "1rem" }}
+            ></div>
           </div>
+          <div className={style.container}>
+            <form onSubmit={handleSearch} className={style.form}>
+              <input
+                type="text"
+                name="street"
+                placeholder="Enter hospital Street Address"
+                onChange={handleInput}
+                className={style.input}
+                value={location.street}
+              />
+              <input
+                type="text"
+                name="cityState"
+                placeholder=" Enter City or State"
+                onChange={handleInput}
+                className={style.input}
+                value={location.cityState}
+              />
+              <input
+                type="text"
+                name="name"
+                placeholder="Hospital Name"
+                onChange={handleInput}
+                className={style.input}
+                value={location.name}
+              />
+              <button type="submit" disabled={searching} className={style.cta}>
+                <AiOutlineSearch className={style.icon} />
+              </button>
+            </form>
+            <div className={style.user}>
+              <Avatar image={User} alt="User Photo" style={{ width: "100%", height: "100%", borderRadius: "50%", objectFit: "cover" }} />
+            </div>
+          </div>
+          {error && <p className={style.error}>{error}</p>}
         </div>
-        {error && <p className={style.error}>{error}</p>}
-      </div>
-      <div className={style.found}>
-        {hospitals.length > 0 && <div>
-          {location.address &&
-            <h2 className={style.found_title}>{hospitals.length} Hospitals found in
-              <span className={style.found_title_span}> {location.address}</span>
-            </h2>
-          }
-          {location.name &&
-            <h2>{hospitals.length} Hospitals found with
-              <span className={style.found_title_span}> {location.name}</span>
-            </h2>
-          }
-        </div>}
-        <ul className={style.list}>
-          {hospitals.length > 0 && hospitals.map((hospital, id) => (
-            <li key={id} className={style.item}>
-              <div className={style.img}>
-                <Avatar image={HospitalPic} alt="hospital" style={{ width: "100%", height: "100%", borderRadius: "1.2rem", objectFit: "cover" }} />
-              </div>
-              <div className={style.result}>
-                <p className={style.hospital}>{hospital.name}</p>
-                <p className={style.hospital}>{hospital.address.street}</p>
-              </div>
-              <NavLink to={`${hospital.name}`} className={style.link}>See more</NavLink>
-            </li>
-          ))}
-        </ul>
-        {hospitals.length > 0 && <div className={style.cta_btns}>
-          <ShareButton searchParams={location} />
-          <ExportButton searchParams={location} />
-        </div>}
-      </div>
-    </section>
+        <div className={style.found}>
+          {hospitals.length > 0 && <div>
+            <h2><span className={style.found_title_span}>{hospitals.length}</span> Hospitals found</h2>
+          </div>}
+          <ul className={style.list}>
+            {hospitals.length > 0 && hospitals.map((hospital, id) => (
+              <li key={id} className={style.item}>
+                <div className={style.img}>
+                  <Avatar image={HospitalPic} alt="hospital" style={{ width: "100%", height: "100%", borderRadius: "1.2rem", objectFit: "cover" }} />
+                </div>
+                <div className={style.result}>
+                  <p className={style.hospital}>{hospital.name}</p>
+                  <p className={style.hospital}>{hospital.address.street}</p>
+                </div>
+                <NavLink to={`${hospital.name}`} className={style.link}>See more</NavLink>
+              </li>
+            ))}
+          </ul>
+          {hospitals.length > 0 && <div className={style.cta_btns}>
+            <ShareButton searchParams={location} />
+            <ExportButton searchParams={location} />
+          </div>}
+        </div>
+      </section>
+    </>
   )
 }
 

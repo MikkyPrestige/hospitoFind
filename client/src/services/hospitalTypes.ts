@@ -32,7 +32,8 @@ export interface Hospital {
 }
 
 export type FindInput = {
-  address?: string;
+  street?: string;
+  cityState?: string;
   name?: string;
 }
 

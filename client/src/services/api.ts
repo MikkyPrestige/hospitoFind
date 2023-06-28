@@ -11,6 +11,7 @@ export async function getHospitals() {
     return hospitals;
   } catch (error) {
     console.log(error);
+    return error
   }
 }
 
@@ -22,6 +23,19 @@ export async function getHospitalByName(name: string) {
     return hospital;
   } catch (error) {
     console.log(error);
+    return error
+  }
+}
+
+// find hospital by name or address
+export async function findHospitals(query: string) {
+  try {
+    const response = await axios.get(`${BASE_URL}/find?${query}`);
+    const foundHospital = response.data;
+    return foundHospital;
+  } catch (error) {
+    console.log(error);
+    return error
   }
 }
 
@@ -33,6 +47,7 @@ export async function searchHospitals(query: string) {
     return searchedHospitals;
   } catch (error) {
     console.log(error);
+    return error
   }
 }
 
@@ -44,6 +59,7 @@ export async function addHospital(hospital: Hospital) {
     return newHospital;
   } catch (error) {
     console.log(error);
+    return error
   }
 }
 
@@ -55,6 +71,7 @@ export async function updateHospital(hospital: Hospital, id: number) {
     return updatedHospital;
   } catch (error) {
     console.log(error);
+    return error
   }
 }
 
@@ -66,5 +83,6 @@ export async function deleteHospital(id: number) {
     return deletedHospital;
   } catch (error) {
     console.log(error);
+    return error
   }
 }
