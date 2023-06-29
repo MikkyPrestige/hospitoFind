@@ -26,6 +26,16 @@ const HospitalInfo = () => {
     fetchHospitalDetails();
   }, [name]);
 
+  // const saveHospital = async () => {
+  //   try {
+  //     console.log(hospital)
+  //     await saveHospitalToLibrary(hospital);
+  //     console.log(`saved ${hospital}`)
+  //   } catch (err) {
+  //     setError("Error saving hospital to library:", err);
+  //   }
+  // }
+
   if (!hospital) {
     return <p>Loading hospital details...</p>;
   }
@@ -97,7 +107,9 @@ const HospitalInfo = () => {
             </ul>
           </div>
           {error && <p>{error}</p>}
-          <button className={style.btn}>
+          <button className={style.btn}
+          // onClick={saveHospital}
+          >
             Save
             <Avatar
               image={Save}

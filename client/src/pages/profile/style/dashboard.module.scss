@@ -5,8 +5,18 @@
   width: 100%;
   height: 100dvb;
   background-color: $color-white;
-  @include mixins.flexRowAlignFlexStart;
   padding: 1rem 0;
+  position: relative;
+
+  .section {
+    width: 100%;
+    height: 100%;
+    @include mixins.flexRowAlignFlexStart;
+    gap: 1rem;
+    position: absolute;
+    top: 0;
+    left: 0;
+  }
 
   .nav {
     flex-basis: 40%;
@@ -14,12 +24,17 @@
     display: grid;
 
     .logo {
-      color: $color-blue;
-      font-size: $font-size-8;
-      font-weight: $font-weight-bd;
-      font-family: $font-sans;
-      letter-spacing: -0.0275rem;
-      line-height: $line-height-2;
+      width: 100%;
+      height: 100%;
+
+      .logo_link {
+        color: $color-blue;
+        font-size: $font-size-8;
+        font-weight: $font-weight-bd;
+        font-family: $font-sans;
+        letter-spacing: -0.0275rem;
+        line-height: $line-height-2;
+      }
     }
 
     .lists {
@@ -65,6 +80,25 @@
         border-radius: $border-radius-md;
       }
     }
+  }
+
+  .sidebar {
+    position: absolute;
+    top: 0;
+    right: 0;
+    z-index: 10;
+    padding: 1rem;
+
+    .close {
+      fill: $color-blue;
+      stroke: $color-bg;
+      font-size: 3.5rem;
+      cursor: pointer;
+    }
+  }
+
+  .sidebarHidden {
+    display: none;
   }
 
   .profile {
