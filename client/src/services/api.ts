@@ -86,3 +86,27 @@ export async function deleteHospital(id: number) {
     return error
   }
 }
+
+// save hospital
+// export async function saveHospitalToLibrary(hospital: Hospital) {
+//   try {
+//     const response = await axios.post("http://localhost:5000/user/library", hospital);
+//     const savedHospital = response.data;
+//     // console.log(savedHospital)
+//     return savedHospital;
+//   } catch (error) {
+//     throw new Error(error.response?.data?.message || "Failed to save hospital details");
+//   }
+// }
+
+// get saved hospitals
+// export async function getSavedHospitals() {
+//   try {
+//     const response = await axios.get("http://localhost:5000/user/library")
+//     const savedHospitals = response.data;
+//     return savedHospitals;
+//   } catch (error) {
+//     console.log(error);
+//     return error
+//   }
+// }

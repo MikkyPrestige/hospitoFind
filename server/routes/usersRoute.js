@@ -14,4 +14,8 @@ userRouter.route("/")
   .patch(userController.updateUser)
   .delete(verify, userController.deleteUser)
 
+// userRouter.route("/library")
+//   .post(userController.saveHospital)
+//   .get(userController.getSavedHospital)
+
 export default userRouter;

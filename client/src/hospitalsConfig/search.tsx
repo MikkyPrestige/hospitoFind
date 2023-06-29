@@ -85,6 +85,9 @@ const Search = () => {
         {error && <p className={style.error}>{error}</p>}
       </section>
       <ul className={style.hospitals}>
+        <h1 className={style.title}>
+          {hospitals.length > 0 ? `Showing ${hospitals.length} hospitals found` : 'Search for a hospital to see results...'}
+        </h1>
         {hospitals.length > 0 && hospitals.map((hospital, id) => (
           <li key={id} className={style.hospital}>
             <div className={style.img}>

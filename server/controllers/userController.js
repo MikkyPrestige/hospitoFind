@@ -140,6 +140,43 @@ const deleteUser = asyncHandler(async (req, res) => {
   res.status(201).json({ message: `${deletedUser.username} user deleted` })
 })
 
+// @desc save hospital
+// @route POST /hospitals
+// @access Public
+// const saveHospital = asyncHandler(async (req, res) => {
+//   const userName = req.user.name
+//   console.log(req.user.name)
+
+//   const hospitalDetails = req.body.hospital
+//   // const hospital = await Hospital.create(hospitalDetails)
+//   User.findOneAndUpdate(
+//     userName,
+//     { $push: { hospitals: hospitalDetails } },
+//     { new: true }
+//   ).then((user) => {
+//     res.status(201).json({ message: `${user.username} hospital saved` })
+//   })
+//     .catch((err) => {
+//       res.status(400).json({ message: "Failed to save hospital details" })
+//     }
+//     )
+// })
+
+// @desc get saved hospital
+// @route GET /hospitals
+// @access Public
+// const getSavedHospital = asyncHandler(async (req, res) => {
+//   const userId = req.user.id
+
+//   User.findById(userId).select("hospitals").lean().exec()
+//     .then((user) => {
+//       res.status(200).json(user.hospitals)
+//     })
+//     .catch((err) => {
+//       res.status(400).json({ message: "Failed to get saved hospital details" })
+//     })
+// })
+
 export default {
   // getImage,
   getUsers,
@@ -147,5 +184,7 @@ export default {
   createUser,
   updateUser,
   deleteUser,
+  // saveHospital,
+  // getSavedHospital
 }
 

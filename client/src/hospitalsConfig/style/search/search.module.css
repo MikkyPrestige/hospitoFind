@@ -22,12 +22,12 @@
   flex-basis: 100%;
   height: 3rem;
   border-radius: 1.5rem;
-  border: 1px solid #c1c1c1;
-  background: #ffffff;
+  border: 1px solid #C1C1C1;
+  background: #FFFFFF;
   padding: 1rem;
   margin-bottom: 1rem;
   font-size: 1.8rem;
-  font-family: 'DM Sans', sans-serif;
+  font-family: "DM Sans", sans-serif;
   font-weight: 700;
   line-height: 150%;
   letter-spacing: -0.02063rem;
@@ -35,19 +35,19 @@
   outline: none;
 }
 .wrapper .form .input::-moz-placeholder {
-  color: #c1c1c1;
+  color: #C1C1C1;
   text-align: center;
   font-size: 1.8rem;
-  font-family: 'DM Sans', sans-serif;
+  font-family: "DM Sans", sans-serif;
   font-weight: 700;
   line-height: 150%;
   letter-spacing: -0.02063rem;
 }
 .wrapper .form .input::placeholder {
-  color: #c1c1c1;
+  color: #C1C1C1;
   text-align: center;
   font-size: 1.8rem;
-  font-family: 'DM Sans', sans-serif;
+  font-family: "DM Sans", sans-serif;
   font-weight: 700;
   line-height: 150%;
   letter-spacing: -0.02063rem;
@@ -56,10 +56,10 @@
   flex-shrink: 1;
   height: 3rem;
   border-radius: 1rem;
-  border: 1px solid #c1c1c1;
-  background: #ffffff;
+  border: 1px solid #C1C1C1;
+  background: #FFFFFF;
   font-size: 1.6rem;
-  font-family: 'DM Sans', sans-serif;
+  font-family: "DM Sans", sans-serif;
   font-weight: 700;
   letter-spacing: -0.02063rem;
   color: #000000;
@@ -70,10 +70,10 @@
   width: 4.75rem;
   height: 3rem;
   border-radius: 1.5rem;
-  border: 1px solid #c1c1c1;
-  background: #08299b;
+  border: 1px solid #C1C1C1;
+  background: #08299B;
   font-size: 1.8rem;
-  font-family: 'DM Sans', sans-serif;
+  font-family: "DM Sans", sans-serif;
   font-weight: 700;
   letter-spacing: -0.02063rem;
   outline: none;
@@ -83,22 +83,22 @@
   justify-content: center;
 }
 .wrapper .form .cta:hover {
-  background: #ffffff;
-  color: #08299b;
-  border: 1px solid #08299b;
+  background: #FFFFFF;
+  color: #08299B;
+  border: 1px solid #08299B;
 }
 .wrapper .form .cta .icon {
   width: 1.875rem;
   height: 1.875rem;
-  color: #ffffff;
+  color: #FFFFFF;
 }
 .wrapper .form .cta .icon:hover {
-  color: #08299b;
+  color: #08299B;
 }
 .wrapper .error {
-  color: #ff033e;
+  color: #FF033E;
   font-size: 1.6rem;
-  font-family: 'DM Sans', sans-serif;
+  font-family: "DM Sans", sans-serif;
   font-weight: 700;
   letter-spacing: -0.02063rem;
   text-align: center;
@@ -108,14 +108,25 @@
   width: 100%;
   height: 100%;
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   align-items: center;
   justify-content: center;
+  flex-wrap: wrap;
   gap: 3.5rem;
   padding: 1rem;
 }
-.hospitals .hospital {
+.hospitals .title {
+  color: #08299B;
+  font-size: 2rem;
+  font-family: "Inter", sans-serif;
+  font-weight: 700;
+  letter-spacing: -0.02063rem;
+  line-height: 150%;
+  text-align: center;
   width: 100%;
+}
+.hospitals .hospital {
+  width: 20rem;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -135,7 +146,7 @@
   justify-content: center;
   gap: 1rem;
   text-align: center;
-  font-family: 'DM Sans', sans-serif;
+  font-family: "DM Sans", sans-serif;
   line-height: 150%;
   letter-spacing: -0.01031rem;
   color: #000000;
@@ -148,7 +159,7 @@
   font-size: 1.4rem;
   font-weight: 500;
   letter-spacing: -0.01031rem;
-  color: #08299b;
+  color: #08299B;
 }
 
 .container {
@@ -158,4 +169,4 @@
   align-items: center;
   justify-content: center;
   gap: 2rem;
-} /*# sourceMappingURL=search.module.css.map */
+}/*# sourceMappingURL=search.module.css.map */
