@@ -2,31 +2,34 @@ import axios from "axios";
 import { useState } from "react";
 import { useAuthContext } from "../contexts/userContext";
 
+interface Edit {
+  username: string;
+  password: string;
+  newPassword: string;
+}
+
 const BASE_URL = "http://localhost:5000/user"
 
-const useDelete = () => {
+const usePasswordUpdate = () => {
   const [loading, setLoading] = useState(false);
   const [success, setSuccess] = useState("");
   const [error, setError] = useState("");
   const { dispatch } = useAuthContext();
 
-  const deleteUser = async (username: string, password: string) => {
+  const updatePassword = async (user: Edit) => {
     setLoading(true);
     setError("");
-    await axios.delete(`${BASE_URL}`, {
-      data: {
-        username: username,
-        password: password
-      }
-    })
+    await axios.patch<Edit>(`${BASE_URL}`, user)
       .then(() => {
         dispatch({
-          type: "DELETE",
+          type: "UPDATE",
           payload: {
-            username: username
+            username: user.username,
+            password: user.password,
+            newPassword: user.newPassword
           }
         })
-        setSuccess(`${username} account deleted successfully`)
+        setSuccess(`${user.username} account updated successfully`)
       })
       .catch((error) => {
         if (error.response) {
@@ -44,8 +47,8 @@ const useDelete = () => {
       })
   }
 
-  return { loading, success, error, deleteUser }
+  return { loading, success, error, updatePassword }
 
 }
 
-export default useDelete
+export default usePasswordUpdate

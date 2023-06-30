@@ -7,6 +7,7 @@ const BASE_URL = "http://localhost:5000/user"
 
 const useUpdate = () => {
   const [loading, setLoading] = useState(false);
+  const [success, setSuccess] = useState("");
   const [error, setError] = useState("");
   const { dispatch } = useAuthContext();
 
@@ -23,6 +24,7 @@ const useUpdate = () => {
             email: user.email
           }
         })
+        setSuccess(`${user.username} account updated successfully`)
       })
       .catch((error) => {
         if (error.response) {
@@ -40,7 +42,7 @@ const useUpdate = () => {
       })
   }
 
-  return { loading, error, update }
+  return { loading, success, error, update }
 
 }
 

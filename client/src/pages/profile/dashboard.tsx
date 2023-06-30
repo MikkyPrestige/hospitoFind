@@ -2,7 +2,7 @@
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { useAuthContext } from "@/contexts/userContext";
-import { Button } from "@/components/button";
+// import { Button } from "@/components/button";
 import { MdFindInPage, MdOutlineAddLocationAlt, MdPublishedWithChanges } from "react-icons/md";
 import { CgProfile } from "react-icons/cg";
 import { AiOutlineExport, AiOutlineUserDelete } from "react-icons/ai";
@@ -10,11 +10,11 @@ import { TbHomeHeart } from "react-icons/tb";
 import { BsBuildingAdd, BsShareFill } from "react-icons/bs";
 import { LuPanelLeftClose } from "react-icons/lu";
 import { Avatar } from "@/components/avatar";
-import UserPhoto from "@/assets/images/user.jpg";
+import UserPhoto from "@/assets/images/pharmicon.png";
 import SearchForm from "@/hospitalsConfig/search";
-import UpdateForm from "@/userConfig/upDateForm";
-import Export from "@/hospitalsConfig/export";
-import Share from "@/hospitalsConfig/share";
+import EditForm from "@/userConfig/editUser";
+// import Export from "@/hospitalsConfig/export";
+// import Share from "@/hospitalsConfig/share";
 import Editor from "@/markDown/editor";
 import DeleteBtn from "@/userConfig/deleteBtn";
 import Logout from "@/userConfig/logOutBtn";
@@ -67,20 +67,20 @@ const Dashboard = () => {
             <li onClick={() => handleSelected("find-hospital")} className={`${style.list} ${selected === "find-hospital" ? style.active : ""}`}>
               <MdFindInPage className={style.icon} /> Find Hospital
             </li>
-            <li onClick={() => handleSelected("share-hospital")} className={`${style.list} ${selected === "share-hospital" ? style.active : ""}`}>
+            <li onClick={() => handleSelected("add-hospital")} className={`${style.list} ${selected === "add-hospital" ? style.active : ""}`}>
+              <BsBuildingAdd className={style.icon} /> Add Hospital
+            </li>
+            {/* <li onClick={() => handleSelected("share-hospital")} className={`${style.list} ${selected === "share-hospital" ? style.active : ""}`}>
               <BsShareFill className={style.icon} /> Share Hospital
             </li>
             <li onClick={() => handleSelected("export-hospital")} className={`${style.list} ${selected === "export-hospital" ? style.active : ""}`}>
               <AiOutlineExport className={style.icon} /> Export Location
             </li>
-            <li onClick={() => handleSelected("add-hospital")} className={`${style.list} ${selected === "add-hospital" ? style.active : ""}`}>
-              <BsBuildingAdd className={style.icon} /> Add Hospital
-            </li>
             <li onClick={() => handleSelected("add-location")} className={`${style.list} ${selected === "add-location" ? style.active : ""}`}>
               <MdOutlineAddLocationAlt className={style.icon} /> Add Address
-            </li>
+            </li> */}
             <li onClick={() => handleSelected("update")} className={`${style.list} ${selected === "update" ? style.active : ""}`}>
-              <MdPublishedWithChanges className={style.icon} /> Update Profile
+              <MdPublishedWithChanges className={style.icon} /> Edit Profile
             </li>
             <li className={home}>
               <Link to="/" className={style.list} >
@@ -117,7 +117,11 @@ const Dashboard = () => {
             <h2 className={style.heading}>Find Hospital</h2>
             <SearchForm />
           </div>}
-          {selected === "share-hospital" && <div>
+          {selected === "add-hospital" && <div className={style.details}>
+            <h2 className={style.heading}>Add Hospital</h2>
+            <Editor />
+          </div>}
+          {/* {selected === "share-hospital" && <div>
             <h2>Share Hospital</h2>
             <Share
               searchParams={
@@ -137,20 +141,16 @@ const Dashboard = () => {
               }
             } />
           </div>}
-          {selected === "add-hospital" && <div>
-            <h2>Add Hospital</h2>
-            <Editor />
-          </div>}
           {selected === "add-location" && <div>
             <h2>Add your address so we can customize your search and serve you with the hospitals nearby</h2>
             <Button children={<>Add</>} />
+          </div>} */}
+          {selected === "update" && <div className={style.details}>
+            <h2 className={style.heading}>Edit your profile</h2>
+            <EditForm />
           </div>}
-          {selected === "update" && <div>
-            <h2>Update your profile</h2>
-            <UpdateForm />
-          </div>}
-          {selected === "delete" && <div>
-            <h2>Delete Account</h2>
+          {selected === "delete" && <div className={style.details}>
+            <h2 className={style.heading}>Delete Account</h2>
             <DeleteBtn />
           </div>}
         </section>

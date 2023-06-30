@@ -65,7 +65,20 @@ const authReducer = (state: AuthState, action: AuthAction): AuthState => {
         email: action.payload?.email || state.email,
         // profileDp: action.payload?.profileDp || state.profileDp
       }
+    case "PASSWORD-UPDATE":
+      localStorage.setItem("username", action.payload?.username || "");
+      return {
+        ...state,
+        username: action.payload?.username || state.username,
+      }
     case "DELETE":
+      // remove access token from cookie
+      document.cookie = `accessToken=; SameSite=None; Max-Age=0;`;
+      localStorage.removeItem("username");
+      localStorage.removeItem("name");
+      localStorage.removeItem("email");
+      // localStorage.removeItem("profileDp");
+      localStorage.removeItem("accessToken");
       return {
         ...state,
         // id: null,

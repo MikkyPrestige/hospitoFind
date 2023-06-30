@@ -5,7 +5,7 @@ import { FindInput, Hospital } from "@/services/hospitalTypes";
 import ShareButton from "@/hospitalsConfig/share";
 import ExportButton from "@/hospitalsConfig/export";
 import { Avatar } from "@/components/avatar";
-import User from "@/assets/images/user.jpg";
+import User from "@/assets/images/pharmicon.png";
 import HospitalPic from "@/assets/images/hospital.png";
 import { AiOutlineSearch } from "react-icons/ai"
 import mapboxgl from "mapbox-gl";
@@ -120,7 +120,7 @@ const FindHospital = () => {
           {error && <p className={style.error}>{error}</p>}
         </div>
         <div className={style.found}>
-          {hospitals.length > 0 && <div>
+          {hospitals.length >= 1 && <div>
             <h2><span className={style.found_title_span}>{hospitals.length}</span> Hospitals found</h2>
           </div>}
           <ul className={style.list}>
