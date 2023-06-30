@@ -4,6 +4,8 @@ import ReactMde, { Suggestion } from "react-mde";
 import ReactMarkdown from "react-markdown";
 import "react-mde/lib/styles/css/react-mde-all.css"
 import { Hospital } from "@/services/hospitalTypes";
+import { Button } from "@/components/button";
+import style from "@/components/style/random.module.css";
 
 // load suggestions
 const loadSuggestions = async (text: string) => {
@@ -191,7 +193,7 @@ const Editor = () => {
 
   return (
     <>
-      <form onSubmit={handleSubmit} className="container">
+      <form onSubmit={handleSubmit} className={style.editor}>
         <ReactMde
           value={markdown}
           onChange={setMarkdown}
@@ -202,7 +204,7 @@ const Editor = () => {
           }
           loadSuggestions={loadSuggestions}
           suggestionTriggerCharacters={suggestionTriggerCharacters}
-          // heightUnits="1px"
+          minEditorHeight={500}
           childProps={{
             writeButton: {
               tabIndex: -1
@@ -211,9 +213,13 @@ const Editor = () => {
           loadingPreview={<div className="loading-preview">
             <p>Loading...</p></div>}
         />
-        <button type="submit">Submit</button>
+        <div className={style.cta}>
+          <Button
+            children={<span className={style.btn_span}>Add</span>}
+          />
+        </div>
       </form>
-      {error && <p>{error}</p>}
+      {error && <p className={style.red}>{error}</p>}
     </>
   )
 }
