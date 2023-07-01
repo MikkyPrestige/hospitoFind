@@ -2,37 +2,76 @@
   background-color: #E0E4EC;
   height: 100%;
   width: 100%;
-  padding: 10rem 2rem 0;
+  padding-top: 10rem;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 1rem;
+  gap: 5rem;
   font-family: "Inter", sans-serif;
 }
-.bg .container {
+@media only screen and (min-width: 56.3125em) {
+  .bg {
+    gap: 2rem;
+  }
+}
+.bg .wrapper {
+  width: 100%;
+  height: 100%;
+}
+@media only screen and (min-width: 48.0625em) {
+  .bg .wrapper {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    gap: 2rem;
+  }
+}
+.bg .wrapper .container {
   width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 2rem;
+  gap: 4rem;
   padding: 0 3rem;
   text-align: center;
 }
-.bg .container .title {
+@media only screen and (min-width: 48.0625em) {
+  .bg .wrapper .container {
+    padding: 0 1rem;
+  }
+}
+.bg .wrapper .container .header {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+}
+.bg .wrapper .container .header .title {
   font-size: 2.4rem;
   font-weight: 700;
   color: #08299B;
   line-height: 135%;
 }
-.bg .container .subtitle {
+.bg .wrapper .container .header .subtitle {
   font-size: 1.6rem;
   font-weight: 500;
   color: #000000;
   line-height: 135%;
 }
-.bg .container .cta {
+.bg .wrapper .container .cta {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+}
+.bg .wrapper .container .cta .btn {
   font-size: 1.6rem;
   font-weight: 600;
   letter-spacing: -0.011em;
@@ -40,7 +79,7 @@
   color: #FFFFFF;
   transition: all 0.5s ease-in-out;
 }
-.bg .container .link {
+.bg .wrapper .container .cta .link {
   font-size: 1.4rem;
   font-weight: 500;
   font-style: italic;
@@ -54,18 +93,17 @@
   margin-bottom: 1rem;
   transition: all 0.5s ease-in-out;
 }
-.bg .container .link:hover {
+.bg .wrapper .container .cta .link:hover {
   color: #000000;
 }
-.bg .container .link .icon {
+.bg .wrapper .container .cta .link .icon {
   width: 2rem;
   height: 2rem;
   fill: #08299B;
 }
-.bg .img {
+.bg .wrapper .img {
   width: 100%;
   height: 100%;
-  margin-bottom: 1rem;
 }
 .bg .search {
   width: 100%;
@@ -85,13 +123,18 @@
 }
 .bg .search .label {
   position: relative;
-  width: 100%;
+  width: 80%;
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
   gap: 1rem;
   margin-bottom: 5rem;
+}
+@media only screen and (min-width: 48.0625em) {
+  .bg .search .label {
+    width: 60%;
+  }
 }
 .bg .search .label .icon_location {
   position: absolute;

@@ -14,18 +14,24 @@ const Home = () => {
     <>
       {/* <Header /> */}
       <section className={style.bg}>
-        <div className={style.container}>
-          <h1 className={style.title}>Find the nearest hospital to you and make an appointment</h1>
-          <p className={style.subtitle}>Discover Your Perfect Care: Find Your Hospital, Anytime, Anywhere!</p>
-          <Button children={<span className={style.cta}>GET STARTED</span>} />
-          <Link to="#" className={style.link}>Learn more <BsArrowRightShort className={style.icon} /></Link>
-        </div>
-        <div className={style.img}>
-          <Avatar
-            image={Image}
-            alt="Doctor and patient"
-            style={{ width: "100%", height: "100%", borderRadius: "3rem", objectFit: "cover" }}
-          />
+        <div className={style.wrapper}>
+          <div className={style.container}>
+            <div className={style.header}>
+              <h1 className={style.title}>Find the nearest hospital to you and make an appointment</h1>
+              <p className={style.subtitle}>Discover Your Perfect Care: Find Your Hospital, Anytime, Anywhere!</p>
+            </div>
+            <div className={style.cta}>
+              <Button children={<span className={style.btn}>GET STARTED</span>} />
+              <Link to="#" className={style.link}>Learn more <BsArrowRightShort className={style.icon} /></Link>
+            </div>
+          </div>
+          <div className={style.img}>
+            <Avatar
+              image={Image}
+              alt="Doctor and patient"
+              style={{ width: "100%", height: "100%", borderRadius: "3.125rem 0rem 0rem 3.125rem", boxShadow: "12px 12px 20px 0px rgba(14, 61, 183, 0.25), 0px 4px 4px 0px rgba(0, 0, 0, 0.25)", objectFit: "cover" }}
+            />
+          </div>
         </div>
         <div className={style.search}>
           <h2 className={style.heading}>Find a nearby hospital</h2>

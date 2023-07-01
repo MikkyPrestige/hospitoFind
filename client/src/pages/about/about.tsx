@@ -1,4 +1,4 @@
-import { BsHospital } from "react-icons/bs"
+import { BsHospital, BsBuildingAdd } from "react-icons/bs"
 import { FaFileExport } from "react-icons/fa"
 import { SlShareAlt } from "react-icons/sl"
 import { MdStarBorderPurple500 } from "react-icons/md"
@@ -18,19 +18,6 @@ import Header from "@/layouts/header/nav";
 import Footer from "@/layouts/footer/footer";
 
 const About = () => {
-  const semiCircleOne = `${style.semiCircle} ${style.one}`;
-  const semiCircleTwo = `${style.semiCircle} ${style.two}`;
-  const semiCircleThree = `${style.semiCircle} ${style.three}`;
-
-  const item1 = `${style.item} ${style.content1}`;
-  const item2 = `${style.item} ${style.content2}`;
-  const item3 = `${style.item} ${style.content3}`;
-  const item4 = `${style.item} ${style.content4}`;
-
-  const arrow1 = `${style.arrow} ${style.arrow1}`;
-  const arrow2 = `${style.arrow} ${style.arrow2}`;
-  const arrow3 = `${style.arrow} ${style.arrow3}`;
-
   return (
     <>
       <Header />
@@ -58,88 +45,107 @@ const About = () => {
             </div>
           </div>
         </section>
-        <div className={style.container}>
-          <div className={style.box}>
-            <div className={style.icon_box}>
-              <BsHospital className={style.icon} />
-            </div>
-            <div className={style.box2}>
-              <h2 className={style.title}>Search Doctors</h2>
-              <p className={style.subtitle}>Effortlessly Find the Best Hospitals Near You</p>
-            </div>
-          </div>
-          <div className={style.box}>
-            <div className={style.icon_box}>
-              <FaFileExport className={style.icon} />
-            </div>
-            <div className={style.box2}>
-              <h2 className={style.title}>Export Hospitals</h2>
-              <p className={style.subtitle}>Save list of hospitals.</p>
-            </div>
-          </div>
-          <div className={style.box}>
-            <div className={style.icon_box}>
-              <SlShareAlt className={style.icon} />
-            </div>
-            <div className={style.box2}>
-              <h2 className={style.title}>Share Hospitals</h2>
-              <p className={style.subtitle}>Share the list of hospitals with others.</p>
-            </div>
-          </div>
-        </div>
-        <section className={style.semiCircle_bg}>
-          <div className={semiCircleOne}>{""}</div>
-          <div className={semiCircleTwo}>{""}</div>
-          <div className={semiCircleThree}>{""}</div>
-          <h2 className={style.heading}>How It Works</h2>
-          <div className={style.content}>
-            <div className={item1}>
-              <Avatar
-                image={Stethoscope}
-                alt="Stethoscope"
-                style={{ width: "7rem", height: "7rem", borderRadius: "50%" }}
-              />
-              <h3 className={style.head}>Find Hospital</h3>
-              <p className={style.text}>Find the best hospitals and doctors near you, our efficient search engine provides you with the best results.</p>
-              <div className={arrow1}>
-                <div className={style.arrow_line}></div>
-                <div className={style.arrow_head}></div>
+        <section className={style.wrapper2}>
+          <div className={style.container}>
+            <div className={style.box}>
+              <div className={style.icon_box}>
+                <BsHospital className={style.icon} />
+              </div>
+              <div className={style.box2}>
+                <h2 className={style.title}>Search Hospital</h2>
+                <p className={style.subtitle}>
+                  Effortlessly Find the Best Hospitals Near You by entering your location or name of hospital you are looking for.
+                </p>
               </div>
             </div>
-            <div className={item2}>
-              <Avatar
-                image={Handset}
-                alt="Handset"
-                style={{ width: "7rem", height: "7rem", borderRadius: "50%" }}
-              />
-              <h3 className={style.head}>Save or share hospital</h3>
-              <p className={style.text}>Carefinder allows users to save and share the list of hospitals with others. Users can share the information via email or by generating a shareable link.</p>
-              <div className={arrow2}>
-                <div className={style.arrow_line}></div>
-                <div className={style.arrow_head}></div>
+            <div className={style.box}>
+              <div className={style.icon_box}>
+                <FaFileExport className={style.icon} />
+              </div>
+              <div className={style.box2}>
+                <h2 className={style.title}>Export Hospital</h2>
+                <p className={style.subtitle}>
+                  Export the list of hospitals you searched for your records via CSV format.
+                </p>
               </div>
             </div>
-            <div className={item3}>
-              <Avatar
-                image={Laptop}
-                alt="Laptop"
-                style={{ width: "7rem", height: "7rem", borderRadius: "50%" }}
-              />
-              <h3 className={style.head}>Book Appointment</h3>
-              <p className={style.text}>Book appointments easily by inputting correct details.</p>
-              <div className={arrow3}>
-                <div className={style.arrow_line}></div>
-                <div className={style.arrow_head}></div>
+            <div className={style.box}>
+              <div className={style.icon_box}>
+                <SlShareAlt className={style.icon} />
+              </div>
+              <div className={style.box2}>
+                <h2 className={style.title}>Share Hospital</h2>
+                <p className={style.subtitle}>
+                  Share the list of hospitals you searched with others via email or by generating a shareable link.
+                </p>
               </div>
             </div>
-            <div className={item4}>
-              <Avatar
-                image={Women}
-                alt="Woman doctor and patient"
-                style={{ width: "7rem", height: "7rem", borderRadius: "50%" }}
-              />
-              <h3 className={style.head}>Make a visit</h3>
-              <p className={style.text}>Appointment confirmed, then make a visit to your selected hospital or doctor</p>
+            <div className={style.box}>
+              <div className={style.icon_box}>
+                <BsBuildingAdd className={style.icon} />
+              </div>
+              <div className={style.box2}>
+                <h2 className={style.title}>Add Hospital</h2>
+                <p className={style.subtitle}>
+                  Add a hospital to our database and help others find the best hospitals near them.
+                </p>
+              </div>
+            </div>
+          </div>
+          <div className={style.semiCircle_bg}>
+            <div className={`${style.semiCircle} ${style.one}`}>{""}</div>
+            <div className={`${style.semiCircle} ${style.two}`}>{""}</div>
+            <div className={`${style.semiCircle} ${style.three}`}>{""}</div>
+            <h2 className={style.heading}>How It Works</h2>
+            <div className={style.content}>
+              <div className={`${style.item} ${style.content1}`}>
+                <Avatar
+                  image={Stethoscope}
+                  alt="Stethoscope"
+                  style={{ width: "7rem", height: "7rem", borderRadius: "50%" }}
+                />
+                <h3 className={style.head}>Find Hospital</h3>
+                <p className={style.text}>Find the best hospitals and doctors near you, our efficient search engine provides you with the best results.</p>
+                <div className={`${style.arrow} ${style.arrow1}`}>
+                  <div className={style.arrow_line}></div>
+                  <div className={style.arrow_head}></div>
+                </div>
+              </div>
+              <div className={`${style.item} ${style.content2}`}>
+                <Avatar
+                  image={Handset}
+                  alt="Handset"
+                  style={{ width: "7rem", height: "7rem", borderRadius: "50%" }}
+                />
+                <h3 className={style.head}>Save or share hospital</h3>
+                <p className={style.text}>Carefinder allows users to save and share the list of hospitals with others. Users can share the information via email or by generating a shareable link.</p>
+                <div className={`${style.arrow} ${style.arrow2}`}>
+                  <div className={style.arrow_line}></div>
+                  <div className={style.arrow_head}></div>
+                </div>
+              </div>
+              <div className={`${style.item} ${style.content3}`}>
+                <Avatar
+                  image={Laptop}
+                  alt="Laptop"
+                  style={{ width: "7rem", height: "7rem", borderRadius: "50%" }}
+                />
+                <h3 className={style.head}>Book Appointment</h3>
+                <p className={style.text}>Book appointments easily by inputting correct details.</p>
+                <div className={`${style.arrow} ${style.arrow3}`}>
+                  <div className={style.arrow_line}></div>
+                  <div className={style.arrow_head}></div>
+                </div>
+              </div>
+              <div className={`${style.item} ${style.content4}`}>
+                <Avatar
+                  image={Women}
+                  alt="Woman doctor and patient"
+                  style={{ width: "7rem", height: "7rem", borderRadius: "50%" }}
+                />
+                <h3 className={style.head}>Make a visit</h3>
+                <p className={style.text}>Appointment confirmed, then make a visit to your selected hospital or doctor</p>
+              </div>
             </div>
           </div>
         </section>

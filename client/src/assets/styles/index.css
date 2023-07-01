@@ -26,6 +26,37 @@
 
 html {
   font-size: 45%;
+  /* 1rem = 7.2px; 7.2px/16px = 45% */
+
+  @media (min-width: 30.0625em) {
+    font-size: 50%;
+    /* 1rem = 8px; 8px/16px = 50% */
+  }
+
+  @media (min-width: 37.5625em) {
+    font-size: 56.25%;
+    /* 1rem = 9px; 9px/16px = 56.25% */
+  }
+
+  @media (min-width: 48.0625em) {
+    font-size: 62.25%;
+    /* 1rem = 10px; 10px/16px = 62.5% */
+  }
+
+  @media (min-width: 56.3125em) {
+    font-size: 68.75%;
+    /* 1rem = 11px; 11px/16px = 68.75% */
+  }
+
+  @media (min-width: 75.0625em) {
+    font-size: 75%;
+    /* 1rem = 12px; 12px/16px = 75% */
+  }
+
+  @media (min-width: 112.5625em) {
+    font-size: 81.25%;
+    /* 1rem = 13px; 13px/16px = 81.25% */
+  }
 }
 
 body {
