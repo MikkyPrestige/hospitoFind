@@ -25,7 +25,7 @@ const About = () => {
         <section className={style.wrapper}>
           <div className={style.top}>
             <h1 className={style.title}>Welcome to <span className={style.span}>CareFinder</span></h1>
-            <p className={style.para}>Carefinder is a platform where users can search for hospitals in their areas, export hospital details for your records and  enhance your healthcare experience by connecting with others and sharing valuable resources.</p>
+            <p className={style.para}>CareFinder is a platform where users can search for hospitals in their areas, export hospital details for your records and  enhance your healthcare experience by connecting with others and sharing valuable resources.</p>
             <Button children={<span className={style.cta}>OUR SERVICES</span>} />
           </div>
           <div className={style.img}>
@@ -118,7 +118,7 @@ const About = () => {
                   style={{ width: "7rem", height: "7rem", borderRadius: "50%" }}
                 />
                 <h3 className={style.head}>Save or share hospital</h3>
-                <p className={style.text}>Carefinder allows users to save and share the list of hospitals with others. Users can share the information via email or by generating a shareable link.</p>
+                <p className={style.text}>CareFinder allows users to save and share the list of hospitals with others. Users can share the information via email or by generating a shareable link.</p>
                 <div className={`${style.arrow} ${style.arrow2}`}>
                   <div className={style.arrow_line}></div>
                   <div className={style.arrow_head}></div>

@@ -49,7 +49,7 @@ const ShareButton = ({ searchParams }: SearchProps) => {
       setShareableLink(generatedLink)
       setGenerating(false)
       setError('')
-    } catch (err) {
+    } catch (err: any) {
       setError(err.message)
     }
   }

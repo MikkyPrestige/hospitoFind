@@ -13,6 +13,18 @@ const getHospitals = asyncHandler(async (req, res) => {
   return res.json(hospitals);
 })
 
+// @desc Get hospitals randomly
+// @route GET /hospitals/random
+// @access Public
+const getRandomHospitals = asyncHandler(async (req, res) => {
+  const hospitals = await Hospital.aggregate([{ $sample: { size: 3 } }])
+  // If no hospitals
+  if (!hospitals) {
+    return res.status(400).json({ message: 'No Hospital found' })
+  }
+  return res.json(hospitals);
+})
+
 // @desc Get hospital by name
 // @route GET /hospitals/:name
 // @access Public
@@ -186,6 +198,7 @@ const deleteHospital = asyncHandler(async (req, res) => {
 
 export {
   getHospitals,
+  getRandomHospitals,
   getHospitalByName,
   findHospitals,
   searchHospitals,

@@ -1,7 +1,7 @@
 .header {
   background-color: #FFFFFF;
   width: 100%;
-  height: 5rem;
+  height: 8rem;
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -23,11 +23,11 @@
 }
 .header .menu .toggle {
   position: fixed;
-  top: 0.5rem;
+  top: 1rem;
   right: 3.5rem;
   z-index: 500;
   background-color: #08299B;
-  padding: 1rem;
+  padding: 1.5rem;
   border-radius: 50%;
   transition: all 0.5s ease-in-out;
   display: flex;
@@ -36,7 +36,7 @@
   justify-content: center;
 }
 .header .menu .toggle .icon {
-  font-size: 2.2rem;
+  font-size: 2.6rem;
   font-weight: 700;
   color: #FFFFFF;
 }

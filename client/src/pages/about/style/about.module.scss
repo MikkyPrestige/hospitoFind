@@ -5,7 +5,7 @@
   background-color: $color-white;
   height: 100%;
   width: 100%;
-  padding: 7rem 0;
+  padding-top: 10rem;
   @include mixins.flexCol;
   gap: 5rem;
 
@@ -278,7 +278,7 @@
     height: 100%;
     @include mixins.flexCol;
     gap: 1rem;
-    padding: 1rem;
+    padding: 3rem 0;
 
     .review_title {
       font-family: $font-sans;

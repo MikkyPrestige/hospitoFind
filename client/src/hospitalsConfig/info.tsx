@@ -15,11 +15,21 @@ const HospitalInfo = () => {
 
   useEffect(() => {
     const fetchHospitalDetails = async () => {
-      try {
-        const response = await getHospitalByName(name);
-        setHospital(response);
-      } catch (err) {
-        setError("Error fetching hospital details:", err.message);
+      if (name) {
+        try {
+          const response = await getHospitalByName(name);
+          setHospital(response);
+        } catch (err: any) {
+          if (err.data) {
+            setError(err.message);
+          } else if (err.request) {
+            setError('Server did not respond');
+          } else {
+            setError(err.message);
+          }
+        } finally {
+          console.log("done");
+        }
       }
     };
 

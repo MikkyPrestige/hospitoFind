@@ -2,7 +2,7 @@
   background-color: #FFFFFF;
   height: 100%;
   width: 100%;
-  padding: 7rem 0;
+  padding-top: 10rem;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -293,7 +293,7 @@
   align-items: center;
   justify-content: center;
   gap: 1rem;
-  padding: 1rem;
+  padding: 3rem 0;
 }
 .bg .review .review_title {
   font-family: "DM Sans", sans-serif;

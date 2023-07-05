@@ -50,7 +50,7 @@ const ExportButton = ({ searchParams }: SearchProps) => {
       document.body.removeChild(link);
       setError("")
       setExporting(false);
-    } catch (err) {
+    } catch (err: any) {
       setError(err.message);
       // console.log(err)
       setExporting(false);
