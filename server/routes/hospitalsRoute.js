@@ -1,6 +1,7 @@
 import express from "express";
 import {
   getHospitals,
+  getRandomHospitals,
   getHospitalByName,
   findHospitals,
   searchHospitals,
@@ -17,6 +18,9 @@ hospitalRouter.route("/")
   .get(getHospitals)
   .post(addHospital)
   .patch(verify, updateHospital)
+
+hospitalRouter.route("/random")
+  .get(getRandomHospitals)
 
 hospitalRouter.route("/find")
   .get(findHospitals)

@@ -8,6 +8,8 @@ import { AiOutlineSearch } from "react-icons/ai";
 import style from "./style/search/search.module.css";
 import { Avatar } from '@/components/avatar';
 import HospitalPic from "@/assets/images/hospital.png";
+import PopularHospitals from '@/components/popular';
+import style2 from "../components/style/popular.module.css";
 
 const Search = () => {
   const [location, setLocation] = useState<LocationInput>({
@@ -49,15 +51,24 @@ const Search = () => {
         setHospitals(data);
         setError('');
       }
-    } catch (err) {
-      setHospitals([]);
-      setError('An error occurred while searching for hospitals', err.response.data.message);
-    }
-    setSearching(false);
+    } catch (err: any) {
+      if (err.data) {
+        setError(err.message);
+        setHospitals([]);
+      } else if (err.request) {
+        setError('Server did not respond');
+        setHospitals([]);
+      } else {
+        setError(err.message);
+        setHospitals([]);
+      }
+    } finally {
+      setSearching(false);
+    };
   };
 
   return (
-    <>
+    <section className={style.search}>
       <section className={style.wrapper}>
         <form onSubmit={handleSubmit} className={style.form}>
           <input
@@ -86,18 +97,18 @@ const Search = () => {
       </section>
       <ul className={style.hospitals}>
         <h1 className={style.title}>
-          {hospitals.length > 0 ? `Showing ${hospitals.length} hospitals found` : 'Search for a hospital to see results...'}
+          {hospitals.length > 0 ? `Showing ${hospitals.length} hospitals found` : <PopularHospitals />}
         </h1>
         {hospitals.length > 0 && hospitals.map((hospital, id) => (
-          <li key={id} className={style.hospital}>
-            <div className={style.img}>
+          <li key={id} className={style2.card}>
+            <div className={style2.img}>
               <Avatar image={HospitalPic} alt="hospital" style={{ width: "100%", height: "100%", borderRadius: "1.2rem", objectFit: "cover" }} />
             </div>
-            <div className={style.addressContainer}>
-              <h3 className={style.address}>{hospital.name}</h3>
-              <h3 className={style.address}>{hospital.address.street}</h3>
+            <div className={style2.details}>
+              <h3 className={style2.name}>{hospital.name}</h3>
+              <h3>{hospital.address.street}</h3>
+              <NavLink to={`${hospital.name}`} className={style2.btn}>See more</NavLink>
             </div>
-            <NavLink to={`${hospital.name}`} className={style.link}>See more</NavLink>
           </li>
         ))}
         {hospitals.length > 0 && <div className={style.container}>
@@ -106,7 +117,7 @@ const Search = () => {
         </div>}
       </ul>
       <Outlet />
-    </>
+    </section>
   )
 }
 

@@ -15,6 +15,18 @@ export async function getHospitals() {
   }
 }
 
+// get hospital randomly
+export async function getRandomHospitals() {
+  try {
+    const response = await axios.get(`${BASE_URL}/random`);
+    const randomHospital = response.data;
+    return randomHospital;
+  } catch (error) {
+    console.log(error);
+    return error
+  }
+}
+
 // get hospital by name
 export async function getHospitalByName(name: string) {
   try {

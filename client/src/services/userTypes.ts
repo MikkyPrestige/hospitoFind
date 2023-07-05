@@ -17,7 +17,7 @@ export interface AuthState {
   name: string | null
   username: string | null
   email: string | null
-  password: string | null
+  // password: string | null
   // profileDp: File | null
   accessToken: string | null
 }
