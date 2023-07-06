@@ -10,6 +10,7 @@ import { TbHomeHeart } from "react-icons/tb";
 import { BsBuildingAdd, BsShareFill } from "react-icons/bs";
 import { LuPanelLeftClose } from "react-icons/lu";
 import { Avatar } from "@/components/avatar";
+import Logo from "@/assets/images/logo.jpg";
 import UserPhoto from "@/assets/images/pharmicon.png";
 import SearchForm from "@/hospitalsConfig/search";
 import EditForm from "@/userConfig/editUser";
@@ -18,7 +19,7 @@ import EditForm from "@/userConfig/editUser";
 import Editor from "@/markDown/editor";
 import DeleteBtn from "@/userConfig/deleteBtn";
 import Logout from "@/userConfig/logOutBtn";
-import style from "./style/dashboard.module.css"
+import style from "./style/dashboard.module.css";
 import { Tooltip } from "react-tooltip";
 
 const Dashboard = () => {
@@ -42,24 +43,31 @@ const Dashboard = () => {
     setSidebarVisible(!sidebarVisible);
   };
 
-  // STYLES
-  const home = `${style.list} ${style.home}`;
-  const del = `${style.list} ${style.del}`;
-
   return (
     <main className={style.dashboard}>
-      <div className={style.sidebar} data-tooltip-id="sidebar" data-tooltip-content="Hide sidebar" data-tooltip-offset={3} >
-        <LuPanelLeftClose onClick={toggleSidebar} className={style.close} />
-      </div>
-      <Tooltip id="sidebar" style={{
-        fontSize: "1.5rem",
-        padding: "1rem"
-      }} />
-      <section className={style.section}>
-        <nav className={`${style.nav} ${!sidebarVisible ? style.sidebarHidden : ""}`}>
-          <div className={style.logo}>
-            <Link to="/" className={style.logo_link}>CareFinder</Link>
+      <div className={style.top}>
+        <Link to="/" className={style.logo}>
+          <img
+            src={Logo}
+            alt="logo"
+            className={style.img}
+          />
+        </Link>
+        <div>
+          <div data-tooltip-id="sidebar" data-tooltip-content="Hide sidebar" data-tooltip-offset={3} >
+            <LuPanelLeftClose onClick={toggleSidebar} className={style.close} />
           </div>
+          <Tooltip id="sidebar" style={{
+            fontSize: "1.5rem",
+            padding: "1rem"
+          }} />
+        </div>
+      </div>
+      <div className={style.photo}>
+        <Avatar image={UserPhoto} alt="User Photo" style={{ width: "100%", height: "100%", borderRadius: "50%", objectFit: "cover" }} />
+      </div>
+      <section className={style.section}>
+        <nav className={`${!sidebarVisible ? style.sidebarHidden : style.nav}`}>
           <ul className={style.lists}>
             <li onClick={() => handleSelected("profile")} className={`${style.list} ${selected === "profile" ? style.active : ""}`}>
               <CgProfile className={style.icon} /> Profile
@@ -82,21 +90,18 @@ const Dashboard = () => {
             <li onClick={() => handleSelected("update")} className={`${style.list} ${selected === "update" ? style.active : ""}`}>
               <MdPublishedWithChanges className={style.icon} /> Edit Profile
             </li>
-            <li className={home}>
+            <li className={`${style.list} ${style.home}`}>
               <Link to="/" className={style.list} >
                 <TbHomeHeart className={style.icon} /> Home
               </Link>
             </li>
-            <li onClick={() => handleSelected("delete")} className={`${del} ${selected === "delete" ? style.active : ""}`}>
+            <li onClick={() => handleSelected("delete")} className={`${style.list} ${style.del} ${selected === "delete" ? style.active : ""}`}>
               <AiOutlineUserDelete className={style.icon} /> Delete Account
             </li>
           </ul>
         </nav>
 
         <section className={style.profile}>
-          <div className={style.photo}>
-            <Avatar image={UserPhoto} alt="User Photo" style={{ width: "100%", height: "100%", borderRadius: "50%", objectFit: "cover" }} />
-          </div>
           {selected === "profile" && <div className={style.details}>
             <h2 className={style.heading}>PROFILE DETAILS</h2>
             <div className={style.user}>

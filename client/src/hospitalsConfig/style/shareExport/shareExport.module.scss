@@ -11,10 +11,9 @@
     color: $color-white;
     border: 1px solid $color-blue;
     border-radius: 1rem;
-    font-size: $font-size-4;
+    font-size: $font-size-3;
     text-decoration: none;
-    text-transform: uppercase;
-    padding: 1rem 1.8rem;
+    padding: .3rem .8rem;
     display: flex;
     align-items: center;
     gap: 0.5rem;
@@ -25,9 +24,9 @@
     }
 
     .icon {
-      width: 3rem;
-      height: 3rem;
-      fill: #1976d2;
+      width: 2rem;
+      height: 2rem;
+      fill: #f0fbff;
     }
   }
 

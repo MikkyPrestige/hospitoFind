@@ -5,8 +5,9 @@
   flex-direction: column;
   align-items: flex-start;
   justify-content: center;
-  gap: 2rem;
-  padding-top: 10rem;
+  gap: 1rem;
+  padding-top: 7.5rem;
+  background-color: #f0fbff;
 }
 .findSection .title {
   font-size: 2.6rem;
@@ -26,7 +27,6 @@
   position: absolute;
   top: 0;
   left: 0;
-  z-index: -1;
 }
 .findSection .search .container {
   display: flex;
@@ -35,7 +35,7 @@
   justify-content: center;
   gap: 3rem;
   width: 100%;
-  padding: 1rem;
+  padding: 1.5rem;
 }
 .findSection .search .container .form {
   display: flex;
@@ -43,9 +43,11 @@
   align-items: center;
   justify-content: center;
   gap: 1.5rem;
+  z-index: 1;
 }
 .findSection .search .container .form .input {
-  height: 5rem;
+  height: 4rem;
+  width: 100%;
   border-radius: 1rem;
   background-color: #FFFFFF;
   color: #000000;
