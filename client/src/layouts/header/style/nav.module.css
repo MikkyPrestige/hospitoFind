@@ -1,12 +1,11 @@
 .header {
   background-color: #FFFFFF;
   width: 100%;
-  height: 8rem;
+  height: 6.5rem;
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
-  padding: 2rem;
   box-shadow: 0 4px 4px rgba(14, 61, 183, 0.15);
   position: fixed;
   top: 0;
@@ -14,8 +13,7 @@
 }
 .header .logo {
   width: 10rem;
-  height: 3.5rem;
-  margin-left: 2.5rem;
+  height: 5rem;
   z-index: 1000;
 }
 .header .menu {
@@ -24,10 +22,10 @@
 .header .menu .toggle {
   position: fixed;
   top: 1rem;
-  right: 3.5rem;
+  right: 3rem;
   z-index: 500;
   background-color: #08299B;
-  padding: 1.5rem;
+  padding: 1rem;
   border-radius: 50%;
   transition: all 0.5s ease-in-out;
   display: flex;
@@ -38,7 +36,7 @@
 .header .menu .toggle .icon {
   font-size: 2.6rem;
   font-weight: 700;
-  color: #FFFFFF;
+  color: #2196F3;
 }
 .header .menu .nav {
   position: fixed;
@@ -54,9 +52,9 @@
   overflow: hidden;
 }
 .header .menu .show {
-  width: 60%;
+  width: 45%;
   height: 100%;
-  background-color: #C1C1C1;
+  background-color: #F2F2F2;
   transition: all 0.5s ease-in-out;
 }
 .header .menu .list {
@@ -82,7 +80,7 @@
 }
 .header .menu .list .item .icon {
   font-size: 2.2rem;
-  color: #FFFFFF;
+  color: #2196F3;
 }
 .header .menu .list .item .find {
   font-family: "DM Sans", sans-serif;

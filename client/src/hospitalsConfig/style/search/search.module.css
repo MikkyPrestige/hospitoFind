@@ -6,7 +6,6 @@
   align-items: center;
   justify-content: center;
   gap: 1.5rem;
-  padding: 1rem;
 }
 .search .wrapper {
   width: 100%;
@@ -19,26 +18,24 @@
   margin-bottom: 2rem;
 }
 .search .wrapper .form {
-  width: 100%;
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: center;
   flex-wrap: wrap;
-  gap: 1.5rem;
-  padding: 1rem;
+  gap: 1rem;
+  padding: 0.5rem;
 }
 .search .wrapper .form .input {
-  flex-basis: 100%;
-  height: 4.5rem;
+  width: 100%;
+  height: 3.5rem;
   border-radius: 1.5rem;
   border: 1px solid #C1C1C1;
   background: #FFFFFF;
   padding: 1rem;
   margin-bottom: 1rem;
-  font-size: 2.4rem;
+  font-size: 2rem;
   font-family: "DM Sans", sans-serif;
-  font-weight: 700;
   line-height: 150%;
   letter-spacing: -0.02063rem;
   color: #000000;
@@ -47,30 +44,27 @@
 .search .wrapper .form .input::-moz-placeholder {
   color: #C1C1C1;
   text-align: center;
-  font-size: 2rem;
+  font-size: 1.8rem;
   font-family: "DM Sans", sans-serif;
-  font-weight: 700;
   line-height: 150%;
   letter-spacing: -0.02063rem;
 }
 .search .wrapper .form .input::placeholder {
   color: #C1C1C1;
   text-align: center;
-  font-size: 2rem;
+  font-size: 1.8rem;
   font-family: "DM Sans", sans-serif;
-  font-weight: 700;
   line-height: 150%;
   letter-spacing: -0.02063rem;
 }
 .search .wrapper .form .select {
   flex-shrink: 1;
-  height: 4rem;
+  height: 3rem;
   border-radius: 1rem;
   border: 1px solid #C1C1C1;
   background: #FFFFFF;
-  font-size: 2rem;
+  font-size: 1.6rem;
   font-family: "DM Sans", sans-serif;
-  font-weight: 700;
   letter-spacing: -0.02063rem;
   color: #000000;
   outline: none;
@@ -78,7 +72,7 @@
 .search .wrapper .form .cta {
   flex-shrink: 2;
   width: 5rem;
-  height: 3.5rem;
+  height: 3rem;
   border-radius: 1.5rem;
   border: 1px solid #C1C1C1;
   background: #08299B;
@@ -98,8 +92,8 @@
   border: 1px solid #08299B;
 }
 .search .wrapper .form .cta .icon {
-  width: 2.5rem;
-  height: 2.5rem;
+  width: 2rem;
+  height: 2rem;
   color: #FFFFFF;
 }
 .search .wrapper .form .cta .icon:hover {
@@ -121,16 +115,15 @@
   align-items: center;
   justify-content: center;
   flex-wrap: wrap;
-  gap: 3.5rem;
+  gap: 1rem;
   padding: 1rem;
 }
 .search .hospitals .title {
   color: #08299B;
-  font-size: 2.6rem;
+  font-size: 1.8rem;
   font-family: "Inter", sans-serif;
   font-weight: 700;
   letter-spacing: -0.02063rem;
-  line-height: 150%;
   text-align: center;
   width: 100%;
 }

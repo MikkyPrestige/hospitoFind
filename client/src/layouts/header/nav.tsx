@@ -4,8 +4,9 @@ import { FiMenu } from "react-icons/fi"
 import { VscAccount } from "react-icons/vsc"
 import { TbHomeHeart } from "react-icons/tb";
 import { useState } from "react";
-import Logo from "@/assets/images/logo.png";
-import Search from "@/assets/images/hospitalSearch.png";
+import Logo from "@/assets/images/logo.jpg";
+import { FcAbout } from "react-icons/fc";
+import { FaSearchPlus } from "react-icons/fa";
 import { Avatar } from "@/components/avatar";
 import layoutSmall from "./style/nav.module.css";
 interface NavLinksProps extends NavLinkProps {
@@ -50,7 +51,7 @@ const LayoutMobile = () => {
         <Avatar
           image={Logo}
           alt="logo"
-          style={{ width: "100%", height: "100%", borderRadius: "45%" }}
+          style={{ width: "100%", height: "100%", objectFit: "contain", mixBlendMode: "color-burn" }}
         />
       </Link>
       <div className={layoutSmall.menu}>
@@ -70,11 +71,7 @@ const LayoutMobile = () => {
               </NavLinks>
             </li>
             <li className={layoutSmall.item}>
-              <Avatar
-                image={Logo}
-                alt="logo"
-                style={{ width: "2.2rem", height: "2.2rem", borderRadius: "10%", objectFit: "cover" }}
-              />
+              <FcAbout className={layoutSmall.icon} />
               <NavLinks
                 to="/about"
                 onClick={toggleMenu}
@@ -84,11 +81,7 @@ const LayoutMobile = () => {
               </NavLinks>
             </li>
             <li className={layoutSmall.item}>
-              <Avatar
-                image={Search}
-                alt="logo"
-                style={{ width: "3rem", height: "3rem", borderRadius: "50%", objectFit: "cover" }}
-              />
+              <FaSearchPlus className={layoutSmall.icon} />
               <NavLinks
                 to="/find"
                 onClick={toggleMenu}

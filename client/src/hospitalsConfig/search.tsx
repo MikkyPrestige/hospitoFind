@@ -99,18 +99,20 @@ const Search = () => {
         <h1 className={style.title}>
           {hospitals.length > 0 ? `Showing ${hospitals.length} hospitals found` : <PopularHospitals />}
         </h1>
-        {hospitals.length > 0 && hospitals.map((hospital, id) => (
-          <li key={id} className={style2.card}>
-            <div className={style2.img}>
-              <Avatar image={HospitalPic} alt="hospital" style={{ width: "100%", height: "100%", borderRadius: "1.2rem", objectFit: "cover" }} />
-            </div>
-            <div className={style2.details}>
-              <h3 className={style2.name}>{hospital.name}</h3>
-              <h3>{hospital.address.street}</h3>
-              <NavLink to={`${hospital.name}`} className={style2.btn}>See more</NavLink>
-            </div>
-          </li>
-        ))}
+        <div className={style2.wrapper}>
+          {hospitals.length > 0 && hospitals.map((hospital, id) => (
+            <li key={id} className={style2.card}>
+              <div className={style2.img}>
+                <Avatar image={HospitalPic} alt="hospital" style={{ width: "100%", height: "100%", borderRadius: "1.2rem", objectFit: "cover" }} />
+              </div>
+              <div className={style2.details}>
+                <h3 className={style2.name}>{hospital.name}</h3>
+                <h3 className={style2.address}>{hospital.address.street}</h3>
+                <NavLink to={`${hospital.name}`} className={style2.btn}>See more</NavLink>
+              </div>
+            </li>
+          ))}
+        </div>
         {hospitals.length > 0 && <div className={style.container}>
           <ShareButton searchParams={location} />
           <ExportButton searchParams={location} />

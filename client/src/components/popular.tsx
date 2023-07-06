@@ -42,14 +42,13 @@ const PopularHospitals = () => {
                 style={{
                   width: "100%",
                   height: "100%",
-                  borderRadius: "1.2rem",
                   objectFit: "cover",
                 }}
               />
             </div>
             <div className={style.details}>
               <h3 className={style.name}>{hospital.name}</h3>
-              <p>{hospital.address.street}</p>
+              <p className={style.address}>{hospital.address.street}</p>
               <Link to={`${hospital.name}`} className={style.btn}>
                 View Hospital
               </Link>

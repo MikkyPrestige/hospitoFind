@@ -11,10 +11,9 @@
   color: #FFFFFF;
   border: 1px solid #08299B;
   border-radius: 1rem;
-  font-size: 1.8rem;
+  font-size: 1.6rem;
   text-decoration: none;
-  text-transform: uppercase;
-  padding: 1rem 1.8rem;
+  padding: 0.3rem 0.8rem;
   display: flex;
   align-items: center;
   gap: 0.5rem;
@@ -24,9 +23,9 @@
   color: #FFFFFF;
 }
 .cta .btn .icon {
-  width: 3rem;
-  height: 3rem;
-  fill: #1976d2;
+  width: 2rem;
+  height: 2rem;
+  fill: #f0fbff;
 }
 .cta .link {
   text-decoration: none;
