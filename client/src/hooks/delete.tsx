@@ -1,8 +1,7 @@
 import axios from "axios";
 import { useState } from "react";
 import { useAuthContext } from "../contexts/userContext";
-
-const BASE_URL = "http://localhost:5000/user"
+import { BASE_URL } from "../contexts/userContext";
 
 const useDelete = () => {
   const [loading, setLoading] = useState(false);
@@ -13,7 +12,7 @@ const useDelete = () => {
   const deleteUser = async (username: string, password: string) => {
     setLoading(true);
     setError("");
-    await axios.delete(`${BASE_URL}`, {
+    await axios.delete(`${BASE_URL}/user`, {
       data: {
         username: username,
         password: password

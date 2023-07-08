@@ -1,12 +1,11 @@
 import { Hospital } from "./hospitalTypes";
 import axios from "axios";
-
-const BASE_URL = 'http://localhost:5000/hospitals';
+import { BASE_URL } from "@/contexts/userContext";
 
 // get all hospitals
 export async function getHospitals() {
   try {
-    const response = await axios.get(`${BASE_URL}`);
+    const response = await axios.get(`${BASE_URL}/hospitals`);
     const hospitals = response.data
     return hospitals;
   } catch (error) {
@@ -18,7 +17,7 @@ export async function getHospitals() {
 // get hospital randomly
 export async function getRandomHospitals() {
   try {
-    const response = await axios.get(`${BASE_URL}/random`);
+    const response = await axios.get(`${BASE_URL}/hospitals/random`);
     const randomHospital = response.data;
     return randomHospital;
   } catch (error) {
@@ -30,7 +29,7 @@ export async function getRandomHospitals() {
 // get hospital by name
 export async function getHospitalByName(name: string) {
   try {
-    const response = await axios.get(`${BASE_URL}/${name}`);
+    const response = await axios.get(`${BASE_URL}/hospitals/${name}`);
     const hospital = response.data;
     return hospital;
   } catch (error) {
@@ -42,7 +41,7 @@ export async function getHospitalByName(name: string) {
 // find hospital by name or address
 export async function findHospitals(query: string) {
   try {
-    const response = await axios.get(`${BASE_URL}/find?${query}`);
+    const response = await axios.get(`${BASE_URL}/hospitals/find?${query}`);
     const foundHospital = response.data;
     return foundHospital;
   } catch (error) {
@@ -54,7 +53,7 @@ export async function findHospitals(query: string) {
 // get hospital by state or city
 export async function searchHospitals(query: string) {
   try {
-    const response = await axios.get(`${BASE_URL}/search?${query}`);
+    const response = await axios.get(`${BASE_URL}/hospitals/search?${query}`);
     const searchedHospitals = response.data;
     return searchedHospitals;
   } catch (error) {
@@ -66,7 +65,7 @@ export async function searchHospitals(query: string) {
 // add new hospital
 export async function addHospital(hospital: Hospital) {
   try {
-    const response = await axios.post(`${BASE_URL}`, hospital);
+    const response = await axios.post(`${BASE_URL}/hospitals`, hospital);
     const newHospital = response.data;
     return newHospital;
   } catch (error) {
@@ -78,7 +77,7 @@ export async function addHospital(hospital: Hospital) {
 // update hospital
 export async function updateHospital(hospital: Hospital, id: number) {
   try {
-    const response = await axios.patch(`${BASE_URL}/${id}`, hospital);
+    const response = await axios.patch(`${BASE_URL}/hospitals/${id}`, hospital);
     const updatedHospital = response.data;
     return updatedHospital;
   } catch (error) {
@@ -90,7 +89,7 @@ export async function updateHospital(hospital: Hospital, id: number) {
 // delete hospital
 export async function deleteHospital(id: number) {
   try {
-    const response = await axios.delete(`${BASE_URL}/${id}`);
+    const response = await axios.delete(`${BASE_URL}/hospitals/${id}`);
     const deletedHospital = response.data;
     return deletedHospital;
   } catch (error) {

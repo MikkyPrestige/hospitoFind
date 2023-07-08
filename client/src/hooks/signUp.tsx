@@ -3,8 +3,7 @@ import { useState } from "react";
 import { useAuthContext } from "@/contexts/userContext";
 import { User } from "@/services/userTypes";
 import { useNavigate } from "react-router-dom";
-
-const BASE_URL = "http://localhost:5000/user"
+import { BASE_URL } from "../contexts/userContext";
 
 const useSignUp = () => {
   const [loading, setLoading] = useState(false);
@@ -15,7 +14,7 @@ const useSignUp = () => {
   const signUp = async (user: User) => {
     setLoading(true);
     setError("");
-    await axios.post(`${BASE_URL}`, user)
+    await axios.post(`${BASE_URL}/user`, user)
       .then(() => {
         // const { id } = response.headers;
         dispatch({

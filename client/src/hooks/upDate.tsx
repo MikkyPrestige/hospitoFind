@@ -2,8 +2,7 @@ import axios from "axios";
 import { useState } from "react";
 import { useAuthContext } from "../contexts/userContext";
 import { User } from "@/services/userTypes";
-
-const BASE_URL = "http://localhost:5000/user"
+import { BASE_URL } from "../contexts/userContext";
 
 const useUpdate = () => {
   const [loading, setLoading] = useState(false);
@@ -14,7 +13,7 @@ const useUpdate = () => {
   const update = async (user: User) => {
     setLoading(true);
     setError("");
-    await axios.patch<User>(`${BASE_URL}`, user)
+    await axios.patch<User>(`${BASE_URL}/user`, user)
       .then(() => {
         dispatch({
           type: "UPDATE",
