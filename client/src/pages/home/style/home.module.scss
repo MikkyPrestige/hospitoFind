@@ -1,0 +1,164 @@
+@use "../../../assets/styles/mixins"as mixins;
+@import "../../../assets/styles/variables";
+
+.bg {
+  background-color: $color-bg;
+  height: 100%;
+  width: 100%;
+  padding: 10rem 0 5rem;
+  @include mixins.flexCol;
+  gap: 5rem;
+  font-family: $font-inter;
+
+  @include mixins.respond(laptop) {
+    gap: 2rem;
+  }
+
+  .wrapper {
+    width: 100%;
+    height: 100%;
+
+    @include mixins.respond(tab-land) {
+      @include mixins.flexRowSpaceBetween;
+      gap: 2rem;
+    }
+
+    .container {
+      width: 100%;
+      @include mixins.flexCol;
+      gap: 4rem;
+      padding: 0 3rem;
+      text-align: center;
+
+      @include mixins.respond(tab-land) {
+        padding: 0 1rem;
+      }
+
+      .header {
+        width: 100%;
+        @include mixins.flexCol;
+        gap: 1rem;
+
+        .title {
+          font-size: $font-size-6;
+          font-weight: $font-weight-bd;
+          color: $color-blue;
+          line-height: $line-height-1;
+        }
+
+        .subtitle {
+          font-size: $font-size-3;
+          font-weight: $font-weight-md;
+          color: $color-black;
+          line-height: $line-height-1;
+        }
+      }
+
+      .cta {
+        width: 100%;
+        @include mixins.flexCol;
+        gap: 1rem;
+
+        .btn {
+          font-size: $font-size-2;
+          letter-spacing: $space;
+          color: $color-white;
+          transition: all 0.5s ease-in-out;
+        }
+
+        .link {
+          font-size: $font-size-1;
+          font-style: italic;
+          letter-spacing: $space;
+          color: $color-black-b;
+          @include mixins.flexRow;
+          transition: all 0.5s ease-in-out;
+
+          &:hover {
+            color: $color-black;
+          }
+
+          .icon {
+            width: 1.5rem;
+            height: 1.5rem;
+            fill: $color-blue;
+          }
+        }
+      }
+    }
+
+    .img {
+      width: 100%;
+      height: 100%;
+    }
+  }
+
+  .search {
+    width: 100%;
+    @include mixins.flexCol;
+    gap: 1rem;
+
+    .heading {
+      font-size: $font-size-3;
+      font-weight: $font-weight-md;
+      color: $color-blue;
+      line-height: $line-height-2;
+      letter-spacing: $space;
+      text-align: center;
+    }
+
+    .label {
+      position: relative;
+      width: 80%;
+      @include mixins.flexRowSpaceBetween;
+      gap: 1rem;
+      margin-bottom: 5rem;
+
+      @include mixins.respond(tab-land) {
+        width: 60%;
+      }
+
+      .icon_location {
+        position: absolute;
+        top: 1rem;
+        left: 2.5rem;
+        width: 1.5rem;
+        height: 1.5rem;
+        fill: $color-gray;
+      }
+
+      .input {
+        width: 100%;
+        height: 3.5rem;
+        border-radius: $border-radius-md;
+        font-size: $font-size-5;
+        font-weight: $font-weight-md;
+        color: $color-black-b;
+        text-align: center;
+        letter-spacing: $space;
+        line-height: $line-height-2;
+        background-color: $color-white;
+        transition: all 0.5s ease-in-out;
+
+        &:focus {
+          outline: none;
+          border: 1px solid $color-blue;
+        }
+      }
+
+      input::placeholder {
+        color: $color-gray;
+        font-size: $font-size-2;
+      }
+
+      .icon_search {
+        position: absolute;
+        top: 1rem;
+        right: 2.5rem;
+        width: 1.5rem;
+        height: 1.5rem;
+        fill: $color-black;
+      }
+    }
+  }
+}

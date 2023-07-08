@@ -1,0 +1,505 @@
+@use "../../../assets/styles/mixins"as mixins;
+@import "../../../assets/styles/variables";
+
+.bg {
+  background-color: $color-white;
+  height: 100%;
+  width: 100%;
+  padding-top: 8rem;
+  @include mixins.flexCol;
+  gap: 1rem;
+
+  @include mixins.respond(tab-land) {
+    padding-top: 0;
+  }
+
+  .wrapper {
+    @include mixins.flexCol;
+    gap: 2rem;
+    padding: 1rem;
+
+    @include mixins.respond(tab-land) {
+      @include mixins.flexRow;
+      flex-direction: row-reverse;
+      gap: 2rem;
+    }
+
+    .top {
+      width: 100%;
+      height: 100%;
+      text-align: center;
+      @include mixins.flexCol;
+      gap: 1rem;
+      font-family: $font-sans;
+
+      @include mixins.respond(tab-land) {
+        height: 43.875rem;
+        padding: 3.5rem;
+        justify-content: flex-start;
+      }
+
+      .title {
+        font-size: $font-size-7;
+        font-weight: $font-weight-md;
+        color: $color-black;
+        letter-spacing: $space;
+
+        @include mixins.respond(tab-land) {
+          @include mixins.flexCol;
+          gap: 1rem;
+        }
+
+        .span {
+          color: $color-blue;
+          font-weight: $font-weight-bd;
+          font-size: $font-size-10;
+        }
+      }
+
+      .para {
+        font-size: $font-size-4;
+        font-weight: $font-weight-md;
+        color: $color-black;
+        line-height: $line-height-2;
+        letter-spacing: $space;
+        margin-bottom: 1rem;
+      }
+
+      .cta {
+        font-size: $font-size-2;
+        font-weight: $font-weight-bd;
+        color: $color-white;
+        letter-spacing: $space;
+      }
+    }
+
+    .img {
+      width: 100%;
+      height: 100%;
+      @include mixins.flexRow;
+      gap: 1rem;
+      padding: 0 1rem;
+
+      @include mixins.respond(tab-land) {
+        padding: 0;
+      }
+
+      .img_1 {
+        width: 100%;
+        height: 43rem;
+        transform: translateY(1rem);
+      }
+
+      .img_2 {
+        width: 100%;
+        height: 43rem;
+        transform: translateY(3rem);
+      }
+    }
+  }
+
+  .wrapper2 {
+    width: 100%;
+    height: 100%;
+    @include mixins.flexCol;
+    transform: translateY(10%);
+
+    @include mixins.respond(tab-land) {
+      transform: translateY(5%);
+    }
+
+    .container {
+      width: 100%;
+      @include mixins.flexRow;
+      flex-wrap: wrap;
+      gap: 1rem;
+
+      @include mixins.respond(tab-port) {
+        gap: 2rem;
+      }
+
+      @include mixins.respond(laptop) {
+        gap: 3rem;
+      }
+
+      .box {
+        background-color: $color-bg;
+        width: 22rem;
+        height: 20rem;
+        border-radius: $border-radius-sm;
+        @include mixins.flexCol;
+        gap: 1rem;
+
+        @include mixins.respond(tab-port) {
+          height: 17rem;
+        }
+
+        .icon_box {
+          background-color: $color-blue;
+          width: 4.5rem;
+          height: 4.5rem;
+          border-radius: $border-radius;
+          padding: 1rem;
+          @include mixins.flexCol;
+
+
+          .icon {
+            width: 3rem;
+            height: 3rem;
+            fill: $color-white;
+          }
+        }
+      }
+
+      .box2 {
+        width: 100%;
+        @include mixins.flexCol;
+        gap: 1rem;
+        padding: 0 1.5rem;
+        text-align: center;
+        font-family: $font-sans;
+        color: $color-black;
+        line-height: $line-height-2;
+        letter-spacing: $space;
+
+        .title {
+          font-size: $font-size-1;
+          font-weight: $font-weight-bd;
+          text-transform: uppercase;
+        }
+
+        .subtitle {
+          font-size: $font-size;
+          font-weight: $font-weight-md;
+          text-transform: capitalize;
+        }
+      }
+    }
+
+    .semiCircle_bg {
+      width: 95%;
+      height: 45rem;
+      position: relative;
+      overflow: hidden;
+      margin: 5rem auto;
+
+      @include mixins.respond(tab-land) {
+        margin: 3rem auto;
+      }
+
+      .semiCircle {
+        width: 100%;
+        height: 45rem;
+        position: absolute;
+        background-color: transparent;
+        border-radius: 50% / 100% 100% 0 0;
+      }
+
+      .one {
+        background: $color-ash;
+        top: 0%;
+      }
+
+      .two {
+        background: $color-ash-dark;
+        top: 25%;
+      }
+
+      .three {
+        background: $color-navy;
+        top: 50%;
+      }
+
+      .heading {
+        position: absolute;
+        top: 8%;
+        right: 40%;
+        font-family: $font-sans;
+        color: $color-blue;
+        font-size: $font-size-5;
+        font-weight: $font-weight-bd;
+        line-height: $line-height-2;
+        letter-spacing: $space;
+
+        @include mixins.respond(tab-land) {
+          right: 42%;
+        }
+
+        @include mixins.respond(laptop) {
+          right: 45%;
+        }
+      }
+
+      .content {
+        position: relative;
+
+        .item {
+          @include mixins.flexCol;
+          gap: 1rem;
+          padding: 0 1rem;
+          text-align: center;
+          font-family: $font-sans;
+          color: $color-black;
+          line-height: $line-height-2;
+          letter-spacing: $space;
+          width: 25%;
+          position: absolute;
+
+          .head {
+            font-size: $font-size-1;
+            font-weight: $font-weight-bd;
+          }
+
+          .text {
+            font-size: $font-size;
+            font-weight: $font-weight-md;
+          }
+
+          .arrow {
+            display: flex;
+            align-items: center;
+            position: absolute;
+
+            .arrow_line {
+              width: 6rem;
+              height: .2rem;
+              background-color: $color-white;
+
+              @include mixins.respond(phone-nm) {
+                width: 8rem;
+              }
+            }
+
+            .arrow_head {
+              width: 0;
+              height: 0;
+              border-top: 1rem solid transparent;
+              border-bottom: 1rem solid transparent;
+              border-left: 1rem solid $color-white;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  .review {
+    width: 100%;
+    height: 100%;
+    @include mixins.flexCol;
+    gap: 1rem;
+    padding: 10rem 0 3.5rem;
+
+    @include mixins.respond(tab-land) {
+      padding: 3rem 0;
+    }
+
+    .review_title {
+      font-family: $font-sans;
+      color: $color-brown;
+      font-size: $font-size-5;
+      font-weight: $font-weight-md;
+      line-height: $line-height-2;
+      letter-spacing: $space;
+      position: relative;
+
+      .review_title_span {
+        border: 1px solid $color-blue-light;
+        transform: rotate(-90deg);
+        width: 4rem;
+        position: absolute;
+        top: 1rem;
+        left: -2.5rem;
+      }
+    }
+
+    .review_subtitle {
+      font-family: $font-sans;
+      color: $color-blue;
+      font-size: $font-size-7;
+      font-weight: $font-weight-md;
+      line-height: $line-height-2;
+      letter-spacing: $space;
+    }
+
+    .review_container {
+      width: 100%;
+      height: 100%;
+      @include mixins.flexRow;
+      flex-wrap: wrap;
+      gap: 2.5rem;
+
+      .review_box {
+        box-shadow: 0px 4px 4px $color-ash;
+        background: $color-bg;
+        border-radius: $border-radius-sm;
+        width: 100%;
+        max-width: 25rem;
+        height: 100%;
+        @include mixins.flexColAlignStart;
+        gap: .5rem;
+        padding: 2rem 2rem .5rem;
+
+        .review_text {
+          font-family: $font-sans;
+          color: $color-black;
+          font-size: $font-size-1;
+          font-weight: $font-weight-md;
+          line-height: $line-height-2;
+          letter-spacing: $space;
+        }
+
+        .star {
+          display: flex;
+          align-items: center;
+          gap: .1rem;
+
+          .star_icon {
+            width: 1.5rem;
+            height: 1.5rem;
+            fill: $color-gold;
+          }
+        }
+
+        .user {
+          @include mixins.flexRow;
+          gap: 1rem;
+
+          .name {
+            font-family: $font-sans;
+            color: $color-black;
+            font-size: $font-size-1;
+            font-weight: $font-weight-bd;
+            text-align: center;
+            line-height: $line-height-2;
+            letter-spacing: $space;
+          }
+        }
+      }
+    }
+  }
+}
+
+.content1 {
+  top: 10rem;
+  left: 10%;
+}
+
+.content2 {
+  top: 19rem;
+  left: 33%;
+}
+
+.content3 {
+  top: 10rem;
+  left: 55%;
+}
+
+.content4 {
+  top: 25rem;
+  left: 73%;
+}
+
+.arrow1 {
+  top: 7rem;
+  left: 70%;
+  transform: rotate(40deg);
+
+  :first-child {
+    @include mixins.respond(phone-nm) {
+      width: 8rem !important;
+    }
+
+    @include mixins.respond(tab-land) {
+      width: 11rem !important;
+    }
+
+    @include mixins.respond(laptop) {
+      width: 12rem !important;
+    }
+
+    @include mixins.respond(desktop) {
+      width: 17rem !important;
+    }
+  }
+
+  @include mixins.respond(phone-nm) {
+    left: 65%;
+    transform: rotate(30deg);
+  }
+
+  @include mixins.respond(tab-land) {
+    transform: rotate(20deg);
+  }
+}
+
+.arrow2 {
+  top: -2rem;
+  left: 65%;
+  transform: rotate(-25deg);
+
+  :first-child {
+    @include mixins.respond(phone-nm) {
+      width: 8rem !important;
+    }
+
+    @include mixins.respond(tab-land) {
+      width: 10rem !important;
+    }
+
+    @include mixins.respond(laptop) {
+      width: 11rem !important;
+    }
+
+    @include mixins.respond(desktop) {
+      width: 16rem !important;
+    }
+  }
+
+  @include mixins.respond(tab-port) {
+    transform: rotate(-30deg);
+  }
+
+  @include mixins.respond(laptop) {
+    transform: rotate(-20deg);
+  }
+}
+
+.arrow3 {
+  top: 9rem;
+  left: 70%;
+  transform: rotate(60deg);
+
+  :first-child {
+    width: 8rem !important;
+
+    @include mixins.respond(phone-nm) {
+      width: 11.5rem !important;
+    }
+
+    @include mixins.respond(tab-land) {
+      width: 12.5rem !important;
+    }
+
+    @include mixins.respond(laptop) {
+      width: 13.5rem !important;
+    }
+
+    @include mixins.respond(desktop) {
+      width: 16.5rem !important;
+    }
+  }
+
+  @include mixins.respond(phone-nm) {
+    left: 60%;
+    transform: rotate(50deg);
+  }
+
+  @include mixins.respond(tab-land) {
+    transform: rotate(40deg);
+  }
+
+  @include mixins.respond(laptop) {
+    transform: rotate(30deg);
+  }
+}
