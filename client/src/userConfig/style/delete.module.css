@@ -47,3 +47,15 @@
 .input:focus::placeholder {
   color: #aaa;
 }
+
+@media (min-width: 48.0625em) {
+  .input {
+    width: 65%;
+  }
+}
+
+@media (min-width: 56.3125em) {
+  .input {
+    width: 50%;
+  }
+}

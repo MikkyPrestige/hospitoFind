@@ -2,7 +2,7 @@
   background-color: #E0E4EC;
   height: 100%;
   width: 100%;
-  padding-top: 10rem;
+  padding: 10rem 0 5rem;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -52,7 +52,7 @@
   gap: 1rem;
 }
 .bg .wrapper .container .header .title {
-  font-size: 2.4rem;
+  font-size: 2.2rem;
   font-weight: 700;
   color: #08299B;
   line-height: 135%;
@@ -72,33 +72,28 @@
   gap: 1rem;
 }
 .bg .wrapper .container .cta .btn {
-  font-size: 1.6rem;
-  font-weight: 600;
+  font-size: 1.4rem;
   letter-spacing: -0.011em;
-  line-height: 135%;
   color: #FFFFFF;
   transition: all 0.5s ease-in-out;
 }
 .bg .wrapper .container .cta .link {
-  font-size: 1.4rem;
-  font-weight: 500;
+  font-size: 1.2rem;
   font-style: italic;
   letter-spacing: -0.011em;
-  line-height: 150%;
   color: #1E1E1E;
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: center;
-  margin-bottom: 1rem;
   transition: all 0.5s ease-in-out;
 }
 .bg .wrapper .container .cta .link:hover {
   color: #000000;
 }
 .bg .wrapper .container .cta .link .icon {
-  width: 2rem;
-  height: 2rem;
+  width: 1.5rem;
+  height: 1.5rem;
   fill: #08299B;
 }
 .bg .wrapper .img {

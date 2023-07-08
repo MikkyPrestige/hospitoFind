@@ -1,4 +1,4 @@
-@use "../../../assets/styles/mixins";
+@use "../../../assets/styles/mixins"as mixins;
 @import "../../../assets/styles/variables";
 
 .findSection {
@@ -6,16 +6,20 @@
   height: 100%;
   @include mixins.flexColAlignStart;
   gap: 1rem;
-  padding-top: 7.5rem;
+  padding-top: 5rem;
   background-color: #f0fbff;
 
-  .title {
-    font-size: $font-size-8;
-    font-weight: $font-weight-bd;
-    color: $color-blue;
-    letter-spacing: $space;
-    align-self: center;
+  @include mixins.respond(tab-land) {
+    padding-top: 0;
   }
+
+  // .title {
+  //   font-size: $font-size-5;
+  //   font-weight: $font-weight-bd;
+  //   color: $color-blue;
+  //   letter-spacing: $space;
+  //   align-self: center;
+  // }
 
   .search {
     width: 100%;
@@ -34,22 +38,38 @@
       @include mixins.flexRow;
       gap: 3rem;
       width: 100%;
-      padding: 1.5rem;
+      padding: 0 5rem;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+
+      // @include mixins.respond(tab-land) {
+      //   padding: 0 2rem;
+      // }
 
       .form {
+        width: 80%;
         @include mixins.flexCol;
         gap: 1.5rem;
         z-index: 1;
 
+        @include mixins.respond(phone-nm) {
+          width: 70%;
+        }
+
+        @include mixins.respond(laptop) {
+          width: 50%;
+        }
+
         .input {
-          height: 4rem;
+          height: 3.5rem;
           width: 100%;
           border-radius: $border-radius-sm;
           background-color: $color-white;
           color: $color-black;
           font-family: $font-sans;
           font-size: $font-size-4;
-          font-weight: $font-weight-bd;
           letter-spacing: -0.02063rem;
           line-height: $line-height-2;
           padding: 0 1rem;
@@ -60,19 +80,17 @@
 
           &::placeholder {
             color: $color-gray;
-            font-size: $font-size-3;
-            font-weight: $font-weight-md;
+            font-size: $font-size-1;
           }
         }
 
         .cta {
-          width: 4.75rem;
-          height: 3rem;
           border-radius: $border-radius-md;
           border: 1px solid $color-gray;
           background: $color-blue;
           outline: none;
           @include mixins.flexRow;
+          padding: .4rem 1rem;
 
           &:active {
             background: $color-white-1;
@@ -82,8 +100,7 @@
 
 
           .icon {
-            width: 1.875rem;
-            height: 1.875rem;
+            font-size: $font-size-6;
             fill: $color-white;
 
             &:active {

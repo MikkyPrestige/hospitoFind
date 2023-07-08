@@ -99,7 +99,7 @@ const FindHospital = () => {
     <>
       <Header />
       <section className={style.findSection}>
-        <h1 className={style.title}>Find Hospital</h1>
+        {/* <h1 className={style.title}>Find Hospital</h1> */}
         <div className={style.search}>
           <div className={style.map}>
             <div

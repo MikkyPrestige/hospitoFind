@@ -124,7 +124,7 @@ const HospitalInfo = () => {
             <Avatar
               image={Save}
               alt="Save"
-              style={{ width: "2rem", height: "2rem" }}
+              style={{ width: "1.5rem", height: "1.5rem" }}
             />
           </button>
         </div>

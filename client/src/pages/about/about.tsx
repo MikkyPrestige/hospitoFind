@@ -16,6 +16,7 @@ import Patient from "@/assets/images/patient.jpg";
 import { Button } from "@/components/button";
 import Header from "@/layouts/header/nav";
 import Footer from "@/layouts/footer/footer";
+import { Link } from "react-router-dom";
 
 const About = () => {
   return (
@@ -26,7 +27,9 @@ const About = () => {
           <div className={style.top}>
             <h1 className={style.title}>Welcome to <span className={style.span}>CareFinder</span></h1>
             <p className={style.para}>CareFinder is a platform where users can search for hospitals in their areas, export hospital details for your records and  enhance your healthcare experience by connecting with others and sharing valuable resources.</p>
-            <Button children={<span className={style.cta}>OUR SERVICES</span>} />
+            <Button children={<span className={style.cta}>
+              <Link to="/find">OUR SERVICES</Link>
+            </span>} />
           </div>
           <div className={style.img}>
             <div className={style.img_1}>
