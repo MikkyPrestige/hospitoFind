@@ -2,12 +2,17 @@
   background-color: #FFFFFF;
   height: 100%;
   width: 100%;
-  padding-top: 10rem;
+  padding-top: 8rem;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 5rem;
+  gap: 1rem;
+}
+@media only screen and (min-width: 48.0625em) {
+  .bg {
+    padding-top: 0;
+  }
 }
 .bg .wrapper {
   display: flex;
@@ -35,7 +40,7 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 2rem;
+  gap: 1rem;
   font-family: "DM Sans", sans-serif;
 }
 @media only screen and (min-width: 48.0625em) {
@@ -49,7 +54,6 @@
   font-size: 2.4rem;
   font-weight: 500;
   color: #000000;
-  line-height: 150%;
   letter-spacing: -0.011em;
 }
 @media only screen and (min-width: 48.0625em) {
@@ -72,13 +76,12 @@
   color: #000000;
   line-height: 150%;
   letter-spacing: -0.011em;
-  margin-bottom: 3.5rem;
+  margin-bottom: 1rem;
 }
 .bg .wrapper .top .cta {
   font-size: 1.4rem;
   font-weight: 700;
   color: #FFFFFF;
-  line-height: 150%;
   letter-spacing: -0.011em;
 }
 .bg .wrapper .img {
@@ -113,8 +116,12 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 2rem;
   transform: translateY(10%);
+}
+@media only screen and (min-width: 48.0625em) {
+  .bg .wrapper2 {
+    transform: translateY(5%);
+  }
 }
 .bg .wrapper2 .container {
   width: 100%;
@@ -122,22 +129,23 @@
   flex-direction: row;
   align-items: center;
   justify-content: center;
+  flex-wrap: wrap;
   gap: 1rem;
 }
 @media only screen and (min-width: 37.5625em) {
   .bg .wrapper2 .container {
-    gap: 3rem;
+    gap: 2rem;
   }
 }
 @media only screen and (min-width: 56.3125em) {
   .bg .wrapper2 .container {
-    gap: 5rem;
+    gap: 3rem;
   }
 }
 .bg .wrapper2 .container .box {
   background-color: #E0E4EC;
-  width: 22.5rem;
-  height: 25rem;
+  width: 22rem;
+  height: 20rem;
   border-radius: 1rem;
   display: flex;
   flex-direction: column;
@@ -196,6 +204,11 @@
   position: relative;
   overflow: hidden;
   margin: 5rem auto;
+}
+@media only screen and (min-width: 48.0625em) {
+  .bg .wrapper2 .semiCircle_bg {
+    margin: 3rem auto;
+  }
 }
 .bg .wrapper2 .semiCircle_bg .semiCircle {
   width: 100%;
@@ -293,7 +306,12 @@
   align-items: center;
   justify-content: center;
   gap: 1rem;
-  padding: 3rem 0;
+  padding: 10rem 0 3.5rem;
+}
+@media only screen and (min-width: 48.0625em) {
+  .bg .review {
+    padding: 3rem 0;
+  }
 }
 .bg .review .review_title {
   font-family: "DM Sans", sans-serif;
@@ -335,7 +353,7 @@
   background: #E0E4EC;
   border-radius: 1rem;
   width: 100%;
-  max-width: 30rem;
+  max-width: 25rem;
   height: 100%;
   display: flex;
   flex-direction: column;

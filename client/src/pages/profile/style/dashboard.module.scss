@@ -46,7 +46,11 @@
     height: 6rem;
 
     @include mixins.respond(tab-port) {
-      margin-left: 20%;
+      margin-left: 25%;
+    }
+
+    @include mixins.respond(laptop) {
+      margin-left: 15%;
     }
   }
 
@@ -94,7 +98,6 @@
         color: $color-black;
         font-size: $font-size-2;
         font-family: $font-sans;
-        font-weight: $font-weight-bd;
         letter-spacing: -0.01375rem;
         height: 3rem;
         width: 100%;

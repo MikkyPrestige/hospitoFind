@@ -5,14 +5,13 @@ import { Avatar } from "@/components/avatar"
 import Image from "@/assets/images/doctor-patient.jpg";
 import { Button } from "@/components/button"
 import style from "./style/home.module.css"
-import About from "../about/about";
-// import Header from "@/layouts/header/nav";
-// import Footer from "@/layouts/footer/footer";
+import Header from "@/layouts/header/nav";
+import Footer from "@/layouts/footer/footer";
 
 const Home = () => {
   return (
     <>
-      {/* <Header /> */}
+      <Header />
       <section className={style.bg}>
         <div className={style.wrapper}>
           <div className={style.container}>
@@ -21,8 +20,8 @@ const Home = () => {
               <p className={style.subtitle}>Discover Your Perfect Care: Find Your Hospital, Anytime, Anywhere!</p>
             </div>
             <div className={style.cta}>
-              <Button children={<span className={style.btn}>GET STARTED</span>} />
-              <Link to="#" className={style.link}>Learn more <BsArrowRightShort className={style.icon} /></Link>
+              <Button children={<Link to="/signUp" className={style.btn}>GET STARTED</Link>} />
+              <Link to="/about" className={style.link}>Learn more <BsArrowRightShort className={style.icon} /></Link>
             </div>
           </div>
           <div className={style.img}>
@@ -42,8 +41,7 @@ const Home = () => {
           </label>
         </div>
       </section>
-      <About />
-      {/* <Footer /> */}
+      <Footer />
     </>
   );
 }

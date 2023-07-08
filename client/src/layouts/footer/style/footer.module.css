@@ -8,17 +8,26 @@
   justify-content: space-between;
   gap: 1rem;
   padding: 2rem;
+  position: relative;
+}
+.footer::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 0.1rem;
+  background-color: #88B3DB;
 }
 .footer .box1 {
   width: 30%;
   text-align: start;
 }
 .footer .heading {
-  font-size: 2rem;
+  font-size: 1.6rem;
   font-weight: 500;
   color: #08299B;
   letter-spacing: -0.011em;
-  line-height: 150%;
   margin-bottom: 2rem;
 }
 .footer .link {
@@ -27,12 +36,11 @@
   font-weight: 500;
   color: #000000;
   letter-spacing: -0.011em;
-  line-height: 135%;
 }
 .footer .box2 {
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: center;
-  gap: 7rem;
+  gap: 5rem;
 }/*# sourceMappingURL=footer.module.css.map */

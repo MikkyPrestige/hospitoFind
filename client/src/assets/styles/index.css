@@ -53,7 +53,7 @@ html {
   }
 
   @media (min-width: 112.5625em) {
-    font-size: 81.25%;
+    font-size: 80%;
     /* 1rem = 13px; 13px/16px = 81.25% */
   }
 }
@@ -111,4 +111,32 @@ input:focus {
 
 input::-moz-focus-inner {
   border: 0;
+}
+
+input:invalid {
+  border-color: #ff0000;
+}
+
+input:invalid:focus {
+  border-color: #ff0000;
+  box-shadow: 0 0 2px 0 #ff0000;
+}
+
+input:valid {
+  border-color: #00ff00;
+}
+
+input:valid:focus {
+  border-color: #00ff00;
+  box-shadow: 0 0 2px 0 #00ff00;
+}
+
+input:disabled {
+  border-color: #ccc;
+  color: #ccc;
+}
+
+input:disabled:focus {
+  border-color: #ccc;
+  box-shadow: 0 0 2px 0 #ccc;
 }

@@ -5,9 +5,13 @@
   background-color: $color-white;
   height: 100%;
   width: 100%;
-  padding-top: 10rem;
+  padding-top: 8rem;
   @include mixins.flexCol;
-  gap: 5rem;
+  gap: 1rem;
+
+  @include mixins.respond(tab-land) {
+    padding-top: 0;
+  }
 
   .wrapper {
     @include mixins.flexCol;
@@ -25,7 +29,7 @@
       height: 100%;
       text-align: center;
       @include mixins.flexCol;
-      gap: 2rem;
+      gap: 1rem;
       font-family: $font-sans;
 
       @include mixins.respond(tab-land) {
@@ -38,7 +42,6 @@
         font-size: $font-size-7;
         font-weight: $font-weight-md;
         color: $color-black;
-        line-height: $line-height-2;
         letter-spacing: $space;
 
         @include mixins.respond(tab-land) {
@@ -59,14 +62,13 @@
         color: $color-black;
         line-height: $line-height-2;
         letter-spacing: $space;
-        margin-bottom: 3.5rem;
+        margin-bottom: 1rem;
       }
 
       .cta {
         font-size: $font-size-2;
         font-weight: $font-weight-bd;
         color: $color-white;
-        line-height: $line-height-2;
         letter-spacing: $space;
       }
     }
@@ -100,26 +102,30 @@
     width: 100%;
     height: 100%;
     @include mixins.flexCol;
-    gap: 2rem;
     transform: translateY(10%);
+
+    @include mixins.respond(tab-land) {
+      transform: translateY(5%);
+    }
 
     .container {
       width: 100%;
       @include mixins.flexRow;
+      flex-wrap: wrap;
       gap: 1rem;
 
       @include mixins.respond(tab-port) {
-        gap: 3rem;
+        gap: 2rem;
       }
 
       @include mixins.respond(laptop) {
-        gap: 5rem;
+        gap: 3rem;
       }
 
       .box {
         background-color: $color-bg;
-        width: 22.5rem;
-        height: 25rem;
+        width: 22rem;
+        height: 20rem;
         border-radius: $border-radius-sm;
         @include mixins.flexCol;
         gap: 1rem;
@@ -176,6 +182,10 @@
       position: relative;
       overflow: hidden;
       margin: 5rem auto;
+
+      @include mixins.respond(tab-land) {
+        margin: 3rem auto;
+      }
 
       .semiCircle {
         width: 100%;
@@ -278,7 +288,11 @@
     height: 100%;
     @include mixins.flexCol;
     gap: 1rem;
-    padding: 3rem 0;
+    padding: 10rem 0 3.5rem;
+
+    @include mixins.respond(tab-land) {
+      padding: 3rem 0;
+    }
 
     .review_title {
       font-family: $font-sans;
@@ -320,7 +334,7 @@
         background: $color-bg;
         border-radius: $border-radius-sm;
         width: 100%;
-        max-width: 30rem;
+        max-width: 25rem;
         height: 100%;
         @include mixins.flexColAlignStart;
         gap: .5rem;

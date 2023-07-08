@@ -6,15 +6,13 @@
   align-items: flex-start;
   justify-content: center;
   gap: 1rem;
-  padding-top: 7.5rem;
+  padding-top: 5rem;
   background-color: #f0fbff;
 }
-.findSection .title {
-  font-size: 2.6rem;
-  font-weight: 700;
-  color: #08299B;
-  letter-spacing: -0.011em;
-  align-self: center;
+@media only screen and (min-width: 48.0625em) {
+  .findSection {
+    padding-top: 0;
+  }
 }
 .findSection .search {
   width: 100%;
@@ -35,9 +33,14 @@
   justify-content: center;
   gap: 3rem;
   width: 100%;
-  padding: 1.5rem;
+  padding: 0 5rem;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
 .findSection .search .container .form {
+  width: 80%;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -45,15 +48,24 @@
   gap: 1.5rem;
   z-index: 1;
 }
+@media only screen and (min-width: 30.0625em) {
+  .findSection .search .container .form {
+    width: 70%;
+  }
+}
+@media only screen and (min-width: 56.3125em) {
+  .findSection .search .container .form {
+    width: 50%;
+  }
+}
 .findSection .search .container .form .input {
-  height: 4rem;
+  height: 3.5rem;
   width: 100%;
   border-radius: 1rem;
   background-color: #FFFFFF;
   color: #000000;
   font-family: "DM Sans", sans-serif;
   font-size: 1.8rem;
-  font-weight: 700;
   letter-spacing: -0.02063rem;
   line-height: 150%;
   padding: 0 1rem;
@@ -63,17 +75,13 @@
 }
 .findSection .search .container .form .input::-moz-placeholder {
   color: #C1C1C1;
-  font-size: 1.6rem;
-  font-weight: 500;
+  font-size: 1.2rem;
 }
 .findSection .search .container .form .input::placeholder {
   color: #C1C1C1;
-  font-size: 1.6rem;
-  font-weight: 500;
+  font-size: 1.2rem;
 }
 .findSection .search .container .form .cta {
-  width: 4.75rem;
-  height: 3rem;
   border-radius: 1.5rem;
   border: 1px solid #C1C1C1;
   background: #08299B;
@@ -82,6 +90,7 @@
   flex-direction: row;
   align-items: center;
   justify-content: center;
+  padding: 0.4rem 1rem;
 }
 .findSection .search .container .form .cta:active {
   background: #F2F2F2;
@@ -89,8 +98,7 @@
   border: 1px solid #08299B;
 }
 .findSection .search .container .form .cta .icon {
-  width: 1.875rem;
-  height: 1.875rem;
+  font-size: 2.2rem;
   fill: #FFFFFF;
 }
 .findSection .search .container .form .cta .icon:active {

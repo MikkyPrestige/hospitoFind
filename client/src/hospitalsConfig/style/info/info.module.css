@@ -27,14 +27,25 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 2rem;
+  gap: 1rem;
   width: 100%;
   height: 100%;
   background-color: #DBE0EA;
+  padding: 1rem;
 }
 .hospital .wrapper .img {
-  width: 43.75rem;
-  height: 43.75rem;
+  width: 75%;
+  height: 30rem;
+}
+@media only screen and (min-width: 37.5625em) {
+  .hospital .wrapper .img {
+    height: 40rem;
+  }
+}
+@media only screen and (min-width: 56.3125em) {
+  .hospital .wrapper .img {
+    width: 50%;
+  }
 }
 .hospital .wrapper .details {
   width: 100%;
@@ -45,7 +56,7 @@
   align-items: center;
   justify-content: center;
   gap: 2rem;
-  padding: 3rem 0 1rem;
+  padding: 1rem 0;
   border-radius: 1rem;
 }
 .hospital .wrapper .details .title {
@@ -55,7 +66,7 @@
   background: #F5F5F5;
   font-size: 1.8rem;
   font-family: "DM Sans", sans-serif;
-  font-weight: 700;
+  font-weight: 500;
   color: #000000;
   letter-spacing: -0.02063rem;
   line-height: 150%;
@@ -80,7 +91,7 @@
 .hospital .wrapper .details .service_title {
   font-size: 1.8rem;
   font-family: "DM Sans", sans-serif;
-  font-weight: 700;
+  font-weight: 500;
   color: #000000;
   letter-spacing: -0.02063rem;
   line-height: 150%;
@@ -99,7 +110,6 @@
 .hospital .wrapper .details .service .list .item {
   font-size: 1.6rem;
   font-family: "DM Sans", sans-serif;
-  font-weight: 500;
   color: #000000;
   letter-spacing: -0.02063rem;
   line-height: 150%;
@@ -126,13 +136,12 @@
   align-items: center;
   justify-content: center;
   gap: 1rem;
-  padding: 0.5rem 1rem;
+  padding: 0.3rem 0.8rem;
   border-radius: 2rem;
   background: #88B3DB;
   color: #FFFFFF;
-  font-size: 1.8rem;
+  font-size: 1.4rem;
   font-family: "DM Sans", sans-serif;
-  font-weight: 500;
   text-transform: uppercase;
 }
 .hospital .link {
@@ -140,9 +149,7 @@
   border-radius: 1.5rem;
   background: #08299B;
   color: #FFFFFF;
-  font-size: 1.8rem;
+  font-size: 1.4rem;
   font-family: "DM Sans", sans-serif;
-  font-weight: 500;
   letter-spacing: -0.02063rem;
-  line-height: 150%;
 }/*# sourceMappingURL=info.module.css.map */

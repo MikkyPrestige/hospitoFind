@@ -89,9 +89,7 @@ const UpdateForm = () => {
           className={btnStyle.btn}
         />
       </form>
-      <div>
-        <UpdatePassword />
-      </div>
+      <UpdatePassword />
     </div>
   );
 }

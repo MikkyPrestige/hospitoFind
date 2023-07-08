@@ -5,7 +5,7 @@
   background-color: $color-bg;
   height: 100%;
   width: 100%;
-  padding-top: 10rem;
+  padding: 10rem 0 5rem;
   @include mixins.flexCol;
   gap: 5rem;
   font-family: $font-inter;
@@ -40,7 +40,7 @@
         gap: 1rem;
 
         .title {
-          font-size: $font-size-7;
+          font-size: $font-size-6;
           font-weight: $font-weight-bd;
           color: $color-blue;
           line-height: $line-height-1;
@@ -60,23 +60,18 @@
         gap: 1rem;
 
         .btn {
-          font-size: $font-size-3;
-          font-weight: $font-weight-md-1;
+          font-size: $font-size-2;
           letter-spacing: $space;
-          line-height: $line-height-1;
           color: $color-white;
           transition: all 0.5s ease-in-out;
         }
 
         .link {
-          font-size: $font-size-2;
-          font-weight: $font-weight-md;
+          font-size: $font-size-1;
           font-style: italic;
           letter-spacing: $space;
-          line-height: $line-height-2;
           color: $color-black-b;
           @include mixins.flexRow;
-          margin-bottom: 1rem;
           transition: all 0.5s ease-in-out;
 
           &:hover {
@@ -84,8 +79,8 @@
           }
 
           .icon {
-            width: 2rem;
-            height: 2rem;
+            width: 1.5rem;
+            height: 1.5rem;
             fill: $color-blue;
           }
         }
