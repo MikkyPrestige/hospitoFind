@@ -4,8 +4,7 @@ import { useState } from "react";
 import { useAuthContext } from "../contexts/userContext";
 import { Login } from "@/services/userTypes";
 import { useNavigate } from "react-router-dom";
-
-const BASE_URL = "http://localhost:5000/auth"
+import { BASE_URL } from "../contexts/userContext";
 
 const useLogin = () => {
   const [loading, setLoading] = useState(false);
@@ -20,7 +19,7 @@ const useLogin = () => {
   const login = async (user: Login) => {
     setLoading(true);
     setError("");
-    await axios.post(`${BASE_URL}`, user)
+    await axios.post(`${BASE_URL}/auth`, user)
       .then((response) => {
         const { accessToken, name, email, username } = response.data
         // const { id } = response.headers;

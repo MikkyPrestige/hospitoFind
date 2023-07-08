@@ -184,7 +184,7 @@ const Editor = () => {
         // console.log("Hospital data saved:", hospital);
         setMarkdown("Hospital added. Thanks for your contribution!");
         setError("");
-      } catch (error) {
+      } catch (error: any) {
         setError(error.response.data.message);
       }
     }

@@ -120,6 +120,8 @@ const ContextProvider = ({ children }: { children: React.ReactNode }) => {
   )
 }
 
+const BASE_URL = "http://localhost:5000";
+
 const useAuthContext = (): AuthContextType => {
   const context = useContext(AuthContext);
   if (!context) {
@@ -128,4 +130,4 @@ const useAuthContext = (): AuthContextType => {
   return context;
 };
 
-export { ContextProvider, useAuthContext }
+export { ContextProvider, useAuthContext, BASE_URL }

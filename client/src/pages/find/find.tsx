@@ -69,7 +69,7 @@ const FindHospital = () => {
       return;
     }
     const query = `street=${location.street}&cityState=${location.cityState}&name=${location.name}`;
-    console.log(query)
+    // console.log(query)
     try {
       const data = await findHospitals(query);
       if (data.length === 0) {
@@ -95,17 +95,61 @@ const FindHospital = () => {
     };
   };
 
+  useEffect(() => {
+    if (map) {
+      map.on("load", () => {
+        // map.addSource("hospitals", {
+        //   type: "geojson",
+        //   data: {
+        //     type: "FeatureCollection",
+        //     features: hospitals.map((hospital) => ({
+        //       type: "Feature",
+        //       geometry: {
+        //         type: "Point",
+        //         coordinates: [hospital.location.coordinates[0], hospital.location.coordinates[1]]
+        //       },
+        //       properties: {
+        //         name: hospital.name,
+        //         address: hospital.address.street
+        //       }
+        //     }))
+        //   }
+        // });
+        // map.addLayer({
+        //   id: "hospitals",
+        //   type: "circle",
+        //   source: "hospitals",
+        //   paint: {
+        //     "circle-radius": 6,
+        //     "circle-color": "#B42222"
+        //   }
+        // });
+        // map.on("click", "hospitals", (e) => {
+        //   const coordinates = e.features[0].geometry.coordinates.slice();
+        //   const { name, address } = e.features[0].properties;
+        //   const description = `<strong>${name}</strong><p>${address}</p>`;
+        //   new mapboxgl.Popup()
+        //     .setLngLat(coordinates)
+        //     .setHTML(description)
+        //     .addTo(map);
+        // });
+        map.on("mouseenter", "hospitals", () => {
+          map.getCanvas().style.cursor = "pointer";
+        });
+        map.on("mouseleave", "hospitals", () => {
+          map.getCanvas().style.cursor = "";
+        });
+      });
+    }
+  }, [map, hospitals]);
+
   return (
     <>
       <Header />
       <section className={style.findSection}>
-        {/* <h1 className={style.title}>Find Hospital</h1> */}
         <div className={style.search}>
           <div className={style.map}>
-            <div
-              ref={mapContainer}
-              style={{ width: "100%", height: "100%", borderRadius: "1rem" }}
-            ></div>
+            <div ref={mapContainer} style={{ width: "100%", height: "100%", borderRadius: "1rem" }}></div>
           </div>
           <div className={style.container}>
             <form onSubmit={handleSearch} className={style.form}>

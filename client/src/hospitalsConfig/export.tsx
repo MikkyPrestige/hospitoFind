@@ -3,8 +3,7 @@ import axios from "axios";
 import { SearchProps, statesAndCities } from "@/services/hospitalTypes";
 import style from "./style/shareExport/shareExport.module.css";
 import { TiExport } from "react-icons/ti";
-
-const BASE_URL = "http://localhost:5000/hospitals/export"
+import { BASE_URL } from "@/contexts/userContext";
 
 const ExportButton = ({ searchParams }: SearchProps) => {
   const [exporting, setExporting] = useState<boolean>(false);
@@ -13,7 +12,7 @@ const ExportButton = ({ searchParams }: SearchProps) => {
   const handleExport = async () => {
     try {
       setExporting(true);
-      const { data } = await axios.get(`${BASE_URL}`, {
+      const { data } = await axios.get(`${BASE_URL}/hospitals/export`, {
         responseType: "blob",
         params: searchParams
       });

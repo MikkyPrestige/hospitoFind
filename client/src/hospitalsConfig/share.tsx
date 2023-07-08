@@ -3,8 +3,7 @@ import { SearchProps, statesAndCities } from "@/services/hospitalTypes";
 import { useState } from "react";
 import style from "./style/shareExport/shareExport.module.css";
 import { CgShare } from "react-icons/cg";
-
-const BASE_URL = "http://localhost:5000/hospitals/share"
+import { BASE_URL } from "@/contexts/userContext";
 
 const ShareButton = ({ searchParams }: SearchProps) => {
 
@@ -15,7 +14,7 @@ const ShareButton = ({ searchParams }: SearchProps) => {
   const handleShare = async () => {
     try {
       setGenerating(true)
-      const { data } = await axios.post(`${BASE_URL}`, {
+      const { data } = await axios.post(`${BASE_URL}/hospitals/share`, {
         searchParams: {
           city: searchParams.city,
           state: searchParams.state
