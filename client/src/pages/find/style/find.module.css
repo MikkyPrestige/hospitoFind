@@ -1,0 +1,140 @@
+.findSection {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  gap: 1rem;
+  padding-top: 5rem;
+  background-color: #f0fbff;
+}
+@media only screen and (min-width: 48.0625em) {
+  .findSection {
+    padding-top: 0;
+  }
+}
+.findSection .search {
+  width: 100%;
+  height: 36rem;
+  position: relative;
+}
+.findSection .search .map {
+  width: 100%;
+  height: 35.5rem;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+.findSection .search .container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 3rem;
+  width: 100%;
+  padding: 0 5rem;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+.findSection .search .container .form {
+  width: 80%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1.5rem;
+  z-index: 1;
+}
+@media only screen and (min-width: 30.0625em) {
+  .findSection .search .container .form {
+    width: 70%;
+  }
+}
+@media only screen and (min-width: 56.3125em) {
+  .findSection .search .container .form {
+    width: 50%;
+  }
+}
+.findSection .search .container .form .input {
+  height: 3.5rem;
+  width: 100%;
+  border-radius: 1rem;
+  background-color: #FFFFFF;
+  color: #000000;
+  font-family: "DM Sans", sans-serif;
+  font-size: 1.8rem;
+  letter-spacing: -0.02063rem;
+  line-height: 150%;
+  padding: 0 1rem;
+}
+.findSection .search .container .form .input:focus {
+  outline: none;
+}
+.findSection .search .container .form .input::-moz-placeholder {
+  color: #C1C1C1;
+  font-size: 1.2rem;
+}
+.findSection .search .container .form .input::placeholder {
+  color: #C1C1C1;
+  font-size: 1.2rem;
+}
+.findSection .search .container .form .cta {
+  border-radius: 1.5rem;
+  border: 1px solid #C1C1C1;
+  background: #08299B;
+  outline: none;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  padding: 0.4rem 1rem;
+}
+.findSection .search .container .form .cta:active {
+  background: #F2F2F2;
+  color: #08299B;
+  border: 1px solid #08299B;
+}
+.findSection .search .container .form .cta .icon {
+  font-size: 2.2rem;
+  fill: #FFFFFF;
+}
+.findSection .search .container .form .cta .icon:active {
+  fill: #08299B;
+}
+.findSection .search .container .user {
+  width: 5.625rem;
+  height: 5.625rem;
+  border-radius: 50%;
+  align-self: flex-start;
+}
+.findSection .search .error {
+  font-size: 1.8rem;
+  font-weight: 500;
+  color: #FF033E;
+  letter-spacing: -0.011em;
+  text-align: center;
+}
+.findSection .hospitals {
+  width: 100%;
+  height: 100%;
+}
+.findSection .hospitals .found {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  width: 100%;
+}
+.findSection .hospitals .found .cta_btn {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 5rem;
+  width: 100%;
+  margin: 1.5rem;
+}/*# sourceMappingURL=find.module.css.map */
