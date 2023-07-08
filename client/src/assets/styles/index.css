@@ -1,11 +1,12 @@
 :root {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  font-family: Inter, DM Sans, system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
   font-weight: 400;
+  font-style: normal;
 
   color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
+  color: #242424;
+  background: #f2f2f2;
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
@@ -14,8 +15,140 @@
   -webkit-text-size-adjust: 100%;
 }
 
-body {
+*,
+*::before,
+*::after {
   margin: 0;
+  padding: 0;
+  box-sizing: inherit;
+}
+
+html {
+  font-size: 45%;
+  /* 1rem = 7.2px; 7.2px/16px = 45% */
+}
+
+@media (min-width: 30.0625em) {
+  html {
+    font-size: 50%;
+    /* 1rem = 8px; 8px/16px = 50% */
+  }
+}
+
+@media (min-width: 37.5625em) {
+  html {
+    font-size: 56.25%;
+    /* 1rem = 9px; 9px/16px = 56.25% */
+  }
+}
+
+@media (min-width: 48.0625em) {
+  html {
+    font-size: 62.5%;
+    /* 1rem = 10px; 10px/16px = 62.5% */
+  }
+}
+
+@media (min-width: 56.3125em) {
+  html {
+    font-size: 68.75%;
+    /* 1rem = 11px; 11px/16px = 68.75% */
+  }
+}
+
+@media (min-width: 75.0625em) {
+  html {
+    font-size: 75%;
+    /* 1rem = 12px; 12px/16px = 75% */
+  }
+}
+
+@media (min-width: 112.5625em) {
+  html {
+    font-size: 81.25%;
+    /* 1rem = 13px; 13px/16px = 81.25% */
+  }
+}
+
+body {
+  box-sizing: border-box;
   min-width: 100%;
   min-height: 100%;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+button {
+  font-family: inherit;
+  font-size: inherit;
+  line-height: inherit;
+  color: inherit;
+  background-color: transparent;
+  border: none;
+  padding: 0;
+  margin: 0;
+  cursor: pointer;
+}
+
+button:focus {
+  outline: none;
+}
+
+button::-moz-focus-inner {
+  border: 0;
+}
+
+input {
+  font-family: inherit;
+  font-size: inherit;
+  line-height: inherit;
+  color: inherit;
+  background-color: transparent;
+  border: none;
+  padding: 0;
+  margin: 0;
+  cursor: pointer;
+}
+
+input:focus {
+  outline: none;
+}
+
+input::-moz-focus-inner {
+  border: 0;
+}
+
+input:invalid {
+  border-color: #ff0000;
+}
+
+input:invalid:focus {
+  border-color: #ff0000;
+  box-shadow: 0 0 2px 0 #ff0000;
+}
+
+input:valid {
+  border-color: #00ff00;
+}
+
+input:valid:focus {
+  border-color: #00ff00;
+  box-shadow: 0 0 2px 0 #00ff00;
+}
+
+input:disabled {
+  border-color: #ccc;
+  color: #ccc;
+}
+
+input:disabled:focus {
+  border-color: #ccc;
+  box-shadow: 0 0 2px 0 #ccc;
 }

@@ -3,15 +3,18 @@ import express from "express";
 import mongoose from "mongoose";
 import path from "path";
 import cookieParser from "cookie-parser";
+// import fileuploader from "express-fileupload";
 import cors from "cors";
 import corsOptions from "./config/corsOptions.js";
 import connectDB from "./config/db.js";
 import { logger, logEvents } from "./middleware/logger.js";
 import errorHandler from "./middleware/errorHandler.js";
-import hospitalRouter from "./routes/hospitals.js";
-import exportRouter from "./routes/exportHospital.js";
-import shareRouter from "./routes/shareHospital.js";
-import rootRouter from "./routes/root.js";
+import rootRouter from "./routes/rootRoute.js";
+import authRouter from "./routes/authRoute.js";
+import userRouter from "./routes/usersRoute.js";
+import hospitalRouter from "./routes/hospitalsRoute.js";
+import exportRouter from "./routes/exportRoute.js";
+import shareRouter from "./routes/shareRoute.js";
 import { fileURLToPath } from "url";
 import { dirname } from "path";
 const __dirname = dirname(fileURLToPath(import.meta.url));
@@ -26,13 +29,17 @@ connectDB();
 // Init Middleware
 app.use(logger);
 app.use(cors(corsOptions));
+// app.use(cors({ exposedHeader: "id" }));
 app.use(express.json());
+// app.use(fileuploader());
 app.use(cookieParser());
 app.use("/", express.static("public"))
 app.use("/", express.static("public/views"));
 
 // Routes
 app.use("/", rootRouter)
+app.use("/auth", authRouter);
+app.use("/user", userRouter);
 app.use("/hospitals", hospitalRouter);
 app.use("/hospitals/export", exportRouter);
 app.use("/hospitals/share", shareRouter);

@@ -9,6 +9,8 @@ const corsOptions = {
     }
   },
   credential: true,
+  methods: ["GET", "POST", "PATCH", "DELETE"],
+  allowedHeaders: ["Content-Type", "Authorization"],
   optionsSuccessStatus: 200
 }
 

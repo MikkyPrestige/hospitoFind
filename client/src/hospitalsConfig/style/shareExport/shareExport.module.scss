@@ -1,0 +1,45 @@
+@use "../../../assets/styles/mixins";
+@import "../../../assets/styles/variables";
+
+.cta {
+  text-align: center;
+  @include mixins.flexCol;
+  gap: 1rem;
+
+  .btn {
+    background-color: $color-blue;
+    color: $color-white;
+    border: 1px solid $color-blue;
+    border-radius: 1rem;
+    font-size: $font-size-3;
+    text-decoration: none;
+    padding: .3rem .8rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+
+    &:hover {
+      background-color: $color-blue;
+      color: $color-white;
+    }
+
+    .icon {
+      width: 2rem;
+      height: 2rem;
+      fill: #f0fbff;
+    }
+  }
+
+  .link {
+    text-decoration: none;
+    color: $color-blue;
+    font-size: $font-size-3;
+    font-weight: $font-weight-bd;
+  }
+
+  .error {
+    color: $color-red;
+    font-size: $font-size-1;
+    margin: 1rem 0;
+  }
+}

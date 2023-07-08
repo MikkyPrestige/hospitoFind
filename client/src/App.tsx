@@ -1,18 +1,25 @@
-// import { ErrorBoundary } from "react-error-boundary"
-// import Fallback from "./components/fallback"
-// import HospitalList from "./components/hospitalList"
-import SearchForm from "./components/searchForm"
+import { Suspense } from "react";
+import { ErrorBoundary } from "react-error-boundary"
+import { Fallback } from "@/components/fallback"
+import { AppRoutes } from "./routes"
+import Loading from "@/assets/images/loading.gif";
 
 function App() {
 
   return (
-    <>
-      {/* <ErrorBoundary FallbackComponent={Fallback}> */}
-      <h1>App</h1>
-      {/* <HospitalList /> */}
-      <SearchForm />
-      {/* </ErrorBoundary> */}
-    </>
+    <ErrorBoundary FallbackComponent={Fallback}>
+      <Suspense fallback={
+        <div style={{
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+          height: "100vh"
+        }}>
+          <img src={Loading} alt="Loading gif" /></div>
+      }>
+        <AppRoutes />
+      </Suspense>
+    </ErrorBoundary>
   )
 }
 

@@ -1,8 +1,8 @@
-import Hospital from "../models/hospitals.js";
+import Hospital from "../models/hospitalsModel.js";
 import asyncHandler from "express-async-handler";
 
 // @desc Get all hospitals
-// @route GET /api/hospitals
+// @route GET /hospitals
 // @access Public
 const getHospitals = asyncHandler(async (req, res) => {
   const hospitals = await Hospital.find({}).lean();
@@ -13,21 +13,85 @@ const getHospitals = asyncHandler(async (req, res) => {
   return res.json(hospitals);
 })
 
+// @desc Get hospitals randomly
+// @route GET /hospitals/random
+// @access Public
+const getRandomHospitals = asyncHandler(async (req, res) => {
+  const hospitals = await Hospital.aggregate([{ $sample: { size: 3 } }])
+  // If no hospitals
+  if (!hospitals) {
+    return res.status(400).json({ message: 'No Hospital found' })
+  }
+  return res.json(hospitals);
+})
+
+// @desc Get hospital by name
+// @route GET /hospitals/:name
+// @access Public
+const getHospitalByName = asyncHandler(async (req, res) => {
+  const { name } = req.params
+  const hospital = await Hospital.findOne({ name }).lean()
+  // If no hospital
+  if (!hospital) {
+    return res.status(400).json({ message: 'Hospital not found' })
+  }
+  return res.json(hospital);
+})
+
+// @desc Find hospitals by name or address
+// @route GET /hospitals/find?address=address&name=name
+// @access Public
+const findHospitals = asyncHandler(async (req, res) => {
+  const { street, cityState, name } = req.query;
+  const query = {};
+  if (street) query['address.street'] = { $regex: new RegExp(street, 'i') };
+  if (cityState) {
+    query['$or'] = [
+      { 'address.city': { $regex: new RegExp(cityState, 'i') } },
+      { 'address.state': { $regex: new RegExp(cityState, 'i') } }
+    ]
+  };
+  if (name) query.name = { $regex: new RegExp(name, 'i') };
+  console.log(query)
+  const hospitals = await Hospital.find(query);
+  if (hospitals === 0) {
+    return res.status(400).json({
+      success: false,
+      error: "No matching records"
+    });
+  }
+
+  return res.json(hospitals);
+})
+
 // @desc Search for hospitals by cities or state
-// @route GET /api/hospitals/search?city=city&state=state
+// @route GET /hospitals/search?city=city&state=state
 // @access Public
 const searchHospitals = asyncHandler(async (req, res) => {
-  const { city, state } = req.query;
+  const { address, city, state } = req.query;
   const query = {};
+  if (address) {
+    query['$or'] = [
+      { name: { $regex: new RegExp(address, 'i') } },
+      { 'address.street': { $regex: new RegExp(address, 'i') } }
+    ]
+  };
   if (city) query['address.city'] = { $regex: new RegExp(city, 'i') };
   if (state) query['address.state'] = { $regex: new RegExp(state, 'i') };
 
   const hospitals = await Hospital.find(query);
+  if (hospitals === 0) {
+    return res.status(400).json({
+      success: false,
+      error: "No matching records"
+    });
+  }
+
   return res.json(hospitals);
 })
 
 // @desc add new hospital
-// @route POST /api/hospitals
+// @route POST /hospitals
 // @access Public
 const addHospital = asyncHandler(async (req, res) => {
   const {
@@ -71,7 +135,7 @@ const addHospital = asyncHandler(async (req, res) => {
 })
 
 // @desc update hospital
-// @route PATCH /api/hospitals/:id
+// @route PATCH /hospitals/:id
 // @access Public
 const updateHospital = asyncHandler(async (req, res) => {
   const {
@@ -118,12 +182,12 @@ const updateHospital = asyncHandler(async (req, res) => {
 })
 
 // @desc delete hospital
-// @route DELETE /api/hospitals/:id
+// @route DELETE /hospitals/:id
 // @access Public
 const deleteHospital = asyncHandler(async (req, res) => {
   // const hospital = await Hospital.findById(req.params.id).exec()
-  const { _id } = req.body
-  const hospital = await Hospital.findById(_id).exec()
+  const { name } = req.body
+  const hospital = await Hospital.findOne({ name }).exec()
 
   if (!hospital) {
     return res.status(404).json({ message: 'Hospital not found' })
@@ -134,6 +198,9 @@ const deleteHospital = asyncHandler(async (req, res) => {
 
 export {
   getHospitals,
+  getRandomHospitals,
+  getHospitalByName,
+  findHospitals,
   searchHospitals,
   addHospital,
   updateHospital,
