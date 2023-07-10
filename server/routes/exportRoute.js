@@ -6,7 +6,7 @@ import asyncHandler from "express-async-handler";
 const exportRouter = express.Router();
 
 exportRouter.get("/", asyncHandler(async (req, res) => {
-  const { city, state } = req.query;
+  const { city, state } = req.body.searchParams;
 
   const query = {};
   if (city) query["address.city"] = { $regex: new RegExp(city, "i") };

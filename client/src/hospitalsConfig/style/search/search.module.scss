@@ -121,8 +121,18 @@
   }
 
   .container {
-    width: 100%;
-    @include mixins.flexRow;
-    gap: 5rem;
+    width: 95%;
+    @include mixins.flexRowAlignFlexStart;
+    flex-wrap: wrap;
+    gap: 1rem;
+    padding: .5rem 1rem;
+    border-radius: 1rem;
+    border: 1px solid $color-gray;
+    background: $color-white;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+
+    @include mixins.respond(phone-nm) {
+      width: 80%;
+    }
   }
 }
