@@ -11,9 +11,9 @@
     color: $color-white;
     border: 1px solid $color-blue;
     border-radius: 1rem;
-    font-size: $font-size-3;
+    font-size: $font-size-2;
     text-decoration: none;
-    padding: .3rem .8rem;
+    padding: .2rem .6rem;
     display: flex;
     align-items: center;
     gap: 0.5rem;
@@ -24,17 +24,30 @@
     }
 
     .icon {
-      width: 2rem;
-      height: 2rem;
+      width: 1.7rem;
+      height: 1.7rem;
       fill: #f0fbff;
     }
   }
 
-  .link {
-    text-decoration: none;
-    color: $color-blue;
-    font-size: $font-size-3;
-    font-weight: $font-weight-bd;
+  .btnLink {
+    @include mixins.flexRow;
+    gap: 1rem;
+    justify-content: center;
+
+    .link {
+      text-decoration: none;
+      font-size: $font-size-3;
+    }
+
+    .copy {
+      background-color: $color-white;
+      color: $color-blue;
+      border: 1px solid $color-blue;
+      border-radius: 1rem;
+      font-size: $font-size-2;
+      padding: .2rem .6rem;
+    }
   }
 
   .error {

@@ -120,7 +120,7 @@ const ContextProvider = ({ children }: { children: React.ReactNode }) => {
   )
 }
 
-const BASE_URL = "http://localhost:5000";
+const BASE_URL = "https://carefinder.azurewebsites.net";
 
 const useAuthContext = (): AuthContextType => {
   const context = useContext(AuthContext);

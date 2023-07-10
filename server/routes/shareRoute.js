@@ -20,9 +20,11 @@ shareRouter.post("/", asyncHandler(async (req, res) => {
     linkId,
     hospitals: searchedHospitals.map(hospital => ({
       name: hospital.name,
-      'address.street': hospital.address.street,
-      'address.city': hospital.address.city,
-      'address.state': hospital.address.state,
+      address: {
+        street: hospital.address.street,
+        city: hospital.address.city,
+        state: hospital.address.state
+      },
       phone: hospital.phone,
       website: hospital.website,
       email: hospital.email,
@@ -35,8 +37,8 @@ shareRouter.post("/", asyncHandler(async (req, res) => {
 
   await shareableLink.save()
   // Return the generated shareable link to the client
-  const shareableLinkUrl = `${linkId}`
-
+  const shareableLinkUrl = { linkId };
+  console.log(shareableLink)
   res.status(200).json({ shareableLink: shareableLinkUrl });
 }))
 
@@ -51,7 +53,7 @@ shareRouter.get("/:linkId", asyncHandler(async (req, res) => {
 
   const hospitals = link.hospitals
   // Return the hospital list to the client
-  return res.status(200).json({ hospitals })
+  return res.status(200)({ hospitals })
 }))
 
 export default shareRouter;
