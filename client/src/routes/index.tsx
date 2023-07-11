@@ -1,5 +1,6 @@
 import { Route, Routes } from "react-router-dom";
 import { lazy } from "react";
+import { useAuthContext } from "@/contexts/userContext";
 
 const Home = lazy(() => import("@/pages/home/home"));
 const About = lazy(() => import("@/pages/about/about"));
@@ -13,6 +14,7 @@ const Error404 = lazy(() => import("@/components/error404"));
 // const Profile = lazy(() => import("@/hooks/profile"));
 
 export const AppRoutes = () => {
+  const { state } = useAuthContext();
   return (
     <Routes>
       <Route path="/" element={<Home />} />
@@ -24,7 +26,7 @@ export const AppRoutes = () => {
       <Route path="/login" element={<LogIn />} />
       <Route path="/signUp" element={<SignUp />} />
       <Route path="/dashboard">
-        <Route index element={<Dashboard />} />
+        <Route index element={state.username ? <Dashboard /> : <SignUp />} />
         <Route path=":name" element={<HospitalInfo />} />
       </Route>
       <Route>

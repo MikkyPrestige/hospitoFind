@@ -124,10 +124,9 @@
   background-color: #08299B;
   color: #FFFFFF !important;
   font-family: "DM Sans", sans-serif;
-  font-size: 2.2rem;
-  font-weight: 500;
+  font-size: 2rem;
   letter-spacing: -0.011em;
-  padding: 0.3rem 1.5rem;
+  padding: 0.2rem 0.8rem;
   transition: all 0.5s ease-in-out;
 }
 
