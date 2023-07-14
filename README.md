@@ -1,4 +1,4 @@
- # NIGERIA CARE-FINDER
+ # NIGERIA CARE-FINDER (In PROGRESS!!!)
  Access to healthcare in Nigeria can be very difficult and painstaking. Quite absurd being that the first thing to living is being healthy. Carefinder is a simple tool that aims to help any user find, export, and share hospitals within the region.
  ## Goals
 - Hospital Search => Carefinder allows users to search for hospitals within their region. Users can input their location or select from a list of nearby cities to find hospitals in their area. The platform will provide a list of hospitals and their respective contact details, including address, phone number, and email
