@@ -1,4 +1,5 @@
-import { Link, NavLink, NavLinkProps } from "react-router-dom";
+import { Link, NavLink, NavLinkProps, useNavigate } from "react-router-dom";
+import { useAuthContext } from "@/contexts/userContext";
 import { MdClose } from "react-icons/md"
 import { FiMenu } from "react-icons/fi"
 import { VscAccount } from "react-icons/vsc"
@@ -45,6 +46,28 @@ export const NavLinks = ({ to, ...props }: NavLinksProps) => {
 const LayoutMobile = () => {
   const [showMenu, setShowMenu] = useState(false);
   const toggleMenu = () => setShowMenu(!showMenu);
+  const navigate = useNavigate();
+  const { state } = useAuthContext();
+
+
+  const handleLoginClick = () => {
+    if (state.username) {
+      navigate("/dashboard");
+    } else {
+      navigate("/login");
+    }
+    setShowMenu(!showMenu)
+  }
+
+  const handleSignUpClick = () => {
+    if (state.username) {
+      navigate("/dashboard");
+    } else {
+      navigate("/signUp");
+    }
+    setShowMenu(!showMenu)
+  }
+
 
   return (
     <header className={style.smallHeader}>
@@ -103,20 +126,18 @@ const LayoutMobile = () => {
             </li>
           </ul>
           <div className={style.smallWrapper}>
-            <NavLinks
-              to="/login"
-              onClick={toggleMenu}
+            <button
+              onClick={handleLoginClick}
               className={style.smallAuth}
             >
               Login
-            </NavLinks>
-            <NavLinks
-              to="/signUp"
-              onClick={toggleMenu}
+            </button>
+            <button
+              onClick={handleSignUpClick}
               className={style.smallAuth}
             >
               SignUp
-            </NavLinks>
+            </button>
           </div>
         </nav>
       </div>

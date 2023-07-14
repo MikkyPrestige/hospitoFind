@@ -11,9 +11,9 @@
   color: #FFFFFF;
   border: 1px solid #08299B;
   border-radius: 1rem;
-  font-size: 1.6rem;
+  font-size: 1.4rem;
   text-decoration: none;
-  padding: 0.3rem 0.8rem;
+  padding: 0.2rem 0.6rem;
   display: flex;
   align-items: center;
   gap: 0.5rem;
@@ -23,15 +23,29 @@
   color: #FFFFFF;
 }
 .cta .btn .icon {
-  width: 2rem;
-  height: 2rem;
+  width: 1.7rem;
+  height: 1.7rem;
   fill: #f0fbff;
 }
-.cta .link {
+.cta .btnLink {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  justify-content: center;
+}
+.cta .btnLink .link {
   text-decoration: none;
-  color: #08299B;
   font-size: 1.6rem;
-  font-weight: 700;
+}
+.cta .btnLink .copy {
+  background-color: #FFFFFF;
+  color: #08299B;
+  border: 1px solid #08299B;
+  border-radius: 1rem;
+  font-size: 1.4rem;
+  padding: 0.2rem 0.6rem;
 }
 .cta .error {
   color: #FF033E;

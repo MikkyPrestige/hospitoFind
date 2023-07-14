@@ -7,6 +7,9 @@ const authRouter = express()
 authRouter.route("/")
   .post(loginLimiter, authController.login)
 
+// authRouter.route("/auth0")
+//   .post(authController.auth0)
+
 authRouter.route("/refresh")
   .get(authController.refresh)
 
