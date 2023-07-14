@@ -1,6 +1,6 @@
 import axios from "axios";
 import { useState } from "react";
-// import { useAuth0 } from "@auth0/auth0-react"
+import { useAuth0 } from "@auth0/auth0-react"
 import { useAuthContext } from "../contexts/userContext";
 import { Login } from "@/services/userTypes";
 import { useNavigate } from "react-router-dom";
@@ -11,10 +11,7 @@ const useLogin = () => {
   const [error, setError] = useState("");
   const { dispatch } = useAuthContext();
   const navigate = useNavigate()
-  // const { loginWithRedirect, getAccessTokenSilently } = useAuth0()
-
-  //  access the access token from the Auth0 client instance
-  // const getAccessToken = getAccessTokenSilently()
+  const { loginWithRedirect } = useAuth0();
 
   const login = async (user: Login) => {
     setLoading(true);
@@ -58,7 +55,7 @@ const useLogin = () => {
       })
   }
 
-  return { loading, error, login }
+  return { loading, error, login, loginWithRedirect }
 
 }
 

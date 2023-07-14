@@ -17,6 +17,7 @@ import exportRouter from "./routes/exportRoute.js";
 import shareRouter from "./routes/shareRoute.js";
 import { fileURLToPath } from "url";
 import { dirname } from "path";
+// import { auth } from "express-openid-connect";
 const __dirname = dirname(fileURLToPath(import.meta.url));
 
 const app = express();
@@ -35,6 +36,30 @@ app.use(express.json());
 app.use(cookieParser());
 app.use("/", express.static("public"))
 app.use("/", express.static("public/views"));
+
+// Auth0
+// const config = {
+//   authRequired: false,
+//   auth0Logout: true,
+//   secret: process.env.AUTH0_SECRET,
+//   baseURL: process.env.AUTH0_BASE_URL,
+//   clientID: process.env.AUTH0_CLIENT_ID,
+//   issuerBaseURL: process.env.AUTH0_ISSUER_BASE_URL
+// };
+
+// Auth0 Middleware
+// app.use(auth(config));
+
+// // Middleware to make the `user` object available for all views
+// app.use(function (req, res, next) {
+//   res.locals.user = req.oidc.user;
+//   next();
+// });
+
+// // req.isAuthenticated is provided from the auth router
+// app.get('/users', (req, res) => {
+//   res.send(req.oidc.isAuthenticated() ? 'Logged in' : 'Logged out')
+// })
 
 // Routes
 app.use("/", rootRouter)

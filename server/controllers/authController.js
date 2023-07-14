@@ -3,6 +3,27 @@ import bcrypt from "bcrypt";
 import asyncHandler from "express-async-handler";
 import jwt from "jsonwebtoken";
 
+// @desc Auth0
+// @route POST /auth
+// @access Public
+const auth0 = asyncHandler(async (req, res) => {
+  const { auth0UserId, name, email } = req.body
+  // Check if the user already exists in MongoDB
+  let user = await User.findOne({ auth0UserId }).exec()
+  if (!user) {
+    // If not, create a new user in MongoDB
+    user = await User.create({ auth0UserId, name, email })
+  }
+  // Return user data
+  res.status(201).json({ message: 'User data stored successfully' });
+  // res.json({
+  //   _id: user._id,
+  //   name: user.name,
+  //   email: user.email,
+  //   auth0UserId: user.auth0UserId
+  // })
+})
+
 // @desc Login
 // @route POST /auth
 // @access Public
@@ -83,6 +104,7 @@ const logout = asyncHandler(async (req, res) => {
 })
 
 export default {
+  auth0,
   login,
   refresh,
   logout
