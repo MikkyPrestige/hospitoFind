@@ -12,7 +12,7 @@ const LoginForm = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [errors, setErrors] = useState<{ [Key: string]: string }>({});
-  const { loading, error, login } = useLogin();
+  const { loading, error, login, loginWithRedirect } = useLogin();
   const { state } = useAuthContext();
 
   // validate form
@@ -93,7 +93,7 @@ const LoginForm = () => {
               className={style.form_button}
             />
           </form>
-          {/* <button onClick={() => loginWithRedirect()}>Login Using</button> */}
+          <button onClick={() => loginWithRedirect()}>Login with Social accounts</button>
           <p className={style.link}>Don't have an account? <Link to="/signUp" className={style.login}>Sign-up!</Link></p>
         </section>
       </section>

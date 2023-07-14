@@ -6,10 +6,10 @@ import { CgShare } from "react-icons/cg";
 import { BASE_URL } from "@/contexts/userContext";
 
 const ShareButton = ({ searchParams }: SearchProps) => {
-
   const [shareableLink, setShareableLink] = useState<string>("");
   const [error, setError] = useState<string>("");
   const [generating, setGenerating] = useState<boolean>(false);
+  const [copied, setCopied] = useState<boolean>(false);
 
   const handleShare = async () => {
     try {
@@ -53,16 +53,36 @@ const ShareButton = ({ searchParams }: SearchProps) => {
     }
   }
 
+  const copyToClipboard = async (text: string) => {
+    try {
+      await navigator.clipboard.writeText(text);
+    } catch (err) {
+      console.error('Failed to copy text to clipboard:', err);
+    }
+  };
+
+  const handleCopyLink = () => {
+    copyToClipboard(`${window.location.origin}/hospitals/share/${shareableLink}`);
+    setCopied(true);
+    setTimeout(() => {
+      setCopied(false);
+    }, 5000);
+  };
+
   return (
     <div className={style.cta}>
       <button type="submit" onClick={handleShare} disabled={generating} className={style.btn}>
-        {generating ? <div className={style.loader}>Getting Your Link...</div> : <CgShare className={style.icon} />}
+        {generating ? <div>Getting Link...</div> : <CgShare className={style.icon} />}
         Share
       </button>
       {shareableLink &&
-        <a href={shareableLink} target="_blank" rel="noreferrer" className={style.link}>
-          Copy Link: {shareableLink}
-        </a>}
+        <div className={style.btnLink}>
+          <button onClick={handleCopyLink} className={style.link}>
+            {window.location.origin}/hospitals/share/{shareableLink}
+          </button>
+          {copied && <span className={style.copy}>Copied!</span>}
+        </div>
+      }
       {error && <p className={style.error}>{error}</p>}
     </div>
   )

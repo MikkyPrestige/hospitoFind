@@ -5,13 +5,14 @@ import style from "./style/info/info.module.css";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { getHospitalByName } from "@/services/api";
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import Save from "@/assets/images/save.svg";
 
 const HospitalInfo = () => {
   const { name } = useParams();
   const [hospital, setHospital] = useState<Hospital | null>(null);
   const [error, setError] = useState<string>("");
+  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchHospitalDetails = async () => {
@@ -35,6 +36,8 @@ const HospitalInfo = () => {
 
     fetchHospitalDetails();
   }, [name]);
+
+
 
   // const saveHospital = async () => {
   //   try {
@@ -129,7 +132,7 @@ const HospitalInfo = () => {
           </button>
         </div>
       </div>
-      <Link to="/dashboard" className={style.link}>Back</Link>
+      <button onClick={() => navigate(-1)} className={style.link}>Back</button>
     </div>
   );
 }
