@@ -1,36 +1,36 @@
 import express from "express";
-import {
-  getHospitals,
-  getRandomHospitals,
-  getHospitalByName,
-  findHospitals,
-  searchHospitals,
-  addHospital,
-  updateHospital,
-  deleteHospital
-} from "../controllers/hospitalController.js";
+import hospitalController from "../controllers/hospitalController.js";
 import verify from "../middleware/verify.js";
 
 const hospitalRouter = express.Router();
 
 hospitalRouter.route("/")
-  .get(getHospitals)
-  .post(addHospital)
-  .patch(verify, updateHospital)
+  .get(hospitalController.getHospitals)
+  .post(hospitalController.addHospital)
+  .patch(verify, hospitalController.updateHospital)
 
 hospitalRouter.route("/random")
-  .get(getRandomHospitals)
+  .get(hospitalController.getRandomHospitals)
 
 hospitalRouter.route("/find")
-  .get(findHospitals)
+  .get(hospitalController.findHospitals)
 
 hospitalRouter.route("/search")
-  .get(searchHospitals)
+  .get(hospitalController.searchHospitals)
+
+hospitalRouter.route("/share")
+  .post(hospitalController.shareHospitals)
+
+hospitalRouter.route("/export")
+  .get(hospitalController.exportHospitals)
+
+hospitalRouter.route("/share/:linkId")
+  .get(hospitalController.getSharedHospitals)
 
 hospitalRouter.route("/:name")
-  .get(getHospitalByName)
+  .get(hospitalController.getHospitalByName)
 
 hospitalRouter.route("/")
-  .delete(deleteHospital);
+  .delete(hospitalController.deleteHospital);
 
 export default hospitalRouter;
