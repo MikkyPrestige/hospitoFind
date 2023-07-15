@@ -21,11 +21,11 @@ hospitalRouter.route("/search")
 hospitalRouter.route("/share")
   .post(hospitalController.shareHospitals)
 
-hospitalRouter.route("/export")
-  .get(hospitalController.exportHospitals)
-
 hospitalRouter.route("/share/:linkId")
   .get(hospitalController.getSharedHospitals)
+
+hospitalRouter.route("/export")
+  .get(hospitalController.exportHospitals)
 
 hospitalRouter.route("/:name")
   .get(hospitalController.getHospitalByName)
