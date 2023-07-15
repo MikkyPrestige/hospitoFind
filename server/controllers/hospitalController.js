@@ -55,7 +55,6 @@ const findHospitals = asyncHandler(async (req, res) => {
     ]
   };
   if (name) query.name = { $regex: new RegExp(name, 'i') };
-  console.log(query)
   const hospitals = await Hospital.find(query);
   if (hospitals === 0) {
     return res.status(400).json({
@@ -71,7 +70,7 @@ const findHospitals = asyncHandler(async (req, res) => {
 // @route GET /hospitals/search?city=city&state=state
 // @access Public
 const searchHospitals = asyncHandler(async (req, res) => {
-  const { address, city, state, name } = req.query;
+  const { address, city, state } = req.query;
   const query = {};
   if (address) {
     query['$or'] = [
@@ -81,7 +80,6 @@ const searchHospitals = asyncHandler(async (req, res) => {
   };
   if (city) query['address.city'] = { $regex: new RegExp(city, 'i') };
   if (state) query['address.state'] = { $regex: new RegExp(state, 'i') };
-  if (name) query.name = { $regex: new RegExp(name, 'i') };
 
   const hospitals = await Hospital.find(query);
   if (hospitals === 0) {
@@ -107,7 +105,7 @@ const shareHospitals = asyncHandler(async (req, res) => {
       { 'address.city': { $regex: new RegExp(cityState, 'i') } },
       { 'address.state': { $regex: new RegExp(cityState, 'i') } }
     ]
-  }
+  };
   if (name) query.name = { $regex: new RegExp(name, 'i') };
 
   const searchedHospitals = await Hospital.find(query).lean()
@@ -135,8 +133,7 @@ const shareHospitals = asyncHandler(async (req, res) => {
 
   await shareableLink.save()
   // Return the generated shareable link to the client
-  const shareableLinkUrl = { linkId };
-  res.status(200).json({ shareableLink: shareableLinkUrl });
+  return res.status(200).json({ shareableLink: linkId });
 })
 
 // @desc Retrieve the hospital list associated with a shareable link
@@ -144,7 +141,7 @@ const shareHospitals = asyncHandler(async (req, res) => {
 // @access Public
 const getSharedHospitals = asyncHandler(async (req, res) => {
   const { linkId } = req.params
-  const link = await ShareableLink.findOne({ linkId }).populate("hospitals").lean()
+  const link = await ShareableLink.findOne({ linkId })
 
   if (!link) {
     return res.status(404).json({ error: "Link not found" })
@@ -152,7 +149,7 @@ const getSharedHospitals = asyncHandler(async (req, res) => {
 
   const hospitals = link.hospitals
   // Return the hospital list to the client
-  return res.status(200).json({ hospitals })
+  return res.status(200).json(hospitals)
 })
 
 // @dec export hospital
