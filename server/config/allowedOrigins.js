@@ -4,7 +4,8 @@ const allowedOrigins = [
   'http://localhost:5173',
   "https://findhospitals.netlify.app",
   "https://www.findhospitals.netlify.app",
-  "https://findhospitalsdev.netlify.app"
+  "https://findhospitalsdev.netlify.app",
+  "https://www.findhospitalsdev.netlify.app",
 ]
 
 export default allowedOrigins;
