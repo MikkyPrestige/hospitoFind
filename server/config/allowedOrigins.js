@@ -3,7 +3,8 @@ const allowedOrigins = [
   'https://carefinder.azurewebsites.net',
   'http://localhost:5173',
   "https://findhospitals.netlify.app",
-  "https://www.findhospitals.netlify.app"
+  "https://www.findhospitals.netlify.app",
+  "https://findhospitalsdev.netlify.app"
 ]
 
 export default allowedOrigins;
