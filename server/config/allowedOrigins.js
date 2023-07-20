@@ -5,6 +5,7 @@ const allowedOrigins = [
   "https://findhospitals.netlify.app",
   "https://www.findhospitals.netlify.app",
   "https://findhospitalsdev.netlify.app",
+  "https://hospitofind.netlify.app"
 ]
 
 export default allowedOrigins;
