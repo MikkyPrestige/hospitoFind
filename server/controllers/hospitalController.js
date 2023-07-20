@@ -1,5 +1,8 @@
 import Hospital from "../models/hospitalsModel.js";
+import ShareableLink from "../models/shareModel.js";
 import asyncHandler from "express-async-handler";
+import ids from "short-id";
+import { createObjectCsvWriter } from "csv-writer";
 
 // @desc Get all hospitals
 // @route GET /hospitals
@@ -52,7 +55,6 @@ const findHospitals = asyncHandler(async (req, res) => {
     ]
   };
   if (name) query.name = { $regex: new RegExp(name, 'i') };
-  console.log(query)
   const hospitals = await Hospital.find(query);
   if (hospitals === 0) {
     return res.status(400).json({
@@ -88,6 +90,117 @@ const searchHospitals = asyncHandler(async (req, res) => {
   }
 
   return res.json(hospitals);
+})
+
+// @desc share hospitals
+// @route POST /hospitals/share
+// @access Public
+const shareHospitals = asyncHandler(async (req, res) => {
+  const { city, state, cityState, name } = req.body.searchParams;
+  const query = {};
+  if (city) query['address.city'] = { $regex: new RegExp(city, 'i') };
+  if (state) query['address.state'] = { $regex: new RegExp(state, 'i') };
+  if (cityState) {
+    query['$or'] = [
+      { 'address.city': { $regex: new RegExp(cityState, 'i') } },
+      { 'address.state': { $regex: new RegExp(cityState, 'i') } }
+    ]
+  };
+  if (name) query.name = { $regex: new RegExp(name, 'i') };
+
+  const searchedHospitals = await Hospital.find(query).lean()
+  // Generate a unique link identifier
+  const linkId = ids.generate()
+
+  const shareableLink = new ShareableLink({
+    linkId,
+    hospitals: searchedHospitals.map(hospital => ({
+      name: hospital.name,
+      address: {
+        street: hospital.address.street,
+        city: hospital.address.city,
+        state: hospital.address.state
+      },
+      phone: hospital.phone,
+      website: hospital.website,
+      email: hospital.email,
+      type: hospital.type,
+      services: hospital.services,
+      comments: hospital.comments,
+      hours: hospital.hours,
+    }))
+  })
+
+  await shareableLink.save()
+  // Return the generated shareable link to the client
+  return res.status(200).json({ shareableLink: linkId });
+})
+
+// @desc Retrieve the hospital list associated with a shareable link
+// @route GET /hospitals/share/:linkId
+// @access Public
+const getSharedHospitals = asyncHandler(async (req, res) => {
+  const { linkId } = req.params
+  const link = await ShareableLink.findOne({ linkId })
+
+  if (!link) {
+    return res.status(404).json({ error: "Link not found" })
+  }
+
+  const hospitals = link.hospitals
+  // Return the hospital list to the client
+  return res.status(200).json(hospitals)
+})
+
+// @dec export hospital
+// @route GET /hospitals/export
+// @access Public
+const exportHospitals = asyncHandler(async (req, res) => {
+  const { city, state } = req.body.searchParams;
+
+  const query = {};
+  if (city) query["address.city"] = { $regex: new RegExp(city, "i") };
+  if (state) query["address.state"] = { $regex: new RegExp(state, "i") }
+
+  const hospitals = await Hospital.find(query).lean();
+
+  const csvData = hospitals.map(hospital => ({
+    name: hospital.name,
+    'address.street': hospital.address.street,
+    'address.city': hospital.address.city,
+    'address.state': hospital.address.state,
+    phone: hospital.phone,
+    website: hospital.website,
+    email: hospital.email,
+    type: hospital.type,
+    services: hospital.services.join(", "),
+    comments: hospital.comments.join(", "),
+    hours: hospital.hours.map(hour => `${hour.day}: ${hour.open}`).join(", "),
+  }));
+
+  const csvWriter = createObjectCsvWriter({
+    path: 'hospitals.csv',
+    header: [
+      { id: 'name', title: 'Name' },
+      { id: 'address.street', title: 'Street' },
+      { id: 'address.city', title: 'City' },
+      { id: 'address.state', title: 'State' },
+      { id: 'phone', title: 'Phone' },
+      { id: 'website', title: 'Website' },
+      { id: 'email', title: 'Email' },
+      { id: 'type', title: 'Type' },
+      { id: 'services', title: 'Services' },
+      { id: 'comments', title: 'Comments' },
+      { id: 'hours', title: 'Hours' },
+    ],
+  });
+
+
+  res.setHeader('Content-Type', 'text/csv');
+  res.setHeader('Content-Disposition', 'attachment; filename="hospitals.csv"');
+
+  csvWriter.writeRecords(csvData)
+    .then(() => res.download("hospitals.csv"))
 })
 
 // @desc add new hospital
@@ -196,12 +309,15 @@ const deleteHospital = asyncHandler(async (req, res) => {
   res.json(`${result.name} hospital deleted`)
 })
 
-export {
+export default {
   getHospitals,
   getRandomHospitals,
   getHospitalByName,
   findHospitals,
   searchHospitals,
+  shareHospitals,
+  getSharedHospitals,
+  exportHospitals,
   addHospital,
   updateHospital,
   deleteHospital
