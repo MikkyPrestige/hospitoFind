@@ -1,13 +1,12 @@
 import express from "express";
 import hospitalController from "../controllers/hospitalController.js";
-import verify from "../middleware/verify.js";
 
 const hospitalRouter = express.Router();
 
 hospitalRouter.route("/")
   .get(hospitalController.getHospitals)
   .post(hospitalController.addHospital)
-  .patch(verify, hospitalController.updateHospital)
+  .patch(hospitalController.updateHospital)
 
 hospitalRouter.route("/random")
   .get(hospitalController.getRandomHospitals)

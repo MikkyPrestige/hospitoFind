@@ -2,16 +2,12 @@ import dotenv from "dotenv";
 import express from "express";
 import mongoose from "mongoose";
 import path from "path";
-import cookieParser from "cookie-parser";
-import bodyParser from "body-parser";
 import cors from "cors";
 import corsOptions from "./config/corsOptions.js";
 import connectDB from "./config/db.js";
 import { logger, logEvents } from "./middleware/logger.js";
 import errorHandler from "./middleware/errorHandler.js";
 import rootRouter from "./routes/rootRoute.js";
-import authRouter from "./routes/authRoute.js";
-import userRouter from "./routes/usersRoute.js";
 import hospitalRouter from "./routes/hospitalsRoute.js";
 import { fileURLToPath } from "url";
 import { dirname } from "path";
@@ -28,16 +24,11 @@ connectDB();
 app.use(logger);
 app.use(cors(corsOptions));
 app.use(express.json());
-app.use(cookieParser());
-app.use(bodyParser.urlencoded({ extended: true }));
-app.use(bodyParser.json());
 app.use("/", express.static("public"))
 app.use("/", express.static("public/views"));
 
 // Routes
 app.use("/", rootRouter)
-app.use("/auth", authRouter);
-app.use("/user", userRouter);
 app.use("/hospitals", hospitalRouter);
 
 // 404
