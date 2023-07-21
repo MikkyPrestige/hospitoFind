@@ -1,0 +1,240 @@
+.smallHeader {
+  background-color: #FFFFFF;
+  width: 100%;
+  height: 6rem;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  box-shadow: 0 4px 4px rgba(14, 61, 183, 0.15);
+  position: fixed;
+  top: 0;
+  z-index: 1000;
+}
+@media only screen and (min-width: 30.0625em) {
+  .smallHeader {
+    height: 5rem;
+  }
+}
+@media only screen and (min-width: 48.0625em) {
+  .smallHeader {
+    display: none;
+  }
+}
+.smallHeader .smallLogo {
+  width: 10rem;
+  height: 10rem;
+  z-index: 1000;
+}
+.smallHeader .menu {
+  position: relative;
+}
+.smallHeader .menu .toggle {
+  position: fixed;
+  top: 1rem;
+  right: 3rem;
+  z-index: 500;
+  background-color: #08299B;
+  padding: 1rem;
+  border-radius: 50%;
+  transition: all 0.5s ease-in-out;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+@media only screen and (min-width: 30.0625em) {
+  .smallHeader .menu .toggle {
+    top: 0.5rem;
+    padding: 0.7rem;
+  }
+}
+.smallHeader .menu .toggle_icon {
+  font-size: 2.6rem;
+  font-weight: 700;
+  color: #2196F3;
+}
+@media only screen and (min-width: 30.0625em) {
+  .smallHeader .menu .toggle_icon {
+    font-size: 2rem;
+  }
+}
+.smallHeader .menu .smallNav {
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 0;
+  z-index: 200;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 5rem;
+  overflow: hidden;
+}
+.smallHeader .menu .show {
+  width: 45%;
+  height: 100%;
+  background-color: #F2F2F2;
+  transition: all 0.5s ease-in-out;
+}
+.smallHeader .menu .smallList {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  gap: 2rem;
+  list-style-type: none;
+}
+.smallHeader .menu .smallList .smallItem {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+}
+.smallHeader .menu .smallList .smallItem .smallLink {
+  font-family: "DM Sans", sans-serif;
+  font-size: 2rem;
+  font-weight: 500;
+  transition: all 0.5s ease-in-out;
+}
+.smallHeader .menu .smallList .smallItem .smallIcon {
+  font-size: 2.2rem;
+  color: #2196F3;
+}
+.smallHeader .menu .smallList .smallItem .smallFind {
+  font-family: "DM Sans", sans-serif;
+  font-size: 2rem;
+  font-weight: 500;
+  color: #1E1E1E !important;
+  transition: all 0.5s ease-in-out;
+}
+.smallHeader .menu .smallWrapper {
+  width: 70%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 3rem;
+  margin: 0 auto;
+}
+.smallHeader .menu .smallWrapper .smallAuth {
+  border-radius: 1rem;
+  background-color: #08299B;
+  color: #FFFFFF !important;
+  font-family: "DM Sans", sans-serif;
+  font-size: 2rem;
+  letter-spacing: -0.011em;
+  padding: 0.2rem 0.8rem;
+  transition: all 0.5s ease-in-out;
+}
+
+.logout {
+  background-color: #FF033E;
+  border-radius: 1rem;
+  padding: 0.2rem 0.8rem;
+}
+.logout .smallSpan {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 0.3rem;
+  font-size: 1.6rem;
+  font-family: "DM Sans", sans-serif;
+}
+.logout .smallIcon {
+  font-size: 1.6rem;
+}
+
+.large {
+  display: none;
+}
+@media only screen and (min-width: 48.0625em) {
+  .large {
+    display: block;
+    width: 100%;
+    height: 5rem;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    box-shadow: 0 4px 4px rgba(14, 61, 183, 0.15);
+    padding: 1rem 2rem;
+  }
+}
+.large .largeLogo {
+  width: 10rem;
+  height: 10rem;
+  z-index: 1000;
+}
+.large .largeNav {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 5rem;
+}
+.large .largeNav .largeList {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 3.5rem;
+  list-style-type: none;
+}
+.large .largeNav .largeList .largeItem {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+}
+.large .largeNav .largeList .largeItem .largeLink {
+  font-family: "DM Sans", sans-serif;
+  font-size: 1.4rem;
+  font-weight: 500;
+  transition: all 0.5s ease-in-out;
+}
+.large .largeNav .largeList .largeItem .largeIcon {
+  font-size: 1.6rem;
+  color: #2196F3;
+}
+.large .largeNav .largeList .largeItem .largeFind {
+  font-family: "DM Sans", sans-serif;
+  font-size: 1.4rem;
+  font-weight: 500;
+  color: #1E1E1E !important;
+  transition: all 0.5s ease-in-out;
+}
+.large .largeNav .largeWrapper {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 2rem;
+}
+.large .largeNav .largeWrapper .largeAuth {
+  border-radius: 1rem;
+  background-color: #08299B;
+  color: #FFFFFF !important;
+  font-family: "DM Sans", sans-serif;
+  font-size: 1.4rem;
+  letter-spacing: -0.011em;
+  padding: 0.1rem 0.8rem;
+  transition: all 0.5s ease-in-out;
+}
+.large .largeNav .largeWrapper .largeSpan {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 0.3rem;
+  font-size: 1.6rem;
+  font-family: "DM Sans", sans-serif;
+  font-weight: 500;
+}
+.large .largeNav .largeWrapper .largeIcon {
+  font-size: 1.8rem;
+}/*# sourceMappingURL=nav.module.css.map */

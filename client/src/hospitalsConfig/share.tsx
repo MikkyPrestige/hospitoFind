@@ -1,0 +1,70 @@
+import { shareHospital } from "@/services/api";
+import { SearchProps } from "@/services/hospitalTypes";
+import { useState } from "react";
+import style from "./style/shareExport/shareExport.module.css";
+import { CgShare } from "react-icons/cg";
+
+const ShareButton = ({ searchParams }: SearchProps) => {
+  const [shareableLink, setShareableLink] = useState<string>("");
+  const [error, setError] = useState<string>("");
+  const [generating, setGenerating] = useState<boolean>(false);
+  const [copied, setCopied] = useState<boolean>(false);
+
+  const handleShare = async () => {
+    // validate searchParams
+    if (!searchParams.city && !searchParams.state && !searchParams.cityState && !searchParams.name) {
+      setError('Please enter a city, state, and/or hospital name');
+      return;
+    }
+
+    setGenerating(true);
+    try {
+      const res = await shareHospital(searchParams);
+      console.log(searchParams)
+      setShareableLink(res);
+      setError("");
+      setGenerating(false);
+    }
+    catch (err: any) {
+      setError(err?.response?.data?.message || "Something went wrong");
+    } finally {
+      setGenerating(false);
+    }
+  };
+
+  const copyToClipboard = async (text: string) => {
+    try {
+      await navigator.clipboard.writeText(text);
+    } catch (err) {
+      console.error('Failed to copy text to clipboard:', err);
+    }
+  };
+
+  const handleCopyLink = () => {
+    copyToClipboard(`${window.location.origin}/hospitals/share/${shareableLink}`);
+    setCopied(true);
+    setTimeout(() => {
+      setCopied(false);
+    }, 5000);
+  };
+
+  return (
+    <div className={style.cta}>
+      <button type="submit" onClick={handleShare} disabled={generating} className={style.btn}>
+        {generating ? <div>Getting Link...</div> : <CgShare className={style.icon} />}
+        Share
+      </button>
+      {shareableLink &&
+        <div className={style.btnLink}>
+          <button onClick={handleCopyLink} className={style.link}>
+            {window.location.origin}/hospitals/share/{shareableLink}
+          </button>
+          {copied && <span className={style.copy}>Copied!</span>}
+        </div>
+      }
+      {error && <p className={style.error}>{error}</p>}
+    </div>
+  )
+}
+
+export default ShareButton;

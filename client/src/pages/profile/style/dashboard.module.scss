@@ -1,0 +1,191 @@
+@use "../../../assets/styles/mixins"as mixins;
+@import "../../../assets/styles/variables";
+
+.dashboard {
+  width: 100%;
+  height: 100%;
+  background-color: $color-white-1;
+  padding: 1rem 0;
+  @include mixins.flexCol;
+
+  @include mixins.respond(tab-port) {
+    gap: 2rem;
+  }
+
+  .top {
+    width: 100%;
+    @include mixins.flexRowAlignFlexStart;
+
+    .logo {
+      width: 10rem;
+      height: 10rem;
+      z-index: 1000;
+      margin-top: -2rem;
+
+      .img {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+        mix-blend-mode: color-burn;
+      }
+    }
+
+    .close {
+      fill: $color-blue;
+      stroke: $color-bg;
+      font-size: 5rem;
+      cursor: pointer;
+    }
+  }
+
+  .sidebarHidden {
+    display: none;
+  }
+
+  .section {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    @include mixins.respond(tab-port) {
+      flex-direction: row;
+      align-items: flex-start;
+    }
+  }
+
+  .nav {
+    width: 100%;
+    height: 100%;
+    @include mixins.flexColAlignStart;
+    gap: 3rem;
+    padding: 0 1rem;
+
+    @include mixins.respond(tab-port) {
+      flex-basis: 30%;
+      padding: 0;
+    }
+
+    @include mixins.respond(laptop) {
+      flex-basis: 20%;
+    }
+
+    .lists {
+      @include mixins.flexColAlignStart;
+      gap: 1rem;
+      border-right: 1px solid $color-bg;
+      width: 100%;
+      height: 100%;
+      padding: 1rem 0;
+
+      .list {
+        list-style: none;
+        @include mixins.flexRowFlexStart;
+        gap: 1rem;
+        color: $color-black;
+        font-size: $font-size-2;
+        font-family: $font-sans;
+        letter-spacing: -0.01375rem;
+        height: 3rem;
+        width: 100%;
+        padding: 0 1rem;
+        cursor: pointer;
+
+        .icon {
+          font-size: $font-size-5;
+          color: $color-blue;
+        }
+      }
+
+      .del {
+        background-color: $color-red;
+        border-radius: $border-radius-md;
+        width: fit-content !important;
+      }
+
+      .home {
+        background-color: $color-blue-light;
+        border-radius: $border-radius-md;
+        width: fit-content !important;
+      }
+
+      .active {
+        background-color: $color-bg;
+        border-radius: $border-radius-md;
+      }
+    }
+  }
+
+  .profile {
+    width: 100%;
+    height: 100%;
+    padding: 2rem 0;
+
+    @include mixins.respond(tab-port) {
+      flex-grow: 1;
+    }
+
+    .details {
+      @include mixins.flexColAlignStart;
+      width: 100%;
+
+      .heading {
+        color: $color-blue;
+        font-size: $font-size-4;
+        font-family: $font-sans;
+        font-weight: $font-weight-bd;
+        letter-spacing: -0.01925rem;
+        align-self: center;
+        text-transform: capitalize;
+      }
+
+      .user {
+        @include mixins.flexCol;
+        gap: 1rem;
+        width: 100%;
+        font-family: $font-sans;
+        font-weight: $font-weight-md;
+        font-size: $font-size-2;
+        line-height: $line-height-2;
+        padding: 1.5rem;
+
+        .photo {
+          width: 6rem;
+          height: 6rem;
+        }
+
+        .title {
+          color: $color-bg;
+          font-size: $font-size-2;
+          letter-spacing: -0.01375rem;
+        }
+
+        .state {
+          color: $color-black;
+          letter-spacing: -0.01031rem;
+        }
+      }
+
+      .logout {
+        align-self: center;
+
+        .btn {
+          background-color: $color-red !important;
+
+          .span {
+            @include mixins.flexRow;
+            gap: .3rem;
+            font-size: $font-size-3;
+            font-family: $font-sans;
+            font-weight: $font-weight-md;
+          }
+
+          .icon {
+            font-size: $font-size-4;
+          }
+        }
+      }
+    }
+  }
+}
