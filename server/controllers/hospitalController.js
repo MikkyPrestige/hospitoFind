@@ -164,6 +164,13 @@ const exportHospitals = asyncHandler(async (req, res) => {
 
   const hospitals = await Hospital.find(query).lean();
 
+  if (!hospitals) {
+    return res.status(400).json({
+      success: false,
+      error: "No matching records"
+    });
+  }
+
   const csvData = hospitals.map(hospital => ({
     name: hospital.name,
     'address.street': hospital.address.street,

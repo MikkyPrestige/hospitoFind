@@ -6,8 +6,9 @@ import { NavLink } from "react-router-dom";
 import HospitalPic from "@/assets/images/hospital.png";
 import { Avatar } from "@/components/avatar";
 import style2 from "@/components/style/popular.module.css";
+import Loading from "@/assets/images/loading.gif";
 
-const BASE_URL = "http://localhost:5000";
+const BASE_URL = "https://carefinder.azurewebsites.net";
 
 const ShareHospitalList = () => {
   const { linkId } = useParams<{ linkId: string }>();
@@ -35,7 +36,13 @@ const ShareHospitalList = () => {
     <div>
       {error && <div>{error}</div>}
       {loading ? (
-        <div>Loading...</div>
+        <div style={{
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+          height: "100vh"
+        }}>
+          <img src={Loading} alt="Loading gif" /></div>
       ) : (
         <div className={style2.wrapper}>
           {hospitalList.map((hospital, id) => (
