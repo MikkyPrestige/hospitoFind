@@ -7,7 +7,7 @@ import HospitalPic from "@/assets/images/hospital.png";
 import { Avatar } from "@/components/avatar";
 import style2 from "@/components/style/popular.module.css";
 
-const BASE_URL = "http://localhost:5000";
+const BASE_URL = "https://carefinder.azurewebsites.net";
 
 const ShareHospitalList = () => {
   const { linkId } = useParams<{ linkId: string }>();
