@@ -2,8 +2,6 @@ import { NavLink } from "react-router-dom";
 import { useState, useEffect, useRef } from "react";
 import { findHospitals } from "@/services/api";
 import { FindInput, Hospital } from "@/services/hospitalTypes";
-import ShareButton from "@/hospitalsConfig/share";
-import ExportButton from "@/hospitalsConfig/export";
 import { Avatar } from "@/components/avatar";
 import User from "@/assets/images/pharmicon.png";
 import { useAuth0 } from "@auth0/auth0-react";
@@ -171,10 +169,6 @@ const FindHospital = () => {
                   </li>
                 ))}
               </ul>
-              {hospitals.length > 0 && <div className={style.cta_btn}>
-                <ShareButton searchParams={location} />
-                <ExportButton searchParams={location} />
-              </div>}
             </div>
           ) : (
             <PopularHospitals />
