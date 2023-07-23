@@ -24,6 +24,7 @@ export interface Hospital {
   phoneNumber: string;
   email: string;
   website: string;
+  photoUrl: string;
   type: string;
   services: string[];
   comments: string[];

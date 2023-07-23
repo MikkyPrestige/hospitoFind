@@ -7,7 +7,7 @@ import { NavLink, Outlet } from 'react-router-dom';
 import { AiOutlineSearch } from "react-icons/ai";
 import style from "./style/search/search.module.css";
 import { Avatar } from '@/components/avatar';
-import HospitalPic from "@/assets/images/hospital.png";
+import HospitalPic from "@/assets/images/hospital-logo.jpg";
 import PopularHospitals from '@/components/popular';
 import style2 from "../components/style/popular.module.css";
 
@@ -103,11 +103,11 @@ const Search = () => {
           {hospitals.length > 0 && hospitals.map((hospital, id) => (
             <li key={id} className={style2.card}>
               <div className={style2.img}>
-                <Avatar image={HospitalPic} alt="hospital" style={{ width: "100%", height: "100%", borderRadius: "1.2rem", objectFit: "cover" }} />
+                {hospital?.photoUrl ? <Avatar image={hospital.photoUrl} alt="hospital" style={{ width: "100%", height: "100%", borderRadius: "1.2rem", objectFit: "cover" }} /> : <Avatar image={HospitalPic} alt="hospital" style={{ width: "100%", height: "100%", borderRadius: "1.2rem", objectFit: "cover" }} />}
               </div>
               <div className={style2.details}>
                 <h3 className={style2.name}>{hospital.name}</h3>
-                <h3 className={style2.address}>{hospital.address.street}</h3>
+                <h3 className={style2.address}>{hospital?.address.street}</h3>
                 <NavLink to={`${hospital.name}`} className={style2.btn}>See more</NavLink>
               </div>
             </li>
