@@ -1,8 +1,8 @@
 import { Hospital } from "./hospitalTypes";
 import axios from "axios";
 
-const BASE_URL = "https://carefinder.azurewebsites.net";
-// const BASE_URL = "http://localhost:5000";
+// const BASE_URL = "https://carefinder.azurewebsites.net";
+const BASE_URL = "http://localhost:5000";
 
 // get all hospitals
 export async function getHospitals() {
@@ -73,6 +73,23 @@ export async function shareHospital(searchParams: any) {
     const shareLink = response.data.shareableLink;
     console.log(shareLink);
     return shareLink;
+  } catch (error) {
+    throw error
+  }
+}
+
+// export hospital in csv download format
+export async function exportHospital(searchParams: any) {
+  try {
+    const response = await axios.get(`${BASE_URL}/hospitals/export`, {
+      responseType: "blob",
+      params: {
+        city: searchParams.city,
+        state: searchParams.state,
+      }
+    });
+    const exportedData = response.data;
+    return exportedData;
   } catch (error) {
     throw error
   }

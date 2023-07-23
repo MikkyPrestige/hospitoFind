@@ -1,26 +1,23 @@
 import { useState } from "react";
 import axios from "axios";
+import { exportHospital } from "@/services/api";
 import style from "./style/shareExport/shareExport.module.css";
 import { TiExport } from "react-icons/ti";
 
-const BASE_URL = "https://carefinder.azurewebsites.net";
 
 const ExportButton = ({ searchParams }: any) => {
   const [exporting, setExporting] = useState<boolean>(false);
   const [error, setError] = useState<string>("");
 
   const handleExport = async () => {
+    if (!searchParams.city && !searchParams.state) {
+      setError('Please enter a city or state');
+      setExporting(false)
+      return
+    }
+    setExporting(true);
     try {
-      setExporting(true);
-      const { data } = await axios.get(`${BASE_URL}/hospitals/export`, {
-        responseType: "blob",
-        params: searchParams
-      });
-      if (!searchParams.city && !searchParams.state) {
-        setError('Please enter a city or state');
-        setExporting(false)
-        return
-      }
+      const data = await exportHospital(searchParams);
       // download file
       const url = window.URL.createObjectURL(new Blob([data]));
       const link = document.createElement("a");
