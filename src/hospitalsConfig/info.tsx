@@ -1,6 +1,6 @@
 import { Hospital } from "@/services/hospitalTypes";
 import { Avatar } from "@/components/avatar";
-import HospitalPic from "@/assets/images/hospital.png";
+import HospitalPic from "@/assets/images/hospital-logo.jpg";
 import style from "./style/info/info.module.css";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
@@ -45,7 +45,10 @@ const HospitalInfo = () => {
       <h1 className={style.heading}>More about <span className={style.heading_span}>{hospital.name}</span></h1>
       <div className={style.wrapper}>
         <div className={style.img}>
-          <Avatar image={HospitalPic} alt="Hospital Photo" style={{ width: "100%", height: "100%", borderRadius: "1.2rem", objectFit: "cover" }} />
+          {hospital?.photoUrl ? (
+            <Avatar image={hospital.photoUrl} alt="hospital" style={{ width: "100%", height: "100%", borderRadius: "1.2rem", objectFit: "cover" }} />
+          ) : (
+            <Avatar image={HospitalPic} alt="hospital" style={{ width: "100%", height: "100%", borderRadius: "1.2rem", objectFit: "cover" }} />)}
         </div>
         <div className={style.details}>
           <h2 className={style.title}>{hospital.name}</h2>

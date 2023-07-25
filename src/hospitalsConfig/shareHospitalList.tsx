@@ -3,12 +3,12 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import { Hospital } from "@/services/hospitalTypes";
 import { NavLink } from "react-router-dom";
-import HospitalPic from "@/assets/images/hospital.png";
+import HospitalPic from "@/assets/images/hospital-logo.jpg";
 import { Avatar } from "@/components/avatar";
 import style2 from "@/components/style/popular.module.css";
 import Loading from "@/assets/images/loading.gif";
 
-const BASE_URL = "https://carefinder.azurewebsites.net";
+const BASE_URL = "https://strange-blue-battledress.cyclic.app";
 
 const ShareHospitalList = () => {
   const { linkId } = useParams<{ linkId: string }>();
@@ -48,11 +48,14 @@ const ShareHospitalList = () => {
           {hospitalList.map((hospital, id) => (
             <li key={id} className={style2.card}>
               <div className={style2.img}>
-                <Avatar image={HospitalPic} alt="hospital" style={{ width: "100%", height: "100%", borderRadius: "1.2rem", objectFit: "cover" }} />
+                {hospital?.photoUrl ? (
+                  <Avatar image={hospital.photoUrl} alt="hospital" style={{ width: "100%", height: "100%", borderRadius: "1.2rem", objectFit: "cover" }} />
+                ) : (
+                  <Avatar image={HospitalPic} alt="hospital" style={{ width: "100%", height: "100%", borderRadius: "1.2rem", objectFit: "cover" }} />)}
               </div>
               <div className={style2.details}>
                 <h3 className={style2.name}>{hospital.name}</h3>
-                <h3 className={style2.address}>{hospital?.email}</h3>
+                <h3 className={style2.address}>{hospital?.address.street}</h3>
                 <NavLink to={`${hospital.name}`} className={style2.btn}>See more</NavLink>
               </div>
             </li>
