@@ -8,7 +8,7 @@ import { Avatar } from "@/components/avatar";
 import style2 from "@/components/style/popular.module.css";
 import Loading from "@/assets/images/loading.gif";
 
-const BASE_URL = "https://carefinder.azurewebsites.net";
+const BASE_URL = "https://strange-blue-battledress.cyclic.app";
 
 const ShareHospitalList = () => {
   const { linkId } = useParams<{ linkId: string }>();

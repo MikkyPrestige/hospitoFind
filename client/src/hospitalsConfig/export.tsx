@@ -1,5 +1,4 @@
 import { useState } from "react";
-import axios from "axios";
 import { exportHospital } from "@/services/api";
 import style from "./style/shareExport/shareExport.module.css";
 import { TiExport } from "react-icons/ti";
