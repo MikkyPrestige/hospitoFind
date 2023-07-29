@@ -7,7 +7,7 @@
   height: 100%;
   @include mixins.flexRowSpaceBetween;
   gap: 1rem;
-  padding: 2rem;
+  padding: 1rem 2rem;
   position: relative;
 
   &::before {
@@ -21,28 +21,28 @@
   }
 
   .box1 {
-    width: 30%;
-    text-align: start
+    flex-basis: 10%;
+    height: 100%;
+    @include mixins.flexCol;
+    gap: 1rem;
   }
 
-  .heading {
-    font-size: $font-size-3;
-    font-weight: $font-weight-md;
-    color: $color-blue;
-    letter-spacing: $space;
-    margin-bottom: 2rem;
-  }
-
-  .link {
+  .logo {
     display: block;
-    font-size: $font-size-1;
-    font-weight: $font-weight-md;
-    color: $color-black;
-    letter-spacing: $space;
+    width: 10rem;
+    height: 10rem;
   }
 
   .box2 {
-    @include mixins.flexRow;
+    flex-grow: 1;
+    @include mixins.flexRowFlexEnd;
     gap: 5rem;
+    padding: 0 5rem;
+
+    .content {
+      height: 10rem;
+      @include mixins.flexCol;
+      gap: 1rem;
+    }
   }
 }

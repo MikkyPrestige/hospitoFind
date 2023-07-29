@@ -38,6 +38,9 @@
 .cta .btnLink .link {
   text-decoration: none;
   font-size: 1.6rem;
+  color: #08299B;
+  font-weight: 600;
+  cursor: copy;
 }
 .cta .btnLink .copy {
   background-color: #FFFFFF;

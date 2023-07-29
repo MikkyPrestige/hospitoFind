@@ -20,7 +20,7 @@ const ShareHospitalList = () => {
     try {
       setLoading(true);
       const { data } = await axios.get(`${BASE_URL}/hospitals/share/${linkId}`);
-      setHospitalList(data.hospitals);
+      setHospitalList(data);
       setLoading(false);
     } catch (err: any) {
       setError(err.message);
@@ -33,7 +33,7 @@ const ShareHospitalList = () => {
 
 
   return (
-    <div>
+    <div className={style2.sharePage}>
       {error && <div>{error}</div>}
       {loading ? (
         <div style={{
@@ -44,14 +44,11 @@ const ShareHospitalList = () => {
         }}>
           <img src={Loading} alt="Loading gif" /></div>
       ) : (
-        <div className={style2.wrapper}>
+        <div className={`${style2.shareContent} ${style2.wrapper}`}>
           {hospitalList.map((hospital, id) => (
             <li key={id} className={style2.card}>
               <div className={style2.img}>
-                {hospital?.photoUrl ? (
-                  <Avatar image={hospital.photoUrl} alt="hospital" style={{ width: "100%", height: "100%", borderRadius: "1.2rem", objectFit: "cover" }} />
-                ) : (
-                  <Avatar image={HospitalPic} alt="hospital" style={{ width: "100%", height: "100%", borderRadius: "1.2rem", objectFit: "cover" }} />)}
+                {hospital?.photoUrl ? <Avatar image={hospital.photoUrl} alt="hospital" style={{ width: "100%", height: "100%", borderRadius: "1.2rem", objectFit: "cover" }} /> : <Avatar image={HospitalPic} alt="hospital" style={{ width: "100%", height: "100%", borderRadius: "1.2rem", objectFit: "cover" }} />}
               </div>
               <div className={style2.details}>
                 <h3 className={style2.name}>{hospital.name}</h3>

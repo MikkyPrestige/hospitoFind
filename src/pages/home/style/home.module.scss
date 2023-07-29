@@ -5,13 +5,14 @@
   background-color: $color-bg;
   height: 100%;
   width: 100%;
-  padding: 10rem 0 5rem;
+  padding-top: 10rem;
   @include mixins.flexCol;
   gap: 5rem;
   font-family: $font-inter;
 
   @include mixins.respond(laptop) {
-    gap: 2rem;
+    padding-top: 5rem;
+    gap: 5rem;
   }
 
   .wrapper {
@@ -112,7 +113,7 @@
       width: 80%;
       @include mixins.flexRowSpaceBetween;
       gap: 1rem;
-      margin-bottom: 5rem;
+      margin-bottom: 1rem;
 
       @include mixins.respond(tab-land) {
         width: 60%;
@@ -139,6 +140,7 @@
         line-height: $line-height-2;
         background-color: $color-white;
         transition: all 0.5s ease-in-out;
+        cursor: not-allowed;
 
         &:focus {
           outline: none;

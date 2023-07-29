@@ -31,6 +31,27 @@
   padding: 0 2rem;
 }
 
+.sharePage {
+  background-color: #f0fbff;
+  width: 100%;
+  padding-top: 3rem;
+  border-radius: 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+}
+
+.shareContent {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+}
+
 .card {
   display: flex;
   flex-direction: column;
@@ -111,6 +132,7 @@
 
   .img {
     width: 70%;
+    height: 20rem;
   }
 }
 
