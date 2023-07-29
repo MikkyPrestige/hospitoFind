@@ -5,7 +5,7 @@ import { FindInput, Hospital } from "@/services/hospitalTypes";
 import { Avatar } from "@/components/avatar";
 import User from "@/assets/images/pharmicon.png";
 import { useAuth0 } from "@auth0/auth0-react";
-import HospitalPic from "@/assets/images/hospital.png";
+import HospitalPic from "@/assets/images/hospital-logo.jpg";
 import { AiOutlineSearch } from "react-icons/ai"
 import mapboxgl from "mapbox-gl";
 import { accessToken } from "@/config/mapbox";
