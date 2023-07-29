@@ -12,7 +12,7 @@ const ShareHospitalList = lazy(() => import("@/hospitalsConfig/shareHospitalList
 const Error404 = lazy(() => import("@/components/error404"));
 
 export const AppRoutes = () => {
-  const { isAuthenticated, isLoading } = useAuth0();
+  // const { isAuthenticated, isLoading } = useAuth0();
 
   return (
     <Routes>
@@ -23,7 +23,8 @@ export const AppRoutes = () => {
         <Route path=":name" element={<HospitalInfo />} />
       </Route>
       <Route path="/dashboard">
-        {!isLoading && <Route index element={isAuthenticated ? <Dashboard /> : <Callback />} />}
+        {/* {!isLoading && <Route index element={isAuthenticated ? <Dashboard /> : <Callback />} />} */}
+        <Route index element={<Dashboard />} />
         <Route path=":name" element={<HospitalInfo />} />
       </Route>
       <Route path="/callback" element={<Callback />} />
