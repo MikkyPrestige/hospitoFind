@@ -7,7 +7,7 @@ import { Hospital } from "@/services/hospitalTypes";
 import { Button } from "@/components/button";
 import style from "@/components/style/random.module.css";
 
-const BASE_URL = "https://carefinder.azurewebsites.net";
+const BASE_URL = "https://strange-blue-battledress.cyclic.app";
 
 // load suggestions
 const loadSuggestions = async (text: string) => {
@@ -94,6 +94,8 @@ const Editor = () => {
 
   # Email:
 
+  # Photo-Url:
+
   # Type:
 
   # Services:
@@ -138,6 +140,8 @@ const Editor = () => {
     const website = websiteMatch ? websiteMatch[1].trim() : "";
     const emailMatch = /# Email:\s*([\s\S]*?)(?=# Type)/.exec(markdown);
     const email = emailMatch ? emailMatch[1].trim() : "";
+    const photoUrlMatch = /# Photo-Url:\s*([\s\S]*?)(?=# Type)/.exec(markdown);
+    const photoUrl = photoUrlMatch ? photoUrlMatch[1].trim() : "";
     const typeMatch = /# Type:\s*([\s\S]*?)(?=# Services)/.exec(markdown);
     const type = typeMatch ? typeMatch[1].trim() : "";
     const servicesMatch = /# Services:\s*([\s\S]*?)(?=# Comments)/.exec(markdown);
@@ -164,23 +168,40 @@ const Editor = () => {
       phoneNumber,
       website,
       email,
+      photoUrl,
       type,
       services,
       comments,
       hours: hoursData
     };
 
+    const isValidPhoneNumber = (phoneNumber: string) => {
+      const phoneRegex = /^\d{11}$/; // Assumes the phone number should be 11 digits
+      return phoneRegex.test(phoneNumber);
+    };
+
     // Validate form fields
-    if (hospital.name === "") {
+    if (!hospital.name) {
       setError("Please enter a hospital name");
-    } else if (hospital.address.city === "") {
+      return
+    } else if (!hospital.address.city) {
       setError("Please enter a city the hospital is located");
-    } else if (hospital.address.state === "") {
+      return
+    } else if (!hospital.address.state) {
       setError("Please enter a state the hospital is located");
-    } else if (hospital.phoneNumber === "" && hospital.email === "" && hospital.email === "") {
-      setError("Please enter at least one contact detail (phone number, email or website)");
-    } else if (hospital.type === "") {
+      return
+    } else if (hospital.phoneNumber && !isValidPhoneNumber(hospital.phoneNumber)) {
+      setError("Please enter a valid phone number");
+      return
+    } else if (hospital.website && !hospital.website.startsWith("https")) {
+      setError("Please enter a valid website address");
+      return
+    } else if (hospital.photoUrl && !hospital.photoUrl.startsWith("https")) {
+      setError("Please enter a valid photo url");
+      return
+    } else if (!hospital.type) {
       setError("Please enter the type of hospital (Public or Private)");
+      return
     } else {
       try {
         setLoading(true);
@@ -218,6 +239,7 @@ const Editor = () => {
           loadingPreview={<div className="loading-preview">
             <p>Loading...</p></div>}
         />
+        {error && <p className={style.error}>{error}</p>}
         <div className={style.cta}>
           <Button
             disabled={loading}
@@ -225,7 +247,6 @@ const Editor = () => {
           />
         </div>
       </form>
-      {error && <p className={style.red}>{error}</p>}
     </>
   )
 }

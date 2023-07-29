@@ -36,7 +36,7 @@ const Home = () => {
           <h2 className={style.heading}>Find a nearby hospital</h2>
           <label htmlFor="searchHospital" className={style.label}>
             <TfiLocationPin className={style.icon_location} />
-            <input type="text" placeholder="Enter your location" className={style.input} />
+            <input type="text" placeholder="Enter your location" className={style.input} disabled />
             <BsSearchHeart className={style.icon_search} />
           </label>
         </div>

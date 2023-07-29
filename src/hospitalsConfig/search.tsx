@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import { LocationInput, Hospital, statesAndCities } from '@/services/hospitalTypes';
+import { LocationInput, Hospital } from '@/services/hospitalTypes';
+import { statesAndCities } from '@/services/location';
 import { searchHospitals } from '@/services/api';
 import ExportButton from '@/hospitalsConfig/export';
 import ShareButton from '@/hospitalsConfig/share';

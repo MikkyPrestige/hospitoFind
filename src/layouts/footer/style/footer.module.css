@@ -7,7 +7,7 @@
   align-items: center;
   justify-content: space-between;
   gap: 1rem;
-  padding: 2rem;
+  padding: 1rem 2rem;
   position: relative;
 }
 .footer::before {
@@ -20,27 +20,33 @@
   background-color: #88B3DB;
 }
 .footer .box1 {
-  width: 30%;
-  text-align: start;
+  flex-basis: 10%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
 }
-.footer .heading {
-  font-size: 1.6rem;
-  font-weight: 500;
-  color: #08299B;
-  letter-spacing: -0.011em;
-  margin-bottom: 2rem;
-}
-.footer .link {
+.footer .logo {
   display: block;
-  font-size: 1.2rem;
-  font-weight: 500;
-  color: #000000;
-  letter-spacing: -0.011em;
+  width: 10rem;
+  height: 10rem;
 }
 .footer .box2 {
+  flex-grow: 1;
   display: flex;
   flex-direction: row;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-end;
   gap: 5rem;
+  padding: 0 5rem;
+}
+.footer .box2 .content {
+  height: 10rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
 }/*# sourceMappingURL=footer.module.css.map */
