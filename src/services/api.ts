@@ -70,7 +70,6 @@ export async function shareHospital(searchParams: any) {
       }
     });
     const shareLink = response.data.shareableLink;
-    console.log(shareLink);
     return shareLink;
   } catch (error) {
     throw error

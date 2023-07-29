@@ -20,7 +20,6 @@ const ShareButton = ({ searchParams }: SearchProps) => {
     setGenerating(true);
     try {
       const res = await shareHospital(searchParams);
-      console.log(searchParams)
       setShareableLink(res);
       setError("");
       setGenerating(false);

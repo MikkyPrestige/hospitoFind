@@ -20,7 +20,7 @@ const ShareHospitalList = () => {
     try {
       setLoading(true);
       const { data } = await axios.get(`${BASE_URL}/hospitals/share/${linkId}`);
-      setHospitalList(data.hospitals);
+      setHospitalList(data);
       setLoading(false);
     } catch (err: any) {
       setError(err.message);
