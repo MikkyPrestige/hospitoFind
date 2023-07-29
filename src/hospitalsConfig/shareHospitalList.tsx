@@ -48,10 +48,7 @@ const ShareHospitalList = () => {
           {hospitalList.map((hospital, id) => (
             <li key={id} className={style2.card}>
               <div className={style2.img}>
-                {hospital?.photoUrl ? (
-                  <Avatar image={hospital.photoUrl} alt="hospital" style={{ width: "100%", height: "100%", borderRadius: "1.2rem", objectFit: "cover" }} />
-                ) : (
-                  <Avatar image={HospitalPic} alt="hospital" style={{ width: "100%", height: "100%", borderRadius: "1.2rem", objectFit: "cover" }} />)}
+                {hospital?.photoUrl ? <Avatar image={hospital.photoUrl} alt="hospital" style={{ width: "100%", height: "100%", borderRadius: "1.2rem", objectFit: "cover" }} /> : <Avatar image={HospitalPic} alt="hospital" style={{ width: "100%", height: "100%", borderRadius: "1.2rem", objectFit: "cover" }} />}
               </div>
               <div className={style2.details}>
                 <h3 className={style2.name}>{hospital.name}</h3>
