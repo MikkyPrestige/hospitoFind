@@ -33,7 +33,7 @@ const ShareHospitalList = () => {
 
 
   return (
-    <div>
+    <div className={style2.sharePage}>
       {error && <div>{error}</div>}
       {loading ? (
         <div style={{
@@ -44,7 +44,7 @@ const ShareHospitalList = () => {
         }}>
           <img src={Loading} alt="Loading gif" /></div>
       ) : (
-        <div className={style2.wrapper}>
+        <div className={`${style2.shareContent} ${style2.wrapper}`}>
           {hospitalList.map((hospital, id) => (
             <li key={id} className={style2.card}>
               <div className={style2.img}>

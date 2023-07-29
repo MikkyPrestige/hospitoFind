@@ -2,7 +2,7 @@
   background-color: #E0E4EC;
   height: 100%;
   width: 100%;
-  padding: 10rem 0 5rem;
+  padding-top: 10rem;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -12,7 +12,8 @@
 }
 @media only screen and (min-width: 56.3125em) {
   .bg {
-    gap: 2rem;
+    padding-top: 5rem;
+    gap: 5rem;
   }
 }
 .bg .wrapper {
@@ -124,7 +125,7 @@
   align-items: center;
   justify-content: space-between;
   gap: 1rem;
-  margin-bottom: 5rem;
+  margin-bottom: 1rem;
 }
 @media only screen and (min-width: 48.0625em) {
   .bg .search .label {
@@ -151,6 +152,7 @@
   line-height: 150%;
   background-color: #FFFFFF;
   transition: all 0.5s ease-in-out;
+  cursor: not-allowed;
 }
 .bg .search .label .input:focus {
   outline: none;
