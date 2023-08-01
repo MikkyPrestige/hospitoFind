@@ -12,7 +12,7 @@ const ShareButton = ({ searchParams }: SearchProps) => {
 
   const handleShare = async () => {
     // validate searchParams
-    if (!searchParams.city && !searchParams.state && !searchParams.cityState && !searchParams.name) {
+    if (!searchParams.city && !searchParams.state && !searchParams.address) {
       setError('Please enter a city, state, and/or hospital name');
       return;
     }
@@ -35,7 +35,7 @@ const ShareButton = ({ searchParams }: SearchProps) => {
     try {
       await navigator.clipboard.writeText(text);
     } catch (err) {
-      console.error('Failed to copy text to clipboard:', err);
+      setError('Failed to copy text to clipboard. Please try again or manually copy the link.')
     }
   };
 

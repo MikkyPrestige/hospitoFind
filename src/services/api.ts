@@ -63,10 +63,9 @@ export async function shareHospital(searchParams: any) {
   try {
     const response = await axios.post(`${BASE_URL}/hospitals/share`, {
       searchParams: {
+        address: searchParams.address,
         city: searchParams.city,
-        state: searchParams.state,
-        cityState: searchParams.cityState,
-        name: searchParams.name
+        state: searchParams.state
       }
     });
     const shareLink = response.data.shareableLink;
@@ -79,14 +78,13 @@ export async function shareHospital(searchParams: any) {
 // export hospital in csv download format
 export async function exportHospital(searchParams: any) {
   try {
-    const response = await axios.get(`${BASE_URL}/hospitals/export`, {
+    const { data } = await axios.get(`${BASE_URL}/hospitals/export`, {
       responseType: "blob",
-      params: {
-        city: searchParams.city,
-        state: searchParams.state,
-      }
+      params: searchParams
     });
-    const exportedData = response.data;
+    console.log(searchParams)
+    const exportedData = data;
+    console.log(data)
     return exportedData;
   } catch (error) {
     throw error

@@ -15,19 +15,27 @@ import { Tooltip } from "react-tooltip";
 import { useAuth0 } from "@auth0/auth0-react";
 import { IoMdLogOut } from "react-icons/io";
 import { Button } from "@/components/button";
+import { Helmet } from "react-helmet-async";
 
 export const Auth0Logout = () => {
   const { logout, isLoading } = useAuth0();
 
   return (
-    <div className={style.logout}>
-      <Button
-        onClick={() => logout({ logoutParams: { returnTo: window.location.origin } })}
-        disabled={isLoading}
-        children={isLoading ? "Bye..." : <span className={style.span}><IoMdLogOut className={style.icon} /> Logout</span>}
-        className={style.btn}
-      />
-    </div>
+    <>
+      <Helmet>
+        <title>Profile | Hospital Finder</title>
+        <meta name="description" content="Logged in User Dashboard" />
+        <meta name="keywords" content="hospital, doctor, appointment, health, care, medical, clinic, find, search, nearby, nearest" />
+      </Helmet>
+      <div className={style.logout}>
+        <Button
+          onClick={() => logout({ logoutParams: { returnTo: window.location.origin } })}
+          disabled={isLoading}
+          children={isLoading ? "Bye..." : <span className={style.span}><IoMdLogOut className={style.icon} /> Logout</span>}
+          className={style.btn}
+        />
+      </div>
+    </>
   );
 }
 
