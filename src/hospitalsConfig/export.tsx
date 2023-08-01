@@ -2,17 +2,18 @@ import { useState } from "react";
 import { exportHospital } from "@/services/api";
 import style from "./style/shareExport/shareExport.module.css";
 import { TiExport } from "react-icons/ti";
+import { SearchProps } from "@/services/hospitalTypes";
 
 
-const ExportButton = ({ searchParams }: any) => {
+const ExportButton = ({ searchParams }: SearchProps) => {
   const [exporting, setExporting] = useState<boolean>(false);
   const [error, setError] = useState<string>("");
 
   const handleExport = async () => {
-    if (!searchParams.city && !searchParams.state) {
-      setError('Please enter a city or state');
-      setExporting(false)
-      return
+    if (!searchParams.city && !searchParams.state && !searchParams.address) {
+      setError('Please enter a city, state, and/or hospital name');
+      setExporting(false);
+      return;
     }
     setExporting(true);
     try {
@@ -36,7 +37,7 @@ const ExportButton = ({ searchParams }: any) => {
   return (
     <div className={style.cta}>
       <button disabled={exporting} onClick={handleExport} className={style.btn}>
-        {exporting ? <div>Exporting...</div> : <TiExport className={style.icon} />}
+        {exporting ? <div>downloading...</div> : <TiExport className={style.icon} />}
         Export
       </button>
       {error && <p className={style.error}>{error}</p>}

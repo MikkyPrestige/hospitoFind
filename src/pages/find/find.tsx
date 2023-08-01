@@ -14,6 +14,7 @@ import style from "./style/find.module.css";
 import style2 from "../../components/style/popular.module.css";
 import Header from "@/layouts/header/nav";
 import PopularHospitals from "@/components/popular";
+import { Helmet } from "react-helmet-async";
 
 const FindHospital = () => {
   const [hospitals, setHospitals] = useState<Hospital[]>([]);
@@ -109,6 +110,11 @@ const FindHospital = () => {
 
   return (
     <>
+      <Helmet>
+        <title>Find | Hospital Finder</title>
+        <meta name="description" content="Find the nearest hospital to you" />
+        <meta name="keywords" content="hospital, doctor, appointment, health, care, medical, clinic, find, search, nearby, nearest" />
+      </Helmet>
       <Header />
       <section className={style.findSection}>
         <div className={style.search}>
