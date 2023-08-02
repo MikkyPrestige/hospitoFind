@@ -17,10 +17,16 @@ import { Button } from "@/components/button";
 import Header from "@/layouts/header/nav";
 import Footer from "@/layouts/footer/footer";
 import { Link } from "react-router-dom";
+import { Helmet } from "react-helmet-async";
 
 const About = () => {
   return (
     <>
+      <Helmet>
+        <title>About | Hospital Finder</title>
+        <meta name="description" content="About HospitoFind" />
+        <meta name="keywords" content="hospital, doctor, appointment, health, care, medical, clinic, find, search, nearby, nearest" />
+      </Helmet>
       <Header />
       <section className={style.bg}>
         <section className={style.wrapper}>
