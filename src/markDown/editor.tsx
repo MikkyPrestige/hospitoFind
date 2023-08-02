@@ -138,7 +138,7 @@ const Editor = () => {
     const phoneNumber = phoneNumberMatch ? phoneNumberMatch[1].trim() : "";
     const websiteMatch = /# Website:\s*([\s\S]*?)(?=# Email)/.exec(markdown);
     const website = websiteMatch ? websiteMatch[1].trim() : "";
-    const emailMatch = /# Email:\s*([\s\S]*?)(?=# Type)/.exec(markdown);
+    const emailMatch = /# Email:\s*([\s\S]*?)(?=# Photo-Url)/.exec(markdown);
     const email = emailMatch ? emailMatch[1].trim() : "";
     const photoUrlMatch = /# Photo-Url:\s*([\s\S]*?)(?=# Type)/.exec(markdown);
     const photoUrl = photoUrlMatch ? photoUrlMatch[1].trim() : "";
@@ -176,8 +176,32 @@ const Editor = () => {
     };
 
     const isValidPhoneNumber = (phoneNumber: string) => {
-      const phoneRegex = /^\d{11}$/; // Assumes the phone number should be 11 digits
+      const phoneRegex = /^(?:\+?([0-9]{2})\)?[-. ]?)?([0-9]{3})[-. ]?([0-9]{3})[-. ]?([0-9]{4,6})$/;
       return phoneRegex.test(phoneNumber);
+    };
+
+    // check for valid website
+    const isValidWebsite = (website: string) => {
+      const websiteRegex = /^(http:\/\/www\.|https:\/\/www\.|http:\/\/|https:\/\/)?[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,5}$/;
+      return websiteRegex.test(website);
+    };
+
+    // check for valid email
+    const isValidEmail = (email: string) => {
+      const emailRegex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
+      return emailRegex.test(email);
+    };
+
+    // check for valid photo url
+    const isValidPhotoUrl = (photoUrl: string) => {
+      const photoUrlRegex = /(http(s?):)([/|.|\w|\s|-])*\.(?:jpg|gif|png)/;
+      return photoUrlRegex.test(photoUrl);
+    };
+
+    // check for valid type
+    const isValidType = (type: string) => {
+      const typeRegex = /^(Public|Private)$/;
+      return typeRegex.test(type);
     };
 
     // Validate form fields
@@ -191,16 +215,22 @@ const Editor = () => {
       setError("Please enter a state the hospital is located");
       return
     } else if (hospital.phoneNumber && !isValidPhoneNumber(hospital.phoneNumber)) {
-      setError("Please enter a valid phone number");
+      setError("Please enter a valid phone number (Remove all whitespace)");
       return
-    } else if (hospital.website && !hospital.website.startsWith("https")) {
-      setError("Please enter a valid website address");
+    } else if (hospital.website && !isValidWebsite(hospital.website)) {
+      setError("Please enter a valid website");
       return
-    } else if (hospital.photoUrl && !hospital.photoUrl.startsWith("https")) {
+    } else if (hospital.email && !isValidEmail(hospital.email)) {
+      setError("Please enter a valid email");
+      return
+    } else if (hospital.photoUrl && !isValidPhotoUrl(hospital.photoUrl)) {
       setError("Please enter a valid photo url");
       return
     } else if (!hospital.type) {
-      setError("Please enter the type of hospital (Public or Private)");
+      setError("Please enter a hospital type");
+      return
+    } else if (!isValidType(hospital.type)) {
+      setError("Please enter a valid hospital type");
       return
     } else {
       try {
