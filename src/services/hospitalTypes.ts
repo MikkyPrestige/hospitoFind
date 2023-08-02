@@ -1,10 +1,9 @@
 // types file
 export interface SearchProps {
   searchParams: {
+    address?: string;
     city?: string;
     state?: string;
-    name?: string;
-    cityState?: string;
   }
 }
 export interface Address {

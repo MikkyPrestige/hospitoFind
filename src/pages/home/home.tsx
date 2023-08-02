@@ -7,10 +7,16 @@ import { Button } from "@/components/button"
 import style from "./style/home.module.css"
 import Header from "@/layouts/header/nav";
 import Footer from "@/layouts/footer/footer";
+import { Helmet } from "react-helmet-async";
 
 const Home = () => {
   return (
     <>
+      <Helmet>
+        <title>Home | Hospital Finder</title>
+        <meta name="description" content="Find the nearest hospital to you" />
+        <meta name="keywords" content="hospital, doctor, appointment, health, care, medical, clinic, find, search, nearby, nearest" />
+      </Helmet>
       <Header />
       <section className={style.bg}>
         <div className={style.wrapper}>
