@@ -14,6 +14,7 @@ const ShareButton = ({ searchParams }: SearchProps) => {
     // validate searchParams
     if (!searchParams.city && !searchParams.state && !searchParams.address) {
       setError('Please enter a city, state, and/or hospital name');
+      setGenerating(false)
       return;
     }
 
