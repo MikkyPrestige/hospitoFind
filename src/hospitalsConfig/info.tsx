@@ -1,4 +1,4 @@
-import { Hospital } from "@/services/hospitalTypes";
+import { Hospital } from "@/services/hospital";
 import { Avatar } from "@/components/avatar";
 import HospitalPic from "@/assets/images/hospital-logo.jpg";
 import style from "./style/info/info.module.css";

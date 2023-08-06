@@ -154,21 +154,19 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 1rem;
+  gap: 0.5rem;
   width: 100%;
   font-family: "DM Sans", sans-serif;
   font-weight: 500;
   font-size: 1.4rem;
   line-height: 150%;
-  padding: 1.5rem;
-}
-.dashboard .profile .details .user .photo {
-  width: 6rem;
-  height: 6rem;
+  padding: 1rem;
 }
 .dashboard .profile .details .user .title {
-  color: #E0E4EC;
+  color: #837D7D;
   font-size: 1.4rem;
+  font-family: "DM Sans", sans-serif;
+  font-weight: 700;
   letter-spacing: -0.01375rem;
 }
 .dashboard .profile .details .user .state {
@@ -193,4 +191,8 @@
 }
 .dashboard .profile .details .logout .btn .icon {
   font-size: 1.8rem;
+}
+.dashboard .profile .details .logout .error {
+  color: #FF033E;
+  font-size: 1.4rem;
 }/*# sourceMappingURL=dashboard.module.css.map */

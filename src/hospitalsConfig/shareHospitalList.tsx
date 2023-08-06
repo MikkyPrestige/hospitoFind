@@ -1,11 +1,11 @@
 import { useParams } from "react-router-dom";
 import { useState, useEffect } from "react";
 import axios from "axios";
-import { Hospital } from "@/services/hospitalTypes";
+import { Hospital } from "@/services/hospital";
 import { NavLink } from "react-router-dom";
 import HospitalPic from "@/assets/images/hospital-logo.jpg";
 import { Avatar } from "@/components/avatar";
-import style2 from "@/components/style/popular.module.css";
+import style2 from "../components/style/popular.module.css";
 import Loading from "@/assets/images/loading.gif";
 
 const BASE_URL = "https://strange-blue-battledress.cyclic.app";

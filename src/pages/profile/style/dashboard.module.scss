@@ -142,22 +142,19 @@
 
       .user {
         @include mixins.flexCol;
-        gap: 1rem;
+        gap: .5rem;
         width: 100%;
         font-family: $font-sans;
         font-weight: $font-weight-md;
         font-size: $font-size-2;
         line-height: $line-height-2;
-        padding: 1.5rem;
-
-        .photo {
-          width: 6rem;
-          height: 6rem;
-        }
+        padding: 1rem;
 
         .title {
-          color: $color-bg;
+          color: $color-brown;
           font-size: $font-size-2;
+          font-family: $font-sans;
+          font-weight: $font-weight-bd;
           letter-spacing: -0.01375rem;
         }
 
@@ -184,6 +181,11 @@
           .icon {
             font-size: $font-size-4;
           }
+        }
+
+        .error {
+          color: $color-red;
+          font-size: $font-size-2;
         }
       }
     }

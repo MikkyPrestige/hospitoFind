@@ -6,49 +6,19 @@ import { CgProfile } from "react-icons/cg";
 import { TbHomeHeart } from "react-icons/tb";
 import { BsBuildingAdd } from "react-icons/bs";
 import { LuPanelLeftClose } from "react-icons/lu";
-import { Avatar } from "@/components/avatar";
 import Logo from "@/assets/images/logo.svg";
 import SearchForm from "@/hospitalsConfig/search";
 import Editor from "@/markDown/editor";
 import style from "./style/dashboard.module.css";
 import { Tooltip } from "react-tooltip";
-import { useAuth0 } from "@auth0/auth0-react";
-import { IoMdLogOut } from "react-icons/io";
-import { Button } from "@/components/button";
 import { Helmet } from "react-helmet-async";
-
-export const Auth0Logout = () => {
-  const { logout, isLoading } = useAuth0();
-
-  return (
-    <>
-      <Helmet>
-        <title>Profile | Hospital Finder</title>
-        <meta name="description" content="Logged in User Dashboard" />
-        <meta name="keywords" content="hospital, doctor, appointment, health, care, medical, clinic, find, search, nearby, nearest" />
-      </Helmet>
-      <div className={style.logout}>
-        <Button
-          onClick={() => logout({ logoutParams: { returnTo: window.location.origin } })}
-          disabled={isLoading}
-          children={isLoading ? "Bye..." : <span className={style.span}><IoMdLogOut className={style.icon} /> Logout</span>}
-          className={style.btn}
-        />
-      </div>
-    </>
-  );
-}
+import { useAuthContext } from "@/context/userContext";
+import Logout from "@/userConfig/logoutUser";
 
 const Dashboard = () => {
-  const { user } = useAuth0();
-  const [auth0User, setAuth0user] = useState<{
-    name: string;
-    nickname: string;
-    picture: string;
-    email: string;
-  } | null>(null);
   const [selected, setSelected] = useState<string>("profile");
   const [sidebarVisible, setSidebarVisible] = useState<boolean>(true);
+  const { state } = useAuthContext();
 
   const handleSelected = (link: string) => {
     setSelected(link);
@@ -59,15 +29,6 @@ const Dashboard = () => {
     const storedSelectedLink = localStorage.getItem("selectedLink");
     if (storedSelectedLink) {
       setSelected(storedSelectedLink);
-    }
-
-    if (user) {
-      setAuth0user({
-        name: user.name || "",
-        nickname: user.nickname || "",
-        picture: user.picture || "",
-        email: user.email || ""
-      })
     }
 
     return () => {
@@ -82,6 +43,10 @@ const Dashboard = () => {
 
   return (
     <main className={style.dashboard}>
+      <Helmet>
+        <title>Dashboard | Find Hospitals</title>
+        <meta name="description" content="Admin dashboard" />
+      </Helmet>
       <div className={style.top}>
         <Link to="/" className={style.logo}>
           <img
@@ -124,17 +89,18 @@ const Dashboard = () => {
           {selected === "profile" && <div className={style.details}>
             <h2 className={style.heading}>PROFILE DETAILS</h2>
             <div className={style.user}>
-              <div className={style.photo}>
-                <Avatar image={user?.picture} alt="User Photo" style={{ width: "100%", height: "100%", borderRadius: "50%", objectFit: "cover" }} />
-              </div>
               <h2 className={style.title}>Name</h2>
-              <p className={style.state}>{auth0User?.name}</p>
-              <h2 className={style.title}>Nickname</h2>
-              <p className={style.state}>{auth0User?.nickname}</p>
-              <h2 className={style.title}>Email</h2>
-              <p className={style.state}>{auth0User?.email}</p>
+              <p className={style.state}>{state?.name}</p>
             </div>
-            <Auth0Logout />
+            <div className={style.user}>
+              <h2 className={style.title}>Username</h2>
+              <p className={style.state}>{state?.username}</p>
+            </div>
+            <div className={style.user}>
+              <h2 className={style.title}>Email Address</h2>
+              <p className={style.state}>{state?.email}</p>
+            </div>
+            <Logout />
           </div>}
           {selected === "find-hospital" && <div className={style.details}>
             <h2 className={style.heading}>Find Hospital</h2>
