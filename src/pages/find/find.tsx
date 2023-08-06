@@ -1,7 +1,7 @@
 import { NavLink } from "react-router-dom";
 import { useState, useEffect, useRef } from "react";
 import { findHospitals } from "@/services/api";
-import { FindInput, Hospital } from "@/services/hospitalTypes";
+import { FindInput, Hospital } from "@/services/hospital";
 import { Avatar } from "@/components/avatar";
 import User from "@/assets/images/pharmicon.png";
 import { useAuth0 } from "@auth0/auth0-react";
