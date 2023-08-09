@@ -1,19 +1,21 @@
-// Admin dashboard
 import { useState, useEffect } from "react";
+import { Helmet } from "react-helmet-async";
 import { Link } from "react-router-dom";
-import { MdFindInPage } from "react-icons/md";
+import { Tooltip } from "react-tooltip";
+import { MdFindInPage, MdPublishedWithChanges } from "react-icons/md";
 import { CgProfile } from "react-icons/cg";
 import { TbHomeHeart } from "react-icons/tb";
 import { BsBuildingAdd } from "react-icons/bs";
 import { LuPanelLeftClose } from "react-icons/lu";
+import { AiOutlineUserDelete } from "react-icons/ai";
 import Logo from "@/assets/images/logo.svg";
+import { useAuthContext } from "@/context/userContext";
 import SearchForm from "@/hospitalsConfig/search";
 import Editor from "@/markDown/editor";
-import style from "./style/dashboard.module.css";
-import { Tooltip } from "react-tooltip";
-import { Helmet } from "react-helmet-async";
-import { useAuthContext } from "@/context/userContext";
+import UpdateUser from "@/userConfig/updateUser";
+import DeleteBtn from "@/userConfig/deleteUser";
 import Logout from "@/userConfig/logoutUser";
+import style from "./style/dashboard.module.css";
 
 const Dashboard = () => {
   const [selected, setSelected] = useState<string>("profile");
@@ -56,7 +58,7 @@ const Dashboard = () => {
           />
         </Link>
         <div>
-          <div data-tooltip-id="sidebar" data-tooltip-content="Hide sidebar" data-tooltip-offset={3} >
+          <div data-tooltip-id="sidebar" data-tooltip-content="Sidebar" data-tooltip-offset={3} >
             <LuPanelLeftClose onClick={toggleSidebar} className={style.close} />
           </div>
           <Tooltip id="sidebar" style={{
@@ -76,6 +78,12 @@ const Dashboard = () => {
             </li>
             <li onClick={() => handleSelected("add-hospital")} className={`${style.list} ${selected === "add-hospital" ? style.active : ""}`}>
               <BsBuildingAdd className={style.icon} /> Add Hospital
+            </li>
+            <li onClick={() => handleSelected("update-user")} className={`${style.list} ${selected === "update-user" ? style.active : ""}`}>
+              <MdPublishedWithChanges className={style.icon} /> Update Profile
+            </li>
+            <li onClick={() => handleSelected("delete")} className={`${style.list} ${selected === "delete" ? style.active : ""}`}>
+              <AiOutlineUserDelete className={style.icon} /> Delete Profile
             </li>
             <li className={`${style.list} ${style.home}`}>
               <Link to="/" className={style.list} >
@@ -109,6 +117,14 @@ const Dashboard = () => {
           {selected === "add-hospital" && <div className={style.details}>
             <h2 className={style.heading}>Add Hospital</h2>
             <Editor />
+          </div>}
+          {selected === "update-user" && <div className={style.details}>
+            <h2 className={style.heading}>Update Profile</h2>
+            <UpdateUser />
+          </div>}
+          {selected === "delete" && <div className={style.details}>
+            <h2 className={style.heading}>Delete Profile</h2>
+            <DeleteBtn />
           </div>}
         </section>
       </section>

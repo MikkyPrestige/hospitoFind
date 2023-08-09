@@ -4,6 +4,8 @@ import { useAuth0 } from '@auth0/auth0-react';
 import { BASE_URL } from '@/context/userContext';
 import { useNavigate } from 'react-router-dom';
 import { useAuthContext } from '@/context/userContext';
+import { IdToken } from '@/services/user';
+import style from "./style/callback.module.css";
 
 const Callback = () => {
   const { user, getIdTokenClaims, isAuthenticated } = useAuth0();
@@ -14,32 +16,32 @@ const Callback = () => {
     const getUserInfo = async () => {
       if (isAuthenticated) {
         try {
-          const idToken = await getIdTokenClaims();
-          const email = idToken.email;
-          const name = idToken.name;
-          const username = idToken.nickname;
+          const idToken: IdToken | undefined = await getIdTokenClaims();
+          if (idToken) {
+            const name = idToken.name;
+            const username = idToken.nickname;
+            const email = idToken.email;
 
-          const response = await axios.post(`${BASE_URL}/auth/auth0`, {
-            email,
-            name,
-            username,
-            idToken: idToken.__raw,
-          });
+            const response = await axios.post(`${BASE_URL}/auth/auth0`, {
+              name,
+              username,
+              email,
+              idToken: idToken.__raw,
+            });
 
-          const { accessToken } = response.data;
-          //  set the access token in the cookie
-          document.cookie = `accessToken=${accessToken}; SameSite=None; Max-Age=3600;`;
-          //  set the access token in the state
-          dispatch({
-            type: 'LOGIN',
-            payload: {
-              username: username,
-              name: name,
-              email: email,
-              accessToken: accessToken,
-            },
-          });
-          navigate("/dashboard");
+            const { accessToken } = response.data;
+            document.cookie = `accessToken=${accessToken}; SameSite=None; Max-Age=3600;`;
+            dispatch({
+              type: 'LOGIN',
+              payload: {
+                name: name,
+                username: username,
+                email: email,
+                accessToken: accessToken,
+              },
+            });
+            navigate("/dashboard");
+          }
         } catch (error) {
           console.log(error);
         }
@@ -51,7 +53,12 @@ const Callback = () => {
     }
   }, [user, getIdTokenClaims, navigate]);
 
-  return <div>Redirecting...</div>;
+  return (
+    <div className={style.container}>
+      <div className={style.blob}></div>
+      <p className={style.text}>Authenticating Please wait...</p>
+    </div>
+  )
 };
 
 

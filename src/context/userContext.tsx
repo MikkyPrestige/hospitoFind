@@ -5,6 +5,8 @@ const initialState: AuthState = {
   username: localStorage.getItem("username") || null,
   name: localStorage.getItem("name") || null,
   email: localStorage.getItem("email") || null,
+  password: null,
+  newPassword: null,
   accessToken: localStorage.getItem("accessToken") || null
 }
 
@@ -43,38 +45,38 @@ const authReducer = (state: AuthState, action: AuthAction): AuthState => {
         ...state,
         accessToken: action.payload?.accessToken || state.accessToken
       }
-    // case "UPDATE":
-    //   localStorage.setItem("username", action.payload?.username || "");
-    //   localStorage.setItem("name", action.payload?.name || "");
-    //   localStorage.setItem("email", action.payload?.email || "");
-    //   return {
-    //     ...state,
-    //     username: action.payload?.username || state.username,
-    //     name: action.payload?.name || state.name,
-    //     email: action.payload?.email || state.email,
-    //   }
-    // case "PASSWORD-UPDATE":
-    //   localStorage.setItem("username", action.payload?.username || "");
-    //   return {
-    //     ...state,
-    //     username: action.payload?.username || state.username,
-    //   }
-    // case "DELETE":
-    //   // remove access token from cookie
-    //   document.cookie = `accessToken=; SameSite=None; Max-Age=0;`;
-    //   localStorage.removeItem("username");
-    //   localStorage.removeItem("name");
-    //   localStorage.removeItem("email");
-    //   localStorage.removeItem("accessToken");
-    //   return {
-    //     ...state,
-    //     username: null,
-    //     name: null,
-    //     email: null,
-    //     accessToken: null
-    //   }
+    case "UPDATE":
+      localStorage.setItem("username", action.payload?.username || "");
+      localStorage.setItem("name", action.payload?.name || "");
+      localStorage.setItem("email", action.payload?.email || "");
+      return {
+        ...state,
+        username: action.payload?.username || state.username,
+        name: action.payload?.name || state.name,
+        email: action.payload?.email || state.email,
+      }
+    case "PASSWORD-UPDATE":
+      localStorage.setItem("username", action.payload?.username || "");
+      return {
+        ...state,
+        username: action.payload?.username || state.username,
+        password: action.payload?.password || state.password,
+        newPassword: action.payload?.newPassword || state.newPassword
+      }
+    case "DELETE":
+      document.cookie = `accessToken=; SameSite=None; Max-Age=0;`;
+      localStorage.removeItem("username");
+      localStorage.removeItem("name");
+      localStorage.removeItem("email");
+      localStorage.removeItem("accessToken");
+      return {
+        ...state,
+        username: null,
+        name: null,
+        email: null,
+        accessToken: null
+      }
     case "LOGOUT":
-      // remove access token from cookie
       document.cookie = `accessToken=; SameSite=None; Max-Age=0;`;
       localStorage.removeItem("username");
       localStorage.removeItem("name");

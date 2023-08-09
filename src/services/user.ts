@@ -5,15 +5,29 @@ export interface User {
   password: string
 }
 
-export type Login = {
+export interface Login {
   email: string
   password: string
 }
 
+export interface PasswordUpdate {
+  username: string
+  password: string
+  newPassword: string
+}
+
+export interface IdToken {
+  email?: string;
+  name?: string;
+  nickname?: string;
+  __raw?: string;
+};
 export interface AuthState {
   name: string | null
   username: string | null
   email: string | null
+  password: string | null
+  newPassword: string | null
   accessToken: string | null
 }
 

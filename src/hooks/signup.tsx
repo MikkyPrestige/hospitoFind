@@ -1,8 +1,8 @@
 import axios from "axios";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { useAuthContext, BASE_URL } from "@/context/userContext";
 import { User } from "@/services/user";
-import { useNavigate } from "react-router-dom";
 
 const useSignup = () => {
   const [loading, setLoading] = useState(false);
