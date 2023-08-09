@@ -1,8 +1,8 @@
 import axios from "axios";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { useAuthContext, BASE_URL } from "../context/userContext";
 import { Login } from "@/services/user";
-import { useNavigate } from "react-router-dom";
 
 const useLogin = () => {
   const [loading, setLoading] = useState(false);

@@ -1,9 +1,8 @@
 import axios from "axios";
 import { useState, useEffect } from "react";
-import { User } from "@/services/user";
 import { useAuthContext, BASE_URL } from "@/context/userContext";
 
-const useUpdate = () => {
+const useDelete = () => {
   const [loading, setLoading] = useState(false);
   const [success, setSuccess] = useState("");
   const [error, setError] = useState("");
@@ -20,20 +19,24 @@ const useUpdate = () => {
     }
   }, [success, error]);
 
-  const update = async (user: User) => {
+  const deleteUser = async (username: string, password: string) => {
     setLoading(true);
     setError("");
-    await axios.patch<User>(`${BASE_URL}/users`, user)
+    await axios.delete(`${BASE_URL}/users`, {
+      data: {
+        username: username,
+        password: password
+      }
+    })
       .then(() => {
         dispatch({
-          type: "UPDATE",
+          type: "DELETE",
           payload: {
-            username: user.username,
-            name: user.name,
-            email: user.email
+            username: username,
+            password: password
           }
         })
-        setSuccess(`${user.username} profile updated`)
+        setSuccess(`${username} account deleted successfully`)
       })
       .catch((error) => {
         if (error.response) {
@@ -51,7 +54,8 @@ const useUpdate = () => {
       })
   }
 
-  return { loading, success, error, update }
+  return { loading, success, error, deleteUser }
+
 }
 
-export default useUpdate
+export default useDelete

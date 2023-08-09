@@ -1,20 +1,18 @@
 import { NavLink } from "react-router-dom";
+import { Helmet } from "react-helmet-async";
 import { useState, useEffect, useRef } from "react";
-import { findHospitals } from "@/services/api";
-import { FindInput, Hospital } from "@/services/hospital";
-import { Avatar } from "@/components/avatar";
-import User from "@/assets/images/pharmicon.png";
-import { useAuth0 } from "@auth0/auth0-react";
-import HospitalPic from "@/assets/images/hospital-logo.jpg";
-import { AiOutlineSearch } from "react-icons/ai"
 import mapboxgl from "mapbox-gl";
-import { accessToken } from "@/config/mapbox";
 import 'mapbox-gl/dist/mapbox-gl.css';
+import { accessToken } from "@/config/mapbox";
+import { AiOutlineSearch } from "react-icons/ai"
+import { findHospitals } from "@/services/api";
+import PopularHospitals from "@/components/popular";
+import Header from "@/layouts/header/nav";
+import { FindInput, Hospital } from "@/services/hospital";
+import HospitalPic from "@/assets/images/hospital-logo.jpg";
+import { Avatar } from "@/components/avatar";
 import style from "./style/find.module.css";
 import style2 from "../../components/style/popular.module.css";
-import Header from "@/layouts/header/nav";
-import PopularHospitals from "@/components/popular";
-import { Helmet } from "react-helmet-async";
 
 const FindHospital = () => {
   const [hospitals, setHospitals] = useState<Hospital[]>([]);
@@ -27,7 +25,6 @@ const FindHospital = () => {
   });
   const [map, setMap] = useState<null | mapboxgl.Map>(null);
   const mapContainer = useRef<HTMLDivElement | null>(null);
-  const { isAuthenticated, user } = useAuth0();
 
   useEffect(() => {
     const map = new mapboxgl.Map({
@@ -151,9 +148,6 @@ const FindHospital = () => {
                 <AiOutlineSearch className={style.icon} />
               </button>
             </form>
-            <div className={style.user}>
-              {isAuthenticated ? <Avatar image={user?.picture} alt="User Photo" style={{ width: "100%", height: "100%", borderRadius: "50%", objectFit: "cover" }} /> : <Avatar image={User} alt="User Photo" style={{ width: "100%", height: "100%", borderRadius: "50%", objectFit: "cover" }} />}
-            </div>
           </div>
           {error && <p className={style.error}>{error}</p>}
         </div>
