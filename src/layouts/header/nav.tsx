@@ -7,21 +7,13 @@ import { useState } from "react";
 import Logo from "@/assets/images/logo.svg";
 import { FcAbout } from "react-icons/fc";
 import { FaSearchPlus } from "react-icons/fa";
+import { IoMdLogOut } from "react-icons/io";
 import { Avatar } from "@/components/avatar";
 import style from "./style/nav.module.css";
-import { useAuth0 } from "@auth0/auth0-react";
-import { IoMdLogOut } from "react-icons/io";
+import { useAuthContext } from "@/context/userContext";
+import useLogout from "@/hooks/logout";
 interface NavLinksProps extends NavLinkProps {
   to: string;
-}
-
-const Header = () => {
-  return (
-    <div>
-      <LayoutMobile />
-      <LayoutLarge />
-    </div>
-  )
 }
 
 export const NavLinks = ({ to, ...props }: NavLinksProps) => {
@@ -44,16 +36,24 @@ export const NavLinks = ({ to, ...props }: NavLinksProps) => {
   )
 }
 
-const Auth0Logout = () => {
-  const { logout, isLoading } = useAuth0();
+const Logout = () => {
+  const { logout, loading, error } = useLogout();
+
+  const handleLogout = () => {
+    logout();
+  };
 
   return (
-    <button
-      onClick={() => logout({ logoutParams: { returnTo: window.location.origin } })}
-      className={style.logout}
-    >
-      {isLoading ? "Bye..." : <span className={style.smallSpan}><IoMdLogOut className={style.smallIcon} /> Logout</span>}
-    </button>
+    <div className={""}>
+      <button
+        onClick={handleLogout}
+        disabled={loading}
+        className={style.logout}
+      >
+        {loading ? "Bye..." : <span className={style.smallSpan}><IoMdLogOut className={style.smallIcon} /> Logout</span>}
+      </button>
+      {error && <p className={style.error}>{error}</p>}
+    </div>
   );
 }
 
@@ -61,36 +61,25 @@ const LayoutMobile = () => {
   const [showMenu, setShowMenu] = useState(false);
   const toggleMenu = () => setShowMenu(!showMenu);
   const navigate = useNavigate();
-  const { isAuthenticated, loginWithRedirect } = useAuth0();
+  const { state } = useAuthContext();
 
 
   const handleLoginClick = async () => {
-    if (isAuthenticated) {
+    if (state.username) {
       navigate("/dashboard");
     } else {
-      await loginWithRedirect({
-        appState: {
-          returnTo: "/dashboard",
-        },
-      });
+      navigate("/login");
     }
-    setShowMenu(!showMenu)
+    toggleMenu()
   }
 
   const handleSignUpClick = async () => {
-    if (isAuthenticated) {
+    if (state.username) {
       navigate("/dashboard");
     } else {
-      await loginWithRedirect({
-        appState: {
-          returnTo: "/dashboard",
-        },
-        authorizationParams: {
-          screen_hint: "signup",
-        },
-      });
+      navigate("/signup");
     }
-    setShowMenu(!showMenu)
+    toggleMenu()
   }
 
 
@@ -150,26 +139,26 @@ const LayoutMobile = () => {
               </NavLink>
             </li>
           </ul>
-          {isAuthenticated ? (
-            <div className={style.smallWrapper}>
-              <Auth0Logout />
-            </div>
-          ) : (
-            <div className={style.smallWrapper}>
-              <button
-                onClick={handleLoginClick}
-                className={style.smallAuth}
-              >
-                Login
-              </button>
-              <button
-                onClick={handleSignUpClick}
-                className={style.smallAuth}
-              >
-                Signup
-              </button>
-            </div>
-          )}
+          <div className={style.smallWrapper}>
+            {state.username ? (
+              <Logout />
+            ) : (
+              <div className={style.smallWrapper}>
+                <button
+                  onClick={handleLoginClick}
+                  className={style.smallAuth}
+                >
+                  Login
+                </button>
+                <button
+                  onClick={handleSignUpClick}
+                  className={style.smallAuth}
+                >
+                  Signup
+                </button>
+              </div>
+            )}
+          </div>
         </nav>
       </div>
     </header>
@@ -178,33 +167,21 @@ const LayoutMobile = () => {
 
 const LayoutLarge = () => {
   const navigate = useNavigate();
-  const { isAuthenticated, loginWithRedirect } = useAuth0();
-
+  const { state } = useAuthContext();
 
   const handleLoginClick = async () => {
-    if (isAuthenticated) {
+    if (state.username) {
       navigate("/dashboard");
     } else {
-      await loginWithRedirect({
-        appState: {
-          returnTo: "/dashboard",
-        },
-      });
+      navigate("/login");
     }
   }
 
   const handleSignUpClick = async () => {
-    if (isAuthenticated) {
+    if (state.username) {
       navigate("/dashboard");
     } else {
-      await loginWithRedirect({
-        appState: {
-          returnTo: "/dashboard",
-        },
-        authorizationParams: {
-          screen_hint: "signup",
-        },
-      });
+      navigate("/signup");
     }
   }
 
@@ -257,8 +234,8 @@ const LayoutLarge = () => {
           </li>
         </ul>
         <div className={style.largeWrapper}>
-          {isAuthenticated ? (
-            <Auth0Logout />
+          {state.username ? (
+            <Logout />
           ) : (
             <div className={style.largeWrapper}>
               <button
@@ -277,8 +254,17 @@ const LayoutLarge = () => {
           )}
         </div>
       </nav>
-    </header>
+    </header >
   )
 }
 
-export default Header
+const Header = () => {
+  return (
+    <div>
+      <LayoutMobile />
+      <LayoutLarge />
+    </div>
+  )
+}
+
+export default Header;

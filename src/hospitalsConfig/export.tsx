@@ -2,7 +2,7 @@ import { useState } from "react";
 import { exportHospital } from "@/services/api";
 import style from "./style/shareExport/shareExport.module.css";
 import { TiExport } from "react-icons/ti";
-import { SearchProps } from "@/services/hospitalTypes";
+import { SearchProps } from "@/services/hospital";
 
 
 const ExportButton = ({ searchParams }: SearchProps) => {

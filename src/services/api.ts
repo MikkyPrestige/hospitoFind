@@ -1,4 +1,4 @@
-import { Hospital } from "./hospitalTypes";
+import { Hospital } from "./hospital";
 import axios from "axios";
 
 const BASE_URL = "https://strange-blue-battledress.cyclic.app";

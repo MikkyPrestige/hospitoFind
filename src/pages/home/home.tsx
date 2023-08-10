@@ -11,7 +11,7 @@ import { Helmet } from "react-helmet-async";
 
 const Home = () => {
   return (
-    <>
+    <div className={style.home}>
       <Helmet>
         <title>Home | Hospital Finder</title>
         <meta name="description" content="Find the nearest hospital to you" />
@@ -26,7 +26,7 @@ const Home = () => {
               <p className={style.subtitle}>Discover Your Perfect Care: Find Your Hospital, Anytime, Anywhere!</p>
             </div>
             <div className={style.cta}>
-              <Button children={<Link to="/callback" className={style.btn}>GET STARTED</Link>} />
+              <Button children={<Link to="/signup" className={style.btn}>GET STARTED</Link>} />
               <Link to="/about" className={style.link}>Learn more <BsArrowRightShort className={style.icon} /></Link>
             </div>
           </div>
@@ -48,7 +48,7 @@ const Home = () => {
         </div>
       </section>
       <Footer />
-    </>
+    </div>
   );
 }
 

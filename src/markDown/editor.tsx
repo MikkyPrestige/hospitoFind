@@ -3,9 +3,10 @@ import axios from "axios";
 import ReactMde, { Suggestion } from "react-mde";
 import ReactMarkdown from "react-markdown";
 import "react-mde/lib/styles/css/react-mde-all.css"
-import { Hospital } from "@/services/hospitalTypes";
+import {BsDatabaseAdd} from "react-icons/bs"
+import { Hospital } from "@/services/hospital";
 import { Button } from "@/components/button";
-import style from "@/components/style/random.module.css";
+import style from "../components/style/random.module.css";
 
 const BASE_URL = "https://strange-blue-battledress.cyclic.app";
 
@@ -78,7 +79,7 @@ const Editor = () => {
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
   const [markdown, setMarkdown] = useState(`
-  **Help us add hospitals you know!!!**
+  **Help us add hospitals you know by filling the form below and submit. Thank you!!!**
 
   # Name:
 
@@ -180,31 +181,26 @@ const Editor = () => {
       return phoneRegex.test(phoneNumber);
     };
 
-    // check for valid website
     const isValidWebsite = (website: string) => {
       const websiteRegex = /^(http:\/\/www\.|https:\/\/www\.|http:\/\/|https:\/\/)?[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,5}$/;
       return websiteRegex.test(website);
     };
 
-    // check for valid email
     const isValidEmail = (email: string) => {
       const emailRegex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
       return emailRegex.test(email);
     };
 
-    // check for valid photo url
     const isValidPhotoUrl = (photoUrl: string) => {
       const photoUrlRegex = /(http(s?):)([/|.|\w|\s|-])*\.(?:jpg|gif|png)/;
       return photoUrlRegex.test(photoUrl);
     };
 
-    // check for valid type
     const isValidType = (type: string) => {
       const typeRegex = /^(Public|Private)$/;
       return typeRegex.test(type);
     };
 
-    // Validate form fields
     if (!hospital.name) {
       setError("Please enter a hospital name");
       return
@@ -236,7 +232,7 @@ const Editor = () => {
       try {
         setLoading(true);
         await axios.post<Hospital>(`${BASE_URL}/hospitals`, hospital)
-        setMarkdown("Hospital added. Thanks for your contribution!");
+        setMarkdown("Hospital added. Thanks for your contribution");
         setError("");
         setLoading(false);
       } catch (error: any) {
@@ -267,13 +263,15 @@ const Editor = () => {
             }
           }}
           loadingPreview={<div className="loading-preview">
-            <p>Loading...</p></div>}
+            <p style={{color: "#00FF00", fontSize: "1.5rem", margin: "5rem auto"}}>Loading...</p></div>}
         />
         {error && <p className={style.error}>{error}</p>}
         <div className={style.cta}>
           <Button
             disabled={loading}
-            children={<span className={style.btn_span}>Add</span>}
+            children={<span className={style.btn}>
+              {loading ? "Adding..." : <span className={style.btn_span}><BsDatabaseAdd className={style.btn_icon}/>Submit</span>}
+            </span>}
           />
         </div>
       </form>

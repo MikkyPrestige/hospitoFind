@@ -1,4 +1,4 @@
-import { Hospital } from "@/services/hospitalTypes";
+import { Hospital } from "@/services/hospital";
 import { Avatar } from "@/components/avatar";
 import HospitalPic from "@/assets/images/hospital-logo.jpg";
 import style from "./style/info/info.module.css";
@@ -6,6 +6,7 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { getHospitalByName } from "@/services/api";
 import { useNavigate } from "react-router-dom";
+import Loading from "@/assets/images/loading.gif";
 
 const HospitalInfo = () => {
   const { name } = useParams();
@@ -37,7 +38,13 @@ const HospitalInfo = () => {
   }, [name]);
 
   if (!hospital) {
-    return <p>Loading hospital details...</p>;
+    return <div style={{
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+          height: "100vh"
+        }}>
+          <img src={Loading} alt="Loading gif" /></div>
   }
 
   return (

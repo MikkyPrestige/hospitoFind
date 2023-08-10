@@ -17,14 +17,15 @@ const Footer = () => {
       </div>
       <div className={style.box2}>
         <div className={style.content}>
-          <h2 className={style.heading}>About Us</h2>
+          <h2 className={style.title}>About Us</h2>
           <Link to="/about" className={style.link}>News & Media</Link>
-          <Link to="mailto: michaelelue117@gmail.com" className={style.link}>Contact Us</Link>
+          <Link to="https://www.linkedin.com/company/prestigeenigma" className={style.link}>Contact Us</Link>
         </div>
         <div className={style.content}>
-          <h2 className={style.heading}>Quick Links</h2>
+          <h2 className={style.title}>Quick Links</h2>
           <Link to="/dashboard" className={style.link}>My account</Link>
           <Link to="/find" className={style.link}>Find Hospital</Link>
+          <Link to="/policy" className={style.link}>Privacy Policy</Link>
         </div>
       </div>
     </section>

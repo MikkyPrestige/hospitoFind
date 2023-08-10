@@ -1,7 +1,7 @@
 .dashboard {
   width: 100%;
   height: 100%;
-  background-color: #F2F2F2;
+  background-color: #E0E4EC;
   padding: 1rem 0;
   display: flex;
   flex-direction: column;
@@ -46,8 +46,10 @@
   width: 100%;
   height: 100%;
   display: flex;
-  flex-direction: column;
-  align-items: center;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: space-between;
+  padding-top: 2rem;
 }
 @media only screen and (min-width: 37.5625em) {
   .dashboard .section {
@@ -56,18 +58,24 @@
   }
 }
 .dashboard .nav {
-  width: 100%;
+  flex-basis: 40%;
   height: 100%;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   justify-content: center;
   gap: 3rem;
-  padding: 0 1rem;
+  padding: 0 0.5rem;
+}
+@media only screen and (min-width: 30.0625em) {
+  .dashboard .nav {
+    flex-basis: 30%;
+    padding: 0;
+  }
 }
 @media only screen and (min-width: 37.5625em) {
   .dashboard .nav {
-    flex-basis: 30%;
+    flex-basis: 25%;
     padding: 0;
   }
 }
@@ -81,11 +89,9 @@
   flex-direction: column;
   align-items: flex-start;
   justify-content: center;
-  gap: 1rem;
-  border-right: 1px solid #E0E4EC;
+  gap: 1.5rem;
   width: 100%;
   height: 100%;
-  padding: 1rem 0;
 }
 .dashboard .nav .lists .list {
   list-style: none;
@@ -124,9 +130,8 @@
   border-radius: 1.5rem;
 }
 .dashboard .profile {
-  width: 100%;
+  flex-grow: 1;
   height: 100%;
-  padding: 2rem 0;
 }
 @media only screen and (min-width: 37.5625em) {
   .dashboard .profile {
@@ -138,6 +143,7 @@
   flex-direction: column;
   align-items: flex-start;
   justify-content: center;
+  gap: 1rem;
   width: 100%;
 }
 .dashboard .profile .details .heading {
@@ -154,21 +160,19 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 1rem;
+  gap: 0.5rem;
   width: 100%;
   font-family: "DM Sans", sans-serif;
   font-weight: 500;
   font-size: 1.4rem;
   line-height: 150%;
-  padding: 1.5rem;
-}
-.dashboard .profile .details .user .photo {
-  width: 6rem;
-  height: 6rem;
+  padding: 1rem;
 }
 .dashboard .profile .details .user .title {
-  color: #E0E4EC;
+  color: #837D7D;
   font-size: 1.4rem;
+  font-family: "DM Sans", sans-serif;
+  font-weight: 700;
   letter-spacing: -0.01375rem;
 }
 .dashboard .profile .details .user .state {
@@ -193,4 +197,8 @@
 }
 .dashboard .profile .details .logout .btn .icon {
   font-size: 1.8rem;
+}
+.dashboard .profile .details .logout .error {
+  color: #FF033E;
+  font-size: 1.4rem;
 }/*# sourceMappingURL=dashboard.module.css.map */

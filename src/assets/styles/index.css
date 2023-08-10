@@ -6,7 +6,7 @@
 
   color-scheme: light dark;
   color: #242424;
-  background: #f2f2f2;
+  background-color: #e0e4ec;
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
@@ -135,12 +135,12 @@ input:invalid:focus {
 }
 
 input:valid {
-  border-color: #00ff00;
+  border-color: #50c878;
 }
 
 input:valid:focus {
-  border-color: #00ff00;
-  box-shadow: 0 0 2px 0 #00ff00;
+  border-color: #50c878;
+  box-shadow: 0 0 2px 0 #50c878;
 }
 
 input:disabled {
