@@ -65,12 +65,8 @@
 }
 
 .input::placeholder {
-  color: #ccc;
+  color: #000;
   font-weight: 400;
-}
-
-.input:focus::placeholder {
-  color: #aaa;
 }
 
 .notAllowed {

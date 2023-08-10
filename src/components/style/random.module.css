@@ -9,12 +9,24 @@
   margin-top: 1rem;
 }
 
-.btn_span {
+.btn {
   color: #fff;
   font-size: 1.4rem;
-  text-transform: uppercase;
   letter-spacing: 0.1rem;
   padding: 0.3rem 0.8rem !important;
+}
+
+.btn_span {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
+  text-transform: uppercase;
+}
+
+.btn_icon {
+  font-size: 1.5rem;
+  fill: #fff;
 }
 
 .error {
