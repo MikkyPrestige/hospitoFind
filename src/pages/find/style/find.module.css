@@ -104,12 +104,6 @@
 .findSection .search .container .form .cta .icon:active {
   fill: #08299B;
 }
-.findSection .search .container .user {
-  width: 5.625rem;
-  height: 5.625rem;
-  border-radius: 50%;
-  align-self: flex-start;
-}
 .findSection .search .error {
   font-size: 1.8rem;
   font-weight: 500;

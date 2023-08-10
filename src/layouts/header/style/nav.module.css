@@ -148,6 +148,11 @@
   font-size: 1.6rem;
 }
 
+.error {
+  color: #FF033E;
+  font-size: 1.4rem;
+}
+
 .large {
   display: none;
 }

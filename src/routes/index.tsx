@@ -1,18 +1,21 @@
 import { Route, Routes } from "react-router-dom";
 import { lazy } from "react";
-import { useAuth0 } from "@auth0/auth0-react";
+import { useAuthContext } from "@/context/userContext";
 
 const Home = lazy(() => import("@/pages/home/home"));
 const About = lazy(() => import("@/pages/about/about"));
 const FindHospital = lazy(() => import("@/pages/find/find"));
-const Callback = lazy(() => import("@/config/callback"));
+const LogIn = lazy(() => import("@/userConfig/loginForm"));
+const SignUp = lazy(() => import("@/userConfig/signupForm"));
+const Callback = lazy(() => import("@/userConfig/authCallback"));
 const Dashboard = lazy(() => import("@/pages/profile/dashboard"));
 const HospitalInfo = lazy(() => import("@/hospitalsConfig/info"));
 const ShareHospitalList = lazy(() => import("@/hospitalsConfig/shareHospitalList"));
+const Policy = lazy(() => import("@/pages/policy"))
 const Error404 = lazy(() => import("@/components/error404"));
 
 export const AppRoutes = () => {
-  const { isAuthenticated, isLoading } = useAuth0();
+  const { state } = useAuthContext();
 
   return (
     <Routes>
@@ -22,8 +25,10 @@ export const AppRoutes = () => {
         <Route index element={<FindHospital />} />
         <Route path=":name" element={<HospitalInfo />} />
       </Route>
+      <Route path="/login" element={<LogIn />} />
+      <Route path="/signup" element={<SignUp />} />
       <Route path="/dashboard">
-        {!isLoading && <Route index element={isAuthenticated ? <Dashboard /> : <Callback />} />}
+        <Route index element={state.username ? <Dashboard /> : <SignUp />} />
         <Route path=":name" element={<HospitalInfo />} />
       </Route>
       <Route path="/callback" element={<Callback />} />
@@ -31,6 +36,7 @@ export const AppRoutes = () => {
         <Route path="/hospitals/share/:linkId" element={<ShareHospitalList />} />
         <Route path="/hospitals/share/:linkId/:name" element={<HospitalInfo />} />
       </Route>
+      <Route path="/policy" element={<Policy />} />
       <Route path="*" element={<Error404 />} />
     </Routes>
   );
