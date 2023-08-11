@@ -129,7 +129,6 @@
 
     .details {
       @include mixins.flexColAlignStart;
-      gap: 1rem;
       width: 100%;
 
       .heading {
@@ -144,11 +143,9 @@
 
       .user {
         @include mixins.flexCol;
-        gap: .5rem;
         width: 100%;
         font-family: $font-sans;
-        font-weight: $font-weight-md;
-        font-size: $font-size-2;
+        font-size: $font-size-5;
         line-height: $line-height-2;
         padding: 1rem;
 

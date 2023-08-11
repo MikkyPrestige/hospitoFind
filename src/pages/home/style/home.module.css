@@ -18,7 +18,7 @@
 @media only screen and (min-width: 56.3125em) {
   .bg {
     padding-top: 5rem;
-    gap: 5rem;
+    gap: 3rem;
   }
 }
 .bg .wrapper {
@@ -114,6 +114,7 @@
   align-items: center;
   justify-content: center;
   gap: 1rem;
+  margin-bottom: 1rem;
 }
 .bg .search .heading {
   font-size: 2rem;
@@ -123,6 +124,11 @@
   line-height: 150%;
   letter-spacing: -0.011em;
   text-align: center;
+}
+@media only screen and (min-width: 48.0625em) {
+  .bg .search .heading {
+    font-size: 1.2rem;
+  }
 }
 .bg .search .label {
   position: relative;
