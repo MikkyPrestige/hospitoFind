@@ -22,7 +22,7 @@ const Home = () => {
         <div className={style.wrapper}>
           <div className={style.container}>
             <div className={style.header}>
-              <h1 className={style.title}>Find the nearest hospital to you and make an appointment</h1>
+              <h1 className={style.title}>Find the nearest hospital to you in Nigeria</h1>
               <p className={style.subtitle}>Discover Your Perfect Care: Find Your Hospital, Anytime, Anywhere!</p>
             </div>
             <div className={style.cta}>

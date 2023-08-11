@@ -145,7 +145,7 @@ input:valid:focus {
 
 input:disabled {
   border-color: #ccc;
-  color: #ccc;
+  color: #1e1e1e;
 }
 
 input:disabled:focus {
