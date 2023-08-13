@@ -1,12 +1,12 @@
+import { useEffect, useState } from "react";
+import { useNavigate, useParams } from "react-router-dom";
+import { Helmet } from "react-helmet-async";
+import { getHospitalByName } from "@/services/api";
 import { Hospital } from "@/services/hospital";
 import { Avatar } from "@/components/avatar";
 import HospitalPic from "@/assets/images/hospital-logo.jpg";
-import style from "./style/info/info.module.css";
-import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
-import { getHospitalByName } from "@/services/api";
-import { useNavigate } from "react-router-dom";
 import Loading from "@/assets/images/loading.gif";
+import style from "./style/info/info.module.css";
 
 const HospitalInfo = () => {
   const { name } = useParams();
@@ -49,6 +49,10 @@ const HospitalInfo = () => {
 
   return (
     <div className={style.hospital}>
+      <Helmet>
+        <title>{hospital.name}</title>
+        <meta name="description" content={hospital.name} />
+      </Helmet>
       <h1 className={style.heading}>More about <span className={style.heading_span}>{hospital.name}</span></h1>
       <div className={style.wrapper}>
         <div className={style.img}>

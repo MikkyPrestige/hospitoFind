@@ -30,10 +30,10 @@
       }
     }
 
-    .close {
+    .sidebar {
       fill: $color-blue;
       stroke: $color-bg;
-      font-size: 5rem;
+      font-size: $font-size-10;
       cursor: pointer;
     }
   }

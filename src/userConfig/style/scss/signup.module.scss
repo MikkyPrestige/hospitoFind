@@ -40,7 +40,7 @@
     background: $color-white-1;
     color: $color-black;
     border-radius: $border-radius-sm;
-    padding: 2rem;
+    padding: 1rem 2rem;
     font-family: $font-sans;
     line-height: $line-height-2;
     letter-spacing: $space;
@@ -51,13 +51,11 @@
     @include mixins.respond(tab-land) {
       width: 100%;
       max-width: 40rem;
-      padding: 2rem;
     }
 
     .title {
-      font-size: $font-size-5;
+      font-size: $font-size-3;
       font-weight: $font-weight-bd;
-      margin-bottom: 1rem;
       text-align: center;
     }
 
@@ -65,7 +63,6 @@
       font-size: $font-size-3;
       font-weight: $font-weight-md;
       text-align: center;
-      margin-bottom: 1rem;
     }
 
     .form {
@@ -74,33 +71,48 @@
       @include mixins.flexCol;
       gap: 1.5rem;
 
+      @include mixins.respond(laptop) {
+        gap: 1.2rem;
+      }
+
       .form_group {
         width: 100%;
         @include mixins.flexColAlignStart;
         gap: .5rem;
         position: relative;
 
+          @include mixins.respond(laptop) {
+            gap: 0;
+          }
+
         .form_label {
           font-size: $font-size-2;
-          font-weight: $font-weight-md;
           margin-left: 1.5rem;
+
+          @include mixins.respond(laptop) {
+            font-size: $font-size-1;
+          }
         }
 
         .form_input {
           width: 100%;
-          height: 3.5rem;
+          height: 3rem;
           border: 1px solid $color-gray;
           background-color: $color-bg;
           border-radius: $border-radius-sm;
           padding: 1rem;
           font-size: $font-size-2;
-          font-weight: $font-weight-md;
           outline: none;
           transition: all 0.3s ease-in-out;
+
+          @include mixins.respond(laptop) {
+            height: 2.5rem;
+          }
 
           &::placeholder {
             color: $color-gray;
             font-size: $font-size-1;
+            text-transform: lowercase;
           }
 
           &:focus {
@@ -108,18 +120,24 @@
           }
         }
 
-        svg {
+        .form_password {
           position: absolute;
-          top: 3rem;
+          top: 2.7rem;
           right: 1rem;
+          font-size: $font-size-3;
+          color: $color-black;
           cursor: pointer;
+
+          @include mixins.respond(laptop) {
+            top: 2.2rem;
+          }
         }
       }
 
       .form_error {
         font-size: $font-size-1;
-        font-weight: $font-weight-md;
         color: $color-red;
+        margin-left: 1.5rem;
       }
 
       .form_button {
@@ -127,10 +145,10 @@
         background: $color-blue;
         color: $color-white;
         font-size: $font-size-3;
-        font-weight: $font-weight-md;
         cursor: pointer;
         transition: all 0.3s ease-in-out;
         margin-bottom: 1rem;
+        padding: .5rem .8rem !important;
       }
     }
 
@@ -144,10 +162,9 @@
 
     .socialbtn {
       color: $color-blue;
-      font-size: $font-size-3;
+      font-size: $font-size-2;
       font-weight: $font-weight-md;
       transition: all 0.3s ease-in-out;
-      margin-bottom: 1rem;
       @include mixins.flexRow;
       gap: .1rem;
 
@@ -158,7 +175,7 @@
         border-radius: $border-radius-sm;
 
         .icon {
-          font-size: $font-size-3;
+          font-size: $font-size-2;
           font-weight: $font-weight-md;
           color: rgb(29, 155, 240);
         }

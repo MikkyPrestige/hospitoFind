@@ -6,7 +6,7 @@ import { MdFindInPage, MdPublishedWithChanges } from "react-icons/md";
 import { CgProfile } from "react-icons/cg";
 import { TbHomeHeart } from "react-icons/tb";
 import { BsBuildingAdd } from "react-icons/bs";
-import { LuPanelLeftClose } from "react-icons/lu";
+import {TbLayoutSidebarLeftCollapse, TbLayoutSidebarRightCollapse } from "react-icons/tb";
 import { AiOutlineUserDelete } from "react-icons/ai";
 import Logo from "@/assets/images/logo.svg";
 import { useAuthContext } from "@/context/userContext";
@@ -41,6 +41,7 @@ const Dashboard = () => {
 
   const toggleSidebar = () => {
     setSidebarVisible(!sidebarVisible);
+
   };
 
   return (
@@ -59,11 +60,11 @@ const Dashboard = () => {
         </Link>
         <div>
           <div data-tooltip-id="sidebar" data-tooltip-content="Sidebar" data-tooltip-offset={3} >
-            <LuPanelLeftClose onClick={toggleSidebar} className={style.close} />
+          {sidebarVisible ? <TbLayoutSidebarLeftCollapse onClick={toggleSidebar} className={style.sidebar} /> : <TbLayoutSidebarRightCollapse onClick={toggleSidebar} className={style.sidebar} />}
           </div>
           <Tooltip id="sidebar" style={{
-            fontSize: "1.5rem",
-            padding: "1rem"
+            fontSize: "1.3rem",
+            padding: ".3rem .8rem"
           }} />
         </div>
       </div>
