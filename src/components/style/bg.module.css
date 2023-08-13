@@ -16,12 +16,11 @@
   justify-content: center;
   align-items: center;
   position: relative;
-  height: 100%;
   width: 100%;
 }
 
 .content {
-  padding: 2rem 10rem;
+  padding: 0rem 10rem;
   text-align: center;
   font-family: 'DM Sans', sans-serif;
   letter-spacing: -0.011em;
@@ -51,19 +50,16 @@
 
 @media (min-width: 37.5625em) {
   .container {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    height: 100%;
     width: 100%;
-    margin: 2rem 2rem;
+    margin: 5rem 2rem;
   }
 
   .content {
     padding: 1rem 2.5rem;
   }
+}
 
+@media (min-width: 48.0625em) {
   .img {
     position: unset;
     z-index: unset;
