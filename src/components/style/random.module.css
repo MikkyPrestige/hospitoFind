@@ -13,7 +13,10 @@
   color: #fff;
   font-size: 1.4rem;
   letter-spacing: 0.1rem;
-  padding: 0.3rem 0.8rem !important;
+  padding: 0.3rem 0.6rem !important;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .btn_span {

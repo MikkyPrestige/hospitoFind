@@ -270,7 +270,7 @@ const Editor = () => {
           <Button
             disabled={loading}
             children={<span className={style.btn}>
-              {loading ? "Adding..." : <span className={style.btn_span}><BsDatabaseAdd className={style.btn_icon}/>Submit</span>}
+              {loading ? "Adding..." : <span className={style.btn_span}>Submit<BsDatabaseAdd className={style.btn_icon}/></span>}
             </span>}
           />
         </div>

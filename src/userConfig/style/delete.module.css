@@ -54,19 +54,12 @@
   -webkit-appearance: none;
   -moz-appearance: none;
   appearance: none;
-
   background-color: transparent;
-}
-
-.input:focus {
-  outline: none;
-  border-color: #aaa;
-  box-shadow: 0 0 2px 0 #aaa;
 }
 
 .input::placeholder {
   color: #000;
-  font-weight: 400;
+  font-size: 1.2rem;
 }
 
 .notAllowed {
