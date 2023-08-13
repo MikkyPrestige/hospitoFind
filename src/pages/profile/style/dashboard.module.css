@@ -33,10 +33,10 @@
      object-fit: contain;
   mix-blend-mode: color-burn;
 }
-.dashboard .top .close {
+.dashboard .top .sidebar {
   fill: #08299B;
   stroke: #E0E4EC;
-  font-size: 5rem;
+  font-size: 3rem;
   cursor: pointer;
 }
 .dashboard .sidebarHidden {
