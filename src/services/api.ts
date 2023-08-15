@@ -1,8 +1,7 @@
 import { Hospital } from "./hospital";
 import axios from "axios";
 
-// const BASE_URL = "https://strange-blue-battledress.cyclic.app";
-const BASE_URL = "http://localhost:5000";
+const BASE_URL = "https://strange-blue-battledress.cyclic.app";
 
 // get all hospitals
 export async function getHospitals() {

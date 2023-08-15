@@ -104,8 +104,7 @@ const ContextProvider = ({ children }: { children: React.ReactNode }) => {
   )
 }
 
-// const BASE_URL = "https://strange-blue-battledress.cyclic.app";
-const BASE_URL = "http://localhost:5000";
+const BASE_URL = "https://strange-blue-battledress.cyclic.app";
 
 const useAuthContext = (): AuthContextType => {
   const context = useContext(AuthContext);
