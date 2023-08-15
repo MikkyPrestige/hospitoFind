@@ -31,7 +31,9 @@ const PopularHospitals = () => {
 
   return (
     <div className={style.container}>
-      <h1 className={style.heading}>Popular Hospitals</h1>
+      <h1 className={style.heading}>
+        Popular Hospitals in Nigeria<span role="img" aria-label="hospital">🏥</span>
+      </h1>
       <div className={style.wrapper}>
         {hospitals.map((hospital, id) => (
           <div className={style.card} key={id}>

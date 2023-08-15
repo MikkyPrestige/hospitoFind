@@ -1,15 +1,15 @@
 import React, { useState } from 'react';
+import { NavLink, Outlet } from 'react-router-dom';
+import { AiOutlineSearch } from "react-icons/ai";
 import { LocationInput, Hospital } from '@/services/hospital';
 import { statesAndCities } from '@/services/location';
 import { searchHospitals } from '@/services/api';
 import ExportButton from '@/hospitalsConfig/export';
 import ShareButton from '@/hospitalsConfig/share';
-import { NavLink, Outlet } from 'react-router-dom';
-import { AiOutlineSearch } from "react-icons/ai";
-import style from "./style/search/search.module.css";
+import PopularHospitals from '@/components/popular';
 import { Avatar } from '@/components/avatar';
 import HospitalPic from "@/assets/images/hospital-logo.jpg";
-import PopularHospitals from '@/components/popular';
+import style from "./style/search/search.module.css";
 import style2 from "../components/style/popular.module.css";
 
 const Search = () => {
@@ -70,6 +70,10 @@ const Search = () => {
 
   return (
     <section className={style.search}>
+      <h1 className={style.heading}>
+        Looking for a hospital? Don't worry We got you covered
+        <span role="img" aria-label="emoji">😉</span>
+      </h1>
       <section className={style.wrapper}>
         <form onSubmit={handleSubmit} className={style.form}>
           <input
@@ -77,7 +81,7 @@ const Search = () => {
             name="address"
             value={location.address}
             onChange={handleInput}
-            placeholder="Address / Hospital Name"
+            placeholder="Enter Hospital Address or Name"
             className={style.input}
           />
           <select onChange={handleSelect} className={style.select}>
