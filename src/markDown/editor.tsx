@@ -3,7 +3,7 @@ import axios from "axios";
 import ReactMde, { Suggestion } from "react-mde";
 import ReactMarkdown from "react-markdown";
 import "react-mde/lib/styles/css/react-mde-all.css"
-import {BsDatabaseAdd} from "react-icons/bs"
+import { BsDatabaseAdd } from "react-icons/bs"
 import { Hospital } from "@/services/hospital";
 import { Button } from "@/components/button";
 import style from "../components/style/random.module.css";
@@ -79,7 +79,7 @@ const Editor = () => {
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
   const [markdown, setMarkdown] = useState(`
-  **Help us add hospitals you know by filling the form below and submit. Thank you!!!**
+  **Please make sure you have the right information before submitting. Thank you!!!**
 
   # Name:
 
@@ -244,8 +244,9 @@ const Editor = () => {
 
 
   return (
-    <>
-      <form onSubmit={handleSubmit} className={style.editor}>
+    <section className={style.editor}>
+      <h1 className={style.title}>You can add a hospital by filling the form in the markdown below</h1>
+      <form onSubmit={handleSubmit} className={style.form}>
         <ReactMde
           value={markdown}
           onChange={setMarkdown}
@@ -263,19 +264,19 @@ const Editor = () => {
             }
           }}
           loadingPreview={<div className="loading-preview">
-            <p style={{color: "#00FF00", fontSize: "1.5rem", margin: "5rem auto"}}>Loading...</p></div>}
+            <p style={{ color: "#00FF00", fontSize: "1.5rem", margin: "5rem auto" }}>Loading...</p></div>}
         />
         {error && <p className={style.error}>{error}</p>}
         <div className={style.cta}>
           <Button
             disabled={loading}
             children={<span className={style.btn}>
-              {loading ? "Adding..." : <span className={style.btn_span}>Submit<BsDatabaseAdd className={style.btn_icon}/></span>}
+              {loading ? "Submitting..." : <span className={style.btn_span}>Submit<BsDatabaseAdd className={style.btn_icon} /></span>}
             </span>}
           />
         </div>
       </form>
-    </>
+    </section>
   )
 }
 export default Editor;

@@ -13,10 +13,9 @@
 
 .heading {
   font-size: 2rem;
-  font-weight: 700;
   font-family: 'Fira Sans' sans-serif;
   color: #08299b;
-  letter-spacing: -0.02063rem;
+  letter-spacing: 0.1rem;
   text-transform: capitalize;
 }
 
@@ -116,18 +115,14 @@
 }
 
 @media (min-width: 37.5625em) {
-  .container {
-    padding: 2rem 0;
-  }
-
   .wrapper {
-    padding: 0 4rem;
+    padding: 0 2rem;
   }
 
   .card {
     flex-direction: row;
     gap: 2rem;
-    padding: 2rem 1rem;
+    padding: 1rem;
   }
 
   .img {
@@ -138,8 +133,7 @@
 
 @media (min-width: 75em) {
   .container {
-    align-items: flex-start;
-    padding: 4rem;
+    padding: 1rem;
     width: 100%;
   }
 
@@ -157,7 +151,6 @@
   .card {
     flex-direction: column;
     width: 30%;
-    padding: 1rem;
   }
 
   .img {
