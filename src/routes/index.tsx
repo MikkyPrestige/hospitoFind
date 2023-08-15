@@ -28,8 +28,7 @@ export const AppRoutes = () => {
       <Route path="/login" element={<LogIn />} />
       <Route path="/signup" element={<SignUp />} />
       <Route path="/dashboard">
-        {/* <Route index element={state.username ? <Dashboard /> : <SignUp />} /> */}
-        <Route index element={<Dashboard />} />
+        <Route index element={state.username ? <Dashboard /> : <SignUp />} />
         <Route path=":name" element={<HospitalInfo />} />
       </Route>
       <Route path="/callback" element={<Callback />} />
