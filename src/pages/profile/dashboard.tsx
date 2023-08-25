@@ -18,7 +18,7 @@ import UpdatePassword from "@/userConfig/updatePassword";
 import DeleteBtn from "@/userConfig/deleteUser";
 import Logout from "@/userConfig/logoutUser";
 import style from "./style/dashboard.module.css";
-import bgStyle from "@/components/style/random.module.css";
+import bgStyle from "../../components/style/random.module.css";
 
 const Dashboard = () => {
   const [selected, setSelected] = useState<string>("find-hospital");
