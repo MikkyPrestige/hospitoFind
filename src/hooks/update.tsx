@@ -1,48 +1,47 @@
-import axios from "axios";
-import { useState, useEffect } from "react";
-import { User } from "@/services/user";
-import { useAuthContext, BASE_URL } from "@/context/userContext";
+import axios from 'axios'
+import { useState, useEffect } from 'react'
+import { User } from '@/services/user'
+import { useAuthContext, BASE_URL } from '@/context/userContext'
 
 const useUpdate = () => {
-  const [loading, setLoading] = useState(false);
-  const [success, setSuccess] = useState("");
-  const [error, setError] = useState("");
-  const { dispatch } = useAuthContext();
+  const [loading, setLoading] = useState(false)
+  const [success, setSuccess] = useState('')
+  const [error, setError] = useState('')
+  const { dispatch } = useAuthContext()
 
   useEffect(() => {
     if (success || error) {
       const timer = setTimeout(() => {
-        setSuccess("");
-        setError("");
-      }, 3000);
+        setSuccess('')
+        setError('')
+      }, 10000)
 
-      return () => clearTimeout(timer);
+      return () => clearTimeout(timer)
     }
-  }, [success, error]);
+  }, [success, error])
 
   const update = async (user: User) => {
-    setLoading(true);
-    setError("");
-    await axios.patch<User>(`${BASE_URL}/users`, user)
+    setLoading(true)
+    setError('')
+    await axios
+      .patch<User>(`${BASE_URL}/users`, user)
       .then(() => {
         dispatch({
-          type: "UPDATE",
+          type: 'UPDATE',
           payload: {
             username: user.username,
             name: user.name,
-            email: user.email
-          }
+            email: user.email,
+          },
         })
         setSuccess(`${user.username} profile updated`)
       })
       .catch((error) => {
         if (error.response) {
           setError(error.response.data.message)
-        }
-        else if (error.request) {
-          setError("Server did not respond")
-        }
-        else {
+        } else if (error.request) {
+          setError('Server did not respond')
+        } else {
           setError(error.message)
         }
       })

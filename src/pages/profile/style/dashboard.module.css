@@ -2,42 +2,43 @@
   width: 100%;
   height: 100%;
   background-color: #E0E4EC;
-  padding: 1rem 0;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-}
-@media only screen and (min-width: 37.5625em) {
-  .dashboard {
-    gap: 2rem;
-  }
+  gap: 1rem;
 }
 .dashboard .top {
   width: 100%;
+  height: 20rem;
   display: flex;
   flex-direction: row;
   align-items: flex-start;
   justify-content: space-between;
+  position: relative;
 }
 .dashboard .top .logo {
-  width: 10rem;
-  height: 10rem;
+  width: 15rem;
+  height: 15rem;
   z-index: 1000;
-  margin-top: -2rem;
+  position: absolute;
+  top: 5rem;
+  left: -2rem;
 }
 .dashboard .top .logo .img {
-  width: 100%;
   height: 100%;
   -o-object-fit: contain;
      object-fit: contain;
-  mix-blend-mode: color-burn;
 }
 .dashboard .top .sidebar {
   fill: #08299B;
-  stroke: #E0E4EC;
-  font-size: 3rem;
+  stroke: #FFFFFF;
+  font-size: 5rem;
   cursor: pointer;
+  position: absolute;
+  top: 1rem;
+  right: 0;
+  z-index: 1000;
 }
 .dashboard .sidebarHidden {
   display: none;
@@ -49,7 +50,8 @@
   flex-direction: row;
   align-items: flex-start;
   justify-content: space-between;
-  padding-top: 2rem;
+  padding: 0rem 0.5rem;
+  background-color: #E0E4EC;
 }
 @media only screen and (min-width: 37.5625em) {
   .dashboard .section {
@@ -59,17 +61,19 @@
 }
 .dashboard .nav {
   flex-basis: 40%;
-  height: 100%;
+  height: 47rem;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   justify-content: center;
   gap: 3rem;
-  padding: 0 0.5rem;
+  background-color: #f5f5f5;
+  border-radius: 1rem;
 }
 @media only screen and (min-width: 30.0625em) {
   .dashboard .nav {
     flex-basis: 30%;
+    height: 40rem;
     padding: 0;
   }
 }
@@ -109,18 +113,8 @@
   padding: 0 1rem;
   cursor: pointer;
 }
-.dashboard .nav .lists .list .icon {
-  font-size: 2rem;
-  color: #08299B;
-}
 .dashboard .nav .lists .del {
   background-color: #FF033E;
-  border-radius: 1.5rem;
-  width: -moz-fit-content !important;
-  width: fit-content !important;
-}
-.dashboard .nav .lists .home {
-  background-color: #88B3DB;
   border-radius: 1.5rem;
   width: -moz-fit-content !important;
   width: fit-content !important;
@@ -130,19 +124,11 @@
   border-radius: 1.5rem;
 }
 .dashboard .profile {
-  flex-grow: 1;
+  flex-basis: 100%;
   height: 100%;
-}
-@media only screen and (min-width: 37.5625em) {
-  .dashboard .profile {
-    flex-grow: 1;
-  }
+  margin-bottom: 1rem;
 }
 .dashboard .profile .details {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  justify-content: center;
   width: 100%;
 }
 .dashboard .profile .details .heading {
@@ -154,7 +140,28 @@
   align-self: center;
   text-transform: capitalize;
 }
-.dashboard .profile .details .user {
+.dashboard .profile .details .wrapper {
+  width: 70%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1.5rem;
+  margin: 5rem auto;
+  background-color: #BFCAE0;
+  padding: 1rem;
+  position: relative;
+}
+.dashboard .profile .details .wrapper .container {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  margin-bottom: 4rem;
+}
+.dashboard .profile .details .wrapper .container .user {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -162,40 +169,38 @@
   width: 100%;
   font-family: "DM Sans", sans-serif;
   font-size: 2rem;
-  line-height: 150%;
-  padding: 1rem;
 }
-.dashboard .profile .details .user .title {
+.dashboard .profile .details .wrapper .container .user .title {
   color: #837D7D;
   font-size: 1.4rem;
   font-family: "DM Sans", sans-serif;
   font-weight: 700;
   letter-spacing: -0.01375rem;
 }
-.dashboard .profile .details .user .state {
+.dashboard .profile .details .wrapper .container .user .state {
   color: #000000;
   letter-spacing: -0.01031rem;
 }
-.dashboard .profile .details .logout {
-  align-self: center;
-}
-.dashboard .profile .details .logout .btn {
-  background-color: #FF033E !important;
-}
-.dashboard .profile .details .logout .btn .span {
+.dashboard .profile .details .wrapper .editWrap {
+  width: 100%;
+  height: 100%;
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   align-items: center;
-  justify-content: center;
-  gap: 0.3rem;
+  justify-content: flex-end;
+  gap: 1rem;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 1;
+}
+.dashboard .profile .details .wrapper .editWrap .editBtn {
+  background-color: #08299B;
+  border-radius: 1.5rem;
+  width: 50%;
+  color: #F2F2F2;
   font-size: 1.6rem;
   font-family: "DM Sans", sans-serif;
-  font-weight: 500;
-}
-.dashboard .profile .details .logout .btn .icon {
-  font-size: 1.8rem;
-}
-.dashboard .profile .details .logout .error {
-  color: #FF033E;
-  font-size: 1.4rem;
+  letter-spacing: 0.1rem;
+  padding: 0.3rem 0;
 }/*# sourceMappingURL=dashboard.module.css.map */

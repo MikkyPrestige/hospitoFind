@@ -45,12 +45,15 @@ const SignUp = () => {
     if (!password.trim()) {
       errors["password"] = "Please enter a Password"
       valid = false
-    } else if (password.length < 6) {
-      errors["password"] = "Password must be at least 6 characters"
+    } else if (!password.match(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{6,}$/)) {
+      errors["password"] = "Password must contain at least 6 characters, including UPPER/lowercase and numbers"
       valid = false
     }
     if (!confirmPassword.trim()) {
       errors["confirmPassword"] = "Confirm password cannot be empty"
+      valid = false
+    } else if (!confirmPassword.match(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{6,}$/)) {
+      errors["confirmPassword"] = "Password must contain at least 6 characters, including UPPER/lowercase and numbers"
       valid = false
     } else if (password !== confirmPassword) {
       errors["confirmPassword"] = "Passwords do not match"

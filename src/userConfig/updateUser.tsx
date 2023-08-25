@@ -3,10 +3,8 @@ import { FaUserEdit } from "react-icons/fa";
 import { User } from "@/services/user";
 import { useAuthContext } from "@/context/userContext";
 import useUpdate from "@/hooks/update";
-import UpdatePassword from "@/userConfig/updatePassword";
 import { Button } from "@/components/button";
-import btnStyle from "./style/logout.module.css";
-import style from "./style/delete.module.css";
+import style from "./style/style.module.css";
 
 const UpdateUser = () => {
   const { state } = useAuthContext();
@@ -42,7 +40,7 @@ const UpdateUser = () => {
   }
 
   return (
-    <div className={btnStyle.container}>
+    <section className={style.section}>
       <form onSubmit={handleUserUpdate} className={style.form}>
         <div className={style.wrapper}>
           <p className={style.subtitle}>Name</p>
@@ -77,17 +75,16 @@ const UpdateUser = () => {
             className={style.input}
           />
         </div>
-        {success && <p className={btnStyle.success}>{success}</p>}
-        {error && <p className={btnStyle.error}>{error}</p>}
+        {success && <p className={style.success}>{success}</p>}
+        {error && <p className={style.error}>{error}</p>}
         <Button
           type="submit"
           disabled={loading}
-          children={loading ? "Updating..." : <span className={btnStyle.span}>Update<FaUserEdit className={btnStyle.icon} /></span>}
-          className={btnStyle.btn}
+          children={loading ? "Updating..." : <span className={style.span}>Update<FaUserEdit className={style.icon} /></span>}
+          className={style.btn2}
         />
       </form>
-      <UpdatePassword />
-    </div>
+    </section>
   );
 }
 

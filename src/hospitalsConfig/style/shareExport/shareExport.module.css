@@ -1,5 +1,4 @@
 .cta {
-  text-align: center;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -12,15 +11,19 @@
   border: 1px solid #08299B;
   border-radius: 1rem;
   font-size: 1.4rem;
-  text-decoration: none;
   padding: 0.2rem 0.6rem;
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
+  align-self: flex-start;
 }
 .cta .btn:hover {
   background-color: #08299B;
   color: #FFFFFF;
+}
+.cta .btn .span {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
 }
 .cta .btn .icon {
   width: 1.7rem;
