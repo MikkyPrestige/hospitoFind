@@ -1,5 +1,5 @@
-@use "../../../assets/styles/mixins"as mixins;
-@import "../../../assets/styles/variables";
+@use '../../../assets/styles/mixins' as mixins;
+@import '../../../assets/styles/variables';
 
 .hospital {
   width: 100%;
@@ -7,12 +7,11 @@
   @include mixins.flexCol;
   gap: 1rem;
   padding: 2rem;
-  background-color: $color-blue-light;
 
   .heading {
     font-size: $font-size-5;
     font-family: $font-inter;
-    color: $color-white-1;
+    color: #333333;
     text-transform: capitalize;
 
     &_span {
@@ -20,8 +19,7 @@
       font-family: $font-inter;
       font-style: italic;
       color: $color-blue;
-      margin-left: .5rem;
-
+      margin-left: 0.5rem;
     }
   }
 
@@ -30,8 +28,6 @@
     gap: 1rem;
     width: 100%;
     height: 100%;
-    background-color: #DBE0EA;
-    padding: 1rem;
 
     .img {
       width: 75%;
@@ -42,7 +38,7 @@
       }
 
       @include mixins.respond(laptop) {
-        width: 50%
+        width: 50%;
       }
     }
 
@@ -58,8 +54,8 @@
       .title {
         width: 80%;
         border-radius: $border-radius-sm;
-        border: 1px solid #45413C;
-        background: #F5F5F5;
+        border: 1px solid #45413c;
+        background: #f5f5f5;
         font-size: $font-size-4;
         font-family: $font-sans;
         font-weight: $font-weight-md;
@@ -75,8 +71,8 @@
         gap: 1rem;
         width: 80%;
         border-radius: $border-radius-sm;
-        border: 1px solid #45413C;
-        background: #F5F5F5;
+        border: 1px solid #45413c;
+        background: #f5f5f5;
         padding: 1rem;
 
         &_title {
@@ -124,7 +120,7 @@
       .btn {
         @include mixins.flexRow;
         gap: 1rem;
-        padding: .3rem .8rem;
+        padding: 0.3rem 0.8rem;
         border-radius: 2rem;
         background: $color-blue-light;
         color: $color-white;
@@ -136,7 +132,7 @@
   }
 
   .link {
-    padding: .3rem 1rem;
+    padding: 0.3rem 1rem;
     border-radius: 1.5rem;
     background: $color-blue;
     color: $color-white;

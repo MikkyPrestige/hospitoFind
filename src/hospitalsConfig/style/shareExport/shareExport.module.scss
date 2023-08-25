@@ -1,8 +1,7 @@
-@use "../../../assets/styles/mixins";
-@import "../../../assets/styles/variables";
+@use '../../../assets/styles/mixins';
+@import '../../../assets/styles/variables';
 
 .cta {
-  text-align: center;
   @include mixins.flexCol;
   gap: 1rem;
 
@@ -12,15 +11,17 @@
     border: 1px solid $color-blue;
     border-radius: 1rem;
     font-size: $font-size-2;
-    text-decoration: none;
-    padding: .2rem .6rem;
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
+    padding: 0.2rem 0.6rem;
+    align-self: flex-start;
 
     &:hover {
       background-color: $color-blue;
       color: $color-white;
+    }
+
+    .span {
+      @include mixins.flexRow;
+      gap: 0.5rem;
     }
 
     .icon {
@@ -49,7 +50,7 @@
       border: 1px solid $color-blue;
       border-radius: 1rem;
       font-size: $font-size-2;
-      padding: .2rem .6rem;
+      padding: 0.2rem 0.6rem;
     }
   }
 
