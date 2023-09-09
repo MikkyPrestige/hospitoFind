@@ -1,4 +1,3 @@
-// types file
 export interface SearchProps {
   searchParams: {
     address?: string;

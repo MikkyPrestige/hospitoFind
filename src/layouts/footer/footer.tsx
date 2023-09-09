@@ -20,12 +20,13 @@ const Footer = () => {
           <h2 className={style.title}>About Us</h2>
           <Link to="/about" className={style.link}>News & Media</Link>
           <Link to="https://www.linkedin.com/company/prestigeenigma" className={style.link}>Contact Us</Link>
+          <Link to="/policy" className={style.link}>Privacy Policy</Link>
         </div>
         <div className={style.content}>
           <h2 className={style.title}>Quick Links</h2>
           <Link to="/dashboard" className={style.link}>My account</Link>
           <Link to="/find" className={style.link}>Find Hospital</Link>
-          <Link to="/policy" className={style.link}>Privacy Policy</Link>
+          <Link to="#" className={style.link}>Library</Link>
         </div>
       </div>
     </section>

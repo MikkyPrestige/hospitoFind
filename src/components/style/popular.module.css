@@ -35,7 +35,6 @@
 .sharePage {
   background-color: #f0fbff;
   width: 100%;
-  padding-top: 3rem;
   border-radius: 1rem;
   display: flex;
   flex-direction: column;
@@ -107,8 +106,7 @@
 
 .error {
   color: #ff0000;
-  font-size: 1.5rem;
-  font-weight: 700;
+  font-size: 1.3rem;
 }
 
 .btn:hover {

@@ -37,7 +37,7 @@ const SignUp = () => {
     }
     if (!email.trim()) {
       errors["email"] = "Please enter your Email Address"
-     valid = false
+      valid = false
     } else if (!email.match(/^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/)) {
       errors["email"] = "Email Address is not valid"
       valid = false
@@ -109,7 +109,7 @@ const SignUp = () => {
         <BG />
         <section className={style.wrapper}>
           <h2 className={style.title}>Create An Account</h2>
-          <h2 className={style.socialbtn}>Sign up with
+          <h2 className={style.socialBtn}>Sign up with
             <button onClick={() => loginWithRedirect()} className={style.social}>
               <FcGoogle className={style.icon} />
               <FaFacebook className={style.icon} />
@@ -180,7 +180,7 @@ const SignUp = () => {
             <div className={style.form_group}>
               <label htmlFor="confirmPassword" className={style.form_label}>Confirm Password</label>
               <input
-              type={showConfirmPassword ? "text" : "password"}
+                type={showConfirmPassword ? "text" : "password"}
                 id="confirmPassword"
                 name="confirmPassword"
                 autoComplete="new-password"

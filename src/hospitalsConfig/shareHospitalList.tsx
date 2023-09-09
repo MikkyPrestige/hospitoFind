@@ -1,11 +1,12 @@
-import { useParams } from "react-router-dom";
 import { useState, useEffect } from "react";
+import { NavLink, useParams } from "react-router-dom";
 import axios from "axios";
+import Header from "@/layouts/header/nav";
+import Footer from "@/layouts/footer/footer";
 import { Hospital } from "@/services/hospital";
-import { NavLink } from "react-router-dom";
 import HospitalPic from "@/assets/images/hospital-logo.jpg";
 import { Avatar } from "@/components/avatar";
-import style2 from "../components/style/popular.module.css";
+import style from "../components/style/popular.module.css";
 import Loading from "@/assets/images/loading.gif";
 
 const BASE_URL = "https://strange-blue-battledress.cyclic.app";
@@ -33,7 +34,10 @@ const ShareHospitalList = () => {
 
 
   return (
-    <div className={style2.sharePage}>
+    <div className={style.sharePage}>
+      <div style={{ width: "100%" }}>
+        <Header />
+      </div>
       {error && <div>{error}</div>}
       {loading ? (
         <div style={{
@@ -44,21 +48,24 @@ const ShareHospitalList = () => {
         }}>
           <img src={Loading} alt="Loading gif" /></div>
       ) : (
-        <div className={`${style2.shareContent} ${style2.wrapper}`}>
+        <div className={`${style.shareContent} ${style.wrapper}`}>
           {hospitalList.map((hospital, id) => (
-            <li key={id} className={style2.card}>
-              <div className={style2.img}>
+            <li key={id} className={style.card}>
+              <div className={style.img}>
                 {hospital?.photoUrl ? <Avatar image={hospital.photoUrl} alt="hospital" style={{ width: "100%", height: "100%", borderRadius: "1.2rem", objectFit: "cover" }} /> : <Avatar image={HospitalPic} alt="hospital" style={{ width: "100%", height: "100%", borderRadius: "1.2rem", objectFit: "cover" }} />}
               </div>
-              <div className={style2.details}>
-                <h3 className={style2.name}>{hospital.name}</h3>
-                <h3 className={style2.address}>{hospital?.address.street}</h3>
-                <NavLink to={`${hospital.name}`} className={style2.btn}>See more</NavLink>
+              <div className={style.details}>
+                <h3 className={style.name}>{hospital.name}</h3>
+                <h3 className={style.address}>{hospital?.address.street}</h3>
+                <NavLink to={`${hospital.name}`} className={style.btn}>See more</NavLink>
               </div>
             </li>
           ))}
         </div>
       )}
+      <div style={{ width: "100%" }}>
+        <Footer />
+      </div>
     </div>
   );
 }

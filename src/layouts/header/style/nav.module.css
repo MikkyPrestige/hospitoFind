@@ -52,7 +52,7 @@
 .smallHeader .menu .toggle_icon {
   font-size: 2.6rem;
   font-weight: 700;
-  color: #2196F3;
+  color: #2196f3;
 }
 @media only screen and (min-width: 30.0625em) {
   .smallHeader .menu .toggle_icon {
@@ -101,7 +101,7 @@
 }
 .smallHeader .menu .smallList .smallItem .smallIcon {
   font-size: 2.2rem;
-  color: #2196F3;
+  color: #2196f3;
 }
 .smallHeader .menu .smallList .smallItem .smallFind {
   font-family: "DM Sans", sans-serif;
@@ -111,13 +111,18 @@
   transition: all 0.5s ease-in-out;
 }
 .smallHeader .menu .smallWrapper {
-  width: 70%;
+  width: 80%;
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: center;
-  gap: 3rem;
+  gap: 2rem;
   margin: 0 auto;
+}
+@media only screen and (min-width: 30.0625em) {
+  .smallHeader .menu .smallWrapper {
+    gap: 3.5rem;
+  }
 }
 .smallHeader .menu .smallWrapper .smallAuth {
   border-radius: 1rem;
@@ -125,9 +130,13 @@
   color: #FFFFFF !important;
   font-family: "DM Sans", sans-serif;
   font-size: 2rem;
-  letter-spacing: -0.011em;
-  padding: 0.2rem 0.8rem;
+  padding: 0.5rem 2rem;
   transition: all 0.5s ease-in-out;
+}
+@media only screen and (min-width: 30.0625em) {
+  .smallHeader .menu .smallWrapper .smallAuth {
+    padding: 0.5rem 3rem;
+  }
 }
 
 .logout {
@@ -204,7 +213,7 @@
 }
 .large .largeNav .largeList .largeItem .largeIcon {
   font-size: 1.6rem;
-  color: #2196F3;
+  color: #2196f3;
 }
 .large .largeNav .largeList .largeItem .largeFind {
   font-family: "DM Sans", sans-serif;
@@ -226,8 +235,7 @@
   color: #FFFFFF !important;
   font-family: "DM Sans", sans-serif;
   font-size: 1.4rem;
-  letter-spacing: -0.011em;
-  padding: 0.1rem 0.8rem;
+  padding: 0.2rem 1.5rem;
   transition: all 0.5s ease-in-out;
 }
 .large .largeNav .largeWrapper .largeSpan {
