@@ -15,6 +15,7 @@ src/config
 .env
 
 # Editor directories and files
+.vite/deps
 .vscode/*
 !.vscode/extensions.json
 .idea
