@@ -37,7 +37,7 @@ const Search = () => {
     e.preventDefault()
     setSearching(true)
     if (!location.address && !location.city && !location.state) {
-      setError('Please enter/select a Hospital Address or Name')
+      setError('Please Enter/Select a Hospital address or Name')
       setHospitals([])
       setSearching(false)
       return
@@ -46,9 +46,7 @@ const Search = () => {
     try {
       const data = await searchHospitals(query)
       if (data.length === 0) {
-        setError(
-          'Sorry! We could not find any results matching your criteria.\nPlease try again with different parameters'
-        )
+        setError('Sorry! We could not find any results matching your search.\nPlease try again with different search parameter.')
         setHospitals([])
       } else {
         setHospitals(data)
@@ -72,24 +70,22 @@ const Search = () => {
 
   return (
     <section className={style.search}>
-      <h1 className={style.heading}>
-        Looking for a hospital? Don't worry We got you covered
-        <span role="img" aria-label="emoji">
-          😉
-        </span>
-      </h1>
+      <h1 className={style.heading}>Looking for a hospital nearby? Don't worry We got you covered!</h1>
       <section className={style.wrapper}>
         <form onSubmit={handleSubmit} className={style.form}>
-          <input
-            type="text"
-            name="address"
-            value={location.address}
-            onChange={handleInput}
-            placeholder="Enter Hospital Address or Name"
-            className={style.input}
-          />
+          <div className={style.box}>
+            <input
+              type="text"
+              name="address"
+              value={location.address}
+              onChange={handleInput}
+              placeholder="Enter Hospital address or Name"
+              className={style.input}
+            />
+            {error && <p className={style.error}>{error}</p>}
+          </div>
           <select onChange={handleSelect} className={style.select}>
-            <option value="">City & State</option>
+            <option value="">City, State</option>
             {statesAndCities.map((name) => (
               <option
                 key={`${name.city},${name.state}`}
@@ -107,7 +103,6 @@ const Search = () => {
             )}
           </button>
         </form>
-        {error && <p className={style.error}>{error}</p>}
       </section>
       <ul className={style.hospitals}>
         <h1 className={style.title}>

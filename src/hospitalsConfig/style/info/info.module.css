@@ -65,8 +65,6 @@
   font-family: "DM Sans", sans-serif;
   font-weight: 500;
   color: #000000;
-  letter-spacing: -0.02063rem;
-  line-height: 150%;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -90,8 +88,6 @@
   font-family: "DM Sans", sans-serif;
   font-weight: 500;
   color: #000000;
-  letter-spacing: -0.02063rem;
-  line-height: 150%;
 }
 .hospital .wrapper .details .service .list {
   list-style-type: circle;
@@ -108,8 +104,6 @@
   font-size: 1.6rem;
   font-family: "DM Sans", sans-serif;
   color: #000000;
-  letter-spacing: -0.02063rem;
-  line-height: 150%;
 }
 .hospital .wrapper .details .service .time_list {
   list-style-type: none;
@@ -124,8 +118,6 @@
   font-family: "DM Sans", sans-serif;
   font-weight: 500;
   color: #000000;
-  letter-spacing: -0.02063rem;
-  line-height: 150%;
 }
 .hospital .wrapper .details .btn {
   display: flex;
@@ -143,10 +135,10 @@
 }
 .hospital .link {
   padding: 0.3rem 1rem;
+  width: 10%;
   border-radius: 1.5rem;
   background: #08299B;
   color: #FFFFFF;
   font-size: 1.4rem;
   font-family: "DM Sans", sans-serif;
-  letter-spacing: -0.02063rem;
 }/*# sourceMappingURL=info.module.css.map */

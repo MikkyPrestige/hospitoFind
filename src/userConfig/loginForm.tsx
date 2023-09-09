@@ -63,7 +63,7 @@ const LoginForm = () => {
         <BG />
         <section className={`${style.padding_top} ${style.wrapper}`}>
           <h1 className={style.title}>Welcome Back</h1>
-          <h2 className={style.socialbtn}>Login with
+          <h2 className={style.socialBtn}>Login with
             <button onClick={() => loginWithRedirect()} className={style.social}>
               <FcGoogle className={style.icon} />
               <FaFacebook className={style.icon} />
@@ -74,7 +74,7 @@ const LoginForm = () => {
           <h3 className={style.or}>or</h3>
           <form onSubmit={handleLogin} className={style.form}>
             <div className={style.form_group}>
-              <label htmlFor="email" className={style.form_label}>Email</label>
+              <label htmlFor="email" className={style.form_label}>Email Address</label>
               <input
                 type="email"
                 id="email"

@@ -1,4 +1,4 @@
-@use '../../../assets/styles/mixins'as mixins;
+@use '../../../assets/styles/mixins' as mixins;
 @import '../../../assets/styles/variables';
 @import url('https://fonts.googleapis.com/css2?family=Pacifico&display=swap');
 
@@ -42,8 +42,6 @@
     border-radius: $border-radius-sm;
     padding: 1rem 2rem;
     font-family: $font-sans;
-    line-height: $line-height-2;
-    letter-spacing: $space;
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.25);
     @include mixins.flexCol;
     gap: 1rem;
@@ -78,25 +76,17 @@
       .form_group {
         width: 100%;
         @include mixins.flexColAlignStart;
-        gap: .5rem;
+        gap: 0.5rem;
         position: relative;
-
-          @include mixins.respond(laptop) {
-            gap: 0;
-          }
 
         .form_label {
           font-size: $font-size-2;
-          margin-left: 1.5rem;
-
-          @include mixins.respond(laptop) {
-            font-size: $font-size-1;
-          }
+          margin-left: 1rem;
         }
 
         .form_input {
           width: 100%;
-          height: 3rem;
+          height: 4.5rem;
           border: 1px solid $color-gray;
           background-color: $color-bg;
           border-radius: $border-radius-sm;
@@ -104,10 +94,6 @@
           font-size: $font-size-2;
           outline: none;
           transition: all 0.3s ease-in-out;
-
-          @include mixins.respond(laptop) {
-            height: 2.5rem;
-          }
 
           &::placeholder {
             color: $color-gray;
@@ -118,18 +104,22 @@
           &:focus {
             border: 1px solid $color-blue;
           }
+
+          @include mixins.respond(laptop) {
+            height: 3.5rem;
+          }
         }
 
         .form_password {
           position: absolute;
-          top: 2.7rem;
+          top: 4rem;
           right: 1rem;
           font-size: $font-size-3;
           color: $color-black;
           cursor: pointer;
 
           @include mixins.respond(laptop) {
-            top: 2.2rem;
+            top: 3.5rem;
           }
         }
       }
@@ -137,7 +127,8 @@
       .form_error {
         font-size: $font-size-1;
         color: $color-red;
-        margin-left: 1.5rem;
+        align-self: center;
+        text-align: center;
       }
 
       .form_button {
@@ -148,7 +139,7 @@
         cursor: pointer;
         transition: all 0.3s ease-in-out;
         margin-bottom: 1rem;
-        padding: .5rem .8rem !important;
+        width: 50%;
       }
     }
 
@@ -160,18 +151,18 @@
       text-transform: uppercase;
     }
 
-    .socialbtn {
+    .socialBtn {
       color: $color-blue;
       font-size: $font-size-2;
       font-weight: $font-weight-md;
       transition: all 0.3s ease-in-out;
       @include mixins.flexRow;
-      gap: .1rem;
+      gap: 0.1rem;
 
       .social {
         @include mixins.flexRow;
-        gap: .3rem;
-        padding: .3rem .5rem;
+        gap: 0.3rem;
+        padding: 0.3rem 0.5rem;
         border-radius: $border-radius-sm;
 
         .icon {
