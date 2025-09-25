@@ -8,7 +8,7 @@ import { Hospital } from '@/services/hospital'
 import { Button } from '@/components/button'
 import style from '../components/style/random.module.css'
 
-const BASE_URL = 'https://strange-blue-battledress.cyclic.app'
+const BASE_URL = 'https://hospitofind-server.onrender.com'
 
 // load suggestions
 const loadSuggestions = async (text: string) => {
