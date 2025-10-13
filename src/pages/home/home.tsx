@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom'
-import { BsArrowRightShort, BsSearchHeart } from 'react-icons/bs'
-import { TfiLocationPin } from 'react-icons/tfi'
+import { BsArrowRightShort } from 'react-icons/bs'
+// import { TfiLocationPin } from 'react-icons/tfi'
 import { Avatar } from '@/components/avatar'
 import Image from '@/assets/images/doctor-patient.jpg'
 import { Button } from '@/components/button'
@@ -75,7 +75,7 @@ const Home = () => {
         </div>
         <div className={style.search}>
           <h2 className={style.heading}>Find a nearby hospital</h2>
-          <label htmlFor="searchHospital" className={style.label}>
+          {/* <label htmlFor="searchHospital" className={style.label}>
             <TfiLocationPin className={style.icon_location} />
             <input
               type="text"
@@ -84,7 +84,7 @@ const Home = () => {
               disabled
             />
             <BsSearchHeart className={style.icon_search} />
-          </label>
+          </label> */}
         </div>
       </section>
       <Footer />

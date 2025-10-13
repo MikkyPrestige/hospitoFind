@@ -1,7 +1,7 @@
 import { Hospital } from "./hospital";
 import axios from "axios";
 
-const BASE_URL = "https://strange-blue-battledress.cyclic.app";
+const BASE_URL = "https://hospitofind-server.onrender.com";
 
 // get all hospitals
 export async function getHospitals() {
@@ -40,12 +40,23 @@ export async function getHospitalByName(name: string) {
 export async function findHospitals(query: string) {
   try {
     const response = await axios.get(`${BASE_URL}/hospitals/find?${query}`);
-    const foundHospital = response.data;
-    return foundHospital;
+    // console.log("🌍 Calling URL:", URL);
+    return response.data;
   } catch (error) {
-    throw error
+    throw error;
   }
 }
+
+
+// export async function findHospitals(query: string) {
+//   try {
+//     const response = await axios.get(`${BASE_URL}/hospitals/find?${query}`);
+//     const foundHospital = response.data;
+//     return foundHospital;
+//   } catch (error) {
+//     throw error
+//   }
+// }
 
 // get hospital by state or city
 export async function searchHospitals(query: string) {
