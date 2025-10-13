@@ -89,6 +89,12 @@
   justify-content: space-evenly;
 }
 
+@mixin flexColAlignCenter {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
 // MEDIA QUERY MANAGER
 // 0 ==> 480px        phone-sm
 // 481px ==> 600px    phone-nm

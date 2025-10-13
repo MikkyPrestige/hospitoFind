@@ -27,6 +27,8 @@ export interface Hospital {
   services: string[];
   comments: string[];
   hours: Hours[];
+  longitude: number;
+  latitude: number;
 }
 
 export type FindInput = {
