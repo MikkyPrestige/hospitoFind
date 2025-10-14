@@ -15,12 +15,12 @@
 
   .search {
     width: 100%;
-    height: 36rem;
+    height: 33.3rem;
     position: relative;
 
     .map {
       width: 100%;
-      height: 35.5rem;
+      height: 33rem;
       position: absolute;
       top: 0;
       left: 0;
@@ -37,23 +37,24 @@
       transform: translate(-50%, -50%);
 
       .form {
-        width: 80%;
-        @include mixins.flexCol;
-        gap: 1.5rem;
+        width: 77%;
+        @include mixins.flexRow;
+        gap: .1rem;
         z-index: 1;
 
         @include mixins.respond(phone-nm) {
-          width: 70%;
+          width: 66%;
         }
 
         @include mixins.respond(laptop) {
-          width: 50%;
+          width: 44%;
         }
 
         .input {
           height: 3.5rem;
           width: 100%;
-          border-radius: $border-radius-sm;
+           border-top-left-radius: $border-radius-sm;
+border-bottom-left-radius: $border-radius-sm;
           background-color: $color-white;
           color: $color-black;
           font-family: $font-sans;
@@ -73,29 +74,43 @@
         }
 
         .cta {
-          border-radius: $border-radius-md;
-          border: 1px solid $color-gray;
+           height: 3.5rem;
+    border: none;
+    border-top-right-radius: $border-radius-sm;
+    border-bottom-right-radius: $border-radius-sm;
           background: $color-blue;
-          outline: none;
+          color: $color-white;
+          font-family: $font-sans;
+          font-size: $font-size-4;
+cursor: pointer;
+          font-weight: $font-weight-md;
+ transition: all 0.2s ease;
+          padding: 0 1.5rem;
           @include mixins.flexRow;
-          padding: .4rem 1rem;
+white-space: nowrap;
+
+&:hover {
+      background: darken($color-blue, 8%);
+    }
 
           &:active {
-            background: $color-white-1;
-            color: $color-blue;
-            border: 1px solid $color-blue;
+             transform: scale(0.97);
           }
 
 
           .icon {
-            font-size: $font-size-6;
+            font-size: $font-size-5;
             fill: $color-white;
-
-            &:active {
-              fill: $color-blue;
-            }
           }
         }
+
+.loading{
+   font-size: $font-size;
+      color: $color-white;
+      pointer-events: none;
+       background: $color-gray;
+    cursor: wait;
+}
       }
     }
 
@@ -127,43 +142,48 @@
 
     .noResults {
       @include mixins.flexColAlignCenter;
-      gap: 3rem;
-      width: 100%;
-      height: 10rem;
-      text-align: center;
+     background-color: #fff7f7;
+  border: 1px solid #ffd5d5;
+  border-radius: 1rem;
+  padding: 2rem;
+  text-align: center;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+  animation: fadeIn 0.5s ease-in-out;
 
-      .message {
-        font-size: $font-size-4;
-        font-weight: $font-weight-md;
-        color: $color-gray-2;
-        letter-spacing: $space;
-        margin-bottom: 1rem;
-        display: flex;
-        gap: 1rem;
-        align-items: center;
-        justify-content: center;
+  .noResultsText {
+    color: #333;
+  font-size: 1.2rem;
+  font-weight: 700;
+  letter-spacing: 0.02rem;
+  line-height: 1.6;
 
-          .addLink {
-        text-decoration: none;
-        font-size: $font-size-3;
-        font-weight: $font-weight-md;
-        color: $color-white;
-        background: $color-blue;
-        padding: 0.5rem 1rem;
-        border-radius: $border-radius-md;
-        border: 1px solid transparent;
-        cursor: pointer;
-        transition: all 0.3s ease-in-out;
-        display: inline-block;
-        text-align: center;
+  .addLink {
+     color: #e63946;
+  font-weight: 600;
+  text-decoration: none;
+  margin-left: 4px;
+  border-bottom: 1px solid transparent;
+  transition: all 0.2s ease;
+  cursor: pointer;
 
-        &:hover {
-          background: $color-white-1;
-          color: $color-blue;
-          border: 1px solid $color-blue;
-        }
+  &:hover {
+    color: #d62828;
+  border-bottom: 1px solid #e63946;
       }
       }
     }
+  }
+}
+}
+
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
   }
 }

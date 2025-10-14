@@ -1,4 +1,5 @@
 import { NavLink } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { Helmet } from "react-helmet-async";
 import { useState, useEffect, useRef } from "react";
 import mapboxgl from "mapbox-gl";
@@ -18,11 +19,13 @@ import style2 from "../../components/style/popular.module.css";
 mapboxgl.accessToken = accessToken;
 
 const FindHospital = () => {
+    const navigate = useNavigate();
+
     const [term, setTerm] = useState<string>("");
     const [hospitals, setHospitals] = useState<Hospital[]>([]);
     const [error, setError] = useState<string>("");
     const [searching, setSearching] = useState<boolean>(false);
-    const [message, setMessage] = useState<string>("");
+    const [message, setMessage] = useState<React.ReactNode>(null);
     const mapContainer = useRef<HTMLDivElement | null>(null);
     const [map, setMap] = useState<mapboxgl.Map | null>(null);
     const markersRef = useRef<mapboxgl.Marker[]>([]);
@@ -62,7 +65,6 @@ const FindHospital = () => {
     // 🔍 Handle search
     const handleSearch = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
-
         setError("");
         setHospitals([]);
         setSearching(true);
@@ -84,7 +86,16 @@ const FindHospital = () => {
 
             if (!data || data.length === 0) {
                 setHospitals([]);
-                setMessage(`No hospitals found in ${term}... You can add one using the markdown form in the`);
+                setMessage(
+                    <>
+                        ❌ No hospitals found in {term}. You can add one from the{" "}
+                        <span
+                            className={style.addLink}
+                            onClick={() => navigate("/dashboard")}
+                        > Dashboard </span>
+                    </>
+                );
+
 
                 // 🗺️ Geocode fallback for city/state
                 const geoRes = await axios.get(
@@ -106,7 +117,7 @@ const FindHospital = () => {
             if (map) {
                 const bounds = new mapboxgl.LngLatBounds();
 
-                data.forEach((hospital) => {
+                data.forEach((hospital: Hospital) => {
                     if (hospital.longitude && hospital.latitude) {
                         const marker = new mapboxgl.Marker({ color: "#E63946" })
                             .setLngLat([hospital.longitude, hospital.latitude])
@@ -175,7 +186,10 @@ const FindHospital = () => {
                                 className={style.input}
                                 value={term}
                             />
-                            <button type="submit" disabled={searching} className={style.cta}>
+
+                            <button type="submit"
+                                disabled={searching}
+                                className={`${style.cta} ${searching ? style.loading : ""}`}>
                                 {searching ? "Searching..." : <AiOutlineSearch className={style.icon} />}
                             </button>
                         </form>
@@ -219,7 +233,7 @@ const FindHospital = () => {
                         </div>
                     ) : message ? (
                         <div className={style.noResults}>
-                            <p className={style.message}>{message} <NavLink to="/dashboard/add-hospital" className={style.addLink}>Dashboard</NavLink></p>
+                            <p className={style.noResultsText}>{message}</p>
                         </div>
                     ) : (
                         !searching && <PopularHospitals />
