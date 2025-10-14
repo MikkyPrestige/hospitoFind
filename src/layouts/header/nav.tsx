@@ -135,7 +135,7 @@ const LayoutMobile = () => {
                 className={style.smallLink}
                 onClick={toggleMenu}
               >
-                Profile
+                Dashboard
               </NavLink>
             </li>
           </ul>
@@ -229,7 +229,7 @@ const LayoutLarge = () => {
               to="/dashboard"
               className={style.largeLink}
             >
-              Profile
+              Dashboard
             </NavLink>
           </li>
         </ul>

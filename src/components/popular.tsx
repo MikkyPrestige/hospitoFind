@@ -32,9 +32,9 @@ const PopularHospitals = () => {
   return (
     <div className={style.container}>
       <h1 className={style.heading}>
-        Top-Rated Hospitals Now Trending
+        HospitoFind Highlights
         <span role="img" aria-label="hospital">
-          🏥
+          🌍
         </span>
       </h1>
       <div className={style.wrapper}>
