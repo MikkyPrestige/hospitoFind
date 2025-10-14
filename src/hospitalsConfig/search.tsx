@@ -70,7 +70,7 @@ const Search = () => {
 
   return (
     <section className={style.search}>
-      <h1 className={style.heading}>Looking for a hospital nearby? Don't worry We got you covered!</h1>
+      <h1 className={style.heading}>Welcome back! Ready to find hospitals near you?</h1>
       <section className={style.wrapper}>
         <form onSubmit={handleSubmit} className={style.form}>
           <div className={style.box}>

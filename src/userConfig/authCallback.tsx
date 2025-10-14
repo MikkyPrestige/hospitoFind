@@ -5,9 +5,11 @@ import { BASE_URL } from '@/context/userContext';
 import { useNavigate } from 'react-router-dom';
 import { useAuthContext } from '@/context/userContext';
 import { IdToken } from '@/services/user';
+import { useAuthMock } from '@/hooks/useAuthMock';
 import style from "./style/callback.module.css";
 
 const Callback = () => {
+  useAuthMock(); // Mock authentication for development environment
   const { user, getIdTokenClaims, isAuthenticated } = useAuth0();
   const navigate = useNavigate();
   const { dispatch } = useAuthContext();

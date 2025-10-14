@@ -104,7 +104,8 @@ const ContextProvider = ({ children }: { children: React.ReactNode }) => {
   )
 }
 
-const BASE_URL = "https://hospitofind-server.onrender.com";
+// const BASE_URL = "https://hospitofind-server.onrender.com";
+const BASE_URL = "http://localhost:5173";
 
 const useAuthContext = (): AuthContextType => {
   const context = useContext(AuthContext);
