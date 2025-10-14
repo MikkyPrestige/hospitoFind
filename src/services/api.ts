@@ -47,17 +47,6 @@ export async function findHospitals(query: string) {
   }
 }
 
-
-// export async function findHospitals(query: string) {
-//   try {
-//     const response = await axios.get(`${BASE_URL}/hospitals/find?${query}`);
-//     const foundHospital = response.data;
-//     return foundHospital;
-//   } catch (error) {
-//     throw error
-//   }
-// }
-
 // get hospital by state or city
 export async function searchHospitals(query: string) {
   try {

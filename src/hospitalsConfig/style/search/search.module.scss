@@ -22,77 +22,124 @@
     @include mixins.flexCol;
     gap: 1rem;
 
-    .form {
-      @include mixins.flexRow;
-      flex-wrap: wrap;
-      gap: 1rem;
+.form {
+  @include mixins.flexRow;
+  flex-wrap: wrap;
+  gap: 1rem;
+  width: 100%;
+  max-width: 700px;
+  margin: 0 auto;
 
-      .box {
-        width: 100%;
-        height: 100%;
-        @include mixins.flexCol;
+  .box {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
 
-        .input {
-          width: 100%;
-          height: 3.5rem;
-          border-radius: $border-radius-sm;
-          border: 1px solid $color-gray;
-          background: $color-white;
-          padding: 0 0.5rem;
-          font-size: $font-size-3;
-          font-family: $font-sans;
-          color: $color-black;
-          outline: none;
+    .input {
+      width: 100%;
+      height: 3.5rem;
+      border-radius: $border-radius-sm;
+      border: 1px solid $color-gray;
+      background: $color-white;
+      padding: 0 1rem;
+      font-size: $font-size-3;
+      font-family: $font-sans;
+      color: $color-black;
+      transition: all 0.2s ease;
 
-          &::placeholder {
-            color: $color-gray;
-            text-align: center;
-            font-size: $font-size-2;
-            font-family: $font-sans;
-          }
-        }
-      }
-
-      .select {
-        flex-shrink: 1;
-        height: 3rem;
-        border-radius: $border-radius-sm;
-        border: 1px solid $color-gray;
-        background: $color-white;
-        padding: 0 0.3rem;
-        font-size: $font-size-2;
-        font-family: $font-sans;
-        color: $color-black;
+      &:focus {
+        border-color: $color-blue;
+        box-shadow: 0 0 0 2px rgba($color-blue, 0.15);
         outline: none;
       }
 
-      .cta {
-        flex-shrink: 2;
-        width: 3.5rem;
-        height: 2.5rem;
-        border-radius: $border-radius-sm;
-        border: 1px solid $color-gray;
-        background: $color-blue;
-        font-size: $font-size-2;
-        font-family: $font-sans;
-        @include mixins.flexRow;
-
-        &:hover {
-          background: $color-white;
-          color: $color-blue;
-          border: 1px solid $color-blue;
-        }
-
-        .icon {
-          font-size: $font-size-3;
-          color: $color-white;
-
-          &:hover {
-            color: $color-blue;
-          }
-        }
+      &::placeholder {
+        color: $color-gray;
       }
     }
+
+    .error {
+      color: $color-red;
+      font-size: $font-size-2;
+      text-align: center;
+      margin-top: 0.3rem;
+    }
+  }
+
+  .select {
+    height: 3.5rem;
+    border-radius: $border-radius-sm;
+    border: 1px solid $color-gray;
+    background: $color-white;
+    padding: 0 0.75rem;
+    font-size: $font-size-2;
+    font-family: $font-sans;
+    color: $color-black;
+    transition: all 0.2s ease;
+    cursor: pointer;
+
+    &:hover,
+    &:focus {
+      border-color: $color-blue;
+      box-shadow: 0 0 0 2px rgba($color-blue, 0.15);
+      outline: none;
+    }
+  }
+
+  .cta {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 3.3rem;
+    width: 3.3rem;
+    border-radius: 50%;
+    border: none;
+    background: $color-blue;
+    color: $color-white;
+    cursor: pointer;
+    transition: all 0.2s ease;
+
+    &:hover {
+      background: darken($color-blue, 5%);
+    }
+
+    &:disabled {
+      background: lighten($color-blue, 15%);
+      cursor: not-allowed;
+    }
+
+    .icon {
+      font-size: $font-size-4;
+    }
+  }
+
+ @include mixins.respond(phone-sm) {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0.8rem;
+
+    .box,
+    .select,
+    .cta {
+      width: 100%;
+    }
+
+    .cta {
+      border-radius: $border-radius-sm;
+     align-self: center;
+      width: 3.3rem;
+      height: 3.3rem;
+      border-radius: 50%;
+      padding: 0;
+    }
+  }
+
+  @include mixins.respond(tab-port) {
+    flex-direction: row;
+    align-items: center;
+    gap: 1rem;
+  }
+}
 
     .error {
       color: $color-red;

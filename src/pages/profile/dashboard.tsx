@@ -85,7 +85,7 @@ const Dashboard = () => {
               <BsBuildingAdd style={{ fontSize: "2rem", fill: "#08299B" }} /> Add Hospital
             </li>
             <li onClick={() => handleSelected("profile")} className={`${style.list} ${selected === "profile" ? style.active : ""}`}>
-              <CgProfile style={{ fontSize: "2rem", color: "#08299B" }} /> Profile
+              <CgProfile style={{ fontSize: "2rem", color: "#08299B" }} /> Account
             </li>
             <li onClick={() => handleSelected("security")} className={`${style.list} ${selected === "security" ? style.active : ""}`}>
               <RiLockPasswordLine style={{ fontSize: "2rem", color: "#08299B" }} /> Security
