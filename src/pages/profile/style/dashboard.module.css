@@ -10,7 +10,7 @@
 }
 .dashboard .top {
   width: 100%;
-  height: 20rem;
+  height: 15rem;
   display: flex;
   flex-direction: row;
   align-items: flex-start;
@@ -18,8 +18,8 @@
   position: relative;
 }
 .dashboard .top .logo {
-  width: 15rem;
-  height: 15rem;
+  width: 10rem;
+  height: 10rem;
   z-index: 1000;
   position: absolute;
   top: 5rem;
@@ -33,7 +33,7 @@
 .dashboard .top .sidebar {
   fill: #08299B;
   stroke: #FFFFFF;
-  font-size: 5rem;
+  font-size: 3rem;
   cursor: pointer;
   position: absolute;
   top: 1rem;
@@ -50,6 +50,7 @@
   flex-direction: row;
   align-items: flex-start;
   justify-content: space-between;
+  gap: 1rem;
   padding: 0rem 0.5rem;
   background-color: #E0E4EC;
 }
@@ -61,13 +62,10 @@
 }
 .dashboard .nav {
   flex-basis: 40%;
-  height: 47rem;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   justify-content: center;
-  gap: 3rem;
-  background-color: #f5f5f5;
   border-radius: 1rem;
 }
 @media only screen and (min-width: 30.0625em) {
@@ -91,27 +89,28 @@
 .dashboard .nav .lists {
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
-  justify-content: center;
-  gap: 1.5rem;
+  gap: 1.3rem;
   width: 100%;
   height: 100%;
 }
 .dashboard .nav .lists .list {
-  list-style: none;
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: flex-start;
   gap: 1rem;
+  padding: 0.9rem 1rem;
+  border-radius: 1rem;
+  font-family: "DM Sans", sans-serif;
   color: #000000;
   font-size: 1.4rem;
-  font-family: "DM Sans", sans-serif;
-  letter-spacing: -0.01375rem;
-  height: 3rem;
-  width: 100%;
-  padding: 0 1rem;
+  transition: 0.3s ease;
   cursor: pointer;
+  letter-spacing: -0.01375rem;
+}
+.dashboard .nav .lists .list:hover {
+  background: #08299B;
+  color: #FFFFFF;
 }
 .dashboard .nav .lists .del {
   background-color: #FF033E;
@@ -120,8 +119,8 @@
   width: fit-content !important;
 }
 .dashboard .nav .lists .active {
-  background-color: #E0E4EC;
-  border-radius: 1.5rem;
+  background: #08299B;
+  color: #FFFFFF;
 }
 .dashboard .profile {
   flex-basis: 100%;
@@ -130,8 +129,29 @@
 }
 .dashboard .profile .details {
   width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 2rem 1rem;
 }
-.dashboard .profile .details .heading {
+.dashboard .profile .details .profileCard {
+  width: 90%;
+  max-width: 700px;
+  background: #ffffff;
+  border-radius: 1.2rem;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  padding: 2rem 2rem 3rem;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+@media only screen and (max-width: 30em) {
+  .dashboard .profile .details .profileCard {
+    padding: 1.5rem;
+    width: 95%;
+  }
+}
+.dashboard .profile .details .profileCard .heading {
   color: #08299B;
   font-size: 1.8rem;
   font-family: "DM Sans", sans-serif;
@@ -140,19 +160,128 @@
   align-self: center;
   text-transform: capitalize;
 }
-.dashboard .profile .details .wrapper {
+.dashboard .profile .details .profileCard .infoList {
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+  border-top: 1px solid #e0e0e0;
+  border-bottom: 1px solid #e0e0e0;
+  padding: 1rem 0;
+}
+.dashboard .profile .details .profileCard .infoList .infoItem {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.6rem 0;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+}
+.dashboard .profile .details .profileCard .infoList .infoItem:last-child {
+  border-bottom: none;
+}
+.dashboard .profile .details .profileCard .infoList .infoItem .label {
+  font-size: 1.4rem;
+  font-weight: 600;
+  color: #555;
+}
+.dashboard .profile .details .profileCard .infoList .infoItem .value {
+  font-size: 1.4rem;
+  color: #000;
+  font-weight: 500;
+}
+.dashboard .profile .details .profileCard .editBtn {
+  background: linear-gradient(135deg, #08299B, #1a3dd1);
+  border: none;
+  border-radius: 0.6rem;
+  padding: 0.8rem 2rem;
+  color: #fff;
+  font-size: 1.4rem;
+  font-weight: 600;
+  font-family: "DM Sans", sans-serif;
+  transition: all 0.3s ease;
+  align-self: center;
+  cursor: pointer;
+}
+@media only screen and (max-width: 30em) {
+  .dashboard .profile .details .profileCard .editBtn {
+    width: 80%;
+    padding: 0.8rem 0;
+  }
+}
+.dashboard .profile .details .profileCard .editBtn:hover {
+  background: #fff;
+  color: #08299B;
+  border: 1px solid #08299B;
+  transform: scale(1.03);
+}
+.dashboard .profile .details .profileCard .modalOverlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.55);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 999;
+  animation: fadeIn 0.3s ease-in-out;
+  -webkit-backdrop-filter: blur(2px);
+          backdrop-filter: blur(2px);
+}
+.dashboard .profile .details .profileCard .modalOverlay .modal {
+  background: #fff;
+  width: 90%;
+  max-width: 500px;
+  border-radius: 1rem;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.25);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  animation: slideIn 0.35s ease-out;
+}
+@media only screen and (max-width: 30em) {
+  .dashboard .profile .details .profileCard .modalOverlay .modal {
+    width: 95%;
+  }
+}
+.dashboard .profile .details .profileCard .modalOverlay .modal .modalHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #08299B;
+  color: #fff;
+  padding: 1rem 1.5rem;
+}
+.dashboard .profile .details .profileCard .modalOverlay .modal .modalHeader h3 {
+  font-size: 1.6rem;
+  font-weight: 600;
+  margin: 0;
+  font-family: "DM Sans", sans-serif;
+}
+.dashboard .profile .details .profileCard .modalOverlay .modal .modalHeader .closeBtn {
+  background: transparent;
+  border: none;
+  color: #fff;
+  font-size: 2rem;
+  cursor: pointer;
+  transition: color 0.2s ease;
+}
+.dashboard .profile .details .profileCard .modalOverlay .modal .modalHeader .closeBtn:hover {
+  color: #ff033e;
+}
+.dashboard .profile .details .profileCard .modalOverlay .modal .modalBody {
+  padding: 2rem 1.5rem;
+}
+.dashboard .wrapper {
   width: 70%;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   gap: 1.5rem;
-  margin: 5rem auto;
+  margin: 1rem auto;
   background-color: #BFCAE0;
-  padding: 1rem;
+  padding: 1rem 0;
   position: relative;
 }
-.dashboard .profile .details .wrapper .container {
+.dashboard .wrapper .container {
   width: 100%;
   display: flex;
   flex-direction: column;
@@ -161,7 +290,7 @@
   gap: 1rem;
   margin-bottom: 4rem;
 }
-.dashboard .profile .details .wrapper .container .user {
+.dashboard .wrapper .container .user {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -170,37 +299,25 @@
   font-family: "DM Sans", sans-serif;
   font-size: 2rem;
 }
-.dashboard .profile .details .wrapper .container .user .title {
+.dashboard .wrapper .container .user .title {
   color: #837D7D;
   font-size: 1.4rem;
   font-family: "DM Sans", sans-serif;
   font-weight: 700;
   letter-spacing: -0.01375rem;
 }
-.dashboard .profile .details .wrapper .container .user .state {
+.dashboard .wrapper .container .user .state {
   color: #000000;
   letter-spacing: -0.01031rem;
 }
-.dashboard .profile .details .wrapper .editWrap {
-  width: 100%;
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: flex-end;
-  gap: 1rem;
-  position: absolute;
-  top: 0;
-  left: 0;
-  z-index: 1;
-}
-.dashboard .profile .details .wrapper .editWrap .editBtn {
-  background-color: #08299B;
-  border-radius: 1.5rem;
-  width: 50%;
-  color: #F2F2F2;
-  font-size: 1.6rem;
-  font-family: "DM Sans", sans-serif;
-  letter-spacing: 0.1rem;
-  padding: 0.3rem 0;
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateY(-15px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }/*# sourceMappingURL=dashboard.module.css.map */

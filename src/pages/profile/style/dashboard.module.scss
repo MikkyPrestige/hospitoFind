@@ -10,13 +10,13 @@
 
   .top {
     width: 100%;
-    height: 20rem;
+    height: 15rem;
     @include mixins.flexRowAlignFlexStart;
     position: relative;
 
     .logo {
-      width: 15rem;
-      height: 15rem;
+      width: 10rem;
+      height: 10rem;
       z-index: 1000;
       position: absolute;
       top: 5rem;
@@ -31,7 +31,7 @@
     .sidebar {
       fill: $color-blue;
       stroke: $color-white;
-      font-size: 5rem;
+      font-size: 3rem;
       cursor: pointer;
       position: absolute;
       top: 1rem;
@@ -48,6 +48,7 @@
     width: 100%;
     height: 100%;
     @include mixins.flexRowAlignFlexStart;
+    gap: 1rem;
     padding: 0rem 0.5rem;
     background-color: $color-bg;
 
@@ -59,10 +60,7 @@
 
   .nav {
     flex-basis: 40%;
-    height: 47rem;
     @include mixins.flexColAlignStart;
-    gap: 3rem;
-    background-color: #f5f5f5;
     border-radius: $border-radius-sm;
 
     @include mixins.respond(phone-nm) {
@@ -81,23 +79,28 @@
     }
 
     .lists {
-      @include mixins.flexColAlignStart;
-      gap: 1.5rem;
+ display: flex;
+      flex-direction: column;
+      gap: 1.3rem;
       width: 100%;
       height: 100%;
 
       .list {
-        list-style: none;
         @include mixins.flexRowFlexStart;
         gap: 1rem;
+        padding: 0.9rem 1rem;
+        border-radius: $border-radius-sm;
+        font-family: $font-sans;
         color: $color-black;
         font-size: $font-size-2;
-        font-family: $font-sans;
-        letter-spacing: -0.01375rem;
-        height: 3rem;
-        width: 100%;
-        padding: 0 1rem;
+        transition: 0.3s ease;
         cursor: pointer;
+        letter-spacing: -0.01375rem;
+
+ &:hover {
+          background: $color-blue;
+          color: $color-white;
+        }
       }
 
       .del {
@@ -107,8 +110,8 @@
       }
 
       .active {
-        background-color: $color-bg;
-        border-radius: $border-radius-md;
+background: $color-blue;
+        color: $color-white;
       }
     }
   }
@@ -119,9 +122,29 @@
     margin-bottom: 1rem;
 
     .details {
-      width: 100%;
+       width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 2rem 1rem;
 
-      .heading {
+.profileCard{
+ width: 90%;
+    max-width: 700px;
+    background: #ffffff;
+    border-radius: 1.2rem;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    padding: 2rem 2rem 3rem;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+
+    @include mixins.respond(phone-sm) {
+      padding: 1.5rem;
+      width: 95%;
+    }
+
+ .heading {
         color: $color-blue;
         font-size: $font-size-4;
         font-family: $font-sans;
@@ -131,13 +154,137 @@
         text-transform: capitalize;
       }
 
+  .infoList {
+      display: flex;
+      flex-direction: column;
+      gap: 1.2rem;
+      border-top: 1px solid #e0e0e0;
+      border-bottom: 1px solid #e0e0e0;
+      padding: 1rem 0;
+
+      .infoItem {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 0.6rem 0;
+        border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+
+        &:last-child {
+          border-bottom: none;
+        }
+
+        .label {
+          font-size: 1.4rem;
+          font-weight: 600;
+          color: #555;
+        }
+
+        .value {
+          font-size: 1.4rem;
+          color: #000;
+          font-weight: 500;
+        }
+      }
+    }
+
+     .editBtn {
+        background: linear-gradient(135deg, $color-blue, #1a3dd1);
+        border: none;
+        border-radius: 0.6rem;
+        padding: 0.8rem 2rem;
+        color: #fff;
+        font-size: 1.4rem;
+        font-weight: 600;
+        font-family: $font-sans;
+        transition: all 0.3s ease;
+        align-self: center;
+        cursor: pointer;
+
+         @include mixins.respond(phone-sm) {
+          width: 80%;
+          padding: 0.8rem 0;
+        }
+
+        &:hover {
+          background: #fff;
+          color: $color-blue;
+          border: 1px solid $color-blue;
+          transform: scale(1.03);
+        }
+      }
+
+.modalOverlay {
+position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.55);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 999;
+  animation: fadeIn 0.3s ease-in-out;
+  backdrop-filter: blur(2px);
+
+.modal{
+background: #fff;
+  width: 90%;
+  max-width: 500px;
+  border-radius: 1rem;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.25);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  animation: slideIn 0.35s ease-out;
+
+  @include mixins.respond(phone-sm) {
+    width: 95%;
+  }
+
+.modalHeader{
+ display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: $color-blue;
+    color: #fff;
+    padding: 1rem 1.5rem;
+
+    h3 {
+      font-size: 1.6rem;
+      font-weight: 600;
+      margin: 0;
+      font-family: $font-sans;
+    }
+
+    .closeBtn {
+  background: transparent;
+      border: none;
+      color: #fff;
+      font-size: 2rem;
+      cursor: pointer;
+      transition: color 0.2s ease;
+
+      &:hover {
+        color: #ff033e;
+      }
+    }
+}
+
+.modalBody {
+ padding: 2rem 1.5rem;
+
+}
+}
+}
+}
+}
+}
+
       .wrapper {
         width: 70%;
         @include mixins.flexCol;
         gap: 1.5rem;
-        margin: 5rem auto;
+        margin: 1rem auto;
         background-color: $color-ash;
-        padding: 1rem;
+        padding: 1rem 0;
         position: relative;
 
         .container {
@@ -166,29 +313,16 @@
             }
           }
         }
-
-        .editWrap {
-          width: 100%;
-          height: 100%;
-          @include mixins.flexColFlexEnd;
-          gap: 1rem;
-          position: absolute;
-          top: 0;
-          left: 0;
-          z-index: 1;
-
-          .editBtn {
-            background-color: $color-blue;
-            border-radius: $border-radius-md;
-            width: 50%;
-            color: $color-white-1;
-            font-size: $font-size-3;
-            font-family: $font-sans;
-            letter-spacing: 0.1rem;
-            padding: 0.3rem 0;
-          }
-        }
       }
     }
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateY(-15px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
   }
 }

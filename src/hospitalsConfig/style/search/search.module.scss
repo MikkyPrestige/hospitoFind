@@ -11,9 +11,16 @@
   .heading {
     color: $color-blue;
     font-size: $font-size-4;
-    font-family: $font-sans;
     text-align: center;
     margin-bottom: 1rem;
+    font-weight: $font-weight-bd;
+    letter-spacing: -0.01925rem;
+    text-transform: capitalize;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans';
+text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+    @include mixins.respond(phone-sm) {
+      font-size: $font-size-3;
+    }
   }
 
   .wrapper {
@@ -68,28 +75,36 @@
 
   .select {
     height: 3.5rem;
-    border-radius: $border-radius-sm;
-    border: 1px solid $color-gray;
-    background: $color-white;
-    padding: 0 0.75rem;
-    font-size: $font-size-2;
+    border: none;
+    border-left: 1px solid rgba(0, 0, 0, 0.1);
+    padding: 0 1rem;
+    background: transparent;
+    font-size: $font-size-3;
     font-family: $font-sans;
+font-weight: $font-weight-md;
     color: $color-black;
-    transition: all 0.2s ease;
     cursor: pointer;
+    appearance: none;
+    background-image: url("data:image/svg+xml;utf8,<svg fill='%23000' height='10' width='10' xmlns='http://www.w3.org/2000/svg'><path d='M0 0l5 5 5-5z'/></svg>");
+    background-repeat: no-repeat;
+    background-position: right 0.8rem center;
+    background-size: 0.8rem;
+    transition: all 0.2s ease;
 
     &:hover,
     &:focus {
-      border-color: $color-blue;
-      box-shadow: 0 0 0 2px rgba($color-blue, 0.15);
+      background-color: rgba($color-blue, 0.05);
+      border-left: 1px solid rgba($color-blue, 0.3);
       outline: none;
+    }
+
+ option {
+      color: $color-black;
     }
   }
 
   .cta {
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    @include mixins.flexRow;
     height: 3.3rem;
     width: 3.3rem;
     border-radius: 50%;

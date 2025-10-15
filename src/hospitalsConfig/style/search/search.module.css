@@ -11,9 +11,18 @@
 .search .heading {
   color: #08299B;
   font-size: 1.8rem;
-  font-family: "DM Sans", sans-serif;
   text-align: center;
   margin-bottom: 1rem;
+  font-weight: 700;
+  letter-spacing: -0.01925rem;
+  text-transform: capitalize;
+  font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande", "Lucida Sans";
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+}
+@media only screen and (max-width: 30em) {
+  .search .heading {
+    font-size: 1.6rem;
+  }
 }
 .search .wrapper {
   width: 100%;
@@ -71,23 +80,35 @@
 }
 .search .wrapper .form .select {
   height: 3.5rem;
-  border-radius: 1rem;
-  border: 1px solid #C1C1C1;
-  background: #FFFFFF;
-  padding: 0 0.75rem;
-  font-size: 1.4rem;
+  border: none;
+  border-left: 1px solid rgba(0, 0, 0, 0.1);
+  padding: 0 1rem;
+  background: transparent;
+  font-size: 1.6rem;
   font-family: "DM Sans", sans-serif;
+  font-weight: 500;
   color: #000000;
-  transition: all 0.2s ease;
   cursor: pointer;
+  -webkit-appearance: none;
+     -moz-appearance: none;
+          appearance: none;
+  background-image: url("data:image/svg+xml;utf8,<svg fill='%23000' height='10' width='10' xmlns='http://www.w3.org/2000/svg'><path d='M0 0l5 5 5-5z'/></svg>");
+  background-repeat: no-repeat;
+  background-position: right 0.8rem center;
+  background-size: 0.8rem;
+  transition: all 0.2s ease;
 }
 .search .wrapper .form .select:hover, .search .wrapper .form .select:focus {
-  border-color: #08299B;
-  box-shadow: 0 0 0 2px rgba(8, 41, 155, 0.15);
+  background-color: rgba(8, 41, 155, 0.05);
+  border-left: 1px solid rgba(8, 41, 155, 0.3);
   outline: none;
+}
+.search .wrapper .form .select option {
+  color: #000000;
 }
 .search .wrapper .form .cta {
   display: flex;
+  flex-direction: row;
   align-items: center;
   justify-content: center;
   height: 3.3rem;

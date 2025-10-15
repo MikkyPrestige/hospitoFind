@@ -71,7 +71,7 @@ const Dashboard = () => {
           </div>
           <Tooltip id="sidebar" style={{
             fontSize: "1.3rem",
-            padding: ".3rem .8rem"
+            padding: ".3rem .5rem"
           }} />
         </div>
       </div>
@@ -106,29 +106,52 @@ const Dashboard = () => {
           {selected === "add-hospital" && <div className={style.details}>
             <Editor />
           </div>}
-          {selected === "profile" && <div className={style.details}>
-            <div className={style.wrapper}>
-              <h2 className={style.heading}>Personal info</h2>
-              <div className={style.container}>
-                <div className={style.user}>
-                  <h2 className={style.title}>Name</h2>
-                  <p className={style.state}>{state?.name}</p>
+          {selected === "profile" && (
+            <div className={style.details}>
+              <div className={style.profileCard}>
+                <h2 className={style.heading}>Personal Information</h2>
+
+                <div className={style.infoList}>
+                  <div className={style.infoItem}>
+                    <span className={style.label}>Name</span>
+                    <span className={style.value}>{state?.name}</span>
+                  </div>
+                  <div className={style.infoItem}>
+                    <span className={style.label}>Username</span>
+                    <span className={style.value}>{state?.username}</span>
+                  </div>
+                  <div className={style.infoItem}>
+                    <span className={style.label}>Email Address</span>
+                    <span className={style.value}>{state?.email}</span>
+                  </div>
                 </div>
-                <div className={style.user}>
-                  <h2 className={style.title}>Username</h2>
-                  <p className={style.state}>{state?.username}</p>
-                </div>
-                <div className={style.user}>
-                  <h2 className={style.title}>Email Address</h2>
-                  <p className={style.state}>{state?.email}</p>
-                </div>
-              </div>
-              <div className={style.editWrap}>
-                <button onClick={handleShowEdit} className={style.editBtn}>{showEdit ? "Cancel" : "Edit Profile"}</button>
-                {showEdit && <UpdateUser />}
+
+                <button onClick={handleShowEdit} className={style.editBtn}>
+                  {showEdit ? "Cancel" : "Edit Profile"}
+                </button>
+
+                {/* Modal overlay for editing */}
+                {showEdit && (
+                  <div className={style.modalOverlay} onClick={handleShowEdit}>
+                    <div
+                      className={style.modal}
+                      onClick={(e) => e.stopPropagation()} // prevent closing when clicking inside
+                    >
+                      <div className={style.modalHeader}>
+                        <h3>Edit Profile</h3>
+                        <button onClick={handleShowEdit} className={style.closeBtn}>
+                          ✕
+                        </button>
+                      </div>
+                      <div className={style.modalBody}>
+                        <UpdateUser />
+                      </div>
+                    </div>
+                  </div>
+                )}
               </div>
             </div>
-          </div>}
+          )}
           {selected === "security" && <div className={style.details}>
             <UpdatePassword />
           </div>}
