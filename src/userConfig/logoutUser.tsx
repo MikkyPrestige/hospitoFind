@@ -2,7 +2,7 @@ import useLogout from "@/hooks/logout";
 import { RiLogoutCircleLine } from "react-icons/ri";
 import { AiOutlineExclamationCircle } from "react-icons/ai";
 import { Button } from "../components/button";
-import style from "@/userConfig/style/style.module.css";
+import style from "./style/style.module.css";
 
 const Logout = () => {
   const { logout, loading, error } = useLogout();

@@ -45,15 +45,8 @@ const DeleteBtn = () => {
     <div className={style.container}>
       <h1 className={style.title}>Delete your Account?</h1>
       <BsFillExclamationTriangleFill style={{ fill: "#FF033E", fontSize: "5rem" }} />
-      <p className={style.head}>This action cannot be undone. This will permanently delete your account and remove all your data from our database</p>
+      <p className={style.subhead}>This action cannot be undone. This will permanently delete your account and remove all your data from our database.</p>
       <form onSubmit={handleDelete} className={style.form}>
-        {/* <input
-          type="text"
-          placeholder="username"
-          className={`${style.notAllowed} ${style.input}`}
-          value={user}
-          disabled
-        /> */}
         <div className={style.wrapper}>
           <label className={style.subtitle} htmlFor="password">Type your password to confirm</label>
           <input

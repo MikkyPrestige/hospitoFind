@@ -267,7 +267,7 @@ const Editor = () => {
 
   return (
     <section className={style.editor}>
-      <h1 className={style.title}>Can't Find a Hospital? Add It Here!</h1>
+      <h1 className={style.title}>Help others find care faster — add a hospital to the map.</h1>
       <form onSubmit={handleSubmit} className={style.form}>
         <ReactMde
           value={markdown}

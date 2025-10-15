@@ -10,8 +10,29 @@
 }
 
 .title {
-  color: #08299b;
   font-size: 1.8rem;
+  font-weight: 700;
+  color: #08299b;
+  text-align: center;
+  letter-spacing: 0.03rem;
+  margin: 1.5rem 0 2rem;
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans';
+  text-transform: capitalize;
+  position: relative;
+  display: inline-block;
+}
+
+.title::after {
+  content: '';
+  position: absolute;
+  bottom: -0.5rem;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 60%;
+  height: 3px;
+  border-radius: 2px;
+  background: linear-gradient(90deg, #08299b, #50c878);
+  transition: width 0.3s ease;
 }
 
 .form {
@@ -37,6 +58,13 @@
   align-items: center;
   gap: 0.5rem;
   text-transform: uppercase;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.btn_span:hover {
+  transform: scale(1.05);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
 }
 
 .btn_icon {
@@ -61,4 +89,24 @@
   width: 100%;
   height: 100%;
   z-index: 1;
+}
+
+@media (max-width: 768px) {
+  .title {
+    font-size: 1.5rem;
+  }
+
+  .title::after {
+    width: 70%;
+  }
+}
+
+@media (max-width: 480px) {
+  .title {
+    font-size: 1.3rem;
+  }
+
+  .title::after {
+    width: 80%;
+  }
 }
