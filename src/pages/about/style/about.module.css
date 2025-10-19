@@ -11,7 +11,7 @@
 }
 @media only screen and (min-width: 48.0625em) {
   .bg {
-    padding-top: 0;
+    padding-top: 3.5rem;
   }
 }
 .bg .wrapper {

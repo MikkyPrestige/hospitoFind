@@ -1,236 +1,292 @@
 @use '../../../assets/styles/mixins';
 @import '../../../assets/styles/variables';
 
-.smallHeader {
-  background-color: $color-white;
-  width: 100%;
-  height: 6rem;
-  @include mixins.flexRowSpaceBetween;
-  box-shadow: 0 4px 4px rgba(14, 61, 183, 0.15);
+.smallHeader,
+.large {
+  backdrop-filter: blur(10px);
+  background: rgba(255, 255, 255, 0.9);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
   position: fixed;
   top: 0;
+  width: 100%;
   z-index: 1000;
+  transition: background 0.3s ease;
+}
 
-  @include mixins.respond(phone-nm) {
-    height: 5rem;
-  }
+/* Mobile Header */
+.smallHeader {
+  height: 5.5rem;
+  @include mixins.flexRowSpaceBetween;
+  padding: 0 1.5rem;
 
   @include mixins.respond(tab-land) {
     display: none;
   }
 
   .smallLogo {
-    width: 10rem;
-    height: 10rem;
-    z-index: 1000;
+    width: 8rem;
+    height: 8rem;
+    transition: transform 0.3s ease;
+
+    &:hover {
+      transform: scale(1.05);
+    }
   }
 
-  .menu {
-    position: relative;
+  .toggle {
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    z-index: 1100;
 
-    .toggle {
-      position: fixed;
-      top: 1rem;
-      right: 3rem;
-      z-index: 500;
-      background-color: $color-blue;
-      padding: 1rem;
-      border-radius: $border-radius;
-      transition: all 0.5s ease-in-out;
-      @include mixins.flexRow;
+    &_icon {
+      font-size: 2.4rem;
+      color: $color-blue;
+      transition: transform 0.3s ease;
+    }
+  }
+}
 
-      @include mixins.respond(phone-nm) {
-        top: 0.5rem;
-        padding: 0.7rem;
-      }
+/* Overlay when mobile menu is open */
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.4);
+  z-index: 900;
+  animation: fadeIn 0.3s ease forwards;
+}
 
-      &_icon {
-        font-size: $font-size-8;
-        font-weight: $font-weight-bd;
-        color: #2196f3;
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
 
-        @include mixins.respond(phone-nm) {
-          font-size: $font-size-5;
-        }
-      }
+.smallNav {
+  position: fixed;
+  top: 0;
+  right: -100%;
+  width: 70%;
+  height: fit-content;
+  background: rgba(255, 255, 255, 0.95);
+  box-shadow: -2px 0 15px rgba(0, 0, 0, 0.1);
+  @include mixins.flexCol;
+  justify-content: space-between;
+  padding: 5rem 2rem;
+  gap: 2rem;
+  transition: right 1s ease-in-out;
+  z-index: 950;
+border-bottom-left-radius: 1rem;
+}
+
+.show {
+  right: 0;
+}
+
+.smallList {
+  list-style: none;
+  @include mixins.flexColAlignStart;
+  gap: 3rem;
+
+  li {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+
+    .smallIcon {
+      color: $color-blue;
+      font-size: 1.6rem;
     }
 
-    .smallNav {
-      position: fixed;
-      top: 0;
-      right: 0;
-      width: 0;
-      z-index: 200;
-      @include mixins.flexCol;
-      gap: 5rem;
-      overflow: hidden;
-    }
+    .smallLink {
+      font-size: $font-size-4;
+      font-weight: 500;
+      text-decoration: none;
+      color: $color-black;
+      transition: color 0.3s ease;
 
-    .show {
-      width: 45%;
-      height: 100%;
-      background-color: $color-white-1;
-      transition: all 0.5s ease-in-out;
-    }
-
-    .smallList {
-      @include mixins.flexColAlignStart;
-      gap: 2rem;
-      list-style-type: none;
-
-      .smallItem {
-        @include mixins.flexRow;
-        gap: 1rem;
-
-        .smallLink {
-          font-family: $font-sans;
-          font-size: $font-size-5;
-          font-weight: $font-weight-md;
-          transition: all 0.5s ease-in-out;
-        }
-
-        .smallIcon {
-          font-size: $font-size-6;
-          color: #2196f3;
-        }
-
-        .smallFind {
-          font-family: $font-sans;
-          font-size: $font-size-5;
-          font-weight: $font-weight-md;
-          color: $color-black-b !important;
-          transition: all 0.5s ease-in-out;
-        }
-      }
-    }
-
-    .smallWrapper {
-      width: 80%;
-      @include mixins.flexRow;
-      gap: 2rem;
-      margin: 0 auto;
-
-      @include mixins.respond(phone-nm) {
-        gap: 3.5rem;
-      }
-
-      .smallAuth {
-        border-radius: $border-radius-sm;
-        background-color: $color-blue;
-        color: $color-white !important;
-        font-family: $font-sans;
-        font-size: $font-size-5;
-        padding: 0.5rem 2rem;
-        transition: all 0.5s ease-in-out;
-
-        @include mixins.respond(phone-nm) {
-          padding: 0.5rem 3rem;
-        }
+      &:hover {
+        color: $color-blue;
       }
     }
   }
 }
 
-.logout {
-  background-color: $color-red;
-  border-radius: $border-radius-sm;
-  padding: 0.2rem 0.8rem;
+.smallWrapper {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
 
-  .smallSpan {
-    @include mixins.flexRow;
-    gap: 0.3rem;
-    font-size: $font-size-3;
-    font-family: $font-sans;
-  }
+  .smallAuth {
+    border: none;
+    border-radius: 2rem;
+    background: linear-gradient(90deg, $color-blue, $color-blue-light);
+    color: white;
+    padding: 0.8rem 1.5rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
 
-  .smallIcon {
-    font-size: $font-size-3;
+    &:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 3px 10px rgba(0, 0, 255, 0.2);
+    }
   }
 }
 
-.error {
-  color: $color-red;
-  font-size: $font-size-2;
-}
-
+/* Large screen header */
 .large {
   display: none;
 
   @include mixins.respond(tab-land) {
-    display: block;
-    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 2rem;
     height: 5rem;
-    @include mixins.flexRowSpaceBetween;
-    box-shadow: 0 4px 4px rgba(14, 61, 183, 0.15);
-    padding: 1rem 2rem;
   }
 
   .largeLogo {
-    width: 10rem;
-    height: 10rem;
-    z-index: 1000;
+    width: 9rem;
+    height: 9rem;
+    transition: transform 0.3s ease;
+
+    &:hover {
+      transform: scale(1.05);
+    }
   }
 
   .largeNav {
-    @include mixins.flexRow;
+    display: flex;
+    align-items: center;
     gap: 5rem;
 
     .largeList {
-      @include mixins.flexRow;
-      gap: 3.5rem;
-      list-style-type: none;
+      display: flex;
+      align-items: center;
+      gap: 3rem;
+      list-style: none;
 
-      .largeItem {
-        @include mixins.flexRow;
+      li {
+        display: flex;
+        align-items: center;
         gap: 0.5rem;
 
-        .largeLink {
-          font-family: $font-sans;
-          font-size: $font-size-2;
-          font-weight: $font-weight-md;
-          transition: all 0.5s ease-in-out;
-        }
-
         .largeIcon {
-          font-size: $font-size-3;
-          color: #2196f3;
+          color: $color-blue;
+          font-size: 1.4rem;
         }
 
-        .largeFind {
-          font-family: $font-sans;
+        .largeLink {
           font-size: $font-size-2;
-          font-weight: $font-weight-md;
-          color: $color-black-b !important;
-          transition: all 0.5s ease-in-out;
+          font-weight: 500;
+          text-decoration: none;
+          color: $color-black;
+          position: relative;
+          transition: color 0.3s ease;
+
+          &:hover {
+            color: $color-blue;
+          }
+
+          &::after {
+            content: "";
+            position: absolute;
+            left: 0;
+            bottom: -3px;
+            width: 0%;
+            height: 2px;
+            background: $color-blue;
+            transition: width 0.3s ease;
+          }
+
+          &:hover::after {
+            width: 100%;
+          }
         }
       }
     }
 
     .largeWrapper {
-      @include mixins.flexRow;
-      gap: 2rem;
+      display: flex;
+      gap: 1rem;
 
       .largeAuth {
-        border-radius: $border-radius-sm;
-        background-color: $color-blue;
-        color: $color-white !important;
-        font-family: $font-sans;
-        font-size: $font-size-2;
-        padding: 0.2rem 1.5rem;
-        transition: all 0.5s ease-in-out;
-      }
+        border: none;
+        border-radius: 2rem;
+        background: linear-gradient(90deg, $color-blue, $color-blue-light);
+        color: white;
+        padding: 0.5rem 1.5rem;
+        cursor: pointer;
+        transition: all 0.3s ease;
 
-      .largeSpan {
-        @include mixins.flexRow;
-        gap: 0.3rem;
-        font-size: $font-size-3;
-        font-family: $font-sans;
-        font-weight: $font-weight-md;
-      }
-
-      .largeIcon {
-        font-size: $font-size-4;
+        &:hover {
+          transform: translateY(-2px);
+          box-shadow: 0 3px 10px rgba(0, 0, 255, 0.2);
+        }
       }
     }
   }
+}
+
+/* Logout Button */
+.logout {
+  background-color: $color-red;
+  border-radius: 1rem;
+  padding: 0.3rem 0.8rem;
+  color: white;
+  font-size: 0.9rem;
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+
+  &:hover {
+    background-color: darken($color-red, 8%);
+  }
+
+  .smallSpan {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+  }
+
+  .smallIcon {
+    font-size: 1.2rem;
+  }
+}
+
+.error {
+  color: $color-red;
+  font-size: 0.9rem;
+  margin-top: 0.3rem;
+}
+
+/* --- Scroll behavior for navbar --- */
+.scrolled .smallHeader,
+.scrolled .large {
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(15px);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+  transform: translateY(0);
+  transition: all 0.3s ease-in-out;
+}
+
+.scrolled .smallHeader {
+  height: 4.5rem;
+}
+
+.scrolled .large {
+  height: 4.2rem;
+  padding: 0 1.5rem;
+}
+
+.scrolled .largeLogo,
+.scrolled .smallLogo {
+  transform: scale(0.9);
+  transition: transform 0.3s ease;
 }

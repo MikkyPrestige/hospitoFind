@@ -7,7 +7,7 @@
   background-color: #E0E4EC;
   height: 100vh;
   width: 100%;
-  padding-top: 10rem;
+  padding-top: 12rem;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -17,7 +17,6 @@
 }
 @media only screen and (min-width: 56.3125em) {
   .bg {
-    padding-top: 5rem;
     gap: 3rem;
   }
 }
