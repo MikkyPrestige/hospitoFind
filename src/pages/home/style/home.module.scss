@@ -10,13 +10,12 @@
   background-color: $color-bg;
   height: 100vh;
   width: 100%;
-  padding-top: 10rem;
+  padding-top: 12rem;
   @include mixins.flexCol;
   gap: 5rem;
   font-family: $font-inter;
 
   @include mixins.respond(laptop) {
-    padding-top: 5rem;
     gap: 3rem;
   }
 
