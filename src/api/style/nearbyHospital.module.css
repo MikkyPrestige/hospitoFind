@@ -1,0 +1,157 @@
+.section {
+  margin: 4rem auto 0rem;
+  padding: 2rem 1.5rem;
+  width: 100%;
+}
+
+.headerRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1rem;
+}
+
+.heading {
+  font-size: 2rem;
+  font-weight: 700;
+  color: #0e3db7;
+  text-align: center;
+}
+
+.subHeading {
+    text-align: center;
+  color: #5c6f91;
+  margin-bottom: 2rem;
+  font-size: 1.4rem;
+  font-weight: 700;
+
+}
+
+.note {
+  background-color: #fffbe6;
+  color: #7a6200;
+  border-left: 4px solid #ffcc00;
+  padding: 0.8rem 1rem;
+  border-radius: 6px;
+  margin-bottom: 1.5rem;
+  font-size: 1rem;
+}
+
+.status {
+  text-align: center;
+  color: #777;
+  font-size: 1.5rem;
+  padding: 2rem 0;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+}
+
+.card {
+  background: #ffffff;
+  border-radius: 14px;
+  overflow: hidden;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.08);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+  display: flex;
+  flex-direction: column;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 16px rgba(14, 61, 183, 0.15);
+}
+
+.image {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+}
+
+.cardContent {
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  flex-grow: 1;
+  justify-content: space-between;
+}
+
+.cardHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.title {
+  font-size: 1.15rem;
+  font-weight: 600;
+  color: #222;
+}
+
+.location {
+  font-size: 0.95rem;
+  color: #555;
+}
+
+.distance {
+  font-size: 0.9rem;
+  color: #0e3db7;
+  font-weight: 500;
+}
+
+.typeBadge {
+  font-size: 0.8rem;
+  padding: 0.3rem 0.6rem;
+  border-radius: 1rem;
+  font-weight: 600;
+  text-transform: capitalize;
+}
+
+.privateBadge {
+  background-color: #ffe6e6;
+  color: #b30000;
+}
+
+.publicBadge {
+  background-color: #e8f9ee;
+  color: #067a39;
+}
+
+.viewBtn {
+  align-self: flex-start;
+  margin-top: 0.8rem;
+  background-color: #0e3db7;
+  color: white;
+  font-weight: 500;
+  padding: 0.5rem 1rem;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.viewBtn:hover {
+  background-color: #164cd8;
+}
+
+@media (max-width: 768px) {
+  .grid {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+    width: 100%;
+  }
+
+  .card {
+    width: 90%;
+  }
+
+  .viewBtn {
+    text-align: center;
+  }
+}

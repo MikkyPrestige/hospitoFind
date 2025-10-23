@@ -13,7 +13,7 @@
 
 /* Mobile Header */
 .smallHeader {
-  height: 5.5rem;
+  height: 7.5rem;
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -70,14 +70,12 @@
   top: 0;
   right: -100%;
   width: 70%;
-  height: -moz-fit-content;
-  height: fit-content;
+  height: 35rem;
   background: rgba(255, 255, 255, 0.95);
   box-shadow: -2px 0 15px rgba(0, 0, 0, 0.1);
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
   justify-content: space-between;
   padding: 5rem 2rem;
   gap: 2rem;
@@ -121,7 +119,32 @@
 .smallWrapper {
   display: flex;
   justify-content: center;
+  align-items: center;
   gap: 1rem;
+}
+.smallWrapper .dashboard {
+  font-size: 1.8rem;
+  font-weight: 700;
+  text-decoration: none;
+  color: #08299B;
+  position: relative;
+  transition: color 0.3s ease;
+}
+.smallWrapper .dashboard:hover {
+  color: #08299B;
+}
+.smallWrapper .dashboard::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -3px;
+  width: 0%;
+  height: 2px;
+  background: #88B3DB;
+  transition: width 0.3s ease;
+}
+.smallWrapper .dashboard:hover::after {
+  width: 100%;
 }
 .smallWrapper .smallAuth {
   border: none;
@@ -137,7 +160,6 @@
   box-shadow: 0 3px 10px rgba(0, 0, 255, 0.2);
 }
 
-/* Large screen header */
 .large {
   display: none;
 }
@@ -147,7 +169,7 @@
     align-items: center;
     justify-content: space-between;
     padding: 0 2rem;
-    height: 5rem;
+    height: 6.5rem;
   }
 }
 .large .largeLogo {
@@ -166,17 +188,13 @@
 .large .largeNav .largeList {
   display: flex;
   align-items: center;
-  gap: 3rem;
+  gap: 2rem;
   list-style: none;
 }
 .large .largeNav .largeList li {
   display: flex;
   align-items: center;
   gap: 0.5rem;
-}
-.large .largeNav .largeList li .largeIcon {
-  color: #08299B;
-  font-size: 1.4rem;
 }
 .large .largeNav .largeList li .largeLink {
   font-size: 1.4rem;
@@ -206,6 +224,30 @@
   display: flex;
   gap: 1rem;
 }
+.large .largeNav .largeWrapper .dashboard {
+  font-size: 1.4rem;
+  font-weight: 700;
+  text-decoration: none;
+  color: #08299B;
+  position: relative;
+  transition: color 0.3s ease;
+}
+.large .largeNav .largeWrapper .dashboard:hover {
+  color: #08299B;
+}
+.large .largeNav .largeWrapper .dashboard::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -3px;
+  width: 0%;
+  height: 2px;
+  background: #88B3DB;
+  transition: width 0.3s ease;
+}
+.large .largeNav .largeWrapper .dashboard:hover::after {
+  width: 100%;
+}
 .large .largeNav .largeWrapper .largeAuth {
   border: none;
   border-radius: 2rem;
@@ -221,28 +263,6 @@
 }
 
 /* Logout Button */
-.logout {
-  background-color: #FF033E;
-  border-radius: 1rem;
-  padding: 0.3rem 0.8rem;
-  color: white;
-  font-size: 0.9rem;
-  border: none;
-  cursor: pointer;
-  transition: all 0.3s ease;
-}
-.logout:hover {
-  background-color: rgb(217.2, 0, 50.8523809524);
-}
-.logout .smallSpan {
-  display: flex;
-  align-items: center;
-  gap: 0.4rem;
-}
-.logout .smallIcon {
-  font-size: 1.2rem;
-}
-
 .error {
   color: #FF033E;
   font-size: 0.9rem;

@@ -13,7 +13,7 @@
   font-size: 1.8rem;
   text-align: center;
   margin-bottom: 1rem;
-  font-weight: 700;
+  font-weight: 500;
   letter-spacing: -0.01925rem;
   text-transform: capitalize;
   font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande", "Lucida Sans";
@@ -23,6 +23,34 @@
   .search .heading {
     font-size: 1.6rem;
   }
+}
+.search .heading .name {
+  color: #08299B;
+  font-weight: 700;
+  font-family: "DM Sans", sans-serif;
+  text-transform: capitalize;
+  letter-spacing: 0.02rem;
+  background: linear-gradient(135deg, rgb(10.5030674847, 53.8282208589, 203.4969325153), rgb(5.4969325153, 28.1717791411, 106.5030674847));
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: fadeIn 0.6s ease-in-out;
+  position: relative;
+  transition: all 0.3s ease;
+}
+.search .heading .name::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -3px;
+  width: 0;
+  height: 2px;
+  background: linear-gradient(135deg, rgb(10.5030674847, 53.8282208589, 203.4969325153), rgb(5.4969325153, 28.1717791411, 106.5030674847));
+  transition: width 0.3s ease;
+  border-radius: 2px;
+}
+.search .heading .name:hover::after {
+  width: 100%;
 }
 .search .wrapper {
   width: 100%;
@@ -182,16 +210,35 @@
   width: 100%;
 }
 .search .container {
-  width: 100%;
+  width: -moz-fit-content;
+  width: fit-content;
   display: flex;
   flex-direction: row;
-  align-items: flex-start;
+  align-items: center;
+  justify-content: center;
   justify-content: space-between;
+  align-items: center;
   flex-wrap: wrap;
-  gap: 1rem;
-  padding: 1rem;
+  gap: 1.2rem;
+  padding: 1rem 2.5rem;
   border-radius: 1rem;
-  border: 1px solid #C1C1C1;
-  background: #f5f5f5;
-  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  background: #f8fcff;
+  border: 1px solid rgba(8, 41, 155, 0.15);
+  box-shadow: 0 4px 10px rgba(8, 41, 155, 0.08);
+  transition: all 0.3s ease;
+}
+.search .container:hover {
+  box-shadow: 0 6px 14px rgba(8, 41, 155, 0.15);
+  transform: translateY(-2px);
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }/*# sourceMappingURL=search.module.css.map */

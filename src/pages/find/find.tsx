@@ -1,5 +1,4 @@
-import { NavLink } from "react-router-dom";
-import { useNavigate } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import { Helmet } from "react-helmet-async";
 import { useState, useEffect, useRef } from "react";
 import mapboxgl from "mapbox-gl";
@@ -10,6 +9,7 @@ import { AiOutlineSearch } from "react-icons/ai";
 import { findHospitals } from "@/services/api";
 import PopularHospitals from "@/components/popular";
 import Header from "@/layouts/header/nav";
+import Footer from "@/layouts/footer/footer";
 import { Hospital } from "@/services/hospital";
 import HospitalPic from "@/assets/images/hospital-logo.jpg";
 import { Avatar } from "@/components/avatar";
@@ -30,19 +30,18 @@ const FindHospital = () => {
     const [map, setMap] = useState<mapboxgl.Map | null>(null);
     const markersRef = useRef<mapboxgl.Marker[]>([]);
 
-    // Initialize map and user location
+    // Initialize map
     useEffect(() => {
         const mapInstance = new mapboxgl.Map({
             container: mapContainer.current!,
             style: "mapbox://styles/mapbox/streets-v11",
-            center: [8.6753, 9.082], // Nigeria
+            center: [8.6753, 9.082],
             zoom: 6,
             accessToken,
         });
 
         setMap(mapInstance);
 
-        // Try user location
         if (navigator.geolocation) {
             navigator.geolocation.getCurrentPosition(
                 (pos) => {
@@ -62,42 +61,37 @@ const FindHospital = () => {
         return () => mapInstance.remove();
     }, []);
 
-    // 🔍 Handle search
+    // 🔍 Search handler
     const handleSearch = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         setError("");
         setHospitals([]);
         setSearching(true);
-
-        // Clear old markers
         markersRef.current.forEach((m) => m.remove());
         markersRef.current = [];
 
         if (!term.trim()) {
-            setError("Please enter a hospital name, city, or state");
+            setError("Please enter a hospital name, city, or state to search.");
             setSearching(false);
             return;
         }
 
         const query = `term=${encodeURIComponent(term.trim())}`;
         try {
-            console.log("🔍 Searching with query:", query);
             const data = await findHospitals(query);
 
             if (!data || data.length === 0) {
                 setHospitals([]);
                 setMessage(
                     <>
-                        ❌ No hospitals found in {term}. You can add one from the{" "}
-                        <span
-                            className={style.addLink}
-                            onClick={() => navigate("/dashboard")}
-                        > Dashboard </span>
+                        ❌ No hospitals found in <strong>{term}</strong>. You can help by adding one from your{" "}
+                        <span className={style.addLink} onClick={() => navigate("/dashboard")}>
+                            Dashboard
+                        </span>
+                        .
                     </>
                 );
 
-
-                // 🗺️ Geocode fallback for city/state
                 const geoRes = await axios.get(
                     `https://api.mapbox.com/geocoding/v5/mapbox.places/${encodeURIComponent(
                         term.trim()
@@ -125,7 +119,8 @@ const FindHospital = () => {
                                 new mapboxgl.Popup().setHTML(`
                   <strong>${hospital.name}</strong><br/>
                   ${hospital.address?.street || ""}<br/>
-                  ${hospital.address?.city || ""}, ${hospital.address?.state || ""}
+                  ${hospital.address?.city || ""}, ${hospital.address?.state || ""}<br/>
+                  <em>Click “See more” for full details.</em>
                 `)
                             )
                             .addTo(map);
@@ -136,19 +131,12 @@ const FindHospital = () => {
                 });
 
                 if (!bounds.isEmpty()) {
-                    const zoomBounds = bounds.isEmpty()
-                        ? 10
-                        : Math.min(map.getZoom(), 12); // prevent over-zoom
-                    map.fitBounds(bounds, {
-                        padding: 80,
-                        maxZoom: zoomBounds,
-                        duration: 1000,
-                    });
+                    map.fitBounds(bounds, { padding: 80, maxZoom: 12, duration: 1000 });
                 }
             }
         } catch (err) {
             console.error(err);
-            setError("Something went wrong while searching");
+            setError("Something went wrong while searching. Please try again.");
         } finally {
             setSearching(false);
         }
@@ -157,12 +145,9 @@ const FindHospital = () => {
     return (
         <>
             <Helmet>
-                <title>Find | Hospital Finder</title>
-                <meta name="description" content="Find the nearest hospital to you" />
-                <meta
-                    name="keywords"
-                    content="hospital, doctor, health, care, medical, clinic, find, search, nearby"
-                />
+                <title>Find Hospitals | Hospital Finder</title>
+                <meta name="description" content="Find nearby hospitals and healthcare centers." />
+                <meta name="keywords" content="hospital, doctor, clinic, health, find, search, nearby" />
             </Helmet>
 
             <Header />
@@ -170,10 +155,7 @@ const FindHospital = () => {
             <section className={style.findSection}>
                 <div className={style.search}>
                     <div className={style.map}>
-                        <div
-                            ref={mapContainer}
-                            style={{ width: "100%", height: "100%", borderRadius: "1rem" }}
-                        />
+                        <div ref={mapContainer} className={style.mapBox} />
                     </div>
 
                     <div className={style.container}>
@@ -181,15 +163,16 @@ const FindHospital = () => {
                             <input
                                 type="text"
                                 name="term"
-                                placeholder="Search by hospital name, city or state"
+                                placeholder="Search hospitals by name, city, or state..."
                                 onChange={(e) => setTerm(e.target.value)}
                                 className={style.input}
                                 value={term}
                             />
-
-                            <button type="submit"
+                            <button
+                                type="submit"
                                 disabled={searching}
-                                className={`${style.cta} ${searching ? style.loading : ""}`}>
+                                className={`${style.cta} ${searching ? style.loading : ""}`}
+                            >
                                 {searching ? "Searching..." : <AiOutlineSearch className={style.icon} />}
                             </button>
                         </form>
@@ -201,10 +184,21 @@ const FindHospital = () => {
                 <div className={style.hospitals}>
                     {hospitals.length > 0 ? (
                         <div className={style.found}>
-                            <h2 className={style2.heading}>{hospitals.length} Hospitals found</h2>
+                            <h2 className={style2.heading}>
+                                Found {hospitals.length} hospital{hospitals.length > 1 ? "s" : ""}{" "}
+                                {term.trim()
+                                    ? <>in <span className={style2.location}>{term.trim()}</span></>
+                                    : "around you"}
+                            </h2>
+                            <p className={style2.subtitle}>
+                                {term.trim()
+                                    ? <>Explore trusted hospitals in {term.trim()}, view their details, and find quality care faster.</>
+                                    : <>Explore trusted hospitals around you, view their details, and find quality care faster.</>}
+                            </p>
+
                             <ul className={style2.wrapper}>
                                 {hospitals.map((hospital, id) => (
-                                    <li key={id} className={style2.card}>
+                                    <li key={id} className={`${style2.card} ${style.fadeInCard}`}>
                                         <div className={style2.img}>
                                             <Avatar
                                                 image={hospital.photoUrl || HospitalPic}
@@ -239,7 +233,8 @@ const FindHospital = () => {
                         !searching && <PopularHospitals />
                     )}
                 </div>
-            </section>
+            </section >
+            <Footer />
         </>
     );
 };

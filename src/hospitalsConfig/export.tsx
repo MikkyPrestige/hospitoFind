@@ -1,23 +1,24 @@
 import { useState } from 'react'
 import { exportHospital } from '@/services/api'
-import style from './style/shareExport/shareExport.module.css'
+import style from './style/shareExport/shareExport.module.scss'
 import { TiExport } from 'react-icons/ti'
 import { SearchProps } from '@/services/hospital'
 
 const ExportButton = ({ searchParams }: SearchProps) => {
   const [exporting, setExporting] = useState<boolean>(false)
   const [error, setError] = useState<string>('')
+  const [toast, setToast] = useState<{ message: string; type: 'success' | 'error' } | null>(null)
 
   const handleExport = async () => {
     if (!searchParams.city && !searchParams.state && !searchParams.address) {
       setError('Please enter a city, state, and/or hospital name')
-      setExporting(false)
+      setToast({ message: 'Missing search parameters', type: 'error' })
       return
     }
+
     setExporting(true)
     try {
       const data = await exportHospital(searchParams)
-      // download file
       const url = window.URL.createObjectURL(new Blob([data]))
       const link = document.createElement('a')
       link.href = url
@@ -25,25 +26,33 @@ const ExportButton = ({ searchParams }: SearchProps) => {
       document.body.appendChild(link)
       link.click()
       document.body.removeChild(link)
-      setError('')
-      setExporting(false)
+      setToast({ message: '✅ Export successful — file downloaded!', type: 'success' })
     } catch (err: any) {
-      setError(err.message)
+      setError(err.message || 'Failed to export hospitals.')
+      setToast({ message: '❌ Export failed. Try again.', type: 'error' })
+    } finally {
       setExporting(false)
+      setTimeout(() => setToast(null), 3000)
     }
   }
 
   return (
     <div className={style.cta}>
-      <button disabled={exporting} onClick={handleExport} className={style.btn}>
+      <button
+        disabled={exporting}
+        onClick={handleExport}
+        className={`${style.btn} ${style.export}`}
+      >
         {exporting ? (
-          <div>downloading...</div>
+          <div>Download...</div>
         ) : (
           <div className={style.span}>
-            Export <TiExport className={style.icon} />
+            Export Hospital List <TiExport className={style.icon} />
           </div>
         )}
       </button>
+
+      {toast && <div className={`${style.toast} ${style[toast.type]}`}>{toast.message}</div>}
       {error && <p className={style.error}>{error}</p>}
     </div>
   )

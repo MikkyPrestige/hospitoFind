@@ -1,7 +1,8 @@
 import { Hospital } from "./hospital";
 import axios from "axios";
 
-const BASE_URL = "https://hospitofind-server.onrender.com";
+// const BASE_URL = "https://hospitofind-server.onrender.com";
+const BASE_URL = "http://localhost:5000";
 
 // get all hospitals
 export async function getHospitals() {

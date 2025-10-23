@@ -15,6 +15,7 @@ import { User } from "@/services/user";
 import { Button } from "@/components/button";
 import { BG } from "@/components/bg";
 import Header from "@/layouts/header/nav";
+import Footer from "@/layouts/footer/footer";
 import style from "./style/scss/signup.module.css";
 import img from "../assets/images/logo.svg";
 
@@ -252,6 +253,7 @@ const SignUp = () => {
           </section>
         </div>
       </section>
+      <Footer />
     </>
   );
 };

@@ -1,177 +1,222 @@
-@use "../../../assets/styles/mixins"as mixins;
+@use "../../../assets/styles/mixins" as mixins;
 @import "../../../assets/styles/variables";
 
 .home {
-  height: 100%;
   width: 100%;
+  height: 100%;
+  overflow-x: hidden;
+  font-family: $font-inter;
 }
 
 .bg {
-  background-color: $color-bg;
-  height: 100vh;
+ background: linear-gradient(180deg, #f9fbff 0%, #ffffff 100%);
+  min-height: 100vh;
   width: 100%;
-  padding-top: 12rem;
-  @include mixins.flexCol;
-  gap: 5rem;
-  font-family: $font-inter;
+  padding: 10rem 2rem 0rem 4rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 
-  @include mixins.respond(laptop) {
-    gap: 3rem;
+  @include mixins.respond(tab-land) {
+    padding: 10rem 3rem 0rem 3rem;
   }
 
   .wrapper {
+     display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 3rem;
     width: 100%;
-    height: 100%;
+    max-width: 1300px;
+    margin: 0 auto;
 
-    @include mixins.respond(tab-land) {
-      @include mixins.flexRowSpaceBetween;
-      gap: 2rem;
-    }
-
-    .container {
-      width: 100%;
-      height: 20rem;
-      @include mixins.flexCol;
-      gap: 4rem;
-      padding: 0 3rem;
+    @include mixins.respond(tab-port) {
+      grid-template-columns: 1fr;
       text-align: center;
-
-      @include mixins.respond(tab-land) {
-        padding: 0 1rem;
-      }
-
-      .header {
-        width: 100%;
-        @include mixins.flexCol;
-        gap: 1rem;
-
-        .title {
-          font-size: $font-size-6;
-          font-weight: $font-weight-bd;
-          color: $color-blue;
-          line-height: $line-height-1;
-        }
-
-        .subtitle {
-          font-size: $font-size-3;
-          font-weight: $font-weight-md;
-          color: $color-black;
-          line-height: $line-height-1;
-        }
-      }
-
-      .cta {
-        width: 100%;
-        @include mixins.flexCol;
-        gap: 1rem;
-
-        .btn {
-          font-size: $font-size-2;
-          letter-spacing: $space;
-          color: $color-white;
-          transition: all 0.5s ease-in-out;
-        }
-
-        .link {
-          font-size: $font-size-1;
-          font-style: italic;
-          letter-spacing: $space;
-          color: $color-black-b;
-          @include mixins.flexRow;
-          transition: all 0.5s ease-in-out;
-
-          &:hover {
-            color: $color-black;
-          }
-
-          .icon {
-            width: 1.5rem;
-            height: 1.5rem;
-            fill: $color-blue;
-          }
-        }
-      }
     }
 
-    .img {
-      width: 100%;
-      height: 100%;
+       @include mixins.respond(tab-land) {
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: center;
+      gap: 5rem;
     }
   }
 
-  .search {
-    width: 100%;
-    @include mixins.flexCol;
-    gap: 1rem;
-    margin-bottom: 1rem;
-
-    .heading {
-      font-size: $font-size-5;
-      font-weight: $font-weight-bds;
-      color: $color-blue;
-      text-transform: uppercase;
-      line-height: $line-height-2;
-      letter-spacing: $space;
+  .container {
+    flex: 1;
       text-align: center;
+      @include mixins.flexCol;
+      gap: 2rem;
 
-      @include mixins.respond(tab-land) {
-        font-size: $font-size-1;
+        @include mixins.respond(tab-land) {
+        text-align: left;
       }
+  }
+
+  .header {
+    .title {
+      font-size: clamp(2rem, 2.5vw, 3rem);
+        font-weight: $font-weight-bd;
+        color: $color-blue;
+        line-height: 1.2;
     }
 
-    .label {
-      position: relative;
-      width: 80%;
-      @include mixins.flexRowSpaceBetween;
-      gap: 1rem;
-      margin-bottom: 1rem;
-
-      @include mixins.respond(tab-land) {
-        width: 60%;
-      }
-
-      .icon_location {
-        position: absolute;
-        top: 1rem;
-        left: 2.5rem;
-        width: 1.5rem;
-        height: 1.5rem;
-        fill: $color-gray;
-      }
-
-      .input {
-        width: 100%;
-        height: 3.5rem;
-        border-radius: $border-radius-md;
-        font-size: $font-size-5;
+    .subtitle {
+     font-size: clamp(1.2rem, 1.6vw, 1.8rem);
         font-weight: $font-weight-md;
         color: $color-black-b;
-        text-align: center;
-        letter-spacing: $space;
-        line-height: $line-height-2;
-        background-color: $color-white;
-        transition: all 0.5s ease-in-out;
-        cursor: not-allowed;
+        max-width: 35rem;
+        margin: 0 auto;
 
-        &:focus {
-          outline: none;
-          border: 1px solid $color-blue;
+         @include mixins.respond(tab-land) {
+          margin: 0;
         }
-      }
+    }
+  }
 
-      input::placeholder {
-        color: $color-gray;
-        font-size: $font-size-2;
-      }
+  .cta {
+   display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 1rem;
+        margin-top: 1rem;
 
-      .icon_search {
-        position: absolute;
-        top: 1rem;
-        right: 2.5rem;
-        width: 1.5rem;
-        height: 1.5rem;
-        fill: $color-black;
+        @include mixins.respond(tab-land) {
+          flex-direction: row;
+          align-items: center;
+        }
+
+    .btn {
+      font-size: 1.2rem;
+          padding: 0.8rem 2.5rem;
+          border-radius: 0.6rem;
+          background: linear-gradient(90deg, $color-blue, $color-blue-light);
+          color: white;
+          transition: all 0.3s ease;
+
+            &:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 12px rgba(14, 61, 183, 0.25);
+          }
+    }
+
+        .outlineBtn {
+          font-size: 1.1rem;
+          color: $color-blue;
+          display: flex;
+          align-items: center;
+          gap: 0.4rem;
+          transition: all 0.3s ease;
+
+          &:hover {
+            color: darken($color-blue, 10%);
+            transform: translateX(4px);
+          }
+
+      .icon {
+        font-size: 1.5rem;
+      }
+    }
+  }
+
+  .img {
+    flex: 1;
+      max-width: 500px;
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      animation: fadeIn 1s ease-in-out both;
+
+    img {
+     width: 100%;
+        height: auto;
+        border-radius: 2rem;
+        object-fit: cover;
+        box-shadow: 0 10px 30px rgba(14, 61, 183, 0.15);
+
+      &:hover {
+        transform: scale(1.03);
+      }
+    }
+  }
+
+.sectionTitle {
+  text-align: center;
+  margin-top: 3rem;
+  font-size: 1.8rem;
+  color: #0e3db7;
+  font-weight: 700;
+}
+
+.sectionSubtitle {
+  text-align: center;
+  color: #5c6f91;
+  margin-bottom: 2rem;
+  font-size: 1rem;
+}
+
+
+  .trusted {
+  text-align: center;
+  padding: 3rem 1rem;
+  background: rgba(255, 255, 255, 0.65);
+  border-radius: 1rem;
+  backdrop-filter: blur(8px);
+  box-shadow: 0 2px 15px rgba(0, 0, 0, 0.05);
+  animation: fadeUp 0.8s ease-out both;
+
+  .trustedTitle {
+    font-size: $font-size-3;
+    font-weight: $font-weight-bd;
+    color: $color-black-b;
+    margin-bottom: 2rem;
+  }
+
+  .logos {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 3rem;
+
+    img {
+      filter: grayscale(100%);
+      transition: all 0.3s ease;
+
+      &:hover {
+        filter: grayscale(0%);
+        opacity: 1;
+        transform: scale(1.05);
       }
     }
   }
 }
+
+
+}
+
+/* --- Animations --- */
+@keyframes fadeUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+}
+
+ @keyframes fadeIn {
+    0% {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }

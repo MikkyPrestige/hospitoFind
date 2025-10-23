@@ -2,16 +2,11 @@ import { Link, NavLink, NavLinkProps, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { MdClose } from "react-icons/md";
 import { FiMenu } from "react-icons/fi";
-import { VscAccount } from "react-icons/vsc";
-import { TbHomeHeart } from "react-icons/tb";
 import Logo from "@/assets/images/logo.svg";
-import { FcAbout } from "react-icons/fc";
-import { FaSearchPlus } from "react-icons/fa";
-import { IoMdLogOut } from "react-icons/io";
 import { Avatar } from "@/components/avatar";
 import style from "./style/nav.module.css";
 import { useAuthContext } from "@/context/userContext";
-import useLogout from "@/hooks/logout";
+// import useLogout from "@/hooks/logout";
 
 interface NavLinksProps extends NavLinkProps {
   to: string;
@@ -31,24 +26,24 @@ export const NavLinks = ({ to, ...props }: NavLinksProps) => {
   );
 };
 
-const Logout = () => {
-  const { logout, loading, error } = useLogout();
+// const Logout = () => {
+//   const { logout, loading, error } = useLogout();
 
-  return (
-    <div>
-      <button onClick={logout} disabled={loading} className={style.logout}>
-        {loading ? (
-          "Bye..."
-        ) : (
-          <span className={style.smallSpan}>
-            <IoMdLogOut className={style.smallIcon} /> Logout
-          </span>
-        )}
-      </button>
-      {error && <p className={style.error}>{error}</p>}
-    </div>
-  );
-};
+//   return (
+//     <div>
+//       <button onClick={logout} disabled={loading} className={style.logout}>
+//         {loading ? (
+//           "Bye..."
+//         ) : (
+//           <span className={style.smallSpan}>
+//             Logout
+//           </span>
+//         )}
+//       </button>
+//       {error && <p className={style.error}>{error}</p>}
+//     </div>
+//   );
+// };
 
 const LayoutMobile = () => {
   const [showMenu, setShowMenu] = useState(false);
@@ -95,34 +90,27 @@ const LayoutMobile = () => {
       <nav className={`${style.smallNav} ${showMenu ? style.show : ""}`}>
         <ul className={style.smallList}>
           <li>
-            <TbHomeHeart className={style.smallIcon} />
             <NavLinks to="/" onClick={toggleMenu} className={style.smallLink}>
               Home
             </NavLinks>
           </li>
           <li>
-            <FcAbout className={style.smallIcon} />
-            <NavLinks to="/about" onClick={toggleMenu} className={style.smallLink}>
-              About
-            </NavLinks>
-          </li>
-          <li>
-            <FaSearchPlus className={style.smallIcon} />
             <NavLinks to="/find" onClick={toggleMenu} className={style.smallLink}>
-              Find Hospital
+              Find a Hospital
             </NavLinks>
           </li>
           <li>
-            <VscAccount className={style.smallIcon} />
-            <NavLink to="/dashboard" className={style.smallLink} onClick={toggleMenu}>
-              Dashboard
-            </NavLink>
+            <NavLinks to="/about" onClick={toggleMenu} className={style.smallLink}>
+              About Us
+            </NavLinks>
           </li>
         </ul>
 
         <div className={style.smallWrapper}>
           {state.username ? (
-            <Logout />
+            <NavLink to="/dashboard" className={style.dashboard} onClick={toggleMenu}>
+              Dashboard
+            </NavLink>
           ) : (
             <>
               <button onClick={handleLoginClick} className={style.smallAuth}>
@@ -166,34 +154,27 @@ const LayoutLarge = () => {
       <nav className={style.largeNav}>
         <ul className={style.largeList}>
           <li>
-            <TbHomeHeart className={style.largeIcon} />
             <NavLinks to="/" className={style.largeLink}>
               Home
             </NavLinks>
           </li>
           <li>
-            <FcAbout className={style.largeIcon} />
-            <NavLinks to="/about" className={style.largeLink}>
-              About
-            </NavLinks>
-          </li>
-          <li>
-            <FaSearchPlus className={style.largeIcon} />
             <NavLinks to="/find" className={style.largeLink}>
-              Find Hospital
+              Find a Hospital
             </NavLinks>
           </li>
           <li>
-            <VscAccount className={style.largeIcon} />
-            <NavLink to="/dashboard" className={style.largeLink}>
-              Dashboard
-            </NavLink>
+            <NavLinks to="/about" className={style.largeLink}>
+              About Us
+            </NavLinks>
           </li>
         </ul>
 
         <div className={style.largeWrapper}>
           {state.username ? (
-            <Logout />
+            <NavLink to="/dashboard" className={style.dashboard}>
+              Dashboard
+            </NavLink>
           ) : (
             <>
               <button onClick={handleLoginClick} className={style.largeAuth}>
@@ -216,7 +197,7 @@ const Header = () => {
   useEffect(() => {
     const handleScroll = () => {
       const y = window.scrollY;
-      setScrolled(y > 50); // threshold for effect
+      setScrolled(y > 50);
     };
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);

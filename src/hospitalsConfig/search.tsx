@@ -4,6 +4,7 @@ import { AiOutlineSearch } from 'react-icons/ai'
 import { LocationInput, Hospital } from '@/services/hospital'
 import { statesAndCities } from '@/services/location'
 import { searchHospitals } from '@/services/api'
+import { useAuthContext } from '@/context/userContext'
 import ExportButton from '@/hospitalsConfig/export'
 import ShareButton from '@/hospitalsConfig/share'
 import PopularHospitals from '@/components/popular'
@@ -17,11 +18,12 @@ const Search = () => {
     address: '',
     city: '',
     state: '',
-  })
+  });
 
-  const [hospitals, setHospitals] = useState<Hospital[]>([])
-  const [error, setError] = useState<string>('')
-  const [searching, setSearching] = useState<boolean>(false)
+  const [hospitals, setHospitals] = useState<Hospital[]>([]);
+  const [error, setError] = useState<string>('');
+  const [searching, setSearching] = useState<boolean>(false);
+  const { state } = useAuthContext();
 
   const handleSelect = (e: React.ChangeEvent<HTMLSelectElement>) => {
     const [city, state] = e.target.value.split(',')
@@ -70,45 +72,45 @@ const Search = () => {
 
   return (
     <section className={style.search}>
-      <h1 className={style.heading}>Welcome back! Ready to find hospitals near you?</h1>
+      <h1 className={style.heading}>Welcome back <span className={style.name}>{state.name}</span>👋</h1>
       <section className={style.wrapper}>
         <form onSubmit={handleSubmit} className={style.form}>
           <div className={style.box}>
             <input
               type="text"
-              name="address"
-              value={location.address}
-              onChange={handleInput}
-              placeholder="Enter Hospital address or Name"
-              className={style.input}
+        name="address"
+        value={location.address}
+        onChange={handleInput}
+        placeholder="Enter Hospital address or Name"
+        className={style.input}
             />
-            {error && <p className={style.error}>{error}</p>}
-          </div>
-          <select onChange={handleSelect} className={style.select}>
-            <option value="">City, State</option>
-            {statesAndCities.map((name) => (
-              <option
-                key={`${name.city},${name.state}`}
-                value={`${name.city},${name.state}`}
-              >
-                {`${name.city}, ${name.state}`}
-              </option>
-            ))}
-          </select>
-          <button type="submit" disabled={searching} className={style.cta}>
-            {searching ? (
-              <div></div>
-            ) : (
-              <AiOutlineSearch className={style.icon} />
-            )}
-          </button>
-        </form>
-      </section>
+        {error && <p className={style.error}>{error}</p>}
+      </div>
+      <select onChange={handleSelect} className={style.select}>
+        <option value="">City, State</option>
+        {statesAndCities.map((name) => (
+          <option
+            key={`${name.city},${name.state}`}
+            value={`${name.city},${name.state}`}
+          >
+            {`${name.city}, ${name.state}`}
+          </option>
+        ))}
+      </select>
+      <button type="submit" disabled={searching} className={style.cta}>
+        {searching ? (
+          <div></div>
+        ) : (
+          <AiOutlineSearch className={style.icon} />
+        )}
+      </button>
+    </form>
+      </section >
       <ul className={style.hospitals}>
         <h1 className={style.title}>
           {hospitals.length > 0 ? (
             `${hospitals.length} ${hospitals.length === 1 ? 'Hospital' : 'Hospitals'
-            }🏥 found
+            } found
           `
           ) : (
             <PopularHospitals />
@@ -145,9 +147,9 @@ const Search = () => {
                 </div>
                 <div className={style2.details}>
                   <h3 className={style2.name}>{hospital.name}</h3>
-                  <h3 className={style2.address}>{hospital?.address.street}</h3>
+                  <h3 className={style2.address}>{hospital?.address.street}, {hospital?.address.city}</h3>
                   <NavLink to={`${hospital.name}`} className={style2.btn}>
-                    See more
+                    Explore Hospital
                   </NavLink>
                 </div>
               </li>
@@ -161,7 +163,7 @@ const Search = () => {
         )}
       </ul>
       <Outlet />
-    </section>
+    </section >
   )
 }
 
