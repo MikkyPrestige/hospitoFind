@@ -15,7 +15,7 @@
 
 /* Mobile Header */
 .smallHeader {
-  height: 5.5rem;
+  height: 7.5rem;
   @include mixins.flexRowSpaceBetween;
   padding: 0 1.5rem;
 
@@ -73,10 +73,12 @@
   top: 0;
   right: -100%;
   width: 70%;
-  height: fit-content;
+  height: 35rem;
   background: rgba(255, 255, 255, 0.95);
   box-shadow: -2px 0 15px rgba(0, 0, 0, 0.1);
-  @include mixins.flexCol;
+display: flex;
+flex-direction: column;
+align-items: center;
   justify-content: space-between;
   padding: 5rem 2rem;
   gap: 2rem;
@@ -121,7 +123,36 @@ border-bottom-left-radius: 1rem;
 .smallWrapper {
   display: flex;
   justify-content: center;
+  align-items: center;
   gap: 1rem;
+
+   .dashboard {
+font-size: $font-size-4;
+          font-weight: 700;
+          text-decoration: none;
+          color: $color-blue;
+          position: relative;
+          transition: color 0.3s ease;
+
+           &:hover {
+            color: $color-blue;
+          }
+
+          &::after {
+            content: "";
+            position: absolute;
+            left: 0;
+            bottom: -3px;
+            width: 0%;
+            height: 2px;
+            background: $color-blue-light;
+            transition: width 0.3s ease;
+          }
+
+          &:hover::after {
+            width: 100%;
+          }
+      }
 
   .smallAuth {
     border: none;
@@ -139,7 +170,6 @@ border-bottom-left-radius: 1rem;
   }
 }
 
-/* Large screen header */
 .large {
   display: none;
 
@@ -148,7 +178,7 @@ border-bottom-left-radius: 1rem;
     align-items: center;
     justify-content: space-between;
     padding: 0 2rem;
-    height: 5rem;
+    height: 6.5rem;
   }
 
   .largeLogo {
@@ -169,18 +199,13 @@ border-bottom-left-radius: 1rem;
     .largeList {
       display: flex;
       align-items: center;
-      gap: 3rem;
+      gap: 2rem;
       list-style: none;
 
       li {
         display: flex;
         align-items: center;
         gap: 0.5rem;
-
-        .largeIcon {
-          color: $color-blue;
-          font-size: 1.4rem;
-        }
 
         .largeLink {
           font-size: $font-size-2;
@@ -216,6 +241,34 @@ border-bottom-left-radius: 1rem;
       display: flex;
       gap: 1rem;
 
+      .dashboard {
+font-size: $font-size-2;
+          font-weight: 700;
+          text-decoration: none;
+          color: $color-blue;
+          position: relative;
+          transition: color 0.3s ease;
+
+           &:hover {
+            color: $color-blue;
+          }
+
+          &::after {
+            content: "";
+            position: absolute;
+            left: 0;
+            bottom: -3px;
+            width: 0%;
+            height: 2px;
+            background: $color-blue-light;
+            transition: width 0.3s ease;
+          }
+
+          &:hover::after {
+            width: 100%;
+          }
+      }
+
       .largeAuth {
         border: none;
         border-radius: 2rem;
@@ -235,30 +288,30 @@ border-bottom-left-radius: 1rem;
 }
 
 /* Logout Button */
-.logout {
-  background-color: $color-red;
-  border-radius: 1rem;
-  padding: 0.3rem 0.8rem;
-  color: white;
-  font-size: 0.9rem;
-  border: none;
-  cursor: pointer;
-  transition: all 0.3s ease;
+// .logout {
+//   background-color: $color-red;
+//   border-radius: 1rem;
+//   padding: 0.3rem 0.8rem;
+//   color: white;
+//   font-size: 0.9rem;
+//   border: none;
+//   cursor: pointer;
+//   transition: all 0.3s ease;
 
-  &:hover {
-    background-color: darken($color-red, 8%);
-  }
+//   &:hover {
+//     background-color: darken($color-red, 8%);
+//   }
 
-  .smallSpan {
-    display: flex;
-    align-items: center;
-    gap: 0.4rem;
-  }
+//   .smallSpan {
+//     display: flex;
+//     align-items: center;
+//     gap: 0.4rem;
+//   }
 
-  .smallIcon {
-    font-size: 1.2rem;
-  }
-}
+//   .smallIcon {
+//     font-size: 1.2rem;
+//   }
+// }
 
 .error {
   color: $color-red;

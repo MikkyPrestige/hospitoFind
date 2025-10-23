@@ -2,66 +2,180 @@
 @import "../../../assets/styles/variables";
 
 .footer {
-  background-color: $color-bg;
+  background: linear-gradient(180deg, rgba(249, 251, 255, 0.95) 0%, #ffffff 100%);
+  backdrop-filter: blur(10px);
+  border-top: 1px solid rgba(14, 61, 183, 0.1);
   width: 100%;
-  height: 100%;
-  @include mixins.flexRowSpaceBetween;
-  gap: 1rem;
-  padding: 1rem 2rem;
-  position: relative;
+  padding: 3rem 2rem 1rem;
+  font-family: $font-sans;
+  color: $color-black-b;
+  display: flex;
+  flex-direction: column;
+  gap: 3rem;
 
-  &::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: .1rem;
-    background-color: $color-blue-light;
-  }
+  .newsletter {
+    text-align: center;
+    max-width: 600px;
+    margin: 0 auto;
 
-  .box1 {
-    flex-basis: 10%;
-    height: 100%;
-    @include mixins.flexCol;
-    gap: 1rem;
-  }
+    .newsTitle {
+      font-size: 1.6rem;
+      font-weight: $font-weight-bd;
+      color: $color-blue;
+    }
 
-  .logo {
-    display: block;
-    width: 10rem;
-    height: 10rem;
-  }
+    .newsText {
+      font-size: 1rem;
+      color: $color-gray-dark;
+      margin-top: 0.5rem;
+    }
 
-  .box2 {
-    flex-grow: 1;
-    @include mixins.flexRowFlexEnd;
-    gap: 5rem;
-    padding: 0 5rem;
+    .newsForm {
+      margin-top: 1.5rem;
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      gap: 0.5rem;
 
-    .content {
-      height: 10rem;
-      @include mixins.flexCol;
-      gap: 1rem;
-
-      .title {
-        font-size: 1.5rem;
-        font-weight: 700;
-        color: $color-blue-light;
+      .newsInput {
+        width: 70%;
+        padding: 0.8rem 1rem;
+        border: 1px solid #ccc;
+        border-radius: 0.5rem;
+        font-size: 1rem;
+        outline: none;
+        background: #f9fafc;
+        color: #555;
       }
 
-      .link,
-      &:active,
-      &:visited {
-        font-size: 1.2rem;
-        font-weight: 500;
-        text-decoration: none;
-        transition: all .3s ease-in-out;
+      .newsButton {
+        background: $color-blue;
+        color: #fff;
+        padding: 0.8rem 1.2rem;
+        border: none;
+        border-radius: 0.5rem;
+        cursor: not-allowed;
+        font-weight: $font-weight-md;
+      }
+    }
 
-        &:hover {
+    .note {
+      display: block;
+      margin-top: 0.5rem;
+      font-size: 0.9rem;
+      color: $color-gray-dark;
+      font-style: italic;
+    }
+  }
+
+  .top {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 3rem;
+
+    @include mixins.respond(tab-land) {
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: flex-start;
+    }
+
+    .brand {
+      text-align: center;
+      max-width: 350px;
+
+      @include mixins.respond(tab-land) {
+        text-align: left;
+      }
+
+      .tagline {
+        font-size: 1rem;
+        color: $color-gray-dark;
+        line-height: 1.5;
+        margin-bottom: 1rem;
+      }
+
+      .socials {
+        display: flex;
+        justify-content: center;
+        gap: 1rem;
+
+        a {
+          font-size: 1.4rem;
           color: $color-blue;
+          transition: all 0.3s ease;
+
+          &:hover {
+            color: $color-blue-light;
+            transform: translateY(-2px);
+          }
+        }
+
+        @include mixins.respond(tab-land) {
+          justify-content: flex-start;
         }
       }
+    }
+
+    .links {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 3rem;
+
+      .column {
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+        text-align: center;
+
+        @include mixins.respond(tab-land) {
+          text-align: left;
+        }
+
+        h2 {
+          font-size: 1.2rem;
+          font-weight: $font-weight-bd;
+          color: $color-blue;
+          margin-bottom: 0.5rem;
+        }
+
+        a {
+          font-size: 1rem;
+          color: $color-black-b;
+          text-decoration: none;
+          transition: all 0.3s ease;
+
+          &:hover {
+            color: $color-blue;
+            transform: translateX(3px);
+          }
+        }
+      }
+    }
+  }
+
+  .bottom {
+    border-top: 1px solid rgba(14, 61, 183, 0.1);
+    padding-top: 1rem;
+    text-align: center;
+    font-size: 0.9rem;
+    color: $color-gray-dark;
+
+    a {
+      color: $color-blue;
+      text-decoration: none;
+
+      &:hover {
+        color: $color-blue-light;
+      }
+    }
+
+    @include mixins.respond(tab-land) {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      text-align: left;
     }
   }
 }

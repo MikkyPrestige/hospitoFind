@@ -3,7 +3,6 @@ import axios from 'axios'
 import ReactMde, { Suggestion } from 'react-mde'
 import ReactMarkdown from 'react-markdown'
 import 'react-mde/lib/styles/css/react-mde-all.css'
-import { BsDatabaseAdd } from 'react-icons/bs'
 import { Hospital } from '@/services/hospital'
 import { Button } from '@/components/button'
 import style from '../components/style/random.module.css'
@@ -310,7 +309,6 @@ const Editor = () => {
                 ) : (
                   <span className={style.btn_span}>
                     Submit
-                    <BsDatabaseAdd className={style.btn_icon} />
                   </span>
                 )}
               </span>

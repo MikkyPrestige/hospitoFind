@@ -1,35 +1,74 @@
-import { Link } from "react-router-dom";
-import Logo from "@/assets/images/logo.svg";
-import { Avatar } from "@/components/avatar";
-import style from "./style/footer.module.css";
+import { Link } from "react-router-dom"
+import { FaLinkedin } from "react-icons/fa"
+import style from "./style/footer.module.scss"
 
 const Footer = () => {
   return (
-    <section className={style.footer}>
-      <div className={style.box1}>
-        <Link to="/" className={style.logo}>
-          <Avatar
-            image={Logo}
-            alt="logo"
-            style={{ width: "100%", height: "100%", objectFit: "contain" }}
+    <footer className={style.footer}>
+      <div className={style.newsletter}>
+        <h2 className={style.newsTitle}>Stay in the loop</h2>
+        <p className={style.newsText}>
+          Get updates about new hospitals, services, and health tips.
+        </p>
+        <form
+          className={style.newsForm}
+          onSubmit={(e) => {
+            e.preventDefault()
+            alert("Coming soon: Newsletter subscription feature!")
+          }}
+        >
+          <input
+            type="email"
+            placeholder="Enter your email address"
+            className={style.newsInput}
+            disabled
           />
-        </Link>
+          <button type="submit" className={style.newsButton} disabled>
+            Subscribe
+          </button>
+        </form>
+        <small className={style.note}>Coming soon</small>
       </div>
-      <div className={style.box2}>
-        <div className={style.content}>
-          <h2 className={style.title}>About Us</h2>
-          <Link to="/about" className={style.link}>News & Media</Link>
-          <Link to="https://www.linkedin.com/company/prestigeenigma" className={style.link}>Contact Us</Link>
-          <Link to="/policy" className={style.link}>Privacy Policy</Link>
+
+      <div className={style.top}>
+        <div className={style.brand}>
+          <p className={style.tagline}>
+            Making healthcare more accessible, one search at a time.
+          </p>
+          <div className={style.socials}>
+            <a href="https://www.linkedin.com/company/prestigeenigma" target="_blank" rel="noreferrer">
+              <FaLinkedin />
+            </a>
+          </div>
         </div>
-        <div className={style.content}>
-          <h2 className={style.title}>Quick Links</h2>
-          <Link to="/dashboard" className={style.link}>My account</Link>
-          <Link to="/find" className={style.link}>Find Hospital</Link>
-          <Link to="#" className={style.link}>Library</Link>
+
+        <div className={style.links}>
+          <div className={style.column}>
+            <h2>Explore</h2>
+            <Link to="/about">Our Story</Link>
+            <Link to="/dashboard">My Account</Link>
+            <Link to="/find">Find Hospital</Link>
+          </div>
+
+          <div className={style.column}>
+            <h2>Resources</h2>
+            <Link to="https://www.linkedin.com/company/prestigeenigma">
+              Contact Us
+            </Link>
+            <Link to="#">News</Link>
+            <Link to="/policy">Privacy Policy</Link>
+          </div>
         </div>
       </div>
-    </section>
+
+      <div className={style.bottom}>
+        <p>© {new Date().getFullYear()} HospitoFind. All rights reserved.</p>
+        <p>
+          Built with ❤️{" "}
+          Connecting you to better care.
+        </p>
+      </div>
+    </footer>
   )
 }
 

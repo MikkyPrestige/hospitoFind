@@ -13,14 +13,46 @@
     font-size: $font-size-4;
     text-align: center;
     margin-bottom: 1rem;
-    font-weight: $font-weight-bd;
+    font-weight: $font-weight-md;
     letter-spacing: -0.01925rem;
     text-transform: capitalize;
     font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans';
 text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+
     @include mixins.respond(phone-sm) {
       font-size: $font-size-3;
     }
+
+  .name {
+  color: $color-blue;
+  font-weight: $font-weight-bd;
+  font-family: $font-sans;
+  text-transform: capitalize;
+  letter-spacing: 0.02rem;
+  background: linear-gradient(135deg, lighten($color-blue, 10%), darken($color-blue, 10%));
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: fadeIn 0.6s ease-in-out;
+  position: relative;
+  transition: all 0.3s ease;
+
+  &::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -3px;
+    width: 0;
+    height: 2px;
+    background: linear-gradient(135deg, lighten($color-blue, 10%), darken($color-blue, 10%));
+    transition: width 0.3s ease;
+    border-radius: 2px;
+  }
+
+  &:hover::after {
+    width: 100%;
+  }
+}
   }
 
   .wrapper {
@@ -181,15 +213,36 @@ font-weight: $font-weight-md;
     }
   }
 
-  .container {
-    width: 100%;
-    @include mixins.flexRowAlignFlexStart;
-    flex-wrap: wrap;
-    gap: 1rem;
-    padding: 1rem;
-    border-radius: 1rem;
-    border: 1px solid $color-gray;
-    background: #f5f5f5;
-    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+
+.container {
+  width: fit-content;
+  @include mixins.flexRow;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1.2rem;
+  padding: 1rem 2.5rem;
+  border-radius: 1rem;
+  background: #f8fcff;
+  border: 1px solid rgba(8, 41, 155, 0.15);
+  box-shadow: 0 4px 10px rgba(8, 41, 155, 0.08);
+  transition: all 0.3s ease;
+
+  &:hover {
+    box-shadow: 0 6px 14px rgba(8, 41, 155, 0.15);
+    transform: translateY(-2px);
+  }
+}
+}
+
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
   }
 }

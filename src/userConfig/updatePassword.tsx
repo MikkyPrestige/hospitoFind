@@ -3,7 +3,6 @@ import { useAuthContext } from "@/context/userContext";
 import { PasswordUpdate } from "@/services/user";
 import { useState, useEffect } from "react";
 import { Button } from "@/components/button";
-import { FaExpeditedssl } from "react-icons/fa";
 import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
 import style from "./style/updatePassword.module.css";
 
@@ -144,7 +143,7 @@ const UpdatePassword = () => {
           children={
             loading ? "Updating..." : (
               <span className={style.span}>
-                Update <FaExpeditedssl className={style.icon} />
+                Update
               </span>
             )
           }

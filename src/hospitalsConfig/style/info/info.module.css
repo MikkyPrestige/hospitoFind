@@ -1,144 +1,204 @@
 .hospital {
   width: 100%;
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 1rem;
-  padding: 2rem;
-}
-.hospital .heading {
-  font-size: 2rem;
-  font-family: "Inter", sans-serif;
-  color: #333333;
-  text-transform: capitalize;
-}
-.hospital .heading_span {
-  font-weight: 700;
-  font-family: "Inter", sans-serif;
-  font-style: italic;
-  color: #08299B;
-  margin-left: 0.5rem;
-}
-.hospital .wrapper {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 1rem;
-  width: 100%;
-  height: 100%;
-}
-.hospital .wrapper .img {
-  width: 75%;
-  height: 30rem;
-}
-@media only screen and (min-width: 37.5625em) {
-  .hospital .wrapper .img {
-    height: 40rem;
-  }
-}
-@media only screen and (min-width: 56.3125em) {
-  .hospital .wrapper .img {
-    width: 50%;
-  }
-}
-.hospital .wrapper .details {
-  width: 100%;
-  max-width: 70rem;
-  height: 100%;
+  padding: 3rem 2rem;
+  background-color: #f9faff;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   gap: 2rem;
-  padding: 1rem 0;
-  border-radius: 1rem;
 }
-.hospital .wrapper .details .title {
-  width: 80%;
-  border-radius: 1rem;
-  border: 1px solid #45413c;
-  background: #f5f5f5;
-  font-size: 1.8rem;
-  font-family: "DM Sans", sans-serif;
-  font-weight: 500;
-  color: #000000;
+.hospital .breadcrumb {
+  font-size: 1rem;
+  color: #777;
+}
+.hospital .breadcrumb a {
+  color: #08299b;
+  text-decoration: none;
+  transition: 0.2s;
+}
+.hospital .breadcrumb a:hover {
+  text-decoration: underline;
+  color: rgb(5.4969325153, 28.1717791411, 106.5030674847);
+}
+.hospital .heading {
+  font-size: 2rem;
+  font-weight: 700;
+  color: #08299b;
+  text-align: center;
+}
+.hospital .wrapper {
   display: flex;
   flex-direction: column;
+  gap: 2rem;
   align-items: center;
-  justify-content: center;
-  padding: 1rem;
-}
-.hospital .wrapper .details .service {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 1rem;
-  width: 80%;
-  border-radius: 1rem;
-  border: 1px solid #45413c;
-  background: #f5f5f5;
-  padding: 1rem;
-}
-.hospital .wrapper .details .service_title {
-  font-size: 1.8rem;
-  font-family: "DM Sans", sans-serif;
-  font-weight: 500;
-  color: #000000;
-}
-.hospital .wrapper .details .service .list {
-  list-style-type: circle;
-  list-style-position: inside;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  justify-content: center;
-  padding: 1rem;
-  gap: 1rem;
   width: 100%;
 }
-.hospital .wrapper .details .service .list .item {
-  font-size: 1.6rem;
-  font-family: "DM Sans", sans-serif;
-  color: #000000;
+@media (min-width: 900px) {
+  .hospital .wrapper {
+    display: flex;
+    flex-direction: row;
+    align-items: stretch;
+    gap: 2.5rem;
+    width: 100%;
+  }
 }
-.hospital .wrapper .details .service .time_list {
-  list-style-type: none;
+.hospital .img {
+  width: 100%;
+  border-radius: 1rem;
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease;
 }
-.hospital .wrapper .details .service .time_list__item {
-  display: flex;
-  flex-direction: row;
-  align-items: flex-start;
-  justify-content: space-between;
-  gap: 5rem;
-  font-size: 1.6rem;
-  font-family: "DM Sans", sans-serif;
-  font-weight: 500;
-  color: #000000;
+.hospital .img:hover {
+  transform: scale(1.02);
 }
-.hospital .wrapper .details .btn {
+@media (min-width: 900px) {
+  .hospital .img {
+    flex: 0 0 45%;
+    max-width: none;
+    display: flex;
+    min-height: 0;
+  }
+}
+.hospital .img > img, .hospital .img > * > img, .hospital .img > .avatar, .hospital .img > .avatar > img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+.hospital .details {
+  background: #fff;
+  border-radius: 1rem;
+  padding: 2rem;
+  width: 100%;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.05);
+  animation: fadeIn 0.6s ease-in-out;
+}
+@media (min-width: 900px) {
+  .hospital .details {
+    flex: 1 1 55%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    min-height: 0;
+  }
+}
+.hospital .section {
+  margin-bottom: 2rem;
+  text-align: center;
+}
+.hospital .section .section_title {
+  color: #08299b;
+  font-weight: 600;
+  margin-bottom: 1rem;
+  font-size: 1.2rem;
+  letter-spacing: 0.02rem;
+}
+.hospital .section p,
+.hospital .section li,
+.hospital .section a {
+  font-size: 1rem;
+  color: #333;
+  line-height: 1.6;
+}
+.hospital .contact {
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: center;
-  gap: 1rem;
-  padding: 0.3rem 0.8rem;
-  border-radius: 2rem;
-  background: #88B3DB;
-  color: #FFFFFF;
-  font-size: 1.4rem;
-  font-family: "DM Sans", sans-serif;
-  text-transform: uppercase;
+  gap: 0.5rem;
+  color: #08299b;
+  text-decoration: none;
+  transition: 0.2s;
+  font-weight: 500;
+  margin-bottom: 0.4rem;
 }
-.hospital .link {
-  padding: 0.3rem 1rem;
-  width: 10%;
-  border-radius: 1.5rem;
-  background: #08299B;
-  color: #FFFFFF;
-  font-size: 1.4rem;
-  font-family: "DM Sans", sans-serif;
+.hospital .contact svg {
+  font-size: 1.1rem;
+}
+.hospital .contact:hover {
+  color: rgb(5.4969325153, 28.1717791411, 106.5030674847);
+  text-decoration: underline;
+}
+.hospital .type {
+  background: rgb(143.2668711656, 167.0552147239, 249.2331288344);
+  color: #08299b;
+  padding: 0.4rem 1rem;
+  border-radius: 1.2rem;
+  font-size: 0.95rem;
+  display: inline-block;
+  font-weight: 600;
+  text-transform: capitalize;
+}
+.hospital .list {
+  list-style-type: disc;
+  list-style-position: inside;
+  padding-left: 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  text-align: start;
+  gap: 0.5rem;
+}
+.hospital .list li {
+  font-size: 0.95rem;
+  color: #333;
+}
+.hospital .hours {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+.hospital .hours li {
+  display: flex;
+  justify-content: space-between;
+  padding: 0.4rem 0;
+  border-bottom: 1px solid #eee;
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: #444;
+}
+.hospital .hours li span:first-child {
+  font-weight: 600;
+  color: #08299b;
+}
+.hospital .error {
+  text-align: center;
+  color: #e63946;
+  background-color: #ffe8e8;
+  border: 1px solid #ffb4b4;
+  border-radius: 0.5rem;
+  padding: 0.8rem 1rem;
+  font-size: 1rem;
+  margin-top: 1rem;
+  font-weight: 600;
+  animation: fadeIn 0.4s ease-in-out;
+}
+.hospital .backBtn {
+  align-self: center;
+  padding: 0.7rem 2rem;
+  border: none;
+  border-radius: 2rem;
+  background-color: #08299b;
+  color: #fff;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.3s;
+}
+.hospital .backBtn:hover {
+  background-color: rgb(5.4969325153, 28.1717791411, 106.5030674847);
+  transform: scale(1.03);
+}
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }/*# sourceMappingURL=info.module.css.map */

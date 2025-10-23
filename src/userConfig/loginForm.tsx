@@ -17,8 +17,10 @@ import { Login } from "@/services/user";
 import { Button } from "@/components/button";
 import { BG } from "@/components/bg";
 import Header from "@/layouts/header/nav";
+import Footer from "@/layouts/footer/footer";
 import style from "./style/scss/signup.module.css";
 import image from "../assets/images/logo.svg";
+
 
 const LoginForm = () => {
   const [email, setEmail] = useState("");
@@ -163,6 +165,7 @@ const LoginForm = () => {
           </section>
         </div>
       </section>
+      <Footer />
     </>
   );
 };

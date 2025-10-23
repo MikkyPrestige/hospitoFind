@@ -1,5 +1,4 @@
 import useLogout from "@/hooks/logout";
-import { RiLogoutCircleLine } from "react-icons/ri";
 import { AiOutlineExclamationCircle } from "react-icons/ai";
 import { Button } from "../components/button";
 import style from "./style/style.module.css";
@@ -21,7 +20,7 @@ const Logout = () => {
       <Button
         onClick={handleLogout}
         disabled={loading}
-        children={loading ? "Bye..." : <span className={style.span}>Yes, Log Me Out<RiLogoutCircleLine className={style.icon} /></span>}
+        children={loading ? "Bye..." : <span className={style.span}>Yes, Log Me Out</span>}
         className={style.btn}
       />
       {error && <p className={style.error}>{error}</p>}

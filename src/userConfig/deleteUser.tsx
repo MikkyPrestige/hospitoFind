@@ -1,5 +1,4 @@
 import { useState } from "react";
-import { AiOutlineUserDelete } from "react-icons/ai";
 import { BsFillExclamationTriangleFill } from "react-icons/bs";
 import { FaRegEyeSlash, FaRegEye } from "react-icons/fa";
 import useDelete from "@/hooks/delete";
@@ -69,7 +68,7 @@ const DeleteBtn = () => {
         <Button
           type="submit"
           disabled={loading}
-          children={loading ? "Deleting..." : <span className={style.span}>Delete Account<AiOutlineUserDelete className={style.icon} /></span>}
+          children={loading ? "Deleting..." : <span className={style.span}>Delete Account</span>}
           className={style.btn}
         />
       </form>

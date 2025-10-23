@@ -4,19 +4,36 @@
   align-items: center;
   justify-content: center;
   gap: 1rem;
+  position: relative;
+  width: 100%;
 }
 .cta .btn {
-  background-color: #08299B;
   color: #FFFFFF;
-  border: 1px solid #08299B;
-  border-radius: 1rem;
+  border: none;
+  border-radius: 0.8rem;
   font-size: 1.4rem;
-  padding: 0.2rem 0.6rem;
-  align-self: flex-start;
+  font-weight: 500;
+  padding: 0.7rem 1.4rem;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
 }
-.cta .btn:hover {
-  background-color: #08299B;
-  color: #FFFFFF;
+.cta .btn.share {
+  background: linear-gradient(135deg, #08299B 0%, rgb(11.754601227, 60.2423312883, 227.745398773) 100%);
+}
+.cta .btn.share:hover {
+  background: rgb(5.9975460123, 30.7374233129, 116.2024539877);
+  transform: translateY(-1px);
+}
+.cta .btn.export {
+  background: linear-gradient(135deg, #28a745 0%, rgb(72.268115942, 211.231884058, 104) 100%);
+}
+.cta .btn.export:hover {
+  background: rgb(32.115942029, 134.084057971, 55.4);
+  transform: translateY(-1px);
+}
+.cta .btn:active {
+  transform: scale(0.97);
 }
 .cta .btn .span {
   display: flex;
@@ -24,37 +41,83 @@
   align-items: center;
   justify-content: center;
   gap: 0.5rem;
+  font-size: 1.4rem;
+  font-weight: 700;
+  letter-spacing: 0.02rem;
+  text-transform: capitalize;
 }
 .cta .btn .icon {
-  width: 1.7rem;
-  height: 1.7rem;
-  fill: #f0fbff;
+  width: 1.6rem;
+  height: 1.6rem;
+  fill: #FFFFFF;
 }
 .cta .btnLink {
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: center;
-  gap: 1rem;
-  justify-content: center;
+  gap: 0.8rem;
+  align-items: center;
+  flex-wrap: wrap;
 }
 .cta .btnLink .link {
-  text-decoration: none;
-  font-size: 1.6rem;
+  background: #f5f8ff;
+  border: 1px solid rgba(8, 41, 155, 0.2);
   color: #08299B;
-  font-weight: 600;
-  cursor: copy;
-}
-.cta .btnLink .copy {
-  background-color: #FFFFFF;
-  color: #08299B;
-  border: 1px solid #08299B;
-  border-radius: 1rem;
+  border-radius: 0.6rem;
+  padding: 0.4rem 0.8rem;
   font-size: 1.4rem;
-  padding: 0.2rem 0.6rem;
+  cursor: pointer;
+  transition: all 0.25s ease;
+}
+.cta .btnLink .link:hover {
+  background: #08299B;
+  color: #FFFFFF;
+}
+.cta .toast {
+  position: fixed;
+  bottom: 2rem;
+  right: 2rem;
+  background: linear-gradient(135deg, #3dbb6a, #28a745);
+  color: white;
+  padding: 0.8rem 1.2rem;
+  border-radius: 0.6rem;
+  font-size: 1.4rem;
+  font-weight: 500;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  animation: fadeInOut 3s ease forwards;
+  z-index: 9999;
+}
+.cta .toast.success {
+  background: linear-gradient(135deg, #3dbb6a, #28a745);
+  color: white;
+}
+.cta .toast.error {
+  background: linear-gradient(135deg, #e63946, #d62828);
+  color: white;
 }
 .cta .error {
   color: #FF033E;
   font-size: 1.2rem;
-  margin: 1rem 0;
+  margin-top: 0.5rem;
+  font-weight: 500;
+}
+
+@keyframes fadeInOut {
+  0% {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  15% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  85% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(10px);
+  }
 }/*# sourceMappingURL=shareExport.module.css.map */

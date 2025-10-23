@@ -4,59 +4,127 @@
 .cta {
   @include mixins.flexCol;
   gap: 1rem;
+  position: relative;
+  width: 100%;
 
   .btn {
-    background-color: $color-blue;
     color: $color-white;
-    border: 1px solid $color-blue;
-    border-radius: 1rem;
+    border: none;
+    border-radius: 0.8rem;
     font-size: $font-size-2;
-    padding: 0.2rem 0.6rem;
-    align-self: flex-start;
+    font-weight: $font-weight-md;
+    padding: 0.7rem 1.4rem;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
 
-    &:hover {
-      background-color: $color-blue;
-      color: $color-white;
+    &.share {
+      background: linear-gradient(135deg, $color-blue 0%, lighten($color-blue, 15%) 100%);
+      &:hover {
+        background: darken($color-blue, 8%);
+        transform: translateY(-1px);
+      }
     }
 
-    .span {
+    &.export {
+      background: linear-gradient(135deg, #28a745 0%, lighten(#28a745, 15%) 100%);
+      &:hover {
+        background: darken(#28a745, 8%);
+        transform: translateY(-1px);
+      }
+    }
+
+    &:active {
+      transform: scale(0.97);
+    }
+
+     .span {
       @include mixins.flexRow;
       gap: 0.5rem;
+      font-size: $font-size-2;
+      font-weight: $font-weight-bd;
+      letter-spacing: 0.02rem;
+      text-transform: capitalize;
     }
 
     .icon {
-      width: 1.7rem;
-      height: 1.7rem;
-      fill: #f0fbff;
+      width: 1.6rem;
+      height: 1.6rem;
+      fill: $color-white;
     }
   }
 
   .btnLink {
     @include mixins.flexRow;
-    gap: 1rem;
-    justify-content: center;
+    gap: 0.8rem;
+    align-items: center;
+    flex-wrap: wrap;
 
     .link {
-      text-decoration: none;
-      font-size: $font-size-3;
+      background: #f5f8ff;
+      border: 1px solid rgba(8, 41, 155, 0.2);
       color: $color-blue;
-      font-weight: 600;
-      cursor: copy;
+      border-radius: 0.6rem;
+      padding: 0.4rem 0.8rem;
+      font-size: $font-size-2;
+      cursor: pointer;
+      transition: all 0.25s ease;
+
+      &:hover {
+        background: $color-blue;
+        color: $color-white;
+      }
+    }
+  }
+
+  .toast {
+    position: fixed;
+    bottom: 2rem;
+    right: 2rem;
+    background: linear-gradient(135deg, #3dbb6a, #28a745);
+    color: white;
+    padding: 0.8rem 1.2rem;
+    border-radius: 0.6rem;
+    font-size: $font-size-2;
+    font-weight: $font-weight-md;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    animation: fadeInOut 3s ease forwards;
+    z-index: 9999;
+
+     &.success {
+      background: linear-gradient(135deg, #3dbb6a, #28a745);
+      color: white;
     }
 
-    .copy {
-      background-color: $color-white;
-      color: $color-blue;
-      border: 1px solid $color-blue;
-      border-radius: 1rem;
-      font-size: $font-size-2;
-      padding: 0.2rem 0.6rem;
+    &.error {
+      background: linear-gradient(135deg, #e63946, #d62828);
+      color: white;
     }
   }
 
   .error {
     color: $color-red;
     font-size: $font-size-1;
-    margin: 1rem 0;
+    margin-top: 0.5rem;
+    font-weight: $font-weight-md;
+  }
+}
+
+@keyframes fadeInOut {
+  0% {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  15% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  85% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(10px);
   }
 }
