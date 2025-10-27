@@ -1,8 +1,8 @@
 import { Hospital } from "./hospital";
 import axios from "axios";
 
-// const BASE_URL = "https://hospitofind-server.onrender.com";
-const BASE_URL = "http://localhost:5000";
+const BASE_URL =  import.meta.env.VITE_BASE_URL;
+// const BASE_URL = "http://localhost:5000";
 
 // get all hospitals
 export async function getHospitals() {
@@ -10,6 +10,16 @@ export async function getHospitals() {
     const response = await axios.get(`${BASE_URL}/hospitals`);
     const hospitals = response.data
     return hospitals;
+  } catch (error) {
+    throw error
+  }
+}
+
+export async function getHospitalDetails(id: number) {
+  try {
+    const response = await axios.get(`${BASE_URL}/hospitals/${id}`);
+    const hospital = response.data;
+    return hospital;
   } catch (error) {
     throw error
   }

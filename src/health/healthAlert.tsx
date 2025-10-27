@@ -9,6 +9,8 @@ type Alert = {
     source: string;
 };
 
+const URL = import.meta.env.VITE_BASE_URL;
+
 const HealthAlerts = () => {
     const [alerts, setAlerts] = useState<Alert[]>([]);
     const [loading, setLoading] = useState(true);
@@ -17,7 +19,8 @@ const HealthAlerts = () => {
         const fetchAlerts = async () => {
             setLoading(true);
             try {
-                const res = await fetch("http://localhost:5000/health/alerts");
+                // const res = await fetch("http://localhost:5000/health/alerts");
+                const res = await fetch(`${URL}/health/alerts`);
                 const data = await res.json();
                 setAlerts(data);
             } catch (err) {

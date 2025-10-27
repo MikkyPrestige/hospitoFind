@@ -104,7 +104,8 @@ const ContextProvider = ({ children }: { children: React.ReactNode }) => {
   )
 }
 
-const BASE_URL = "https://hospitofind-server.onrender.com";
+// const BASE_URL = "https://hospitofind-server.onrender.com";
+const BASE_URL = import.meta.env.VITE_BASE_URL;
 
 const useAuthContext = (): AuthContextType => {
   const context = useContext(AuthContext);

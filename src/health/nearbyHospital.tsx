@@ -16,6 +16,8 @@ type Hospital = {
     photoUrl?: string;
 };
 
+const URL = import.meta.env.VITE_BASE_URL;
+
 const NearbyHospitals = () => {
     const [hospitals, setHospitals] = useState<Hospital[]>([]);
     const [loading, setLoading] = useState<boolean>(true);
@@ -26,9 +28,11 @@ const NearbyHospitals = () => {
         const fetchHospitals = async (lat?: number, lon?: number): Promise<void> => {
             setLoading(true);
             try {
-                let url = "http://localhost:5000/hospitals?limit=3";
+                // let url = "http://localhost:5000/hospitals?limit=3";
+                let url = `${import.meta.env.VITE_BASE_URL}/hospitals?limit=3`;
                 if (lat && lon) {
-                    url = `http://localhost:5000/hospitals/nearby?lat=${lat}&lon=${lon}&limit=3`;
+                    // url = `http://localhost:5000/hospitals/nearby?lat=${lat}&lon=${lon}&limit=3`;
+                    url = `${URL}/hospitals/nearby?lat=${lat}&lon=${lon}&limit=3`;
                 }
 
                 const res = await fetch(url);

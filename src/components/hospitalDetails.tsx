@@ -7,6 +7,7 @@ import style from "./style/hospitalDetails.module.css";
 import { Button } from "./button";
 import Header from "@/layouts/header/nav";
 import Footer from "@/layouts/footer/footer";
+import { getHospitalDetails } from "@/services/api";
 
 type Hospital = {
     _id?: string;
@@ -33,9 +34,8 @@ const HospitalDetails = () => {
     useEffect(() => {
         const fetchHospital = async () => {
             try {
-                const res = await fetch(`http://localhost:5000/hospitals/${id}`);
-                const data = await res.json();
-                setHospital(data);
+                const res =  await getHospitalDetails(id as unknown as number);
+                setHospital(res);
             } catch (err) {
                 console.error("Error fetching hospital:", err);
             } finally {
