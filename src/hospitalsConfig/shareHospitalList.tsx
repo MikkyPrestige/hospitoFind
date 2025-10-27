@@ -9,7 +9,7 @@ import { Avatar } from "@/components/avatar";
 import style from "../components/style/popular.module.css";
 import Loading from "@/assets/images/loading.gif";
 
-const BASE_URL = "https://hospitofind-server.onrender.com";
+const BASE_URL = import.meta.env.VITE_BASE_URL;
 
 const ShareHospitalList = () => {
   const { linkId } = useParams<{ linkId: string }>();

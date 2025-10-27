@@ -8,6 +8,8 @@ type Tip = {
     AccessibleVersion: string;
 };
 
+const URL = import.meta.env.VITE_BASE_URL;
+
 const DailyHealthTip = () => {
     const [tips, setTips] = useState<Tip[]>([]);
     const [loading, setLoading] = useState(true);
@@ -25,7 +27,8 @@ const DailyHealthTip = () => {
 
         const fetchTips = async () => {
             try {
-                const res = await fetch("http://localhost:5000/health/tips");
+                // const res = await fetch("http://localhost:5000/health/tips");
+                const res = await fetch(`${URL}/health/tips`);
                 const data = await res.json();
                 if (Array.isArray(data) && data.length > 0) {
                     setTips(data);

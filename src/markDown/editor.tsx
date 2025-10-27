@@ -7,7 +7,7 @@ import { Hospital } from '@/services/hospital'
 import { Button } from '@/components/button'
 import style from '../components/style/random.module.css'
 
-const BASE_URL = 'https://hospitofind-server.onrender.com'
+const BASE_URL = import.meta.env.VITE_BASE_URL;
 
 // load suggestions
 const loadSuggestions = async (text: string) => {

@@ -10,6 +10,8 @@ type Article = {
     source_id?: string;
 };
 
+const URL = import.meta.env.VITE_BASE_URL;
+
 const HealthNews = () => {
     const [articles, setArticles] = useState<Article[]>([]);
     const [loading, setLoading] = useState(true);
@@ -20,7 +22,8 @@ const HealthNews = () => {
             try {
                 setLoading(true);
                 setError(null);
-                const res = await fetch("http://localhost:5000/health/news");
+                // const res = await fetch("http://localhost:5000/health/news");
+                const res = await fetch(`${URL}/health/news`);
                 if (!res.ok) throw new Error("Failed to fetch health news");
                 const data = await res.json();
                 setArticles(data.slice(0, 9));
