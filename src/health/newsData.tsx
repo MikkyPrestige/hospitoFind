@@ -18,22 +18,22 @@ const HealthNews = () => {
     useEffect(() => {
         const fetchNews = async () => {
             try {
-                const res = await fetch(
-                    `https://newsdata.io/api/1/news?category=health&q=hospital+medical+doctor&language=en&apikey=${import.meta.env.VITE_NEWS_DATA_API_KEY
-                    }`
-                );
+                setLoading(true);
+                setError(null);
+                const res = await fetch("http://localhost:5000/health/news");
+                if (!res.ok) throw new Error("Failed to fetch health news");
                 const data = await res.json();
-                if (data.results) setArticles(data.results.slice(0, 9)); // show first 6
-                else setError("No news available");
+                setArticles(data.slice(0, 9));
             } catch (err) {
                 console.error("Error fetching news:", err);
-                setError("Failed to fetch news");
+                setError("Failed to load latest health news");
             } finally {
                 setLoading(false);
             }
         };
         fetchNews();
     }, []);
+
 
     if (loading) return <p className={style.status}>Getting latest medical news...</p>;
     if (error) return <p className={style.status}>{error}</p>;

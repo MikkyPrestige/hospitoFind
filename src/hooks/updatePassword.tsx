@@ -34,13 +34,13 @@ const usePasswordUpdate = () => {
             newPassword: user.newPassword,
           },
         })
-        setSuccess(`${user.username} password updated`)
+        setSuccess(`${user.username} password changed successfully`)
       })
       .catch((error) => {
         if (error.response) {
           setError(error.response.data.message)
         } else if (error.request) {
-          setError('Server did not respond')
+          setError('We couldn’t reach the server. Please check your connection and try again.')
         } else {
           setError(error.message)
         }

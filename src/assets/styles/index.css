@@ -74,6 +74,15 @@ body {
   box-sizing: border-box;
   min-width: 100%;
   min-height: 100%;
+   position: relative;
+}
+
+html,
+body {
+   overflow-x: hidden;
+  margin: 0;
+  padding: 0;
+  overflow-y: overlay;
 }
 
 a {

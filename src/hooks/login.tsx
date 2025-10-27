@@ -47,7 +47,7 @@ const useLogin = () => {
           setError(error.response.data.message)
         } else if (error.request) {
           // The request was made but no response was received
-          setError('Server did not respond')
+          setError('We couldn’t reach the server. Please check your connection and try again.')
         } else {
           // Something happened in setting up the request that triggered an Error
           setError(error.message)

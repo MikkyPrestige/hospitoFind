@@ -40,7 +40,7 @@ const useSignup = () => {
         if (error.response) {
           setError(error.response.data.message)
         } else if (error.request) {
-          setError('Server did not respond')
+          setError('We couldn’t reach the server. Please check your connection and try again.')
         } else {
           setError(error.message)
         }

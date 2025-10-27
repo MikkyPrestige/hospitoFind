@@ -1,11 +1,13 @@
-import { Link } from "react-router-dom"
-import { FaLinkedin } from "react-icons/fa"
-import style from "./style/footer.module.scss"
+import { Link } from "react-router-dom";
+import { FaLinkedin } from "react-icons/fa";
+import style from "./style/footer.module.scss";
+import Motion from "@/components/motion";
+import { fadeUp, sectionReveal } from "@/hooks/animations";
 
 const Footer = () => {
   return (
-    <footer className={style.footer}>
-      <div className={style.newsletter}>
+    <Motion as="footer" variants={sectionReveal} className={style.footer}>
+      <Motion variants={fadeUp} className={style.newsletter}>
         <h2 className={style.newsTitle}>Stay in the loop</h2>
         <p className={style.newsText}>
           Get updates about new hospitals, services, and health tips.
@@ -13,8 +15,8 @@ const Footer = () => {
         <form
           className={style.newsForm}
           onSubmit={(e) => {
-            e.preventDefault()
-            alert("Coming soon: Newsletter subscription feature!")
+            e.preventDefault();
+            alert("Coming soon: Newsletter subscription feature!");
           }}
         >
           <input
@@ -28,15 +30,19 @@ const Footer = () => {
           </button>
         </form>
         <small className={style.note}>Coming soon</small>
-      </div>
+      </Motion>
 
-      <div className={style.top}>
+      <Motion variants={fadeUp} className={style.top}>
         <div className={style.brand}>
           <p className={style.tagline}>
             Making healthcare more accessible, one search at a time.
           </p>
           <div className={style.socials}>
-            <a href="https://www.linkedin.com/company/prestigeenigma" target="_blank" rel="noreferrer">
+            <a
+              href="https://www.linkedin.com/company/prestigeenigma"
+              target="_blank"
+              rel="noreferrer"
+            >
               <FaLinkedin />
             </a>
           </div>
@@ -59,17 +65,16 @@ const Footer = () => {
             <Link to="/policy">Privacy Policy</Link>
           </div>
         </div>
-      </div>
+      </Motion>
 
-      <div className={style.bottom}>
+      <Motion variants={fadeUp} className={style.bottom}>
         <p>© {new Date().getFullYear()} HospitoFind. All rights reserved.</p>
         <p>
-          Built with ❤️{" "}
-          Connecting you to better care.
+          Built with ❤️ Connecting you to better care.
         </p>
-      </div>
-    </footer>
-  )
-}
+      </Motion>
+    </Motion>
+  );
+};
 
-export default Footer
+export default Footer;

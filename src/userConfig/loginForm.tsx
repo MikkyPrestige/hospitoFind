@@ -35,11 +35,11 @@ const LoginForm = () => {
   const validateForm = () => {
     const newErrors: Record<string, string> = {};
 
-    if (!email.trim()) newErrors.email = "Please enter your email address";
+    if (!email.trim()) newErrors.email = "Enter your email address";
     else if (!/^[\w.-]+@([\w-]+\.)+[\w-]{2,4}$/.test(email))
       newErrors.email = "Email address is not valid";
 
-    if (!password.trim()) newErrors.password = "Please enter your password";
+    if (!password.trim()) newErrors.password = "Enter your password";
     else if (password.length < 6)
       newErrors.password = "Password must be at least 6 characters";
     setErrors(newErrors);

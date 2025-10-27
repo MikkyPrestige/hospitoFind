@@ -42,9 +42,9 @@ const DeleteBtn = () => {
 
   return (
     <div className={style.container}>
-      <h1 className={style.title}>Delete your Account?</h1>
+      <h1 className={style.title}>Delete Account?</h1>
       <BsFillExclamationTriangleFill style={{ fill: "#FF033E", fontSize: "5rem" }} />
-      <p className={style.subhead}>This action cannot be undone. This will permanently delete your account and remove all your data from our database.</p>
+      <p className={style.subhead}>Deleting your account is permanent — all your saved hospitals and preferences will be removed from HospitoFind.</p>
       <form onSubmit={handleDelete} className={style.form}>
         <div className={style.wrapper}>
           <label className={style.subtitle} htmlFor="password">Type your password to confirm</label>
@@ -68,7 +68,7 @@ const DeleteBtn = () => {
         <Button
           type="submit"
           disabled={loading}
-          children={loading ? "Deleting..." : <span className={style.span}>Delete Account</span>}
+          children={loading ? "Deleting your account..." : <span className={style.span}>Confirm Delete</span>}
           className={style.btn}
         />
       </form>

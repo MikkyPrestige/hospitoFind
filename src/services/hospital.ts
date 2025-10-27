@@ -17,6 +17,7 @@ export interface Hours {
 }
 
 export interface Hospital {
+  _id: string;
   name: string;
   address: Address;
   phoneNumber: string;

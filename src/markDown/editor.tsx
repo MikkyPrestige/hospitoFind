@@ -89,7 +89,7 @@ const Editor = () => {
   const [error, setError] = useState('')
   const [loading, setLoading] = useState(false)
   const [markdown, setMarkdown] = useState(`
-  **Please make sure you have the right information before submitting. Thank you!!!**
+  Please verify the hospital information before submitting to help keep our data accurate. Thank you!
 
   # Name:
 
@@ -219,41 +219,41 @@ const Editor = () => {
     }
 
     if (!hospital.name) {
-      setError('Please enter a hospital name')
+      setError('Enter hospital name on  the markdown')
       return
     } else if (!hospital.address.city) {
-      setError('Please enter a city the hospital is located')
+      setError('Enter city the hospital is located on  the markdown')
       return
     } else if (!hospital.address.state) {
-      setError('Please enter a state the hospital is located')
+      setError('Enter state the hospital is located on  the markdown')
       return
     } else if (
       hospital.phoneNumber &&
       !isValidPhoneNumber(hospital.phoneNumber)
     ) {
-      setError('Please enter a valid phone number (Remove all whitespace)')
+      setError('Enter hospital phone number on  the markdown (Remove all whitespace)')
       return
     } else if (hospital.website && !isValidWebsite(hospital.website)) {
-      setError('Please enter a valid website')
+      setError('Enter hospital website on  the markdown')
       return
     } else if (hospital.email && !isValidEmail(hospital.email)) {
-      setError('Please enter a valid email')
+      setError('Enter hospital email address on  the markdown')
       return
     } else if (hospital.photoUrl && !isValidPhotoUrl(hospital.photoUrl)) {
-      setError('Please enter a valid photo url')
+      setError('Enter hospital photo link on  the markdown')
       return
     } else if (!hospital.type) {
-      setError('Please enter a hospital type')
+      setError('Enter hospital type on  the markdown')
       return
     } else if (!isValidType(hospital.type)) {
-      setError('Please enter a valid hospital type')
+      setError('Enter valid hospital type (Public or Private) on  the markdown')
       return
     } else {
       try {
         setLoading(true)
         await axios.post<Hospital>(`${BASE_URL}/hospitals`, hospital)
         setMarkdown(
-          `Successfully added ${hospital?.name} to our database! Thanks for your contribution.`
+          `${hospital?.name} was added successfully — thank you for helping others find care!`
         )
         setError('')
         setLoading(false)
@@ -305,10 +305,10 @@ const Editor = () => {
             children={
               <span className={style.btn}>
                 {loading ? (
-                  'Submitting...'
+                  'Adding hospital...'
                 ) : (
                   <span className={style.btn_span}>
-                    Submit
+                    Add Hospital
                   </span>
                 )}
               </span>

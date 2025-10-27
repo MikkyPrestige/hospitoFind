@@ -17,7 +17,7 @@ const HealthAlerts = () => {
         const fetchAlerts = async () => {
             setLoading(true);
             try {
-                const res = await fetch("http://localhost:5000/api/health-alerts");
+                const res = await fetch("http://localhost:5000/health/alerts");
                 const data = await res.json();
                 setAlerts(data);
             } catch (err) {

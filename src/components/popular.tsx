@@ -5,6 +5,8 @@ import { Avatar } from "@/components/avatar";
 import HospitalPic from "@/assets/images/hospital-logo.jpg";
 import style from "./style/popular.module.css";
 import { useEffect, useState } from "react";
+import Motion from "@/components/motion";
+import { fadeUp, sectionReveal } from "@/hooks/animations";
 
 const PopularHospitals = () => {
   const [hospitals, setHospitals] = useState<Hospital[]>([]);
@@ -25,14 +27,22 @@ const PopularHospitals = () => {
   }, []);
 
   return (
-    <div className={style.container}>
-      <h1 className={style.heading}>
-        Discover Top Hospitals on HospitoFind
-      </h1>
-      <p className={style.subtitle}>Explore trusted hospitals near you, view their details, and find quality care faster.</p>
-      <div className={style.wrapper}>
+    <Motion
+      variants={sectionReveal}
+      className={style.container}
+      initial="hidden"
+      animate="visible"
+    >
+      <Motion variants={fadeUp}>
+        <h1 className={style.heading}>Discover Top Hospitals on HospitoFind</h1>
+        <p className={style.subtitle}>
+          Explore trusted hospitals near you, view their details, and find quality care faster.
+        </p>
+      </Motion>
+
+      <Motion variants={sectionReveal} className={style.wrapper}>
         {hospitals.map((hospital, id) => (
-          <div className={`${style.card} ${style.card}`} key={id}>
+          <Motion key={id} variants={fadeUp} className={style.card}>
             <div className={style.img}>
               <Avatar
                 image={hospital.photoUrl || HospitalPic}
@@ -47,16 +57,18 @@ const PopularHospitals = () => {
             </div>
             <div className={style.details}>
               <h3 className={style.name}>{hospital.name}</h3>
-              <p className={style.address}>{hospital.address.street}, {hospital.address.city}</p>
-              <Link to={`${hospital.name}`} className={style.btn}>
+              <p className={style.address}>
+                {hospital.address?.street}, {hospital.address?.city}
+              </p>
+              <Link to={`${hospital._id}`} className={style.btn}>
                 Explore Hospital
               </Link>
             </div>
-          </div>
+          </Motion>
         ))}
         {error && <p className={style.error}>{error}</p>}
-      </div>
-    </div>
+      </Motion>
+    </Motion>
   );
 };
 
