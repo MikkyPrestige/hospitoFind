@@ -92,9 +92,24 @@
 .hospital .section .section_title {
   color: #08299b;
   font-weight: 600;
-  margin-bottom: 1rem;
+  margin-bottom: 0.5rem;
   font-size: 1.2rem;
   letter-spacing: 0.02rem;
+}
+.hospital .section .section_head {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+}
+.hospital .section .section_head .section_headTitle {
+  font-weight: 600;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
 }
 .hospital .section p,
 .hospital .section li,
@@ -113,7 +128,6 @@
   text-decoration: none;
   transition: 0.2s;
   font-weight: 500;
-  margin-bottom: 0.4rem;
 }
 .hospital .contact svg {
   font-size: 1.1rem;
@@ -121,6 +135,14 @@
 .hospital .contact:hover {
   color: rgb(5.4969325153, 28.1717791411, 106.5030674847);
   text-decoration: underline;
+}
+.hospital .map {
+  width: 100%;
+  height: 20rem;
+  border: none;
+  border-radius: 1.2rem;
+  margin-top: 1rem;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
 .hospital .type {
   background: rgb(143.2668711656, 167.0552147239, 249.2331288344);
@@ -176,7 +198,11 @@
   font-weight: 600;
   animation: fadeIn 0.4s ease-in-out;
 }
-.hospital .backBtn {
+.hospital .backWrapper {
+  display: flex;
+  justify-content: center;
+}
+.hospital .backWrapper .backBtn {
   align-self: center;
   padding: 0.7rem 2rem;
   border: none;
@@ -188,7 +214,7 @@
   cursor: pointer;
   transition: 0.3s;
 }
-.hospital .backBtn:hover {
+.hospital .backWrapper .backBtn:hover {
   background-color: rgb(5.4969325153, 28.1717791411, 106.5030674847);
   transform: scale(1.03);
 }

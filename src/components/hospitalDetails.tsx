@@ -1,7 +1,8 @@
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
-import { useNavigate } from "react-router-dom";
-import { motion, AnimatePresence } from "framer-motion"
+import { useParams, useNavigate } from "react-router-dom";
+import { AnimatePresence } from "framer-motion";
+import { fadeUp, sectionReveal } from "@/hooks/animations";
+import Motion from "@/components/motion";
 import style from "./style/hospitalDetails.module.css";
 import { Button } from "./button";
 import Header from "@/layouts/header/nav";
@@ -26,13 +27,13 @@ const HospitalDetails = () => {
     const { id } = useParams();
     const [hospital, setHospital] = useState<Hospital | null>(null);
     const [loading, setLoading] = useState(true);
-    const [exiting, setExiting] = useState(false);
+    const [isExiting, setIsExiting] = useState(false);
     const navigate = useNavigate();
 
     useEffect(() => {
         const fetchHospital = async () => {
             try {
-                const res = await fetch(`http://localhost:5000/api/hospitals/${id}`);
+                const res = await fetch(`http://localhost:5000/hospitals/${id}`);
                 const data = await res.json();
                 setHospital(data);
             } catch (err) {
@@ -45,37 +46,34 @@ const HospitalDetails = () => {
     }, [id]);
 
     const handleBack = () => {
-        setExiting(true);
-        setTimeout(() => navigate(-1), 500);
+        setIsExiting(true);
     };
 
-    if (loading) return <p className={style.loading}>Getting hospital details...</p>;
+    if (loading)
+        return <p className={style.loading}>Getting hospital details...</p>;
     if (!hospital) return <p className={style.error}>Hospital not found.</p>;
 
     const mapQuery = `${hospital.address?.street || ""}, ${hospital.address?.city || ""}, ${hospital.address?.state || ""}`;
     const mapUrl = `https://www.google.com/maps?q=${encodeURIComponent(mapQuery)}&output=embed`;
     const directionsUrl = `https://www.google.com/maps/dir/?api=1&destination=${encodeURIComponent(mapQuery)}`;
 
-
     return (
         <>
             <Header />
-            <AnimatePresence mode="wait">
-                {!exiting && (
-                    <motion.section
+            <AnimatePresence
+                mode="wait"
+                onExitComplete={() => navigate(-1)}
+            >
+                {!isExiting && (
+                    <Motion
                         key="hospital-details"
                         className={style.section}
-                        initial={{ opacity: 0, y: 30 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        exit={{ opacity: 0, y: -20 }}
-                        transition={{ duration: 0.5, ease: "easeOut" }}
+                        variants={sectionReveal}
+                        once={false}
+                        exit={{ opacity: 0, y: -40 }}
+                        transition={{ duration: 0.5, ease: "easeInOut" }}
                     >
-                        <motion.div
-                            className={style.detailsLayout}
-                            initial={{ opacity: 0 }}
-                            animate={{ opacity: 1 }}
-                            transition={{ delay: 0.4, duration: 0.6 }}
-                        >
+                        <Motion variants={fadeUp} className={style.detailsLayout}>
                             <div className={style.infoSection}>
                                 <div className={style.header}>
                                     <h1 className={style.name}>{hospital.name}</h1>
@@ -92,15 +90,25 @@ const HospitalDetails = () => {
                                 </div>
 
                                 {hospital.photoUrl && (
-                                    <img src={hospital.photoUrl} alt={hospital.name} className={style.image} />
+                                    <Motion variants={fadeUp}>
+                                        <img
+                                            src={hospital.photoUrl}
+                                            alt={hospital.name}
+                                            className={style.image}
+                                        />
+                                    </Motion>
                                 )}
 
-                                <div className={style.info}>
-                                    <p className={style.location}>📍 {hospital.address
-                                        ? `${hospital.address.street}, ${hospital.address.city}, ${hospital.address.state}`
-                                        : "Not available"}</p>
+                                <Motion variants={fadeUp} className={style.info}>
+                                    <p className={style.location}>
+                                        📍{" "}
+                                        {hospital.address
+                                            ? `${hospital.address.street}, ${hospital.address.city}, ${hospital.address.state}`
+                                            : "Not available"}
+                                    </p>
                                     <p className={style.desc}>
-                                        <strong>Contact:</strong> {hospital.phoneNumber || "Not available"}
+                                        <strong>Contact:</strong>{" "}
+                                        {hospital.phoneNumber || "Not available"}
                                     </p>
 
                                     {hospital.services && hospital.services.length > 0 && (
@@ -122,11 +130,12 @@ const HospitalDetails = () => {
                                             Visit Website →
                                         </a>
                                     )}
-                                </div>
+                                </Motion>
                             </div>
-                            {/* Map Preview */}
+
+                            {/* 🗺️ Map Section */}
                             {hospital.address && (
-                                <div className={style.mapWrapper}>
+                                <Motion variants={fadeUp} className={style.mapWrapper}>
                                     <h3>Location Map</h3>
                                     <iframe
                                         title={`Map of ${hospital.name}`}
@@ -143,20 +152,17 @@ const HospitalDetails = () => {
                                     >
                                         Get Directions
                                     </a>
-                                </div>
+                                </Motion>
                             )}
-                        </motion.div>
-                        <motion.div
-                            className={style.backRow}
-                            initial={{ opacity: 0, x: -20 }}
-                            animate={{ opacity: 1, x: 0 }}
-                            transition={{ delay: 0.3, duration: 0.4 }}
-                        >
+                        </Motion>
+
+                        {/* ⬅️ Back Button */}
+                        <Motion variants={fadeUp} className={style.backRow}>
                             <Button onClick={handleBack} className={style.backBtn}>
                                 ← Back to Hospitals
                             </Button>
-                        </motion.div>
-                    </motion.section>
+                        </Motion>
+                    </Motion>
                 )}
             </AnimatePresence>
             <Footer />

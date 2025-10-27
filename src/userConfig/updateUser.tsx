@@ -1,5 +1,4 @@
 import { useState } from "react";
-import { FaUserEdit } from "react-icons/fa";
 import { User } from "@/services/user";
 import { useAuthContext } from "@/context/userContext";
 import useUpdate from "@/hooks/update";
@@ -54,7 +53,7 @@ const UpdateUser = () => {
           />
         </div>
         <div className={style.wrapper}>
-          <p className={style.subtitle}>Email Address</p>
+          <p className={style.subtitle}>Email</p>
           <input
             type="email"
             placeholder={placeholderEmail}
@@ -80,7 +79,7 @@ const UpdateUser = () => {
         <Button
           type="submit"
           disabled={loading}
-          children={loading ? "Updating..." : <span className={style.span}>Update<FaUserEdit className={style.icon} /></span>}
+          children={loading ? "Updating..." : <span className={style.span}>Update</span>}
           className={style.btn2}
         />
       </form>

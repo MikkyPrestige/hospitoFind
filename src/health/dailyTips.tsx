@@ -25,7 +25,7 @@ const DailyHealthTip = () => {
 
         const fetchTips = async () => {
             try {
-                const res = await fetch("http://localhost:5000/api/health-tip");
+                const res = await fetch("http://localhost:5000/health/tips");
                 const data = await res.json();
                 if (Array.isArray(data) && data.length > 0) {
                     setTips(data);

@@ -34,10 +34,9 @@ const ShareHospitalList = () => {
 
 
   return (
+<>
+<Header />
     <div className={style.sharePage}>
-      <div style={{ width: "100%" }}>
-        <Header />
-      </div>
       {error && <div>{error}</div>}
       {loading ? (
         <div style={{
@@ -57,16 +56,17 @@ const ShareHospitalList = () => {
               <div className={style.details}>
                 <h3 className={style.name}>{hospital.name}</h3>
                 <h3 className={style.address}>{hospital?.address.street}</h3>
-                <NavLink to={`${hospital.name}`} className={style.btn}>See more</NavLink>
+                <NavLink to={`${hospital.name}`} className={style.btn}>Explore Hospital</NavLink>
               </div>
             </li>
           ))}
         </div>
       )}
       <div style={{ width: "100%" }}>
-        <Footer />
       </div>
     </div>
+      <Footer />
+    </>
   );
 }
 

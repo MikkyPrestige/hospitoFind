@@ -160,7 +160,7 @@
 }
 
 .btn:active {
-   transform: translateY(0);
+  transform: translateY(0);
 }
 
 .btn2 {
@@ -172,7 +172,6 @@
   padding: 0.8rem;
   cursor: pointer;
   font-weight: 600;
-  text-transform: uppercase;
   transition: background-color 0.3s ease, transform 0.2s ease;
   box-shadow: 0 3px 6px rgba(8, 41, 155, 0.25);
 }
@@ -188,7 +187,7 @@
 }
 
 .span {
-    display: flex;
+  display: flex;
   align-items: center;
   justify-content: center;
   gap: 0.6rem;
@@ -197,7 +196,7 @@
 }
 
 .icon {
-   font-size: 1.5rem;
+  font-size: 1.5rem;
   fill: #f2f2f2;
 }
 

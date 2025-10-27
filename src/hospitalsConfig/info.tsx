@@ -9,6 +9,8 @@ import Loading from "@/assets/images/loading.gif";
 import style from "./style/info/info.module.css";
 import { FaPhone, FaGlobe, FaEnvelope } from "react-icons/fa";
 import Footer from "@/layouts/footer/footer";
+import Motion  from "@/components/motion";
+import { fadeUp, sectionReveal } from "@/hooks/animations";
 
 const HospitalInfo = () => {
   const { name } = useParams();
@@ -35,36 +37,39 @@ const HospitalInfo = () => {
     return (
       <div
         style={{
-          display: 'flex',
-          justifyContent: 'center',
-          alignItems: 'center',
-          height: '100vh',
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+          height: "100vh",
         }}
       >
         <img src={Loading} alt="Loading gif" />
       </div>
-    )
+    );
   }
 
+  const mapQuery = `${hospital.address?.street || ""}, ${hospital.address?.city || ""}, ${hospital.address?.state || ""}`;
+  const mapUrl = `https://www.google.com/maps?q=${encodeURIComponent(mapQuery)}&output=embed`;
+
   return (
-  <>
+    <>
       <div className={style.hospital}>
         <Helmet>
           <title>{hospital.name}</title>
           <meta name="description" content={hospital.name} />
         </Helmet>
 
-        <nav className={style.breadcrumb}>
+        <Motion variants={fadeUp} as="nav" className={style.breadcrumb}>
           <Link to="/">Home</Link> / <Link to="/find">Hospitals</Link> /{" "}
           <span>{hospital.name}</span>
-        </nav>
+        </Motion>
 
-        <h1 className={style.heading}>
+        <Motion variants={fadeUp} as="h1" className={style.heading}>
           Welcome to {hospital.name}
-        </h1>
+        </Motion>
 
-        <div className={style.wrapper}>
-          <div className={style.img}>
+        <Motion variants={sectionReveal} as="div" className={style.wrapper}>
+          <Motion variants={fadeUp} className={style.img}>
             <Avatar
               image={hospital.photoUrl || HospitalPic}
               alt={hospital.name}
@@ -75,37 +80,81 @@ const HospitalInfo = () => {
                 objectFit: "cover",
               }}
             />
-          </div>
+          </Motion>
 
-          <div className={style.details}>
+          <Motion variants={fadeUp} className={style.details}>
             <div className={style.section}>
-              <h3 className={style.section_title}>📍Address</h3>
-              <p>{hospital.address.street}, {hospital.address.city}, {hospital.address.state}</p>
+              <h3 className={style.section_title}>📍 Address</h3>
+              <p>
+                {hospital.address.street}, {hospital.address.city},{" "}
+                {hospital.address.state}
+              </p>
             </div>
 
             <div className={style.section}>
-              <h3 className={style.section_title}>Contact</h3>
+              <h3 className={style.section_title}>📞 Contact</h3>
+
               {hospital.phoneNumber && (
-                <a href={`tel:${hospital.phoneNumber}`} className={style.contact}>
-                  <FaPhone /> Call us: {hospital.phoneNumber}
-                </a>
+                <div className={style.section_head}>
+                  <p className={style.section_headTitle}>
+                    <FaPhone /> Call Us:
+                  </p>
+                  <a
+                    href={`tel:${hospital.phoneNumber}`}
+                    className={style.contact}
+                  >
+                    {hospital.phoneNumber}
+                  </a>
+                </div>
               )}
+
               {hospital.website && (
-                <a href={hospital.website} target="_blank" rel="noreferrer" className={style.contact}>
-                  <FaGlobe /> Visit Website:
-                </a>
+                <div className={style.section_head}>
+                  <p className={style.section_headTitle}>
+                    <FaGlobe /> Visit Website:
+                  </p>
+                  <a
+                    href={hospital.website}
+                    target="_blank"
+                    rel="noreferrer"
+                    className={style.contact}
+                  >
+                    {hospital.website}
+                  </a>
+                </div>
               )}
+
               {hospital.email && (
-                <a
-                  href={`mailto:${hospital.email}?subject=Hello ${hospital.name}!`}
-                  target="_blank"
-                  rel="noreferrer"
-                  className={style.contact}
-                >
-                  <FaEnvelope /> Email: {hospital.email}
-                </a>
+                <div className={style.section_head}>
+                  <p className={style.section_headTitle}>
+                    <FaEnvelope /> Email:
+                  </p>
+                  <a
+                    href={`mailto:${hospital.email}?subject=Hello ${hospital.name}!`}
+                    target="_blank"
+                    rel="noreferrer"
+                    className={style.contact}
+                  >
+                    {hospital.email}
+                  </a>
+                </div>
               )}
             </div>
+
+            {/* Map */}
+            {hospital.address && (
+              <div className={style.section}>
+                <h3 className={style.section_title}>🗺️ Location Map</h3>
+                <iframe
+                  title={`Map of ${hospital.name}`}
+                  src={mapUrl}
+                  className={style.map}
+                  allowFullScreen
+                  loading="lazy"
+                  referrerPolicy="no-referrer-when-downgrade"
+                ></iframe>
+              </div>
+            )}
 
             {hospital.type && (
               <div className={style.section}>
@@ -140,7 +189,9 @@ const HospitalInfo = () => {
 
             {hospital.comments && (
               <div className={style.section}>
-                <h3 className={style.section_title}>💬 Additional Information</h3>
+                <h3 className={style.section_title}>
+                  💬 Additional Information
+                </h3>
                 <ul className={style.list}>
                   {hospital.comments.map((comment, i) => (
                     <li key={i}>{comment}</li>
@@ -150,16 +201,19 @@ const HospitalInfo = () => {
             )}
 
             {error && <p className={style.error}>{error}</p>}
-          </div>
-        </div>
+          </Motion>
+        </Motion>
 
-        <button onClick={() => navigate(-1)} className={style.backBtn}>
-          Return to Search
-        </button>
+        <Motion variants={fadeUp} className={style.backWrapper}>
+          <button onClick={() => navigate(-1)} className={style.backBtn}>
+            ← Go back
+          </button>
+        </Motion>
       </div>
+
       <Footer />
-</>
-      );
+    </>
+  );
 };
 
-      export default HospitalInfo;
+export default HospitalInfo;

@@ -5,24 +5,16 @@ import Image from '@/assets/images/doctor-patient.jpg'
 import { Button } from '@/components/button'
 import style from './style/home.module.scss'
 import Header from '@/layouts/header/nav'
-import DailyHealthTip from '@/api/dailyTips'
-import NearbyHospitals from '@/api/nearbyHospital'
-import HealthNews from '@/api/newsData'
-import HealthAlerts from '@/api/healthAlert'
+import DailyHealthTip from '@/health/dailyTips'
+import NearbyHospitals from '@/health/nearbyHospital'
+import HealthNews from '@/health/newsData'
+import HealthAlerts from '@/health/healthAlert'
 import Footer from '@/layouts/footer/footer'
 import { useAuthContext } from '@/context/userContext'
 import { Helmet } from 'react-helmet-async'
-import { motion } from 'framer-motion'
-import Logo1 from '@/assets/images/hospital1.jpg'
-import Logo2 from '@/assets/images/hospital2.jpg'
-import Logo3 from '@/assets/images/hospital3.jpg'
-import Logo4 from '@/assets/images/hospital4.jpg'
-import Logo5 from '@/assets/images/hospital5.jpg'
-
-const fadeIn = {
-  hidden: { opacity: 0, y: 40 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.7 } },
-};
+import TrustedSection from '@/components/trustedHospitals'
+import Motion from '@/components/motion'
+import { fadeUp, sectionReveal } from '@/hooks/animations'
 
 const Home = () => {
   const { state } = useAuthContext();
@@ -42,16 +34,13 @@ const Home = () => {
       </Helmet>
 
       <Header />
+
       <section className={style.bg}>
         <div className={style.wrapper}>
-          <div className={style.container}>
-            <motion.div
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true }}
-              variants={fadeIn}
-              className={style.header}
-            >
+
+          {/* 🩺 Hero Section */}
+          <Motion className={style.container} variants={sectionReveal} as="section">
+            <div className={style.header}>
               <h1 className={style.title}>
                 Find trusted hospitals near you — anytime, anywhere.
               </h1>
@@ -59,15 +48,9 @@ const Home = () => {
                 Connecting you to quality healthcare across the globe, with tools
                 that make finding care simple and fast.
               </p>
-            </motion.div>
+            </div>
 
-            <motion.div
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true }}
-              variants={fadeIn}
-              className={style.cta}
-            >
+            <div className={style.cta}>
               {state.username ? (
                 <Button>
                   <Link to="/dashboard" className={style.btn}>
@@ -85,17 +68,11 @@ const Home = () => {
               <Link to="/about" className={style.outlineBtn}>
                 Learn More <BsArrowRightShort className={style.icon} />
               </Link>
-            </motion.div>
-          </div>
+            </div>
+          </Motion>
 
-
-          <motion.div
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
-            variants={fadeIn}
-            className={style.img}
-          >
+          {/* 👩‍⚕️ Hero Image */}
+          <Motion className={style.img}>
             <Avatar
               image={Image}
               alt="Doctor and patient"
@@ -108,73 +85,35 @@ const Home = () => {
                 objectFit: "cover",
               }}
             />
-          </motion.div>
+          </Motion>
         </div>
-        <motion.div
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true }}
-          variants={fadeIn}
-        >
+
+        {/* 🏥 Nearby Hospitals */}
+        <Motion variants={fadeUp} as="section" once={false}>
           <NearbyHospitals />
-        </motion.div>
+        </Motion>
 
-        <motion.div
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true }}
-          variants={fadeIn}
-        >
+        {/* 🚨 Health Alerts */}
+        <Motion variants={fadeUp} as="section" once={false}>
           <HealthAlerts />
-        </motion.div>
+        </Motion>
 
-        <motion.div
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true }}
-          variants={fadeIn}
-        >
-          <DailyHealthTip />
-        </motion.div>
-
-        <motion.div
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true }}
-          variants={fadeIn}
-        >
+        {/* 📰 Health News */}
+        <Motion variants={fadeUp} as="section" once={false}>
           <HealthNews />
-        </motion.div>
+        </Motion>
 
-        {/* 🤝 Trusted Hospitals */}
-        <motion.div
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true }}
-          variants={fadeIn}
-          className={style.trusted}
-        >
-          <h3 className={style.trustedTitle}>
-            Trusted by leading hospitals and healthcare providers
-          </h3>
-          <div className={style.logos}>
-            {[Logo1, Logo2, Logo3, Logo4, Logo5].map((logo, i) => (
-              <Avatar
-                key={i}
-                image={logo}
-                alt={`Hospital logo ${i + 1}`}
-                style={{
-                  width: "120px",
-                  height: "auto",
-                  objectFit: "contain",
-                  opacity: 0.85,
-                  transition: "opacity 0.3s ease",
-                }}
-              />
-            ))}
-          </div>
-        </motion.div>
+        {/* 💡 Daily Health Tips */}
+        <Motion variants={fadeUp} as="section" once={false}>
+          <DailyHealthTip />
+        </Motion>
+
+        {/* 🏆 Trusted Hospitals */}
+        <Motion variants={fadeUp} as="section" once={false}>
+          <TrustedSection />
+        </Motion>
       </section>
+
       <Footer />
     </div>
   );

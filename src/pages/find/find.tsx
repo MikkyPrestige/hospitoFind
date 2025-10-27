@@ -10,6 +10,8 @@ import { findHospitals } from "@/services/api";
 import PopularHospitals from "@/components/popular";
 import Header from "@/layouts/header/nav";
 import Footer from "@/layouts/footer/footer";
+import Motion from "@/components/motion";
+import { fadeUp, sectionReveal, zoomIn } from "@/hooks/animations";
 import { Hospital } from "@/services/hospital";
 import HospitalPic from "@/assets/images/hospital-logo.jpg";
 import { Avatar } from "@/components/avatar";
@@ -20,7 +22,6 @@ mapboxgl.accessToken = accessToken;
 
 const FindHospital = () => {
     const navigate = useNavigate();
-
     const [term, setTerm] = useState<string>("");
     const [hospitals, setHospitals] = useState<Hospital[]>([]);
     const [error, setError] = useState<string>("");
@@ -30,7 +31,7 @@ const FindHospital = () => {
     const [map, setMap] = useState<mapboxgl.Map | null>(null);
     const markersRef = useRef<mapboxgl.Marker[]>([]);
 
-    // Initialize map
+    // 🗺️ Initialize Map
     useEffect(() => {
         const mapInstance = new mapboxgl.Map({
             container: mapContainer.current!,
@@ -61,7 +62,7 @@ const FindHospital = () => {
         return () => mapInstance.remove();
     }, []);
 
-    // 🔍 Search handler
+    // 🔍 Search Handler
     const handleSearch = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         setError("");
@@ -87,8 +88,7 @@ const FindHospital = () => {
                         ❌ No hospitals found in <strong>{term}</strong>. You can help by adding one from your{" "}
                         <span className={style.addLink} onClick={() => navigate("/dashboard")}>
                             Dashboard
-                        </span>
-                        .
+                        </span>.
                     </>
                 );
 
@@ -145,7 +145,7 @@ const FindHospital = () => {
     return (
         <>
             <Helmet>
-                <title>Find Hospitals | Hospital Finder</title>
+                <title>Find Hospitals | HospitoFind</title>
                 <meta name="description" content="Find nearby hospitals and healthcare centers." />
                 <meta name="keywords" content="hospital, doctor, clinic, health, find, search, nearby" />
             </Helmet>
@@ -153,12 +153,13 @@ const FindHospital = () => {
             <Header />
 
             <section className={style.findSection}>
-                <div className={style.search}>
-                    <div className={style.map}>
+                {/* 🔍 Search Section */}
+                <Motion variants={fadeUp} className={style.search} as="section">
+                    <Motion variants={zoomIn} className={style.map}>
                         <div ref={mapContainer} className={style.mapBox} />
-                    </div>
+                    </Motion>
 
-                    <div className={style.container}>
+                    <Motion variants={fadeUp} className={style.container}>
                         <form onSubmit={handleSearch} className={style.form}>
                             <input
                                 type="text"
@@ -176,29 +177,33 @@ const FindHospital = () => {
                                 {searching ? "Searching..." : <AiOutlineSearch className={style.icon} />}
                             </button>
                         </form>
-                    </div>
+                    </Motion>
 
                     {error && <p className={style.error}>{error}</p>}
-                </div>
+                </Motion>
 
-                <div className={style.hospitals}>
+                {/* 🏥 Results Section */}
+                <Motion variants={sectionReveal} as="section" className={style.hospitals}>
                     {hospitals.length > 0 ? (
-                        <div className={style.found}>
-                            <h2 className={style2.heading}>
-                                Found {hospitals.length} hospital{hospitals.length > 1 ? "s" : ""}{" "}
-                                {term.trim()
-                                    ? <>in <span className={style2.location}>{term.trim()}</span></>
-                                    : "around you"}
-                            </h2>
-                            <p className={style2.subtitle}>
-                                {term.trim()
-                                    ? <>Explore trusted hospitals in {term.trim()}, view their details, and find quality care faster.</>
-                                    : <>Explore trusted hospitals around you, view their details, and find quality care faster.</>}
-                            </p>
+                        <Motion variants={sectionReveal} initial="hidden" animate="visible" className={style.found}>
+                            <Motion variants={fadeUp}>
+                                <h2 className={style2.heading}>
+                                    Found {hospitals.length} hospital{hospitals.length > 1 ? "s" : ""}{" "}
+                                    {term.trim() ? <>in <span className={style2.location}>{term.trim()}</span></> : "around you"}
+                                </h2>
+                            </Motion>
 
-                            <ul className={style2.wrapper}>
+                            <Motion variants={fadeUp}>
+                                <p className={style2.subtitle}>
+                                    {term.trim()
+                                        ? <>Explore trusted hospitals in {term.trim()}, view their details, and find quality care faster.</>
+                                        : <>Explore trusted hospitals around you, view their details, and find quality care faster.</>}
+                                </p>
+                            </Motion>
+
+                            <Motion variants={sectionReveal} as="section" className={style2.wrapper}>
                                 {hospitals.map((hospital, id) => (
-                                    <li key={id} className={`${style2.card} ${style.fadeInCard}`}>
+                                    <Motion key={id} variants={fadeUp} className={style2.card}>
                                         <div className={style2.img}>
                                             <Avatar
                                                 image={hospital.photoUrl || HospitalPic}
@@ -214,26 +219,30 @@ const FindHospital = () => {
                                         <div className={style2.details}>
                                             <p className={style2.name}>{hospital.name}</p>
                                             <p>
-                                                {hospital.address?.street}, {hospital.address?.city},{" "}
-                                                {hospital.address?.state}
+                                                {hospital.address?.street}, {hospital.address?.city}, {hospital.address?.state}
                                             </p>
-                                            <NavLink to={`${hospital.name}`} className={style2.btn}>
+                                            <NavLink to={`${hospital._id}`} className={style2.btn}>
                                                 See more
                                             </NavLink>
                                         </div>
-                                    </li>
+                                    </Motion>
                                 ))}
-                            </ul>
-                        </div>
+                            </Motion>
+                        </Motion>
                     ) : message ? (
-                        <div className={style.noResults}>
+                            <Motion variants={fadeUp} className={style.noResults}>
                             <p className={style.noResultsText}>{message}</p>
-                        </div>
+                        </Motion>
                     ) : (
-                        !searching && <PopularHospitals />
+                        !searching && (
+                                    <Motion variants={fadeUp} initial="hidden" animate="visible">
+                                <PopularHospitals />
+                            </Motion>
+                        )
                     )}
-                </div>
-            </section >
+                </Motion>
+            </section>
+
             <Footer />
         </>
     );

@@ -1,0 +1,159 @@
+.trusted {
+  background: #f8faff;
+  padding: 5rem 2rem;
+  text-align: center;
+  border-top: 1px solid #e5e9ff;
+  overflow: hidden;
+}
+
+/* === AUTO-PAUSE LOGIC === */
+.active .track {
+  animation-play-state: running;
+}
+
+.paused .track {
+  animation-play-state: paused;
+}
+
+.trustedTitle {
+  color: #08299b;
+  font-size: 2rem;
+  font-weight: 700;
+  margin-bottom: .5rem;
+}
+
+.subText {
+  color: #555;
+  font-size: 1.1rem;
+  max-width: 700px;
+  margin: 0 auto 3rem auto;
+  line-height: 1.6;
+}
+
+/* ====== MARQUEE SCROLL ====== */
+.marquee {
+  width: 100%;
+  overflow: hidden;
+  position: relative;
+  margin-bottom: 3rem;
+}
+
+.marquee::before,
+.marquee::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  width: 100px;
+  height: 100%;
+  z-index: 2;
+  pointer-events: none;
+}
+
+.marquee::before {
+  left: 0;
+  background: linear-gradient(to right, #f8faff 0%, transparent 100%);
+}
+
+.marquee::after {
+  right: 0;
+  background: linear-gradient(to left, #f8faff 0%, transparent 100%);
+}
+
+.track {
+  display: flex;
+  gap: 2.5rem;
+  animation: scroll 30s linear infinite;
+  width: max-content;
+}
+
+.marquee:hover .track {
+  animation-play-state: paused;
+}
+
+/* 🔄 Smooth back-and-forth scroll */
+@keyframes scroll {
+  0% {
+    transform: translateX(0);
+  }
+  50% {
+    transform: translateX(-50%);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+
+.track {
+  display: flex;
+  gap: 2.5rem;
+  animation: scroll 50s ease-in-out infinite; /* slower + reverses */
+  width: max-content;
+}
+
+.marquee:hover .track {
+  animation-play-state: paused; /* pause when hovering */
+}
+
+@media (max-width: 700px) {
+  .track {
+    animation: scroll 80s ease-in-out infinite;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+}
+
+/* ====== LOGO CARDS ====== */
+.logoCard {
+  background: #fff;
+  border-radius: 1rem;
+  padding: 1.5rem 1rem;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+  transition: all 0.3s ease;
+  text-align: center;
+  width: 160px;
+  flex-shrink: 0;
+}
+
+.logoCard:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.08);
+}
+
+.logoCard img {
+  width: 100%;
+  height: auto;
+  filter: grayscale(100%);
+  opacity: 0.85;
+  transition: all 0.3s ease;
+}
+
+.logoCard img:hover {
+  filter: grayscale(0);
+  opacity: 1;
+}
+
+.hospitalName {
+  margin-top: 0.8rem;
+  font-size: 0.9rem;
+  color: #333;
+  font-weight: 600;
+  white-space: wrap;
+}
+
+/* ====== CTA BUTTON ====== */
+.ctaBtn {
+  background-color: #08299b;
+  color: #fff;
+  font-weight: 600;
+  padding: 0.8rem 2rem;
+  border: none;
+  border-radius: 2rem;
+  cursor: pointer;
+  transition: 0.3s ease;
+  font-size: 1rem;
+}
+
+.ctaBtn:hover {
+  background-color: #061f74;
+  transform: scale(1.05);
+}

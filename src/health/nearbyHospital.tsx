@@ -26,9 +26,9 @@ const NearbyHospitals = () => {
         const fetchHospitals = async (lat?: number, lon?: number): Promise<void> => {
             setLoading(true);
             try {
-                let url = "http://localhost:5000/api/hospitals?limit=3";
+                let url = "http://localhost:5000/hospitals?limit=3";
                 if (lat && lon) {
-                    url = `http://localhost:5000/api/hospitals/nearby?lat=${lat}&lon=${lon}&limit=3`;
+                    url = `http://localhost:5000/hospitals/nearby?lat=${lat}&lon=${lon}&limit=3`;
                 }
 
                 const res = await fetch(url);
@@ -63,7 +63,7 @@ const NearbyHospitals = () => {
                 }
             );
         } else {
-            fetchHospitals(); // fallback if geolocation not available
+            fetchHospitals();
         }
     }, []);
 

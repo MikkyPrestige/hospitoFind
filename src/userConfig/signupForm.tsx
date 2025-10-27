@@ -35,13 +35,13 @@ const SignUp = () => {
   const validateForm = () => {
     const newErrors: Record<string, string> = {};
 
-    if (!name.trim()) newErrors.name = "Please enter your name";
-    if (!username.trim()) newErrors.username = "Please enter a username";
-    if (!email.trim()) newErrors.email = "Please enter your email address";
+    if (!name.trim()) newErrors.name = "Enter your name";
+    if (!username.trim()) newErrors.username = "Enter a username";
+    if (!email.trim()) newErrors.email = "Enter your email address";
     else if (!/^[\w.-]+@([\w-]+\.)+[\w-]{2,4}$/.test(email))
       newErrors.email = "Email address is not valid";
     if (!password.trim())
-      newErrors.password = "Please enter a password";
+      newErrors.password = "Enter password";
     else if (
       !/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{6,}$/.test(password)
     )
@@ -238,7 +238,7 @@ const SignUp = () => {
               <Button
                 disabled={loading}
                 children={
-                  loading ? "Creating Account..." : "Create Account"
+                  loading ? "Creating Your Account..." : "Create Account"
                 }
                 className={style.form_button}
               />

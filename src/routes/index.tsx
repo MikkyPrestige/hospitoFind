@@ -14,7 +14,7 @@ const ShareHospitalList = lazy(() => import("@/hospitalsConfig/shareHospitalList
 const HospitalDetails = lazy(() => import("@/components/hospitalDetails"))
 const Policy = lazy(() => import("@/pages/policy"))
 const Error404 = lazy(() => import("@/components/error404"));
-const News = lazy(() => import("@/api/newsData"))
+const News = lazy(() => import("@/health/newsData"))
 
 export const AppRoutes = () => {
   const { state } = useAuthContext();

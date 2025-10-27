@@ -10,12 +10,13 @@
 
 .bg {
  background: linear-gradient(180deg, #f9fbff 0%, #ffffff 100%);
-  min-height: 100vh;
+  min-height: calc(100vh - 10rem);
   width: 100%;
   padding: 10rem 2rem 0rem 4rem;
   display: flex;
   flex-direction: column;
   justify-content: center;
+   overflow: hidden;
 
   @include mixins.respond(tab-land) {
     padding: 10rem 3rem 0rem 3rem;

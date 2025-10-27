@@ -126,7 +126,15 @@ background: $color-blue;
   display: flex;
   justify-content: center;
   align-items: flex-start;
-  padding: 2rem 1rem;
+  padding: 1rem;
+
+.searchWrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
 
 .profileCard{
  width: 90%;
@@ -137,6 +145,7 @@ background: $color-blue;
     padding: 2rem 2rem 3rem;
     display: flex;
     flex-direction: column;
+    align-self: center;
     gap: 2rem;
 
     @include mixins.respond(phone-sm) {
@@ -315,6 +324,159 @@ background: #fff;
         }
       }
     }
+
+/* Layout */
+.details {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  width: 100%;
+}
+
+.searchSection {
+  width: 100%;
+}
+
+.favoritesWrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  width: 100%;
+}
+
+.favoritesSection,
+.recentSection {
+  background: #fff;
+  border-radius: 1.5rem;
+  padding: 1.5rem;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+  transition: all 0.3s ease;
+}
+
+.sectionHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  cursor: pointer;
+  margin-top: 0.5rem;
+  background: #f7f8fb;
+  border-radius: 1rem;
+  padding: 1rem 1.5rem;
+  transition: background 0.2s ease-in-out;
+
+.sectionHeader:hover {
+  background: #eef1f8;
+}
+}
+
+.favoritesTitle,
+.recentTitle {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #08299b;
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+.toggleIcon {
+  font-size: 1.4rem;
+  color: #08299b;
+}
+
+.accordionContent {
+  max-height: 0;
+  overflow: hidden;
+  opacity: 0;
+  transition: max-height 1s ease, opacity 1s ease;
+}
+
+.accordionContent.open {
+  max-height: 1000px;
+  opacity: 1;
+}
+
+.favoritesList,
+.recentList {
+    display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.favoriteCard,
+.recentItem {
+   display: flex;
+  align-items: center;
+  gap: 1rem;
+  background: #f8faff;
+  border-radius: 1rem;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+  padding: 1rem 1.5rem;
+  transition: transform 0.2s ease;
+}
+
+.recentItem:hover,
+.favoriteCard:hover {
+  transform: translateY(-3px);
+}
+
+.favoriteName,
+.recentName {
+  font-weight: 600;
+  font-size: 1.3rem;
+}
+
+.recentCity {
+  font-size: 1.3rem;
+  color: #555;
+  margin-top: 0.2rem;
+}
+
+.open {
+  max-height: 1200px;
+  opacity: 1;
+  transition: max-height 0.3s ease-in-out, opacity 0.3s ease-in-out;
+}
+
+.recentInfo {
+  flex: 1;
+}
+
+.removeBtn {
+  background: transparent;
+  border: none;
+  font-size: 1.6rem;
+  color: #999;
+  cursor: pointer;
+  margin-left: auto;
+  transition: color 0.2s ease-in-out;
+}
+
+.removeBtn:hover {
+  color: #ff033e;
+}
+
+.emptyText {
+  font-size: 1.4rem;
+  color: #777;
+  text-align: center;
+  padding: 1.5rem;
+}
+
+
+@media (min-width: 900px) {
+  .favoritesWrapper {
+    flex-direction: row;
+    justify-content: space-between;
+  }
+
+  .favoritesSection,
+  .recentSection {
+    flex: 1;
+    max-width: 48%;
+  }
+}
 
 @keyframes slideIn {
   from {

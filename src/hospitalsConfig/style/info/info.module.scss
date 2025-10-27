@@ -96,10 +96,21 @@ text-align: center;
     .section_title {
       color: #08299b;
       font-weight: 600;
-      margin-bottom: 1rem;
+      margin-bottom: .5rem;
       font-size: 1.2rem;
       letter-spacing: 0.02rem;
     }
+
+.section_head {
+@include mixins.flexRow;
+    gap: .5rem;
+
+.section_headTitle {
+font-weight: 600;
+@include mixins.flexRow;
+gap: .5rem;
+}
+}
 
     p,
     li,
@@ -117,7 +128,6 @@ text-align: center;
     text-decoration: none;
     transition: 0.2s;
     font-weight: 500;
-    margin-bottom: 0.4rem;
 
     svg {
       font-size: 1.1rem;
@@ -128,6 +138,15 @@ text-align: center;
       text-decoration: underline;
     }
   }
+
+.map {
+  width: 100%;
+  height: 20rem;
+  border: none;
+  border-radius: 1.2rem;
+  margin-top: 1rem;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
 
   .type {
     background: lighten(#08299b, 45%);
@@ -190,7 +209,11 @@ text-align: start;
     animation: fadeIn 0.4s ease-in-out;
   }
 
-  .backBtn {
+  .backWrapper {
+  display: flex;
+  justify-content: center;
+
+   .backBtn {
     align-self: center;
     padding: 0.7rem 2rem;
     border: none;
@@ -207,6 +230,8 @@ text-align: start;
       transform: scale(1.03);
     }
   }
+}
+
 
   @keyframes fadeIn {
     from {

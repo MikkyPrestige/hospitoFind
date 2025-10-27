@@ -35,21 +35,21 @@ const UpdatePassword = () => {
     let valid = true;
 
     if (!password) {
-      errors["password"] = "Please enter your Password";
+      errors["password"] = "Enter your Password";
       valid = false;
     } else if (!password.match(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{6,}$/)) {
       errors["password"] = "Password must have at least 6 chars, 1 uppercase, 1 lowercase & 1 number";
       valid = false;
     }
     if (!newPassword) {
-      errors["newPassword"] = "Please enter a New Password";
+      errors["newPassword"] = "Enter a New Password";
       valid = false;
     } else if (!newPassword.match(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{6,}$/)) {
       errors["newPassword"] = "Password must have at least 6 chars, 1 uppercase, 1 lowercase & 1 number";
       valid = false;
     }
     if (!confirmNewPassword) {
-      errors["confirmNewPassword"] = "Confirm New Password cannot be empty";
+      errors["confirmNewPassword"] = "Confirm New Password";
       valid = false;
     } else if (newPassword !== confirmNewPassword) {
       errors["confirmNewPassword"] = "Passwords do not match";
@@ -86,7 +86,7 @@ const UpdatePassword = () => {
           <div className={style.passwordBox}>
             <input
               type={showOld ? "text" : "password"}
-              placeholder="Enter your old password."
+              placeholder="Enter your old password"
               value={inputPassword.password}
               onChange={(e) => setInputPassword({ password: e.target.value })}
               className={style.input}
@@ -104,7 +104,7 @@ const UpdatePassword = () => {
           <div className={style.passwordBox}>
             <input
               type={showNew ? "text" : "password"}
-              placeholder="Enter your new password."
+              placeholder="Enter your new password"
               value={inputNewPassword.newPassword}
               onChange={(e) => setInputNewPassword({ newPassword: e.target.value })}
               className={style.input}
@@ -122,7 +122,7 @@ const UpdatePassword = () => {
           <div className={style.passwordBox}>
             <input
               type={showConfirm ? "text" : "password"}
-              placeholder="Confirm your new password."
+              placeholder="Confirm your new password"
               value={confirmNewPassword}
               onChange={(e) => setConfirmNewPassword(e.target.value)}
               className={style.input}
