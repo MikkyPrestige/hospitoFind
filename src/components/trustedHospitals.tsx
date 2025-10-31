@@ -42,7 +42,7 @@ const TrustedSection = () => {
     const sectionRef = useRef<HTMLDivElement>(null);
     const navigate = useNavigate();
 
-    // ✅ Detect when the section is in view
+    // Detect when the section is in view
     useEffect(() => {
         const observer = new IntersectionObserver(
             ([entry]) => setIsVisible(entry.isIntersecting),

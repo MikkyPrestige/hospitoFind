@@ -8,7 +8,7 @@ type Hospital = {
     address?: {
         state?: string;
         city?: string;
-    }
+    };
     lat?: number;
     lon?: number;
     type?: string;
@@ -21,67 +21,73 @@ const URL = import.meta.env.VITE_BASE_URL;
 const NearbyHospitals = () => {
     const [hospitals, setHospitals] = useState<Hospital[]>([]);
     const [loading, setLoading] = useState<boolean>(true);
-    const [locationDenied, setLocationDenied] = useState<boolean>(false);
+    const [message, setMessage] = useState<string>("");
     const navigate = useNavigate();
 
     useEffect(() => {
-        const fetchHospitals = async (lat?: number, lon?: number): Promise<void> => {
+        const fetchHospitals = async (lat?: number, lon?: number, useFallback = false): Promise<void> => {
             setLoading(true);
             try {
-                // let url = "http://localhost:5000/hospitals?limit=3";
-                let url = `${import.meta.env.VITE_BASE_URL}/hospitals?limit=3`;
-                if (lat && lon) {
-                    // url = `http://localhost:5000/hospitals/nearby?lat=${lat}&lon=${lon}&limit=3`;
+                let url: string;
+
+                if (useFallback) {
+                    // fallback route when location is denied
+                    url = `${URL}/hospitals/top`;
+                } else if (lat && lon) {
+                    // nearby route when geolocation is available
                     url = `${URL}/hospitals/nearby?lat=${lat}&lon=${lon}&limit=3`;
+                } else {
+                    // Default (try IP-based or random)
+                    url = `${URL}/hospitals/nearby?limit=3`;
                 }
 
                 const res = await fetch(url);
                 const data = await res.json();
-                console.log("📦 Hospital API response:", data);
+                // console.log("📦 Hospital API response:", data);
 
                 if (Array.isArray(data)) {
                     setHospitals(data);
+                    setMessage("Location access denied — showing top hospitals globally.");
                 } else if (data && Array.isArray(data.results)) {
                     setHospitals(data.results);
-                    if (data.fallback && data.message) {
-                        setLocationDenied(true);
-                        console.log("Fallback reason:", data.message);
-                    }
+                    setMessage(data.message || "Nearby hospitals found.");
                 } else {
                     setHospitals([]);
+                    setMessage("No hospitals found.");
                 }
             } catch (err) {
-                console.error("Error fetching hospitals:", err);
+                // console.error("Error fetching hospitals:", err);
+                setMessage("Failed to fetch hospital data.");
             } finally {
                 setLoading(false);
             }
         };
 
-        // Try geolocation first
+        // 🌍 Try geolocation first
         if (navigator.geolocation) {
             navigator.geolocation.getCurrentPosition(
-                (pos) => fetchHospitals(pos.coords.latitude, pos.coords.longitude),
-                () => {
-                    setLocationDenied(true);
-                    fetchHospitals(); // fallback to IP or global
+                (pos) => {
+                    const { latitude, longitude } = pos.coords;
+                    fetchHospitals(latitude, longitude);
+                },
+                (error) => {
+                    console.warn("❌ Location denied or unavailable:", error.message);
+                    setMessage("Location access denied — showing top hospitals globally.");
+                    fetchHospitals(undefined, undefined, true); // fallback
                 }
             );
         } else {
-            fetchHospitals();
+            // console.warn("Geolocation not supported — showing global hospitals.");
+            fetchHospitals(undefined, undefined, true);
         }
     }, []);
 
     return (
         <section className={style.section}>
             <h2 className={style.heading}>Hospitals Near You</h2>
-            <p className={style.subHeading}>
-                Discover trusted hospitals closest to your location.
-            </p>
-            {locationDenied && (
-                <p className={style.note}>
-                    Showing hospitals based on your location or global data.
-                </p>
-            )}
+            <p className={style.subHeading}>Discover trusted hospitals closest to your location.</p>
+
+            {message && <p className={style.note}>{message}</p>}
 
             {loading ? (
                 <p className={style.status}>Searching for nearby hospitals...</p>
@@ -103,8 +109,8 @@ const NearbyHospitals = () => {
                                     {h.type && (
                                         <span
                                             className={`${style.typeBadge} ${h.type.toLowerCase() === "private"
-                                                ? style.privateBadge
-                                                : style.publicBadge
+                                                    ? style.privateBadge
+                                                    : style.publicBadge
                                                 }`}
                                         >
                                             {h.type}
@@ -135,9 +141,8 @@ const NearbyHospitals = () => {
                 </div>
             ) : (
                 <p className={style.status}>No hospitals found nearby.</p>
-            )
-            }
-        </section >
+            )}
+        </section>
     );
 };
 

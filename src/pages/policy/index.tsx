@@ -1,4 +1,3 @@
-import { Link } from "react-router-dom";
 import { Helmet } from "react-helmet-async";
 import Header from "@/layouts/header/nav";
 import Footer from "@/layouts/footer/footer";
@@ -11,62 +10,76 @@ const Policy = () => {
                 <title>Privacy Policy | HospitoFind</title>
             </Helmet>
             <Header />
-        <div className={style.container}>
-        <h1 className={style.title}>Privacy Policy for HospitoFind App</h1>
-        <p className={style.text}>Welcome to HospitoFind! This Privacy Policy explains how we collect, use, and protect your personal information when you use our app.</p>
+            <div className={style.container}>
+                <h1 className={style.title}>Privacy Policy</h1>
+                <p className={style.text}>
+                    Welcome to <strong>HospitoFind</strong> — a personal project built to make it easier for people to find hospitals within their region. Your privacy matters and this page explains how we handle the limited information we collect when you use our web app.
+                </p>
 
-        <h2 className={style.title}>What information do we collect?</h2>
-        <p className={style.text}>We collect information from you when you register on our app</p>
-        <p className={style.text}>When registering on our app, as appropriate, you may be asked to enter your: name, e-mail address, mailing address or phone number. You may, however, visit our app anonymously.</p>
+                <div className={style.section}>
+                    <h2>Information We Collect</h2>
+                    <p>
+                        HospitoFind currently collects minimal personal data. You may be asked to provide details like your name, email when registering as an admin or contacting us. Most features can be used without sharing personal information.
+                    </p>
+                </div>
 
-        <h2 className={style.title}>What do we use your information for?</h2>
-        <p className={style.text}>Any of the information we collect from you may be used in one of the following ways:</p>
-        <ul className={style.list}>
-        <li className={style.list_item}>To personalize your experience (your information helps us to better respond to your individual needs)</li>
-        <li className={style.list_item}>To improve our app (we continually strive to improve our app offerings based on the information and feedback we receive from you)</li>
-        <li className={style.list_item}>To improve customer service (your information helps us to more effectively respond to your customer service requests and support needs)</li>
-        </ul>
+                <div className={style.section}>
+                    <h2>How We Use Your Information</h2>
+                    <ul>
+                        <li>To provide access to admin features and manage your account securely.</li>
+                        <li>To improve HospitoFind based on your feedback and usage.</li>
+                        <li>To respond to your messages or support requests.</li>
+                    </ul>
+                </div>
 
-        <h2 className={style.title}>How do we protect your information?</h2>
-        <p className={style.text}>We implement a variety of security measures to maintain the safety of your personal information when you enter, submit, or access your personal information.</p>
+                <div className={style.section}>
+                    <h2>Data Protection</h2>
+                    <p>
+                        We take reasonable steps to protect your data, including secure database storage and limited access.
+                        As HospitoFind grows, stronger security measures will be added to ensure your information remains safe.
+                    </p>
+                </div>
 
-        <h2 className={style.title}>Do we disclose any information to outside parties?</h2>
-        <p className={style.text}>We do not sell, trade, or otherwise transfer to outside parties your personally identifiable information. This does not include trusted third parties who assist us in operating our app, conducting our business, or servicing you, so long as those parties agree to keep this information confidential. We may also release your information when we believe release is appropriate to comply with the law, enforce our app policies, or protect ours or others rights, property, or safety. However, non-personally identifiable visitor information may be provided to other parties for marketing, advertising, or other uses.</p>
+                <div className={style.section}>
+                    <h2>Sharing of Information</h2>
+                    <p>
+                        We do not sell or share your personal data. Information may only be shared with trusted services
+                        that help keep HospitoFind running (like hosting or authentication tools) and only when necessary.
+                    </p>
+                </div>
 
-        <h2 className={style.title}>Third party links</h2>
-        <p className={style.text}>Occasionally, at our discretion, we may include or offer third party products or services on our app. These third party sites have separate and independent privacy policies. We therefore have no responsibility or liability for the content and activities of these linked sites. Nonetheless, we seek to protect the integrity of our app and welcome any feedback about these sites.</p>
+                <div className={style.section}>
+                    <h2>Third-Party Links</h2>
+                    <p>
+                        HospitoFind may contain links to hospital websites or third-party platforms.
+                        We do not control those sites, so please review their privacy policies when you visit them.
+                    </p>
+                </div>
 
-        <h2 className={style.title}>Children's Online Privacy Protection Act Compliance</h2>
-        <p className={style.text}>
-        We are in compliance with the requirements of COPPA (Children's Online Privacy Protection Act), We do not knowingly collect personal information from children under 13. If you are a parent or guardian and believe we may have collected information from your child, please contact us.
-        </p>
+                <div className={style.section}>
+                    <h2>Policy Updates</h2>
+                    <p>
+                        This Privacy Policy may be updated as HospitoFind evolves.
+                        Any updates will be published here along with the latest revision date.
+                    </p>
+                </div>
 
-        <h2 className={style.title}>Online Privacy Policy Only</h2>
-        <p className={style.text}>This online privacy policy applies only to information collected through our app and not to information collected offline.</p>
+                <div className={style.section}>
+                    <h2>Contact</h2>
+                    <p>
+                        Have questions about your privacy or how data is handled?
+                        You can reach us anytime at{" "}
+                        <a href="mailto:hospitofind@outlook.com" target="_blank" rel="noopener noreferrer">
+                            hospitofind@outlook.com
+                        </a>.
+                    </p>
+                </div>
 
-        <h2 className={style.title}>Your Consent</h2>
-        <p className={style.text}>By using our app, you consent to our privacy policy.</p>
-
-        <h2 className={style.title}>Changes to our Privacy Policy</h2>
-        <p className={style.text}>If we decide to change our privacy policy, we will post those changes on this page.</p>
-
-        <h2 className={style.title}>Contacting Us</h2>
-        <p className={style.text}>If there are any questions regarding this privacy policy you may contact us at <mark><a href="mailto: michaelelue117@gmail.com"
-        target="_blank"
-        rel="noopener noreferrer"
-        >
-            michaelelue117@gmail.com
-        </a>
-        </mark>
-        </p>
-
-        <p className={style.text}>Thank you for using HospitoFind!</p>
-
-        <Link to="/" className={style.link}>Home Page</Link>
-        </div>
-        <Footer />
+                <p className={style.text}>Thank you for being part of the HospitoFind journey!</p>
+            </div>
+            <Footer />
         </>
-    )
-}
+    );
+};
 
-export default Policy
+export default Policy;

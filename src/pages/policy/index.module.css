@@ -1,52 +1,70 @@
 .container {
+  max-width: 900px;
+  margin: 8rem auto 3rem auto;
+  padding: 2rem;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  width: 100%;
-  height: 100%;
-  padding: 2rem;
+  gap: 2rem;
+  color: #222;
+  line-height: 1.7;
 }
 
 .title {
-  font-size: 1.8rem;
-  font-weight: 700;
-  margin-bottom: 0.5rem;
+  font-size: 2rem;
+  font-weight: 800;
+  text-align: center;
+  margin-bottom: 1rem;
+  color: #000;
 }
 
 .text {
-  font-size: 1.5rem;
-  margin-bottom: 1rem;
+  font-size: 1.1rem;
   text-align: center;
-}
-
-.list {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  justify-content: center;
-  gap: 1rem;
-  width: 90%;
   margin-bottom: 1rem;
 }
 
-.list_item {
-  font-size: 1.5rem;
+.section {
+  background: #fff;
+  padding: 1.5rem 2rem;
+  border-radius: 1rem;
+  box-shadow: 0 0 0.5rem rgba(0, 0, 0, 0.05);
+}
+
+.section h2 {
+  font-size: 1.4rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+  color: #111;
+}
+
+.section p,
+.section ul {
+  font-size: 1.05rem;
+  margin-left: 0;
+}
+
+.section ul {
+  list-style: disc;
+  padding-left: 1.5rem;
 }
 
 .link {
-  font-size: 1.5rem;
+  display: inline-block;
+  font-size: 1.1rem;
+  font-weight: 600;
   color: #000;
-  font-weight: 700;
   text-decoration: none;
-  transition: color 0.3s ease-in-out;
-  padding: 0.5rem 1rem;
-  border-radius: 0.5rem;
   background-color: #fff;
-  box-shadow: 0 0 0.5rem rgba(0, 0, 0, 0.2);
+  padding: 0.6rem 1.2rem;
+  border-radius: 0.5rem;
+  margin-top: 1rem;
+  box-shadow: 0 0 0.4rem rgba(0, 0, 0, 0.2);
+  transition: all 0.3s ease-in-out;
+  text-align: center;
 }
 
 .link:hover {
   color: #fff;
   background-color: #000;
+  transform: translateY(-2px);
 }

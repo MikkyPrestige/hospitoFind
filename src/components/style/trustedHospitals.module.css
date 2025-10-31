@@ -6,7 +6,7 @@
   overflow: hidden;
 }
 
-/* === AUTO-PAUSE LOGIC === */
+/* === AUTO-PAUSE === */
 .active .track {
   animation-play-state: running;
 }
@@ -19,7 +19,7 @@
   color: #08299b;
   font-size: 2rem;
   font-weight: 700;
-  margin-bottom: .5rem;
+  margin-bottom: 0.5rem;
 }
 
 .subText {
@@ -30,7 +30,6 @@
   line-height: 1.6;
 }
 
-/* ====== MARQUEE SCROLL ====== */
 .marquee {
   width: 100%;
   overflow: hidden;
@@ -86,12 +85,12 @@
 .track {
   display: flex;
   gap: 2.5rem;
-  animation: scroll 50s ease-in-out infinite; /* slower + reverses */
+  animation: scroll 50s ease-in-out infinite;
   width: max-content;
 }
 
 .marquee:hover .track {
-  animation-play-state: paused; /* pause when hovering */
+  animation-play-state: paused;
 }
 
 @media (max-width: 700px) {
@@ -102,7 +101,6 @@
   }
 }
 
-/* ====== LOGO CARDS ====== */
 .logoCard {
   background: #fff;
   border-radius: 1rem;
@@ -140,7 +138,6 @@
   white-space: wrap;
 }
 
-/* ====== CTA BUTTON ====== */
 .ctaBtn {
   background-color: #08299b;
   color: #fff;

@@ -2,7 +2,7 @@
   margin: 2rem auto;
   padding: 2.5rem 1rem;
   max-width: 1200px;
-  background-color: #f9fafb; /* light gray, matches other sections */
+  background-color: #f9fafb;
   border-radius: 16px;
   box-shadow: 0 4px 16px rgba(0, 0, 0, 0.05);
 }
@@ -95,7 +95,7 @@
 }
 
 .link {
-  color: #0284c7; /* your brand blue */
+  color: #0284c7;
   font-weight: 600;
   text-decoration: none;
   transition: color 0.2s;

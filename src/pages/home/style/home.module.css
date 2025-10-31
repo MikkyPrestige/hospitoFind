@@ -70,6 +70,7 @@
   color: #1E1E1E;
   max-width: 35rem;
   margin: 0 auto;
+  text-align: center;
 }
 @media only screen and (min-width: 48.0625em) {
   .bg .header .subtitle {
@@ -118,7 +119,7 @@
 }
 .bg .img {
   flex: 1;
-  max-width: 500px;
+  max-width: 700px;
   width: 100%;
   display: flex;
   justify-content: center;

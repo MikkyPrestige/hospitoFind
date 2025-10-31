@@ -27,7 +27,6 @@ const DailyHealthTip = () => {
 
         const fetchTips = async () => {
             try {
-                // const res = await fetch("http://localhost:5000/health/tips");
                 const res = await fetch(`${URL}/health/tips`);
                 const data = await res.json();
                 if (Array.isArray(data) && data.length > 0) {
@@ -36,7 +35,7 @@ const DailyHealthTip = () => {
                     localStorage.setItem("dailyHealthTipDate", today);
                 }
             } catch (err) {
-                console.error("Error fetching health tips:", err);
+                // console.error("Error fetching health tips:", err);
             } finally {
                 setLoading(false);
             }

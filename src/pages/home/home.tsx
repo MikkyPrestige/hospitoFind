@@ -1,7 +1,8 @@
 import { Link } from 'react-router-dom'
 import { BsArrowRightShort } from 'react-icons/bs'
 import { Avatar } from '@/components/avatar'
-import Image from '@/assets/images/doctor-patient.jpg'
+// import Image from '@/assets/images/doctor-patient.jpg'
+import Image from '@/assets/images/hospital1.jpg'
 import { Button } from '@/components/button'
 import style from './style/home.module.scss'
 import Header from '@/layouts/header/nav'
@@ -15,6 +16,7 @@ import { Helmet } from 'react-helmet-async'
 import TrustedSection from '@/components/trustedHospitals'
 import Motion from '@/components/motion'
 import { fadeUp, sectionReveal } from '@/hooks/animations'
+
 
 const Home = () => {
   const { state } = useAuthContext();
@@ -42,11 +44,10 @@ const Home = () => {
           <Motion className={style.container} variants={sectionReveal} as="section">
             <div className={style.header}>
               <h1 className={style.title}>
-                Find trusted hospitals near you — anytime, anywhere.
+                Find trusted hospitals near you — Anytime, Anywhere!
               </h1>
               <p className={style.subtitle}>
-                Connecting you to quality healthcare across the globe, with tools
-                that make finding care simple and fast.
+                Connecting you to quality healthcare across the globe. Fast, easy, reliable.
               </p>
             </div>
 

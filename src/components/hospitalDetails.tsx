@@ -37,7 +37,7 @@ const HospitalDetails = () => {
                 const res =  await getHospitalDetails(id as unknown as number);
                 setHospital(res);
             } catch (err) {
-                console.error("Error fetching hospital:", err);
+                // console.error("Error fetching hospital:", err);
             } finally {
                 setLoading(false);
             }
@@ -133,7 +133,7 @@ const HospitalDetails = () => {
                                 </Motion>
                             </div>
 
-                            {/* 🗺️ Map Section */}
+                            {/* Map Section */}
                             {hospital.address && (
                                 <Motion variants={fadeUp} className={style.mapWrapper}>
                                     <h3>Location Map</h3>
@@ -156,7 +156,6 @@ const HospitalDetails = () => {
                             )}
                         </Motion>
 
-                        {/* ⬅️ Back Button */}
                         <Motion variants={fadeUp} className={style.backRow}>
                             <Button onClick={handleBack} className={style.backBtn}>
                                 ← Back to Hospitals

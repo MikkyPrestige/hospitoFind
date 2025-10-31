@@ -82,6 +82,7 @@
   transition: right 1s ease-in-out;
   z-index: 950;
   border-bottom-left-radius: 1rem;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
 }
 
 .show {
@@ -101,71 +102,75 @@
   align-items: center;
   gap: 1rem;
 }
-.smallList li .smallIcon {
-  color: #08299B;
-  font-size: 1.6rem;
-}
 .smallList li .smallLink {
   font-size: 1.8rem;
-  font-weight: 500;
+  font-weight: 600;
   text-decoration: none;
   color: #000000;
-  transition: color 0.3s ease;
+  transition: color 0.3s border-bottom 0.3s ease;
 }
-.smallList li .smallLink:hover {
+.smallList li .smallLink:hover, .smallList li .smallLink:active {
   color: #08299B;
+  border-bottom: 2px solid #000;
 }
 
 .smallWrapper {
   display: flex;
-  justify-content: center;
+  flex-direction: row;
   align-items: center;
+  justify-content: center;
   gap: 1rem;
+  /* Shared button base */
+  /* Dashboard (Primary CTA) */
+  /* Login / Signup (Secondary CTAs) */
+}
+.smallWrapper .smallAuth,
+.smallWrapper .dashboard {
+  font-weight: 600;
+  padding: 0.6rem 1.2rem;
+  border-radius: 0.6rem;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+  text-decoration: none;
 }
 .smallWrapper .dashboard {
-  font-size: 1.8rem;
-  font-weight: 700;
-  text-decoration: none;
-  color: #08299B;
-  position: relative;
-  transition: color 0.3s ease;
+  background: #000;
+  color: #fff;
+  border: 1.5px solid #000;
 }
 .smallWrapper .dashboard:hover {
-  color: #08299B;
-}
-.smallWrapper .dashboard::after {
-  content: "";
-  position: absolute;
-  left: 0;
-  bottom: -3px;
-  width: 0%;
-  height: 2px;
-  background: #88B3DB;
-  transition: width 0.3s ease;
-}
-.smallWrapper .dashboard:hover::after {
-  width: 100%;
+  background: #333;
+  border-color: #333;
+  transform: translateY(-2px);
 }
 .smallWrapper .smallAuth {
-  border: none;
-  border-radius: 2rem;
-  background: linear-gradient(90deg, #08299B, #88B3DB);
-  color: white;
-  padding: 0.8rem 1.5rem;
-  cursor: pointer;
-  transition: all 0.3s ease;
+  background: transparent;
+  color: #000;
+  border: 1.5px solid #000;
+  margin-left: 0.5rem;
 }
 .smallWrapper .smallAuth:hover {
+  background: #000;
+  color: #fff;
   transform: translateY(-2px);
-  box-shadow: 0 3px 10px rgba(0, 0, 255, 0.2);
 }
 
+@media (max-width: 768px) {
+  .smallAuth,
+  .dashboard {
+    width: 100%;
+    text-align: center;
+    margin: 0.5rem 0;
+  }
+}
 .large {
   display: none;
 }
 @media only screen and (min-width: 48.0625em) {
   .large {
     display: flex;
+    flex-direction: row;
     align-items: center;
     justify-content: space-between;
     padding: 0 2rem;
@@ -182,13 +187,19 @@
 }
 .large .largeNav {
   display: flex;
+  flex-direction: row;
   align-items: center;
+  justify-content: space-between;
   gap: 5rem;
+  width: 55%;
 }
 .large .largeNav .largeList {
   display: flex;
+  flex-direction: row;
   align-items: center;
-  gap: 2rem;
+  justify-content: center;
+  width: 70%;
+  gap: 5rem;
   list-style: none;
 }
 .large .largeNav .largeList li {
@@ -202,10 +213,11 @@
   text-decoration: none;
   color: #000000;
   position: relative;
-  transition: color 0.3s ease;
+  transition: color 0.3s border-bottom 0.3s ease;
 }
-.large .largeNav .largeList li .largeLink:hover {
+.large .largeNav .largeList li .largeLink:hover, .large .largeNav .largeList li .largeLink:active {
   color: #08299B;
+  border-bottom: 2px solid #000;
 }
 .large .largeNav .largeList li .largeLink::after {
   content: "";
@@ -223,46 +235,41 @@
 .large .largeNav .largeWrapper {
   display: flex;
   gap: 1rem;
+  /* Shared button base */
+  /* Dashboard (Primary CTA) */
+}
+.large .largeNav .largeWrapper .largeAuth,
+.large .largeNav .largeWrapper .dashboard {
+  font-weight: 600;
+  padding: 0.6rem 1.2rem;
+  border-radius: 0.6rem;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+  text-decoration: none;
 }
 .large .largeNav .largeWrapper .dashboard {
-  font-size: 1.4rem;
-  font-weight: 700;
-  text-decoration: none;
-  color: #08299B;
-  position: relative;
-  transition: color 0.3s ease;
+  background: #000;
+  color: #fff;
+  border: 1.5px solid #000;
 }
 .large .largeNav .largeWrapper .dashboard:hover {
-  color: #08299B;
-}
-.large .largeNav .largeWrapper .dashboard::after {
-  content: "";
-  position: absolute;
-  left: 0;
-  bottom: -3px;
-  width: 0%;
-  height: 2px;
-  background: #88B3DB;
-  transition: width 0.3s ease;
-}
-.large .largeNav .largeWrapper .dashboard:hover::after {
-  width: 100%;
+  background: #333;
+  border-color: #333;
+  transform: translateY(-2px);
 }
 .large .largeNav .largeWrapper .largeAuth {
-  border: none;
-  border-radius: 2rem;
-  background: linear-gradient(90deg, #08299B, #88B3DB);
-  color: white;
-  padding: 0.5rem 1.5rem;
-  cursor: pointer;
-  transition: all 0.3s ease;
+  background: transparent;
+  color: #000;
+  border: 1.5px solid #000;
+  margin-left: 0.5rem;
 }
 .large .largeNav .largeWrapper .largeAuth:hover {
+  background: #000;
+  color: #fff;
   transform: translateY(-2px);
-  box-shadow: 0 3px 10px rgba(0, 0, 255, 0.2);
 }
 
-/* Logout Button */
 .error {
   color: #FF033E;
   font-size: 0.9rem;

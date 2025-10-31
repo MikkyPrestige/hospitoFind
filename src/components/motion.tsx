@@ -24,7 +24,7 @@ const Motion: React.FC<MotionWrapperProps> = ({
     animate,
     ...rest
 }) => {
-    // ✅ Memoize motion tag to avoid recreation on re-render
+    // Memoize motion tag to avoid recreation on re-render
     const MotionTag = useMemo(() => {
         return typeof Tag === "string"
             ? (motion as any)[Tag] || motion.div

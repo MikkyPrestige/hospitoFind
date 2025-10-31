@@ -46,7 +46,7 @@
 @media only screen and (min-width: 48.0625em) {
   .bg .wrapper .top {
     height: 43.875rem;
-    padding: 3.5rem;
+    padding: 1rem;
     justify-content: flex-start;
   }
 }
@@ -67,7 +67,18 @@
   color: #000000;
   line-height: 150%;
   letter-spacing: -0.011em;
-  margin-bottom: 1rem;
+}
+.bg .wrapper .top .gradient {
+  font-size: 1.2rem;
+  font-weight: 600;
+  text-align: center;
+  background: linear-gradient(90deg, #000 0%, #555 100%);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  margin: 0rem auto;
+  line-height: 1.8;
+  max-width: 750px;
 }
 .bg .wrapper .top .cta {
   font-size: 1.4rem;

@@ -36,7 +36,7 @@ const SearchForm = ({
   const [weeklyViews, setWeeklyViews] = useState<number>(0);
   const { state } = useAuthContext();
 
-  // load favorites & weekly on mount (favorites are Hospital objects)
+  // load favorites & weekly on mount
   useEffect(() => {
     try {
       const favRaw = localStorage.getItem(FAVORITES_KEY);
@@ -79,11 +79,11 @@ const SearchForm = ({
       if (!data || data.length === 0) {
         setError('No hospital found for your search. try a nearby city.');
         setHospitals([]);
-        onSearchResultsChange?.(false); // no results
+        onSearchResultsChange?.(false);
       } else {
         setHospitals(data);
         setError('');
-        onSearchResultsChange?.(true); // results exist
+        onSearchResultsChange?.(true)
       }
     } catch (err: any) {
       if (err.data) setError(err.message);
@@ -96,9 +96,9 @@ const SearchForm = ({
     }
   };
 
-  // explore: add recently viewed (full object) and update weekly count
+  // add recently viewed  and update weekly count
   const handleExplore = (hospital: Hospital) => {
-    // recently viewed storing full object with viewedAt
+    // recently viewed
     try {
       const raw = localStorage.getItem(RECENTLY_KEY) || '[]';
       const existing = JSON.parse(raw) as StoredHospital[];
@@ -125,7 +125,7 @@ const SearchForm = ({
     }
   };
 
-  // favorites: store full object (Hospital)
+  // favorites: store full Hospital
   const toggleFavorite = (hospital: Hospital) => {
     try {
       const raw = localStorage.getItem(FAVORITES_KEY) || '[]';
@@ -261,7 +261,7 @@ const SearchForm = ({
               </button>
             </Motion>
           </Motion>
-        ) : null }
+        ) : null}
       </ul>
       <Outlet />
     </Motion>

@@ -3,6 +3,87 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  height: 100vh;
+  background: linear-gradient(135deg, #f8fbff 0%, #e3f2ff 100%);
+  color: #0a2342;
+  gap: 2rem;
+}
+
+.loader {
+  position: relative;
+  width: 120px;
+  height: 120px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.blob {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #1d9bf0, #1873d3);
+  animation: pulse 1.6s ease-in-out infinite;
+  box-shadow: 0 0 25px rgba(29, 155, 240, 0.5);
+}
+
+@keyframes pulse {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 0.9;
+  }
+  50% {
+    transform: scale(1.15);
+    opacity: 1;
+  }
+}
+
+.text {
+  font-size: 1.75rem;
+  font-weight: 600;
+  text-align: center;
+  color: #0a2342;
+  font-family: 'Inter', 'Poppins', sans-serif;
+  letter-spacing: 0.03em;
+  animation: fadeIn 1s ease forwards;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Responsive tweaks */
+@media (max-width: 600px) {
+  .blob {
+    width: 60px;
+    height: 60px;
+  }
+
+  .text {
+    font-size: 1.4rem;
+  }
+}
+
+.fadeOut {
+  opacity: 0;
+  transform: scale(0.98);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+
+
+/* .container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
   gap: 0.5rem;
   height: 100vh;
   background: #c1c1c1;
@@ -53,4 +134,4 @@
   100% {
     transform: translate(300%);
   }
-}
+} */

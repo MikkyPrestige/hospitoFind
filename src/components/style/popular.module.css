@@ -150,7 +150,6 @@ background: rgba(255, 255, 255, 0.9);
   margin-top: 1rem;
 }
 
-/* Responsive grid */
 @media (min-width: 48em) {
   .card {
     width: 45%;
@@ -163,7 +162,6 @@ background: rgba(255, 255, 255, 0.9);
   }
 }
 
-/* Subtle animations */
 @keyframes fadeIn {
   from {
     opacity: 0;

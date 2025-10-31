@@ -34,7 +34,7 @@
 
       @include mixins.respond(tab-land) {
         height: 43.875rem;
-        padding: 3.5rem;
+        padding: 1rem;
         justify-content: flex-start;
       }
 
@@ -57,8 +57,21 @@
         color: $color-black;
         line-height: $line-height-2;
         letter-spacing: $space;
-        margin-bottom: 1rem;
       }
+
+      .gradient {
+  font-size: 1.2rem;
+  font-weight: 600;
+  text-align: center;
+  background: linear-gradient(90deg, #000 0%, #555 100%);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  margin: 0rem auto;
+  line-height: 1.8;
+  max-width: 750px;
+}
+
 
       .cta {
         font-size: $font-size-2;
