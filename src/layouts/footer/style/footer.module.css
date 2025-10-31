@@ -15,6 +15,8 @@
   text-align: center;
   max-width: 600px;
   margin: 0 auto;
+  border-bottom: 1px solid rgba(14, 61, 183, 0.1);
+  padding-bottom: 3rem;
 }
 .footer .newsletter .newsTitle {
   font-size: 1.6rem;
@@ -73,13 +75,20 @@
   }
 }
 .footer .top .brand {
+  flex-grow: 1;
   text-align: center;
-  max-width: 350px;
 }
 @media only screen and (min-width: 48.0625em) {
   .footer .top .brand {
     text-align: left;
   }
+}
+.footer .top .brand .about {
+  font-size: 1rem;
+  line-height: 1.7;
+  color: #444;
+  margin-bottom: 1rem;
+  opacity: 0.9;
 }
 .footer .top .brand .tagline {
   font-size: 1rem;
@@ -145,13 +154,12 @@
   text-align: center;
   font-size: 0.9rem;
   color: #4A4A4A;
+  opacity: 0.9;
+  box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.03);
 }
-.footer .bottom a {
-  color: #08299B;
-  text-decoration: none;
-}
-.footer .bottom a:hover {
-  color: #88B3DB;
+.footer .bottom p:last-child {
+  font-size: 0.85rem;
+  color: #C1C1C1;
 }
 @media only screen and (min-width: 48.0625em) {
   .footer .bottom {
