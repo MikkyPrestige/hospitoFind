@@ -17,6 +17,8 @@
     text-align: center;
     max-width: 600px;
     margin: 0 auto;
+     border-bottom: 1px solid rgba(14, 61, 183, 0.1);
+  padding-bottom: 3rem;
 
     .newsTitle {
       font-size: 1.6rem;
@@ -81,12 +83,22 @@
     }
 
     .brand {
+      flex-grow: 1;
       text-align: center;
-      max-width: 350px;
 
       @include mixins.respond(tab-land) {
         text-align: left;
       }
+
+  .about {
+  font-size: 1rem;
+  line-height: 1.7;
+  color: #444;
+  margin-bottom: 1rem;
+  opacity: 0.9;
+}
+
+
 
       .tagline {
         font-size: 1rem;
@@ -155,27 +167,51 @@
     }
   }
 
-  .bottom {
-    border-top: 1px solid rgba(14, 61, 183, 0.1);
-    padding-top: 1rem;
-    text-align: center;
-    font-size: 0.9rem;
-    color: $color-gray-dark;
+.bottom {
+  border-top: 1px solid rgba(14, 61, 183, 0.1);
+  padding-top: 1rem;
+  text-align: center;
+  font-size: 0.9rem;
+  color: $color-gray-dark;
+  opacity: 0.9;
+box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.03);
 
-    a {
-      color: $color-blue;
-      text-decoration: none;
 
-      &:hover {
-        color: $color-blue-light;
-      }
-    }
 
-    @include mixins.respond(tab-land) {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      text-align: left;
-    }
+  p:last-child {
+    font-size: 0.85rem;
+    color: $color-gray;
   }
+
+  @include mixins.respond(tab-land) {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    text-align: left;
+  }
+}
+
+  // .bottom {
+  //   border-top: 1px solid rgba(14, 61, 183, 0.1);
+  //   padding-top: 1rem;
+  //   text-align: center;
+  //   font-size: 0.9rem;
+  //   color: $color-gray-dark;
+
+  //   a {
+  //     color: $color-blue;
+  //     text-decoration: none;
+
+  //     &:hover {
+  //       color: $color-blue-light;
+  //     }
+  //   }
+
+  //   @include mixins.respond(tab-land) {
+  //     display: flex;
+  //     justify-content: space-between;
+  //     align-items: center;
+  //     text-align: left;
+  //   }
+  // }
 }

@@ -165,7 +165,7 @@ const HospitalInfo = () => {
 
             {hospital.services && (
               <div className={style.section}>
-                <h3 className={style.section_title}>💉 Our Key Services</h3>
+                <h3 className={style.section_title}>💉 Available Services</h3>
                 <ul className={style.list}>
                   {hospital.services.map((s, i) => (
                     <li key={i}>{s}</li>
@@ -206,7 +206,7 @@ const HospitalInfo = () => {
 
         <Motion variants={fadeUp} className={style.backWrapper}>
           <button onClick={() => navigate(-1)} className={style.backBtn}>
-            ← Go back
+            ← Go Back
           </button>
         </Motion>
       </div>

@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { FaLinkedin } from "react-icons/fa";
+import { FaLinkedin, FaEnvelope } from "react-icons/fa";
 import style from "./style/footer.module.scss";
 import Motion from "@/components/motion";
 import { fadeUp, sectionReveal } from "@/hooks/animations";
@@ -10,7 +10,7 @@ const Footer = () => {
       <Motion variants={fadeUp} className={style.newsletter}>
         <h2 className={style.newsTitle}>Stay in the loop</h2>
         <p className={style.newsText}>
-          Get updates about new hospitals, services, and health tips.
+          Get updates about new hospitals, services and health tips.
         </p>
         <form
           className={style.newsForm}
@@ -34,8 +34,11 @@ const Footer = () => {
 
       <Motion variants={fadeUp} className={style.top}>
         <div className={style.brand}>
+          <p className={style.about}>
+            HospitoFind helps you easily locate hospitals and healthcare providers near you.
+          </p>
           <p className={style.tagline}>
-            Making healthcare more accessible, one search at a time.
+            Making healthcare more accessible, reliable and fast. One search at a time!
           </p>
           <div className={style.socials}>
             <a
@@ -44,6 +47,13 @@ const Footer = () => {
               rel="noreferrer"
             >
               <FaLinkedin />
+            </a>
+            <a
+              href="mailto:hospitofind@outlook.com"
+              target="_blank"
+              rel="noreferrer"
+            >
+              <FaEnvelope />
             </a>
           </div>
         </div>
