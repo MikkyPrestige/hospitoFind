@@ -19,12 +19,11 @@ const HealthAlerts = () => {
         const fetchAlerts = async () => {
             setLoading(true);
             try {
-                // const res = await fetch("http://localhost:5000/health/alerts");
                 const res = await fetch(`${URL}/health/alerts`);
                 const data = await res.json();
                 setAlerts(data);
             } catch (err) {
-                console.error("Error fetching health alerts:", err);
+                // console.error("Error fetching health alerts:", err);
             } finally {
                 setLoading(false);
             }

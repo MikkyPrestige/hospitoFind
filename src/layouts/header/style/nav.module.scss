@@ -76,15 +76,13 @@
   height: 35rem;
   background: rgba(255, 255, 255, 0.95);
   box-shadow: -2px 0 15px rgba(0, 0, 0, 0.1);
-display: flex;
-flex-direction: column;
-align-items: center;
-  justify-content: space-between;
+@include mixins.flexColSpaceBetween;
   padding: 5rem 2rem;
   gap: 2rem;
   transition: right 1s ease-in-out;
   z-index: 950;
 border-bottom-left-radius: 1rem;
+border-bottom: 1px solid rgba(0, 0, 0, 0.05);
 }
 
 .show {
@@ -101,82 +99,81 @@ border-bottom-left-radius: 1rem;
     align-items: center;
     gap: 1rem;
 
-    .smallIcon {
-      color: $color-blue;
-      font-size: 1.6rem;
-    }
-
     .smallLink {
       font-size: $font-size-4;
-      font-weight: 500;
+      font-weight: 600;
       text-decoration: none;
       color: $color-black;
-      transition: color 0.3s ease;
+      transition: color 0.3s border-bottom 0.3s ease;
 
-      &:hover {
-        color: $color-blue;
-      }
+&:hover,
+&:active {
+ color: $color-blue;
+        border-bottom: 2px solid #000;
+}
     }
   }
 }
 
 .smallWrapper {
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  @include mixins.flexRow;
   gap: 1rem;
 
-   .dashboard {
-font-size: $font-size-4;
-          font-weight: 700;
-          text-decoration: none;
-          color: $color-blue;
-          position: relative;
-          transition: color 0.3s ease;
+  /* Shared button base */
+.smallAuth,
+.dashboard {
+  font-weight: 600;
+  padding: 0.6rem 1.2rem;
+  border-radius: 0.6rem;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+  text-decoration: none;
+}
 
-           &:hover {
-            color: $color-blue;
-          }
+/* Dashboard (Primary CTA) */
+.dashboard {
+  background: #000;
+  color: #fff;
+  border: 1.5px solid #000;
+}
 
-          &::after {
-            content: "";
-            position: absolute;
-            left: 0;
-            bottom: -3px;
-            width: 0%;
-            height: 2px;
-            background: $color-blue-light;
-            transition: width 0.3s ease;
-          }
+.dashboard:hover {
+  background: #333;
+  border-color: #333;
+  transform: translateY(-2px);
+}
 
-          &:hover::after {
-            width: 100%;
-          }
-      }
+/* Login / Signup (Secondary CTAs) */
+.smallAuth {
+  background: transparent;
+  color: #000;
+  border: 1.5px solid #000;
+  margin-left: 0.5rem;
+}
 
-  .smallAuth {
-    border: none;
-    border-radius: 2rem;
-    background: linear-gradient(90deg, $color-blue, $color-blue-light);
-    color: white;
-    padding: 0.8rem 1.5rem;
-    cursor: pointer;
-    transition: all 0.3s ease;
+.smallAuth:hover {
+  background: #000;
+  color: #fff;
+  transform: translateY(-2px);
+}
+}
 
-    &:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 3px 10px rgba(0, 0, 255, 0.2);
-    }
+@media (max-width: 768px) {
+  .smallAuth,
+  .dashboard {
+    width: 100%;
+    text-align: center;
+    margin: 0.5rem 0;
   }
 }
+
 
 .large {
   display: none;
 
   @include mixins.respond(tab-land) {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
+   @include mixins.flexRowSpaceBetween;
     padding: 0 2rem;
     height: 6.5rem;
   }
@@ -192,14 +189,14 @@ font-size: $font-size-4;
   }
 
   .largeNav {
-    display: flex;
-    align-items: center;
+    @include mixins.flexRowSpaceBetween;
     gap: 5rem;
+    width: 55%;
 
     .largeList {
-      display: flex;
-      align-items: center;
-      gap: 2rem;
+      @include mixins.flexRow;
+width: 70%;
+      gap: 5rem;
       list-style: none;
 
       li {
@@ -213,10 +210,12 @@ font-size: $font-size-4;
           text-decoration: none;
           color: $color-black;
           position: relative;
-          transition: color 0.3s ease;
+          transition: color 0.3s border-bottom 0.3s ease;
 
-          &:hover {
+          &:hover,
+          &:active {
             color: $color-blue;
+            border-bottom: 2px solid #000;
           }
 
           &::after {
@@ -241,77 +240,46 @@ font-size: $font-size-4;
       display: flex;
       gap: 1rem;
 
-      .dashboard {
-font-size: $font-size-2;
-          font-weight: 700;
-          text-decoration: none;
-          color: $color-blue;
-          position: relative;
-          transition: color 0.3s ease;
-
-           &:hover {
-            color: $color-blue;
-          }
-
-          &::after {
-            content: "";
-            position: absolute;
-            left: 0;
-            bottom: -3px;
-            width: 0%;
-            height: 2px;
-            background: $color-blue-light;
-            transition: width 0.3s ease;
-          }
-
-          &:hover::after {
-            width: 100%;
-          }
-      }
-
-      .largeAuth {
-        border: none;
-        border-radius: 2rem;
-        background: linear-gradient(90deg, $color-blue, $color-blue-light);
-        color: white;
-        padding: 0.5rem 1.5rem;
-        cursor: pointer;
-        transition: all 0.3s ease;
-
-        &:hover {
-          transform: translateY(-2px);
-          box-shadow: 0 3px 10px rgba(0, 0, 255, 0.2);
-        }
-      }
-    }
-  }
+  /* Shared button base */
+.largeAuth,
+.dashboard {
+  font-weight: 600;
+  padding: 0.6rem 1.2rem;
+  border-radius: 0.6rem;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+  text-decoration: none;
 }
 
-/* Logout Button */
-// .logout {
-//   background-color: $color-red;
-//   border-radius: 1rem;
-//   padding: 0.3rem 0.8rem;
-//   color: white;
-//   font-size: 0.9rem;
-//   border: none;
-//   cursor: pointer;
-//   transition: all 0.3s ease;
+/* Dashboard (Primary CTA) */
+.dashboard {
+  background: #000;
+  color: #fff;
+  border: 1.5px solid #000;
+}
 
-//   &:hover {
-//     background-color: darken($color-red, 8%);
-//   }
+.dashboard:hover {
+  background: #333;
+  border-color: #333;
+  transform: translateY(-2px);
+}
 
-//   .smallSpan {
-//     display: flex;
-//     align-items: center;
-//     gap: 0.4rem;
-//   }
+.largeAuth {
+  background: transparent;
+  color: #000;
+  border: 1.5px solid #000;
+  margin-left: 0.5rem;
+}
 
-//   .smallIcon {
-//     font-size: 1.2rem;
-//   }
-// }
+.largeAuth:hover {
+  background: #000;
+  color: #fff;
+  transform: translateY(-2px);
+}
+}
+  }
+}
 
 .error {
   color: $color-red;

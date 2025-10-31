@@ -6,7 +6,6 @@ import Logo from "@/assets/images/logo.svg";
 import { Avatar } from "@/components/avatar";
 import style from "./style/nav.module.css";
 import { useAuthContext } from "@/context/userContext";
-// import useLogout from "@/hooks/logout";
 
 interface NavLinksProps extends NavLinkProps {
   to: string;
@@ -25,25 +24,6 @@ export const NavLinks = ({ to, ...props }: NavLinksProps) => {
     />
   );
 };
-
-// const Logout = () => {
-//   const { logout, loading, error } = useLogout();
-
-//   return (
-//     <div>
-//       <button onClick={logout} disabled={loading} className={style.logout}>
-//         {loading ? (
-//           "Bye..."
-//         ) : (
-//           <span className={style.smallSpan}>
-//             Logout
-//           </span>
-//         )}
-//       </button>
-//       {error && <p className={style.error}>{error}</p>}
-//     </div>
-//   );
-// };
 
 const LayoutMobile = () => {
   const [showMenu, setShowMenu] = useState(false);
@@ -89,11 +69,11 @@ const LayoutMobile = () => {
 
       <nav className={`${style.smallNav} ${showMenu ? style.show : ""}`}>
         <ul className={style.smallList}>
-          <li>
+          {/* <li>
             <NavLinks to="/" onClick={toggleMenu} className={style.smallLink}>
               Home
             </NavLinks>
-          </li>
+          </li> */}
           <li>
             <NavLinks to="/find" onClick={toggleMenu} className={style.smallLink}>
               Find a Hospital
@@ -153,11 +133,11 @@ const LayoutLarge = () => {
 
       <nav className={style.largeNav}>
         <ul className={style.largeList}>
-          <li>
+          {/* <li>
             <NavLinks to="/" className={style.largeLink}>
               Home
             </NavLinks>
-          </li>
+          </li> */}
           <li>
             <NavLinks to="/find" className={style.largeLink}>
               Find a Hospital

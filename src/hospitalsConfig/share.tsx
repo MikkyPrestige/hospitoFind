@@ -8,7 +8,7 @@ const ShareButton = ({ searchParams }: SearchProps) => {
   const [shareableLink, setShareableLink] = useState<string>('')
   const [error, setError] = useState<string>('')
   const [generating, setGenerating] = useState<boolean>(false)
-  const [copied, setCopied] = useState<boolean>(false)
+  const [_copied, setCopied] = useState<boolean>(false)
   const [toast, setToast] = useState<{ message: string; type: 'success' | 'error' } | null>(null)
 
   const handleShare = async () => {

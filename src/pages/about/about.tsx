@@ -11,7 +11,8 @@ import Footer from "@/layouts/footer/footer";
 import Motion from "@/components/motion";
 import { fadeUp, slideLeft, slideRight, zoomIn, sectionReveal } from "@/hooks/animations";
 import { Avatar } from "@/components/avatar";
-import Doctor from "@/assets/images/patient-doctor.jpg";
+// import Doctor from "@/assets/images/patient-doctor.jpg";
+import Doctor from "@/assets/images/doctor-shake.webp";
 import Stethoscope from "@/assets/images/stethoscope.jpg";
 import Handset from "@/assets/images/handset.jpg";
 import Laptop from "@/assets/images/laptop.jpg";
@@ -19,8 +20,10 @@ import Search from "@/assets/images/hospitalSearch.png";
 import Reviewer1 from "@/assets/images/reviewer1.jpg";
 import Reviewer2 from "@/assets/images/reviewer2.jpg";
 import Reviewer3 from "@/assets/images/reviewer3.jpg";
-import Patient from "@/assets/images/patient.jpg";
+// import Patient from "@/assets/images/patient.jpg";
+import Patient from "@/assets/images/smiles.jpg";
 import { Button } from "@/components/button";
+
 
 const About = () => {
   return (
@@ -47,9 +50,14 @@ const About = () => {
               Welcome to <span className={style.span}>HospitoFind</span>
             </h1>
             <p className={style.para}>
-              HospitoFind helps you locate hospitals in your area, explore medical services, and
-              connect with trusted healthcare providers — making access to care simpler and faster.
+              HospitoFind was built out of a simple idea — that finding healthcare shouldn’t be complicated.
+              In many regions, especially across developing areas, locating a nearby hospital or clinic can be stressful and time-consuming. HospitoFind aims to change that by offering a simple, reliable way to discover hospitals, learn about their services and get key contact details all in one place.
             </p>
+            <p className={style.gradient}>
+              With features like hospital search, contact details, location mapping, and easy data export or sharing,
+              HospitoFind empowers users to save time and connect with trusted healthcare providers faster.
+            </p>
+
             <Button
               children={
                 <span className={style.cta}>
@@ -64,14 +72,14 @@ const About = () => {
               <Avatar
                 image={Patient}
                 alt="Patient"
-                style={{ width: "100%", height: "100%", borderRadius: "1rem" }}
+                style={{ width: "100%", height: "100%", borderRadius: "1rem", objectFit: "cover" }}
               />
             </motion.div>
             <motion.div variants={slideRight} className={style.img_2}>
               <Avatar
                 image={Doctor}
                 alt="Doctor with patient"
-                style={{ width: "100%", height: "100%", borderRadius: "1rem" }}
+                style={{ width: "100%", height: "100%", borderRadius: "1rem", objectFit: "cover" }}
               />
             </motion.div>
           </div>

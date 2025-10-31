@@ -136,13 +136,12 @@
 
 @media (max-width: 1024px) {
   .tipsGrid {
-    grid-template-columns: repeat(2, 1fr); /* 2 per row */
+    grid-template-columns: repeat(2, 1fr);
   }
 }
 
-/* For small screens (mobile) */
 @media (max-width: 640px) {
   .tipsGrid {
-    grid-template-columns: 1fr; /* 1 per row */
+    grid-template-columns: 1fr;
   }
 }

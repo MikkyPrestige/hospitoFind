@@ -52,16 +52,18 @@ const Footer = () => {
           <div className={style.column}>
             <h2>Explore</h2>
             <Link to="/about">Our Story</Link>
-            <Link to="/dashboard">My Account</Link>
-            <Link to="/find">Find Hospital</Link>
+            <Link to="/find">Hospitals Nearby</Link>
           </div>
 
           <div className={style.column}>
             <h2>Resources</h2>
-            <Link to="https://www.linkedin.com/company/prestigeenigma">
+            <a
+              href="mailto:hospitofind@outlook.com"
+              target="_blank"
+              rel="noreferrer"
+            >
               Contact Us
-            </Link>
-            <Link to="#">News</Link>
+            </a>
             <Link to="/policy">Privacy Policy</Link>
           </div>
         </div>
@@ -73,7 +75,7 @@ const Footer = () => {
           Built with ❤️ Connecting you to better care.
         </p>
       </Motion>
-    </Motion>
+    </Motion >
   );
 };
 
