@@ -1,366 +1,373 @@
-@use '../../../assets/styles/mixins' as mixins;
+@use '../../../assets/styles/mixins';
 @import '../../../assets/styles/variables';
-@import url('https://fonts.googleapis.com/css2?family=Pacifico&display=swap');
 
 .section {
   width: 100%;
   min-height: 100vh;
+  display: flex;
+  flex-direction: row;
+  overflow: hidden;
+
+  @include mixins.respond(phone) {
+    flex-direction: column;
+  }
+
+.left {
+  flex: 1;
   position: relative;
+  background: linear-gradient(135deg, $color-blue 0%, #5fa3dc 100%);
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 0;
-  margin: 0;
-  background: transparent;
-  z-index: 0;
+  color: $color-white;
+  overflow: hidden;
 
-  @include mixins.respond(tab-port) {
-    flex-direction: column;
+  .overlay {
+    position: absolute;
+    inset: 0;
+    background: url('https://images.unsplash.com/photo-1761479336505-e397563d3b64?auto=format&fit=crop&w=1200&q=80')
+      center/cover no-repeat;
+    opacity: 0.18;
+    mix-blend-mode: multiply;
   }
 
-  .loginContainer {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    width: 100%;
-    max-width: 1100px;
-    padding: 2rem 1rem;
-    gap: 2rem;
+  .content {
+    position: relative;
+    z-index: 1;
+    padding: 4rem;
+    max-width: 600px;
+    text-align: left;
+    animation: fadeIn 1.2s ease forwards;
 
-    @include mixins.respond(phone) {
-      flex-direction: column;
-      justify-content: center;
+    .logoGroup {
+      display: flex;
       align-items: center;
-      height: 100vh;
-      padding: 1rem;
+      gap: 1rem;
+      margin-bottom: 3rem;
 
-      .wrapper {
-        width: 100%;
-        max-width: 95%;
-        padding: 1.5rem;
-        box-shadow: 0 3px 15px rgba(0, 0, 0, 0.15);
+      .logoIcon {
+        background: rgba(255, 255, 255, 0.25);
+        backdrop-filter: blur(4px);
+        padding: 0.8rem;
+        border-radius: 1.5rem;
       }
 
-      .imageSection {
-        display: none;
+      .heartIcon {
+        width: 2.5rem;
+        height: 2.5rem;
+      }
+
+      .logoText {
+        font-size: 3rem;
+        font-weight: $font-weight-bd;
+        letter-spacing: $space;
       }
     }
 
-    @include mixins.respond(tab-land) {
-      flex-direction: row;
-      justify-content: center;
-      align-items: center;
-      gap: 4rem;
+    .welcome {
+      font-size: 2.4rem;
+      font-weight: $font-weight-bds;
+      margin-bottom: 1rem;
     }
 
-    .imageSection {
-      flex: 1;
+    .tagline {
+      font-size: 1.4rem;
+      max-width: 420px;
+      color: rgba(255, 255, 255, 0.85);
+      margin-bottom: 2rem;
+      line-height: 1.6;
+    }
+
+    .features {
       display: flex;
       flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      opacity: 0;
-      animation: fadeIn 1s ease-out 0.4s forwards;
+      gap: 1.2rem;
 
-      @keyframes fadeIn {
-        0% {
-          opacity: 0;
-          transform: scale(0.98);
-        }
-        100% {
-          opacity: 1;
-          transform: scale(1);
-        }
-      }
-
-      .image {
-        width: 100%;
-        max-width: 380px;
-        border-radius: 1rem;
-        object-fit: cover;
-        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-      }
-
-      .tagline {
-        margin-top: 1rem;
-        font-size: 1.5rem;
-        color: $color-black-b;
-        font-style: italic;
-        line-height: 1.4;
-        max-width: 380px;
-      }
-    }
-
-    .wrapper {
-      flex: 1;
-      width: 70%;
-      background: rgba(255, 255, 255, 0.92);
-      color: $color-black;
-      border-radius: 1rem;
-      padding: 2rem;
-      font-family: $font-sans;
-      box-shadow: 0 4px 25px rgba(0, 0, 0, 0.15);
-      @include mixins.flexCol;
-      align-items: center;
-      gap: 1.5rem;
-      backdrop-filter: blur(12px);
-
-      @include mixins.respond(tab-land) {
-        max-width: 420px;
-      }
-
-      .title {
-        font-size: $font-size-4;
-        font-weight: $font-weight-bd;
-        text-align: center;
-
-        .brand {
-          color: $color-blue;
-        }
-      }
-
-      .subtitle {
-        font-size: $font-size-2;
-        color: $color-gray-dark;
-        font-weight: $font-weight-md;
-        text-align: center;
-        margin-bottom: 1rem;
-      }
-
-      .socialBtn {
+      .feature {
         display: flex;
-        justify-content: center;
-        flex-wrap: wrap;
+        align-items: center;
         gap: 1rem;
 
-        .social {
+        .featureIcon {
+          font-size: 1.8rem;
+          background: rgba(255, 255, 255, 0.2);
+          border-radius: 50%;
+          width: 3rem;
+          height: 3rem;
           display: flex;
           align-items: center;
           justify-content: center;
-          width: 40px;
-          height: 40px;
-          border-radius: 50%;
-          background: #f8f9fc;
-          border: 1px solid #ddd;
-          cursor: pointer;
-          transition: all 0.3s ease-in-out;
-
-          &:hover {
-            transform: scale(1.1);
-            background: #fff;
-            box-shadow: 0 3px 8px rgba(0, 0, 0, 0.1);
-          }
-
-          .icon {
-            font-size: 1.8rem;
-            color: rgb(29, 155, 240);
-          }
-        }
-      }
-
-      .or {
-        color: $color-black;
-        font-size: $font-size-2;
-        font-weight: $font-weight-bd;
-        font-family: 'Pacifico', cursive;
-        text-transform: uppercase;
-        text-align: center;
-        margin: 1rem 0;
-      }
-
-      .form {
-        width: 100%;
-        display: flex;
-        flex-direction: column;
-        gap: 1.5rem;
-
-        .form_group {
-          width: 100%;
-          display: flex;
-          flex-direction: column;
-          gap: 0.5rem;
-          position: relative;
-
-          .form_label {
-            font-size: $font-size-2;
-            margin-left: 1rem;
-          }
-
-          .form_input {
-            width: 100%;
-            height: 4.5rem;
-            border: 1px solid $color-gray;
-            background-color: $color-bg;
-            border-radius: $border-radius-sm;
-            padding: 1rem;
-            font-size: $font-size-2;
-            outline: none;
-            transition: all 0.3s ease-in-out;
-
-            &::placeholder {
-              color: $color-gray;
-              font-size: $font-size-1;
-            }
-
-            &:focus {
-              border: 1px solid $color-blue;
-              background: #fff;
-            }
-
-            .invalid {
-              border: 1px solid $color-red !important;
-              background: rgba(255, 0, 0, 0.03);
-            }
-          }
-
-          .form_password {
-            position: absolute;
-            top: 3.8rem;
-            right: 1rem;
-            font-size: $font-size-3;
-            color: $color-gray-dark;
-            cursor: pointer;
-          }
         }
 
-        .form_error {
-          font-size: $font-size-1;
-          color: $color-red;
-          text-align: center;
-        }
-
-        .form_footer {
-          width: 100%;
-          display: flex;
-          justify-content: space-between;
-          align-items: center;
-
-          .remember {
-            font-size: $font-size-1;
-            color: $color-black-b;
-            display: flex;
-            align-items: center;
-            gap: 0.4rem;
-
-            input {
-              accent-color: $color-blue;
-              transform: scale(1.1);
-            }
-          }
-
-          .forgot {
-            font-size: $font-size-1;
-            color: $color-blue;
-            text-decoration: none;
-            transition: color 0.2s ease;
-
-            &:hover {
-              color: $color-blue-light;
-            }
-          }
-        }
-
-        .form_button {
-          margin-top: 1rem;
-          width: 100%;
-          height: 4rem;
-          border-radius: $border-radius-sm;
-          background: linear-gradient(90deg, $color-blue, $color-blue-light);
-          color: $color-white;
-          font-size: $font-size-3;
-          cursor: pointer;
-          transition: all 0.3s ease-in-out;
-
-          &:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 4px 15px rgba(0, 0, 255, 0.2);
-          }
-        }
-      }
-
-      .link {
-        font-size: $font-size-1;
-        color: $color-black;
-        margin-top: 1rem;
-        text-align: center;
-
-        .login {
-          color: $color-blue;
-          cursor: pointer;
-          font-style: italic;
-          transition: all 0.3s ease-in-out;
-
-          &:hover {
-            color: $color-blue-light;
-          }
+        p {
+          font-size: 1.2rem;
+          color: rgba(255, 255, 255, 0.9);
         }
       }
     }
-
-    .signup {
-      animation-delay: 0.3s;
-
-      .signupTitle {
-        font-size: $font-size-4;
-        font-weight: $font-weight-bd;
-        text-align: center;
-        color: $color-blue;
-      }
-    }
   }
 }
 
-/* --- Animations --- */
-@keyframes slideInUp {
-  0% {
-    opacity: 0;
-    transform: translateY(40px);
-  }
-  100% {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-@keyframes fadeSlideIn {
-  0% {
-    opacity: 0;
-    transform: translateY(25px);
-  }
-  100% {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-@keyframes fadeSlideOut {
-  0% {
-    opacity: 1;
-    transform: translateY(0);
-  }
-  100% {
-    opacity: 0;
-    transform: translateY(-25px);
-  }
-}
+.right {
+  flex: 1;
+  background: #f8f9fb;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 3rem;
+  margin-top: 3rem;
 
 .wrapper {
-  animation: slideInUp 0.8s ease-out both;
-  animation-delay: 0.2s;
+  background: $color-white;
+  border-radius: 1.5rem;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  padding: 1rem 2.5rem;
+margin-top: 2rem;
+  width: 100%;
+  max-width: 420px;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  animation: fadeUp 0.8s ease-out forwards;
+
+  // .title {
+  //   font-size: 2.2rem;
+  //   font-weight: $font-weight-bd;
+  //   color: $color-black-b;
+  //   text-align: center;
+  // }
+
+  .subtitle {
+    color: $color-gray-dark;
+    text-align: center;
+    font-size: 1.2rem;
+    margin-bottom: .5rem;
+  }
+
+  .form {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+
+    .form_group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  position: relative;
+
+  label {
+    font-size: 1.3rem;
+    color: $color-black-b;
+    font-weight: $font-weight-md;
+  }
+
+      .inputWrapper {
+      position: relative;
+
+      .inputIcon {
+        position: absolute;
+        left: 1rem;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 1.4rem;
+        height: 1.4rem;
+        color: $color-gray-dark;
+      }
+
+        .form_input {
+      width: 100%;
+      padding: 1rem 1rem 1rem 3rem;
+      border: 1px solid $color-gray;
+      border-radius: 0.8rem;
+      font-size: 1.4rem;
+      outline: none;
+      transition: all 0.3s ease;
+
+      &:focus {
+        border-color: $color-blue;
+        box-shadow: 0 0 0 3px rgba(8, 41, 155, 0.1);
+      }
+    }
+
+      .invalid {
+  border: 1px solid $color-red !important;
+  background: rgba(255, 0, 0, 0.03);
+}
+    }
+
+   .togglePassword {
+      position: absolute;
+      right: 1rem;
+      top: 50%;
+      transform: translateY(-50%);
+      cursor: pointer;
+      color: $color-gray-dark;
+    }
+
+  .form_error {
+  font-size: 1.1rem;
+  color: $color-red;
+  margin-top: 0.3rem;
+  text-align: left;
+}
 }
 
-.wrapper.signup {
-  animation: slideInUp 0.8s ease-out both;
-  background: rgba(255, 255, 255, 0.92);
-  backdrop-filter: blur(12px);
+.form_footer {
+  @include mixins.flexRowSpaceBetween;
+  margin-top: 0.5rem;
+  font-size: 1.1rem;
+  color: $color-gray-dark;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+
+  .remember {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+
+    input {
+      accent-color: $color-blue;
+      transform: scale(1.1);
+    }
+  }
+
+   .forgot {
+    color: $color-blue;
+    text-decoration: none;
+    font-weight: $font-weight-md;
+    transition: color 0.2s ease-in-out;
+
+    &:hover {
+      color: lighten($color-blue, 10%);
+    }
+  }
+  }
+
+  .arrowIcon {
+  width: 1.4rem;
+  height: 1.4rem;
+  color: $color-white;
 }
 
-.pageTransition {
-  animation: fadeSlideIn 0.6s ease-out forwards;
+    .form_button {
+    background: linear-gradient(135deg, $color-blue, lighten($color-blue, 10%)) !important;
+    color: $color-white;
+    font-size: 1.4rem;
+    border: none;
+    border-radius: 0.8rem !important;
+    padding: 1rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    transition: all 0.3s ease;
+
+    &:hover {
+      background: darken($color-blue, 5%);
+      transform: translateY(-2px);
+    }
+  }
 }
 
-.pageTransitionExit {
-  animation: fadeSlideOut 0.4s ease-in forwards;
+.divider {
+  position: relative;
+  width: 100%;
+  margin: 1rem 0 -1rem;
+  text-align: center;
+
+  .dividerLine {
+    width: 100%;
+    height: 1px;
+    background: #e2e8f0;
+    position: absolute;
+    top: 50%;
+    left: 0;
+    transform: translateY(-50%);
+  }
+
+  .dividerText {
+    position: relative;
+    display: inline-block;
+    background: $color-white;
+    padding: 0 1rem;
+    color: #64748b;
+    font-size: 1.2rem;
+    z-index: 1;
+  }
+}
+
+.socialBtn {
+  @include mixins.flexRow;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-top: 1rem;
+
+  .social {
+    @include mixins.flexRow;
+    width: 3.5rem;
+    height: 3.5rem;
+    border-radius: 50%;
+    background: #f8f9fc;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+
+    &:hover {
+      transform: scale(1.1);
+      background: #fff;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+    }
+
+    .icon {
+      width: 1.7rem;
+      height: 1.7rem;
+      color: #1d9bf0;
+    }
+  }
+}
+
+.link {
+  text-align: center;
+  font-size: 1.2rem;
+  color: $color-gray-dark;
+  margin-top: .7rem;
+   padding: 1rem;
+  border-top: 1px solid #e2e8f0;
+
+  .login {
+    color: $color-blue;
+    font-weight: $font-weight-md;
+    font-style: italic;
+    text-decoration: none;
+    transition: all 0.3s ease-in-out;
+
+    &:hover {
+      color: lighten($color-blue, 10%);
+    }
+  }
+}
+}
+}
+}
+
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }

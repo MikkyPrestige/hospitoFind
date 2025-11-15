@@ -23,7 +23,7 @@
   z-index: 1000;
   position: absolute;
   top: 5rem;
-  left: -2rem;
+  left: 1rem;
 }
 .dashboard .top .logo .img {
   height: 100%;
@@ -33,7 +33,7 @@
 .dashboard .top .sidebar {
   fill: #08299B;
   stroke: #FFFFFF;
-  font-size: 3rem;
+  font-size: 5rem;
   cursor: pointer;
   position: absolute;
   top: 1rem;
@@ -125,7 +125,6 @@
 .dashboard .profile {
   flex-basis: 100%;
   height: 100%;
-  margin-bottom: 1rem;
 }
 .dashboard .profile .details {
   width: 100%;
@@ -237,6 +236,7 @@
   width: 90%;
   max-width: 500px;
   border-radius: 1rem;
+  padding-bottom: 1rem;
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.25);
   overflow: hidden;
   display: flex;
@@ -272,9 +272,6 @@
 }
 .dashboard .profile .details .profileCard .modalOverlay .modal .modalHeader .closeBtn:hover {
   color: #ff033e;
-}
-.dashboard .profile .details .profileCard .modalOverlay .modal .modalBody {
-  padding: 2rem 1.5rem;
 }
 .dashboard .wrapper {
   width: 70%;
@@ -318,11 +315,9 @@
   letter-spacing: -0.01031rem;
 }
 
-/* Layout */
 .details {
   display: flex;
   flex-direction: column;
-  gap: 2rem;
   width: 100%;
 }
 

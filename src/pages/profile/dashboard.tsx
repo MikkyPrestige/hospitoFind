@@ -96,11 +96,10 @@ const Dashboard = () => {
   return (
     <main className={style.dashboard}>
       <Helmet>
-        <title>Dashboard | Find Hospitals</title>
+        <title>Dashboard | HospitoFind</title>
         <meta name="description" content="Admin dashboard" />
       </Helmet>
 
-      {/* Top header — subtle entrance (once) */}
       <Motion variants={fadeUp} className={style.top} once={true}>
         <div className={bgStyle.bg}></div>
         <Link to="/" className={style.logo}>
@@ -199,12 +198,12 @@ const Dashboard = () => {
         <Motion as="section" variants={sectionReveal} className={style.profile}>
           {selected === "find-hospital" && (
             <div className={style.details}>
-              <Motion variants={fadeUp} className={style.searchWrapper}>
+              <div className={style.searchWrapper}>
                 <SearchForm
                   onSearchResultsChange={setHasResults}
                   onFavoritesUpdate={handleFavoritesUpdate}
                 />
-              </Motion>
+              </div>
 
               {!hasResults && (
                 <div className={style.favoritesWrapper}>

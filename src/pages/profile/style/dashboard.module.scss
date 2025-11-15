@@ -20,7 +20,7 @@
       z-index: 1000;
       position: absolute;
       top: 5rem;
-      left: -2rem;
+      left: 1rem;
 
       .img {
         height: 100%;
@@ -31,7 +31,7 @@
     .sidebar {
       fill: $color-blue;
       stroke: $color-white;
-      font-size: 3rem;
+      font-size: 5rem;
       cursor: pointer;
       position: absolute;
       top: 1rem;
@@ -119,7 +119,7 @@ background: $color-blue;
   .profile {
     flex-basis: 100%;
     height: 100%;
-    margin-bottom: 1rem;
+    // margin: -3rem auto 1rem;
 
     .details {
        width: 100%;
@@ -238,6 +238,7 @@ background: #fff;
   width: 90%;
   max-width: 500px;
   border-radius: 1rem;
+  padding-bottom: 1rem;
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.25);
   overflow: hidden;
   display: flex;
@@ -277,10 +278,9 @@ background: #fff;
     }
 }
 
-.modalBody {
- padding: 2rem 1.5rem;
-
-}
+// .modalBody {
+//  padding: 2rem 0rem;
+// }
 }
 }
 }
@@ -325,11 +325,10 @@ background: #fff;
       }
     }
 
-/* Layout */
+
 .details {
   display: flex;
   flex-direction: column;
-  gap: 2rem;
   width: 100%;
 }
 

@@ -61,19 +61,13 @@ const Footer = () => {
         <div className={style.links}>
           <div className={style.column}>
             <h2>Explore</h2>
-            <Link to="/about">Our Story</Link>
+            <Link to="/explore">Hospitals Directory</Link>
             <Link to="/find">Hospitals Nearby</Link>
           </div>
 
           <div className={style.column}>
             <h2>Resources</h2>
-            <a
-              href="mailto:hospitofind@outlook.com"
-              target="_blank"
-              rel="noreferrer"
-            >
-              Contact Us
-            </a>
+            <Link to="/about">Our Story</Link>
             <Link to="/policy">Privacy Policy</Link>
           </div>
         </div>

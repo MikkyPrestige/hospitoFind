@@ -1,0 +1,167 @@
+.explore {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: linear-gradient(180deg, #f9fbff 0%, #ffffff 100%);
+  padding-bottom: 4rem;
+}
+
+.hero {
+  width: 100%;
+  background: linear-gradient(180deg, #0e3db7 0%, #1e56d9 100%);
+  color: #fff;
+  text-align: center;
+  padding: 4.5rem 1rem 3.5rem;
+  border-bottom-left-radius: 40px;
+  border-bottom-right-radius: 40px;
+  box-shadow: 0 4px 20px rgba(14, 61, 183, 0.15);
+  position: relative;
+  z-index: 0;
+  margin-top: 3rem;
+}
+
+.hero::before {
+  content: '';
+  position: absolute;
+  top: -80px;
+  left: 0;
+  right: 0;
+  height: 80px;
+  background: linear-gradient(
+    to bottom,
+    rgba(14, 61, 183, 1),
+    rgba(14, 61, 183, 0)
+  );
+  z-index: -1;
+}
+
+.hero h1 {
+  font-size: 2.2rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+}
+
+.searchBar {
+  margin-top: -2rem;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  z-index: 2;
+}
+
+.searchBar input {
+  width: 90%;
+  max-width: 420px;
+  padding: 0.9rem 1.2rem;
+  border-radius: 12px;
+  border: 1px solid rgba(14, 61, 183, 0.1);
+  background: #fff;
+  box-shadow: 0 4px 12px rgba(14, 61, 183, 0.1);
+  font-size: 1rem;
+  transition: all 0.25s ease;
+}
+
+.searchBar input:focus {
+  outline: none;
+  border-color: rgba(14, 61, 183, 0.4);
+  box-shadow: 0 6px 16px rgba(14, 61, 183, 0.15);
+}
+
+.grid {
+  width: 100%;
+  max-width: 1200px;
+  margin: 3rem auto 0;
+  display: grid;
+  gap: 1.5rem;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  justify-items: center;
+}
+
+.cardLink {
+  text-decoration: none;
+  color: inherit;
+  width: 100%;
+  max-width: 240px;
+}
+
+.spinner {
+  width: 40px;
+  height: 40px;
+  border: 3px solid rgba(14, 61, 183, 0.15);
+  border-top: 3px solid #0e3db7;
+  border-radius: 50%;
+  margin-bottom: 1rem;
+  animation: spin 1s linear infinite, pulse 1.6s ease-in-out infinite;
+}
+
+.loading,
+.empty {
+  text-align: center;
+  color: #6b7280;
+  padding: 3rem 1rem;
+  font-size: 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 200px;
+  animation: fadeIn 0.4s ease-in-out;
+}
+
+.empty h3 {
+  color: #0e3db7;
+  font-size: 1.2rem;
+  font-weight: 600;
+  margin-bottom: 0.3rem;
+}
+
+.empty p {
+  color: #6b7280;
+  font-size: 0.95rem;
+  max-width: 360px;
+}
+
+@media (max-width: 768px) {
+  .hero {
+    padding: 3.5rem 1rem;
+    border-bottom-left-radius: 25px;
+    border-bottom-right-radius: 25px;
+    margin-top: 6rem;
+  }
+  .hero h1 {
+    font-size: 1.8rem;
+  }
+  .searchBar input {
+    max-width: 300px;
+  }
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes pulse {
+  0%,
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(1.15);
+    opacity: 0.8;
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

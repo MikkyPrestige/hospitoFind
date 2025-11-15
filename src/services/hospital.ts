@@ -9,6 +9,7 @@ export interface Address {
   street: string;
   city: string;
   state: string;
+country: string;
 }
 
 export interface Hours {
@@ -32,15 +33,10 @@ export interface Hospital {
   latitude: number;
 }
 
-export type FindInput = {
-  street?: string;
-  cityState?: string;
-  name?: string;
-}
-
 export type LocationInput = {
   address?: string;
   city?: string;
   state?: string;
+  country?: string;
   name?: string;
 };
