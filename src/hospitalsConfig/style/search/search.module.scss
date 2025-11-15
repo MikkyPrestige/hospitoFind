@@ -1,28 +1,28 @@
-@use '../../../assets/styles/mixins' as mixins;
-@import '../../../assets/styles/variables';
+@use "../../../assets/styles/mixins";
+@import "../../../assets/styles/variables";
 
-.search {
+.searchContainer {
+  padding: 2rem;
   width: 100%;
-  height: 100%;
-  @include mixins.flexCol;
-  gap: 1.5rem;
-  padding: 1rem;
-margin: -1rem auto;
+  max-width: 900px;
+  margin: auto;
+}
 
-  .heading {
+.searchHeader {
   text-align: center;
-  color: #08299b;
-  line-height: 1.4;
-    font-size: $font-size-4;
-    font-weight: $font-weight-md;
-    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans';
-text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+  margin-bottom: 1.5rem;
+}
 
-  .name {
+.heading {
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: #0e3db7;
+}
+
+.name {
   color: $color-blue;
   font-weight: $font-weight-bd;
   font-family: $font-sans;
-  font-style: italic;
   background: linear-gradient(135deg, lighten($color-blue, 10%), darken($color-blue, 10%));
   background-clip: text;
   -webkit-background-clip: text;
@@ -48,329 +48,225 @@ text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
   }
 }
 
-   @include mixins.respond(phone-sm) {
-      font-size: $font-size-4;
-    }
-
-  @include mixins.respond(tab-port) {
-    font-size: 2rem;
-    margin-bottom: 0.4rem;
-  }
-  }
-
-  .subtext {
-  font-size: 1.4rem;
-  color: #555;
-  margin-top: -.5rem;
-  margin-bottom: 1.5rem;
-  text-align: center;
-  font-style: oblique;
-
-   strong {
-    color: #08299b;
-  }
-
-   @include mixins.respond(phone-sm) {
-    font-size: 1.2rem;
-    margin-bottom: 1.5rem;
-  }
-
-  @include mixins.respond(tab-port) {
-    font-size: 1.3rem;
-    margin-bottom: 2rem;
-  }
+.subtext {
+  color: #6b7280;
+  font-size: 1.5rem;
 }
 
-  .wrapper {
-      margin: 0 auto;
-  width: 100%;
-  max-width: 65rem;
-
-.form {
-  @include mixins.flexRow;
-  gap: 1rem;
-  width: 100%;
-
-  .box {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-
-    .input {
-      width: 100%;
-      height: 3.5rem;
-      border-radius: $border-radius-sm;
-      border: 1px solid $color-gray;
-      background: $color-white;
-      padding: 0 1rem;
-      font-size: $font-size-3;
-      font-family: $font-sans;
-      color: $color-black;
-      transition: all 0.2s ease;
-
-      &:focus {
-        border-color: $color-blue;
-        box-shadow: 0 0 0 2px rgba($color-blue, 0.15);
-        outline: none;
-      }
-
-      &::placeholder {
-        color: $color-gray;
-      }
-    }
-
-    .error {
-      color: $color-red;
-      font-size: $font-size-2;
-      text-align: center;
-      margin-top: 0.3rem;
-    }
-  }
-
-  .select {
-    height: 3.5rem;
-    border: none;
-    border-left: 1px solid rgba(0, 0, 0, 0.1);
-    padding: 0 1rem;
-    background: transparent;
-    font-size: $font-size-3;
-    font-family: $font-sans;
-font-weight: $font-weight-md;
-    color: $color-black;
-    cursor: pointer;
-    appearance: none;
-    background-image: url("data:image/svg+xml;utf8,<svg fill='%23000' height='10' width='10' xmlns='http://www.w3.org/2000/svg'><path d='M0 0l5 5 5-5z'/></svg>");
-    background-repeat: no-repeat;
-    background-position: right 0.8rem center;
-    background-size: 0.8rem;
-    transition: all 0.2s ease;
-
-    &:hover,
-    &:focus {
-      background-color: rgba($color-blue, 0.05);
-      border-left: 1px solid rgba($color-blue, 0.3);
-      outline: none;
-    }
-
- option {
-      color: $color-black;
-    }
-  }
-
-  .cta {
-    @include mixins.flexRow;
-    height: 3.3rem;
-    width: 3.3rem;
-    border-radius: 50%;
-    border: none;
-    background: $color-blue;
-    color: $color-white;
-    cursor: pointer;
-    transition: all 0.2s ease;
-
-    &:hover {
-      background: darken($color-blue, 5%);
-    }
-
-    &:disabled {
-      background: lighten($color-blue, 15%);
-      cursor: not-allowed;
-    }
-
-    .icon {
-      font-size: $font-size-4;
-    }
-  }
-
- @include mixins.respond(phone-sm) {
-    flex-direction: column;
-    align-items: stretch;
-    gap: 0.8rem;
-
-    .box,
-    .select,
-    .cta {
-      width: 100%;
-    }
-
-    .cta {
-      border-radius: $border-radius-sm;
-     align-self: center;
-      width: 3.3rem;
-      height: 3.3rem;
-      border-radius: 50%;
-      padding: 0;
-    }
-  }
-
-  @include mixins.respond(tab-port) {
-    flex-direction: row;
-    align-items: center;
-    gap: 1rem;
-  }
+.searchBox {
+  position: relative;
+display: flex;
+justify-content: center;
+align-items: center;
+  margin-bottom: 1rem;
 }
 
-    .error {
-      color: $color-red;
-      font-size: $font-size-2;
-      text-align: center;
-    }
-  }
 
-  .hospitals {
-    width: 100%;
-    height: 100%;
-    @include mixins.flexRow;
-    flex-wrap: wrap;
-    gap: 1rem;
-    padding: 1rem;
-
-     .title {
-      color: $color-blue;
-      font-size: $font-size-4;
-      font-family: $font-inter;
-      font-weight: $font-weight-bd;
-      text-align: center;
-      width: 100%;
-    }
-
-    .wrapper {
+.inputGroup {
   display: flex;
-  flex-wrap: wrap;
+  align-items: center;
   justify-content: center;
-  gap: 2rem;
-  width: 100%;
-
-.card {
-  background: #ffffff;
-  border-radius: 1.2rem;
-  width: 100%;
-  max-width: 20rem;
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.05);
+  width: 50%;
+  height: 3rem;
+  border: 1px solid #dcdfe4;
+  border-radius: 8px;
   overflow: hidden;
-  transition: all 0.3s ease;
-  animation: fadeUp 0.6s ease-in-out;
+  background: #fff;
 
-.card:hover {
-  transform: translateY(-8px);
-  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.12);
+  @media (max-width: 768px) {
+width: 80%;
+height: 4rem;
+  }
 }
 
-@media (max-width: 600px) {
-max-width: unset;
+.input {
+  flex: 1;
+  padding: 0.8rem 1rem;
+  border: none;
+  outline: none;
+  font-size: 1rem;
+  color: #111827;
 }
+
+.searchBtn {
+  background: #0e3db7;
+  color: #fff;
+  padding: 0.8rem 1rem;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  &:hover {
+    background: darken(#0e3db7, 5%);
+  }
 }
+
+.dropdown {
+  position: absolute;
+  top: 110%;
+  width: 50%;
+  background: #fff;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+  max-height: 280px;
+  overflow-y: auto;
+  z-index: 999;
+}
+
+.dropdownItem {
+  padding: 0.75rem 1rem;
+  color: #6b7280;
+  font-size: 0.9rem;
+  text-align: center;
+}
+
+.dropdownGroup {
+  padding: 0.75rem 1rem;
+  border-bottom: 1px solid #f3f4f6;
+
+  &:last-child {
+    border-bottom: none;
+  }
+}
+
+.dropdownCountry {
+  font-weight: 600;
+  color: #0e3db7;
+  margin-bottom: 0.4rem;
+}
+
+.dropdownCity {
+  padding: 0.3rem 0;
+  cursor: pointer;
+  color: #111827;
+  transition: background 0.2s;
+
+  &:hover {
+    background: #f9fafb;
+  }
 }
 
 .actions {
-  @include mixins.flexRow;
-  margin-top: 1.2rem;
+  display: flex;
+  justify-content: flex-end;
+  gap: 1rem;
+  margin: 1rem 0;
+}
+
+.results {
+  margin-top: 1.5rem;
+}
+
+.message,
+.error {
+  text-align: center;
+  padding: 1.5rem 0;
+  color: #6b7280;
+}
+
+.error {
+  color: #c53030;
+}
+
+.resultsGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
   gap: 1rem;
 }
 
-.heart {
+.hospitalCard {
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  overflow: hidden;
+  transition: transform 0.2s ease;
+
+  &:hover {
+    transform: translateY(-4px);
+  }
+}
+
+.hospitalInfo {
+  padding: 1rem;
+
+  h3 {
+    font-size: 1rem;
+    font-weight: 600;
+    margin-bottom: 0.4rem;
+  }
+
+  p {
+    font-size: 0.85rem;
+    color: #6b7280;
+  }
+}
+
+.cardActions {
+  margin-top: 0.6rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.exploreBtn {
+  color: #0e3db7;
+  font-weight: 600;
+  text-decoration: none;
+
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
+.favBtn {
   background: none;
   border: none;
   cursor: pointer;
-  font-size: 2rem;
-  color: #ff033e;
-  display: flex;
-  align-items: center;
-  transition: transform 0.2s ease, opacity 0.2s ease;
 
-  &:hover {
-    transform: scale(1.2);
-    opacity: 0.8;
+  svg {
+    width: 1.2rem;
+    height: 1.2rem;
+    transition: transform 0.2s ease;
   }
 
-  @include mixins.respond(phone-sm) {
-    font-size: 1.8rem;
-    align-self: flex-end;
+  &:hover svg {
+    transform: scale(1.1);
   }
 }
-  }
-
 
 .container {
-  width: fit-content;
-  @include mixins.flexRow;
+  margin-top: 2rem;
+  display: flex;
+  justify-content: center;
   align-items: center;
+  gap: 1rem;
   flex-wrap: wrap;
-  gap: 1.2rem;
-  padding: 1rem 2.5rem;
-  border-radius: 1rem;
-  border: 1px solid rgba(8, 41, 155, 0.15);
-  box-shadow: 0 4px 10px rgba(8, 41, 155, 0.08);
-  transition: all 0.3s ease;
-
-  &:hover {
-    box-shadow: 0 6px 14px rgba(8, 41, 155, 0.15);
-    transform: translateY(-2px);
-  }
+  padding: 1rem;
 }
 
 .backBtn {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.5rem;
-  background: none;
-  border: none;
-  color: #08299b;
+  background: #f5f7ff;
+  color: #0e3db7;
+  border: 1px solid rgba(14, 61, 183, 0.2);
+  padding: 0.7rem 1.2rem;
+  border-radius: 8px;
   font-weight: 600;
-  font-size: 1.4rem;
   cursor: pointer;
-  margin-bottom: 1.2rem;
   transition: all 0.3s ease;
 
   &:hover {
-  color: #001b6b;
-  transform: translateX(-3px);
-}
-
-.backIcon {
-  font-size: 1.6rem;
-  transition: transform 0.3s ease;
-}
-
-.backBtn:hover .backIcon {
-  transform: translateX(-3px);
-}
-}
-
-}
-
-@media (max-width: 480px) {
-  .subtext {
-    font-size: 1.2rem;
-    margin-bottom: 1rem;
-  }
-
-  .heart {
-    align-self: flex-end;
+    background: #0e3db7;
+    color: #fff;
   }
 }
-
-@media (max-width: 768px) {
-  .subtext {
-    font-size: 1.3rem;
-    margin-bottom: 1.5rem;
-    padding: 0 1rem;
-  }
-
-  .actions {
-    margin-top: 1rem;
-  }
-
-  .heart {
-    font-size: 1.8rem;
-  }
-}
-
 
 @keyframes fadeIn {
   from {
     opacity: 0;
-    transform: translateY(4px);
+    transform: translateY(10px);
   }
   to {
     opacity: 1;

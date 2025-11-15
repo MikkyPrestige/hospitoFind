@@ -1,4 +1,5 @@
 import { BsHospital, BsBuildingAdd } from "react-icons/bs";
+import { useEffect, useState } from "react";
 import { FaFileExport } from "react-icons/fa";
 import { SlShareAlt } from "react-icons/sl";
 import { MdStarBorderPurple500 } from "react-icons/md";
@@ -11,8 +12,7 @@ import Footer from "@/layouts/footer/footer";
 import Motion from "@/components/motion";
 import { fadeUp, slideLeft, slideRight, zoomIn, sectionReveal } from "@/hooks/animations";
 import { Avatar } from "@/components/avatar";
-// import Doctor from "@/assets/images/patient-doctor.jpg";
-import Doctor from "@/assets/images/doctor-shake.webp";
+import Doctor from "@/assets/images/hero2.png";
 import Stethoscope from "@/assets/images/stethoscope.jpg";
 import Handset from "@/assets/images/handset.jpg";
 import Laptop from "@/assets/images/laptop.jpg";
@@ -20,12 +20,26 @@ import Search from "@/assets/images/hospitalSearch.png";
 import Reviewer1 from "@/assets/images/reviewer1.jpg";
 import Reviewer2 from "@/assets/images/reviewer2.jpg";
 import Reviewer3 from "@/assets/images/reviewer3.jpg";
-// import Patient from "@/assets/images/patient.jpg";
-import Patient from "@/assets/images/smiles.jpg";
+import Patient from "@/assets/images/phone.jpg";
 import { Button } from "@/components/button";
 
+const BASE_URL =  import.meta.env.VITE_BASE_URL;
 
 const About = () => {
+  const [count, setCount] = useState<number | null>(null);
+
+  useEffect(() => {
+    (async () => {
+      try {
+        const res = await fetch(`${BASE_URL}/hospitals/count`);
+        const data = await res.json();
+        setCount(data.total);
+      } catch {
+        setCount(null);
+      }
+    })();
+  }, []);
+
   return (
     <>
       <Helmet>
@@ -47,21 +61,21 @@ const About = () => {
         <Motion className={style.wrapper} variants={fadeUp} as="section">
           <div className={style.top}>
             <h1 className={style.title}>
-              Welcome to <span className={style.span}>HospitoFind</span>
+              About <span className={style.span}>HospitoFind</span>
             </h1>
             <p className={style.para}>
-              HospitoFind was built out of a simple idea — that finding healthcare shouldn’t be complicated.
-              In many regions, especially across developing areas, locating a nearby hospital or clinic can be stressful and time-consuming. HospitoFind aims to change that by offering a simple, reliable way to discover hospitals, learn about their services and get key contact details all in one place.
+              We believe healthcare access shouldn’t be a hassle. In many parts of the world, especially in developing regions, finding a nearby hospital or clinic can be a stressful and frustrating task. We're here to change that. HospitoFind provides a simple, trustworthy platform to help you locate hospitals, learn about their services, and access essential contact information.
             </p>
             <p className={style.gradient}>
-              With features like hospital search, contact details, location mapping, and easy data export or sharing,
-              HospitoFind empowers users to save time and connect with trusted healthcare providers faster.
+              {count !== null
+                ? `Today, HospitoFind lists over ${count.toLocaleString()} hospitals across multiple countries — and growing!.`
+                : "Loading hospital statistics…"}
             </p>
 
             <Button
               children={
                 <span className={style.cta}>
-                  <Link to="/find">Explore Services</Link>
+                  <Link to="/dashboard">Explore Services</Link>
                 </span>
               }
             />

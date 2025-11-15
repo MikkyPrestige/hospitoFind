@@ -1,0 +1,146 @@
+.page {
+  min-height: 100vh;
+  background: linear-gradient(180deg, #f9fbff 0%, #ffffff 100%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-bottom: 4rem;
+}
+
+.header {
+  width: 100%;
+  background: linear-gradient(180deg, #0e3db7 0%, #1e56d9 100%);
+  color: #fff;
+  text-align: center;
+  padding: 4rem 1rem 1rem;
+  border-bottom-left-radius: 40px;
+  border-bottom-right-radius: 40px;
+  box-shadow: 0 4px 20px rgba(14, 61, 183, 0.15);
+  margin-top: 3rem;
+  position: relative;
+  z-index: 0;
+}
+
+.header::before {
+  content: '';
+  position: absolute;
+  top: -80px;
+  left: 0;
+  right: 0;
+  height: 80px;
+  background: linear-gradient(
+    to bottom,
+    rgba(14, 61, 183, 1),
+    rgba(14, 61, 183, 0)
+  );
+  z-index: -1;
+}
+
+.header a {
+  text-decoration: none;
+  color: #fff;
+  font-weight: 600;
+  opacity: 0.9;
+  transition: opacity 0.2s ease;
+}
+
+.header a:hover {
+  opacity: 1;
+}
+
+.header h2 {
+  font-size: 2rem;
+  font-weight: 700;
+  margin-bottom: 0.3rem;
+  text-transform: capitalize;
+}
+
+.header p {
+  font-size: 1rem;
+  opacity: 0.9;
+}
+
+.list {
+  width: 100%;
+  max-width: 1200px;
+  margin-top: 3rem;
+  margin-bottom: 2rem;
+  display: grid;
+  gap: 2.5rem;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  justify-items: center;
+  opacity: 1 !important;
+}
+
+.spinner {
+  width: 36px;
+  height: 36px;
+  border: 3px solid rgba(14, 61, 183, 0.15);
+  border-top: 3px solid #0e3db7;
+  border-radius: 50%;
+  margin-bottom: 1rem;
+  animation: spin 1s linear infinite, pulse 1.6s ease-in-out infinite;
+}
+
+.loading,
+.empty {
+  text-align: center;
+  color: #6b7280;
+  padding: 2rem 0;
+  font-size: 1rem;
+}
+
+.loadingMore {
+  text-align: center;
+  padding: 1.5rem 0;
+  font-size: 0.95rem;
+  color: #4b5563;
+}
+
+.cta {
+  font-size: 1.2rem;
+  font-weight: 500;
+  color: #fff;
+  letter-spacing: -0.011em;
+  padding: 1rem 0.5rem;
+  text-decoration: none;
+}
+
+.cta:hover {
+  text-decoration: none;
+}
+
+@media (max-width: 768px) {
+  .header {
+    padding: 3rem 1rem 2.5rem;
+    border-bottom-left-radius: 25px;
+    border-bottom-right-radius: 25px;
+ margin-top: 6rem;
+  }
+
+  .header h2 {
+    font-size: 1.6rem;
+  }
+
+  .list {
+    gap: 3.5rem;
+  }
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes pulse {
+  0%,
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(1.15);
+    opacity: 0.8;
+  }
+}

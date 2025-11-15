@@ -5,7 +5,6 @@ import { getHospitalByName } from "@/services/api";
 import { Hospital } from "@/services/hospital";
 import { Avatar } from "@/components/avatar";
 import HospitalPic from "@/assets/images/hospital-logo.jpg";
-import Loading from "@/assets/images/loading.gif";
 import style from "./style/info/info.module.css";
 import { FaPhone, FaGlobe, FaEnvelope } from "react-icons/fa";
 import Footer from "@/layouts/footer/footer";
@@ -33,20 +32,7 @@ const HospitalInfo = () => {
     fetchHospitalDetails();
   }, [name]);
 
-  if (!hospital) {
-    return (
-      <div
-        style={{
-          display: "flex",
-          justifyContent: "center",
-          alignItems: "center",
-          height: "100vh",
-        }}
-      >
-        <img src={Loading} alt="Loading gif" />
-      </div>
-    );
-  }
+  if (!hospital) return null;
 
   const mapQuery = `${hospital.address?.street || ""}, ${hospital.address?.city || ""}, ${hospital.address?.state || ""}`;
   const mapUrl = `https://www.google.com/maps?q=${encodeURIComponent(mapQuery)}&output=embed`;

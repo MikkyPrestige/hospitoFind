@@ -13,6 +13,8 @@ const SignUp = lazy(() => import("@/userConfig/signupForm"));
 const Callback = lazy(() => import("@/userConfig/authCallback"));
 const Dashboard = lazy(() => import("@/pages/profile/dashboard"));
 const HospitalInfo = lazy(() => import("@/hospitalsConfig/info"));
+const ExplorePage = lazy(() => import("@/pages/explore/explorePage"));
+const CountryDetailPage = lazy(() => import("@/pages/explore/countryDetails"));
 const ShareHospitalList = lazy(() => import("@/hospitalsConfig/shareHospitalList"));
 const HospitalDetails = lazy(() => import("@/components/hospitalDetails"));
 const Policy = lazy(() => import("@/pages/policy"));
@@ -25,7 +27,6 @@ const DashboardWithAuth = () => {
     return state.username ? <Dashboard /> : <SignUp />;
 };
 
-//  router configuration
 export const router = createBrowserRouter([
     {
         path: "/",
@@ -58,6 +59,8 @@ export const router = createBrowserRouter([
             { path: "callback", element: <Callback />, errorElement: <Fallback /> },
             { path: "hospitals/share/:linkId", element: <ShareHospitalList />, errorElement: <Fallback /> },
             { path: "hospitals/share/:linkId/:name", element: <HospitalInfo />, errorElement: <Fallback /> },
+            { path: "explore", element: <ExplorePage />, errorElement: <Fallback /> },
+            { path: "explore/:country", element: <CountryDetailPage />, errorElement: <Fallback /> },
             { path: "policy", element: <Policy />, errorElement: <Fallback /> },
             { path: "news", element: <News />, errorElement: <Fallback /> },
             { path: "*", element: <Error404 />, errorElement: <Fallback /> },

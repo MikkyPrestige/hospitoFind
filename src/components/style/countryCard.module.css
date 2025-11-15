@@ -1,0 +1,45 @@
+.card {
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.95), #ffffff);
+  border-radius: 18px;
+  padding: 1.8rem 1rem;
+  text-align: center;
+  box-shadow: 0 8px 20px rgba(14, 61, 183, 0.08);
+  transition: all 0.25s ease;
+  cursor: pointer;
+  width: 100%;
+  max-width: 230px;
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(14, 61, 183, 0.08);
+}
+
+.card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 10px 26px rgba(14, 61, 183, 0.12);
+  border-color: rgba(14, 61, 183, 0.25);
+}
+
+.flagWrap {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: rgba(14, 61, 183, 0.05);
+  width: 3.4rem;
+  height: 3.4rem;
+  border-radius: 50%;
+  margin: 0 auto 1rem;
+  box-shadow: 0 2px 6px rgba(14, 61, 183, 0.08);
+}
+
+.name {
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: #0e3db7;
+  letter-spacing: 0.2px;
+  margin-bottom: 0.3rem;
+}
+
+.count {
+  font-size: 0.9rem;
+  color: #6b7280;
+  margin: 0;
+}

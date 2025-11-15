@@ -1,271 +1,327 @@
-import React, { useEffect, useState } from 'react';
-import { NavLink, Outlet } from 'react-router-dom';
-import { AiOutlineSearch, AiFillHeart, AiOutlineHeart } from 'react-icons/ai';
-import Motion from "@/components/motion";
-import { fadeUp, sectionReveal } from "@/hooks/animations";
-import { LocationInput, Hospital } from '@/services/hospital';
-import { statesAndCities } from '@/services/location';
-import { searchHospitals } from '@/services/api';
-import { useAuthContext } from '@/context/userContext';
-import ExportButton from '@/hospitalsConfig/export';
-import ShareButton from '@/hospitalsConfig/share';
-import { Avatar } from '@/components/avatar';
-import HospitalPic from '@/assets/images/hospital-logo.jpg';
-import style from './style/search/search.module.css';
-import style2 from '../components/style/popular.module.css';
-import { AiOutlineArrowLeft } from 'react-icons/ai';
-
-const RECENTLY_KEY = 'recentlyViewedHospitals';
-const FAVORITES_KEY = 'favoriteHospitals';
-const WEEKLY_KEY = 'weeklyStats';
+import  { useEffect, useRef, useState } from "react";
+import { NavLink, Outlet } from "react-router-dom";
+import { AiFillHeart, AiOutlineHeart, AiOutlineSearch } from "react-icons/ai";
+import { LocationInput, Hospital } from "@/services/hospital";
+import { searchHospitals } from "@/services/api";
+import { useAuthContext } from "@/context/userContext";
+import { Avatar } from "@/components/avatar";
+import Motion from "../components/motion";
+import { fadeUp } from "@/hooks/animations";
+import HospitalPic from "@/assets/images/hospital-logo.jpg";
+import ExportButton from "@/hospitalsConfig/export";
+import ShareButton from "@/hospitalsConfig/share";
+import style from "./style/search/search.module.scss";
 
 type StoredHospital = Hospital & { viewedAt?: number };
 
-const SearchForm = ({
+const RECENTLY_KEY = "recentlyViewedHospitals";
+const WEEKLY_KEY = "weeklyStats";
+
+export default function SearchForm({
   onSearchResultsChange,
   onFavoritesUpdate,
 }: {
   onSearchResultsChange?: (hasResults: boolean) => void;
   onFavoritesUpdate?: () => void;
-}) => {
-  const [location, setLocation] = useState<LocationInput>({ address: '', city: '', state: '' });
+}) {
+  const [query, setQuery] = useState("");
+  const [location, setLocation] = useState<LocationInput>({ address: "", city: "", state: "" });
   const [hospitals, setHospitals] = useState<Hospital[]>([]);
-  const [error, setError] = useState<string>('');
-  const [searching, setSearching] = useState<boolean>(false);
+  const [error, setError] = useState<string>("");
+  const [loading, setLoading] = useState(false);
+  const [countries, setCountries] = useState<{ country: string; hospitals: Hospital[] }[]>([]);
+  const [loadingCountries, setLoadingCountries] = useState(true);
+  const [dropdownOpen, setDropdownOpen] = useState(false);
   const [favorites, setFavorites] = useState<StoredHospital[]>([]);
-  const [weeklyViews, setWeeklyViews] = useState<number>(0);
+  const [weeklyViews, setWeeklyViews] = useState<number>(0); // ✅ added
+
+  const dropdownRef = useRef<HTMLDivElement | null>(null);
   const { state } = useAuthContext();
 
-  // load favorites & weekly on mount
+  const COUNTRY_ALIASES: Record<string, string[]> = {
+    "United States": ["United States", "USA", "US", "America"],
+    "United Kingdom": ["United Kingdom", "UK", "Britain", "England"],
+    "South Korea": ["South Korea", "Korea", "Republic of Korea"],
+    "China": ["China", "PRC", "People's Republic of China"],
+  };
+
+  const normalizeCountryAliases = (candidate: string) => {
+    if (!candidate) return candidate;
+    for (const canonical in COUNTRY_ALIASES) {
+      const variants = COUNTRY_ALIASES[canonical].map(v => v.toLowerCase());
+      if (variants.includes(candidate.toLowerCase())) return canonical;
+    }
+    return candidate;
+  };
+
+  useEffect(() => {
+    let mounted = true;
+    (async () => {
+      try {
+        const res = await fetch(`${import.meta.env.VITE_BASE_URL}/hospitals/explore/top`);
+        const data = await res.json();
+        if (mounted) setCountries(Array.isArray(data) ? data : []);
+      } catch {
+        if (mounted) setCountries([]);
+      } finally {
+        if (mounted) setLoadingCountries(false);
+      }
+    })();
+    return () => { mounted = false; };
+  }, []);
+
+  useEffect(() => {
+    const handler = (e: MouseEvent) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(e.target as Node))
+        setDropdownOpen(false);
+    };
+    document.addEventListener("mousedown", handler);
+    return () => document.removeEventListener("mousedown", handler);
+  }, []);
+
   useEffect(() => {
     try {
-      const favRaw = localStorage.getItem(FAVORITES_KEY);
-      const favs = favRaw ? (JSON.parse(favRaw) as StoredHospital[]) : [];
-      setFavorites(favs);
+      setFavorites(JSON.parse(localStorage.getItem("favoriteHospitals") || "[]"));
     } catch {
       setFavorites([]);
     }
 
+    // ✅ Load weekly stats
     try {
-      const stats = JSON.parse(localStorage.getItem(WEEKLY_KEY) || '{}');
-      setWeeklyViews(stats.count || 0);
+      const stored = JSON.parse(localStorage.getItem(WEEKLY_KEY) || "{}");
+      setWeeklyViews(stored.count || 0);
     } catch {
       setWeeklyViews(0);
     }
   }, []);
 
-  const handleSelect = (e: React.ChangeEvent<HTMLSelectElement>) => {
-    const [city, state] = e.target.value.split(',');
-    setLocation({ ...location, city, state });
-  };
+  async function robustSearch({ typedQuery, city, country }: { typedQuery?: string; city?: string; country?: string; }) {
+    setLoading(true);
+    setError("");
+    setHospitals([]);
+    const base = import.meta.env.VITE_BASE_URLLocal || import.meta.env.VITE_BASE_URL || "";
+    const tq = typedQuery?.trim() || "";
+    const c = (country || "").trim();
+    const ci = (city || "").trim();
 
-  const handleInput = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const { name, value } = e.target;
-    setLocation({ ...location, [name]: value });
-  };
+    const attempts: Array<{ call: () => Promise<any> }> = [];
 
-  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    setSearching(true);
-    if (!location.address && !location.city && !location.state) {
-      setError('Enter a hospital name or location to begin your search.');
+    if (ci && c) {
+      attempts.push({ call: () => searchHospitals(`address=&city=${encodeURIComponent(ci)}&state=${encodeURIComponent(c)}`) });
+      attempts.push({ call: () => searchHospitals(`address=&city=${encodeURIComponent(ci.toLowerCase())}&state=${encodeURIComponent(c.toLowerCase())}`) });
+      attempts.push({ call: () => searchHospitals(`address=&city=${encodeURIComponent(ci)}&state=`) });
+    }
+
+    if (tq && tq.length >= 3)
+      attempts.push({ call: () => searchHospitals(`address=${encodeURIComponent(tq)}`) });
+
+    if (c) {
+      attempts.push({
+        call: async () => {
+          const resp = await fetch(`${base}/hospitals/country/${encodeURIComponent(c)}`);
+          return resp.ok ? resp.json() : [];
+        },
+      });
+      const normalized = normalizeCountryAliases(c);
+      if (normalized && normalized !== c)
+        attempts.push({
+          call: async () => {
+            const resp = await fetch(`${base}/hospitals/country/${encodeURIComponent(normalized)}`);
+            return resp.ok ? resp.json() : [];
+          },
+        });
+    }
+
+    if (ci) attempts.push({ call: () => searchHospitals(`address=${encodeURIComponent(ci)}`) });
+
+    for (const at of attempts) {
+      try {
+        const result = await at.call();
+        const arr = Array.isArray(result) ? result : result?.hospitals || [];
+        if (arr.length > 0) {
+          setHospitals(arr);
+          onSearchResultsChange?.(true);
+          setLoading(false);
+          return;
+        }
+      } catch { }
+    }
+
+    setHospitals([]);
+    setError("No hospitals found");
+    onSearchResultsChange?.(false);
+    setLoading(false);
+  }
+
+  useEffect(() => {
+    let id: any;
+    const shouldRun = (query && query.trim().length >= 3) || location.city || location.state;
+    if (!shouldRun) {
       setHospitals([]);
-      setSearching(false);
+      setError("");
       return;
     }
-    const query = `address=${location.address}&city=${location.city}&state=${location.state}`;
-    try {
-      const data = await searchHospitals(query);
-      if (!data || data.length === 0) {
-        setError('No hospital found for your search. try a nearby city.');
-        setHospitals([]);
-        onSearchResultsChange?.(false);
-      } else {
-        setHospitals(data);
-        setError('');
-        onSearchResultsChange?.(true)
-      }
-    } catch (err: any) {
-      if (err.data) setError(err.message);
-      else if (err.request) setError('We couldn’t reach the server. Please check your connection and try again.');
-      else setError(err.message);
-      setHospitals([]);
-      onSearchResultsChange?.(false);
-    } finally {
-      setSearching(false);
-    }
+    id = setTimeout(async () => {
+      await robustSearch({ typedQuery: query.trim(), city: location.city, country: location.state });
+    }, 350);
+    return () => clearTimeout(id);
+  }, [query, location.city, location.state]);
+
+  const filteredCountries = countries
+    .map(c => {
+      const matched = (c.hospitals || []).filter(h => {
+        const city = (h.address?.city || "").toLowerCase();
+        const country = (c.country || "").toLowerCase();
+        const q = query.toLowerCase();
+        return city.includes(q) || country.includes(q);
+      });
+      return { ...c, hospitals: matched };
+    })
+    .filter(c => (c.hospitals || []).length > 0);
+
+  const handleInputChange = (v: string) => {
+    setQuery(v);
+    setDropdownOpen(true);
   };
 
-  // add recently viewed  and update weekly count
-  const handleExplore = (hospital: Hospital) => {
-    // recently viewed
+  const handleSelectCity = (city: string, country: string) => {
+    setLocation({ city, state: country, address: "" });
+    setQuery(`${city}, ${country}`);
+    setDropdownOpen(false);
+    robustSearch({ city, country }).catch(console.error);
+  };
+
+  const toggleFav = (h: Hospital) => {
     try {
-      const raw = localStorage.getItem(RECENTLY_KEY) || '[]';
-      const existing = JSON.parse(raw) as StoredHospital[];
+      const raw = JSON.parse(localStorage.getItem("favoriteHospitals") || "[]");
+      const exists = raw.some((r: any) => r.name === h.name);
+      const next = exists ? raw.filter((r: any) => r.name !== h.name) : [{ ...h }, ...raw].slice(0, 50);
+      localStorage.setItem("favoriteHospitals", JSON.stringify(next));
+      setFavorites(next);
+      onFavoritesUpdate?.();
+    } catch { }
+  };
+
+  const handleExplore = (hospital: Hospital) => {
+    try {
+      const raw = localStorage.getItem(RECENTLY_KEY) || "[]";
+      const existing = JSON.parse(raw) as Hospital[];
       const filtered = existing.filter((h) => h.name !== hospital.name);
-      const item: StoredHospital = { ...hospital, viewedAt: Date.now() };
+      const item = { ...hospital, viewedAt: Date.now() };
       const next = [item, ...filtered].slice(0, 10);
       localStorage.setItem(RECENTLY_KEY, JSON.stringify(next));
-    } catch {
-      // ignore localStorage failures
+    } catch (err) {
+      console.warn("Failed to update recently viewed:", err);
     }
 
-    // weekly stats
     try {
+      // ✅ Weekly stats update
       const now = Date.now();
-      const stored = JSON.parse(localStorage.getItem(WEEKLY_KEY) || '{}');
+      const stored = JSON.parse(localStorage.getItem(WEEKLY_KEY) || "{}");
       const lastReset = stored.lastReset || now;
       let count = stored.count || 0;
       if (now - lastReset > 7 * 24 * 60 * 60 * 1000) count = 0;
       const newStats = { count: count + 1, lastReset: now };
       localStorage.setItem(WEEKLY_KEY, JSON.stringify(newStats));
       setWeeklyViews(newStats.count);
-    } catch {
-      setWeeklyViews((v) => v + 1);
+    } catch (err) {
+      console.warn("Failed to update weekly stats:", err);
     }
   };
-
-  // favorites: store full Hospital
-  const toggleFavorite = (hospital: Hospital) => {
-    try {
-      const raw = localStorage.getItem(FAVORITES_KEY) || '[]';
-      const existing: StoredHospital[] = JSON.parse(raw);
-      const exists = existing.find((h) => h.name === hospital.name);
-      let next: StoredHospital[];
-      if (exists) {
-        next = existing.filter((h) => h.name !== hospital.name);
-      } else {
-        // keep max 50
-        next = [{ ...hospital }, ...existing].slice(0, 50);
-      }
-      localStorage.setItem(FAVORITES_KEY, JSON.stringify(next));
-      onFavoritesUpdate?.();
-      setFavorites(next);
-    } catch {
-      // fallback local state update
-      const exists = favorites.some((h) => h.name === hospital.name);
-      const next = exists ? favorites.filter((h) => h.name !== hospital.name) : [{ ...hospital }, ...favorites];
-      setFavorites(next);
-      try { localStorage.setItem(FAVORITES_KEY, JSON.stringify(next)); } catch { }
-    }
-  };
-
-  useEffect(() => {
-    if (hospitals.length === 0) {
-      onSearchResultsChange?.(false);
-    }
-  }, [hospitals]);
-
-
-  // check saved by name
-  const isSaved = (hospital: Hospital) => favorites.some((f) => f.name === hospital.name);
 
   return (
-    <Motion variants={sectionReveal} className={style.search}>
-      <Motion variants={fadeUp}>
+    <div className={style.searchContainer}>
+      <Motion variants={fadeUp} className={style.searchHeader}>
         <h1 className={style.heading}>
-          Welcome back <span className={style.name}>{state.name}</span> 👋
+          Good to see you, <span className={style.name}>{state.username}</span>.
         </h1>
         <p className={style.subtext}>
           You’ve viewed <strong>{weeklyViews}</strong> hospitals this week.
         </p>
       </Motion>
 
-      <Motion variants={fadeUp} className={style.wrapper}>
-        <form onSubmit={handleSubmit} className={style.form}>
-          <div className={style.box}>
-            <input
-              type="text"
-              name="address"
-              value={location.address}
-              onChange={handleInput}
-              placeholder="Enter Hospital address or Name"
-              className={style.input}
-            />
-            {error && <p className={style.error}>{error}</p>}
+      <div ref={dropdownRef} className={style.searchBox}>
+        <div className={style.inputGroup}>
+          <input
+            value={query}
+            onChange={(e) => handleInputChange(e.target.value)}
+            onFocus={() => setDropdownOpen(true)}
+            placeholder="Search hospital, city or country..."
+            className={style.input}
+          />
+          <button className={style.searchBtn}><AiOutlineSearch /></button>
+        </div>
+
+        {dropdownOpen && (
+          <div className={style.dropdown}>
+            {loadingCountries ? (
+              <div className={style.dropdownItem}>Loading locations…</div>
+            ) : filteredCountries.length ? (
+              filteredCountries.map((g) => {
+                const cities = Array.from(new Set((g.hospitals || []).map(h => h.address?.city).filter(Boolean)));
+                return (
+                  <div key={g.country} className={style.dropdownGroup}>
+                    <div className={style.dropdownCountry}>{g.country}</div>
+                    {cities.map(city => (
+                      <div key={city} className={style.dropdownCity} onMouseDown={(ev) => { ev.preventDefault(); handleSelectCity(city, g.country); }}>
+                        {city}
+                      </div>
+                    ))}
+                  </div>
+                );
+              })
+            ) : (
+              <div className={style.dropdownItem}>No matching locations</div>
+            )}
           </div>
-          <select onChange={handleSelect} className={style.select}>
-            <option value="">City, State</option>
-            {statesAndCities.map((name) => (
-              <option key={`${name.city},${name.state}`} value={`${name.city},${name.state}`}>
-                {`${name.city}, ${name.state}`}
-              </option>
+        )}
+      </div>
+
+      <div className={style.results}>
+        {loading && <div className={style.message}>Searching hospitals…</div>}
+        {!loading && error && <div className={style.error}>{error}</div>}
+        {!loading && hospitals.length > 0 && (
+          <div className={style.resultsGrid}>
+            {hospitals.map((h) => (
+              <div key={h._id} className={style.hospitalCard}>
+                <Avatar image={h.photoUrl || HospitalPic} alt={h.name} style={{ width: "100%", height: "150px", borderRadius: "12px", objectFit: "cover" }} />
+                <div className={style.hospitalInfo}>
+                  <h3>{h.name}</h3>
+                  <p>{h.address?.city} — {h.address?.state}</p>
+                  <div className={style.cardActions}>
+                    <NavLink to={`${h._id}`} onClick={() => handleExplore(h)} className={style.exploreBtn}>
+                      Explore
+                    </NavLink>
+                    <button onClick={() => toggleFav(h)} className={style.favBtn}>
+                      {favorites.some(f => f.name === h.name) ? <AiFillHeart color="#f33" /> : <AiOutlineHeart />}
+                    </button>
+                  </div>
+                </div>
+              </div>
             ))}
-          </select>
-          <button type="submit" disabled={searching} className={style.cta}>
-            {searching ? <div /> : <AiOutlineSearch className={style.icon} />}
+          </div>
+        )}
+      </div>
+
+      {!loading && hospitals.length > 0 && (
+        <Motion variants={fadeUp} className={style.container}>
+          <ShareButton searchParams={location} />
+          <ExportButton searchParams={location} />
+          <button
+            type="button"
+            className={style.backBtn}
+            onClick={() => {
+              setHospitals([]);
+              setLocation({ address: "", city: "", state: "" });
+              onSearchResultsChange?.(false);
+            }}
+          >
+            <span>Dashboard</span>
           </button>
-        </form>
-      </Motion>
+        </Motion>
+      )}
 
-      <ul className={style.hospitals}>
-        {hospitals.length > 0 ? (
-          <Motion variants={sectionReveal}>
-            <h1 className={style.title}>
-              {hospitals.length} {hospitals.length === 1 ? "Hospital" : "Hospitals"} found
-            </h1>
-            <div className={style.wrapper}>
-              {hospitals.map((hospital, id) => (
-                <Motion key={id} variants={fadeUp} className={style.card}>
-                  <div className={style2.img}>
-                    <Avatar
-                      image={hospital.photoUrl || HospitalPic}
-                      alt="hospital"
-                      style={{
-                        width: "100%",
-                        height: "100%",
-                        borderRadius: "1.2rem",
-                        objectFit: "cover",
-                      }}
-                    />
-                  </div>
-                  <div className={style2.details}>
-                    <h3 className={style2.name}>{hospital.name}</h3>
-                    <h3 className={style2.address}>
-                      {hospital?.address.street}, {hospital?.address.city}
-                    </h3>
-                    <div className={style.actions}>
-                      <NavLink
-                        to={`${hospital._id}`}
-                        className={style2.btn}
-                        onClick={() => handleExplore(hospital)}
-                      >
-                        Explore Hospital
-                      </NavLink>
-                      <button
-                        className={style.heart}
-                        onClick={() => toggleFavorite(hospital)}
-                        aria-label={isSaved(hospital) ? "Unsave hospital" : "Save hospital"}
-                      >
-                        {isSaved(hospital) ? <AiFillHeart color="#ff033e" /> : <AiOutlineHeart />}
-                      </button>
-                    </div>
-                  </div>
-                </Motion>
-              ))}
-            </div>
-            <Motion variants={fadeUp} className={style.container}>
-              <ShareButton searchParams={location} />
-              <ExportButton searchParams={location} />
-              <button
-                type="button"
-                className={style.backBtn}
-                onClick={() => {
-                  setHospitals([]);
-                  setLocation({ address: "", city: "", state: "" });
-                  onSearchResultsChange?.(false);
-                }}
-              >
-                <AiOutlineArrowLeft className={style.backIcon} />
-                <span>Back to Dashboard</span>
-              </button>
-            </Motion>
-          </Motion>
-        ) : null}
-      </ul>
       <Outlet />
-    </Motion>
+    </div>
   );
-};
-
-export default SearchForm;
+}
