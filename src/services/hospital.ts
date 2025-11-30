@@ -20,6 +20,7 @@ export interface Hours {
 export interface Hospital {
   _id: string;
   name: string;
+  slug: string;
   address: Address;
   phoneNumber: string;
   email: string;

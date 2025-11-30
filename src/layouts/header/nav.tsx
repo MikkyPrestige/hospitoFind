@@ -69,19 +69,19 @@ const LayoutMobile = () => {
 
       <nav className={`${style.smallNav} ${showMenu ? style.show : ""}`}>
         <ul className={style.smallList}>
-          {/* <li>
-            <NavLinks to="/" onClick={toggleMenu} className={style.smallLink}>
-              Home
-            </NavLinks>
-          </li> */}
           <li>
-            <NavLinks to="/find" onClick={toggleMenu} className={style.smallLink}>
+            <NavLinks to="/findHospital" onClick={toggleMenu} className={style.smallLink}>
               Find a Hospital
             </NavLinks>
           </li>
           <li>
             <NavLinks to="/about" onClick={toggleMenu} className={style.smallLink}>
               About Us
+            </NavLinks>
+          </li>
+          <li>
+            <NavLinks to="/country" onClick={toggleMenu} className={style.smallLink}>
+              Explore
             </NavLinks>
           </li>
         </ul>
@@ -133,19 +133,19 @@ const LayoutLarge = () => {
 
       <nav className={style.largeNav}>
         <ul className={style.largeList}>
-          {/* <li>
-            <NavLinks to="/" className={style.largeLink}>
-              Home
-            </NavLinks>
-          </li> */}
           <li>
-            <NavLinks to="/find" className={style.largeLink}>
+            <NavLinks to="/findHospital" className={style.largeLink}>
               Find a Hospital
             </NavLinks>
           </li>
           <li>
             <NavLinks to="/about" className={style.largeLink}>
               About Us
+            </NavLinks>
+          </li>
+          <li>
+            <NavLinks to="/country" className={style.largeLink}>
+              Explore
             </NavLinks>
           </li>
         </ul>

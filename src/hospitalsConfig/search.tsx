@@ -289,7 +289,10 @@ export default function SearchForm({
                   <h3>{h.name}</h3>
                   <p>{h.address?.city} — {h.address?.state}</p>
                   <div className={style.cardActions}>
-                    <NavLink to={`${h._id}`} onClick={() => handleExplore(h)} className={style.exploreBtn}>
+                    <NavLink
+                      to={`/hospital/${h.address.state}/${h.address.city}/${h.slug}`} onClick={() => handleExplore(h)}
+                      className={style.exploreBtn}
+                    >
                       Explore
                     </NavLink>
                     <button onClick={() => toggleFav(h)} className={style.favBtn}>

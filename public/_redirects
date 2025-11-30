@@ -1,1 +1,8 @@
-/* /index.html 200
+/sitemap.xml            https://hospitofind-server.onrender.com/sitemap.xml            200
+/sitemap-static.xml     https://hospitofind-server.onrender.com/sitemap-static.xml     200
+/sitemap-countries.xml  https://hospitofind-server.onrender.com/sitemap-countries.xml  200
+/sitemap-cities.xml     https://hospitofind-server.onrender.com/sitemap-cities.xml     200
+/sitemap-hospitals.xml  https://hospitofind-server.onrender.com/sitemap-hospitals.xml  200
+/sitemap-images.xml     https://hospitofind-server.onrender.com/sitemap-images.xml     200
+
+/*  /index.html   200

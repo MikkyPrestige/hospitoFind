@@ -1,5 +1,4 @@
 import { NavLink, useNavigate } from "react-router-dom";
-import { Helmet } from "react-helmet-async";
 import { useState, useEffect, useRef } from "react";
 import mapboxgl from "mapbox-gl";
 import "mapbox-gl/dist/mapbox-gl.css";
@@ -17,6 +16,7 @@ import HospitalPic from "@/assets/images/hospital-logo.jpg";
 import { Avatar } from "@/components/avatar";
 import style from "./style/find.module.css";
 import style2 from "../../components/style/popular.module.css";
+import { SEOHelmet } from "@/components/utils/seoUtils";
 
 mapboxgl.accessToken = accessToken;
 
@@ -31,7 +31,7 @@ const FindHospital = () => {
     const [map, setMap] = useState<mapboxgl.Map | null>(null);
     const markersRef = useRef<mapboxgl.Marker[]>([]);
 
-    // 🗺️ Initialize Map
+    // Initialize Map
     useEffect(() => {
         const mapInstance = new mapboxgl.Map({
             container: mapContainer.current!,
@@ -62,7 +62,7 @@ const FindHospital = () => {
         return () => mapInstance.remove();
     }, []);
 
-    // 🔍 Search Handler
+    // Search Handler
     const handleSearch = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         setError("");
@@ -144,16 +144,27 @@ const FindHospital = () => {
 
     return (
         <>
-            <Helmet>
-                <title>Find Hospitals | HospitoFind</title>
-                <meta name="description" content="Find nearby hospitals and healthcare centers." />
-                <meta name="keywords" content="hospital, doctor, clinic, health, find, search, nearby" />
-            </Helmet>
+            <SEOHelmet
+                title={term ? `Hospitals in ${term}` : "Find Hospitals Near You"}
+                description={
+                    term
+                        ? `Discover verified hospitals in ${term}. HospitoFind helps you connect with verified healthcare facilities, services and hospital profiles easily.`
+                        : "Use HospitoFind’s hospital finder to search hospitals by name, city, or country. Connect with verified healthcare facilities worldwide."
+                }
+                canonical={
+                    term
+                        ? `https://hospitofind.online/findHospital?query=${encodeURIComponent(term)}`
+                        : "https://hospitofind.online/findHospital"
+                }
+                schemaType="search"
+                schemaData={[]}
+                autoBreadcrumbs={true}
+            />
 
             <Header />
 
             <section className={style.findSection}>
-                {/* 🔍 Search Section */}
+                {/* Search Section */}
                 <Motion variants={fadeUp} className={style.search} as="section">
                     <Motion variants={zoomIn} className={style.map}>
                         <div ref={mapContainer} className={style.mapBox} />
@@ -182,7 +193,7 @@ const FindHospital = () => {
                     {error && <p className={style.error}>{error}</p>}
                 </Motion>
 
-                {/* 🏥 Results Section */}
+                {/*  Results Section */}
                 <Motion variants={sectionReveal} as="section" className={style.hospitals}>
                     {hospitals.length > 0 ? (
                         <Motion variants={sectionReveal} initial="hidden" animate="visible" className={style.found}>
@@ -221,7 +232,10 @@ const FindHospital = () => {
                                             <p>
                                                 {hospital.address?.street}, {hospital.address?.city}, {hospital.address?.state}
                                             </p>
-                                            <NavLink to={`${hospital._id}`} className={style2.btn}>
+                                            <NavLink
+                                                to={`/hospital/${hospital.address.state}/${hospital.address.city}/${hospital.slug}`}
+                                                className={style2.btn}
+                                            >
                                                 See more
                                             </NavLink>
                                         </div>
@@ -230,12 +244,12 @@ const FindHospital = () => {
                             </Motion>
                         </Motion>
                     ) : message ? (
-                            <Motion variants={fadeUp} className={style.noResults}>
+                        <Motion variants={fadeUp} className={style.noResults}>
                             <p className={style.noResultsText}>{message}</p>
                         </Motion>
                     ) : (
                         !searching && (
-                                    <Motion variants={fadeUp} initial="hidden" animate="visible">
+                            <Motion variants={fadeUp} initial="hidden" animate="visible">
                                 <PopularHospitals />
                             </Motion>
                         )

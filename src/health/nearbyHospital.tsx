@@ -5,6 +5,7 @@ import style from "./style/nearbyHospital.module.css";
 type Hospital = {
     _id?: string;
     name: string;
+    slug?: string;
     address?: {
         state?: string;
         city?: string;
@@ -63,7 +64,7 @@ const NearbyHospitals = () => {
             }
         };
 
-        // 🌍 Try geolocation first
+        // Try geolocation first
         if (navigator.geolocation) {
             navigator.geolocation.getCurrentPosition(
                 (pos) => {
@@ -84,8 +85,8 @@ const NearbyHospitals = () => {
 
     return (
         <section className={style.section}>
-            <h2 className={style.heading}>Hospitals Near You</h2>
-            <p className={style.subHeading}>Discover trusted hospitals closest to your location.</p>
+            <h2 className={style.heading}>Nearby Hospitals</h2>
+            <p className={style.subHeading}>Verified hospitals close to you.</p>
 
             {message && <p className={style.note}>{message}</p>}
 
@@ -109,8 +110,8 @@ const NearbyHospitals = () => {
                                     {h.type && (
                                         <span
                                             className={`${style.typeBadge} ${h.type.toLowerCase() === "private"
-                                                    ? style.privateBadge
-                                                    : style.publicBadge
+                                                ? style.privateBadge
+                                                : style.publicBadge
                                                 }`}
                                         >
                                             {h.type}
@@ -131,9 +132,9 @@ const NearbyHospitals = () => {
 
                                 <button
                                     className={style.viewBtn}
-                                    onClick={() => navigate(`/hospital/${h._id}`)}
+                                    onClick={() => navigate(`/hospital/${h.address?.state}/${h.address?.city}/${h.slug}`)}
                                 >
-                                    View Details →
+                                    Details →
                                 </button>
                             </div>
                         </div>

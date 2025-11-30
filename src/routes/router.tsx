@@ -17,8 +17,11 @@ const ExplorePage = lazy(() => import("@/pages/explore/explorePage"));
 const CountryDetailPage = lazy(() => import("@/pages/explore/countryDetails"));
 const ShareHospitalList = lazy(() => import("@/hospitalsConfig/shareHospitalList"));
 const HospitalDetails = lazy(() => import("@/components/hospitalDetails"));
-const Policy = lazy(() => import("@/pages/policy"));
+// const NearbyHospitals = lazy(() => import("@/health/nearbyHospital"));
 const News = lazy(() => import("@/health/newsData"));
+// const Outbreaks = lazy(() => import("@/health/healthAlert"));
+// const DailyTips = lazy(() => import("@/health/dailyTips"));
+const Policy = lazy(() => import("@/pages/policy"));
 const Error404 = lazy(() => import("@/components/error404"));
 
 // dashboard logic
@@ -30,6 +33,7 @@ const DashboardWithAuth = () => {
 export const router = createBrowserRouter([
     {
         path: "/",
+        // element: <RootLayout />,
         element: (
             <AuthProvider>
                 <RootLayout />
@@ -40,7 +44,7 @@ export const router = createBrowserRouter([
             { index: true, element: <Home />, errorElement: <Fallback /> },
             { path: "about", element: <About />, errorElement: <Fallback /> },
             {
-                path: "find",
+                path: "findHospital",
                 children: [
                     { index: true, element: <FindHospital />, errorElement: <Fallback /> },
                     { path: ":name", element: <HospitalInfo />, errorElement: <Fallback /> },
@@ -55,14 +59,18 @@ export const router = createBrowserRouter([
                     { path: ":name", element: <HospitalInfo />, errorElement: <Fallback /> },
                 ],
             },
+            { path: "hospital/:country/:city/:slug", element: <HospitalDetails />, errorElement: <Fallback /> },
             { path: "hospital/:id", element: <HospitalDetails />, errorElement: <Fallback /> },
             { path: "callback", element: <Callback />, errorElement: <Fallback /> },
             { path: "hospitals/share/:linkId", element: <ShareHospitalList />, errorElement: <Fallback /> },
             { path: "hospitals/share/:linkId/:name", element: <HospitalInfo />, errorElement: <Fallback /> },
-            { path: "explore", element: <ExplorePage />, errorElement: <Fallback /> },
-            { path: "explore/:country", element: <CountryDetailPage />, errorElement: <Fallback /> },
-            { path: "policy", element: <Policy />, errorElement: <Fallback /> },
+            { path: "country", element: <ExplorePage />, errorElement: <Fallback /> },
+            { path: "country/:country", element: <CountryDetailPage />, errorElement: <Fallback /> },
+            // { path: "nearby", element: <NearbyHospitals />, errorElement: <Fallback /> },
             { path: "news", element: <News />, errorElement: <Fallback /> },
+            // { path: "outbreaks", element: <Outbreaks />, errorElement: <Fallback /> },
+            // { path: "dailyTips", element: <DailyTips />, errorElement: <Fallback /> },
+            { path: "policy", element: <Policy />, errorElement: <Fallback /> },
             { path: "*", element: <Error404 />, errorElement: <Fallback /> },
         ],
     },

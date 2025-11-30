@@ -97,7 +97,7 @@ const Dashboard = () => {
     <main className={style.dashboard}>
       <Helmet>
         <title>Dashboard | HospitoFind</title>
-        <meta name="description" content="Admin dashboard" />
+        <meta name="robots" content="noindex, nofollow" />
       </Helmet>
 
       <Motion variants={fadeUp} className={style.top} once={true}>
@@ -238,7 +238,7 @@ const Dashboard = () => {
                               className={style.favoriteCard}
                             >
                               <Link
-                                to={`${h._id || h.name}`}
+                                to={`/hospital/${h.address.state}/${h.address.city}/${h.slug}`}
                                 onClick={(e) => e.stopPropagation()}
                                 className={style.favoriteCard}
                               >
@@ -305,7 +305,8 @@ const Dashboard = () => {
                           {recentlyViewed.map((r, i) => (
                             <Motion key={`${r.name}-${i}`} variants={fadeUp} className={style.recentItem}>
                               <Link
-                                to={`${r._id || r.name}`}
+                                // to={`${r._id || r.name}`}
+                                to={`/hospital/${r.address.state}/${r.address.city}/${r.slug}`}
                                 className={style.recentItem}
                                 onClick={(e) => e.stopPropagation()}
                               >

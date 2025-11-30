@@ -8,9 +8,8 @@ const Error404Page = () => {
   return (
     <>
       <Helmet>
-        <title>404 | Hospital Finder</title>
-        <meta name="description" content="Page not found" />
-        <meta name="keywords" content="hospital, doctor, appointment, health, care, medical, clinic, find, search, nearby, nearest" />
+        <title>Page Not Found | HospitoFind</title>
+        <meta name="robots" content="noindex, nofollow" />
       </Helmet>
       <Header />
       <div style={{

@@ -61,19 +61,12 @@
   font-size: clamp(2rem, 2.5vw, 3rem);
   font-weight: 700;
   color: #08299B;
-  line-height: 1.2;
-}
-.bg .header .subtitle {
-  font-size: clamp(1.2rem, 1.6vw, 1.8rem);
-  font-weight: 500;
-  color: #1E1E1E;
-  margin: 0 auto;
   text-align: center;
 }
-@media only screen and (min-width: 48.0625em) {
-  .bg .header .subtitle {
-    margin: 0.5rem;
-  }
+.bg .header .subtitle {
+  font-size: clamp(1.8rem, 1.5vw, 2rem);
+  font-weight: 500;
+  color: #1E1E1E;
 }
 .bg .cta {
   display: flex;
@@ -89,16 +82,34 @@
   }
 }
 .bg .cta .btn {
-  font-size: 1.2rem;
+  font-size: 1.25rem;
+  font-weight: 600;
   padding: 0.8rem 1rem;
-  border-radius: 0.5rem;
-  background: linear-gradient(90deg, #08299B, #88B3DB);
+  border-radius: 0.75rem;
+  background: linear-gradient(135deg, #08299B 0%, #88B3DB 100%);
   color: white;
-  transition: all 0.3s ease;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  transition: all 0.25s ease;
+  letter-spacing: 0.3px;
+  cursor: pointer;
+  text-decoration: none;
+}
+.bg .cta .btn svg {
+  width: 1.3rem;
+  height: 1.3rem;
+  stroke-width: 2.3;
 }
 .bg .cta .btn:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 6px 12px rgba(14, 61, 183, 0.25);
+  transform: translateY(-3px);
+  box-shadow: 0 10px 20px rgba(14, 61, 183, 0.3);
+  background: linear-gradient(135deg, rgb(9.0012269939, 46.1312883436, 174.3987730061) 0%, rgb(151.6619354839, 189.0025806452, 223.7380645161) 100%);
+}
+.bg .cta .btn:active {
+  transform: translateY(0px);
+  box-shadow: none;
 }
 .bg .cta .outlineBtn {
   font-size: 1.1rem;

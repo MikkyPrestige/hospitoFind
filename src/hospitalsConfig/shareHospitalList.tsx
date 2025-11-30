@@ -34,37 +34,40 @@ const ShareHospitalList = () => {
 
 
   return (
-<>
-<Header />
-    <div className={style.sharePage}>
-      {error && <div>{error}</div>}
-      {loading ? (
-        <div style={{
-          display: "flex",
-          justifyContent: "center",
-          alignItems: "center",
-          height: "100vh"
-        }}>
-          <img src={Loading} alt="Loading gif" /></div>
-      ) : (
-        <div className={`${style.shareContent} ${style.wrapper}`}>
-          {hospitalList.map((hospital, id) => (
-            <li key={id} className={style.card}>
-              <div className={style.img}>
-                {hospital?.photoUrl ? <Avatar image={hospital.photoUrl} alt="hospital" style={{ width: "100%", height: "100%", borderRadius: "1.2rem", objectFit: "cover" }} /> : <Avatar image={HospitalPic} alt="hospital" style={{ width: "100%", height: "100%", borderRadius: "1.2rem", objectFit: "cover" }} />}
-              </div>
-              <div className={style.details}>
-                <h3 className={style.name}>{hospital.name}</h3>
-                <h3 className={style.address}>{hospital?.address.street}</h3>
-                <NavLink to={`${hospital.name}`} className={style.btn}>Explore Hospital</NavLink>
-              </div>
-            </li>
-          ))}
-        </div>
-      )}
-      <div style={{ width: "100%" }}>
+    <>
+      <Header />
+      <div className={style.sharePage}>
+        {error && <div>{error}</div>}
+        {loading ? (
+          <div style={{
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            height: "100vh"
+          }}>
+            <img src={Loading} alt="Loading gif" /></div>
+        ) : (
+          <div className={`${style.shareContent} ${style.wrapper}`}>
+            {hospitalList.map((hospital, id) => (
+              <li key={id} className={style.card}>
+                <div className={style.img}>
+                  {hospital?.photoUrl ? <Avatar image={hospital.photoUrl} alt="hospital" style={{ width: "100%", height: "100%", borderRadius: "1.2rem", objectFit: "cover" }} /> : <Avatar image={HospitalPic} alt="hospital" style={{ width: "100%", height: "100%", borderRadius: "1.2rem", objectFit: "cover" }} />}
+                </div>
+                <div className={style.details}>
+                  <h3 className={style.name}>{hospital.name}</h3>
+                  <h3 className={style.address}>{hospital?.address.street}</h3>
+                  <NavLink
+                    to={`/hospital/${hospital.address.state}/${hospital.address.city}/${hospital.slug}`}
+                    className={style.btn}
+                  >
+                    View Hospital
+                  </NavLink>
+                </div>
+              </li>
+            ))}
+          </div>
+        )}
       </div>
-    </div>
       <Footer />
     </>
   );

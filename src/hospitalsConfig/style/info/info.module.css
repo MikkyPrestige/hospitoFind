@@ -9,7 +9,7 @@
   gap: 2rem;
 }
 .hospital .breadcrumb {
-  font-size: 1rem;
+  font-size: 1.2rem;
   color: #777;
 }
 .hospital .breadcrumb a {
@@ -85,57 +85,6 @@
     min-height: 0;
   }
 }
-.hospital .section {
-  margin-bottom: 2rem;
-  text-align: center;
-}
-.hospital .section .section_title {
-  color: #08299b;
-  font-weight: 600;
-  margin-bottom: 0.5rem;
-  font-size: 1.2rem;
-  letter-spacing: 0.02rem;
-}
-.hospital .section .section_head {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: center;
-  gap: 0.5rem;
-}
-.hospital .section .section_head .section_headTitle {
-  font-weight: 600;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: center;
-  gap: 0.5rem;
-}
-.hospital .section p,
-.hospital .section li,
-.hospital .section a {
-  font-size: 1rem;
-  color: #333;
-  line-height: 1.6;
-}
-.hospital .contact {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: center;
-  gap: 0.5rem;
-  color: #08299b;
-  text-decoration: none;
-  transition: 0.2s;
-  font-weight: 500;
-}
-.hospital .contact svg {
-  font-size: 1.1rem;
-}
-.hospital .contact:hover {
-  color: rgb(5.4969325153, 28.1717791411, 106.5030674847);
-  text-decoration: underline;
-}
 .hospital .map {
   width: 100%;
   height: 20rem;
@@ -165,26 +114,8 @@
   gap: 0.5rem;
 }
 .hospital .list li {
-  font-size: 0.95rem;
+  font-size: 1.2rem;
   color: #333;
-}
-.hospital .hours {
-  list-style-type: none;
-  padding: 0;
-  margin: 0;
-}
-.hospital .hours li {
-  display: flex;
-  justify-content: space-between;
-  padding: 0.4rem 0;
-  border-bottom: 1px solid #eee;
-  font-size: 0.95rem;
-  font-weight: 500;
-  color: #444;
-}
-.hospital .hours li span:first-child {
-  font-weight: 600;
-  color: #08299b;
 }
 .hospital .error {
   text-align: center;
@@ -218,6 +149,94 @@
   background-color: rgb(5.4969325153, 28.1717791411, 106.5030674847);
   transform: scale(1.03);
 }
+
+.section {
+  text-align: center;
+  margin: 1rem 0;
+}
+
+.section_title {
+  color: #08299b;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+  font-size: 1.4rem;
+  letter-spacing: 0.02rem;
+}
+
+.section_head {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+}
+
+.section_headTitle {
+  font-weight: 600;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+}
+
+.strong {
+  color: #08299b;
+}
+
+.contact {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  color: #08299b;
+  text-decoration: none;
+  transition: 0.2s;
+  font-weight: 500;
+}
+.contact svg {
+  font-size: 1.1rem;
+}
+.contact:hover {
+  color: rgb(5.4969325153, 28.1717791411, 106.5030674847);
+  text-decoration: underline;
+}
+
+.list {
+  list-style-type: disc;
+  list-style-position: inside;
+  padding-left: 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  text-align: start;
+  gap: 0.5rem;
+}
+.list li {
+  font-size: 1.2rem;
+  color: #333;
+}
+
+.hours {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+.hours li {
+  display: flex;
+  justify-content: space-between;
+  padding: 0.4rem 0;
+  border-bottom: 1px solid #eee;
+  font-size: 1.2rem;
+  font-weight: 500;
+  color: #444;
+}
+.hours li span:first-child {
+  font-weight: 600;
+  color: #08299b;
+}
+
 @keyframes fadeIn {
   from {
     opacity: 0;

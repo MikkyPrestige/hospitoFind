@@ -38,17 +38,17 @@ const HealthNews = () => {
     }, []);
 
 
-    if (loading) return <p className={style.status}>Getting latest medical news...</p>;
+    if (loading) return <p className={style.status}>Getting latest health update...</p>;
     if (error) return <p className={style.status}>{error}</p>;
 
     return (
         <section className={style.section}>
             <div className={style.headerRow}>
-                <h2 className={style.heading}>🩺 Global Health & Hospital News</h2>
+                <h2 className={style.heading}>🩺 Global Health News</h2>
                 <span className={style.badge}>Live updates</span>
             </div>
             <p className={style.subHeading}>
-                Get the latest updates from the healthcare world.
+                Stay informed with real-time updates.
             </p>
             <div className={style.newsList}>
                 {articles.map((article, i) => (
