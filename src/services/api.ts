@@ -14,13 +14,20 @@ export async function getHospitals() {
   }
 }
 
-export async function getHospitalDetails(id: number) {
+export async function getHospitalDetails(params: any) {
   try {
-    const response = await axios.get(`${BASE_URL}/hospitals/${id}`);
-    const hospital = response.data;
-    return hospital;
+    if (params.slug) {
+      const response = await axios.get(
+        `${BASE_URL}/hospital/${params.country}/${params.city}/${params.slug}`
+      );
+      return response.data;
+    }
+
+    const response = await axios.get(`${BASE_URL}/hospitals/${params.id}`);
+    return response.data;
+
   } catch (error) {
-    throw error
+    throw error;
   }
 }
 
@@ -50,7 +57,6 @@ export async function getHospitalByName(name: string) {
 export async function findHospitals(query: string) {
   try {
     const response = await axios.get(`${BASE_URL}/hospitals/find?${query}`);
-    // console.log("🌍 Calling URL:", URL);
     return response.data;
   } catch (error) {
     throw error;

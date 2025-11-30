@@ -14,18 +14,22 @@ import Logo7 from "@/assets/images/Korle Bu.jpeg";
 import Logo8 from "@/assets/images/hirslanden.webp";
 import Logo9 from "@/assets/images/milpark.jpg";
 import Logo10 from "@/assets/images/Tygerberg.png";
+import Logo11 from "@/assets/images/alexandra.jpg";
+import Logo12 from "@/assets/images/CBRM.jpg";
 
 const hospitalPartners = [
-    { logo: Logo1, name: "Federal Medical Centre (FMC)" },
-    { logo: Logo2, name: "University of Benin Teaching Hospital (UBTH)" },
+    { logo: Logo1, name: "Federal Medical Centre" },
+    { logo: Logo2, name: "University of Benin Teaching Hospital" },
     { logo: Logo3, name: "Misr International" },
     { logo: Logo4, name: "Mater Misericordiae" },
     { logo: Logo5, name: "Effia Nkwanta" },
-    { logo: Logo6, name: "Leiden University Medical Center (LUMC)" },
+    { logo: Logo6, name: "Leiden University Medical Center" },
     { logo: Logo7, name: "Korle Bu Teaching" },
     { logo: Logo8, name: "Klinik Hirslanden" },
     { logo: Logo9, name: "Netcare Milpark" },
     { logo: Logo10, name: "Tygerberg" },
+    { logo: Logo11, name: "Alexandra" },
+    { logo: Logo12, name: "Cape Breton" },
 ];
 
 const fadeIn = {
@@ -58,7 +62,7 @@ const TrustedSection = () => {
     }, []);
 
     const handleExploreClick = () => {
-        navigate("/dashboard");
+        navigate("/findHospital");
     }
 
     const scrollList = [...hospitalPartners, ...hospitalPartners];
@@ -100,7 +104,9 @@ const TrustedSection = () => {
                 </div>
             </div>
 
-            <button className={style.ctaBtn} onClick={handleExploreClick}>Explore Hospitals Near You →</button>
+            <button className={style.ctaBtn} onClick={handleExploreClick}>
+                Explore More Hospitals &#8594;
+            </button>
         </motion.section>
     );
 };

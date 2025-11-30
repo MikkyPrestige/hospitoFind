@@ -9,7 +9,7 @@
   gap: 2rem;
 
   .breadcrumb {
-    font-size: 1rem;
+    font-size: 1.2rem;
     color: #777;
     a {
       color: #08299b;
@@ -89,55 +89,55 @@
   }
 }
 
-  .section {
-    margin-bottom: 2rem;
-text-align: center;
+//   .section {
+//     margin-bottom: 2rem;
+// text-align: center;
 
-    .section_title {
-      color: #08299b;
-      font-weight: 600;
-      margin-bottom: .5rem;
-      font-size: 1.2rem;
-      letter-spacing: 0.02rem;
-    }
+    // .section_title {
+    //   color: #08299b;
+    //   font-weight: 600;
+    //   margin-bottom: .5rem;
+    //   font-size: 1.4rem;
+    //   letter-spacing: 0.02rem;
+    // }
 
-.section_head {
-@include mixins.flexRow;
-    gap: .5rem;
+// .section_head {
+// @include mixins.flexRow;
+//     gap: .5rem;
 
-.section_headTitle {
-font-weight: 600;
-@include mixins.flexRow;
-gap: .5rem;
-}
-}
+// .section_headTitle {
+// font-weight: 600;
+// @include mixins.flexRow;
+// gap: .5rem;
+// }
+// }
 
-    p,
-    li,
-    a {
-      font-size: 1rem;
-      color: #333;
-      line-height: 1.6;
-    }
-  }
+  //   p,
+  //   li,
+  //   a {
+  //     font-size: 1.2rem;
+  //     color: #333;
+  //     line-height: 1.6;
+  //   }
+  // }
 
-  .contact {
-    @include mixins.flexRow;
-    gap: 0.5rem;
-    color: #08299b;
-    text-decoration: none;
-    transition: 0.2s;
-    font-weight: 500;
+  // .contact {
+  //   @include mixins.flexRow;
+  //   gap: 0.5rem;
+  //   color: #08299b;
+  //   text-decoration: none;
+  //   transition: 0.2s;
+  //   font-weight: 500;
 
-    svg {
-      font-size: 1.1rem;
-    }
+  //   svg {
+  //     font-size: 1.1rem;
+  //   }
 
-    &:hover {
-      color: darken(#08299b, 10%);
-      text-decoration: underline;
-    }
-  }
+  //   &:hover {
+  //     color: darken(#08299b, 10%);
+  //     text-decoration: underline;
+  //   }
+  // }
 
 .map {
   width: 100%;
@@ -170,31 +170,31 @@ text-align: start;
     gap: 0.5rem;
 
     li {
-      font-size: 0.95rem;
+      font-size: 1.2rem;
       color: #333;
     }
   }
 
-  .hours {
-    list-style-type: none;
-    padding: 0;
-    margin: 0;
+  // .hours {
+  //   list-style-type: none;
+  //   padding: 0;
+  //   margin: 0;
 
-    li {
-      display: flex;
-      justify-content: space-between;
-      padding: 0.4rem 0;
-      border-bottom: 1px solid #eee;
-      font-size: 0.95rem;
-      font-weight: 500;
-      color: #444;
+  //   li {
+  //     display: flex;
+  //     justify-content: space-between;
+  //     padding: 0.4rem 0;
+  //     border-bottom: 1px solid #eee;
+  //     font-size: 1.2rem;
+  //     font-weight: 500;
+  //     color: #444;
 
-      span:first-child {
-        font-weight: 600;
-        color: #08299b;
-      }
-    }
-  }
+  //     span:first-child {
+  //       font-weight: 600;
+  //       color: #08299b;
+  //     }
+  //   }
+  // }
 
   .error {
     text-align: center;
@@ -231,9 +231,95 @@ text-align: start;
     }
   }
 }
+}
 
 
-  @keyframes fadeIn {
+
+
+  .section {
+text-align: center;
+    margin: 1rem 0;
+  }
+
+  .section_title {
+      color: #08299b;
+      font-weight: 600;
+      margin-bottom: .5rem;
+      font-size: 1.4rem;
+      letter-spacing: 0.02rem;
+    }
+
+.section_head {
+@include mixins.flexRow;
+    gap: .5rem;
+}
+
+.section_headTitle {
+font-weight: 600;
+@include mixins.flexRow;
+gap: .5rem;
+}
+
+.strong {
+color: #08299b;
+}
+
+  .contact {
+    @include mixins.flexRow;
+    gap: 0.5rem;
+    color: #08299b;
+    text-decoration: none;
+    transition: 0.2s;
+    font-weight: 500;
+
+    svg {
+      font-size: 1.1rem;
+    }
+
+    &:hover {
+      color: darken(#08299b, 10%);
+      text-decoration: underline;
+    }
+  }
+
+    .list {
+    list-style-type: disc;
+    list-style-position: inside;
+    padding-left: 1rem;
+    display: flex;
+    flex-direction: column;
+align-items: flex-start;
+text-align: start;
+    gap: 0.5rem;
+
+    li {
+      font-size: 1.2rem;
+      color: #333;
+    }
+  }
+
+ .hours {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+
+    li {
+      display: flex;
+      justify-content: space-between;
+      padding: 0.4rem 0;
+      border-bottom: 1px solid #eee;
+      font-size: 1.2rem;
+      font-weight: 500;
+      color: #444;
+
+      span:first-child {
+        font-weight: 600;
+        color: #08299b;
+      }
+    }
+  }
+
+ @keyframes fadeIn {
     from {
       opacity: 0;
       transform: translateY(10px);
@@ -243,4 +329,3 @@ text-align: start;
       transform: translateY(0);
     }
   }
-}

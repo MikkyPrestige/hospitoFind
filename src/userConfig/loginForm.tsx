@@ -1,13 +1,13 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import { useAuth0 } from "@auth0/auth0-react";
+// import { useAuth0 } from "@auth0/auth0-react";
+// import {
+//   FcGoogle
+// } from "react-icons/fc";
 import {
-  FcGoogle
-} from "react-icons/fc";
-import {
-  FaFacebook,
-  FaTwitter,
-  FaLinkedin,
+  // FaFacebook,
+  // FaTwitter,
+  // FaLinkedin,
   FaRegEyeSlash,
   FaRegEye,
 } from "react-icons/fa";
@@ -28,7 +28,7 @@ const LoginForm = () => {
   const [rememberMe, setRememberMe] = useState(false);
   const [errors, setErrors] = useState<Record<string, string>>({});
   const { loading, error, login } = useLogin();
-  const { loginWithRedirect } = useAuth0();
+  // const { loginWithRedirect } = useAuth0();
   const transitionClass = usePageTransition();
 
   const validateForm = () => {
@@ -187,7 +187,7 @@ const LoginForm = () => {
               />
             </form>
 
-            <div className={style.divider}>
+            {/* <div className={style.divider}>
               <div className={style.dividerLine}></div>
               <span className={style.dividerText}>Or continue with</span>
             </div>
@@ -216,7 +216,7 @@ const LoginForm = () => {
               >
                 <FaLinkedin className={style.icon} />
               </button>
-            </div>
+            </div> */}
 
             <p className={style.link}>
               Don’t have an account?{" "}

@@ -1,11 +1,11 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import { useAuth0 } from "@auth0/auth0-react";
-import { FcGoogle } from "react-icons/fc";
+// import { useAuth0 } from "@auth0/auth0-react";
+// import { FcGoogle } from "react-icons/fc";
 import {
-  FaFacebook,
-  FaTwitter,
-  FaLinkedin,
+  // FaFacebook,
+  // FaTwitter,
+  // FaLinkedin,
   FaRegEyeSlash,
   FaRegEye,
 } from "react-icons/fa";
@@ -28,7 +28,7 @@ const SignUp = () => {
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
   const [errors, setErrors] = useState<Record<string, string>>({});
   const { loading, error, signUp } = useSignUp();
-  const { loginWithRedirect } = useAuth0();
+  // const { loginWithRedirect } = useAuth0();
   const transitionClass = usePageTransition();
 
   const validateForm = () => {
@@ -209,26 +209,26 @@ const SignUp = () => {
                 {loading ? "Creating Your Account..." : "Create Account"}
                 <ArrowRight className={style.arrowIcon} />
               </Button>
-
-              <div className={style.divider}>
-                <div className={style.dividerLine}></div>
-                <span className={style.dividerText}>Or continue with</span>
-              </div>
-              <div className={style.socialBtn}>
-                <button onClick={() => loginWithRedirect()} className={style.social}>
-                  <FcGoogle className={style.icon} />
-                </button>
-                <button onClick={() => loginWithRedirect()} className={style.social}>
-                  <FaFacebook className={style.icon} />
-                </button>
-                <button onClick={() => loginWithRedirect()} className={style.social}>
-                  <FaTwitter className={style.icon} />
-                </button>
-                <button onClick={() => loginWithRedirect()} className={style.social}>
-                  <FaLinkedin className={style.icon} />
-                </button>
-              </div>
             </form>
+
+            {/* <div className={style.divider}>
+              <div className={style.dividerLine}></div>
+              <span className={style.dividerText}>Or continue with</span>
+            </div>
+            <div className={style.socialBtn}>
+              <button onClick={() => loginWithRedirect()} className={style.social}>
+                <FcGoogle className={style.icon} />
+              </button>
+              <button onClick={() => loginWithRedirect()} className={style.social}>
+                <FaFacebook className={style.icon} />
+              </button>
+              <button onClick={() => loginWithRedirect()} className={style.social}>
+                <FaTwitter className={style.icon} />
+              </button>
+              <button onClick={() => loginWithRedirect()} className={style.social}>
+                <FaLinkedin className={style.icon} />
+              </button>
+            </div> */}
 
             <p className={style.link}>
               Already have an account?{" "}

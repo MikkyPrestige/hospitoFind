@@ -41,7 +41,7 @@
     flex-direction: column;
   }
 
-   .mapWrapper iframe {
+  .mapWrapper iframe {
     flex-grow: 1;
     width: 100%;
     border: none;
@@ -96,12 +96,12 @@
 }
 
 .location {
-  font-size: 1rem;
+  font-size: 1.2rem;
   color: #555;
 }
 
 .desc {
-  font-size: 1rem;
+  font-size: 1.2rem;
   color: #333;
   line-height: 1.6;
 }
@@ -114,10 +114,12 @@
   color: #0e3db7;
   font-weight: 600;
   margin-bottom: 0.4rem;
+  font-size: 1.4rem;
 }
 
 .link {
   margin-top: 1.5rem;
+font-size: 1.2rem;
   color: #0e3db7;
   font-weight: 600;
   text-decoration: none;
@@ -129,7 +131,7 @@
 }
 
 .mapWrapper {
-   background: #f9fbff;
+  background: #f9fbff;
   border-radius: 16px;
   box-shadow: 0 3px 14px rgba(0, 0, 0, 0.08);
   overflow: hidden;
@@ -138,7 +140,7 @@
 }
 
 .mapWrapper h3 {
-   padding: 1rem 1.25rem;
+  padding: 1rem 1.25rem;
   background: #eef4ff;
   color: #2646a6;
   font-weight: 600;
@@ -146,7 +148,7 @@
 }
 
 .mapWrapper iframe {
-    flex-grow: 1;
+  flex-grow: 1;
   width: 100%;
   border: none;
 }
@@ -162,7 +164,7 @@
 }
 
 .directionsBtn:hover {
-   background: #1c3685;
+  background: #1c3685;
 }
 
 .loading,

@@ -54,7 +54,7 @@ const DailyHealthTip = () => {
                 <span className={style.badge}>Updated daily</span>
             </div>
             <p className={style.subHeading}>
-                Quick reminders to help you live healthier every day.
+                Simple tips to help you stay healthy every day.
             </p>
             <div className={style.tipsGrid}>
                 {tips.map((tip, i) => (

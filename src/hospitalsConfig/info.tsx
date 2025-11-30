@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import { useNavigate, useParams, Link } from "react-router-dom";
-import { Helmet } from "react-helmet-async";
 import { getHospitalByName } from "@/services/api";
 import { Hospital } from "@/services/hospital";
 import { Avatar } from "@/components/avatar";
@@ -10,6 +9,7 @@ import { FaPhone, FaGlobe, FaEnvelope } from "react-icons/fa";
 import Footer from "@/layouts/footer/footer";
 import Motion  from "@/components/motion";
 import { fadeUp, sectionReveal } from "@/hooks/animations";
+import { SEOHelmet } from "@/components/utils/seoUtils";
 
 const HospitalInfo = () => {
   const { name } = useParams();
@@ -40,13 +40,21 @@ const HospitalInfo = () => {
   return (
     <>
       <div className={style.hospital}>
-        <Helmet>
-          <title>{hospital.name}</title>
-          <meta name="description" content={hospital.name} />
-        </Helmet>
+        <SEOHelmet
+          title={hospital.name}
+          description={`Learn more about ${hospital.name}, located in ${hospital.address?.city}, ${hospital.address?.state}. Services: ${hospital.services?.join(", ") || "General healthcare"}.`}
+          canonical={`https://hospitofind.online/hospital/${encodeURIComponent(
+            hospital.name.toLowerCase().replace(/\s+/g, "-")
+          )}`}
+          image={hospital.photoUrl || HospitalPic}
+          schemaType="hospital"
+          schemaData={hospital}
+          autoBreadcrumbs={true}
+          includeBrand={true}
+        />
 
         <Motion variants={fadeUp} as="nav" className={style.breadcrumb}>
-          <Link to="/">Home</Link> / <Link to="/find">Hospitals</Link> /{" "}
+          <Link to="/">Home</Link> / <Link to="/findHospital">Hospitals</Link> /{" "}
           <span>{hospital.name}</span>
         </Motion>
 
@@ -151,7 +159,7 @@ const HospitalInfo = () => {
 
             {hospital.services && (
               <div className={style.section}>
-                <h3 className={style.section_title}>💉 Available Services</h3>
+                <h3 className={style.section_title}>💉 Specializations</h3>
                 <ul className={style.list}>
                   {hospital.services.map((s, i) => (
                     <li key={i}>{s}</li>

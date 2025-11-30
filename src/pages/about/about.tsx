@@ -1,11 +1,9 @@
-import { BsHospital, BsBuildingAdd } from "react-icons/bs";
+import { BsGlobe2 } from "react-icons/bs";
 import { useEffect, useState } from "react";
-import { FaFileExport } from "react-icons/fa";
-import { SlShareAlt } from "react-icons/sl";
+import { FaNotesMedical, FaMapMarkedAlt, FaRegNewspaper } from "react-icons/fa";
 import { MdStarBorderPurple500 } from "react-icons/md";
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
-import { Helmet } from "react-helmet-async";
 import style from "./style/about.module.css";
 import Header from "@/layouts/header/nav";
 import Footer from "@/layouts/footer/footer";
@@ -17,13 +15,23 @@ import Stethoscope from "@/assets/images/stethoscope.jpg";
 import Handset from "@/assets/images/handset.jpg";
 import Laptop from "@/assets/images/laptop.jpg";
 import Search from "@/assets/images/hospitalSearch.png";
-import Reviewer1 from "@/assets/images/reviewer1.jpg";
-import Reviewer2 from "@/assets/images/reviewer2.jpg";
-import Reviewer3 from "@/assets/images/reviewer3.jpg";
 import Patient from "@/assets/images/phone.jpg";
+import Reviewer1 from "@/assets/images/man.jpg";
+import Reviewer2 from "@/assets/images/man1.jpg";
+import Reviewer3 from "@/assets/images/man2.jpg";
+import Reviewer4 from "@/assets/images/man3.jpg";
+import Reviewer5 from "@/assets/images/woman.jpg";
+import Reviewer6 from "@/assets/images/woman1.jpg";
+import Reviewer7 from "@/assets/images/woman3.jpg";
+import Reviewer8 from "@/assets/images/woman4.jpg";
+import Reviewer9 from "@/assets/images/woman5.jpg";
+import Reviewer10 from "@/assets/images/woman7.jpg";
+import Reviewer11 from "@/assets/images/woman8.jpg";
+import Reviewer12 from "@/assets/images/woman9.jpg";
 import { Button } from "@/components/button";
+import { SEOHelmet } from "@/components/utils/seoUtils";
 
-const BASE_URL =  import.meta.env.VITE_BASE_URL;
+const BASE_URL = import.meta.env.VITE_BASE_URL;
 
 const About = () => {
   const [count, setCount] = useState<number | null>(null);
@@ -42,40 +50,36 @@ const About = () => {
 
   return (
     <>
-      <Helmet>
-        <title>About | HospitoFind</title>
-        <meta
-          name="description"
-          content="Learn more about HospitoFind and how we make hospital search easier for everyone."
-        />
-        <meta
-          name="keywords"
-          content="hospitofind, hospital finder, healthcare, find hospitals, medical search"
-        />
-      </Helmet>
+      <SEOHelmet
+        title="About Hospital Finder"
+        description="HospitoFind is a trusted hospital finder and healthcare directory connecting users with verified medical facilities worldwide. Learn more about our mission to provide easy access to healthcare information and services."
+        canonical="https://hospitofind.online/about"
+        schemaType="about"
+        schemaData={[]}
+        autoBreadcrumbs={true}
+      />
 
       <Header />
 
       <section className={style.bg}>
-        {/* 🩺 Hero Section */}
+        {/*  Hero Section */}
         <Motion className={style.wrapper} variants={fadeUp} as="section">
           <div className={style.top}>
             <h1 className={style.title}>
               About <span className={style.span}>HospitoFind</span>
             </h1>
             <p className={style.para}>
-              We believe healthcare access shouldn’t be a hassle. In many parts of the world, especially in developing regions, finding a nearby hospital or clinic can be a stressful and frustrating task. We're here to change that. HospitoFind provides a simple, trustworthy platform to help you locate hospitals, learn about their services, and access essential contact information.
+              HospitoFind is a comprehensive hospital finder and healthcare directory dedicated to connecting individuals with verified medical facilities worldwide. Our mission is to empower users to easily locate hospitals based on their specific needs, whether by city, country, or hospital name. We provide detailed hospital profiles, interactive maps, and up-to-date health news to ensure users have access to reliable information for making informed healthcare decisions.
             </p>
             <p className={style.gradient}>
               {count !== null
-                ? `Today, HospitoFind lists over ${count.toLocaleString()} hospitals across multiple countries — and growing!.`
-                : "Loading hospital statistics…"}
+                ? `Explore our extensive database of over ${count.toLocaleString()} hospitals worldwide - your gateway to global healthcare access!` : "Loading hospital statistics…"}
             </p>
 
             <Button
               children={
                 <span className={style.cta}>
-                  <Link to="/dashboard">Explore Services</Link>
+                  <Link to="/dashboard">Explore HospitoFind</Link>
                 </span>
               }
             />
@@ -99,29 +103,29 @@ const About = () => {
           </div>
         </Motion>
 
-        {/* 🧭 Feature Boxes */}
+        {/* Feature Boxes */}
         <Motion className={style.wrapper2} variants={sectionReveal} as="section" once={false}>
           <div className={style.container}>
             {[
               {
-                icon: <BsHospital />,
-                title: "Search Hospitals",
-                text: "Easily locate the best hospitals near you by name or area.",
+                icon: <FaNotesMedical />,
+                title: "Hospital Insights",
+                text: "Access detailed hospital profiles including services, location and contact information etc.",
               },
               {
-                icon: <FaFileExport />,
-                title: "Export Results",
-                text: "Save your search results as a CSV file for future reference.",
+                icon: <FaMapMarkedAlt />,
+                title: "Interactive Maps",
+                text: "View hospitals on a map, check distances, and get directions instantly.",
               },
               {
-                icon: <SlShareAlt />,
-                title: "Share with Others",
-                text: "Share hospital lists via a secure link with your friends or family.",
+                icon: <BsGlobe2 />,
+                title: "Global Atlas",
+                text: "Explore hospitals grouped by country, giving you a worldwide perspective on healthcare access.",
               },
               {
-                icon: <BsBuildingAdd />,
-                title: "Add a Hospital",
-                text: "Contribute by adding verified hospitals to our growing network.",
+                icon: <FaRegNewspaper />,
+                title: "Health Updates",
+                text: "Read global health news, outbreak alerts and daily wellness tips right inside the platform.",
               },
             ].map((item, i) => (
               <motion.div key={i} className={style.box} variants={fadeUp}>
@@ -134,7 +138,7 @@ const About = () => {
             ))}
           </div>
 
-          {/* 💡 How It Works */}
+          {/*  How It Works */}
           <div className={style.semiCircle_bg}>
             <div className={`${style.semiCircle} ${style.one}`}></div>
             <div className={`${style.semiCircle} ${style.two}`}></div>
@@ -147,25 +151,25 @@ const About = () => {
                 {
                   img: Search,
                   head: "Find Hospitals",
-                  text: "Use our intelligent search to locate top-rated hospitals near you.",
+                  text: "Use our smart search to quickly discover hospitals near you, complete with essential details like services and contact information.",
                   pos: "content1",
                 },
                 {
                   img: Stethoscope,
                   head: "Sign Up / Login",
-                  text: "Create a free account to access advanced search and personalization.",
+                  text: "Create an account to save searches, track favorite hospitals and access advanced tools tailored to your needs.",
                   pos: "content2",
                 },
                 {
                   img: Handset,
                   head: "Export or Share",
-                  text: "Easily download hospital data or share it instantly with others.",
+                  text: "Download hospital lists for future reference or share them securely with friends, family and caregivers.",
                   pos: "content3",
                 },
                 {
                   img: Laptop,
                   head: "Add Hospitals",
-                  text: "Add verified hospitals to improve accuracy and help others find care.",
+                  text: "Submit verified hospitals to strengthen our growing database and help others access healthcare.",
                   pos: "content4",
                 },
               ].map((step, i) => (
@@ -187,28 +191,73 @@ const About = () => {
           </div>
         </Motion>
 
-        {/* 💬 Testimonials */}
+        {/*  Testimonials */}
         <Motion className={style.review} variants={sectionReveal} as="section" once={false}>
           <h2 className={style.review_title}>
-            <span className={style.review_title_span}></span>Testimonials
+            <span className={style.review_title_span}></span>Voices from Our Community
           </h2>
-          <h3 className={style.review_subtitle}>What Our Users Say</h3>
+          <h3 className={style.review_subtitle}>Real experiences from people whose healthcare journey was made easier with HospitoFind</h3>
           <div className={style.review_container}>
             {[
               {
-                text: "Finding the right hospital has never been easier. The platform is intuitive and gave me all the info I needed quickly!",
-                img: Reviewer1,
-                name: "Sarah M.",
-              },
-              {
-                text: "HospitoFind helped me locate the nearest hospital while traveling — the directions and results were spot on!",
+                text: "HospitoFind gave me more than directions. I could see hospital services, health news, and even daily health tips. It feels like having a healthcare guide in my pocket.",
                 img: Reviewer2,
-                name: "John D.",
+                name: "Oliver Ray",
               },
               {
-                text: "After moving to a new city, HospitoFind made it simple to find reputable hospitals. A lifesaver for newcomers.",
+                text: "While traveling abroad, HospitoFind helped me quickly locate hospitals in a new country. The map and distance area made it stress free to get care when I needed it most.",
+                img: Reviewer7,
+                name: "Abena A.",
+              },
+              {
+                text: "I love that I can contribute by adding verified hospitals. Knowing my input helps others find trusted care makes me feel part of a global community.",
+                img: Reviewer4,
+                name: "Emeka O.",
+              },
+              {
+                text: "HospitoFind made it easy to save hospitals I liked and revisit them later. I created an account to track my searches, download lists, and share options with my sister while planning her surgery abroad. It’s intuitive and genuinely helpful.",
+                img: Reviewer9,
+                name: "Elena Marquez",
+              },
+              {
+                text: "The ‘recently viewed’ feature saved me time. I didn’t have to repeat searches. I could quickly go back to hospitals I had checked earlier and finalize my choice.",
+                img: Reviewer10,
+                name: "Amira Solano",
+              },
+              {
+                text: "Creating an account on HospitoFind made a huge difference. I can save hospitals I trust, revisit my recently viewed ones, and keep everything organized without starting from scratch each time.",
+                img: Reviewer1,
+                name: "Jamie",
+              },
+              {
+                text: "After moving to a new city, HospitoFind made it simple to find reputable hospitals. A lifesaver for new settlers.",
+                img: Reviewer6,
+                name: "Khadija",
+              },
+              {
+                text: "The outbreak alerts kept me informed during a health scare in my city. HospitoFind isn’t just about finding hospitals — it’s about staying safe and prepared.",
+                img: Reviewer8,
+                name: "Bolu Adeboye",
+              },
+              {
+                text: "HospitoFind helped me locate the nearest hospital while traveling, the directions and results were spot on!",
+                img: Reviewer11,
+                name: "Rebecca T.",
+              },
+              {
+                text: "HospitoFind helped me compare hospitals based on services and distance, which made choosing the right one easy. I also appreciate the health tips, they’re practical and relevant to my daily life.",
                 img: Reviewer3,
-                name: "Emily T.",
+                name: "Priya S.",
+              },
+              {
+                text: "Adding a hospital myself felt empowering. Knowing that my contribution helps others in my community access verified care makes me proud to be part of the network.",
+                img: Reviewer12,
+                name: "Leila",
+              },
+              {
+                text: "HospitoFind keeps me updated with outbreak alerts and health news that matter in my region. Knowing I can rely on accurate information while also finding hospitals nearby gives me peace of mind every day.",
+                img: Reviewer5,
+                name: "Thandiwe N.",
               },
             ].map((review, i) => (
               <motion.div key={i} className={style.review_box} variants={fadeUp}>

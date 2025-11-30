@@ -61,8 +61,8 @@ const Footer = () => {
         <div className={style.links}>
           <div className={style.column}>
             <h2>Explore</h2>
-            <Link to="/explore">Hospitals Directory</Link>
-            <Link to="/find">Hospitals Nearby</Link>
+            <Link to="/country">Hospital index</Link>
+            <Link to="/findHospital">Hospitals Nearby</Link>
           </div>
 
           <div className={style.column}>

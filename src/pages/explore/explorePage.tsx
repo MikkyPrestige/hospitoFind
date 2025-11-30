@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import { Helmet } from "react-helmet-async";
 import CountryCard from "../../components/countryCard";
 import { Hospital } from "@/src/services/hospital";
 import Header from "../../layouts/header/nav";
@@ -8,6 +7,7 @@ import Footer from "../../layouts/footer/footer";
 import Motion from "@/components/motion";
 import { fadeUp, zoomIn } from "@/hooks/animations";
 import style from "./style/explore.module.css";
+import { SEOHelmet } from "@/components/utils/seoUtils";
 
 interface CountryData {
   country: string;
@@ -28,7 +28,7 @@ const ExplorePage = () => {
         const data = await res.json();
         setCountries(data);
       } catch (err) {
-        console.error("Explore fetch error:", err);
+        console.error("Atlas fetch error:", err);
       } finally {
         setLoading(false);
       }
@@ -42,15 +42,19 @@ const ExplorePage = () => {
 
   return (
     <>
-      <Helmet>
-        <title>Explore hospitals by country | HospitoFind</title>
-      </Helmet>
-
+      <SEOHelmet
+        title="Explore Hospitals by Country"
+        description="Browse hospitals across the globe with HospitoFind. Search by country to find verified healthcare facilities and services worldwide."
+        canonical="https://hospitofind.online/country"
+        schemaType="global"
+        schemaData={countries}
+        autoBreadcrumbs={true}
+      />
       <Header />
 
       <div className={style.explore}>
         <Motion as="section" className={style.hero} variants={fadeUp}>
-          <h1>Your Gateway to Hospitals Worldwide</h1>
+          <h1>Connecting You to Hospitals Worldwide</h1>
         </Motion>
 
         <Motion as="div" className={style.searchBar} variants={fadeUp}>
@@ -73,21 +77,19 @@ const ExplorePage = () => {
             <p>Try searching another country or check back soon.</p>
           </Motion>
         ) : (
-          // <Motion as="div" className={style.grid} variants={staggerChildren}>
           <div className={style.grid}>
             {filtered.map(({ country, hospitals }) => (
               <Motion
                 as={Link}
                 key={country}
-                to={`/explore/${encodeURIComponent(country.toLowerCase())}`}
+                to={`/country/${encodeURIComponent(country.toLowerCase())}`}
                 className={style.cardLink}
                 variants={zoomIn}
               >
                 <CountryCard country={country} count={hospitals.length} />
               </Motion>
             ))}
-              </div>
-          // </Motion>
+          </div>
         )}
       </div >
       <Footer />

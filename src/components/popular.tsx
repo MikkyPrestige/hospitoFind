@@ -60,8 +60,8 @@ const PopularHospitals = () => {
               <p className={style.address}>
                 {hospital.address?.street}, {hospital.address?.city}
               </p>
-              <Link to={`${hospital._id}`} className={style.btn}>
-                Explore Hospital
+              <Link to={`/hospital/${hospital.address?.state}/${hospital.address?.city}/${hospital.slug}`} className={style.btn}>
+                View Details
               </Link>
             </div>
           </Motion>

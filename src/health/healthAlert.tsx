@@ -34,7 +34,7 @@ const HealthAlerts = () => {
     return (
         <section className={style.section}>
             <div className={style.headerRow}>
-                <h2 className={style.heading}>⚠️ Health & Outbreaks Alerts</h2>
+                <h2 className={style.heading}>⚠️ Outbreaks Alert</h2>
                 <span className={style.badge}>Live updates</span>
             </div>
             <p className={style.subHeading}>
@@ -42,7 +42,7 @@ const HealthAlerts = () => {
             </p>
 
             {loading ? (
-                <p className={style.status}>Getting latest health alerts around the world...</p>
+                <p className={style.status}>Getting latest outbreak alerts around the world...</p>
             ) : alerts.length > 0 ? (
                 <ul className={style.list}>
                     {alerts.map((a, i) => {
