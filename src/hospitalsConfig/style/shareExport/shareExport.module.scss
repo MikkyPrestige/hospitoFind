@@ -1,8 +1,7 @@
-@use '../../../assets/styles/mixins';
-@import '../../../assets/styles/variables';
+@use "sass:color" as color;
 
 .cta {
-  @include mixins.flexCol;
+  @include flexCol;
   gap: 1rem;
   position: relative;
   width: 100%;
@@ -19,17 +18,23 @@
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
 
     &.share {
-      background: linear-gradient(135deg, $color-blue 0%, lighten($color-blue, 15%) 100%);
+        background: linear-gradient(
+  135deg,
+  color.adjust($color-blue, $lightness: 0%),
+  color.adjust($color-blue, $lightness: 15%) 100%);
       &:hover {
-        background: darken($color-blue, 8%);
+        background: color.adjust($color-blue, $lightness: -8%);
         transform: translateY(-1px);
       }
     }
 
     &.export {
-      background: linear-gradient(135deg, #28a745 0%, lighten(#28a745, 15%) 100%);
+        background: linear-gradient(
+  135deg,
+  color.adjust(#28a745, $lightness: 0%),
+  color.adjust(#28a745, $lightness: 15%) 100%);
       &:hover {
-        background: darken(#28a745, 8%);
+        background: color.adjust(#28a745, $lightness: -8%);
         transform: translateY(-1px);
       }
     }
@@ -39,7 +44,7 @@
     }
 
      .span {
-      @include mixins.flexRow;
+      @include flexRow;
       gap: 0.5rem;
       font-size: $font-size-2;
       font-weight: $font-weight-bd;
@@ -55,7 +60,7 @@
   }
 
   .btnLink {
-    @include mixins.flexRow;
+    @include flexRow;
     gap: 0.8rem;
     align-items: center;
     flex-wrap: wrap;

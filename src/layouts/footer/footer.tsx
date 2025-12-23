@@ -35,39 +35,43 @@ const Footer = () => {
       <Motion variants={fadeUp} className={style.top}>
         <div className={style.brand}>
           <p className={style.about}>
-            HospitoFind helps you easily locate hospitals and healthcare providers near you.
+            HospitoFind connects you with trusted hospitals and healthcare providers near you.
           </p>
           <p className={style.tagline}>
-            Making healthcare more accessible, reliable and fast. One search at a time!
+            Making healthcare simple, reliable, and accessible — one search at a time.
           </p>
           <div className={style.socials}>
             <a
               href="https://www.linkedin.com/company/prestigeenigma"
               target="_blank"
               rel="noreferrer"
+              aria-label="HospitoFind on LinkedIn"
+              className={style.socialIcon}
             >
-              <FaLinkedin />
+              <FaLinkedin aria-hidden="true" />
             </a>
             <a
               href="mailto:hospitofind@outlook.com"
               target="_blank"
               rel="noreferrer"
+              aria-label="HospitoFind via Email"
+              className={style.socialIcon}
             >
-              <FaEnvelope />
+              <FaEnvelope aria-hidden="true" />
             </a>
           </div>
         </div>
 
         <div className={style.links}>
           <div className={style.column}>
-            <h2>Explore</h2>
-            <Link to="/country">Hospital index</Link>
-            <Link to="/findHospital">Hospitals Nearby</Link>
+            <h2>Discover</h2>
+            <Link to="/about">Our Mission</Link>
+            <Link to="/country">Hospital Directory</Link>
           </div>
 
           <div className={style.column}>
-            <h2>Resources</h2>
-            <Link to="/about">Our Story</Link>
+            <h2>Information</h2>
+            <Link to="/faq">FAQ</Link>
             <Link to="/policy">Privacy Policy</Link>
           </div>
         </div>

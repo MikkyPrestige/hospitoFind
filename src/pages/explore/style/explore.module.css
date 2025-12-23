@@ -12,34 +12,57 @@
   background: linear-gradient(180deg, #0e3db7 0%, #1e56d9 100%);
   color: #fff;
   text-align: center;
-  padding: 4.5rem 1rem 3.5rem;
-  border-bottom-left-radius: 40px;
-  border-bottom-right-radius: 40px;
+  padding: 3rem 1rem;
+  border-bottom-left-radius: 1rem;
+  border-bottom-right-radius: 1rem;
   box-shadow: 0 4px 20px rgba(14, 61, 183, 0.15);
   position: relative;
   z-index: 0;
-  margin-top: 3rem;
+  margin-top: 5rem;
+  overflow: hidden;
 }
 
-.hero::before {
+.hero::after {
   content: '';
   position: absolute;
-  top: -80px;
-  left: 0;
-  right: 0;
-  height: 80px;
-  background: linear-gradient(
-    to bottom,
-    rgba(14, 61, 183, 1),
-    rgba(14, 61, 183, 0)
-  );
-  z-index: -1;
+  inset: 0;
+  background: url('../../../assets/images/world-map.svg') center/cover no-repeat;
+  opacity: 0.3;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.hero > * {
+  position: relative;
+  z-index: 1;
 }
 
 .hero h1 {
-  font-size: 2.2rem;
+  font-size: clamp(2rem, 4vw, 3rem);
   font-weight: 700;
-  margin-bottom: 0.5rem;
+  line-height: 1.2;
+}
+
+.hero p {
+  font-size: clamp(1rem, 2.2vw, 1.25rem);
+  font-weight: 500;
+  color: rgba(255, 255, 255, 0.85);
+  max-width: 700px;
+  margin: 0 auto;
+  line-height: 1.6;
+  letter-spacing: 0.5px;
+  animation: fadeIn 1s ease-in-out 0.3s both;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 .searchBar {

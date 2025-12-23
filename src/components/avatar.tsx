@@ -9,7 +9,7 @@ export const Avatar = ({ image = "", alt = "", style = {} }) => {
   return (
     <img
       src={image || HospitalPic}
-      alt={alt || "Hospital"}
+      alt={alt || "HospitoFind"}
       style={style}
       onError={handleError}
       loading="lazy"

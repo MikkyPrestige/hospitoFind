@@ -1,7 +1,4 @@
 import { motion } from "framer-motion";
-import { useEffect, useRef, useState } from "react";
-import { useNavigate } from "react-router-dom";
-import { Avatar } from "@/components/avatar";
 import style from "./style/trustedHospitals.module.css";
 
 import Logo1 from "@/assets/images/fmc.jpg";
@@ -32,81 +29,42 @@ const hospitalPartners = [
     { logo: Logo12, name: "Cape Breton" },
 ];
 
-const fadeIn = {
-    hidden: { opacity: 0, y: 20 },
-    visible: {
-        opacity: 1,
-        y: 0,
-        transition: { duration: 0.8, ease: "easeOut" },
-    },
-} as const;
-
 const TrustedSection = () => {
-    const [isVisible, setIsVisible] = useState(true);
-    const sectionRef = useRef<HTMLDivElement>(null);
-    const navigate = useNavigate();
-
-    // Detect when the section is in view
-    useEffect(() => {
-        const observer = new IntersectionObserver(
-            ([entry]) => setIsVisible(entry.isIntersecting),
-            { threshold: 0.2 }
-        );
-
-        const currentRef = sectionRef.current;
-        if (currentRef) observer.observe(currentRef);
-
-        return () => {
-            if (currentRef) observer.unobserve(currentRef);
-        };
-    }, []);
-
-    const handleExploreClick = () => {
-        navigate("/findHospital");
-    }
-
     const scrollList = [...hospitalPartners, ...hospitalPartners];
 
     return (
         <motion.section
-            ref={sectionRef}
-            className={`${style.trusted} ${isVisible ? style.active : style.paused}`}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
-            variants={fadeIn}
+            className={style.trusted}
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-100px" }}
+            transition={{ duration: 0.8 }}
         >
-            <h3 className={style.trustedTitle}>
-                Trusted by leading hospitals and healthcare providers
-            </h3>
-
-            <p className={style.subText}>
-                We collaborate with reputable hospitals to make access to quality healthcare easier and faster.
-            </p>
+            <div className={style.contentHeader}>
+                <h3 className={style.trustedTitle}>
+                    Empowering Care with World-Class Partners
+                </h3>
+                <p className={style.subText}>
+                    Search through a verified network of leading medical facilities across the globe.
+                </p>
+            </div>
 
             <div className={style.marquee}>
                 <div className={style.track}>
-                    {scrollList.map((h, i) => (
-                        <div key={i} className={style.logoCard}>
-                            <Avatar
-                                image={h.logo}
-                                alt={h.name}
-                                style={{
-                                    width: "100px",
-                                    height: "100px",
-                                    objectFit: "contain",
-                                    borderRadius: "0.75rem",
-                                }}
-                            />
-                            <p className={style.hospitalName}>{h.name}</p>
+                    {scrollList.map((hospital, i) => (
+                        <div key={`${hospital.name}-${i}`} className={style.logoCard}>
+                            <div className={style.imageWrapper}>
+                                <img
+                                    src={hospital.logo}
+                                    alt={hospital.name}
+                                    className={style.hospitalLogo}
+                                    />
+                            </div>
+                            <span className={style.hospitalName}>{hospital.name}</span>
                         </div>
                     ))}
                 </div>
             </div>
-
-            <button className={style.ctaBtn} onClick={handleExploreClick}>
-                Explore More Hospitals &#8594;
-            </button>
         </motion.section>
     );
 };

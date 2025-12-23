@@ -1,11 +1,11 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-// import { useAuth0 } from "@auth0/auth0-react";
-// import { FcGoogle } from "react-icons/fc";
+import { useAuth0 } from "@auth0/auth0-react";
+import { FcGoogle } from "react-icons/fc";
 import {
-  // FaFacebook,
-  // FaTwitter,
-  // FaLinkedin,
+  FaFacebook,
+  FaTwitter,
+  FaLinkedin,
   FaRegEyeSlash,
   FaRegEye,
 } from "react-icons/fa";
@@ -28,7 +28,7 @@ const SignUp = () => {
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
   const [errors, setErrors] = useState<Record<string, string>>({});
   const { loading, error, signUp } = useSignUp();
-  // const { loginWithRedirect } = useAuth0();
+  const { loginWithRedirect } = useAuth0();
   const transitionClass = usePageTransition();
 
   const validateForm = () => {
@@ -63,8 +63,9 @@ const SignUp = () => {
 
   return (
     <>
+      <meta name="description" content="Create your account to access hospitals worldwide. Sign up and start exploring healthcare options with ease." />
       <Header />
-      <section className={`${style.section} ${style[transitionClass]}`}>
+      <main className={`${style.section} ${style[transitionClass]}`}>
         <div className={style.left}>
           <div className={style.overlay}></div>
           <div className={style.content}>
@@ -95,105 +96,109 @@ const SignUp = () => {
 
         <div className={style.right}>
           <div className={style.wrapper}>
-            {/* <h1 className={style.title}>Create an account</h1> */}
-            <p className={style.subtitle}>
-              Enter your information to get started with HospitoFind
-            </p>
+            <div className={style.header}>
+              <h1 className={style.title}>Create an account</h1>
+              <p className={style.subtitle}>
+                Enter your information to get started with HospitoFind
+              </p>
+            </div>
 
             <form onSubmit={handleSignUp} className={style.form}>
-              <div className={style.form_group}>
-                <label htmlFor="name">Full Name</label>
-                <div className={style.inputWrapper}>
-                  <User className={style.inputIcon} />
-                  <input
-                    id="name"
-                    type="text"
-                    placeholder="Enter full name"
-                    value={name}
-                    onChange={(e) => setName(e.target.value)}
-                    className={`${style.form_input} ${errors.name ? style.invalid : ""}`}
-                  />
+              <div className={style.form_wrapper}>
+                <div className={style.form_group}>
+                  <label htmlFor="name">Full Name</label>
+                  <div className={style.inputWrapper}>
+                    <User className={style.inputIcon} />
+                    <input
+                      id="name"
+                      type="text"
+                      placeholder="Enter full name"
+                      value={name}
+                      onChange={(e) => setName(e.target.value)}
+                      className={`${style.form_input} ${errors.name ? style.invalid : ""}`}
+                    />
+                  </div>
+                  {errors.name && <p className={style.form_error}>{errors.name}</p>}
                 </div>
-                {errors.name && <p className={style.form_error}>{errors.name}</p>}
-              </div>
 
-              <div className={style.form_group}>
-                <label htmlFor="username">Username</label>
-                <div className={style.inputWrapper}>
-                  <UserCircle className={style.inputIcon} />
-                  <input
-                    id="username"
-                    type="text"
-                    placeholder="Choose a username"
-                    value={username}
-                    onChange={(e) => setUsername(e.target.value)}
-                    className={`${style.form_input} ${errors.username ? style.invalid : ""}`}
-                  />
+                <div className={style.form_group}>
+                  <label htmlFor="username">Username</label>
+                  <div className={style.inputWrapper}>
+                    <UserCircle className={style.inputIcon} />
+                    <input
+                      id="username"
+                      type="text"
+                      placeholder="Choose a username"
+                      value={username}
+                      onChange={(e) => setUsername(e.target.value)}
+                      className={`${style.form_input} ${errors.username ? style.invalid : ""}`}
+                    />
+                  </div>
+                  {errors.username && <p className={style.form_error}>{errors.username}</p>}
                 </div>
-                {errors.username && <p className={style.form_error}>{errors.username}</p>}
-              </div>
 
-              <div className={style.form_group}>
-                <label htmlFor="email">Email</label>
-                <div className={style.inputWrapper}>
-                  <Mail className={style.inputIcon} />
-                  <input
-                    id="email"
-                    type="email"
-                    placeholder="you@example.com"
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
-                    className={`${style.form_input} ${errors.email ? style.invalid : ""}`}
-                  />
+                <div className={style.form_group}>
+                  <label htmlFor="email">Email</label>
+                  <div className={style.inputWrapper}>
+                    <Mail className={style.inputIcon} />
+                    <input
+                      id="email"
+                      type="email"
+                      placeholder="you@example.com"
+                      value={email}
+                      onChange={(e) => setEmail(e.target.value)}
+                      className={`${style.form_input} ${errors.email ? style.invalid : ""}`}
+                    />
+                  </div>
+                  {errors.email && <p className={style.form_error}>{errors.email}</p>}
                 </div>
-                {errors.email && <p className={style.form_error}>{errors.email}</p>}
-              </div>
 
-              <div className={style.form_group}>
-                <label htmlFor="password">Password</label>
-                <div className={style.inputWrapper}>
-                  <Lock className={style.inputIcon} />
-                  <input
-                    id="password"
-                    type={showPassword ? "text" : "password"}
-                    placeholder="Enter password"
-                    value={password}
-                    onChange={(e) => setPassword(e.target.value)}
-                    className={`${style.form_input} ${errors.password ? style.invalid : ""}`}
-                  />
-                  <span
-                    className={style.togglePassword}
-                    onClick={() => setShowPassword(!showPassword)}
-                  >
-                    {showPassword ? <FaRegEyeSlash /> : <FaRegEye />}
-                  </span>
+                <div className={style.form_group}>
+                  <label htmlFor="password">Password</label>
+                  <div className={style.inputWrapper}>
+                    <Lock className={style.inputIcon} />
+                    <input
+                      id="password"
+                      type={showPassword ? "text" : "password"}
+                      placeholder="Enter password"
+                      value={password}
+                      onChange={(e) => setPassword(e.target.value)}
+                      className={`${style.form_input} ${errors.password ? style.invalid : ""}`}
+                    />
+                    <span
+                      className={style.togglePassword}
+                      onClick={() => setShowPassword(!showPassword)}
+                    >
+                      {showPassword ? <FaRegEyeSlash /> : <FaRegEye />}
+                    </span>
+                  </div>
+                  {errors.password && <p className={style.form_error}>{errors.password}</p>}
                 </div>
-                {errors.password && <p className={style.form_error}>{errors.password}</p>}
-              </div>
 
-              <div className={style.form_group}>
-                <label htmlFor="confirmPassword">Confirm Password</label>
-                <div className={style.inputWrapper}>
-                  <Lock className={style.inputIcon} />
-                  <input
-                    id="confirmPassword"
-                    type={showConfirmPassword ? "text" : "password"}
-                    placeholder="Confirm password"
-                    value={confirmPassword}
-                    onChange={(e) => setConfirmPassword(e.target.value)}
-                    className={`${style.form_input} ${errors.confirmPassword ? style.invalid : ""
-                      }`}
-                  />
-                  <span
-                    className={style.togglePassword}
-                    onClick={() => setShowConfirmPassword(!showConfirmPassword)}
-                  >
-                    {showConfirmPassword ? <FaRegEyeSlash /> : <FaRegEye />}
-                  </span>
+                <div className={style.form_group}>
+                  <label htmlFor="confirmPassword">Confirm Password</label>
+                  <div className={style.inputWrapper}>
+                    <Lock className={style.inputIcon} />
+                    <input
+                      id="confirmPassword"
+                      type={showConfirmPassword ? "text" : "password"}
+                      placeholder="Confirm password"
+                      value={confirmPassword}
+                      onChange={(e) => setConfirmPassword(e.target.value)}
+                      className={`${style.form_input} ${errors.confirmPassword ? style.invalid : ""
+                        }`}
+                    />
+                    <span
+                      className={style.togglePassword}
+                      onClick={() => setShowConfirmPassword(!showConfirmPassword)}
+                    >
+                      {showConfirmPassword ? <FaRegEyeSlash /> : <FaRegEye />}
+                    </span>
+                  </div>
+                  {errors.confirmPassword && (
+                    <p className={style.form_error}>{errors.confirmPassword}</p>
+                  )}
                 </div>
-                {errors.confirmPassword && (
-                  <p className={style.form_error}>{errors.confirmPassword}</p>
-                )}
               </div>
 
               {error && (
@@ -202,43 +207,45 @@ const SignUp = () => {
                 </p>
               )}
 
-              <Button
-                disabled={loading}
-                className={style.form_button}
-              >
-                {loading ? "Creating Your Account..." : "Create Account"}
-                <ArrowRight className={style.arrowIcon} />
-              </Button>
+              <div className={style.form_options}>
+                <Button
+                  disabled={loading}
+                  className={style.form_button}
+                >
+                  {loading ? "Creating Your Account..." : "Signup"}
+                  <ArrowRight className={style.arrowIcon} />
+                </Button>
+              </div>
             </form>
 
-            {/* <div className={style.divider}>
+            <div className={style.divider}>
               <div className={style.dividerLine}></div>
               <span className={style.dividerText}>Or continue with</span>
             </div>
             <div className={style.socialBtn}>
-              <button onClick={() => loginWithRedirect()} className={style.social}>
+              <button onClick={() => loginWithRedirect()} className={style.social} aria-label="Continue with Google">
                 <FcGoogle className={style.icon} />
               </button>
-              <button onClick={() => loginWithRedirect()} className={style.social}>
+              <button onClick={() => loginWithRedirect()} className={style.social} aria-label="Continue with Facebook">
                 <FaFacebook className={style.icon} />
               </button>
-              <button onClick={() => loginWithRedirect()} className={style.social}>
+              <button onClick={() => loginWithRedirect()} className={style.social} aria-label="Continue with Twitter">
                 <FaTwitter className={style.icon} />
               </button>
-              <button onClick={() => loginWithRedirect()} className={style.social}>
+              <button onClick={() => loginWithRedirect()} className={style.social} aria-label="Continue with LinkedIn">
                 <FaLinkedin className={style.icon} />
               </button>
-            </div> */}
+            </div>
 
             <p className={style.link}>
               Already have an account?{" "}
               <Link to="/login" className={style.login}>
-                Sign in
+                Login
               </Link>
             </p>
           </div>
         </div>
-      </section>
+      </main>
       <Footer />
     </>
   );

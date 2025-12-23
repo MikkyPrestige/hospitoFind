@@ -9,7 +9,7 @@ import HospitalCard from "../../components/hospitalCard";
 import { Hospital } from "@/src/services/hospital";
 import Footer from "../../layouts/footer/footer";
 import Header from "../../layouts/header/nav";
-import { Button } from "../../components/button";
+import { FiArrowLeft } from "react-icons/fi";
 import style from "./style/countryDetails.module.css";
 import Motion from "@/components/motion";
 import { fadeUp, sectionReveal } from "@/hooks/animations";
@@ -123,10 +123,9 @@ const CountryDetailPage: React.FC = () => {
       />
 
       <Header />
-      <div className={style.page}>
+      <main className={style.page}>
         <header className={style.header}>
-          <h2>{decodedCountry}</h2>
-          <p>{hospitals.length} hospitals</p>
+          <h1>{hospitals.length} Hospitals found in <span>{decodedCountry}</span></h1>
         </header>
 
         {loading && page === 1 ? (
@@ -158,12 +157,11 @@ const CountryDetailPage: React.FC = () => {
           <div className={style.loadingMore}>Loading more hospitals…</div>
         )}
 
-        <Button>
-          <Link to="/country" className={style.cta}>
-            ← Back
-          </Link>
-        </Button>
-      </div>
+        <Link to="/country" className={style.backCta}>
+          <FiArrowLeft size={20} />
+          Back
+        </Link>
+      </main>
       <Footer />
     </>
   );

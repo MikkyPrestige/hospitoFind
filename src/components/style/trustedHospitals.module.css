@@ -1,40 +1,41 @@
 .trusted {
-  background: #f8faff;
-  padding: 5rem 2rem;
+  background: #ffffff;
+  padding: 0rem 2rem;
   text-align: center;
-  border-top: 1px solid #e5e9ff;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
   overflow: hidden;
 }
 
-/* === AUTO-PAUSE === */
-.active .track {
-  animation-play-state: running;
-}
-
-.paused .track {
-  animation-play-state: paused;
+.contentHeader {
+  max-width: 850px;
+  margin: 1rem auto;
+  text-align: center;
+  padding: 0 1.5rem;
 }
 
 .trustedTitle {
+font-size: clamp(1.8rem, 4vw, 2.6rem);
+  font-weight: 800;
   color: #08299b;
-  font-size: 2rem;
-  font-weight: 700;
-  margin-bottom: 0.5rem;
+  line-height: 1.2;
+  margin-bottom: .2rem;
+  letter-spacing: -0.02em;
 }
 
 .subText {
-  color: #555;
-  font-size: 1.1rem;
-  max-width: 700px;
-  margin: 0 auto 3rem auto;
+font-size: 1.2rem;
+  color: #64748b;
   line-height: 1.6;
+  max-width: 600px;
+  margin: 0 auto;
+  font-weight: 500;
 }
 
 .marquee {
   width: 100%;
-  overflow: hidden;
   position: relative;
-  margin-bottom: 3rem;
+  display: flex;
+  align-items: center;
 }
 
 .marquee::before,
@@ -50,107 +51,101 @@
 
 .marquee::before {
   left: 0;
-  background: linear-gradient(to right, #f8faff 0%, transparent 100%);
+  background: linear-gradient(to right, #ffffff, transparent);
 }
 
 .marquee::after {
   right: 0;
-  background: linear-gradient(to left, #f8faff 0%, transparent 100%);
+  background: linear-gradient(to left, #ffffff, transparent);
 }
 
 .track {
   display: flex;
-  gap: 2.5rem;
-  animation: scroll 30s linear infinite;
+  gap: 3rem;
+  animation: scrollInfinite 40s linear infinite;
   width: max-content;
+  padding: 1rem 0;
 }
 
-.marquee:hover .track {
+.track:hover {
   animation-play-state: paused;
-}
-
-/* 🔄 Smooth back-and-forth scroll */
-@keyframes scroll {
-  0% {
-    transform: translateX(0);
-  }
-  50% {
-    transform: translateX(-50%);
-  }
-  100% {
-    transform: translateX(0);
-  }
-}
-
-.track {
-  display: flex;
-  gap: 2.5rem;
-  animation: scroll 50s ease-in-out infinite;
-  width: max-content;
-}
-
-.marquee:hover .track {
-  animation-play-state: paused;
-}
-
-@media (max-width: 700px) {
-  .track {
-    animation: scroll 80s ease-in-out infinite;
-    flex-wrap: wrap;
-    justify-content: center;
-  }
 }
 
 .logoCard {
-  background: #fff;
-  border-radius: 1rem;
-  padding: 1.5rem 1rem;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
-  transition: all 0.3s ease;
-  text-align: center;
-  width: 160px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 180px;
   flex-shrink: 0;
+  transition: transform 0.4s ease;
 }
 
 .logoCard:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.08);
+  transform: translateY(-8px);
 }
 
-.logoCard img {
+.imageWrapper {
+  width: 110px;
+  height: 110px;
+  background: #fff;
+  border-radius: 1.2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.04);
+  margin-bottom: 0.3rem;
+  border: 1px solid #f0f2f5;
+}
+
+.hospitalLogo {
   width: 100%;
-  height: auto;
+  height: 100%;
+  object-fit: contain;
   filter: grayscale(100%);
-  opacity: 0.85;
-  transition: all 0.3s ease;
+  opacity: 0.6;
+  transition: all 0.4s ease;
 }
 
-.logoCard img:hover {
-  filter: grayscale(0);
+.logoCard:hover .hospitalLogo {
+  filter: grayscale(0%);
   opacity: 1;
 }
 
 .hospitalName {
-  margin-top: 0.8rem;
-  font-size: 0.9rem;
-  color: #333;
+  font-size: 0.85rem;
+  color: #777;
   font-weight: 600;
-  white-space: wrap;
+  line-height: 1.3;
+  transition: color 0.3s ease;
 }
 
-.ctaBtn {
-  background-color: #08299b;
-  color: #fff;
-  font-weight: 600;
-  padding: 0.8rem 2rem;
-  border: none;
-  border-radius: 2rem;
-  cursor: pointer;
-  transition: 0.3s ease;
-  font-size: 1rem;
+.logoCard:hover .hospitalName {
+  color: #08299b;
 }
 
-.ctaBtn:hover {
-  background-color: #061f74;
-  transform: scale(1.05);
+/* 🔄 Smooth back-and-forth scroll */
+@keyframes scrollInfinite {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+@media (max-width: 700px) {
+  .track {
+    gap: 1rem;
+    animation-duration: 25s;
+  }
+
+  .logoCard {
+    width: 140px;
+  }
+  .imageWrapper {
+    width: 90px;
+    height: 90px;
+  }
 }

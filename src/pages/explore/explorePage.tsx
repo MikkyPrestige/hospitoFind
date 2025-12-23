@@ -8,6 +8,7 @@ import Motion from "@/components/motion";
 import { fadeUp, zoomIn } from "@/hooks/animations";
 import style from "./style/explore.module.css";
 import { SEOHelmet } from "@/components/utils/seoUtils";
+import AnimatedLoader from "@/components/utils/AnimatedLoader";
 
 interface CountryData {
   country: string;
@@ -52,15 +53,16 @@ const ExplorePage = () => {
       />
       <Header />
 
-      <div className={style.explore}>
+      <main className={style.explore}>
         <Motion as="section" className={style.hero} variants={fadeUp}>
-          <h1>Connecting You to Hospitals Worldwide</h1>
+          <h1>Explore Hospitals Around the World</h1>
+          <p>Browse hospitals grouped by country and discover healthcare options wherever you are.</p>
         </Motion>
 
         <Motion as="div" className={style.searchBar} variants={fadeUp}>
           <input
             type="search"
-            placeholder="Search country..."
+            placeholder="Search by country..."
             value={query}
             onChange={(e) => setQuery(e.target.value)}
           />
@@ -68,12 +70,11 @@ const ExplorePage = () => {
 
         {loading ? (
           <Motion as="div" className={style.loading} variants={fadeUp}>
-            <div className={style.spinner}></div>
-            <p>Getting hospitals globally…</p>
+            <AnimatedLoader message="Getting hospitals globally…" variant="card" count={6} />
           </Motion>
         ) : filtered.length === 0 ? (
           <Motion as="div" className={style.empty} variants={fadeUp}>
-            <h3>No results found</h3>
+            <h2>No results found</h2>
             <p>Try searching another country or check back soon.</p>
           </Motion>
         ) : (
@@ -91,10 +92,10 @@ const ExplorePage = () => {
             ))}
           </div>
         )}
-      </div >
-      <Footer />
-    </>
-  );
+        </main>
+          <Footer />
+        </>
+        );
 };
 
-export default ExplorePage;
+        export default ExplorePage;

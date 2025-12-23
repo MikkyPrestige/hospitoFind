@@ -81,11 +81,29 @@
   line-height: 1.8;
   max-width: 750px;
 }
-.bg .wrapper .top .cta {
-  font-size: 1.4rem;
-  font-weight: 700;
-  color: #FFFFFF;
-  letter-spacing: -0.011em;
+.bg .wrapper .top .ctaLink {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 48px;
+  padding: 0.75rem 1.5rem;
+  background: linear-gradient(135deg, #08299B, #0A47D5);
+  color: #fff;
+  font-size: 1rem;
+  font-weight: 600;
+  border-radius: 0.75rem;
+  box-shadow: 0 4px 12px rgba(8, 41, 155, 0.25);
+  text-decoration: none;
+  transition: all 0.25s ease;
+}
+.bg .wrapper .top .ctaLink:hover {
+  background: linear-gradient(135deg, #0A47D5, #08299B);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(8, 41, 155, 0.35);
+}
+.bg .wrapper .top .ctaLink:active {
+  transform: translateY(0);
+  box-shadow: 0 2px 8px rgba(8, 41, 155, 0.2);
 }
 .bg .wrapper .img {
   width: 100%;
@@ -196,7 +214,7 @@
   font-weight: 500;
 }
 .bg .wrapper2 .semiCircle_bg {
-  width: 95%;
+  width: 100%;
   height: 45rem;
   position: relative;
   overflow: hidden;
@@ -207,6 +225,11 @@
   height: 45rem;
   position: absolute;
   border-radius: 50%/100% 100% 0 0;
+}
+@media only screen and (max-width: 30em) {
+  .bg .wrapper2 .semiCircle_bg .semiCircle {
+    border-radius: 50%/100% 100% 50% 50%;
+  }
 }
 .bg .wrapper2 .semiCircle_bg .one {
   background: #BFCAE0;
@@ -325,6 +348,35 @@
     left: 74%;
   }
 }
+@media only screen and (max-width: 30em) {
+  .bg .wrapper2 .semiCircle_bg {
+    height: auto;
+    padding: 3rem 0 1rem;
+  }
+  .bg .wrapper2 .semiCircle_bg .heading {
+    position: relative;
+    top: 0;
+  }
+  .bg .wrapper2 .semiCircle_bg .content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2rem;
+    padding: 2rem 0;
+  }
+  .bg .wrapper2 .semiCircle_bg .content .item {
+    position: relative;
+    width: 65%;
+    left: 0;
+    transform: none;
+  }
+  .bg .wrapper2 .semiCircle_bg .content .item .head {
+    font-size: 1.4rem;
+  }
+  .bg .wrapper2 .semiCircle_bg .content .item .text {
+    font-size: 1.2rem;
+  }
+}
 .bg .review {
   width: 100%;
   height: 100%;
@@ -342,7 +394,7 @@
 }
 .bg .review .review_title {
   font-family: "DM Sans", sans-serif;
-  color: #837D7D;
+  color: #4E342E;
   font-size: 2rem;
   font-weight: 500;
   line-height: 150%;

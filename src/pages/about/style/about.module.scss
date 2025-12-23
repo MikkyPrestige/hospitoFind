@@ -1,25 +1,24 @@
-@use "../../../assets/styles/mixins" as mixins;
-@import "../../../assets/styles/variables";
+@use "sass:color" as color;
 
 .bg {
   background-color: $color-white;
   height: 100%;
   width: 100%;
   padding-top: 10rem;
-  @include mixins.flexCol;
+  @include flexCol;
   gap: 1rem;
 
-  @include mixins.respond(tab-land) {
+  @include respond(tab-land) {
     padding-top: 7.5rem;
   }
 
   .wrapper {
-    @include mixins.flexCol;
+    @include flexCol;
     gap: 2rem;
     padding: 1rem;
 
-    @include mixins.respond(tab-land) {
-      @include mixins.flexRow;
+    @include respond(tab-land) {
+      @include flexRow;
       flex-direction: row-reverse;
       gap: 2rem;
     }
@@ -28,11 +27,11 @@
       width: 100%;
       height: 100%;
       text-align: center;
-      @include mixins.flexCol;
+      @include flexCol;
       gap: 1rem;
       font-family: $font-sans;
 
-      @include mixins.respond(tab-land) {
+      @include respond(tab-land) {
         height: 43.875rem;
         padding: 1rem;
         justify-content: flex-start;
@@ -73,23 +72,43 @@
   max-width: 750px;
 }
 
+.ctaLink {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 48px;
+  padding: 0.75rem 1.5rem;
+  background: linear-gradient(135deg, #08299B, #0A47D5);
+  color: #fff;
+  font-size: 1rem;
+  font-weight: 600;
+  border-radius: 0.75rem;
+  box-shadow: 0 4px 12px rgba(8, 41, 155, 0.25);
+  text-decoration: none;
+  transition: all 0.25s ease;
 
-      .cta {
-        font-size: $font-size-2;
-        font-weight: $font-weight-bd;
-        color: $color-white;
-        letter-spacing: $space;
-      }
+  &:hover {
+    background: linear-gradient(135deg, #0A47D5, #08299B);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(8, 41, 155, 0.35);
+  }
+
+  &:active {
+    transform: translateY(0);
+    box-shadow: 0 2px 8px rgba(8, 41, 155, 0.2);
+  }
+}
+
     }
 
     .img {
       width: 100%;
       height: 100%;
-      @include mixins.flexRow;
+      @include flexRow;
       gap: 1rem;
       padding: 0 1rem;
 
-      @include mixins.respond(tab-land) {
+      @include respond(tab-land) {
         padding: 0;
       }
 
@@ -110,24 +129,24 @@
   .wrapper2 {
     width: 100%;
     height: 100%;
-    @include mixins.flexCol;
+    @include flexCol;
     transform: translateY(10%);
 
-    @include mixins.respond(tab-land) {
+    @include respond(tab-land) {
       transform: translateY(5%);
     }
 
     .container {
       width: 100%;
-      @include mixins.flexRow;
+      @include flexRow;
       flex-wrap: wrap;
       gap: 1rem;
 
-      @include mixins.respond(tab-port) {
+      @include respond(tab-port) {
         gap: 2rem;
       }
 
-      @include mixins.respond(laptop) {
+      @include respond(laptop) {
         gap: 3rem;
       }
 
@@ -136,7 +155,7 @@
         width: 20rem;
         height: 15rem;
         border-radius: $border-radius-sm;
-        @include mixins.flexCol;
+        @include flexCol;
         gap: 1rem;
 
         .icon_box {
@@ -146,7 +165,7 @@ color: $color-white-1;
           height: 4.5rem;
           border-radius: $border-radius;
           padding: 1rem;
-          @include mixins.flexCol;
+          @include flexCol;
 
           svg {
             width: 2.5rem;
@@ -157,7 +176,7 @@ color: $color-white-1;
 
       .box2 {
         width: 100%;
-        @include mixins.flexCol;
+        @include flexCol;
         gap: 0.5rem;
         padding: 0 1.5rem;
         text-align: center;
@@ -180,7 +199,7 @@ color: $color-white-1;
     }
 
     .semiCircle_bg {
-  width: 95%;
+  width: 100%;
   height: 45rem;
   position: relative;
   overflow: hidden;
@@ -191,7 +210,11 @@ color: $color-white-1;
     height: 45rem;
     position: absolute;
     border-radius: 50% / 100% 100% 0 0;
+
+@include respond(phone-sm) {
+border-radius: 50% / 100% 100% 50% 50%;
   }
+}
 
   .one {
     background: $color-ash;
@@ -306,7 +329,7 @@ color: $color-white-1;
     }
   }
 
-  @include mixins.respond(tab-port) {
+  @include respond(tab-port) {
     height: 33rem;
 
     .content {
@@ -334,13 +357,13 @@ color: $color-white-1;
     }
   }
 
-  @include mixins.respond(phone) {
+  @include respond(phone-sm) {
     height: auto;
+padding: 3rem 0 1rem;
 
     .heading {
       position: relative;
       top: 0;
-      margin-bottom: 2rem;
     }
 
     .content {
@@ -348,12 +371,22 @@ color: $color-white-1;
       flex-direction: column;
       align-items: center;
       gap: 2rem;
+      padding: 2rem 0;
 
       .item {
         position: relative;
-        width: 85%;
+        width: 65%;
         left: 0;
         transform: none;
+
+.head {
+  font-size: $font-size-2;
+}
+
+.text {
+  font-size: $font-size-1;
+}
+
       }
     }
   }
@@ -364,17 +397,17 @@ color: $color-white-1;
   .review {
     width: 100%;
     height: 100%;
-    @include mixins.flexCol;
+    @include flexCol;
     gap: 1rem;
     padding: 10rem 0 3.5rem;
 
-    @include mixins.respond(tab-land) {
+    @include respond(tab-land) {
       padding: 3rem 0;
     }
 
     .review_title {
       font-family: $font-sans;
-      color: $color-brown;
+      color: #4E342E;
       font-size: $font-size-5;
       font-weight: $font-weight-md;
       line-height: $line-height-2;
@@ -405,7 +438,7 @@ color: $color-white-1;
     .review_container {
       width: 100%;
       height: 100%;
-      @include mixins.flexRow;
+      @include flexRow;
       flex-wrap: wrap;
       gap: 2.5rem;
 
@@ -416,7 +449,7 @@ color: $color-white-1;
         width: 100%;
         max-width: 25rem;
         height: 100%;
-        @include mixins.flexColAlignStart;
+        @include flexColAlignStart;
         gap: 0.5rem;
         padding: 2rem 2rem 0.5rem;
 
@@ -442,7 +475,7 @@ color: $color-white-1;
         }
 
         .user {
-          @include mixins.flexRow;
+          @include flexRow;
           gap: 1rem;
 
           .name {

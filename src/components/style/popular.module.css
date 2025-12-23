@@ -12,57 +12,75 @@
   animation: fadeIn 0.6s ease-in-out;
 }
 
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  border: 0;
+}
+
 .heading {
   font-size: 1.8rem;
   font-family: 'Fira Sans', sans-serif;
-  color: #08299b;
-  letter-spacing: 0.05rem;
-  text-transform: capitalize;
+  font-weight: 600;
+  /* color: #1e40af; */
+  letter-spacing: 0.02rem;
   text-align: center;
-  margin-bottom: 0rem;
+  line-height: 1.3;
+  background: linear-gradient(90deg, #2563eb, #06b6d4);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  /* margin-bottom: 0.5rem; */
 
   @media (min-width: 48em) {
     font-size: 2rem;
   }
 
   @media (min-width: 75em) {
-    font-size: 2.2em;
+    font-size: 2.2rem;
   }
 }
 
-.location {
-  color: #08299b;
-  font-weight: 700;
+
+.highlight {
+  color: #2563EB; /* Your brand blue */
   text-transform: capitalize;
 }
 
+.location {
+  color: #3b82f6;
+  font-weight: 500;
+}
+
 .subtitle {
-  font-size: 1.2rem;
+  font-size: 1.1rem;
   font-weight: 400;
-  color: #333;
+  color: #4b5563;
   text-align: center;
-  line-height: 1.6;
-  letter-spacing: 0.02rem;
-  margin: 1rem auto 2rem;
-  max-width: 70ch;
-  margin-inline: auto;
+  letter-spacing: 0.01rem;
+  margin: 0rem auto 1.5rem;
+  max-width: 60ch;
   font-family: 'Inter', sans-serif;
-  font-style: italic;
+  line-height: 1.6;
 
   @media (min-width: 48em) {
-    font-size: 1.2rem;
+    font-size: 1.15rem;
   }
 
   @media (min-width: 75em) {
-    font-size: 1.25rem;
+    font-size: 1.2rem;
   }
 }
 
 .sharePage {
   padding: 2rem;
   margin-top: 5rem;
-background: rgba(255, 255, 255, 0.9);
-  }
+  background: rgba(255, 255, 255, 0.9);
+}
 
 .shareContent {
   margin: 2rem auto;

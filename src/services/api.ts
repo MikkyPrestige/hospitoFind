@@ -14,6 +14,7 @@ export async function getHospitals() {
   }
 }
 
+// get hospital details by id or slug
 export async function getHospitalDetails(params: any) {
   try {
     if (params.slug) {

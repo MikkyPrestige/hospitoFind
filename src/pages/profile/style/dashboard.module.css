@@ -273,6 +273,9 @@
 .dashboard .profile .details .profileCard .modalOverlay .modal .modalHeader .closeBtn:hover {
   color: #ff033e;
 }
+.dashboard .profile .details .profileCard .modalOverlay .modal .modalBody {
+  padding: 2rem 0rem;
+}
 .dashboard .wrapper {
   width: 70%;
   display: flex;

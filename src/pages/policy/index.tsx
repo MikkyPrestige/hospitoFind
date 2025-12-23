@@ -1,16 +1,20 @@
-import { Helmet } from "react-helmet-async";
 import Header from "@/layouts/header/nav";
 import Footer from "@/layouts/footer/footer";
 import style from "./index.module.css";
+import { SEOHelmet } from "@/components/utils/seoUtils";
 
 const Policy = () => {
     return (
         <>
-            <Helmet>
-                <title>Privacy Policy | HospitoFind</title>
-            </Helmet>
+            <SEOHelmet
+                title="Privacy Policy"
+                description="Read HospitoFind's privacy policy to understand how we handle your data and protect your information."
+                canonical="https://hospitofind.online/policy"
+                schemaType="policy"
+                autoBreadcrumbs={true}
+            />
             <Header />
-            <div className={style.container}>
+            <main className={style.container}>
                 <h1 className={style.title}>Privacy Policy</h1>
                 <p className={style.text}>
                     Welcome to <strong>HospitoFind</strong> — a personal project built to make it easier for people to find hospitals within their region. Your privacy matters and this page explains how we handle the limited information we collect when you use our web app.
@@ -76,7 +80,7 @@ const Policy = () => {
                 </div>
 
                 <p className={style.text}>Thank you for being part of the HospitoFind journey!</p>
-            </div>
+            </main>
             <Footer />
         </>
     );

@@ -1,5 +1,4 @@
-@use '../../../assets/styles/mixins';
-@import '../../../assets/styles/variables';
+@use "sass:color" as color;
 
 .section {
   width: 100%;
@@ -8,8 +7,9 @@
   flex-direction: row;
   overflow: hidden;
 
-  @include mixins.respond(phone) {
+  @include respond(phone-sm) {
     flex-direction: column;
+    min-height: auto;
   }
 
 .left {
@@ -38,6 +38,12 @@
     max-width: 600px;
     text-align: left;
     animation: fadeIn 1.2s ease forwards;
+
+     @include respond(phone-sm) {
+padding: 4rem 2rem;
+margin-top: 5rem;
+ }
+
 
     .logoGroup {
       display: flex;
@@ -117,6 +123,10 @@
   padding: 3rem;
   margin-top: 3rem;
 
+    @include respond(phone-sm) {
+align-items: flex-start;
+  }
+
 .wrapper {
   background: $color-white;
   border-radius: 1.5rem;
@@ -130,30 +140,55 @@ margin-top: 2rem;
   gap: 1rem;
   animation: fadeUp 0.8s ease-out forwards;
 
-  // .title {
-  //   font-size: 2.2rem;
-  //   font-weight: $font-weight-bd;
-  //   color: $color-black-b;
-  //   text-align: center;
-  // }
+      @include respond(phone-sm) {
+margin-top: 0;
+padding: 2rem 1.5rem;
+  }
+
+
+.header {
+@include flexCol;
+gap: .2rem;
+    margin-bottom: 1rem;
+
+  .title {
+    font-size: 2rem;
+    font-weight: $font-weight-bd;
+    color: $color-black-b;
+  }
 
   .subtitle {
     color: $color-gray-dark;
-    text-align: center;
     font-size: 1.2rem;
-    margin-bottom: .5rem;
   }
+
+        @include respond(phone-sm) {
+.title {
+font-size: 2.2rem;
+  }
+
+.subtitle {
+font-size: 1.7rem;
+}
+        }
+}
 
   .form {
     display: flex;
     flex-direction: column;
-    gap: 1rem;
+    gap: 1.5rem;
+
+    .form_wrapper {
+@include flexCol;
+gap: 1.2rem;
+
 
     .form_group {
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
   position: relative;
+  width: 100%;
 
   label {
     font-size: 1.3rem;
@@ -207,19 +242,23 @@ margin-top: 2rem;
   .form_error {
   font-size: 1.1rem;
   color: $color-red;
-  margin-top: 0.3rem;
   text-align: left;
 }
 }
+}
+
+.form_options {
+@include flexCol;
+gap: 1rem;
 
 .form_footer {
-  @include mixins.flexRowSpaceBetween;
-  margin-top: 0.5rem;
+  @include flexRowSpaceBetween;
   font-size: 1.1rem;
   color: $color-gray-dark;
   align-items: center;
   flex-wrap: wrap;
   gap: 0.6rem;
+  width: 100%;
 
   .remember {
     display: flex;
@@ -239,7 +278,7 @@ margin-top: 2rem;
     transition: color 0.2s ease-in-out;
 
     &:hover {
-      color: lighten($color-blue, 10%);
+      color: color.adjust($color-blue, $lightness: 10%);
     }
   }
   }
@@ -251,24 +290,27 @@ margin-top: 2rem;
 }
 
     .form_button {
-    background: linear-gradient(135deg, $color-blue, lighten($color-blue, 10%)) !important;
+    background: linear-gradient(135deg, $color-blue, color.adjust($color-blue, $lightness: 10%)) !important;
     color: $color-white;
     font-size: 1.4rem;
     border: none;
     border-radius: 0.8rem !important;
     padding: 1rem;
+    font-weight: $font-weight-bd;
     cursor: pointer;
     display: flex;
     align-items: center;
     justify-content: center;
     gap: 0.5rem;
+width: 100%;
     transition: all 0.3s ease;
 
     &:hover {
-      background: darken($color-blue, 5%);
+      background: color.adjust($color-blue, $lightness: 5%);
       transform: translateY(-2px);
     }
   }
+}
 }
 
 .divider {
@@ -299,13 +341,13 @@ margin-top: 2rem;
 }
 
 .socialBtn {
-  @include mixins.flexRow;
+  @include flexRow;
   flex-wrap: wrap;
   gap: 1rem;
   margin-top: 1rem;
 
   .social {
-    @include mixins.flexRow;
+    @include flexRow;
     width: 3.5rem;
     height: 3.5rem;
     border-radius: 50%;
@@ -344,7 +386,7 @@ margin-top: 2rem;
     transition: all 0.3s ease-in-out;
 
     &:hover {
-      color: lighten($color-blue, 10%);
+      color: color.adjust($color-blue, $lightness: 10%);
     }
   }
 }

@@ -103,7 +103,7 @@ const Dashboard = () => {
       <Motion variants={fadeUp} className={style.top} once={true}>
         <div className={bgStyle.bg}></div>
         <Link to="/" className={style.logo}>
-          <img src={Logo} alt="logo" className={style.img} />
+          <img src={Logo} alt="HospitoFind Logo" className={style.img} />
         </Link>
         <div>
           <div
@@ -244,7 +244,7 @@ const Dashboard = () => {
                               >
                                 <Avatar
                                   image={h.photoUrl || HospitalPic}
-                                  alt={h.name}
+                                  alt={`Photo of ${h.name} in ${h.address.city}`}
                                   style={{
                                     width: "5rem",
                                     height: "5rem",
@@ -312,7 +312,7 @@ const Dashboard = () => {
                               >
                                 <Avatar
                                   image={r.photoUrl || HospitalPic}
-                                  alt={r.name}
+                                  alt={`Photo of ${r.name} in ${r.address.city}`}
                                   style={{
                                     width: "5rem",
                                     height: "5rem",

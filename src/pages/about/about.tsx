@@ -10,12 +10,12 @@ import Footer from "@/layouts/footer/footer";
 import Motion from "@/components/motion";
 import { fadeUp, slideLeft, slideRight, zoomIn, sectionReveal } from "@/hooks/animations";
 import { Avatar } from "@/components/avatar";
-import Doctor from "@/assets/images/hero2.png";
+import NursesAndPatient from "@/assets/images/hero2.png";
 import Stethoscope from "@/assets/images/stethoscope.jpg";
 import Handset from "@/assets/images/handset.jpg";
 import Laptop from "@/assets/images/laptop.jpg";
 import Search from "@/assets/images/hospitalSearch.png";
-import Patient from "@/assets/images/phone.jpg";
+import PhoneMap from "@/assets/images/phone.jpg";
 import Reviewer1 from "@/assets/images/man.jpg";
 import Reviewer2 from "@/assets/images/man1.jpg";
 import Reviewer3 from "@/assets/images/man2.jpg";
@@ -28,7 +28,6 @@ import Reviewer9 from "@/assets/images/woman5.jpg";
 import Reviewer10 from "@/assets/images/woman7.jpg";
 import Reviewer11 from "@/assets/images/woman8.jpg";
 import Reviewer12 from "@/assets/images/woman9.jpg";
-import { Button } from "@/components/button";
 import { SEOHelmet } from "@/components/utils/seoUtils";
 
 const BASE_URL = import.meta.env.VITE_BASE_URL;
@@ -61,7 +60,7 @@ const About = () => {
 
       <Header />
 
-      <section className={style.bg}>
+      <main className={style.bg}>
         {/*  Hero Section */}
         <Motion className={style.wrapper} variants={fadeUp} as="section">
           <div className={style.top}>
@@ -69,34 +68,31 @@ const About = () => {
               About <span className={style.span}>HospitoFind</span>
             </h1>
             <p className={style.para}>
-              HospitoFind is a comprehensive hospital finder and healthcare directory dedicated to connecting individuals with verified medical facilities worldwide. Our mission is to empower users to easily locate hospitals based on their specific needs, whether by city, country, or hospital name. We provide detailed hospital profiles, interactive maps, and up-to-date health news to ensure users have access to reliable information for making informed healthcare decisions.
+              HospitoFind is a global hospital search platform designed to help users quickly find verified hospitals, clinics, and emergency medical centers anywhere in the world. Whether you're looking for hospitals near you, browsing by city or country, or searching for a specific healthcare facility, HospitoFind makes the process fast and reliable.
+              We provide detailed hospital profiles and location to ensure you always have the best information when making health decisions.
             </p>
             <p className={style.gradient}>
               {count !== null
-                ? `Explore our extensive database of over ${count.toLocaleString()} hospitals worldwide - your gateway to global healthcare access!` : "Loading hospital statistics…"}
+                ? `Explore our growing directory of over ${count.toLocaleString()} hospitals worldwide - your trusted gateway to reliable, accessible healthcare anywhere you go.` : "Loading hospital statistics…"}
             </p>
 
-            <Button
-              children={
-                <span className={style.cta}>
-                  <Link to="/dashboard">Explore HospitoFind</Link>
-                </span>
-              }
-            />
+            <Link to="/dashboard" className={style.ctaLink}>
+              Get Started
+            </Link>
           </div>
 
           <div className={style.img}>
             <motion.div variants={slideLeft} className={style.img_1}>
               <Avatar
-                image={Patient}
-                alt="Patient"
+                image={PhoneMap}
+                alt="Person using HospitoFind on a smartphone to find nearby healthcare locations"
                 style={{ width: "100%", height: "100%", borderRadius: "1rem", objectFit: "cover" }}
               />
             </motion.div>
             <motion.div variants={slideRight} className={style.img_2}>
               <Avatar
-                image={Doctor}
-                alt="Doctor with patient"
+                image={NursesAndPatient}
+                alt="Healthcare professionals supporting an older adult in a hospital corridor"
                 style={{ width: "100%", height: "100%", borderRadius: "1rem", objectFit: "cover" }}
               />
             </motion.div>
@@ -270,7 +266,7 @@ const About = () => {
                 <figure className={style.user}>
                   <Avatar
                     image={review.img}
-                    alt={review.name}
+                    alt={`Photo of ${review.name}`}
                     style={{ width: "3.5rem", height: "3.5rem", borderRadius: "50%" }}
                   />
                   <figcaption className={style.name}>{review.name}</figcaption>
@@ -279,7 +275,7 @@ const About = () => {
             ))}
           </div>
         </Motion>
-      </section>
+      </main>
 
       <Footer />
     </>

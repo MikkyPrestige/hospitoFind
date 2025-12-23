@@ -5,6 +5,12 @@
   flex-direction: row;
   overflow: hidden;
 }
+@media only screen and (max-width: 30em) {
+  .section {
+    flex-direction: column;
+    min-height: auto;
+  }
+}
 .section .left {
   flex: 1;
   position: relative;
@@ -29,6 +35,12 @@
   max-width: 600px;
   text-align: left;
   animation: fadeIn 1.2s ease forwards;
+}
+@media only screen and (max-width: 30em) {
+  .section .left .content {
+    padding: 4rem 2rem;
+    margin-top: 5rem;
+  }
 }
 .section .left .content .logoGroup {
   display: flex;
@@ -97,6 +109,11 @@
   padding: 3rem;
   margin-top: 3rem;
 }
+@media only screen and (max-width: 30em) {
+  .section .right {
+    align-items: flex-start;
+  }
+}
 .section .right .wrapper {
   background: #FFFFFF;
   border-radius: 1.5rem;
@@ -110,32 +127,65 @@
   gap: 1rem;
   animation: fadeUp 0.8s ease-out forwards;
 }
-.section .right .wrapper .subtitle {
+@media only screen and (max-width: 30em) {
+  .section .right .wrapper {
+    margin-top: 0;
+    padding: 2rem 1.5rem;
+  }
+}
+.section .right .wrapper .header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.2rem;
+  margin-bottom: 1rem;
+}
+.section .right .wrapper .header .title {
+  font-size: 2rem;
+  font-weight: 700;
+  color: #1E1E1E;
+}
+.section .right .wrapper .header .subtitle {
   color: #4A4A4A;
-  text-align: center;
   font-size: 1.2rem;
-  margin-bottom: 0.5rem;
+}
+@media only screen and (max-width: 30em) {
+  .section .right .wrapper .header .title {
+    font-size: 2.2rem;
+  }
+  .section .right .wrapper .header .subtitle {
+    font-size: 1.7rem;
+  }
 }
 .section .right .wrapper .form {
   display: flex;
   flex-direction: column;
-  gap: 1rem;
+  gap: 1.5rem;
 }
-.section .right .wrapper .form .form_group {
+.section .right .wrapper .form .form_wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1.2rem;
+}
+.section .right .wrapper .form .form_wrapper .form_group {
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
   position: relative;
+  width: 100%;
 }
-.section .right .wrapper .form .form_group label {
+.section .right .wrapper .form .form_wrapper .form_group label {
   font-size: 1.3rem;
   color: #1E1E1E;
   font-weight: 500;
 }
-.section .right .wrapper .form .form_group .inputWrapper {
+.section .right .wrapper .form .form_wrapper .form_group .inputWrapper {
   position: relative;
 }
-.section .right .wrapper .form .form_group .inputWrapper .inputIcon {
+.section .right .wrapper .form .form_wrapper .form_group .inputWrapper .inputIcon {
   position: absolute;
   left: 1rem;
   top: 50%;
@@ -144,7 +194,7 @@
   height: 1.4rem;
   color: #4A4A4A;
 }
-.section .right .wrapper .form .form_group .inputWrapper .form_input {
+.section .right .wrapper .form .form_wrapper .form_group .inputWrapper .form_input {
   width: 100%;
   padding: 1rem 1rem 1rem 3rem;
   border: 1px solid #C1C1C1;
@@ -153,15 +203,15 @@
   outline: none;
   transition: all 0.3s ease;
 }
-.section .right .wrapper .form .form_group .inputWrapper .form_input:focus {
+.section .right .wrapper .form .form_wrapper .form_group .inputWrapper .form_input:focus {
   border-color: #08299B;
   box-shadow: 0 0 0 3px rgba(8, 41, 155, 0.1);
 }
-.section .right .wrapper .form .form_group .inputWrapper .invalid {
+.section .right .wrapper .form .form_wrapper .form_group .inputWrapper .invalid {
   border: 1px solid #FF033E !important;
   background: rgba(255, 0, 0, 0.03);
 }
-.section .right .wrapper .form .form_group .togglePassword {
+.section .right .wrapper .form .form_wrapper .form_group .togglePassword {
   position: absolute;
   right: 1rem;
   top: 50%;
@@ -169,62 +219,70 @@
   cursor: pointer;
   color: #4A4A4A;
 }
-.section .right .wrapper .form .form_group .form_error {
+.section .right .wrapper .form .form_wrapper .form_group .form_error {
   font-size: 1.1rem;
   color: #FF033E;
-  margin-top: 0.3rem;
   text-align: left;
 }
-.section .right .wrapper .form .form_footer {
+.section .right .wrapper .form .form_options {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+}
+.section .right .wrapper .form .form_options .form_footer {
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
-  margin-top: 0.5rem;
   font-size: 1.1rem;
   color: #4A4A4A;
   align-items: center;
   flex-wrap: wrap;
   gap: 0.6rem;
+  width: 100%;
 }
-.section .right .wrapper .form .form_footer .remember {
+.section .right .wrapper .form .form_options .form_footer .remember {
   display: flex;
   align-items: center;
   gap: 0.4rem;
 }
-.section .right .wrapper .form .form_footer .remember input {
+.section .right .wrapper .form .form_options .form_footer .remember input {
   accent-color: #08299B;
   transform: scale(1.1);
 }
-.section .right .wrapper .form .form_footer .forgot {
+.section .right .wrapper .form .form_options .form_footer .forgot {
   color: #08299B;
   text-decoration: none;
   font-weight: 500;
   transition: color 0.2s ease-in-out;
 }
-.section .right .wrapper .form .form_footer .forgot:hover {
+.section .right .wrapper .form .form_options .form_footer .forgot:hover {
   color: rgb(10.5030674847, 53.8282208589, 203.4969325153);
 }
-.section .right .wrapper .form .arrowIcon {
+.section .right .wrapper .form .form_options .arrowIcon {
   width: 1.4rem;
   height: 1.4rem;
   color: #FFFFFF;
 }
-.section .right .wrapper .form .form_button {
+.section .right .wrapper .form .form_options .form_button {
   background: linear-gradient(135deg, #08299B, rgb(10.5030674847, 53.8282208589, 203.4969325153)) !important;
   color: #FFFFFF;
   font-size: 1.4rem;
   border: none;
   border-radius: 0.8rem !important;
   padding: 1rem;
+  font-weight: 700;
   cursor: pointer;
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 0.5rem;
+  width: 100%;
   transition: all 0.3s ease;
 }
-.section .right .wrapper .form .form_button:hover {
+.section .right .wrapper .form .form_options .form_button:hover {
   background: rgb(6.7484662577, 34.5858895706, 130.7515337423);
   transform: translateY(-2px);
 }
