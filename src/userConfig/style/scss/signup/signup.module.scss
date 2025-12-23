@@ -1,0 +1,368 @@
+@use "sass:color" as color;
+
+.section {
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: row;
+  overflow: hidden;
+
+  @include respond(phone-sm) {
+    flex-direction: column;
+    min-height: auto;
+  }
+
+  .left {
+    flex: 1;
+    position: relative;
+    background: linear-gradient(135deg, $color-blue 0%, #5fa3dc 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: $color-white;
+    overflow: hidden;
+
+    @include respond(tab-land) {
+      display: flex;
+    }
+
+    .overlay {
+      position: absolute;
+      inset: 0;
+      background: url('https://images.unsplash.com/photo-1761479336505-e397563d3b64?auto=format&fit=crop&w=1200&q=80') center/cover no-repeat;
+      opacity: 0.18;
+      mix-blend-mode: multiply;
+    }
+
+    .content {
+      position: relative;
+      z-index: 1;
+      padding: 4rem;
+      max-width: 600px;
+      text-align: left;
+      animation: fadeIn 1.2s ease forwards;
+
+      @include respond(phone-sm) {
+        padding: 4rem 2rem;
+        margin-top: 5rem;
+      }
+
+      .logoGroup {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        margin-bottom: 3rem;
+
+        .logoIcon {
+          background: rgba(255, 255, 255, 0.25);
+          backdrop-filter: blur(4px);
+          padding: 0.8rem;
+          border-radius: 1.2rem;
+          color: white;
+          display: flex;
+          align-items: center;
+        }
+
+        .heartIcon {
+          width: 2.2rem;
+          height: 2.2rem;
+        }
+
+        .logoText {
+          font-size: 2.8rem;
+          font-weight: $font-weight-bd;
+          letter-spacing: $space;
+        }
+      }
+
+      .welcome {
+        font-size: 2.4rem;
+        font-weight: $font-weight-bds;
+        margin-bottom: 1rem;
+      }
+
+      .tagline {
+        font-size: 1.2rem;
+        max-width: 420px;
+        color: rgba(255, 255, 255, 0.85);
+        margin-bottom: 2.5rem;
+        line-height: 1.6;
+      }
+
+      .features {
+        display: flex;
+        flex-direction: column;
+        gap: 1.5rem;
+
+        .feature {
+          display: flex;
+          align-items: center;
+          gap: 1.2rem;
+
+          .iconCircle {
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+            width: 3rem;
+            height: 3rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            color: white;
+          }
+
+          p {
+            font-size: 1.1rem;
+            color: rgba(255, 255, 255, 0.9);
+            font-weight: $font-weight-md;
+          }
+        }
+      }
+    }
+  }
+
+  .right {
+    flex: 1;
+    background: #f8f9fb;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 5rem;
+
+    @include respond(phone-sm) {
+      padding: 2rem 1rem;
+    }
+
+    .wrapper {
+      background: $color-white;
+      border-radius: 1.5rem;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+      padding: 2.5rem;
+      width: 100%;
+      max-width: 550px;
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+      animation: fadeUp 0.8s ease-out forwards;
+
+      .header {
+        margin-bottom: 0.5rem;
+
+        .title {
+          font-size: 2rem;
+          font-weight: $font-weight-bd;
+          color: $color-black-b;
+          margin-bottom: 0.3rem;
+        }
+
+        .subtitle {
+          color: $color-gray-dark;
+          font-size: 1rem;
+        }
+      }
+
+      .form {
+        display: flex;
+        flex-direction: column;
+        gap: 1.5rem;
+
+        .formGrid {
+          display: grid;
+          grid-template-columns: 1fr 1fr;
+          gap: 1.2rem;
+
+          @include respond(phone-sm) {
+            grid-template-columns: 1fr;
+          }
+
+          .fullWidth {
+            grid-column: 1 / -1;
+          }
+        }
+
+        .form_group {
+          display: flex;
+          flex-direction: column;
+          gap: 0.5rem;
+          position: relative;
+
+          label {
+            font-size: 0.95rem;
+            color: $color-black-b;
+            font-weight: $font-weight-bd;
+          }
+
+          .inputWrapper {
+            position: relative;
+
+            .inputIcon {
+              position: absolute;
+              left: 1rem;
+              top: 50%;
+              transform: translateY(-50%);
+              width: 1.2rem;
+              height: 1.2rem;
+              color: $color-gray-dark;
+            }
+
+            .form_input {
+              width: 100%;
+              padding: 0.8rem 1rem 0.8rem 2.8rem;
+              border: 1px solid #e2e8f0;
+              border-radius: 0.8rem;
+              font-size: 1rem;
+              outline: none;
+              transition: all 0.3s ease;
+
+              &:focus {
+                border-color: $color-blue;
+                box-shadow: 0 0 0 3px rgba(8, 41, 155, 0.08);
+              }
+
+              &.invalid {
+                border-color: $color-red;
+                background-color: rgba($color-red, 0.02);
+              }
+            }
+
+            .togglePassword {
+              position: absolute;
+              right: 1rem;
+              top: 50%;
+              transform: translateY(-50%);
+              background: none;
+              border: none;
+              cursor: pointer;
+              color: $color-gray-dark;
+              display: flex;
+              align-items: center;
+              padding: 0;
+            }
+          }
+
+          .form_error {
+            font-size: 0.85rem;
+            color: $color-red;
+            margin-top: 0.2rem;
+          }
+        }
+
+        .alertError {
+          background-color: rgba($color-red, 0.08);
+          border: 1px solid rgba($color-red, 0.2);
+          color: $color-red;
+          padding: 0.8rem;
+          border-radius: 0.8rem;
+          font-size: 0.9rem;
+          text-align: center;
+        }
+
+        .form_button {
+          background: linear-gradient(135deg, $color-blue, color.adjust($color-blue, $lightness: 10%)) !important;
+          color: white;
+          width: 100%;
+          padding: 1rem;
+          border-radius: 0.8rem !important;
+          font-weight: $font-weight-bd;
+          font-size: 1.1rem;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          gap: 0.8rem;
+          transition: all 0.3s ease;
+
+          &:hover:not(:disabled) {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba($color-blue, 0.3);
+          }
+
+          &:disabled {
+            opacity: 0.7;
+            cursor: not-allowed;
+          }
+
+          .arrowIcon {
+            transition: transform 0.3s ease;
+          }
+
+          &:hover .arrowIcon {
+            transform: translateX(4px);
+          }
+        }
+      }
+
+      .divider {
+        position: relative;
+        text-align: center;
+        margin: 0.5rem 0;
+
+        &::before {
+          content: "";
+          position: absolute;
+          top: 50%;
+          left: 0;
+          width: 100%;
+          height: 1px;
+          background: #e2e8f0;
+        }
+
+        .dividerText {
+          position: relative;
+          background: white;
+          padding: 0 1rem;
+          color: #64748b;
+          font-size: 0.9rem;
+        }
+      }
+
+      .socialBtn {
+         display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1rem;
+
+        .social {
+           aspect-ratio: 2;
+    border-radius: 50%;
+    border: 1px solid #e2e8f0;
+    background: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.2s;
+    &:hover { background: #f8fafc; transform: scale(1.1); }
+        }
+      }
+
+      .link {
+        text-align: center;
+        font-size: 0.95rem;
+        color: $color-gray-dark;
+        border-top: 1px solid #f1f5f9;
+        padding-top: 1.5rem;
+
+        .login {
+          color: $color-blue;
+          font-weight: $font-weight-bd;
+          text-decoration: none;
+          margin-left: 0.3rem;
+
+          &:hover {
+            text-decoration: underline;
+          }
+        }
+      }
+    }
+  }
+}
+
+/* --- Animations --- */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}

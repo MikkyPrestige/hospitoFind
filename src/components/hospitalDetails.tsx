@@ -31,6 +31,8 @@ type Hospital = {
     phoneNumber?: string;
 };
 
+// const API = import.meta.env.VITE_Google_Key;
+
 const HospitalDetails = () => {
     const { id, country, city, slug } = useParams();
     const [hospital, setHospital] = useState<Hospital | null>(null);
@@ -87,7 +89,10 @@ const HospitalDetails = () => {
     );
 
     const mapQuery = `${hospital.address?.street || ""}, ${hospital.address?.city || ""}, ${hospital.address?.state || ""}`;
-    const mapUrl = `https://www.google.com/maps/embed/v1/place?key=AIzaSyD8YD2ixVI6u2a0J7QpEnzGYzUxZ_-QEi8&q=${encodeURIComponent(mapQuery)}`;
+
+    const API = import.meta.env.VITE_Google_API_Key;
+
+    const mapUrl = `https://www.google.com/maps/embed/v1/place?key=${API}&q=${encodeURIComponent(mapQuery)}`;
     const directionsUrl = `https://www.google.com/maps/dir/?api=1&destination=${encodeURIComponent(mapQuery)}`;
 
     return (
