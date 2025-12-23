@@ -34,9 +34,9 @@ const PopularHospitals = () => {
       animate="visible"
     >
       <Motion variants={fadeUp}>
-        <h1 className={style.heading}>Discover Top Hospitals on HospitoFind</h1>
+        <h2 className={style.heading}>Trusted Hospitals on HospitoFind</h2>
         <p className={style.subtitle}>
-          Explore trusted hospitals near you, view their details, and find quality care faster.
+          Verified hospitals you can rely on for quality care.
         </p>
       </Motion>
 
@@ -46,7 +46,7 @@ const PopularHospitals = () => {
             <div className={style.img}>
               <Avatar
                 image={hospital.photoUrl || HospitalPic}
-                alt="hospital"
+                alt={`Photo of ${hospital.name} in ${hospital.address.city}`}
                 style={{
                   width: "100%",
                   height: "100%",
@@ -61,7 +61,7 @@ const PopularHospitals = () => {
                 {hospital.address?.street}, {hospital.address?.city}
               </p>
               <Link to={`/hospital/${hospital.address?.state}/${hospital.address?.city}/${hospital.slug}`} className={style.btn}>
-                View Details
+                View Details <span className={style['sr-only']}>for {hospital.name}</span>
               </Link>
             </div>
           </Motion>

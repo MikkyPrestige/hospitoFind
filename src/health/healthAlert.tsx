@@ -1,5 +1,7 @@
 import { useEffect, useState } from "react";
-import style from "./style/healthAlerts.module.css";
+import style from "./style/healthAlert.module.css";
+import AnimatedLoader from "../components/utils/AnimatedLoader";
+import { useNavigate } from "react-router-dom";
 
 type Alert = {
     title: string;
@@ -14,6 +16,7 @@ const URL = import.meta.env.VITE_BASE_URL;
 const HealthAlerts = () => {
     const [alerts, setAlerts] = useState<Alert[]>([]);
     const [loading, setLoading] = useState(true);
+    const navigate = useNavigate();
 
     useEffect(() => {
         const fetchAlerts = async () => {
@@ -21,9 +24,9 @@ const HealthAlerts = () => {
             try {
                 const res = await fetch(`${URL}/health/alerts`);
                 const data = await res.json();
-                setAlerts(data);
+                setAlerts(data.slice(0, 3));
             } catch (err) {
-                // console.error("Error fetching health alerts:", err);
+                // handle error
             } finally {
                 setLoading(false);
             }
@@ -34,56 +37,80 @@ const HealthAlerts = () => {
     return (
         <section className={style.section}>
             <div className={style.headerRow}>
-                <h2 className={style.heading}>⚠️ Outbreaks Alert</h2>
-                <span className={style.badge}>Live updates</span>
+                <div className={style.titleGroup}>
+                    <h2 className={style.heading}>⚠️ Outbreaks Alert</h2>
+                    <span className={style.badge}>Live updates</span>
+                </div>
+                <button
+                    className={style.viewAllLink}
+                    onClick={() => navigate("/outbreaks")}
+                >
+                    See All Alerts →
+                </button>
             </div>
+
             <p className={style.subHeading}>
                 Stay informed about current health concerns and outbreaks worldwide.
             </p>
 
             {loading ? (
-                <p className={style.status}>Getting latest outbreak alerts around the world...</p>
+                <AnimatedLoader message="Getting latest disease alerts..." variant="list" count={4} />
             ) : alerts.length > 0 ? (
-                <ul className={style.list}>
-                    {alerts.map((a, i) => {
-                        const isWHO = a.source.toLowerCase().includes("who");
-                        const isArchived = a.source.toLowerCase().includes("archived");
-                        const isMedia = a.source.toLowerCase().includes("newsdata");
+                <div className={style.listWrapper}>
+                    <ul className={style.list}>
+                        {alerts.map((a, i) => {
+                            const sourceLower = a.source.toLowerCase();
+                            const isWHO = sourceLower.includes("who");
+                            const isArchived = sourceLower.includes("archived");
+                            const isMedia = sourceLower.includes("newsdata") || sourceLower.includes("media");
 
-                        return (
-                            <li
-                                key={i}
-                                className={`${style.card} ${isArchived ? style.cardArchived : ""
-                                    }`}
-                            >
-                                <div className={style.titleRow}>
-                                    <h3 className={style.title}>{a.title}</h3>
-
-                                    {isArchived ? (
-                                        <span className={style.sourceArchived}>Archived</span>
-                                    ) : isWHO ? (
-                                        <span className={style.sourceWHO}>WHO Alert</span>
-                                    ) : isMedia ? (
-                                        <span className={style.sourceMedia}>Media Report</span>
-                                    ) : null}
-                                </div>
-
-                                <p className={style.date}>
-                                    {a.date ? new Date(a.date).toLocaleDateString() : ""}
-                                </p>
-                                <p className={style.summary}>{a.summary}</p>
-                                <a
-                                    href={a.link}
-                                    target="_blank"
-                                    rel="noopener noreferrer"
-                                    className={style.link}
+                            return (
+                                <li
+                                    key={i}
+                                    className={`${style.card} ${isArchived ? style.cardArchived : ""}`}
                                 >
-                                    Read more →
-                                </a>
-                            </li>
-                        );
-                    })}
-                </ul>
+                                    <div className={style.cardBody}>
+                                        <div className={style.titleRow}>
+                                            <h3 className={style.title}>{a.title}</h3>
+
+                                            <span className={`
+                                                ${style.sourceBadge}
+                                                ${isArchived ? style.sourceArchived : ''}
+                                                ${isWHO ? style.sourceWHO : ''}
+                                                ${isMedia ? style.sourceMedia : ''}
+                                            `}>
+                                                {isArchived ? "Archived" : isWHO ? "WHO Verified" : "Media Report"}
+                                            </span>
+                                        </div>
+
+                                        <div className={style.metaRow}>
+                                            <span className={style.date}>
+                                                📅 {a.date ? new Date(a.date).toLocaleDateString(undefined, {
+                                                    year: 'numeric',
+                                                    month: 'short',
+                                                    day: 'numeric'
+                                                }) : "Recent"}
+                                            </span>
+                                        </div>
+
+                                        <p className={style.summary}>{a.summary}</p>
+
+                                        <div className={style.footer}>
+                                            <a
+                                                href={a.link}
+                                                target="_blank"
+                                                rel="noopener noreferrer"
+                                                className={style.link}
+                                            >
+                                                Read full report →
+                                            </a>
+                                        </div>
+                                    </div>
+                                </li>
+                            );
+                        })}
+                    </ul>
+                </div>
             ) : (
                 <p className={style.status}>No current health alerts found.</p>
             )}

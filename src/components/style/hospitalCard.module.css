@@ -99,8 +99,22 @@
   text-decoration: none;
   margin-top: 0.5rem;
   transition: color 0.2s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
 }
 
 .link:hover {
   color: #092b83;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  border: 0;
 }

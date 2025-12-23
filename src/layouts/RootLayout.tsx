@@ -21,7 +21,7 @@ export default function RootLayout() {
                 >
                     <motion.img
                         src={Logo}
-                        alt="HospitoFind logo"
+                        alt="HospitoFind Logo"
                         style={{ width: 80, height: 80, marginBottom: "1rem" }}
                         animate={{ scale: [1, 1.1, 1] }}
                         transition={{ duration: 1.6, repeat: Infinity, ease: "easeInOut" }}
@@ -41,7 +41,7 @@ export default function RootLayout() {
                         Connecting you to trusted healthcare...
                     </motion.h2>
 
-                    <motion.div
+                    {/* <motion.div
                         style={{
                             marginTop: "2rem",
                             width: "40px",
@@ -52,7 +52,7 @@ export default function RootLayout() {
                         }}
                         animate={{ rotate: 360 }}
                         transition={{ duration: 1.5, repeat: Infinity, ease: "linear" }}
-                    />
+                    /> */}
                 </div>
             }
         >

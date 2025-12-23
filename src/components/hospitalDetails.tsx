@@ -4,12 +4,13 @@ import { AnimatePresence } from "framer-motion";
 import { fadeUp, sectionReveal } from "@/hooks/animations";
 import Motion from "@/components/motion";
 import style from "./style/hospitalDetails.module.css";
-import style2 from "../hospitalsConfig/style/info/info.module.css";
 import { Button } from "./button";
 import Header from "@/layouts/header/nav";
 import Footer from "@/layouts/footer/footer";
 import { getHospitalDetails } from "@/services/api";
 import { SEOHelmet } from "@/components/utils/seoUtils";
+import AnimatedLoader from "./utils/AnimatedLoader";
+import Logo from "../assets/images/logo.svg"
 
 type Hospital = {
     _id?: string;
@@ -23,7 +24,7 @@ type Hospital = {
     photoUrl?: string;
     type?: string;
     hours?: { day: string; open: string }[];
-    comments?: string[];
+    comments: string[];
     email?: string;
     services?: string[];
     website?: string;
@@ -55,12 +56,38 @@ const HospitalDetails = () => {
         setIsExiting(true);
     };
 
-    if (loading)
-        return <p className={style.loading}>Getting hospital details...</p>;
-    if (!hospital) return <p className={style.error}>Hospital not found.</p>;
+    if (loading) {
+        return (
+            <AnimatedLoader
+                message="Getting hospital details..."
+                variant="card"
+                count={1}
+                showImage
+                imageHeight={200}
+                showButtons={false}
+            />
+        );
+    }
+    if (!hospital) return (
+        <div className={style.errorContainer}>
+            <div className={style.errorCard}>
+                <span className={style.errorIcon}>🏥</span>
+                <h2 className={style.errorTitle}>Hospital Not Found</h2>
+                <p className={style.errorText}>
+                    We couldn't find the hospital you're looking for. It may have been removed or the link is broken.
+                </p>
+                <button
+                    onClick={() => navigate("/find-hospital")}
+                    className={style.errorBtn}
+                >
+                    ← Back to Directory
+                </button>
+            </div>
+        </div>
+    );
 
     const mapQuery = `${hospital.address?.street || ""}, ${hospital.address?.city || ""}, ${hospital.address?.state || ""}`;
-    const mapUrl = `https://www.google.com/maps?q=${encodeURIComponent(mapQuery)}&output=embed`;
+    const mapUrl = `https://www.google.com/maps/embed/v1/place?key=AIzaSyD8YD2ixVI6u2a0J7QpEnzGYzUxZ_-QEi8&q=${encodeURIComponent(mapQuery)}`;
     const directionsUrl = `https://www.google.com/maps/dir/?api=1&destination=${encodeURIComponent(mapQuery)}`;
 
     return (
@@ -91,10 +118,28 @@ const HospitalDetails = () => {
                         exit={{ opacity: 0, y: -40 }}
                         transition={{ duration: 0.5, ease: "easeInOut" }}
                     >
+                        <div className={style.printHeader}>
+                            <div className={style.printBranding}>
+                                <img src={Logo} alt="HospitoFind Logo" className={style.printLogo} />
+                                <div>
+                                    <h2 className={style.printTitle}>HospitoFind</h2>
+                                    <p className={style.printSubtitle}>Official Hospital Directory</p>
+                                </div>
+                            </div>
+                            <div className={style.printMeta}>
+                                <p><strong>Generated on:</strong> {new Date().toLocaleDateString()}</p>
+                                <p><strong>Source:</strong> hospitofind.online</p>
+                            </div>
+                        </div>
                         <Motion variants={fadeUp} className={style.detailsLayout}>
                             <div className={style.infoSection}>
                                 <div className={style.header}>
-                                    <h1 className={style.name}>{hospital.name}</h1>
+                                    <h1 className={style.name}>
+                                        {hospital.name}
+                                        <span className={style.verifiedBadge}>
+                                            <span className={style.checkIcon}>✓</span> Verified Facility
+                                        </span>
+                                    </h1>
                                     {hospital.type && (
                                         <span
                                             className={`${style.typeBadge} ${hospital.type.toLowerCase() === "private"
@@ -107,25 +152,24 @@ const HospitalDetails = () => {
                                     )}
                                 </div>
 
+                                <button onClick={() => window.print()} className={style.backBtn} style={{ marginTop: '1rem', background: '#f1f5f9', color: '#475569' }}>
+                                    📥 Save as PDF
+                                </button>
+
                                 {hospital.photoUrl && (
                                     <Motion variants={fadeUp}>
                                         <img
                                             src={hospital.photoUrl}
-                                            alt={hospital.name}
+                                            alt={`Photo of ${hospital.name}`}
                                             className={style.image}
                                         />
                                     </Motion>
                                 )}
 
                                 <Motion variants={fadeUp} className={style.info}>
-                                    <p className={style.location}>
-                                        📍{" "}
-                                        {hospital.address
-                                            ? `${hospital.address.street}, ${hospital.address.city}, ${hospital.address.state}`
-                                            : "Not available"}
-                                    </p>
+                                    <p className={style.location}>📍 {hospital.address?.street}, {hospital.address?.city}</p>
                                     <p className={style.desc}>
-                                        <strong className={style2.strong}>Contact:</strong>{" "}
+                                        <strong className={style.label}>Contact:</strong>{" "}
                                         {hospital.phoneNumber || "Not available"}
                                     </p>
 
@@ -142,11 +186,12 @@ const HospitalDetails = () => {
 
                                     {hospital.email && (
                                         <p className={style.desc}>
-                                            <strong className={style2.strong}>Email:</strong>{" "}
+                                            <strong className={style.label}>Email:</strong>{" "}
                                             <a
                                                 href={`mailto:${hospital.email}?subject=Hello ${hospital.name}!`}
                                                 target="_blank"
                                                 rel="noreferrer"
+                                                className={style.infoLink}
                                             >
                                                 {hospital.email}
                                             </a>
@@ -154,35 +199,29 @@ const HospitalDetails = () => {
                                     )}
 
                                     {hospital.services && hospital.services.length > 0 && (
-                                        <div className={style.services}>
-                                            <h3>Available Services</h3>
-                                            {hospital.services?.length
-                                                ? hospital.services.join(", ")
-                                                : "Not available"}
-                                        </div>
-                                    )}
-
-                                    {hospital.hours && (
-                                        <div className={style2.section}>
-                                            <h3 className={style2.section_title}>🕓 Opening Hours</h3>
-                                            <ul className={style2.hours}>
-                                                {hospital.hours.map((hour, i) => (
-                                                    <li key={i}>
-                                                        <span>{hour.day}</span> <span>{hour.open}</span>
-                                                    </li>
+                                        <div className={style.servicesSection}>
+                                            <h3 className={style.sectionTitle}>Available Services & Amenities</h3>
+                                            <div className={style.amenitiesGrid}>
+                                                {hospital.services.map((service, index) => (
+                                                    <div key={index} className={style.amenityChip}>
+                                                        <span className={style.chipIcon}>✓</span>
+                                                        {service.trim()}
+                                                    </div>
                                                 ))}
-                                            </ul>
+                                            </div>
                                         </div>
                                     )}
 
-                                    {hospital.comments && (
-                                        <div className={style2.section}>
-                                            <h3 className={style2.section_title}>
-                                                💬 Additional Information
+                                    {hospital.comments && hospital.comments.length > 0 && (
+                                        <div className={style.commentsSection}>
+                                            <h3 className={style.commentsTitle}>
+                                                <span>💬</span> Additional Information
                                             </h3>
-                                            <ul className={style2.list}>
+                                            <ul className={style.commentsList}>
                                                 {hospital.comments.map((comment, i) => (
-                                                    <li key={i}>{comment}</li>
+                                                    <li key={i} className={style.commentItem}>
+                                                        {comment}
+                                                    </li>
                                                 ))}
                                             </ul>
                                         </div>
@@ -192,23 +231,39 @@ const HospitalDetails = () => {
 
                             {/* Map Section */}
                             {hospital.address && (
-                                <Motion variants={fadeUp} className={style.mapWrapper}>
-                                    <h3>Location Map</h3>
-                                    <iframe
-                                        title={`Map of ${hospital.name}`}
-                                        src={mapUrl}
-                                        allowFullScreen
-                                        loading="lazy"
-                                        referrerPolicy="no-referrer-when-downgrade"
-                                    ></iframe>
-                                    <a
-                                        href={directionsUrl}
-                                        target="_blank"
-                                        rel="noopener noreferrer"
-                                        className={style.directionsBtn}
-                                    >
-                                        Get Directions
-                                    </a>
+                                <Motion variants={fadeUp} as="aside" className={style.mapWrapper}>
+                                    <div className={style.mapCard}>
+                                        <h3>Location Map</h3>
+                                        <iframe
+                                            title={`Map of ${hospital.name}`}
+                                            src={mapUrl}
+                                            allowFullScreen
+                                            loading="lazy"
+                                            referrerPolicy="no-referrer-when-downgrade"
+                                        ></iframe>
+                                        <a
+                                            href={directionsUrl}
+                                            target="_blank"
+                                            rel="noopener noreferrer"
+                                            className={style.directionsBtn}
+                                        >
+                                            Get Directions
+                                        </a>
+                                    </div>
+
+                                    {hospital.hours && (
+                                        <div className={style.hoursCard}>
+                                            <h3>🕓 Opening Hours</h3>
+                                            <ul className={style.hoursList}>
+                                                {hospital.hours.map((hour, i) => (
+                                                    <li key={i}>
+                                                        <span className={style.day}>{hour.day}</span>
+                                                        <span className={style.time}>{hour.open}</span>
+                                                    </li>
+                                                ))}
+                                            </ul>
+                                        </div>
+                                    )}
                                 </Motion>
                             )}
                         </Motion>

@@ -7,7 +7,7 @@ import HospitalPic from "@/assets/images/hospital-logo.jpg";
 import style from "./style/info/info.module.css";
 import { FaPhone, FaGlobe, FaEnvelope } from "react-icons/fa";
 import Footer from "@/layouts/footer/footer";
-import Motion  from "@/components/motion";
+import Motion from "@/components/motion";
 import { fadeUp, sectionReveal } from "@/hooks/animations";
 import { SEOHelmet } from "@/components/utils/seoUtils";
 
@@ -39,22 +39,22 @@ const HospitalInfo = () => {
 
   return (
     <>
-      <div className={style.hospital}>
-        <SEOHelmet
-          title={hospital.name}
-          description={`Learn more about ${hospital.name}, located in ${hospital.address?.city}, ${hospital.address?.state}. Services: ${hospital.services?.join(", ") || "General healthcare"}.`}
-          canonical={`https://hospitofind.online/hospital/${encodeURIComponent(
-            hospital.name.toLowerCase().replace(/\s+/g, "-")
-          )}`}
-          image={hospital.photoUrl || HospitalPic}
-          schemaType="hospital"
-          schemaData={hospital}
-          autoBreadcrumbs={true}
-          includeBrand={true}
-        />
+      <SEOHelmet
+        title={hospital.name}
+        description={`Learn more about ${hospital.name}, located in ${hospital.address?.city}, ${hospital.address?.state}. Services: ${hospital.services?.join(", ") || "General healthcare"}.`}
+        canonical={`https://hospitofind.online/hospital/${encodeURIComponent(
+          hospital.name.toLowerCase().replace(/\s+/g, "-")
+        )}`}
+        image={hospital.photoUrl || HospitalPic}
+        schemaType="hospital"
+        schemaData={hospital}
+        autoBreadcrumbs={true}
+        includeBrand={true}
+      />
 
+      <div className={style.hospital}>
         <Motion variants={fadeUp} as="nav" className={style.breadcrumb}>
-          <Link to="/">Home</Link> / <Link to="/findHospital">Hospitals</Link> /{" "}
+          <Link to="/">Home</Link> / <Link to="/find-hospital">Hospitals</Link> /{" "}
           <span>{hospital.name}</span>
         </Motion>
 
@@ -66,7 +66,7 @@ const HospitalInfo = () => {
           <Motion variants={fadeUp} className={style.img}>
             <Avatar
               image={hospital.photoUrl || HospitalPic}
-              alt={hospital.name}
+              alt={`Photo of ${hospital.name} in ${hospital.address.city}`}
               style={{
                 width: "100%",
                 height: "100%",

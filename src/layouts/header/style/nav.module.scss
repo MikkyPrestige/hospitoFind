@@ -1,5 +1,4 @@
-@use '../../../assets/styles/mixins';
-@import '../../../assets/styles/variables';
+@use "sass:color" as color;
 
 .smallHeader,
 .large {
@@ -16,10 +15,10 @@
 /* Mobile Header */
 .smallHeader {
   height: 7.5rem;
-  @include mixins.flexRowSpaceBetween;
+  @include flexRowSpaceBetween;
   padding: 0 1.5rem;
 
-  @include mixins.respond(tab-land) {
+  @include respond(tab-land) {
     display: none;
   }
 
@@ -76,7 +75,7 @@
   height: 35rem;
   background: rgba(255, 255, 255, 0.95);
   box-shadow: -2px 0 15px rgba(0, 0, 0, 0.1);
-@include mixins.flexColSpaceBetween;
+@include flexColSpaceBetween;
   padding: 5rem 2rem;
   gap: 2rem;
   transition: right 1s ease-in-out;
@@ -91,7 +90,7 @@ border-bottom: 1px solid rgba(0, 0, 0, 0.05);
 
 .smallList {
   list-style: none;
-  @include mixins.flexColAlignStart;
+  @include flexColAlignStart;
   gap: 3rem;
 
   li {
@@ -116,7 +115,7 @@ border-bottom: 1px solid rgba(0, 0, 0, 0.05);
 }
 
 .smallWrapper {
-  @include mixins.flexRow;
+  @include flexRow;
   gap: 1rem;
 
   /* Shared button base */
@@ -172,10 +171,10 @@ border-bottom: 1px solid rgba(0, 0, 0, 0.05);
 .large {
   display: none;
 
-  @include mixins.respond(tab-land) {
-   @include mixins.flexRowSpaceBetween;
+  @include respond(tab-land) {
+   @include flexRowSpaceBetween;
     padding: 0 2rem;
-    height: 6.5rem;
+    height: 6rem;
   }
 
   .largeLogo {
@@ -189,12 +188,12 @@ border-bottom: 1px solid rgba(0, 0, 0, 0.05);
   }
 
   .largeNav {
-    @include mixins.flexRowSpaceBetween;
+    @include flexRowSpaceBetween;
     gap: 5rem;
     width: 55%;
 
     .largeList {
-      @include mixins.flexRow;
+      @include flexRow;
 width: 70%;
       gap: 5rem;
       list-style: none;

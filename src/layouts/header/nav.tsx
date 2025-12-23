@@ -46,7 +46,7 @@ const LayoutMobile = () => {
       <Link to="/" className={style.smallLogo}>
         <Avatar
           image={Logo}
-          alt="logo"
+          alt="HospitoFind Logo"
           style={{
             width: "100%",
             height: "100%",
@@ -56,7 +56,7 @@ const LayoutMobile = () => {
         />
       </Link>
 
-      <button onClick={toggleMenu} className={style.toggle}>
+      <button onClick={toggleMenu} className={style.toggle} aria-label={showMenu ? "Close navigation menu" : "Open navigation menu"}>
         {showMenu ? (
           <MdClose className={style.toggle_icon} />
         ) : (
@@ -70,7 +70,7 @@ const LayoutMobile = () => {
       <nav className={`${style.smallNav} ${showMenu ? style.show : ""}`}>
         <ul className={style.smallList}>
           <li>
-            <NavLinks to="/findHospital" onClick={toggleMenu} className={style.smallLink}>
+            <NavLinks to="/find-hospital" onClick={toggleMenu} className={style.smallLink}>
               Find a Hospital
             </NavLinks>
           </li>
@@ -121,7 +121,7 @@ const LayoutLarge = () => {
       <Link to="/" className={style.largeLogo}>
         <Avatar
           image={Logo}
-          alt="logo"
+          alt="HospitoFind Logo"
           style={{
             width: "100%",
             height: "100%",
@@ -134,7 +134,7 @@ const LayoutLarge = () => {
       <nav className={style.largeNav}>
         <ul className={style.largeList}>
           <li>
-            <NavLinks to="/findHospital" className={style.largeLink}>
+            <NavLinks to="/find-hospital" className={style.largeLink}>
               Find a Hospital
             </NavLinks>
           </li>

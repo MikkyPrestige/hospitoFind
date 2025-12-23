@@ -1,0 +1,165 @@
+.section {
+  width: 100%;
+  background-color: #f4f7fe;
+  min-height: 100vh;
+  padding: 8rem 1.5rem 1rem;
+}
+
+.pageHeader {
+  max-width: 800px;
+  margin: 0 auto 1rem;
+  text-align: center;
+}
+
+.pageTitle {
+  font-size: 3rem;
+  font-weight: 800;
+  color: #08299b;
+}
+
+.pageSubtitle {
+  font-size: 1.15rem;
+  color: #475569;
+  line-height: 1.6;
+}
+
+.dateBadge {
+  display: inline-block;
+  background: #ffffff;
+  padding: 0.6rem 1.2rem;
+  border-radius: 50px;
+  font-weight: 700;
+  color: #0e3db7;
+  font-size: 0.9rem;
+  box-shadow: 0 4px 15px rgba(8, 41, 155, 0.05);
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.tipsGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 1.5rem;
+}
+
+.tipCard {
+  background: white;
+  border-radius: 24px;
+  overflow: hidden;
+  box-shadow: 0 10px 40px rgba(8, 41, 155, 0.04);
+  border: 1px solid #f1f5f9;
+  transition: all 0.3s ease;
+}
+
+.tipCard:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 20px 50px rgba(8, 41, 155, 0.08);
+  border-color: #0e3db7;
+}
+
+.imageWrapper {
+  height: 200px;
+  position: relative;
+  overflow: hidden;
+}
+
+.tipImage {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.imagePlaceholder {
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, #e0e7ff 0%, #f1f5f9 100%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: #64748b;
+  font-weight: 700;
+  font-size: 0.9rem;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  position: relative;
+  border-bottom: 1px solid #e2e8f0;
+}
+
+.imagePlaceholder::before {
+  content: '🌿';
+  font-size: 2rem;
+  margin-bottom: 8px;
+  opacity: 0.5;
+}
+
+.imagePlaceholder {
+  background-size: 200% 100%;
+  animation: shimmer 2s infinite linear;
+}
+
+.categoryTag {
+  position: absolute;
+  bottom: 1rem;
+  left: 1rem;
+  background: rgba(255, 255, 255, 0.95);
+  color: #08299b;
+  padding: 0.4rem 0.8rem;
+  border-radius: 8px;
+  font-size: 0.75rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  backdrop-filter: blur(4px);
+}
+
+.content {
+  padding: 1rem;
+}
+
+.title {
+  font-size: 1.4rem;
+  color: #1e293b;
+  font-weight: 800;
+  margin-bottom: 0.3rem;
+  line-height: 1.3;
+}
+
+.shortDesc {
+  color: #64748b;
+  font-size: 1rem;
+  line-height: 1.5;
+  margin-bottom: 0.3rem;
+}
+
+.actionBtn {
+  display: inline-block;
+  color: #0e3db7;
+  font-weight: 700;
+  text-decoration: none;
+  font-size: 0.95rem;
+  transition: 0.2s;
+}
+
+.actionBtn:hover {
+  color: #08299b;
+  transform: translateX(5px);
+}
+
+.emptyState {
+  text-align: center;
+  padding: 5rem;
+  color: #64748b;
+  font-weight: 600;
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}

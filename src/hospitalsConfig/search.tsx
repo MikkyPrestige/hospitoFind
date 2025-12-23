@@ -1,4 +1,4 @@
-import  { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { NavLink, Outlet } from "react-router-dom";
 import { AiFillHeart, AiOutlineHeart, AiOutlineSearch } from "react-icons/ai";
 import { LocationInput, Hospital } from "@/services/hospital";
@@ -11,6 +11,7 @@ import HospitalPic from "@/assets/images/hospital-logo.jpg";
 import ExportButton from "@/hospitalsConfig/export";
 import ShareButton from "@/hospitalsConfig/share";
 import style from "./style/search/search.module.scss";
+import AnimatedLoader from "../components/utils/AnimatedLoader";
 
 type StoredHospital = Hospital & { viewedAt?: number };
 
@@ -215,7 +216,7 @@ export default function SearchForm({
     }
 
     try {
-      // ✅ Weekly stats update
+      // Weekly stats update
       const now = Date.now();
       const stored = JSON.parse(localStorage.getItem(WEEKLY_KEY) || "{}");
       const lastReset = stored.lastReset || now;
@@ -246,7 +247,7 @@ export default function SearchForm({
             value={query}
             onChange={(e) => handleInputChange(e.target.value)}
             onFocus={() => setDropdownOpen(true)}
-            placeholder="Search hospital, city or country..."
+            placeholder="hospital name, city or country..."
             className={style.input}
           />
           <button className={style.searchBtn}><AiOutlineSearch /></button>
@@ -255,7 +256,11 @@ export default function SearchForm({
         {dropdownOpen && (
           <div className={style.dropdown}>
             {loadingCountries ? (
-              <div className={style.dropdownItem}>Loading locations…</div>
+              <AnimatedLoader
+                message="Loading locations…"
+                variant="dropdown"
+                count={3}
+              />
             ) : filteredCountries.length ? (
               filteredCountries.map((g) => {
                 const cities = Array.from(new Set((g.hospitals || []).map(h => h.address?.city).filter(Boolean)));
@@ -278,13 +283,22 @@ export default function SearchForm({
       </div>
 
       <div className={style.results}>
-        {loading && <div className={style.message}>Searching hospitals…</div>}
+        {loading &&
+          <AnimatedLoader
+            message="Searching hospitals…"
+            variant="card"
+            count={6}
+            showImage
+            imageHeight={150}
+            showButtons
+          />
+          }
         {!loading && error && <div className={style.error}>{error}</div>}
         {!loading && hospitals.length > 0 && (
           <div className={style.resultsGrid}>
             {hospitals.map((h) => (
               <div key={h._id} className={style.hospitalCard}>
-                <Avatar image={h.photoUrl || HospitalPic} alt={h.name} style={{ width: "100%", height: "150px", borderRadius: "12px", objectFit: "cover" }} />
+                <Avatar image={h.photoUrl || HospitalPic} alt={`Photo of ${h.name} in ${h.address.city}`} style={{ width: "100%", height: "150px", borderRadius: "12px", objectFit: "cover" }} />
                 <div className={style.hospitalInfo}>
                   <h3>{h.name}</h3>
                   <p>{h.address?.city} — {h.address?.state}</p>

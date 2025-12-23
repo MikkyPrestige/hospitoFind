@@ -1,6 +1,7 @@
 import React from "react";
 import { Hospital } from "../services/hospital";
 import style from "./style/hospitalCard.module.css";
+import { FiArrowRight } from "react-icons/fi";
 
 
 interface HospitalCardProps {
@@ -13,12 +14,12 @@ const HospitalCard: React.FC<HospitalCardProps> = ({ hospital }) => {
   const hasImage = Boolean(photoUrl);
 
   return (
-    <div className={style.card}>
+    <section className={style.card}>
       <div className={`${style.imageWrapper} ${!hasImage ? style.noImage : ""}`}>
         {hasImage ? (
           <img
             src={photoUrl}
-            alt={name}
+            alt={`Photo of ${name} in ${address.city}`}
             loading="lazy"
             className={style.image}
           />
@@ -44,7 +45,7 @@ const HospitalCard: React.FC<HospitalCardProps> = ({ hospital }) => {
       </div>
 
       <div className={style.content}>
-        <h3 className={style.name}>{name}</h3>
+        <h2 className={style.name}>{name}</h2>
         {type && <p className={style.type}>{type}</p>}
         <p className={style.info}>
           {address?.city && <span>{address.city}, </span>}
@@ -59,11 +60,11 @@ const HospitalCard: React.FC<HospitalCardProps> = ({ hospital }) => {
             rel="noopener noreferrer"
             className={style.link}
           >
-            Visit Website →
+            Visit <span className={style['sr-only']}> {name}</span> Website <FiArrowRight />
           </a>
         )}
       </div>
-    </div>
+    </section>
   );
 };
 

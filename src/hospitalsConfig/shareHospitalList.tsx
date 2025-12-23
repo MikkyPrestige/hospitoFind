@@ -7,7 +7,7 @@ import { Hospital } from "@/services/hospital";
 import HospitalPic from "@/assets/images/hospital-logo.jpg";
 import { Avatar } from "@/components/avatar";
 import style from "../components/style/popular.module.css";
-import Loading from "@/assets/images/loading.gif";
+import AnimatedLoader from "../components/utils/AnimatedLoader";
 
 const BASE_URL = import.meta.env.VITE_BASE_URL;
 
@@ -39,19 +39,13 @@ const ShareHospitalList = () => {
       <div className={style.sharePage}>
         {error && <div>{error}</div>}
         {loading ? (
-          <div style={{
-            display: "flex",
-            justifyContent: "center",
-            alignItems: "center",
-            height: "100vh"
-          }}>
-            <img src={Loading} alt="Loading gif" /></div>
+          <AnimatedLoader message="Loading shared hospital list..." variant="card" count={3} />
         ) : (
           <div className={`${style.shareContent} ${style.wrapper}`}>
             {hospitalList.map((hospital, id) => (
               <li key={id} className={style.card}>
                 <div className={style.img}>
-                  {hospital?.photoUrl ? <Avatar image={hospital.photoUrl} alt="hospital" style={{ width: "100%", height: "100%", borderRadius: "1.2rem", objectFit: "cover" }} /> : <Avatar image={HospitalPic} alt="hospital" style={{ width: "100%", height: "100%", borderRadius: "1.2rem", objectFit: "cover" }} />}
+                  {hospital?.photoUrl ? <Avatar image={hospital.photoUrl} alt={`Photo of ${hospital.name} in ${hospital.address.city}`} style={{ width: "100%", height: "100%", borderRadius: "1.2rem", objectFit: "cover" }} /> : <Avatar image={HospitalPic} alt="Photo of an hospital" style={{ width: "100%", height: "100%", borderRadius: "1.2rem", objectFit: "cover" }} />}
                 </div>
                 <div className={style.details}>
                   <h3 className={style.name}>{hospital.name}</h3>

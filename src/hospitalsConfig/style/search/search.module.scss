@@ -1,5 +1,6 @@
-@use "../../../assets/styles/mixins";
-@import "../../../assets/styles/variables";
+@use "sass:color" as color;
+// @use "../../../assets/styles/mixins";
+// @import "../../../assets/styles/variables";
 
 .searchContainer {
   padding: 2rem;
@@ -23,7 +24,12 @@
   color: $color-blue;
   font-weight: $font-weight-bd;
   font-family: $font-sans;
-  background: linear-gradient(135deg, lighten($color-blue, 10%), darken($color-blue, 10%));
+  // background: linear-gradient(135deg, lighten($color-blue, 10%), darken($color-blue, 10%));
+  background: linear-gradient(
+  135deg,
+  color.adjust($color-blue, $lightness: 10%),
+  color.adjust(#1976d2, $lightness: -10%)
+);
   background-clip: text;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -38,7 +44,12 @@
     bottom: -3px;
     width: 0;
     height: 2px;
-    background: linear-gradient(135deg, lighten($color-blue, 10%), darken($color-blue, 10%));
+    // background: linear-gradient(135deg, lighten($color-blue, 10%), darken($color-blue, 10%));
+    background: linear-gradient(
+  135deg,
+  color.adjust($color-blue, $lightness: 10%),
+  color.adjust(#1976d2, $lightness: -10%)
+);
     transition: width 0.3s ease;
     border-radius: 2px;
   }
@@ -99,7 +110,7 @@ height: 4rem;
   justify-content: center;
 
   &:hover {
-    background: darken(#0e3db7, 5%);
+    background: color.adjust(#0e3db7, $lightness: -5%);
   }
 }
 

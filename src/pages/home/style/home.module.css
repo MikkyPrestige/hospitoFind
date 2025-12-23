@@ -68,63 +68,41 @@
   font-weight: 500;
   color: #1E1E1E;
 }
-.bg .cta {
+.bg .ctaGroup {
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 1rem;
-  margin: 1rem;
+  gap: 1.5rem;
+  margin-top: 1rem;
+  font-size: 1.2rem;
 }
-@media only screen and (min-width: 48.0625em) {
-  .bg .cta {
-    flex-direction: row;
-    align-items: center;
-  }
-}
-.bg .cta .btn {
-  font-size: 1.25rem;
-  font-weight: 600;
-  padding: 0.8rem 1rem;
-  border-radius: 0.75rem;
-  background: linear-gradient(135deg, #08299B 0%, #88B3DB 100%);
-  color: white;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 0.5rem;
-  transition: all 0.25s ease;
-  letter-spacing: 0.3px;
-  cursor: pointer;
+.bg .ctaGroup .btnPrimary {
+  background: linear-gradient(135deg, #08299B 0%, #1976d2 100%);
+  color: #FFFFFF;
+  padding: 0.75rem 1.5rem;
+  border-radius: 6px;
+  font-weight: 700;
   text-decoration: none;
 }
-.bg .cta .btn svg {
-  width: 1.3rem;
-  height: 1.3rem;
-  stroke-width: 2.3;
-}
-.bg .cta .btn:hover {
+.bg .ctaGroup .btnPrimary:hover {
   transform: translateY(-3px);
   box-shadow: 0 10px 20px rgba(14, 61, 183, 0.3);
-  background: linear-gradient(135deg, rgb(9.0012269939, 46.1312883436, 174.3987730061) 0%, rgb(151.6619354839, 189.0025806452, 223.7380645161) 100%);
+  background: linear-gradient(135deg, rgb(9.0012269939, 46.1312883436, 174.3987730061) 0%, rgb(27.485106383, 128.2417021277, 227.914893617) 100%);
 }
-.bg .cta .btn:active {
+.bg .ctaGroup .btnPrimary:active {
   transform: translateY(0px);
   box-shadow: none;
 }
-.bg .cta .outlineBtn {
-  font-size: 1.1rem;
-  color: #08299B;
-  display: flex;
-  align-items: center;
-  gap: 0.4rem;
+.bg .ctaGroup .btnSecondary {
+  background: transparent;
+  border: 2px solid #2e7d32;
+  color: #2e7d32;
+  padding: 0.75rem 1.5rem;
+  border-radius: 6px;
+  font-weight: 700;
   transition: all 0.3s ease;
 }
-.bg .cta .outlineBtn:hover {
-  color: rgb(5.4969325153, 28.1717791411, 106.5030674847);
-  transform: translateX(4px);
-}
-.bg .cta .outlineBtn .icon {
-  font-size: 1.5rem;
+.bg .ctaGroup .btnSecondary:hover {
+  background: #2e7d32;
+  color: #fff;
 }
 .bg .img {
   flex: 1;

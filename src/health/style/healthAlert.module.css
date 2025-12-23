@@ -1,0 +1,211 @@
+.section {
+  margin: 2rem auto;
+  padding: 2rem 1.5rem;
+  max-width: 1200px;
+  background-color: #f9fafb;
+  border-radius: 16px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.05);
+}
+
+.headerRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.titleGroup {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+}
+
+.viewAllLink {
+  color: #b91c1c;
+  text-decoration: none;
+  font-weight: 700;
+  font-size: 1rem;
+  transition: color 0.2s;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+}
+
+.viewAllLink:hover {
+  color: #7f1d1d;
+  text-decoration: underline;
+}
+
+.heading {
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: #0f172a;
+  margin: 0;
+}
+
+.badge {
+  background-color: #dc2626;
+  color: #fff;
+  font-size: 0.8rem;
+  font-weight: 600;
+  padding: 0.35rem 0.8rem;
+  border-radius: 9999px;
+  text-transform: uppercase;
+  letter-spacing: 0.4px;
+  box-shadow: 0 2px 6px rgba(220, 38, 38, 0.25);
+}
+
+.subHeading {
+  text-align: center;
+  color: #5c6f91;
+  margin-bottom: 1rem;
+  font-size: 1.2rem;
+  font-weight: 700;
+}
+
+.listWrapper {
+  width: 100%;
+}
+
+.list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 1rem;
+}
+
+.card {
+  background: #fff;
+  border-radius: 14px;
+  padding: 1.4rem;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  display: flex;
+  flex-direction: column;
+  border: 1px solid transparent;
+}
+
+.card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.08);
+  border-color: #fee2e2;
+}
+
+.cardBody {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  width: 100%;
+  gap: 0.5rem;
+}
+
+.cardArchived {
+  opacity: 0.75;
+  background-color: #f1f5f9;
+  border: 1px solid #e2e8f0;
+}
+
+.titleRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 0.5rem;
+}
+
+.title {
+  color: #b91c1c; /* Deep Red */
+  font-size: 1.15rem;
+  font-weight: 700;
+  margin: 0;
+  line-height: 1.4;
+  flex: 1;
+}
+
+/* Base style for all source tags */
+.sourceBadge {
+  font-size: 0.7rem;
+  font-weight: 700;
+  padding: 0.25rem 0.6rem;
+  border-radius: 6px;
+  text-transform: uppercase;
+  letter-spacing: 0.3px;
+  white-space: nowrap;
+}
+
+.sourceWHO {
+  background-color: #0284c7; /* Blue for WHO verified */
+  color: #ffffff;
+}
+
+.sourceMedia {
+  background-color: #e2e8f0;
+  color: #1e293b;
+}
+
+.sourceArchived {
+  background-color: #94a3b8;
+  color: #ffffff;
+}
+
+.metaRow {
+  margin-bottom: 0.1rem;
+}
+
+.date {
+  color: #64748b;
+  font-size: 0.85rem;
+  font-weight: 500;
+}
+
+.summary {
+  color: #334155;
+  font-size: 0.95rem;
+  line-height: 1.6;
+  flex-grow: 1;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.footer {
+  margin-top: auto;
+  border-top: 1px solid #f1f5f9;
+  padding-top: .1rem;
+}
+
+.link {
+  color: #0284c7;
+  font-weight: 700;
+  text-decoration: none;
+  font-size: 0.95rem;
+}
+
+.link:hover {
+  text-decoration: underline;
+}
+
+.status {
+  text-align: center;
+  color: #64748b;
+  font-size: 1.1rem;
+  padding: 3rem 0;
+  font-weight: 600;
+  background: #ffffff;
+  border-radius: 12px;
+  border: 1px dashed #e2e8f0;
+}
+
+@media (max-width: 768px) {
+  .heading {
+    font-size: 1.5rem;
+  }
+  .list {
+    grid-template-columns: 1fr;
+  }
+}

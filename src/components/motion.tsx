@@ -25,6 +25,7 @@ const Motion: React.FC<MotionWrapperProps> = ({
     initial,
     animate,
     alwaysVisible = false,
+    style,
     ...rest
 }) => {
     const MotionTag = useMemo(() => {
@@ -48,7 +49,10 @@ const Motion: React.FC<MotionWrapperProps> = ({
             whileInView={!alwaysVisible ? animate || "visible" : undefined}
             animate={alwaysVisible ? animate || "visible" : undefined}
             viewport={shouldUseViewport ? { once, amount: 0.2 } : undefined}
-            style={{ overflow: "hidden", contain: "paint" }}
+            style={{
+                overflow: "hidden",
+                ...style
+            }}
             {...rest}
         >
             {children}

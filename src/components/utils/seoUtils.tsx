@@ -8,7 +8,7 @@ interface SEOProps {
     canonical?: string;
     image?: string;
     includeBrand?: boolean;
-    schemaType?: "about" | "global" | "country" | "hospital" | "search";
+    schemaType?: "about" | "global" | "country" | "hospital" | "search" | "faq" | "policy";
     schemaData?: any;
     autoBreadcrumbs?: boolean;
     extraSchema?: Record<string, any>[];
@@ -158,6 +158,34 @@ export const SEOHelmet: React.FC<SEOProps> = ({
                     },
                 };
             }
+            break;
+
+        case "faq":
+            if (schemaData) {
+                jsonLd = {
+                    "@context": "https://schema.org",
+                    "@type": "FAQPage",
+                    "mainEntity": schemaData.map((item: any) => ({
+                        "@type": "Question",
+                        "name": item.question,
+                        "acceptedAnswer": {
+                            "@type": "Answer",
+                            "text": item.answer
+                        }
+                    }))
+                };
+            }
+            break;
+
+        case "policy":
+            jsonLd = {
+                "@context": "https://schema.org",
+                "@type": "WebPage",
+                name: "Privacy Policy",
+                description: description ||
+                    "Read HospitoFind's privacy policy to understand how we handle your data and protect your information.",
+                url: canonical,
+            };
             break;
 
         default:
