@@ -1,0 +1,132 @@
+.policyContainer {
+  background-color: #f8fafc;
+  padding: 10rem 2rem 6rem;
+  display: flex;
+  justify-content: center;
+}
+
+.content {
+  background: #ffffff;
+  max-width: 900px;
+  width: 100%;
+  padding: 4rem;
+  border-radius: 2.5rem;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.04);
+  border: 1px solid #e2e8f0;
+}
+
+.header {
+  border-bottom: 2px solid #f1f5f9;
+  padding-bottom: 2rem;
+}
+
+.title {
+  font-size: 3.2rem;
+  font-weight: 900;
+  color: #08299b;
+  margin-bottom: 0.1rem;
+  letter-spacing: -1px;
+}
+
+.updated {
+  font-size: 1.1rem;
+  color: #94a3b8;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: 0.5rem;
+}
+
+.introText {
+  font-size: 1.3rem;
+  line-height: 1.8;
+  color: #475569;
+}
+
+.section {
+  margin-bottom: 2rem;
+}
+
+.headingGroup {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 0.2rem;
+   padding-top: 1rem;
+}
+
+.icon {
+  color: #08299b;
+}
+
+.section h2 {
+  font-size: 1.8rem;
+  font-weight: 800;
+  color: #1e293b;
+}
+
+.section p {
+  font-size: 1.25rem;
+  line-height: 1.9;
+  color: #475569;
+}
+
+.list {
+  padding-left: 1.5rem;
+  list-style-type: none;
+}
+
+.list li {
+  font-size: 1.25rem;
+  line-height: 1.8;
+  color: #475569;
+  position: relative;
+  margin-bottom: 0.1rem;
+  padding-left: 1.5rem;
+}
+
+.list li::before {
+  content: '•';
+  color: #08299b;
+  font-weight: bold;
+  position: absolute;
+  left: 0;
+}
+
+.contactNote {
+  padding-top: 2.5rem;
+  border-top: 2px solid #f1f5f9;
+  text-align: center;
+}
+
+.contactNote p {
+  font-size: 1.2rem;
+  color: #64748b;
+  margin-top: 0.5rem;
+}
+
+.contactNote a {
+  color: #08299b;
+  font-weight: 800;
+  text-decoration: none;
+}
+
+.contactNote a:hover {
+  text-decoration: underline;
+}
+
+@media (max-width: 480px) {
+
+  .content {
+    padding: 3rem 1.5rem;
+  }
+
+  .title {
+    font-size: 2.4rem;
+  }
+
+  .section p,
+  .list li {
+    font-size: 1.15rem;
+  }
+}

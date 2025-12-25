@@ -31,7 +31,6 @@ type Hospital = {
     phoneNumber?: string;
 };
 
-// const API = import.meta.env.VITE_Google_Key;
 
 const HospitalDetails = () => {
     const { id, country, city, slug } = useParams();
@@ -43,6 +42,7 @@ const HospitalDetails = () => {
     useEffect(() => {
         const fetchHospital = async () => {
             try {
+                setLoading(true);
                 const res = await getHospitalDetails({ id, country, city, slug });
                 setHospital(res);
             } catch (err) {
@@ -106,7 +106,6 @@ const HospitalDetails = () => {
                 schemaType="hospital"
                 schemaData={hospital}
                 autoBreadcrumbs={true}
-                includeBrand={false}
             />
 
             <Header />
@@ -234,7 +233,6 @@ const HospitalDetails = () => {
                                 </Motion>
                             </div>
 
-                            {/* Map Section */}
                             {hospital.address && (
                                 <Motion variants={fadeUp} as="aside" className={style.mapWrapper}>
                                     <div className={style.mapCard}>

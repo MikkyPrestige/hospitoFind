@@ -1,312 +1,262 @@
 @use "sass:color" as color;
 
-.smallHeader,
-.large {
-  backdrop-filter: blur(10px);
-  background: rgba(255, 255, 255, 0.9);
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-  position: fixed;
-  top: 0;
-  width: 100%;
-  z-index: 1000;
-  transition: background 0.3s ease;
-}
-
-/* Mobile Header */
-.smallHeader {
-  height: 7.5rem;
-  @include flexRowSpaceBetween;
-  padding: 0 1.5rem;
-
-  @include respond(tab-land) {
-    display: none;
-  }
-
-  .smallLogo {
-    width: 8rem;
-    height: 8rem;
-    transition: transform 0.3s ease;
-
-    &:hover {
-      transform: scale(1.05);
-    }
-  }
-
-  .toggle {
-    background: transparent;
-    border: none;
-    cursor: pointer;
-    z-index: 1100;
-
-    &_icon {
-      font-size: 2.4rem;
-      color: $color-blue;
-      transition: transform 0.3s ease;
-    }
-  }
-}
-
-/* Overlay when mobile menu is open */
-.overlay {
+.header {
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
-  height: 100vh;
-  background: rgba(0, 0, 0, 0.4);
-  z-index: 900;
-  animation: fadeIn 0.3s ease forwards;
-}
+  z-index: 1000;
+  height: 8rem;
+  display: flex;
+  align-items: center;
+  transition: all 0.4s ease;
+  background: rgba(255, 255, 255, 0.9);
+  backdrop-filter: blur(10px);
 
-@keyframes fadeIn {
-  from {
-    opacity: 0;
+    @media (max-width: 768px) {
+    height: 10rem;
   }
-  to {
-    opacity: 1;
+
+  &.scrolled {
+    height: 6.5rem;
+    background: rgba(255, 255, 255, 0.98);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
   }
 }
 
-.smallNav {
-  position: fixed;
-  top: 0;
-  right: -100%;
-  width: 70%;
-  height: 35rem;
-  background: rgba(255, 255, 255, 0.95);
-  box-shadow: -2px 0 15px rgba(0, 0, 0, 0.1);
-@include flexColSpaceBetween;
-  padding: 5rem 2rem;
-  gap: 2rem;
-  transition: right 1s ease-in-out;
-  z-index: 950;
-border-bottom-left-radius: 1rem;
-border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+.container {
+  width: 100%;
+  max-width: 1600px;
+  margin: 0 auto;
+  padding: 0 4rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  @media (max-width: 768px) {
+    padding: 0 2rem;
+height: 10rem;
+  }
 }
 
-.show {
-  right: 0;
+.logoWrapper {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+
+  .logo {
+    height: 5rem;
+    width: auto;
+    transition: height 0.3s ease;
+
+    .scrolled & {
+      height: 4rem;
+    }
+  }
 }
 
-.smallList {
-  list-style: none;
-  @include flexColAlignStart;
-  gap: 3rem;
+.desktopNav {
+  display: none;
+  flex: 1;
 
-  li {
+  @include respond(tab-land) {
+    display: flex;
+    justify-content: center;
+  }
+
+  .navLinks {
+    display: flex;
+    list-style: none;
+    gap: 5rem;
+
+    a {
+      text-decoration: none;
+      font-size: 1.7rem;
+      font-weight: 700;
+      color: #1e293b;
+      transition: color 0.3s ease;
+
+      &:hover, &.active {
+        color: #08299B;
+      }
+    }
+  }
+}
+
+.actions {
+  display: flex;
+  align-items: center;
+  gap: 2.5rem;
+  flex-shrink: 0;
+
+  .authButtons {
+    display: none;
+    gap: 1.5rem;
+
+     @include respond(tab-land) {
+      display: flex;
+      align-items: center;
+    }
+
+    .loginBtn {
+      text-decoration: none;
+      font-weight: 800;
+      font-size: 1.2rem;
+      color: #1e293b;
+      &:hover { color: #08299B; }
+    }
+
+    .signupBtn {
+      text-decoration: none;
+      background: #08299B;
+      color: #fff;
+      padding: 1rem 2.2rem;
+      border-radius: 1.2rem;
+      font-weight: 800;
+      font-size: 1.2rem;
+      transition: all 0.3s ease;
+
+      &:hover {
+        background: #0a36c0;
+        transform: translateY(-3px);
+      }
+    }
+  }
+}
+
+.userProfile {
+  .profileTrigger {
     display: flex;
     align-items: center;
     gap: 1rem;
+    text-decoration: none;
 
-    .smallLink {
-      font-size: $font-size-4;
-      font-weight: 600;
-      text-decoration: none;
-      color: $color-black;
-      transition: color 0.3s border-bottom 0.3s ease;
-
-&:hover,
-&:active {
- color: $color-blue;
-        border-bottom: 2px solid #000;
-}
-    }
-  }
-}
-
-.smallWrapper {
-  @include flexRow;
-  gap: 1rem;
-
-  /* Shared button base */
-.smallAuth,
-.dashboard {
-  font-weight: 600;
-  padding: 0.6rem 1.2rem;
-  border-radius: 0.6rem;
-  font-size: 1rem;
-  cursor: pointer;
-  transition: all 0.3s ease-in-out;
-  text-decoration: none;
-}
-
-/* Dashboard (Primary CTA) */
-.dashboard {
-  background: #000;
-  color: #fff;
-  border: 1.5px solid #000;
-}
-
-.dashboard:hover {
-  background: #333;
-  border-color: #333;
-  transform: translateY(-2px);
-}
-
-/* Login / Signup (Secondary CTAs) */
-.smallAuth {
-  background: transparent;
-  color: #000;
-  border: 1.5px solid #000;
-  margin-left: 0.5rem;
-}
-
-.smallAuth:hover {
-  background: #000;
-  color: #fff;
-  transform: translateY(-2px);
-}
-}
-
-@media (max-width: 768px) {
-  .smallAuth,
-  .dashboard {
-    width: 100%;
-    text-align: center;
-    margin: 0.5rem 0;
-  }
-}
-
-
-.large {
-  display: none;
-
-  @include respond(tab-land) {
-   @include flexRowSpaceBetween;
-    padding: 0 2rem;
-    height: 6rem;
-  }
-
-  .largeLogo {
-    width: 9rem;
-    height: 9rem;
-    transition: transform 0.3s ease;
-
-    &:hover {
-      transform: scale(1.05);
-    }
-  }
-
-  .largeNav {
-    @include flexRowSpaceBetween;
-    gap: 5rem;
-    width: 55%;
-
-    .largeList {
-      @include flexRow;
-width: 70%;
-      gap: 5rem;
-      list-style: none;
-
-      li {
-        display: flex;
-        align-items: center;
-        gap: 0.5rem;
-
-        .largeLink {
-          font-size: $font-size-2;
-          font-weight: 500;
-          text-decoration: none;
-          color: $color-black;
-          position: relative;
-          transition: color 0.3s border-bottom 0.3s ease;
-
-          &:hover,
-          &:active {
-            color: $color-blue;
-            border-bottom: 2px solid #000;
-          }
-
-          &::after {
-            content: "";
-            position: absolute;
-            left: 0;
-            bottom: -3px;
-            width: 0%;
-            height: 2px;
-            background: $color-blue;
-            transition: width 0.3s ease;
-          }
-
-          &:hover::after {
-            width: 100%;
-          }
-        }
-      }
-    }
-
-    .largeWrapper {
+    .avatar {
+      width: 3.5rem;
+      height: 3.5rem;
+      background: #08299B;
+      color: white;
+      border-radius: 50%;
       display: flex;
-      gap: 1rem;
+      align-items: center;
+      justify-content: center;
+      font-weight: 900;
+      font-size: 1.5rem;
+      border: 3px solid #fff;
+    }
 
-  /* Shared button base */
-.largeAuth,
-.dashboard {
-  font-weight: 600;
-  padding: 0.6rem 1.2rem;
-  border-radius: 0.6rem;
-  font-size: 1rem;
-  cursor: pointer;
-  transition: all 0.3s ease-in-out;
-  text-decoration: none;
-}
-
-/* Dashboard (Primary CTA) */
-.dashboard {
-  background: #000;
-  color: #fff;
-  border: 1.5px solid #000;
-}
-
-.dashboard:hover {
-  background: #333;
-  border-color: #333;
-  transform: translateY(-2px);
-}
-
-.largeAuth {
-  background: transparent;
-  color: #000;
-  border: 1.5px solid #000;
-  margin-left: 0.5rem;
-}
-
-.largeAuth:hover {
-  background: #000;
-  color: #fff;
-  transform: translateY(-2px);
-}
-}
+    .userName {
+      font-weight: 800;
+      font-size: 1.3rem;
+      color: #1e293b;
+      display: none;
+       @include respond(phone-nm)  { display: block; }
+    }
   }
 }
 
-.error {
-  color: $color-red;
-  font-size: 0.9rem;
-  margin-top: 0.3rem;
+.mobileToggle {
+background: transparent;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2000;
+  position: relative;
+
+  .toggle_icon {
+    font-size: 7.5rem;
+    color: #08299B;
+    transition: transform 0.3s ease, color 0.3s ease;
+  }
+
+  &:hover .toggle_icon {
+    transform: scale(1.1);
+  }
+
+   @include respond(tab-land) {
+    display: none;
+  }
 }
 
-/* --- Scroll behavior for navbar --- */
-.scrolled .smallHeader,
-.scrolled .large {
-  background: rgba(255, 255, 255, 0.85);
-  backdrop-filter: blur(15px);
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
-  transform: translateY(0);
-  transition: all 0.3s ease-in-out;
+.mobileDrawer {
+position: fixed;
+  top: 0;
+  right: -100%;
+  width: 100%;
+  height: 100vh;
+  background: #ffffff;
+  z-index: 1050;
+  transition: right 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  padding: 10rem 2.5rem 3rem;
+
+  &.drawerOpen {
+    right: 0;
+  }
 }
 
-.scrolled .smallHeader {
-  height: 4.5rem;
+.drawerNav {
+  display: flex;
+  flex-direction: column;
 }
 
-.scrolled .large {
-  height: 4.2rem;
-  padding: 0 1.5rem;
+.drawerLinks {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 3rem;
+
+  a {
+    font-size: 2.2rem;
+    font-weight: 900;
+    color: #1e293b;
+    text-decoration: none;
+  }
 }
 
-.scrolled .largeLogo,
-.scrolled .smallLogo {
-  transform: scale(0.9);
-  transition: transform 0.3s ease;
+.drawerDivider {
+  height: 2px;
+  background: #f1f5f9;
+  margin: 3rem 0;
+}
+
+.drawerAuth {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.mobileLogin {
+  font-size: 1.4rem;
+  font-weight: 800;
+  color: #1e293b;
+  text-align: center;
+  padding: 1.5rem;
+  border: 2px solid #e2e8f0;
+  border-radius: 1.2rem;
+  text-decoration: none;
+}
+
+.mobileSignup {
+  background: #08299B;
+  color: #fff !important;
+  text-align: center;
+  padding: 1.5rem;
+  border-radius: 1.2rem;
+  font-size: 1.4rem;
+  font-weight: 800;
+  text-decoration: none;
+}
+
+.logoutBtn {
+  background: none;
+  border: none;
+  color: #ef4444;
+  font-size: 1.6rem;
+  font-weight: 800;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  cursor: pointer;
 }

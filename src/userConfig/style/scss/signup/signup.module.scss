@@ -2,14 +2,15 @@
 
 .section {
   width: 100%;
-  min-height: 100vh;
+    flex-direction: column;
+  padding-top: 5rem;
   display: flex;
   flex-direction: row;
   overflow: hidden;
 
-  @include respond(phone-sm) {
+   @media (max-width: 768px) {
     flex-direction: column;
-    min-height: auto;
+    padding-top: 2rem;
   }
 
   .left {
@@ -127,11 +128,11 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 5rem;
+    padding: 3rem;
 
-    @include respond(phone-sm) {
-      padding: 2rem 1rem;
-    }
+      @media (max-width: 768px) {
+    padding-top: 2rem;
+  }
 
     .wrapper {
       background: $color-white;

@@ -1,6 +1,5 @@
 @use "sass:color" as color;
 
-/* --- Variables --- */
 $color-blue: #08299B;
 $color-blue-light: #0A47D5;
 $color-white: #ffffff;
@@ -10,12 +9,14 @@ $color-red: #ef4444;
 
 .section {
   width: 100%;
-  min-height: 100vh;
+  // min-height: 100vh;
+  padding-top: 4rem;
   display: flex;
   background-color: #f8f9fb;
 
   @media (max-width: 768px) {
     flex-direction: column;
+    padding-top: 2rem;
   }
 }
 
@@ -112,7 +113,11 @@ $color-red: #ef4444;
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 5rem;
+  padding: 3rem;
+
+    @media (max-width: 768px) {
+    padding-top: 2rem;
+  }
 
   .wrapper {
     width: 100%;

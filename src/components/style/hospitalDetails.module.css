@@ -2,14 +2,13 @@
   width: 100%;
   background-color: #f4f7fe;
   min-height: 100vh;
-  padding: 8rem 1.5rem 4rem;
+  padding: 10rem 1.5rem 4rem;
 }
 
 .printHeader {
   display: none;
 }
 
-/* --- THE SPLIT LAYOUT --- */
 .detailsLayout {
   max-width: 1250px;
   margin: 0 auto;
@@ -24,12 +23,10 @@
     align-items: flex-start;
   }
 
-  /* Left Side - Info */
   .infoSection {
     flex: 1.7;
   }
 
-  /* Right Side - Sticky Map */
   .mapWrapper {
     flex: 1;
     position: sticky;
@@ -40,7 +37,6 @@
   }
 }
 
-/* --- MAIN CONTENT CARD --- */
 .infoSection,
 .mapCard,
 .hoursCard {

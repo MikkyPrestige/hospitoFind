@@ -61,7 +61,7 @@ const HealthNews = () => {
                 </div>
                 <button
                     className={style.viewAllLink}
-                    onClick={() => navigate("/news")}
+                    onClick={() => navigate("/health-news")}
                 >
                     View all news →
                 </button>

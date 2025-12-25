@@ -1,16 +1,16 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import { Hospital } from "../services/hospital";
 import style from "./style/hospitalCard.module.css";
-import { FiArrowRight } from "react-icons/fi";
-
+import { FiArrowRight, FiExternalLink } from "react-icons/fi";
 
 interface HospitalCardProps {
   hospital: Hospital;
 }
 
 const HospitalCard: React.FC<HospitalCardProps> = ({ hospital }) => {
-  const { name, type, address, phoneNumber, email, website, photoUrl } = hospital;
 
+  const { name, type, address, phoneNumber, email, website, photoUrl } = hospital;
   const hasImage = Boolean(photoUrl);
 
   return (
@@ -45,24 +45,37 @@ const HospitalCard: React.FC<HospitalCardProps> = ({ hospital }) => {
       </div>
 
       <div className={style.content}>
-        <h2 className={style.name}>{name}</h2>
-        {type && <p className={style.type}>{type}</p>}
-        <p className={style.info}>
-          {address?.city && <span>{address.city}, </span>}
-          {address?.country}
-        </p>
-        {phoneNumber && <p className={style.phone}>📞 {phoneNumber}</p>}
-        {email && <p className={style.email}>✉️ {email}</p>}
+        <div className={style.mainInfo}>
+          <h2 className={style.name}>{name}</h2>
+          {type && <p className={style.type}>{type}</p>}
+          <p className={style.info}>
+            {address?.city && <span>{address.city}, </span>}
+            {address?.country}
+          </p>
+        </div>
+
+        <div className={style.contactInfo}>
+          {phoneNumber && <p className={style.phone}>📞 {phoneNumber}</p>}
+          {email && <p className={style.email}>✉️ {email}</p>}
+        </div>
+
         {website && (
           <a
             href={website}
             target="_blank"
             rel="noopener noreferrer"
-            className={style.link}
+            className={style.externalLink}
           >
-            Visit <span className={style['sr-only']}> {name}</span> Website <FiArrowRight />
+            Visit Website <FiExternalLink size={14} />
           </a>
         )}
+
+        <Link
+          to={`/hospital/${encodeURIComponent(address.country)}/${encodeURIComponent(address.city)}/${hospital.slug || hospital._id}`}
+          className={style.detailsBtn}
+        >
+          View Full Profile <FiArrowRight />
+        </Link>
       </div>
     </section>
   );
