@@ -8,7 +8,7 @@ $color-light-bg: #f8fafc;
 $color-red: #ef4444;
 $font-sans: 'Inter', sans-serif;
 $font-heading: 'Fira Sans', sans-serif;
-$header-height: 6rem;
+$header-height: 3rem;
 
 .findSection {
  width: 100%;
@@ -16,7 +16,7 @@ $header-height: 6rem;
   display: flex;
   flex-direction: column;
   background-color: #ffffff;
-  padding-top: $header-height;
+  padding-top: 8rem;
   overflow: hidden;
 
   .sr-only {
@@ -50,16 +50,11 @@ $header-height: 6rem;
       order: 2;
 
       @include respond(tab-land) {
-      //  flex: 0 0 400px !important;
         height: 100% !important;
         order: 1;
         border-right: 1px solid #eee;
       }
 
-// @include respond(desktop) { flex: 0 0 450px !important; }
-      // @include respond(large-screen) { flex: 0 0 500px !important; }
-
-      // Sticky Search Bar inside Sidebar
       .searchContainer {
       position: sticky;
         top: 0;

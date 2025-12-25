@@ -3,17 +3,20 @@ import React, {
   useState,
   useRef,
   useCallback,
+  useMemo
 } from "react";
 import { useParams, Link } from "react-router-dom";
 import HospitalCard from "../../components/hospitalCard";
-import { Hospital } from "@/src/services/hospital";
+import { Hospital } from "@/services/hospital";
 import Footer from "../../layouts/footer/footer";
 import Header from "../../layouts/header/nav";
-import { FiArrowLeft } from "react-icons/fi";
+import { FiArrowLeft, FiSearch } from "react-icons/fi";
 import style from "./style/countryDetails.module.css";
 import Motion from "@/components/motion";
-import { fadeUp, sectionReveal } from "@/hooks/animations";
+import { fadeUp } from "@/hooks/animations";
 import { SEOHelmet } from "@/components/utils/seoUtils";
+import AnimatedLoader from "@/components/utils/AnimatedLoader";
+import MapPin from "../../assets/images/mapPin.png"
 
 interface HospitalResponse {
   hospitals?: Hospital[];
@@ -28,142 +31,161 @@ const CountryDetailPage: React.FC = () => {
   const [totalPages, setTotalPages] = useState<number>(1);
   const [fetchingMore, setFetchingMore] = useState<boolean>(false);
 
-  const shuffleArray = (arr: Hospital[]): Hospital[] =>
-    arr.sort(() => Math.random() - 0.5);
+  // Local Filter States
+  const [searchTerm, setSearchTerm] = useState("");
+  const [activeType, setActiveType] = useState("All");
 
   const observerRef = useRef<IntersectionObserver | null>(null);
-  const countryRef = useRef<string | undefined>(country);
-  countryRef.current = country;
+  const decodedCountry = useMemo(() => decodeURIComponent(country || ""), [country]);
 
   const fetchHospitals = useCallback(async () => {
-    const c = decodeURIComponent(countryRef.current || "");
     try {
       if (page === 1) setLoading(true);
       else setFetchingMore(true);
 
       const res = await fetch(
         `${import.meta.env.VITE_BASE_URL}/hospitals/country/${encodeURIComponent(
-          c
+          decodedCountry
         )}?page=${page}&limit=9`
       );
 
-      if (!res.ok) {
-        console.error("Fetch failed", res.status);
-        setLoading(false);
-        setFetchingMore(false);
-        return;
-      }
+      if (!res.ok) throw new Error("Fetch failed");
 
       const data: HospitalResponse | Hospital[] = await res.json();
-      console.debug("Fetched page:", page, data);
+      const hospitalData = Array.isArray(data) ? data : data.hospitals || [];
+      const total = Array.isArray(data) ? 1 : data.totalPages || 1;
 
-      if (Array.isArray((data as HospitalResponse).hospitals)) {
-        const randomized = shuffleArray((data as HospitalResponse).hospitals!);
-        setHospitals((prev) =>
-          page === 1 ? randomized : [...prev, ...randomized]
-        );
-        setTotalPages((data as HospitalResponse).totalPages || 1);
-      } else if (Array.isArray(data)) {
-        const randomized = shuffleArray(data);
-        setHospitals((prev) =>
-          page === 1 ? randomized : [...prev, ...randomized]
-        );
-      }
+      setHospitals((prev) => (page === 1 ? hospitalData : [...prev, ...hospitalData]));
+      setTotalPages(total);
     } catch (err) {
       console.error("Error fetching:", err);
     } finally {
       setLoading(false);
       setFetchingMore(false);
     }
-  }, [page]);
+  }, [page, decodedCountry]);
 
   useEffect(() => {
     fetchHospitals();
-  }, [fetchHospitals, page]);
+  }, [fetchHospitals]);
 
+  // Infinite Scroll Observer
   const lastItemRef = useCallback(
     (node: Element | null) => {
-      if (loading || fetchingMore) return;
+      if (loading || fetchingMore || page >= totalPages) return;
       if (observerRef.current) observerRef.current.disconnect();
-      if (!node || page >= totalPages) return;
 
-      observerRef.current = new IntersectionObserver(
-        (entries) => {
-          if (entries[0].isIntersecting) {
-            setPage((p) => p + 1);
-          }
-        },
-        { threshold: 0.4 }
-      );
+      observerRef.current = new IntersectionObserver((entries) => {
+        if (entries[0].isIntersecting) setPage((p) => p + 1);
+      });
 
-      observerRef.current.observe(node);
+      if (node) observerRef.current.observe(node);
     },
     [loading, fetchingMore, page, totalPages]
   );
 
-  useEffect(() => {
-    return () => {
-      if (observerRef.current) observerRef.current.disconnect();
-    };
-  }, []);
-
-  const decodedCountry = decodeURIComponent(countryRef.current || "");
+  const filteredHospitals = useMemo(() => {
+    return hospitals.filter((h) => {
+      const matchesSearch = h.name.toLowerCase().includes(searchTerm.toLowerCase());
+      const matchesType = activeType === "All" || h.type === activeType;
+      return matchesSearch && matchesType;
+    });
+  }, [hospitals, searchTerm, activeType]);
 
   return (
-    <>
+    <div className={style.layoutContainer}>
       <SEOHelmet
-        title={`Hospitals in ${decodedCountry}`}
-        description={`Discover verified hospitals and medical centers in ${decodedCountry}. Search healthcare facilities, services, and hospital profiles to make informed decisions.`}
-        canonical={`https://hospitofind.online/country/${decodedCountry
-          .toLowerCase()
-          .replace(/\s+/g, "-")}`}
+        title={`Verified Hospitals in ${decodedCountry}`}
+        description={`Explore ${hospitals.length} verified hospitals in ${decodedCountry}. Filter by type and find the best medical care.`}
+        canonical={`https://hospitofind.online/directory/${decodedCountry.toLowerCase()}`}
         schemaType="country"
         schemaData={hospitals}
         autoBreadcrumbs={true}
       />
 
       <Header />
+
       <main className={style.page}>
         <header className={style.header}>
-          <h1>{hospitals.length} Hospitals found in <span>{decodedCountry}</span></h1>
+          <div className={style.headerContainer}>
+            <div className={style.headerContent}>
+              <Link to="/directory" className={style.backBtn}>
+                <FiArrowLeft /> Countries
+              </Link>
+              <Motion variants={fadeUp} as="div">
+                <h1 className={style.title}>
+                  Hospitals in <span className={style.accent}>{decodedCountry}</span>
+                </h1>
+                <p className={style.resultCount}>
+                  Discover {filteredHospitals.length} verified facilities in the {decodedCountry} region.
+                </p>
+              </Motion>
+            </div>
+
+            <Motion
+              as="div"
+              className={style.heroVisual}
+              variants={fadeUp}
+            >
+              <img src={MapPin} alt={`${decodedCountry} medical map`} className={style.tabletImg} />
+            </Motion>
+          </div>
         </header>
 
-        {loading && page === 1 ? (
-          <div className={style.loading}>Loading hospitals…</div>
-        ) : hospitals.length === 0 ? (
-          <div className={style.empty}>
-            No hospitals listed for {decodedCountry}.
+        <section className={style.toolbar}>
+          <div className={style.searchWrapper}>
+            <FiSearch className={style.searchIcon} />
+            <input
+              type="text"
+              placeholder={`Search in ${decodedCountry}...`}
+              value={searchTerm}
+              onChange={(e) => setSearchTerm(e.target.value)}
+            />
           </div>
-        ) : (
-          <Motion variants={sectionReveal} className={style.list}>
-            {hospitals.map((h, i) => {
-              const isLast = i === hospitals.length - 1;
-              return (
+
+          <div className={style.filterGroup}>
+            {["All", "Public", "Private", "Missionary"].map((type) => (
+              <button
+                key={type}
+                className={`${style.chip} ${activeType === type ? style.activeChip : ""}`}
+                onClick={() => setActiveType(type)}
+              >
+                {type}
+              </button>
+            ))}
+          </div>
+        </section>
+
+        <section className={style.contentSection}>
+          {loading && page === 1 ? (
+            <AnimatedLoader message={`Syncing ${decodedCountry} medical records...`} variant="card" count={6} />
+          ) : filteredHospitals.length === 0 ? (
+            <div className={style.empty}>
+              <h3>No Match Found</h3>
+              <p>Try adjusting your search or filter settings for {decodedCountry}.</p>
+            </div>
+          ) : (
+            <div className={style.grid}>
+              {filteredHospitals.map((h, i) => (
                 <div
-                  key={h._id || `${i}-${h.name}`}
-                  ref={isLast ? lastItemRef : null}
-                  style={{ width: "100%" }}
+                  key={h._id || i}
+                  ref={i === hospitals.length - 1 ? lastItemRef : null}
+                  className={style.cardWrapper}
                 >
                   <Motion variants={fadeUp}>
                     <HospitalCard hospital={h} />
                   </Motion>
                 </div>
-              );
-            })}
-          </Motion>
-        )}
+              ))}
+            </div>
+          )}
+        </section>
 
-        {fetchingMore && (
-          <div className={style.loadingMore}>Loading more hospitals…</div>
-        )}
-
-        <Link to="/country" className={style.backCta}>
-          <FiArrowLeft size={20} />
-          Back
-        </Link>
+        {fetchingMore && <div className={style.loadingMore}>Fetching more results...</div>}
       </main>
+
       <Footer />
-    </>
+    </div>
   );
 };
 

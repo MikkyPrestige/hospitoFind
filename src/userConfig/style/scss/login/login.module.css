@@ -1,13 +1,13 @@
-/* --- Variables --- */
 .section {
   width: 100%;
-  min-height: 100vh;
+  padding-top: 4rem;
   display: flex;
   background-color: #f8f9fb;
 }
 @media (max-width: 768px) {
   .section {
     flex-direction: column;
+    padding-top: 2rem;
   }
 }
 
@@ -106,7 +106,12 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 5rem;
+  padding: 3rem;
+}
+@media (max-width: 768px) {
+  .right {
+    padding-top: 2rem;
+  }
 }
 .right .wrapper {
   width: 100%;

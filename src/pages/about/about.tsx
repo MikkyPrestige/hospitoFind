@@ -11,10 +11,10 @@ import Motion from "@/components/motion";
 import { Avatar } from "@/components/avatar";
 import { SEOHelmet } from "@/components/utils/seoUtils";
 import { fadeUp, slideLeft, slideRight, zoomIn, sectionReveal } from "@/hooks/animations";
-import NursesAndPatient from "@/assets/images/hero2.png";
 import Stethoscope from "@/assets/images/stethoscope.jpg";
 import Handset from "@/assets/images/handset.jpg";
 import Laptop from "@/assets/images/laptop.jpg";
+import Lobby from "@/assets/images/hospitalLobby.png"
 import Search from "@/assets/images/hospitalSearch.png";
 import PhoneMap from "@/assets/images/phone.jpg";
 import Reviewer1 from "@/assets/images/man.jpg";
@@ -51,7 +51,7 @@ const About = () => {
   return (
     <>
       <SEOHelmet
-        title="About Us | HospitoFind"
+        title="About Us"
         description="Discover our mission to make global healthcare accessible and transparent."
         canonical="https://hospitofind.online/about"
       />
@@ -74,8 +74,8 @@ const About = () => {
                 <span className={style.statLabel}>Verified Hospitals</span>
               </div>
               <div className={style.statItem}>
-                <span className={style.statNumber}>全球</span>
-                <span className={style.statLabel}>Global Coverage</span>
+                <span className={style.statNumber}>27+</span>
+                <span className={style.statLabel}>Global Countries</span>
               </div>
             </div>
 
@@ -86,11 +86,12 @@ const About = () => {
 
           <div className={style.heroImages}>
             <motion.div variants={slideLeft} className={style.img1}>
-              <Avatar image={PhoneMap} alt="Mobile App" style={{ width:"100%", height: "100%", objectFit: "cover", borderRadius: "2rem", display: "block" }} />
+              <Avatar image={PhoneMap} alt="Mobile App" style={{ width: "100%", height: "100%", objectFit: "cover", borderRadius: "2rem", display: "block" }} />
             </motion.div>
             <motion.div variants={slideRight} className={style.img2}>
-              <Avatar image={NursesAndPatient} alt="Medical Team" style={{
-                width: "100%", height: "100%", objectFit: "cover", borderRadius: "2rem", display: "block"}} />
+              <Avatar image={Lobby} alt="Medical Team" style={{
+                width: "100%", height: "100%", objectFit: "cover", borderRadius: "2rem", display: "block"
+              }} />
             </motion.div>
           </div>
         </Motion>
@@ -151,7 +152,7 @@ const About = () => {
                     variants={zoomIn}
                   >
                     <div className={style.stepAvatarWrapper}>
-                      <Avatar image={step.img} alt={step.head} style={{ width: "6.5rem", height: "6.5rem", borderRadius: "50%", border: "3px solid white" }}/>
+                      <Avatar image={step.img} alt={step.head} style={{ width: "6.5rem", height: "6.5rem", borderRadius: "50%", border: "3px solid white" }} />
                       <span className={style.stepNumber}>{i + 1}</span>
                     </div>
                     <h3 className={style.stepHead}>{step.head}</h3>
@@ -179,7 +180,7 @@ const About = () => {
                   ))}
                 </div>
                 <div className={style.userInfo}>
-                  <Avatar image={review.img} alt={review.name} style={{ width: "3.5rem", height: "3.5rem", borderRadius: "50%"}} />
+                  <Avatar image={review.img} alt={review.name} style={{ width: "3.5rem", height: "3.5rem", borderRadius: "50%" }} />
                   <span className={style.userName}>{review.name}</span>
                 </div>
               </motion.div>

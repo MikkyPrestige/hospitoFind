@@ -13,15 +13,16 @@ const SignUp = lazy(() => import("@/userConfig/signupForm"));
 const Callback = lazy(() => import("@/userConfig/authCallback"));
 const Dashboard = lazy(() => import("@/pages/profile/dashboard"));
 const HospitalInfo = lazy(() => import("@/hospitalsConfig/info"));
-const ExplorePage = lazy(() => import("@/pages/explore/explorePage"));
+const Directory = lazy(() => import("@/pages/explore/explorePage"));
 const CountryDetailPage = lazy(() => import("@/pages/explore/countryDetails"));
 const ShareHospitalList = lazy(() => import("@/hospitalsConfig/shareHospitalList"));
 const HospitalDetails = lazy(() => import("@/components/hospitalDetails"));
 const NewsData = lazy(() => import("@/health/page/newsData"));
 const Outbreaks = lazy(() => import("@/health/page/outbreaks"));
 const HealthTips = lazy(() => import("@/health/page/healthTips"));
-const Policy = lazy(() => import("@/pages/policy"));
-const FAQPage = lazy(() => import("@/pages/faq/FAQPage"));
+const Policy = lazy(() => import("@/pages/legal/policy"));
+const Terms = lazy(() => import("@/pages/legal/terms"));
+const FAQPage = lazy(() => import("@/pages/legal/faq"));
 const Error404 = lazy(() => import("@/components/error404"));
 
 // dashboard logic
@@ -76,12 +77,13 @@ export const router = createBrowserRouter([
             { path: "hospital/:id", element: <HospitalDetails /> },
             { path: "hospitals/share/:linkId", element: <ShareHospitalList /> },
             { path: "hospitals/share/:linkId/:name", element: <HospitalInfo /> },
-            { path: "country", element: <ExplorePage /> },
+            { path: "directory", element: <Directory /> },
             { path: "country/:country", element: <CountryDetailPage /> },
-            { path: "news", element: <NewsData />, errorElement: <Fallback / > },
+            { path: "health-news", element: <NewsData />, errorElement: <Fallback / > },
             { path: "health-tips", element: <HealthTips />, errorElement: <Fallback / > },
-            { path: "outbreaks", element: <Outbreaks />, errorElement: <Fallback /> },
+            { path: "disease-outbreaks", element: <Outbreaks />, errorElement: <Fallback /> },
             { path: "policy", element: <Policy />, errorElement: <Fallback /> },
+            { path: "terms", element: <Terms />, errorElement: <Fallback /> },
             { path: "faq", element: <FAQPage />, errorElement: <Fallback /> },
             { path: "*", element: <Error404 />, errorElement: <Fallback /> },
         ],

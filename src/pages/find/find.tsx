@@ -345,7 +345,6 @@ const FindHospital = () => {
                         <div ref={mapContainer} className={style.mapBox} />
                     </Motion>
                 </Motion>
-                <Footer />
             </main>
             <Footer />
         </>

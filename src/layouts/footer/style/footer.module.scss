@@ -1,243 +1,210 @@
 @use "sass:color" as color;
 
 .footer {
-  background: linear-gradient(180deg, rgba(249, 251, 255, 0.95) 0%, #ffffff 100%);
-  backdrop-filter: blur(10px);
-  border-top: 1px solid rgba(14, 61, 183, 0.1);
-  width: 100%;
-  padding: 3rem 2rem 1rem;
-  font-family: $font-sans;
-  color: $color-black-b;
+  background: linear-gradient(180deg, #f8faff 0%, #ffffff 100%);
+  border-top: 1px solid rgba(8, 41, 155, 0.08);
+  padding: 3rem;
+  font-family: sans-serif;
   display: flex;
   flex-direction: column;
-  gap: 3rem;
+  gap: 2.5rem;
 
-  .newsletter {
-    text-align: center;
-    max-width: 600px;
+  @include respond(tab-land) {
+    padding: 2rem 5%;
+  }
+
+  .ctaBar {
+    width: 100%;
+    max-width: 1200px;
     margin: 0 auto;
-     border-bottom: 1px solid rgba(14, 61, 183, 0.1);
-  padding-bottom: 3rem;
+    background: #08299B;
+    padding: 2.5rem 2rem;
+    border-radius: 2.5rem;
+    color: white;
 
-    .newsTitle {
-      font-size: 1.6rem;
-      font-weight: $font-weight-bd;
-      color: $color-blue;
-    }
-
-    .newsText {
-      font-size: 1rem;
-      color: $color-gray-dark;
-      margin-top: 0.5rem;
-    }
-
-    .newsForm {
-      margin-top: 1.5rem;
+    .ctaContent {
       display: flex;
-      flex-direction: row;
-      justify-content: center;
-      gap: 0.5rem;
+      flex-direction: column;
+      gap: 2.5rem;
+      align-items: center;
+      text-align: center;
 
-      .newsInput {
-        width: 70%;
-        padding: 0.8rem 1rem;
-        border: 1px solid #ccc;
-        border-radius: 0.5rem;
-        font-size: 1rem;
-        outline: none;
-        background: #f9fafc;
-        color: #555;
+      @include respond(tab-land) {
+        flex-direction: row;
+        justify-content: space-between;
+        text-align: left;
+        padding: 0 2rem;
       }
 
-      .newsButton {
-        background: $color-blue;
-        color: #fff;
-        padding: 0.8rem 1.2rem;
-        border: none;
-        border-radius: 0.5rem;
-        cursor: not-allowed;
-        font-weight: $font-weight-md;
+      .ctaText {
+        h2 { font-size: 2.2rem; font-weight: 800; margin-bottom: 0.1rem; }
+        p { opacity: 0.95; font-size: 1.2rem; line-height: 1.6; }
       }
-    }
 
-    .note {
-      display: block;
-      margin-top: 0.5rem;
-      font-size: 0.9rem;
-      color: $color-gray-dark;
-      font-style: italic;
+      .ctaButton {
+        background: white;
+        color: #08299B;
+        padding: 1.2rem 2.5rem;
+        border-radius: 1rem;
+        font-weight: 700;
+        font-size: 1.2rem;
+        text-decoration: none;
+        display: flex;
+        align-items: center;
+        gap: 0.8rem;
+        transition: transform 0.3s;
+
+        &:hover { transform: translateY(-3px); box-shadow: 0 10px 20px rgba(0,0,0,0.1); }
+      }
     }
   }
 
-  .top {
+  .mainGrid {
+    display: grid;
+    max-width: 1200px;
+    margin: 0 auto;
+    width: 100%;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem 1.5rem;
+
+    .brandCol, .linkCol:nth-child(3) {
+      grid-column: 1;
+      text-align: left;
+      align-items: flex-start;
+    }
+
+    .linkCol:nth-child(2), .linkCol:nth-child(4) {
+      grid-column: 2;
+      text-align: right;
+      align-items: flex-end;
+
+      a { justify-content: flex-end; }
+    }
+
+    @include respond(tab-land) {
+      grid-template-columns: 2.5fr 1fr 1fr 1fr;
+      gap: 2rem;
+
+      .brandCol, .linkCol {
+        grid-column: auto !important;
+        text-align: left !important;
+        align-items: flex-start !important;
+
+        a { justify-content: flex-start !important; }
+      }
+    }
+
+    .brandCol {
+      .logoGroup {
+        display: flex;
+        align-items: center;
+        gap: 0.8rem;
+        margin-bottom: .5rem;
+
+        @include respond(tab-land) { justify-content: flex-start; }
+
+        .logoText {
+          font-size: 2rem;
+          font-weight: 900;
+          color: #08299B;
+          letter-spacing: -0.5px;
+        }
+      }
+
+      .brandDesc {
+        font-size: 1.2rem;
+        line-height: 1.7;
+        color: #475569;
+        margin-bottom: .5rem;
+      }
+
+      .socialRow {
+        display: flex;
+        gap: 1.5rem;
+
+        a {
+          width: 2.8rem;
+          height: 2.8rem;
+          background: rgba(8, 41, 155, 0.05);
+          color: #08299B;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          border-radius: 50%;
+          font-size: 1.3rem;
+          transition: all 0.3s ease;
+
+          &:hover {
+            background: #08299B;
+            color: #fff;
+            transform: translateY(-3px);
+          }
+        }
+      }
+    }
+
+    .linkCol {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+
+      h3 {
+        font-size: 1.4rem;
+        font-weight: 800;
+        color: #1e293b;
+        margin-bottom: 0.5rem;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+      }
+
+      a {
+        text-decoration: none;
+        color: #64748b;
+        font-size: 1.15rem;
+        font-weight: 500;
+        transition: 0.2s;
+        display: flex;
+        align-items: center;
+        gap: 0.8rem;
+
+        .inlineIcon {
+          color: #08299B;
+          opacity: 0.8;
+          width: 1.2rem;
+          height: 1.2rem;
+        }
+
+        &:hover {
+          color: #08299B;
+          transform: translateX(5px);
+        }
+      }
+    }
+  }
+
+  .bottomBar {
+    border-top: 1px solid #e2e8f0;
+    padding-top: 1rem;
     display: flex;
     flex-direction: column;
+    gap: 1.5rem;
     align-items: center;
-    gap: 3rem;
+    max-width: 1200px;
+    margin: 0 auto;
+    width: 100%;
 
     @include respond(tab-land) {
       flex-direction: row;
       justify-content: space-between;
-      align-items: flex-start;
     }
 
-    .brand {
-      flex-grow: 1;
-      text-align: center;
-
-      @include respond(tab-land) {
-        text-align: left;
-      }
-
-  .about {
-  font-size: 1.3rem;
-  letter-spacing: 0.3px;
-  line-height: 1.6;
-  color: #333;
-   margin-bottom: 0.2rem;
-    font-weight: 500;
-}
-
-      .tagline {
-        font-size: 1.1rem;
-        color: color.adjust($color-gray-dark, $lightness: 10%);
-        line-height: 1.5;
-         color: $color-gray-dark;
-         margin-bottom: 1.2rem;
-         font-style: italic;
-      }
-
-      .socials {
-        display: flex;
-        justify-content: center;
-        gap: 1rem;
-
-        .socialIcon {
-          display: inline-flex;
-          align-items: center;
-          justify-content: center;
-          width: 4rem;
-          height: 4rem;
-          border-radius: 50%;
-          background-color: #08299B;
-          color: #fff;
-          font-size: 1.5rem;
-          transition: all 0.25s ease;
-          text-decoration: none;
-
-          &:hover,
-          &:focus {
-background-color: #0a36c0;
-transform: translateY(-2px);
-box-shadow: 0 4px 12px rgba(8, 41, 155, 0.3);
-          }
-        }
-
-        @include respond(tab-land) {
-          justify-content: flex-start;
-        }
-      }
-    }
-
-    .links {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 3rem;
-
-  .column {
-    display: flex;
-    flex-direction: column;
-    gap: 0.5rem;
-    text-align: center;
-
-    @include respond(tab-land) {
-      text-align: left;
-    }
-
-    h2 {
-      font-size: 1.2rem;
-      font-weight: $font-weight-bd;
-      color: $color-blue;
-      margin-bottom: 0.5rem;
-    }
-
-    a {
-      display: inline-flex;
+    .copyright p, .credit p {
+      font-size: 1.1rem;
+      color: #94a3b8;
+      font-weight: 500;
+      display: flex;
       align-items: center;
-      justify-content: center;
-      padding: 0.7rem 1rem;
-      min-height: 4rem;
-      min-width: 4rem;
-
-      font-size: 1rem;
-      color: $color-black-b;
-      text-decoration: none;
-      border-radius: .8rem;
-      transition: all 0.3s ease;
-
-      &:hover {
-        color: $color-blue;
-        transform: translateX(3px);
-        background-color: rgba($color-blue, 0.08);
-      }
-
-      &:active {
-        transform: translateX(0);
-        background-color: rgba($color-blue, 0.12);
-      }
-
-      &:focus-visible {
-        outline: 2px solid $color-blue;
-        outline-offset: 2px;
-        background-color: rgba($color-blue, 0.08);
-      }
+      gap: 0.5rem;
     }
   }
-}
-
-.links .column a {
-  background-color: #08299B;
-  color: #fff;
-  border-radius: 9999px;
-  padding: 0.7rem 1.2rem;
-  min-height: 4rem;
-  font-weight: 500;
-
-  &:hover {
-    background-color: #0a36c0;
- color: #fff;
-    transform: translateY(-2px);
-  }
-
-  &:focus-visible {
-     outline: 2px solid #bcd1ff;
-     outline-offset: 2px;
-    }
-}
-  }
-
-.bottom {
-  border-top: 1px solid rgba(14, 61, 183, 0.1);
-  padding-top: 1rem;
-  text-align: center;
-  font-size: 0.9rem;
-  color: $color-gray-dark;
-  opacity: 0.9;
-box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.03);
-
-
-
-  p:last-child {
-    font-size: 0.85rem;
-    color: $color-gray;
-  }
-
-  @include respond(tab-land) {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    text-align: left;
-  }
-}
 }

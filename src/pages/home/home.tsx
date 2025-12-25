@@ -1,6 +1,6 @@
 import { useNavigate } from 'react-router-dom'
 import { useState } from 'react'
-import Hero from '@/assets/images/hero.png'
+import HeroImage from '@/assets/images/mother.png'
 import style from './style/home.module.scss'
 import Header from '@/layouts/header/nav'
 import DailyHealthTip from '@/health/dailyTips'
@@ -17,16 +17,21 @@ import { SEOHelmet } from '@/components/utils/seoUtils'
 const Home = () => {
   const navigate = useNavigate();
   const [searchQuery, setSearchQuery] = useState("");
+  const [error, setError] = useState("");
   const [triggerLocation, setTriggerLocation] = useState(0);
 
   const handleSearch = () => {
-    if (searchQuery.trim()) {
-      navigate(`/find-hospital?q=${encodeURIComponent(searchQuery.trim())}`);
+    if (!searchQuery.trim()) {
+      setError("Please enter a city, country, or hospital name.");
+      return;
     }
+
+    setError("");
+    navigate(`/find-hospital?q=${encodeURIComponent(searchQuery.trim())}`);
   };
 
   return (
-    <div className={style.home}>
+    <>
       <SEOHelmet
         title="Hospital Finder & Healthcare Directory"
         description="Find hospitals near you with HospitoFind. Search by city, country, or name to discover verified healthcare facilities and services worldwide."
@@ -39,16 +44,17 @@ const Home = () => {
           {
             "@context": "https://schema.org",
             "@type": "SiteNavigationElement",
-            name: ["find-hospital", "About", "Explore", "Dashboard", "news", "outbreaks", "health-tips", "faq", "policy"],
+            name: ["find-hospital", "About", "directory", "Dashboard", "health-tips", "disease-outbreaks", "health-tips", "faq", "policy", "terms"],
             url: [
               "https://hospitofind.online/find-hospital",
-              "https://hospitofind.online/country",
+              "https://hospitofind.online/directory",
               "https://hospitofind.online/about",
-              "https://hospitofind.online/news",
-              "https://hospitofind.online/outbreaks",
-              "https://hospitofind.online/tips",
+              "https://hospitofind.online/health-tips",
+              "https://hospitofind.online/disease-outbreaks",
+              "https://hospitofind.online/health-tips",
               "https://hospitofind.online/faq",
-              "https://hospitofind.online/policy"
+              "https://hospitofind.online/policy",
+              "https://hospitofind.online/terms"
             ]
           }
         ]}
@@ -69,24 +75,27 @@ const Home = () => {
             </div>
 
             <div className={style.searchBox}>
-              <div className={style.inputWrapper}>
+              <div className={`${style.inputWrapper} ${error ? style.inputError : ""}`}>
                 <span className={style.searchIcon}>🔍</span>
                 <input
                   type="text"
-                  placeholder="Enter city, country, or hospital..."
+                  placeholder="City, country, or hospital..."
                   className={style.mainInput}
                   value={searchQuery}
-                  onChange={(e) => setSearchQuery(e.target.value)}
+                  onChange={(e) => {
+                    setSearchQuery(e.target.value);
+                    if (error) setError("");
+                  }}
                   onKeyDown={(e) => e.key === 'Enter' && handleSearch()}
                 />
-                <button
-                  className={style.locationBtn}
-                  onClick={() => setTriggerLocation(Date.now())}
-                  title="Find hospitals near me"
-                >
-                  📍 Use My Location
-                </button>
               </div>
+
+              {error && <p className={style.errorMessage}>{error}</p>}
+
+              <button className={style.locationBtn} onClick={() => setTriggerLocation(Date.now())}>
+                📍 Use My Location
+              </button>
+
               <button className={style.btnPrimary} onClick={handleSearch}>
                 Search Now
               </button>
@@ -95,8 +104,8 @@ const Home = () => {
 
           <Motion className={style.imgContainer} variants={fadeUp}>
             <img
-              src={Hero}
-              alt="HospitoFind medical directory interface"
+              src={HeroImage}
+              alt="A mother and child using a smartphone to find verified hospitals on the HospitoFind directory."
               className={style.heroImage}
             />
           </Motion>
@@ -119,7 +128,7 @@ const Home = () => {
       </main >
 
       <Footer />
-    </div >
+    </>
   );
 };
 

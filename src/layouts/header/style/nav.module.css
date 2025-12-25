@@ -1,303 +1,254 @@
-.smallHeader,
-.large {
-  -webkit-backdrop-filter: blur(10px);
-          backdrop-filter: blur(10px);
-  background: rgba(255, 255, 255, 0.9);
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+.header {
   position: fixed;
   top: 0;
+  left: 0;
   width: 100%;
   z-index: 1000;
-  transition: background 0.3s ease;
-}
-
-/* Mobile Header */
-.smallHeader {
-  height: 7.5rem;
+  height: 8rem;
   display: flex;
-  flex-direction: row;
   align-items: center;
-  justify-content: space-between;
-  padding: 0 1.5rem;
+  transition: all 0.4s ease;
+  background: rgba(255, 255, 255, 0.9);
+  -webkit-backdrop-filter: blur(10px);
+          backdrop-filter: blur(10px);
 }
-@media only screen and (min-width: 48.0625em) {
-  .smallHeader {
-    display: none;
+@media (max-width: 768px) {
+  .header {
+    height: 10rem;
   }
 }
-.smallHeader .smallLogo {
-  width: 8rem;
-  height: 8rem;
-  transition: transform 0.3s ease;
+.header.scrolled {
+  height: 6.5rem;
+  background: rgba(255, 255, 255, 0.98);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
 }
-.smallHeader .smallLogo:hover {
-  transform: scale(1.05);
+
+.container {
+  width: 100%;
+  max-width: 1600px;
+  margin: 0 auto;
+  padding: 0 4rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
-.smallHeader .toggle {
+@media (max-width: 768px) {
+  .container {
+    padding: 0 2rem;
+    height: 10rem;
+  }
+}
+
+.logoWrapper {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+}
+.logoWrapper .logo {
+  height: 5rem;
+  width: auto;
+  transition: height 0.3s ease;
+}
+.scrolled .logoWrapper .logo {
+  height: 4rem;
+}
+
+.desktopNav {
+  display: none;
+  flex: 1;
+}
+@media (min-width: 1024px) {
+  .desktopNav {
+    display: flex;
+    justify-content: center;
+  }
+}
+.desktopNav .navLinks {
+  display: flex;
+  list-style: none;
+  gap: 5rem;
+}
+.desktopNav .navLinks a {
+  text-decoration: none;
+  font-size: 1.7rem;
+  font-weight: 700;
+  color: #1e293b;
+  transition: color 0.3s ease;
+}
+.desktopNav .navLinks a:hover, .desktopNav .navLinks a.active {
+  color: #08299B;
+}
+
+.actions {
+  display: flex;
+  align-items: center;
+  gap: 2.5rem;
+  flex-shrink: 0;
+}
+.actions .authButtons {
+  display: none;
+  gap: 1.5rem;
+}
+@media (min-width: 1024px) {
+  .actions .authButtons {
+    display: flex;
+    align-items: center;
+  }
+}
+.actions .authButtons .loginBtn {
+  text-decoration: none;
+  font-weight: 800;
+  font-size: 1.2rem;
+  color: #1e293b;
+}
+.actions .authButtons .loginBtn:hover {
+  color: #08299B;
+}
+.actions .authButtons .signupBtn {
+  text-decoration: none;
+  background: #08299B;
+  color: #fff;
+  padding: 1rem 2.2rem;
+  border-radius: 1.2rem;
+  font-weight: 800;
+  font-size: 1.2rem;
+  transition: all 0.3s ease;
+}
+.actions .authButtons .signupBtn:hover {
+  background: #0a36c0;
+  transform: translateY(-3px);
+}
+
+.userProfile .profileTrigger {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  text-decoration: none;
+}
+.userProfile .profileTrigger .avatar {
+  width: 3.5rem;
+  height: 3.5rem;
+  background: #08299B;
+  color: white;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 900;
+  font-size: 1.5rem;
+  border: 3px solid #fff;
+}
+.userProfile .profileTrigger .userName {
+  font-weight: 800;
+  font-size: 1.3rem;
+  color: #1e293b;
+  display: none;
+}
+@media (min-width: 640px) {
+  .userProfile .profileTrigger .userName {
+    display: block;
+  }
+}
+
+.mobileToggle {
   background: transparent;
   border: none;
   cursor: pointer;
-  z-index: 1100;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2000;
+  position: relative;
 }
-.smallHeader .toggle_icon {
-  font-size: 2.4rem;
+.mobileToggle .toggle_icon {
+  font-size: 7.5rem;
   color: #08299B;
-  transition: transform 0.3s ease;
+  transition: transform 0.3s ease, color 0.3s ease;
 }
-
-/* Overlay when mobile menu is open */
-.overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100vh;
-  background: rgba(0, 0, 0, 0.4);
-  z-index: 900;
-  animation: fadeIn 0.3s ease forwards;
+.mobileToggle:hover .toggle_icon {
+  transform: scale(1.1);
 }
-
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
+@media (min-width: 900px) {
+  .mobileToggle {
+    display: none;
   }
 }
-.smallNav {
+
+.mobileDrawer {
   position: fixed;
   top: 0;
   right: -100%;
-  width: 70%;
-  height: 35rem;
-  background: rgba(255, 255, 255, 0.95);
-  box-shadow: -2px 0 15px rgba(0, 0, 0, 0.1);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: space-between;
-  padding: 5rem 2rem;
-  gap: 2rem;
-  transition: right 1s ease-in-out;
-  z-index: 950;
-  border-bottom-left-radius: 1rem;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+  width: 100%;
+  height: 100vh;
+  background: #ffffff;
+  z-index: 1050;
+  transition: right 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  padding: 10rem 2.5rem 3rem;
 }
-
-.show {
+.mobileDrawer.drawerOpen {
   right: 0;
 }
 
-.smallList {
+.drawerNav {
+  display: flex;
+  flex-direction: column;
+}
+
+.drawerLinks {
   list-style: none;
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
-  justify-content: center;
   gap: 3rem;
 }
-.smallList li {
-  display: flex;
-  align-items: center;
-  gap: 1rem;
-}
-.smallList li .smallLink {
-  font-size: 1.8rem;
-  font-weight: 600;
+.drawerLinks a {
+  font-size: 2.2rem;
+  font-weight: 900;
+  color: #1e293b;
   text-decoration: none;
-  color: #000000;
-  transition: color 0.3s border-bottom 0.3s ease;
-}
-.smallList li .smallLink:hover, .smallList li .smallLink:active {
-  color: #08299B;
-  border-bottom: 2px solid #000;
 }
 
-.smallWrapper {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: center;
-  gap: 1rem;
-  /* Shared button base */
-  /* Dashboard (Primary CTA) */
-  /* Login / Signup (Secondary CTAs) */
-}
-.smallWrapper .smallAuth,
-.smallWrapper .dashboard {
-  font-weight: 600;
-  padding: 0.6rem 1.2rem;
-  border-radius: 0.6rem;
-  font-size: 1rem;
-  cursor: pointer;
-  transition: all 0.3s ease-in-out;
-  text-decoration: none;
-}
-.smallWrapper .dashboard {
-  background: #000;
-  color: #fff;
-  border: 1.5px solid #000;
-}
-.smallWrapper .dashboard:hover {
-  background: #333;
-  border-color: #333;
-  transform: translateY(-2px);
-}
-.smallWrapper .smallAuth {
-  background: transparent;
-  color: #000;
-  border: 1.5px solid #000;
-  margin-left: 0.5rem;
-}
-.smallWrapper .smallAuth:hover {
-  background: #000;
-  color: #fff;
-  transform: translateY(-2px);
-}
-
-@media (max-width: 768px) {
-  .smallAuth,
-  .dashboard {
-    width: 100%;
-    text-align: center;
-    margin: 0.5rem 0;
-  }
-}
-.large {
-  display: none;
-}
-@media only screen and (min-width: 48.0625em) {
-  .large {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-between;
-    padding: 0 2rem;
-    height: 6rem;
-  }
-}
-.large .largeLogo {
-  width: 9rem;
-  height: 9rem;
-  transition: transform 0.3s ease;
-}
-.large .largeLogo:hover {
-  transform: scale(1.05);
-}
-.large .largeNav {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: space-between;
-  gap: 5rem;
-  width: 55%;
-}
-.large .largeNav .largeList {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: center;
-  width: 70%;
-  gap: 5rem;
-  list-style: none;
-}
-.large .largeNav .largeList li {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-}
-.large .largeNav .largeList li .largeLink {
-  font-size: 1.4rem;
-  font-weight: 500;
-  text-decoration: none;
-  color: #000000;
-  position: relative;
-  transition: color 0.3s border-bottom 0.3s ease;
-}
-.large .largeNav .largeList li .largeLink:hover, .large .largeNav .largeList li .largeLink:active {
-  color: #08299B;
-  border-bottom: 2px solid #000;
-}
-.large .largeNav .largeList li .largeLink::after {
-  content: "";
-  position: absolute;
-  left: 0;
-  bottom: -3px;
-  width: 0%;
+.drawerDivider {
   height: 2px;
-  background: #08299B;
-  transition: width 0.3s ease;
+  background: #f1f5f9;
+  margin: 3rem 0;
 }
-.large .largeNav .largeList li .largeLink:hover::after {
-  width: 100%;
-}
-.large .largeNav .largeWrapper {
+
+.drawerAuth {
   display: flex;
-  gap: 1rem;
-  /* Shared button base */
-  /* Dashboard (Primary CTA) */
+  flex-direction: column;
+  gap: 2rem;
 }
-.large .largeNav .largeWrapper .largeAuth,
-.large .largeNav .largeWrapper .dashboard {
-  font-weight: 600;
-  padding: 0.6rem 1.2rem;
-  border-radius: 0.6rem;
-  font-size: 1rem;
-  cursor: pointer;
-  transition: all 0.3s ease-in-out;
+
+.mobileLogin {
+  font-size: 1.4rem;
+  font-weight: 800;
+  color: #1e293b;
+  text-align: center;
+  padding: 1.5rem;
+  border: 2px solid #e2e8f0;
+  border-radius: 1.2rem;
   text-decoration: none;
 }
-.large .largeNav .largeWrapper .dashboard {
-  background: #000;
-  color: #fff;
-  border: 1.5px solid #000;
-}
-.large .largeNav .largeWrapper .dashboard:hover {
-  background: #333;
-  border-color: #333;
-  transform: translateY(-2px);
-}
-.large .largeNav .largeWrapper .largeAuth {
-  background: transparent;
-  color: #000;
-  border: 1.5px solid #000;
-  margin-left: 0.5rem;
-}
-.large .largeNav .largeWrapper .largeAuth:hover {
-  background: #000;
-  color: #fff;
-  transform: translateY(-2px);
+
+.mobileSignup {
+  background: #08299B;
+  color: #fff !important;
+  text-align: center;
+  padding: 1.5rem;
+  border-radius: 1.2rem;
+  font-size: 1.4rem;
+  font-weight: 800;
+  text-decoration: none;
 }
 
-.error {
-  color: #FF033E;
-  font-size: 0.9rem;
-  margin-top: 0.3rem;
-}
-
-/* --- Scroll behavior for navbar --- */
-.scrolled .smallHeader,
-.scrolled .large {
-  background: rgba(255, 255, 255, 0.85);
-  -webkit-backdrop-filter: blur(15px);
-          backdrop-filter: blur(15px);
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
-  transform: translateY(0);
-  transition: all 0.3s ease-in-out;
-}
-
-.scrolled .smallHeader {
-  height: 4.5rem;
-}
-
-.scrolled .large {
-  height: 4.2rem;
-  padding: 0 1.5rem;
-}
-
-.scrolled .largeLogo,
-.scrolled .smallLogo {
-  transform: scale(0.9);
-  transition: transform 0.3s ease;
+.logoutBtn {
+  background: none;
+  border: none;
+  color: #ef4444;
+  font-size: 1.6rem;
+  font-weight: 800;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  cursor: pointer;
 }/*# sourceMappingURL=nav.module.css.map */

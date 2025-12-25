@@ -43,7 +43,7 @@ const HealthAlerts = () => {
                 </div>
                 <button
                     className={style.viewAllLink}
-                    onClick={() => navigate("/outbreaks")}
+                    onClick={() => navigate("/disease-outbreaks")}
                 >
                     See All Alerts →
                 </button>
