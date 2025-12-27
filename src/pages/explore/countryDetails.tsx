@@ -144,7 +144,7 @@ const CountryDetailPage: React.FC = () => {
           </div>
 
           <div className={style.filterGroup}>
-            {["All", "Public", "Private", "Missionary"].map((type) => (
+            {["All", "Public", "Private", "Missionary", "Primary"].map((type) => (
               <button
                 key={type}
                 className={`${style.chip} ${activeType === type ? style.activeChip : ""}`}

@@ -48,7 +48,7 @@
   display: block;
 }
 .heroWrapper .heroContent .heroPara {
-  font-size: 1.15rem;
+  font-size: 1.5rem;
   color: #475569;
   line-height: 1.7;
   margin-bottom: 2rem;
@@ -68,7 +68,7 @@
   color: #08299B;
 }
 .heroWrapper .statsRow .statItem .statLabel {
-  font-size: 0.9rem;
+  font-size: 1.1rem;
   font-weight: 600;
   color: #64748b;
   text-transform: uppercase;
@@ -110,7 +110,7 @@
   color: #08299B;
 }
 .missionWrapper .missionGrid .missionText p {
-  font-size: 1.2rem;
+  font-size: 1.5rem;
   line-height: 1.8;
   color: #475569;
 }
@@ -129,13 +129,12 @@
   flex-shrink: 0;
 }
 .missionWrapper .missionGrid .valuesList .valueItem h4 {
-  font-weight: 800;
   color: #1e293b;
-  margin-bottom: 0.3rem;
+  font-size: 2rem;
 }
 .missionWrapper .missionGrid .valuesList .valueItem p {
   color: #64748b;
-  font-size: 0.95rem;
+  font-size: 1.5rem;
 }
 
 .featureSection {
@@ -177,16 +176,15 @@
   font-size: 1.8rem;
 }
 .featureSection .featureContainer .featureBox .featureTitle {
-  font-size: 1.3rem;
+  font-size: 2rem;
   font-weight: 800;
   color: #1e293b;
   margin-bottom: 0.3rem;
   transition: color 0.3s ease;
 }
 .featureSection .featureContainer .featureBox .featureText {
-  font-size: 0.95rem;
+  font-size: 1.5rem;
   color: #64748b;
-  line-height: 1.6;
 }
 
 .howItWorksWrapper {
@@ -312,13 +310,13 @@
   border: 2px solid white;
 }
 .howItWorksWrapper .howItWorks_inner .stepsGrid .stepCard .stepHead {
-  font-size: 1.2rem;
+  font-size: 2rem;
   font-weight: 800;
   color: #08299B;
   margin-bottom: 0.5rem;
 }
 .howItWorksWrapper .howItWorks_inner .stepsGrid .stepCard .stepText {
-  font-size: 0.85rem;
+  font-size: 1.5rem;
   color: #475569;
   line-height: 1.4;
 }
@@ -329,7 +327,6 @@
   z-index: 30;
 }
 .reviewSection .reviewHeader {
-  margin-bottom: 2rem;
   text-align: center;
 }
 .reviewSection .reviewHeader .review_title {
@@ -341,6 +338,7 @@
   color: #08299B;
   font-size: 1.2rem;
   margin-top: 0.1rem;
+  font-size: 1.5rem;
 }
 .reviewSection .review_grid {
   display: grid;
@@ -363,6 +361,7 @@
   font-style: italic;
   line-height: 1.7;
   color: #334155;
+  font-size: 1.5rem;
 }
 .reviewSection .review_grid .review_box .starRow {
   display: flex;

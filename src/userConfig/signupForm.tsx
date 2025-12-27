@@ -150,7 +150,7 @@ const SignUp = () => {
                     <input
                       id="username"
                       type="text"
-                      placeholder="johndoe88"
+                      placeholder="johndoe"
                       value={username}
                       onChange={(e) => setUsername(e.target.value)}
                       aria-invalid={!!errors.username}

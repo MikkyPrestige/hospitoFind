@@ -1,6 +1,18 @@
 import HospitalPic from "@/assets/images/hospital-logo.jpg";
 
-export const Avatar = ({ image = "", alt = "", style = {} }) => {
+interface AvatarProps {
+  image?: string;
+  alt?: string;
+  style?: React.CSSProperties;
+  className?: string;
+}
+
+export const Avatar: React.FC<AvatarProps> = ({
+  image = "",
+  alt = "",
+  style = {},
+  className = ""
+}) => {
   const handleError = (e: any) => {
     e.currentTarget.onerror = null;
     e.currentTarget.src = HospitalPic;
@@ -10,6 +22,7 @@ export const Avatar = ({ image = "", alt = "", style = {} }) => {
     <img
       src={image || HospitalPic}
       alt={alt || "HospitoFind"}
+      className={className}
       style={style}
       onError={handleError}
       loading="lazy"

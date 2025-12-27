@@ -187,10 +187,10 @@ const About = () => {
             ))}
           </div>
 
-          <div className={style.finalCTA}>
+          {/* <div className={style.finalCTA}>
             <h3>Ready to find the care you deserve?</h3>
             <Link to="/signup" className={style.ctaLinkMain}>Create Free Account</Link>
-          </div>
+          </div> */}
         </Motion>
       </main>
 
