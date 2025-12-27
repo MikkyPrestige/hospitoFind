@@ -208,6 +208,7 @@
 
             .form_input {
               width: 100%;
+              height: 5rem;
               padding: 0.8rem 1rem 0.8rem 2.8rem;
               border: 1px solid #e2e8f0;
               border-radius: 0.8rem;
@@ -223,6 +224,10 @@
               &.invalid {
                 border-color: $color-red;
                 background-color: rgba($color-red, 0.02);
+              }
+
+              @include respond(tab-land) {
+                height: 3.5rem;
               }
             }
 
@@ -262,7 +267,7 @@
           background: linear-gradient(135deg, $color-blue, color.adjust($color-blue, $lightness: 10%)) !important;
           color: white;
           width: 100%;
-          padding: 1rem;
+          padding: 1rem !important;
           border-radius: 0.8rem !important;
           font-weight: $font-weight-bd;
           font-size: 1.1rem;

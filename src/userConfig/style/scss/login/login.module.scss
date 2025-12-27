@@ -172,6 +172,7 @@ $color-red: #ef4444;
 
     .form_input {
       width: 100%;
+      height: 5rem;
       padding: 0.8rem 1rem 0.8rem 2.8rem;
       border: 1.5px solid #e2e8f0;
       border-radius: 0.75rem;
@@ -183,6 +184,10 @@ $color-red: #ef4444;
         box-shadow: 0 0 0 4px rgba(8, 41, 155, 0.1);
         outline: none;
       }
+
+  @include respond(tab-land) {
+                height: 3.5rem;
+              }
     }
 
     .invalid {
@@ -217,6 +222,7 @@ $color-red: #ef4444;
   justify-content: space-between;
   align-items: center;
   font-size: 0.85rem;
+  padding-bottom: .1rem;
 
   .remember {
     display: flex;
@@ -236,7 +242,7 @@ $color-red: #ef4444;
 
 .form_button {
   width: 100%;
-  padding: 1rem;
+  padding: 1rem !important;
   background: $color-blue;
   color: white;
   border: none;

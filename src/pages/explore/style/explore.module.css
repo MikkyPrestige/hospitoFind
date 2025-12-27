@@ -151,46 +151,45 @@
 }
 
 .filterBtn {
-background: #ffffff;
+  background: #ffffff;
   border: 2px solid #e2e8f0;
   padding: 0.7rem 1.5rem;
-  border-radius: 50px; /* Pill shape */
+  border-radius: 50px;
   font-weight: 700;
   color: #64748b;
   cursor: pointer;
-  white-space: nowrap; /* Keeps names on one line */
+  white-space: nowrap;
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .filterBtn:hover {
-  border-color: #08299B;
-  color: #08299B;
+  border-color: #08299b;
+  color: #08299b;
   transform: translateY(-2px);
 }
 
 .filterBtn.active {
-  background: #08299B;
+  background: #08299b;
   color: #ffffff;
-  border-color: #08299B;
+  border-color: #08299b;
   box-shadow: 0 8px 20px rgba(8, 41, 155, 0.2);
 }
 
 .contentSection {
   width: 90%;
   max-width: 1400px;
-  margin-top: 4rem;
+  margin-top: 2rem;
 }
 
 .grid {
   display: grid;
   gap: 2rem;
-  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
   width: 100%;
-  padding-top: 2rem;
 }
 
 .cardLink {
- display: block;
+  display: block;
   background: #fff;
   border-radius: 1.5rem;
   transition: all 0.4s ease;

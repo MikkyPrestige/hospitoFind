@@ -170,6 +170,7 @@
 }
 .right .wrapper .form .form_wrapper .form_group .inputWrapper .form_input {
   width: 100%;
+  height: 5rem;
   padding: 0.8rem 1rem 0.8rem 2.8rem;
   border: 1.5px solid #e2e8f0;
   border-radius: 0.75rem;
@@ -205,6 +206,7 @@
   justify-content: space-between;
   align-items: center;
   font-size: 0.85rem;
+  padding-bottom: 0.1rem;
 }
 .form_footer .remember {
   display: flex;
@@ -224,7 +226,7 @@
 
 .form_button {
   width: 100%;
-  padding: 1rem;
+  padding: 1rem !important;
   background: #08299B;
   color: white;
   border: none;

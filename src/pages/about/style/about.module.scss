@@ -58,7 +58,7 @@ $color-gold: #fbbf24;
     }
 
     .heroPara {
-      font-size: 1.15rem;
+      font-size: 1.5rem;
       color: #475569;
       line-height: 1.7;
       margin-bottom: 2rem;
@@ -81,7 +81,7 @@ $color-gold: #fbbf24;
       }
 
       .statLabel {
-        font-size: 0.9rem;
+        font-size: 1.1rem;
         font-weight: 600;
         color: #64748b;
         text-transform: uppercase;
@@ -126,7 +126,7 @@ $color-gold: #fbbf24;
       }
 
       p {
-        font-size: 1.2rem;
+        font-size: 1.5rem;
         line-height: 1.8;
         color: #475569;
       }
@@ -147,8 +147,8 @@ $color-gold: #fbbf24;
           flex-shrink: 0;
         }
 
-        h4 { font-weight: 800; color: $color-black; margin-bottom: 0.3rem; }
-        p { color: #64748b; font-size: 0.95rem; }
+        h4 { color: $color-black; font-size: 2rem; }
+        p { color: #64748b; font-size: 1.5rem; }
       }
     }
   }
@@ -194,7 +194,7 @@ $color-gold: #fbbf24;
       }
 
       .featureTitle {
-        font-size: 1.3rem;
+        font-size: 2rem;
         font-weight: 800;
         color: #1e293b;
         margin-bottom: 0.3rem;
@@ -202,9 +202,8 @@ $color-gold: #fbbf24;
       }
 
       .featureText {
-        font-size: 0.95rem;
+        font-size:  1.5rem;
         color: #64748b;
-        line-height: 1.6;
       }
     }
   }
@@ -323,14 +322,14 @@ width: 100%;
         }
 
         .stepHead {
-       font-size: 1.2rem;
+       font-size: 2rem;
           font-weight: 800;
           color: #08299B;
           margin-bottom: 0.5rem;
         }
 
         .stepText {
-        font-size: 0.85rem;
+        font-size: 1.5rem;
           color: #475569;
           line-height: 1.4;
         }
@@ -345,11 +344,10 @@ width: 100%;
   z-index: 30;
 
   .reviewHeader {
-    margin-bottom: 2rem;
     text-align: center;
 
     .review_title { font-size: 2.8rem; font-weight: 800; color: $color-black;}
-    .review_subtitle { color: $color-blue; font-size: 1.2rem; margin-top: .1rem; }
+    .review_subtitle { color: $color-blue; font-size: 1.2rem; margin-top: .1rem; font-size: 1.5rem; }
   }
 
   .review_grid {
@@ -369,7 +367,7 @@ width: 100%;
       flex-direction: column;
       gap: .5rem;
 
-      .review_text { font-style: italic; line-height: 1.7; color: #334155; }
+      .review_text { font-style: italic; line-height: 1.7; color: #334155; font-size: 1.5rem;}
 
       .starRow {
         display: flex;

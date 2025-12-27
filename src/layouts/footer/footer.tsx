@@ -14,8 +14,8 @@ const Footer = () => {
             <h2>Ready to find the right care?</h2>
             <p>Search our verified directory of hospitals and clinics worldwide.</p>
           </div>
-          <Link to="/find-hospital" className={style.ctaButton}>
-            Find a Hospital <ArrowRight size={18} />
+          <Link to="/signup" className={style.ctaButton}>
+            Create Free Account <ArrowRight size={18} />
           </Link>
         </div>
       </Motion>

@@ -145,7 +145,7 @@ const NearbyHospitals = ({ triggerLocation = 0 }: Props) => {
                         <div className={style.actionWrapper}>
                             <button
                                 className={style.viewAllBtn}
-                                onClick={() => navigate("/country")}
+                                onClick={() => navigate("/directory")}
                             >
                                 View All Nearby Hospitals
                             </button>
