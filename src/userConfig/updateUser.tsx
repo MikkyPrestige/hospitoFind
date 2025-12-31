@@ -1,90 +1,82 @@
 import { useState } from "react";
 import { User } from "@/services/user";
 import { useAuthContext } from "@/context/userContext";
-import useUpdate from "@/hooks/update";
+import useUpdate from "@/hooks/user/update";
 import { Button } from "@/components/button";
-import style from "./style/style.module.css";
+import style from "./style/updateUser.module.css";
 
 const UpdateUser = () => {
   const { state } = useAuthContext();
-  const [name, setName] = useState<string>(state.name ? state.name : "");
-  const [email, setEmail] = useState<string>(state.email ? state.email : "");
-  const [password, setPassword] = useState<string>("");
-  const { loading, success, error, update } = useUpdate();
-  const username: string = state.username || "";
-  const placeholderName: string = state.name || "";
-  const placeholderEmail: string = state.email || "";
+  const { loading, update } = useUpdate();
+
+  const [formData, setFormData] = useState({
+    name: state.name || "",
+    email: state.email || "",
+    password: ""
+  });
+
+  const handleInput = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
 
   const handleUserUpdate = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    const user: User = { name, username, email, password };
-    update(user);
-    setName("");
-    setEmail("");
-    setPassword("");
+    const userUpdate: User = {
+      ...formData,
+      username: state.username || "",
+      role: state.role || "user"
+    };
+    update(userUpdate);
+    setFormData(prev => ({ ...prev, password: "" }));
   };
-
-  const handleInput = (e: React.ChangeEvent<HTMLInputElement>) => {
-    switch (e.target.name) {
-      case "name":
-        setName(e.target.value);
-        break;
-      case "email":
-        setEmail(e.target.value);
-        break;
-      case "password":
-        setPassword(e.target.value);
-        break;
-    }
-  }
 
   return (
     <section className={style.section}>
       <form onSubmit={handleUserUpdate} className={style.form}>
         <div className={style.wrapper}>
-          <p className={style.subtitle}>Name</p>
+          <p className={style.subtitle}>Full Name</p>
           <input
             type="text"
-            placeholder={placeholderName}
             name="name"
-            value={name}
+            value={formData.name}
             onChange={handleInput}
             className={style.input}
+            placeholder="Change your name"
           />
         </div>
         <div className={style.wrapper}>
-          <p className={style.subtitle}>Email</p>
+          <p className={style.subtitle}>Email Address</p>
           <input
             type="email"
-            placeholder={placeholderEmail}
             name="email"
-            value={email}
+            value={formData.email}
             onChange={handleInput}
             className={style.input}
+            placeholder="Change your email"
           />
         </div>
         <div className={style.wrapper}>
-          <p className={style.subtitle}>Password</p>
+          <p className={style.subtitle}>Confirm with Password</p>
           <input
             type="password"
-            placeholder="Enter Password"
             name="password"
-            value={password}
+            value={formData.password}
             onChange={handleInput}
             className={style.input}
+            placeholder="Enter current password to save changes"
+            required
           />
         </div>
-        {success && <p className={style.success}>{success}</p>}
-        {error && <p className={style.error}>{error}</p>}
         <Button
           type="submit"
           disabled={loading}
-          children={loading ? "Updating..." : <span className={style.span}>Update</span>}
           className={style.btn2}
-        />
+        >
+          {loading ? "Saving..." : "Update Profile"}
+        </Button>
       </form>
     </section>
   );
 }
 
-export default UpdateUser
+export default UpdateUser;

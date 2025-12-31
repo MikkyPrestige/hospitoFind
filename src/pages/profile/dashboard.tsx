@@ -7,6 +7,7 @@ import { CgProfile } from "react-icons/cg";
 import { RiLockPasswordLine } from "react-icons/ri";
 import { IoIosLogOut } from "react-icons/io";
 import { BsBuildingAdd } from "react-icons/bs";
+import { FiList, FiSettings, FiCalendar, FiActivity } from "react-icons/fi";
 import {
   TbLayoutSidebarLeftCollapse,
   TbLayoutSidebarRightCollapse,
@@ -20,17 +21,19 @@ import UpdateUser from "@/userConfig/updateUser";
 import UpdatePassword from "@/userConfig/updatePassword";
 import DeleteBtn from "@/userConfig/deleteUser";
 import Logout from "@/userConfig/logoutUser";
+import AccountStats from "./accountStats";
+import MySubmissions from "./userSubmissions";
 import style from "./style/dashboard.module.scss";
 import HospitalPic from "@/assets/images/hospital-logo.jpg";
 import { Avatar } from "@/components/avatar";
 import Motion from "@/components/motion";
-import { fadeUp, sectionReveal, zoomIn } from "@/hooks/animations";
+import { fadeUp, sectionReveal, settingsTabVariants } from "@/hooks/animations";
 import { AnimatePresence } from "framer-motion";
 
 const Dashboard = () => {
   const [selected, setSelected] = useState<string>("find-hospital");
   const [sidebarExpanded, setSidebarExpanded] = useState<boolean>(true);
-  const [showEdit, setShowEdit] = useState<boolean>(false);
+  const [settingsTab, setSettingsTab] = useState<"profile" | "security" | "danger">("profile");
   const { state } = useAuthContext();
 
   // --- DYNAMIC USER-SPECIFIC KEYS ---
@@ -43,7 +46,6 @@ const Dashboard = () => {
   const [recentlyViewed, setRecentlyViewed] = useState<any[]>([]);
   const [weeklyViews, setWeeklyViews] = useState<number>(0);
 
-  // Sync state with LocalStorage whenever user switches
   useEffect(() => {
     if (state?.username) {
       setFavorites(JSON.parse(localStorage.getItem(FAVORITES_KEY) || "[]"));
@@ -53,7 +55,6 @@ const Dashboard = () => {
     }
   }, [state?.username, FAVORITES_KEY, RECENTLY_KEY, WEEKLY_KEY]);
 
-  // CALLBACKS FOR REAL-TIME UPDATES
   const handleRecentUpdate = () => {
     setRecentlyViewed(JSON.parse(localStorage.getItem(RECENTLY_KEY) || "[]"));
   };
@@ -69,10 +70,9 @@ const Dashboard = () => {
   const menuItems = useMemo(() => [
     { id: "find-hospital", label: "Find Hospital", icon: <MdFindInPage />, color: "#08299B" },
     { id: "add-hospital", label: "Add Hospital", icon: <BsBuildingAdd />, color: "#08299B" },
-    { id: "profile", label: "Account", icon: <CgProfile />, color: "#08299B" },
-    { id: "security", label: "Security", icon: <RiLockPasswordLine />, color: "#08299B" },
+    { id: "my-submissions", label: "My Submissions", icon: <FiList />, color: "#08299B" },
+    { id: "settings", label: "Settings", icon: <FiSettings />, color: "#08299B" },
     { id: "logout", label: "Log Out", icon: <IoIosLogOut />, color: "#FF033E" },
-    { id: "delete", label: "Delete Account", icon: <AiOutlineUserDelete />, color: "#FF033E" },
   ], []);
 
   useEffect(() => {
@@ -136,12 +136,19 @@ const Dashboard = () => {
         </nav>
 
         <section className={style.contentArea}>
+          {/* VIEW: FIND HOSPITAL */}
           {selected === "find-hospital" && (
             <div className={style.viewContainer}>
               <div className={style.bg}></div>
 
               <header className={style.greetingHeader}>
                 <h1>Good to see you, <span className={style.userName}>{state?.username || 'User'}</span>.</h1>
+
+                {/* Impact Stats Card */}
+                <Motion variants={fadeUp}>
+                  <AccountStats />
+                </Motion>
+
                 <p className={style.activityStats}>
                   You've viewed <strong>{recentlyViewed.length}</strong> hospitals recently
                   (<strong>{weeklyViews}</strong> this week).
@@ -241,35 +248,121 @@ const Dashboard = () => {
             </div>
           )}
 
+          {/* VIEW: ADD HOSPITAL */}
           {selected === "add-hospital" && <Motion variants={fadeUp} className={style.viewPanel}><Editor /></Motion>}
 
-          {selected === "profile" && (
+          {/* VIEW: MY SUBMISSIONS */}
+          {selected === "my-submissions" && (
             <Motion variants={fadeUp} className={style.viewPanel}>
-              <div className={style.settingsCard}>
-                <h3>Account Information</h3>
-                <div className={style.dataGrid}>
-                  <div className={style.dataRow}><span className={style.label}>Full Name</span><span>{state?.name}</span></div>
-                  <div className={style.dataRow}><span className={style.label}>Username</span><span>{state?.username}</span></div>
-                  <div className={style.dataRow}><span className={style.label}>Email Address</span><span>{state?.email}</span></div>
-                </div>
-                <button onClick={() => setShowEdit(true)} className={style.actionBtn}>Update Profile Info</button>
-                <AnimatePresence>
-                  {showEdit && (
-                    <div className={style.modalOverlay} onClick={() => setShowEdit(false)}>
-                      <Motion variants={zoomIn} className={style.modalContent} onClick={(e) => e.stopPropagation()}>
-                        <div className={style.modalHeader}><h4>Edit Profile</h4><button onClick={() => setShowEdit(false)}>✕</button></div>
-                        <div className={style.modalBody}><UpdateUser /></div>
-                      </Motion>
+              <MySubmissions />
+            </Motion>
+          )}
+
+          {/* VIEW: CONSOLIDATED SETTINGS HUB */}
+          {selected === "settings" && (
+            <Motion variants={fadeUp} className={style.viewPanel}>
+              <div className={style.settingsHub}>
+                <header className={style.hubHeader}>
+                  <div className={style.titleBox}>
+                    <h1>Account Settings</h1>
+                    <p>Update your personal details and security preferences.</p>
+                  </div>
+                  <div className={style.metaStats}>
+                    <div className={style.metaItem}>
+                      <FiCalendar /> <span>Member since: {state?.createdAt ? new Date(state.createdAt).toLocaleDateString() : 'N/A'}</span>
                     </div>
-                  )}
-                </AnimatePresence>
+                    <div className={style.metaItem}>
+                      <FiActivity /> <span>Last update: {state?.updatedAt ? new Date(state.updatedAt).toLocaleDateString() : 'N/A'}</span>
+                    </div>
+                  </div>
+                </header>
+
+                {/* Segmented Tab Control */}
+                <nav className={style.tabsNav}>
+                  <button
+                    className={settingsTab === "profile" ? style.activeTab : ""}
+                    onClick={() => setSettingsTab("profile")}
+                  >
+                    <CgProfile /> <span>Profile</span>
+                  </button>
+                  <button
+                    className={settingsTab === "security" ? style.activeTab : ""}
+                    onClick={() => setSettingsTab("security")}
+                  >
+                    <RiLockPasswordLine /> <span>Security</span>
+                  </button>
+                  <button
+                    className={`${settingsTab === "danger" ? style.activeTab : ""} ${style.dangerTab}`}
+                    onClick={() => setSettingsTab("danger")}
+                  >
+                    <AiOutlineUserDelete /> <span>Account</span>
+                  </button>
+                </nav>
+
+                {/* Tab Content with AnimatePresence for smooth sliding */}
+                <div className={style.tabContent}>
+                  <AnimatePresence mode="wait">
+                    {settingsTab === "profile" && (
+                      <Motion
+                        key="profile"
+                        variants={settingsTabVariants}
+                        initial="hidden"
+                        animate="visible"
+                        exit="exit"
+                        alwaysVisible={true}
+                      >
+                        <div className={style.settingsCard}>
+                          <div className={style.cardHeader}><h3>Personal Information</h3></div>
+                          <div className={style.cardBody}><UpdateUser /></div>
+                        </div>
+                      </Motion>
+                    )}
+
+                    {settingsTab === "security" && (
+                      <Motion
+                        key="security"
+                        variants={settingsTabVariants}
+                        initial="hidden"
+                        animate="visible"
+                        exit="exit"
+                        alwaysVisible={true}
+                      >
+                        <div className={style.settingsCard}>
+                          <div className={style.cardHeader}><h3>Security Settings</h3></div>
+                          <div className={style.cardBody}><UpdatePassword /></div>
+                        </div>
+                      </Motion>
+                    )}
+
+                    {settingsTab === "danger" && (
+                      <Motion
+                        key="danger"
+                        variants={settingsTabVariants}
+                        initial="hidden"
+                        animate="visible"
+                        exit="exit"
+                        alwaysVisible={true}
+                      >
+                        <div className={`${style.settingsCard} ${style.dangerZone}`}>
+                          <div className={style.cardHeader}><h3>Account Management</h3></div>
+                          <div className={style.cardBody}>
+                            <p className={style.warningText}>
+                              Warning: Deleting your account is a permanent action. All your verified submissions
+                              and saved hospitals will be removed from the platform.
+                            </p>
+                            <DeleteBtn />
+                          </div>
+                        </div>
+                      </Motion>
+                    )}
+                  </AnimatePresence>
+                </div>
               </div>
             </Motion>
           )}
 
-          {selected === "security" && <Motion variants={fadeUp} className={style.viewPanel}><UpdatePassword /></Motion>}
+          {/* LOGOUT VIEW */}
           {selected === "logout" && <Motion variants={fadeUp} className={style.viewPanel}><Logout /></Motion>}
-          {selected === "delete" && <Motion variants={fadeUp} className={style.viewPanel}><DeleteBtn /></Motion>}
         </section>
       </section>
     </main>
@@ -277,277 +370,3 @@ const Dashboard = () => {
 };
 
 export default Dashboard;
-
-// import { useState, useEffect, useMemo } from "react";
-// import { Helmet } from "react-helmet-async";
-// import { Link } from "react-router-dom";
-// import { Tooltip } from "react-tooltip";
-// import { MdFindInPage } from "react-icons/md";
-// import { CgProfile } from "react-icons/cg";
-// import { RiLockPasswordLine } from "react-icons/ri";
-// import { IoIosLogOut } from "react-icons/io";
-// import { BsBuildingAdd } from "react-icons/bs";
-// import {
-//   TbLayoutSidebarLeftCollapse,
-//   TbLayoutSidebarRightCollapse,
-// } from "react-icons/tb";
-// import { AiOutlineUserDelete, AiOutlineDown, AiOutlineUp } from "react-icons/ai";
-// import Logo from "@/assets/images/logo.svg";
-// import { useAuthContext } from "@/context/userContext";
-// import SearchForm from "@/hospitalsConfig/search";
-// import Editor from "@/markDown/editor";
-// import UpdateUser from "@/userConfig/updateUser";
-// import UpdatePassword from "@/userConfig/updatePassword";
-// import DeleteBtn from "@/userConfig/deleteUser";
-// import Logout from "@/userConfig/logoutUser";
-// import style from "./style/dashboard.module.scss";
-// import HospitalPic from "@/assets/images/hospital-logo.jpg";
-// import { Avatar } from "@/components/avatar";
-// import Motion from "@/components/motion";
-// import { fadeUp, sectionReveal, zoomIn } from "@/hooks/animations";
-// import { AnimatePresence } from "framer-motion";
-
-// const RECENTLY_KEY = "recentlyViewedHospitals";
-// const FAVORITES_KEY = "favoriteHospitals";
-
-// const Dashboard = () => {
-//   const [selected, setSelected] = useState<string>("find-hospital");
-//   const [sidebarExpanded, setSidebarExpanded] = useState<boolean>(true);
-//   const [showEdit, setShowEdit] = useState<boolean>(false);
-//   const { state } = useAuthContext();
-
-//   const [favorites, setFavorites] = useState<any[]>(() =>
-//     JSON.parse(localStorage.getItem(FAVORITES_KEY) || "[]")
-//   );
-//   const [recentlyViewed, setRecentlyViewed] = useState<any[]>(() =>
-//     JSON.parse(localStorage.getItem(RECENTLY_KEY) || "[]")
-//   );
-
-//   const [weeklyViews, setWeeklyViews] = useState<number>(() => {
-//     const stored = JSON.parse(localStorage.getItem("weeklyStats") || "{}");
-//     return stored.count || 0;
-//   });
-//   // Defaulted to closed for a cleaner initial mobile load
-//   const [openFavorites, setOpenFavorites] = useState<boolean>(false);
-//   const [openRecents, setOpenRecents] = useState<boolean>(false);
-//   const [hasResults, setHasResults] = useState<boolean>(false);
-
-//   const menuItems = useMemo(() => [
-//     { id: "find-hospital", label: "Find Hospital", icon: <MdFindInPage />, color: "#08299B" },
-//     { id: "add-hospital", label: "Add Hospital", icon: <BsBuildingAdd />, color: "#08299B" },
-//     { id: "profile", label: "Account", icon: <CgProfile />, color: "#08299B" },
-//     { id: "security", label: "Security", icon: <RiLockPasswordLine />, color: "#08299B" },
-//     { id: "logout", label: "Log Out", icon: <IoIosLogOut />, color: "#FF033E" },
-//     { id: "delete", label: "Delete Account", icon: <AiOutlineUserDelete />, color: "#FF033E" },
-//   ], []);
-
-//   useEffect(() => {
-//     const storedSelectedLink = localStorage.getItem("selectedLink");
-//     if (storedSelectedLink) setSelected(storedSelectedLink);
-//   }, []);
-
-//   const handleSelected = (link: string) => {
-//     setSelected(link);
-//     localStorage.setItem("selectedLink", link);
-//   };
-
-//   const handleFavoritesUpdate = () => {
-//     const saved = JSON.parse(localStorage.getItem(FAVORITES_KEY) || "[]");
-//     setFavorites(saved);
-//   };
-
-//   const removeFavorite = (e: React.MouseEvent, name: string) => {
-//     e.preventDefault(); e.stopPropagation();
-//     const next = favorites.filter((item: any) => item.name !== name);
-//     setFavorites(next);
-//     localStorage.setItem(FAVORITES_KEY, JSON.stringify(next));
-//   };
-
-//   const removeRecent = (e: React.MouseEvent, name: string) => {
-//     e.preventDefault(); e.stopPropagation();
-//     const next = recentlyViewed.filter((item: any) => item.name !== name);
-//     setRecentlyViewed(next);
-//     localStorage.setItem(RECENTLY_KEY, JSON.stringify(next));
-//   };
-
-//   return (
-//     <main className={style.dashboard}>
-//       <Helmet><title>Dashboard | HospitoFind</title></Helmet>
-
-//       {/* --- TOP HEADER --- */}
-//       <header className={style.top}>
-//         <Link to="/" className={style.logo}>
-//           <img src={Logo} alt="Logo" className={style.img} />
-//         </Link>
-//         <div className={style.sidebarToggle}>
-//           {sidebarExpanded ? (
-//             <TbLayoutSidebarLeftCollapse onClick={() => setSidebarExpanded(false)} className={style.sidebarIcon} />
-//           ) : (
-//             <TbLayoutSidebarRightCollapse onClick={() => setSidebarExpanded(true)} className={style.sidebarIcon} />
-//           )}
-//         </div>
-//       </header>
-
-//       <section className={style.mainLayout}>
-//         {/* --- RESPONSIVE SIDEBAR --- */}
-//         <nav className={`${style.nav} ${!sidebarExpanded ? style.miniSidebar : ""}`}>
-//           <ul className={style.menuList}>
-//             {menuItems.map((item) => (
-//               <li
-//                 key={item.id}
-//                 onClick={() => handleSelected(item.id)}
-//                 className={`${style.menuItem} ${selected === item.id ? style.active : ""}`}
-//                 data-tooltip-id="sidebar-tip"
-//                 data-tooltip-content={!sidebarExpanded ? item.label : ""}
-//               >
-//                 <span className={style.icon} style={{ color: item.color }}>{item.icon}</span>
-//                 {sidebarExpanded && <span className={style.label}>{item.label}</span>}
-//               </li>
-//             ))}
-//           </ul>
-//           <Tooltip id="sidebar-tip" place="right" />
-//         </nav>
-
-//         {/* --- CONTENT AREA --- */}
-//         <section className={style.contentArea}>
-//           {selected === "find-hospital" && (
-//             <div className={style.viewContainer}>
-//               <div className={style.bg}></div>
-
-//               <header className={style.greetingHeader}>
-//                 <h1>Good to see you, <span className={style.userName}>{state?.username || 'User'}</span>.</h1>
-//                 <p className={style.activityStats}>
-//                   You've viewed <strong>{recentlyViewed.length}</strong> hospitals recently
-//                   (<strong>{weeklyViews}</strong> this week).
-//                 </p>
-//               </header>
-
-//               <div className={style.searchSection}>
-//                 <SearchForm
-//                   onSearchResultsChange={setHasResults}
-//                   onFavoritesUpdate={handleFavoritesUpdate}
-//                   onWeeklyViewsChange={setWeeklyViews}
-//                 />
-//               </div>
-
-//               {!hasResults && (
-//                 <div className={style.overviewGrid}>
-//                   {/* SAVED SECTION */}
-//                   <div className={style.accordionSection}>
-//                     <div
-//                       className={`${style.sectionHeader} ${openFavorites ? style.headerOpen : ""}`}
-//                       onClick={() => setOpenFavorites(!openFavorites)}
-//                     >
-//                       <h2>❤️ Saved Hospitals</h2>
-//                       {openFavorites ? <AiOutlineUp /> : <AiOutlineDown />}
-//                     </div>
-//                     <AnimatePresence>
-//                       {openFavorites && (
-//                         <Motion
-//                           key="favorites-list"
-//                           className={style.accordionContent}
-//                           variants={sectionReveal}
-//                           initial="hidden" animate="visible" exit="hidden"
-//                         >
-//                           {favorites.length > 0 ? (
-//                             <div className={style.listWrapper}>
-//                               {favorites.map((h, i) => (
-//                                 <div key={i} className={style.dashboardCard}>
-//                                   <Link to={`/hospital/${encodeURIComponent(h.address.country)}/${encodeURIComponent(h.address.city)}/${h.slug}`} className={style.cardLink}>
-//                                     <Avatar image={h.photoUrl || HospitalPic} alt={h.name} className={style.cardAvatar} />
-//                                     <div className={style.cardInfo}>
-//                                       <span className={style.cardName}>{h.name}</span>
-//                                       <span className={style.cardLocation}>{h.address.city}</span>
-//                                       <span className={style.ctaText}>View details →</span>
-//                                     </div>
-//                                   </Link>
-//                                   <button className={style.removeBtn} onClick={(e) => removeFavorite(e, h.name)}>✕</button>
-//                                 </div>
-//                               ))}
-//                             </div>
-//                           ) : <p className={style.emptyMsg}>No saved hospitals yet.</p>}
-//                         </Motion>
-//                       )}
-//                     </AnimatePresence>
-//                   </div>
-
-//                   {/* RECENT SECTION */}
-//                   <div className={style.accordionSection}>
-//                     <div
-//                       className={`${style.sectionHeader} ${openRecents ? style.headerOpen : ""}`}
-//                       onClick={() => setOpenRecents(!openRecents)}
-//                     >
-//                       <h2>🕒 Recently Viewed</h2>
-//                       {openRecents ? <AiOutlineUp /> : <AiOutlineDown />}
-//                     </div>
-//                     <AnimatePresence>
-//                       {openRecents && (
-//                         <Motion
-//                           key="recents-list"
-//                           className={style.accordionContent}
-//                           variants={sectionReveal}
-//                           initial="hidden" animate="visible" exit="hidden"
-//                         >
-//                           {recentlyViewed.length > 0 ? (
-//                             <div className={style.listWrapper}>
-//                               {recentlyViewed.map((r, i) => (
-//                                 <div key={i} className={style.dashboardCard}>
-//                                   <Link to={`/hospital/${encodeURIComponent(r.address.country)}/${encodeURIComponent(r.address.city)}/${r.slug}`} className={style.cardLink}>
-//                                     <Avatar image={r.photoUrl || HospitalPic} alt={r.name} className={style.cardAvatar} />
-//                                     <div className={style.cardInfo}>
-//                                       <span className={style.cardName}>{r.name}</span>
-//                                       <span className={style.cardLocation}>{r.address.city}</span>
-//                                       <span className={style.ctaText}>View details →</span>
-//                                     </div>
-//                                   </Link>
-//                                   <button className={style.removeBtn} onClick={(e) => removeRecent(e, r.name)}>✕</button>
-//                                 </div>
-//                               ))}
-//                             </div>
-//                           ) : <p className={style.emptyMsg}>Start exploring our verified database.</p>}
-//                         </Motion>
-//                       )}
-//                     </AnimatePresence>
-//                   </div>
-//                 </div>
-//               )}
-//             </div>
-//           )}
-
-//           {selected === "add-hospital" && <Motion variants={fadeUp} className={style.viewPanel}><Editor /></Motion>}
-
-//           {selected === "profile" && (
-//             <Motion variants={fadeUp} className={style.viewPanel}>
-//               <div className={style.settingsCard}>
-//                 <h3>Account Information</h3>
-//                 <div className={style.dataGrid}>
-//                   <div className={style.dataRow}><span className={style.label}>Full Name</span><span>{state?.name}</span></div>
-//                   <div className={style.dataRow}><span className={style.label}>Username</span><span>{state?.username}</span></div>
-//                   <div className={style.dataRow}><span className={style.label}>Email Address</span><span>{state?.email}</span></div>
-//                 </div>
-//                 <button onClick={() => setShowEdit(true)} className={style.actionBtn}>Update Profile Info</button>
-//                 <AnimatePresence>
-//                   {showEdit && (
-//                     <div className={style.modalOverlay} onClick={() => setShowEdit(false)}>
-//                       <Motion variants={zoomIn} className={style.modalContent} onClick={(e) => e.stopPropagation()}>
-//                         <div className={style.modalHeader}><h4>Edit Profile</h4><button onClick={() => setShowEdit(false)}>✕</button></div>
-//                         <div className={style.modalBody}><UpdateUser /></div>
-//                       </Motion>
-//                     </div>
-//                   )}
-//                 </AnimatePresence>
-//               </div>
-//             </Motion>
-//           )}
-
-//           {selected === "security" && <Motion variants={fadeUp} className={style.viewPanel}><UpdatePassword /></Motion>}
-//           {selected === "logout" && <Motion variants={fadeUp} className={style.viewPanel}><Logout /></Motion>}
-//           {selected === "delete" && <Motion variants={fadeUp} className={style.viewPanel}><DeleteBtn /></Motion>}
-
-//         </section>
-//       </section>
-//     </main>
-//   );
-// };
-
-// export default Dashboard;

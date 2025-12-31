@@ -71,7 +71,7 @@ const HospitalCard: React.FC<HospitalCardProps> = ({ hospital }) => {
         )}
 
         <Link
-          to={`/hospital/${encodeURIComponent(address.country)}/${encodeURIComponent(address.city)}/${hospital.slug || hospital._id}`}
+          to={`/hospital/${encodeURIComponent(address.country || "location")}/${encodeURIComponent(address.city)}/${hospital.slug || hospital._id}`}
           className={style.detailsBtn}
         >
           View Full Profile <FiArrowRight />

@@ -1,7 +1,7 @@
 import { Link, NavLink } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { MdClose } from "react-icons/md";
-import { FiMenu, FiLogOut, FiLayout } from "react-icons/fi";
+import { FiMenu, FiLogOut, FiLayout, FiShield } from "react-icons/fi";
 import Logo from "@/assets/images/logo.svg";
 import style from "./style/nav.module.scss";
 import { useAuthContext } from "@/context/userContext";
@@ -36,15 +36,28 @@ const Header = () => {
             <li><NavLink to="/find-hospital" className={({ isActive }) => isActive ? style.active : ""}>Find a Hospital</NavLink></li>
             <li><NavLink to="/about" className={({ isActive }) => isActive ? style.active : ""}>About Us</NavLink></li>
             <li><NavLink to="/directory" className={({ isActive }) => isActive ? style.active : ""}>Directory</NavLink></li>
+
+            {/* DESKTOP ADMIN LINK */}
+            {state?.role === "admin" && (
+              <li>
+                <NavLink
+                  to="/admin"
+                  className={({ isActive }) => isActive ? style.active : ""}
+                  style={{ color: '#ef4444', fontWeight: 'bold' }}
+                >
+                  Admin
+                </NavLink>
+              </li>
+            )}
           </ul>
         </nav>
 
         <div className={style.actions}>
-          {state.username ? (
+          {state?.username ? (
             <div className={style.userProfile}>
               <Link to="/dashboard" className={style.profileTrigger}>
                 <div className={style.avatar}>
-                  {state.username.charAt(0).toUpperCase()}
+                  {state?.username?.charAt(0).toUpperCase()}
                 </div>
                 <span className={style.userName}>{state.username}</span>
               </Link>
@@ -70,6 +83,7 @@ const Header = () => {
         </div>
       </div>
 
+      {/* MOBILE DRAWER */}
       <div className={`${style.mobileDrawer} ${showMenu ? style.drawerOpen : ""}`}>
         <nav className={style.drawerNav}>
           <ul className={style.drawerLinks}>
@@ -79,8 +93,16 @@ const Header = () => {
 
             <div className={style.drawerDivider}></div>
 
-            {state.username ? (
+            {state?.username ? (
               <>
+                {state?.role === "admin" && (
+                  <li>
+                    <Link to="/admin" onClick={toggleMenu} style={{ color: '#ef4444' }}>
+                      <FiShield /> Admin
+                    </Link>
+                  </li>
+                )}
+
                 <li><Link to="/dashboard" onClick={toggleMenu}><FiLayout /> Dashboard</Link></li>
                 <li><button onClick={handleLogout} className={style.logoutBtn}><FiLogOut /> Logout</button></li>
               </>

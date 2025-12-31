@@ -1,156 +1,79 @@
-import usePasswordUpdate from "@/hooks/updatePassword";
+import { useState } from "react";
+import usePasswordUpdate from "@/hooks/user/updatePassword";
 import { useAuthContext } from "@/context/userContext";
-import { PasswordUpdate } from "@/services/user";
-import { useState, useEffect } from "react";
 import { Button } from "@/components/button";
 import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
 import style from "./style/updatePassword.module.css";
 
 const UpdatePassword = () => {
-  const [inputPassword, setInputPassword] = useState<{ password: string }>({ password: "" });
-  const [inputNewPassword, setInputNewPassword] = useState<{ newPassword: string }>({ newPassword: "" });
-  const [confirmNewPassword, setConfirmNewPassword] = useState<string>("");
-  const [errors, setErrors] = useState<{ [key: string]: string }>({});
-  const [showOld, setShowOld] = useState(false);
-  const [showNew, setShowNew] = useState(false);
-  const [showConfirm, setShowConfirm] = useState(false);
-  const [showSuccess, setShowSuccess] = useState(false);
-  const { loading, success, error, updatePassword } = usePasswordUpdate();
   const { state } = useAuthContext();
-  const username: string = state.username || "";
-  const password: string = inputPassword.password;
-  const newPassword: string = inputNewPassword.newPassword;
+  const { loading, updatePassword } = usePasswordUpdate();
 
-  // Automatically hide success message after 3 seconds
-  useEffect(() => {
-    if (success) {
-      setShowSuccess(true);
-      const timer = setTimeout(() => setShowSuccess(false), 3000);
-      return () => clearTimeout(timer);
-    }
-  }, [success]);
+  const [passwords, setPasswords] = useState({
+    oldPassword: "",
+    newPassword: "",
+    confirmPassword: ""
+  });
+  const [errors, setErrors] = useState<Record<string, string>>({});
+  const [showPass, setShowPass] = useState({ old: false, new: false, confirm: false });
 
-  const validateForm = () => {
-    let errors: { [key: string]: string } = {};
-    let valid = true;
+  const validate = () => {
+    const newErrors: Record<string, string> = {};
+    const passRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{6,}$/;
 
-    if (!password) {
-      errors["password"] = "Enter your Password";
-      valid = false;
-    } else if (!password.match(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{6,}$/)) {
-      errors["password"] = "Password must have at least 6 chars, 1 uppercase, 1 lowercase & 1 number";
-      valid = false;
+    if (!passwords.oldPassword) newErrors.old = "Current password is required";
+    if (!passRegex.test(passwords.newPassword)) {
+      newErrors.new = "At least 6 chars, 1 uppercase, 1 lowercase & 1 number";
     }
-    if (!newPassword) {
-      errors["newPassword"] = "Enter a New Password";
-      valid = false;
-    } else if (!newPassword.match(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{6,}$/)) {
-      errors["newPassword"] = "Password must have at least 6 chars, 1 uppercase, 1 lowercase & 1 number";
-      valid = false;
-    }
-    if (!confirmNewPassword) {
-      errors["confirmNewPassword"] = "Confirm New Password";
-      valid = false;
-    } else if (newPassword !== confirmNewPassword) {
-      errors["confirmNewPassword"] = "Passwords do not match";
-      valid = false;
+    if (passwords.newPassword !== passwords.confirmPassword) {
+      newErrors.confirm = "Passwords do not match";
     }
 
-    setErrors(errors);
-    return valid;
+    setErrors(newErrors);
+    return Object.keys(newErrors).length === 0;
   };
 
-  const resetForm = () => {
-    setInputPassword({ password: "" });
-    setInputNewPassword({ newPassword: "" });
-    setConfirmNewPassword("");
-    setErrors({});
-  };
-
-  const handlePasswordUpdate = async (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    const data: PasswordUpdate = { username, password, newPassword };
-    if (validateForm()) {
-      updatePassword(data);
-      resetForm();
+    if (validate()) {
+      updatePassword({
+        username: state.username || "",
+        password: passwords.oldPassword,
+        newPassword: passwords.newPassword
+      });
+      setPasswords({ oldPassword: "", newPassword: "", confirmPassword: "" });
     }
   };
 
   return (
-    <div className={style.container}>
-      <h1 className={style.title}>Change Password</h1>
-      <form onSubmit={handlePasswordUpdate} className={style.form}>
-        {/* Old Password */}
-        <div className={style.wrapper}>
-          <p className={style.subtitle}>Old Password</p>
+    <form onSubmit={handleSubmit} className={style.form}>
+      {[
+        { id: 'old', label: 'Current Password', key: 'oldPassword' },
+        { id: 'new', label: 'New Password', key: 'newPassword' },
+        { id: 'confirm', label: 'Confirm New Password', key: 'confirmPassword' }
+      ].map((field) => (
+        <div className={style.wrapper} key={field.id}>
+          <p className={style.subtitle}>{field.label}</p>
           <div className={style.passwordBox}>
             <input
-              type={showOld ? "text" : "password"}
-              placeholder="Enter your old password"
-              value={inputPassword.password}
-              onChange={(e) => setInputPassword({ password: e.target.value })}
+              type={showPass[field.id as keyof typeof showPass] ? "text" : "password"}
+              value={passwords[field.key as keyof typeof passwords]}
+              onChange={(e) => setPasswords({ ...passwords, [field.key]: e.target.value })}
               className={style.input}
+              placeholder={`Enter ${field.label.toLowerCase()}`}
             />
-            <span className={style.eyeIcon} onClick={() => setShowOld(!showOld)}>
-              {showOld ? <AiOutlineEyeInvisible /> : <AiOutlineEye />}
+            <span className={style.eyeIcon} onClick={() => setShowPass({ ...showPass, [field.id]: !showPass[field.id as keyof typeof showPass] })}>
+              {showPass[field.id as keyof typeof showPass] ? <AiOutlineEyeInvisible /> : <AiOutlineEye />}
             </span>
           </div>
-          {errors["password"] && <p className={style.error}>{errors["password"]}</p>}
+          {errors[field.id] && <p className={style.error}>{errors[field.id]}</p>}
         </div>
+      ))}
 
-        {/* New Password */}
-        <div className={style.wrapper}>
-          <p className={style.subtitle}>New Password</p>
-          <div className={style.passwordBox}>
-            <input
-              type={showNew ? "text" : "password"}
-              placeholder="Enter your new password"
-              value={inputNewPassword.newPassword}
-              onChange={(e) => setInputNewPassword({ newPassword: e.target.value })}
-              className={style.input}
-            />
-            <span className={style.eyeIcon} onClick={() => setShowNew(!showNew)}>
-              {showNew ? <AiOutlineEyeInvisible /> : <AiOutlineEye />}
-            </span>
-          </div>
-          {errors["newPassword"] && <p className={style.error}>{errors["newPassword"]}</p>}
-        </div>
-
-        {/* Confirm Password */}
-        <div className={style.wrapper}>
-          <p className={style.subtitle}>Confirm New Password</p>
-          <div className={style.passwordBox}>
-            <input
-              type={showConfirm ? "text" : "password"}
-              placeholder="Confirm your new password"
-              value={confirmNewPassword}
-              onChange={(e) => setConfirmNewPassword(e.target.value)}
-              className={style.input}
-            />
-            <span className={style.eyeIcon} onClick={() => setShowConfirm(!showConfirm)}>
-              {showConfirm ? <AiOutlineEyeInvisible /> : <AiOutlineEye />}
-            </span>
-          </div>
-          {errors["confirmNewPassword"] && <p className={style.error}>{errors["confirmNewPassword"]}</p>}
-        </div>
-
-        {showSuccess && <p className={`${style.success} ${style.fadeIn}`}>{success}</p>}
-        {error && <p className={style.error}>{error}</p>}
-
-        <Button
-          type="submit"
-          disabled={loading}
-          children={
-            loading ? "Updating..." : (
-              <span className={style.span}>
-                Update
-              </span>
-            )
-          }
-          className={style.btn2}
-        />
-      </form>
-    </div>
+      <Button type="submit" disabled={loading} className={style.btn2}>
+        {loading ? "Processing..." : "Change Password"}
+      </Button>
+    </form>
   );
 };
 
