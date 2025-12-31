@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import axios from 'axios';
-import ReactMde, { Suggestion } from 'react-mde';
+import ReactMde from 'react-mde';
 import ReactMarkdown from 'react-markdown';
 import 'react-mde/lib/styles/css/react-mde-all.css';
 import { Hospital } from '@/services/hospital';
@@ -9,7 +9,7 @@ import style from './style/editor.module.css';
 import { MdOutlineLibraryAdd, MdOutlineRestartAlt, MdErrorOutline, MdCheckCircleOutline } from 'react-icons/md';
 import { useAuthContext } from "@/context/userContext";
 import { motion, AnimatePresence } from 'framer-motion';
-import { zoomIn, fadeUp } from '@/hooks/animations';
+import { zoomIn } from '@/hooks/animations';
 
 const BASE_URL = import.meta.env.VITE_BASE_URL;
 

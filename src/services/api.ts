@@ -102,7 +102,6 @@ export async function exportHospital(searchParams: any) {
     });
     console.log(searchParams)
     const exportedData = data;
-    console.log(data)
     return exportedData;
   } catch (error) {
     throw error
@@ -141,3 +140,102 @@ export async function deleteHospital(id: number) {
     throw error
   }
 }
+
+// axios api
+// helper to manage the loading state outside of React components
+
+let activeRequests = 0;
+
+const showLoader = () => {
+  const loader = document.getElementById("global-loader");
+  if (loader) {
+    activeRequests++;
+    loader.style.display = "flex";
+  }
+};
+
+const hideLoader = () => {
+  const loader = document.getElementById("global-loader");
+  if (loader) {
+    activeRequests--;
+    if (activeRequests <= 0) {
+      activeRequests = 0;
+      loader.style.display = "none";
+    }
+  }
+};
+
+// 🛡️ Create the custom instance
+export const api = axios.create({
+  baseURL: BASE_URL,
+  withCredentials: true,
+});
+
+/**
+ * REQUEST INTERCEPTOR
+ */
+api.interceptors.request.use(
+  (config) => {
+    showLoader();
+
+    const token = localStorage.getItem("accessToken");
+    if (token && !config.headers["Authorization"]) {
+      config.headers["Authorization"] = `Bearer ${token}`;
+    }
+    return config;
+  },
+  (error) => {
+    hideLoader();
+    return Promise.reject(error);
+  }
+);
+
+/**
+ * RESPONSE INTERCEPTOR
+ */
+api.interceptors.response.use(
+  (response) => {
+    hideLoader();
+    return response;
+  },
+  async (error) => {
+    const prevRequest = error?.config;
+    // const currentPath = window.location.pathname;
+const tokenInStorage = localStorage.getItem("accessToken");
+
+    if (error?.response?.status === 401 && !prevRequest?._retry && tokenInStorage) {
+      prevRequest._retry = true;
+
+      try {
+        const response = await axios.get(`${BASE_URL}/auth/refresh`, {
+            withCredentials: true,
+        });
+
+        const newAuthData = response.data;
+        const { accessToken } = newAuthData;
+
+        localStorage.setItem("accessToken", accessToken);
+
+        Object.entries(newAuthData).forEach(([key, value]) => {
+            if (value) localStorage.setItem(key, value.toString());
+        });
+
+        prevRequest.headers["Authorization"] = `Bearer ${accessToken}`;
+
+        return api(prevRequest);
+
+      } catch (refreshError) {
+        localStorage.clear();
+       if (!window.location.pathname.includes('/login')) {
+         window.location.href = "/login?expired=true";
+      }
+        return Promise.reject(refreshError);
+      } finally {
+        hideLoader();
+      }
+    }
+
+    hideLoader();
+    return Promise.reject(error);
+  }
+);

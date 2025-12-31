@@ -1,0 +1,162 @@
+$primary-dark: #0f172a;
+$indigo: #4f46e5;
+$border: #e2e8f0;
+$gray-text: #64748b;
+$bg-light: #f8fafc;
+$danger: #dc2626;
+
+/* --- Container & Layout --- */
+.dashboardContainer {
+    padding: 3rem 2rem;
+    max-width: 1400px;
+    width: 100%;
+    margin: 0 auto;
+    background: $bg-light;
+    min-height: 100vh;
+}
+
+.header {
+    margin-bottom: 3.5rem;
+    h1 { font-size: 2.25rem; font-weight: 800; color: $primary-dark; margin: 0; }
+    p { color: $gray-text; font-size: 1.1rem; margin-top: 0.5rem; }
+}
+
+/* --- Stats Section --- */
+.statsGrid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem;
+    margin-bottom: 4rem;
+}
+
+.statCard {
+    background: white;
+    padding: 1.5rem;
+    border-radius: 16px;
+    border: 1px solid $border;
+    display: flex;
+    align-items: center;
+    gap: 1.25rem;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+}
+
+.iconWrapper {
+    width: 56px; height: 56px; border-radius: 12px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.5rem;
+
+    &.iconUsers { background: #e0e7ff; color: #4338ca; }
+    &.iconTotal { background: #fef3c7; color: #d97706; }
+    &.iconPending { background: #fee2e2; color: #dc2626; }
+    &.iconLive { background: #dcfce7; color: #16a34a; }
+}
+
+.statInfo {
+    span { font-size: 0.875rem; color: $gray-text; font-weight: 600; text-transform: uppercase; }
+    h3 { font-size: 1.75rem; margin: 0.25rem 0 0; color: $primary-dark; }
+
+    // --- ADDED: Alert text for high-priority numbers ---
+    .alertText {
+        color: $danger;
+        font-weight: 800;
+    }
+}
+
+/* --- Management Systems Section --- */
+.adminNav {
+    margin-top: 2rem;
+}
+
+// --- ADDED: Section Header with Decorative Line ---
+.sectionHeader {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+
+    h2 {
+        font-size: 1.5rem;
+        color: $primary-dark;
+        margin: 0;
+        white-space: nowrap;
+    }
+}
+
+.headerLine {
+    flex: 1;
+    height: 2px;
+    background: linear-gradient(90deg, $border 0%, rgba($border, 0) 100%);
+}
+
+.navGrid {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+}
+
+.navCard {
+    background: white;
+    padding: 1.5rem;
+    border-radius: 16px;
+    border: 1px solid $border;
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    text-decoration: none;
+    color: inherit;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+
+    &:hover {
+        border-color: $indigo;
+        transform: translateX(10px);
+        box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+
+        .navIcon { background: $indigo; color: white; }
+        .navArrow { color: $indigo; transform: translateX(5px); }
+    }
+
+    .navIcon {
+        width: 52px; height: 52px; border-radius: 12px;
+        background: $bg-light; color: $indigo;
+        display: flex; align-items: center; justify-content: center;
+        font-size: 1.5rem;
+        transition: all 0.2s;
+    }
+
+    .navText {
+        flex: 1;
+        strong { display: block; font-size: 1.15rem; color: $primary-dark; margin-bottom: 0.25rem; }
+        p { margin: 0; color: $gray-text; font-size: 0.95rem; line-height: 1.5; }
+    }
+
+    .navArrow {
+        color: #cbd5e1; font-size: 1.25rem; transition: all 0.2s;
+    }
+}
+
+/* --- ADDED: Enhanced Loading States --- */
+.loadingContainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 60vh;
+    gap: 1rem;
+    color: $gray-text;
+    font-weight: 600;
+}
+
+.spinner {
+    width: 40px;
+    height: 40px;
+    border: 4px solid rgba($indigo, 0.1);
+    border-top: 4px solid $indigo;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}

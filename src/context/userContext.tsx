@@ -1,117 +1,90 @@
-import { useContext, createContext, useReducer } from "react";
+import { useContext, createContext, useReducer, ReactNode } from "react";
 import { AuthState, AuthAction, AuthContextType } from "@/services/user";
 
+// --- INITIAL STATE ---
 const initialState: AuthState = {
+  _id: localStorage.getItem("_id") || localStorage.getItem("id") || null,
   username: localStorage.getItem("username") || null,
   name: localStorage.getItem("name") || null,
   email: localStorage.getItem("email") || null,
+  role: (localStorage.getItem("role") as "user" | "admin") || null,
+  createdAt: localStorage.getItem("createdAt") || null,
+  updatedAt: localStorage.getItem("updatedAt") || null,
+  accessToken: localStorage.getItem("accessToken") || null,
   password: null,
   newPassword: null,
-  accessToken: localStorage.getItem("accessToken") || null
-}
+};
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
+// --- REDUCER LOGIC ---
 const authReducer = (state: AuthState, action: AuthAction): AuthState => {
   switch (action.type) {
-    case "REGISTER":
-      localStorage.setItem("username", action.payload?.username || "");
-      localStorage.setItem("name", action.payload?.name || "");
-      localStorage.setItem("email", action.payload?.email || "");
-      return {
-        ...state,
-        username: action.payload?.username || state.username,
-        name: action.payload?.name || state.name,
-        email: action.payload?.email || state.email,
-      }
     case "LOGIN":
-      // Retrieve the access token from the cookie
-      const accessTokenCookie = document.cookie.split("; ").find((cookies) => cookies.startsWith("accessToken="))
-      const accessToken = accessTokenCookie?.split("=")[1] || ""
-      localStorage.setItem("username", (action.payload?.username || ""));
-      localStorage.setItem("name", (action.payload?.name || ""));
-      localStorage.setItem("email", (action.payload?.email || ""));
-      localStorage.setItem("accessToken", accessToken);
-      return {
-        ...state,
-        username: action.payload?.username || state.username,
-        name: action.payload?.name || state.name,
-        email: action.payload?.email || state.email,
-        accessToken: accessToken || state.accessToken
-      }
-    case "REFRESH":
-      localStorage.setItem("accessToken", action.payload?.accessToken || "");
-      return {
-        ...state,
-        accessToken: action.payload?.accessToken || state.accessToken
-      }
+    case "REGISTER":
     case "UPDATE":
-      localStorage.setItem("username", action.payload?.username || "");
-      localStorage.setItem("name", action.payload?.name || "");
-      localStorage.setItem("email", action.payload?.email || "");
-      return {
-        ...state,
-        username: action.payload?.username || state.username,
-        name: action.payload?.name || state.name,
-        email: action.payload?.email || state.email,
+    case "REFRESH":
+      if (action.payload) {
+        // Dynamically update localStorage for every key provided in the payload
+        Object.entries(action.payload).forEach(([key, value]) => {
+          if (value !== undefined && value !== null) {
+            localStorage.setItem(key, value.toString());
+          }
+        });
       }
-    case "PASSWORD-UPDATE":
-      localStorage.setItem("username", action.payload?.username || "");
-      return {
-        ...state,
-        username: action.payload?.username || state.username,
-        password: action.payload?.password || state.password,
-        newPassword: action.payload?.newPassword || state.newPassword
-      }
-    case "DELETE":
-      document.cookie = `accessToken=; SameSite=None; Max-Age=0;`;
-      localStorage.removeItem("username");
-      localStorage.removeItem("name");
-      localStorage.removeItem("email");
-      localStorage.removeItem("accessToken");
-      return {
-        ...state,
-        username: null,
-        name: null,
-        email: null,
-        accessToken: null
-      }
-    case "LOGOUT":
-      document.cookie = `accessToken=; SameSite=None; Max-Age=0;`;
-      localStorage.removeItem("username");
-      localStorage.removeItem("name");
-      localStorage.removeItem("email");
-      localStorage.removeItem("accessToken");
-      return {
-        ...state,
-        username: null,
-        name: null,
-        email: null,
-        accessToken: null
-      }
-    default:
-      return state
-  }
-}
 
-const ContextProvider = ({ children }: { children: React.ReactNode }) => {
-  const [state, dispatch] = useReducer(authReducer, initialState)
+      return {
+        ...state,
+        ...action.payload,
+        _id: action.payload?.id || action.payload?._id || state._id,
+      };
+
+    // Clear everything on Logout or Account Deletion
+    case "LOGOUT":
+    case "DELETE":
+      localStorage.clear();
+      return {
+        ...initialState,
+        username: null,
+        name: null,
+        email: null,
+        role: null,
+        accessToken: null,
+        _id: null,
+        createdAt: null,
+        updatedAt: null,
+      };
+
+    default:
+      return state;
+  }
+};
+
+// --- PROVIDER COMPONENT ---
+export const ContextProvider = ({ children }: { children: ReactNode }) => {
+  const [state, dispatch] = useReducer(authReducer, initialState);
 
   return (
     <AuthContext.Provider value={{ state, dispatch }}>
       {children}
-    </AuthContext.Provider >
-  )
-}
+    </AuthContext.Provider>
+  );
+};
 
-const BASE_URL = import.meta.env.VITE_BASE_URL;
+// --- API CONFIG ---
+export const BASE_URL = import.meta.env.VITE_BASE_URL;
+// export const BASE_URL = import.meta.env.PROD
+//  ? import.meta.env.VITE_BASE_URL_PROD
+//   : import.meta.env.VITE_BASE_URLLocal;
 
-const useAuthContext = (): AuthContextType => {
+/**
+ * Custom hook to access Auth State and Dispatch
+ * Ensures the context is only used within a Provider
+ */
+export const useAuthContext = (): AuthContextType => {
   const context = useContext(AuthContext);
   if (!context) {
-    throw new Error("useAuthContext must be used within an AuthProvider");
+    throw new Error("useAuthContext must be used within a ContextProvider");
   }
   return context;
 };
-
-export { ContextProvider, useAuthContext, BASE_URL }
