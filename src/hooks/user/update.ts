@@ -8,7 +8,7 @@ const useUpdate = () => {
   const [loading, setLoading] = useState(false);
   const { dispatch } = useAuthContext();
 
-  const update = async (user: User) => {
+  const update = async (user: User, onSuccess?: () => void) => {
     setLoading(true);
     try {
       const response = await api.patch<User>(`/users`, user);
@@ -19,6 +19,8 @@ const useUpdate = () => {
       });
 
       toast.success("Profile updated successfully!", { position: "top-center" });
+      if (onSuccess) onSuccess();
+
     } catch (err: any) {
       const errorMessage = err.response?.data?.message || "Could not update profile.";
       toast.error(errorMessage, { position: "top-center" });

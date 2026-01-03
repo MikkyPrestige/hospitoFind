@@ -10,7 +10,7 @@ interface Props {
 
 const RequireAuth = ({ allowedRoles }: Props) => {
     const { state } = useAuthContext();
-    const { isLoading: auth0Loading, isAuthenticated } = useAuth0();
+    const { isLoading: auth0Loading } = useAuth0();
     const location = useLocation();
 
     const isSyncing = auth0Loading || (localStorage.getItem("accessToken") && !state.role);
@@ -49,8 +49,10 @@ const RequireAuth = ({ allowedRoles }: Props) => {
         );
     }
 
-    const isUserLoggedIn = !!(state.accessToken || state.username || isAuthenticated);
+    // const isUserLoggedIn = !!(state.accessToken || state.username || isAuthenticated);
+    const isUserLoggedIn = !!(state.accessToken && state.role);
 
+    // const hasRequiredRole = state.role && allowedRoles.includes(state.role as "user" | "admin");
     const hasRequiredRole = state.role && allowedRoles.includes(state.role as "user" | "admin");
 
     if (isUserLoggedIn && hasRequiredRole) {

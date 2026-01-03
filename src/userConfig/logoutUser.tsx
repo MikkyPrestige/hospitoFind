@@ -6,8 +6,8 @@ import style from "./style/logoutUser.module.css";
 const Logout = () => {
   const { logout, loading } = useLogout();
 
-  const handleLogout = () => {
-    logout();
+  const handleLogout =  () => {
+     logout();
   };
 
   return (
@@ -16,7 +16,7 @@ const Logout = () => {
         <AiOutlineExclamationCircle className={style.box_icon} />
         <h1 className={style.head}>Ready to log out?</h1>
         <p className={style.subhead}>
-          Sign in anytime to continue exploring HospitoFind. Your saved data remains secure.
+          Sign in anytime to continue exploring HospitoFind.
         </p>
       </div>
 

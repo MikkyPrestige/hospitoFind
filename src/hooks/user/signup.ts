@@ -1,6 +1,6 @@
 import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { useAuthContext } from '@/context/userContext';
+// import { useNavigate } from 'react-router-dom';
+// import { useAuthContext } from '@/context/userContext';
 import { api } from '@/services/api';
 import { User } from '@/services/user';
 import { toast } from 'react-toastify';
@@ -8,8 +8,8 @@ import { toast } from 'react-toastify';
 const useSignup = () => {
   const [loading, setLoading] = useState(false);
   const [success, setSuccess] = useState(false);
-  const { dispatch } = useAuthContext();
-  const navigate = useNavigate();
+  // const { dispatch } = useAuthContext();
+  // const navigate = useNavigate();
 
   const signUp = async (user: User) => {
     setLoading(true);

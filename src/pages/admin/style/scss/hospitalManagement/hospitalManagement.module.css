@@ -1,24 +1,7 @@
-.adminTopNav {
-  display: flex;
-  gap: 2rem;
-  padding: 1rem;
-  border-bottom: 1px solid #e2e8f0;
-}
-.adminTopNav a {
-  text-decoration: none;
-  color: #64748b;
-  font-weight: 600;
-  font-size: 1.2rem;
-  transition: 0.2s;
-}
-.adminTopNav a:hover, .adminTopNav a.active {
-  color: #4f46e5;
-  border-bottom: 2px solid #4f46e5;
-}
-
 .container {
   padding: 2rem;
   max-width: 1400px;
+  width: 100%;
   margin: 0 auto;
 }
 

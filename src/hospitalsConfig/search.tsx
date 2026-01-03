@@ -12,6 +12,8 @@ import ExportButton from "@/hospitalsConfig/export";
 import ShareButton from "@/hospitalsConfig/share";
 import style from "./style/search/search.module.scss";
 import AnimatedLoader from "../components/utils/AnimatedLoader";
+// import useUserActivity from "@/hooks/user/useUserActivity";
+// import { api } from "@/services/api";
 
 export default function SearchForm({
   onSearchResultsChange,
@@ -27,13 +29,13 @@ export default function SearchForm({
   const [query, setQuery] = useState("");
   const [location, setLocation] = useState<LocationInput>({ address: "", city: "", state: "" });
   const [hospitals, setHospitals] = useState<Hospital[]>([]);
-  const [error, setError] = useState<string>(""); // ✅ Now used in JSX
+  const [error, setError] = useState<string>("");
   const [loading, setLoading] = useState(false);
   const [countries, setCountries] = useState<{ country: string; hospitals: Hospital[] }[]>([]);
   const [loadingCountries, setLoadingCountries] = useState(true);
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const [favorites, setFavorites] = useState<Hospital[]>([]);
-
+  // const { syncFavorite, syncView } = useUserActivity();
   const dropdownRef = useRef<HTMLDivElement | null>(null);
   const { state } = useAuthContext();
 
@@ -93,7 +95,7 @@ export default function SearchForm({
     }
 
     setHospitals([]);
-    setError("No hospitals found matching your criteria."); // ✅ Sets the error state
+    setError("No hospitals found matching your criteria.");
     onSearchResultsChange?.(false);
     setLoading(false);
   }
@@ -109,27 +111,80 @@ export default function SearchForm({
     return () => clearTimeout(id);
   }, [query, location.city, location.state]);
 
+
   const toggleFav = (h: Hospital) => {
     const raw = JSON.parse(localStorage.getItem(FAV_KEY) || "[]");
+
     const exists = raw.some((r: any) => r.name === h.name);
-    const next = exists ? raw.filter((r: any) => r.name !== h.name) : [{ ...h }, ...raw].slice(0, 50);
+
+    const next = exists
+      ? raw.filter((r: any) => r.name !== h.name)
+      : [{ ...h }, ...raw].slice(0, 50);
+
     localStorage.setItem(FAV_KEY, JSON.stringify(next));
     setFavorites(next);
     onFavoritesUpdate?.();
   };
+  // const toggleFav = async (h: Hospital) => {
+  //   // 1. UI Update (This part already works for you)
+  //   const raw = JSON.parse(localStorage.getItem(FAV_KEY) || "[]");
+  //   const exists = raw.some((r: any) => r._id === h._id);
+  //   const next = exists ? raw.filter((r: any) => r.name !== h.name) : [{ ...h }, ...raw];
+  //   localStorage.setItem(FAV_KEY, JSON.stringify(next));
+  //   setFavorites(next);
+  //   onFavoritesUpdate?.();
+
+  //   if (state?.id) {
+  //     try {
+  //       await api.post("/hospitals/favorite", { hospitalId: h._id });
+  //     } catch (err) {
+  //       console.error("DB Sync failed for Favorite", err);
+  //     }
+  //   }
+  // };
 
   const handleExplore = (hospital: Hospital) => {
     const raw = JSON.parse(localStorage.getItem(REC_KEY) || "[]");
-    const next = [{ ...hospital, viewedAt: Date.now() }, ...raw.filter((h: any) => h.name !== hospital.name)].slice(0, 10);
+    const next = [
+      { ...hospital, viewedAt: Date.now() },
+      ...raw.filter((h: any) => h.name !== hospital.name)
+    ].slice(0, 10);
+
     localStorage.setItem(REC_KEY, JSON.stringify(next));
     onRecentUpdate?.();
 
     const stored = JSON.parse(localStorage.getItem(WEEKLY_KEY) || "{}");
     const now = Date.now();
     let count = (now - (stored.lastReset || now) > 604800000) ? 1 : (stored.count || 0) + 1;
-    localStorage.setItem(WEEKLY_KEY, JSON.stringify({ count, lastReset: stored.lastReset || now }));
+
+    localStorage.setItem(WEEKLY_KEY, JSON.stringify({
+      count,
+      lastReset: stored.lastReset || now
+    }));
+
     onWeeklyViewsChange?.(count);
   };
+
+  // const handleExplore = async (hospital: Hospital) => {
+  //   console.log("Exploring hospital:", hospital.name);
+  //   const raw = JSON.parse(localStorage.getItem(REC_KEY) || "[]");
+  //   const next = [{ ...hospital, viewedAt: Date.now() }, ...raw.filter((h: any) => h.name !== hospital.name)].slice(0, 10);
+  //   localStorage.setItem(REC_KEY, JSON.stringify(next));
+  //   onRecentUpdate?.();
+
+  //   const stored = JSON.parse(localStorage.getItem(WEEKLY_KEY) || "{}");
+  //   const now = Date.now();
+  //   let count = (now - (stored.lastReset || now) > 604800000) ? 1 : (stored.count || 0) + 1;
+  //   localStorage.setItem(WEEKLY_KEY, JSON.stringify({ count, lastReset: stored.lastReset || now }));
+  //   onWeeklyViewsChange?.(count);
+  //   if (state?.id) {
+  //     try {
+  //       await api.post("/hospitals/view", { hospitalId: hospital._id });
+  //     } catch (err) {
+  //       console.error("DB Sync failed for View", err);
+  //     }
+  //   }
+  // }
 
   const filteredCountries = countries.map(c => ({
     ...c, hospitals: (c.hospitals || []).filter(h => {

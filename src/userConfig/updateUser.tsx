@@ -5,7 +5,11 @@ import useUpdate from "@/hooks/user/update";
 import { Button } from "@/components/button";
 import style from "./style/updateUser.module.css";
 
-const UpdateUser = () => {
+interface UpdateUserProps {
+  onSuccess?: () => void;
+}
+
+const UpdateUser = ({ onSuccess }: UpdateUserProps) => {
   const { state } = useAuthContext();
   const { loading, update } = useUpdate();
 
@@ -26,7 +30,7 @@ const UpdateUser = () => {
       username: state.username || "",
       role: state.role || "user"
     };
-    update(userUpdate);
+    update(userUpdate, onSuccess);
     setFormData(prev => ({ ...prev, password: "" }));
   };
 
