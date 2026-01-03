@@ -1,71 +1,62 @@
-/* --- MOBILE FIRST (Default) --- */
 .container {
-  width: 100%;
-  min-height: 60vh; /* Centers the content vertically in the viewport */
   display: flex;
   flex-direction: column;
-  justify-content: center;
   align-items: center;
-  padding: 1.5rem;
+  justify-content: center;
   text-align: center;
-  gap: 2.5rem;
-  background-color: transparent;
+  padding: 3rem;
+  width: 100%;
+  min-height: 50vh;
 }
 
 .box {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 1rem;
+  margin-bottom: 2rem;
 }
 
 .box_icon {
-  font-size: 5rem;
-  color: #08299b;
+  font-size: 4rem;
+  color: #0e3db7;
   opacity: 0.9;
-  /* Subtle pulse animation to draw the eye */
   animation: pulse 2s infinite ease-in-out;
 }
 
 .head {
-  font-size: 1.75rem;
-  font-weight: 800;
-  color: #1e293b;
-  margin: 0;
+  font-size: 2rem;
+  font-weight: 700;
+  color: #1a202c;
+  margin-bottom: 0.5rem;
   letter-spacing: -0.02em;
 }
 
 .subhead {
-  font-size: 1rem;
-  color: #64748b;
-  line-height: 1.6;
-  max-width: 320px;
-  margin: 0;
+  color: #718096;
+  font-size: 1.5rem;
+  line-height: 1.5;
 }
 
 .btn {
-  width: 100%;
-  height: 3.5rem;
-  background-color: #08299b !important;
-  color: white !important;
-  border-radius: 14px !important;
-  font-weight: 700 !important;
-  font-size: 1.1rem !important;
-  border: none !important;
+  width: fit-content;
+  height: 3rem !important;
+  background-color: #0e3db7 !important;
+  color: white;
+  border-radius: 8px;
+  font-weight: 600;
+  border: none;
+  cursor: pointer;
+  transition: transform 0.2s;
   box-shadow: 0 4px 12px rgba(8, 41, 155, 0.2) !important;
-  transition: all 0.2s ease !important;
+  font-size: 1.1rem !important;
 }
 
-.btn:active {
-  transform: scale(0.96);
-  box-shadow: 0 2px 6px rgba(8, 41, 155, 0.1) !important;
+.btn:hover:not(:disabled) {
+  background-color: #0a2d8a;
+  transform: translateY(-2px);
 }
 
 .btn:disabled {
-  background-color: #cbd5e1;
+  background-color: #cbd5e0;
   cursor: not-allowed;
   opacity: 0.7;
-  transition: all 0.3s ease;
 }
 
 .span {
@@ -75,25 +66,10 @@
   gap: 0.5rem;
 }
 
-/* --- TABLET / DESKTOP (Min-width 768px) --- */
 @media (min-width: 768px) {
   .container {
     min-height: auto;
     padding: 3rem;
-  }
-
-  .head {
-    font-size: 2.25rem;
-  }
-
-  .subhead {
-    font-size: 1.1rem;
-    max-width: 450px;
-  }
-
-  .btn {
-    width: fit-content;
-    padding: 0 3rem !important;
   }
 }
 

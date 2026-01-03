@@ -4,6 +4,7 @@ export interface User {
   email: string;
   password?: string;
   role?: "user" | "admin";
+  auth0Id?: string;
 }
 
 export interface Login {
@@ -31,12 +32,31 @@ export interface AuthState {
   name: string | null;
   email: string | null;
   role: "user" | "admin" | null;
+  auth0Id?: string | null;
   createdAt?: string | null;
   updatedAt?: string | null;
   accessToken: string | null;
   password?: string | null;
   newPassword?: string | null;
 }
+
+// export interface UserPayload {
+//   accessToken: string;
+//   username: string;
+//   role: string;
+//   id: string;
+//   auth0Id?: string;
+// }
+
+
+// export type AuthAction =
+//   | { type: "LOGIN"; payload: UserData }
+//   | { type: "REFRESH"; payload: UserData }
+//   | { type: "REGISTER"; payload: UserData }
+//   | { type: "UPDATE"; payload: Partial<UserData> }
+//   | { type: "PASSWORD-UPDATE" }
+//   | { type: "DELETE" }
+//   | { type: "LOGOUT" };
 
 export type AuthAction = {
   type: "LOGIN" | "REGISTER" | "UPDATE" | "REFRESH" | "PASSWORD-UPDATE" | "DELETE" | "LOGOUT";

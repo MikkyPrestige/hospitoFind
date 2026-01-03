@@ -8,6 +8,7 @@ const initialState: AuthState = {
   name: localStorage.getItem("name") || null,
   email: localStorage.getItem("email") || null,
   role: (localStorage.getItem("role") as "user" | "admin") || null,
+  auth0Id: localStorage.getItem("auth0Id") || null,
   createdAt: localStorage.getItem("createdAt") || null,
   updatedAt: localStorage.getItem("updatedAt") || null,
   accessToken: localStorage.getItem("accessToken") || null,
@@ -33,10 +34,17 @@ const authReducer = (state: AuthState, action: AuthAction): AuthState => {
         });
       }
 
+      const data = action.payload as AuthState;
       return {
         ...state,
-        ...action.payload,
-        _id: action.payload?.id || action.payload?._id || state._id,
+        accessToken: data.accessToken,
+        name: data.name,
+        username: data.username,
+        email: data.email,
+        role: data.role,
+        id: data.id,
+        createdAt: data.createdAt,
+          auth0Id: data.auth0Id || null,
       };
 
     // Clear everything on Logout or Account Deletion
@@ -72,7 +80,7 @@ export const ContextProvider = ({ children }: { children: ReactNode }) => {
 };
 
 // --- API CONFIG ---
-export const BASE_URL = import.meta.env.VITE_BASE_URL;
+export const BASE_URL = import.meta.env.VITE_BASE_URLLocal;
 // export const BASE_URL = import.meta.env.PROD
 //  ? import.meta.env.VITE_BASE_URL_PROD
 //   : import.meta.env.VITE_BASE_URLLocal;

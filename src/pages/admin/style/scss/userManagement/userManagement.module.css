@@ -1,31 +1,10 @@
-/* --- Sub-Navigation --- */
-.adminTopNav {
-  display: flex;
-  gap: 2rem;
-  padding: 1rem 2rem;
-  background: white;
-  border-bottom: 1px solid #d1d5db;
-}
-.adminTopNav a {
-  text-decoration: none;
-  color: #64748b;
-  font-weight: 600;
-  font-size: 1rem;
-  transition: 0.2s;
-  border-bottom: 2px solid transparent;
-  padding-bottom: 0.5rem;
-}
-.adminTopNav a:hover, .adminTopNav a.active {
-  color: #4f46e5;
-  border-bottom: 2px solid #4f46e5;
-}
-
 /* --- Container Layout --- */
 .container {
   padding: 2.5rem;
   max-width: 1300px;
   margin: 0 auto;
   min-height: 100vh;
+  width: 100%;
 }
 
 .header {

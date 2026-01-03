@@ -1,32 +1,8 @@
-/* --- Navigation --- */
-.adminTopNav {
-  display: flex;
-  gap: 2rem;
-  padding: 1rem 2rem;
-  background: white;
-  border-bottom: 1px solid #e2e8f0;
-}
-.adminTopNav a {
-  text-decoration: none;
-  color: #64748b;
-  font-weight: 600;
-  font-size: 1rem;
-  padding: 0.5rem 0;
-  transition: 0.2s;
-  border-bottom: 2px solid transparent;
-}
-.adminTopNav a:hover {
-  color: #4f46e5;
-}
-.adminTopNav a.active {
-  color: #4f46e5;
-  border-bottom: 2px solid #4f46e5;
-}
-
 /* --- Container & Layout --- */
 .dashboardContainer {
   padding: 3rem 2rem;
   max-width: 1400px;
+  width: 100%;
   margin: 0 auto;
   background: #f8fafc;
   min-height: 100vh;

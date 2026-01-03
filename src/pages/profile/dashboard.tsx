@@ -23,10 +23,12 @@ import DeleteBtn from "@/userConfig/deleteUser";
 import Logout from "@/userConfig/logoutUser";
 import AccountStats from "./accountStats";
 import MySubmissions from "./userSubmissions";
-import style from "./style/dashboard.module.scss";
+import ProfileDisplay from "./profileDisplay";
+import style from "./style/scss/dashboard/dashboard.module.scss";
 import HospitalPic from "@/assets/images/hospital-logo.jpg";
 import { Avatar } from "@/components/avatar";
 import Motion from "@/components/motion";
+// import { api } from "@/services/api";
 import { fadeUp, sectionReveal, settingsTabVariants } from "@/hooks/animations";
 import { AnimatePresence } from "framer-motion";
 
@@ -34,18 +36,50 @@ const Dashboard = () => {
   const [selected, setSelected] = useState<string>("find-hospital");
   const [sidebarExpanded, setSidebarExpanded] = useState<boolean>(true);
   const [settingsTab, setSettingsTab] = useState<"profile" | "security" | "danger">("profile");
+  const [isEditing, setIsEditing] = useState(false);
   const { state } = useAuthContext();
-
-  // --- DYNAMIC USER-SPECIFIC KEYS ---
   const userPrefix = state?.username || "guest";
   const FAVORITES_KEY = `${userPrefix}_favorites`;
   const RECENTLY_KEY = `${userPrefix}_recentlyViewed`;
   const WEEKLY_KEY = `${userPrefix}_weeklyStats`;
-
   const [favorites, setFavorites] = useState<any[]>([]);
   const [recentlyViewed, setRecentlyViewed] = useState<any[]>([]);
   const [weeklyViews, setWeeklyViews] = useState<number>(0);
 
+
+  // useEffect(() => {
+  //   if (!state?.id) return;
+
+  //   const localFavs = JSON.parse(localStorage.getItem(FAVORITES_KEY) || "[]");
+  //   const localRecents = JSON.parse(localStorage.getItem(RECENTLY_KEY) || "[]");
+  //   const localWeekly = JSON.parse(localStorage.getItem(WEEKLY_KEY) || "{}");
+
+  //   setFavorites(localFavs);
+  //   setRecentlyViewed(localRecents);
+  //   setWeeklyViews(localWeekly.count || 0);
+
+  //   const syncWithDatabase = async () => {
+  //     try {
+  //       const res = await api.get("/hospitals/activity");
+  //       const { favorites: dbFavs, recentlyViewed: dbRecents, weeklyViews } = res.data;
+
+  //       if (dbFavs.length > 0) {
+  //         localStorage.setItem(FAVORITES_KEY, JSON.stringify(dbFavs));
+  //         setFavorites(dbFavs);
+  //       }
+  //       if (dbRecents.length > 0) {
+  //         localStorage.setItem(RECENTLY_KEY, JSON.stringify(dbRecents));
+  //         setRecentlyViewed(dbRecents);
+  //       }
+  //       setWeeklyViews(weeklyViews);
+  //     }
+  //     catch (err) {
+  //       console.error("Database sync failed, using local data only.", err);
+  //     }
+  //   };
+
+  //   syncWithDatabase();
+  // }, [state?.id]);
   useEffect(() => {
     if (state?.username) {
       setFavorites(JSON.parse(localStorage.getItem(FAVORITES_KEY) || "[]"));
@@ -97,6 +131,19 @@ const Dashboard = () => {
     const next = recentlyViewed.filter((item: any) => item.name !== name);
     setRecentlyViewed(next);
     localStorage.setItem(RECENTLY_KEY, JSON.stringify(next));
+  };
+
+  const getProviderName = () => {
+    if (!state.auth0Id) return 'Social Provider';
+
+    const id = state.auth0Id.toLowerCase();
+    if (id.includes('google')) return 'Google';
+    if (id.includes('facebook')) return 'Facebook';
+    if (id.includes('twitter')) return 'Twitter';
+    if (id.includes('linkedIn')) return 'LinkedIn';
+    if (id.includes('auth0')) return 'Auth0';
+
+    return 'Social Provider';
   };
 
   return (
@@ -295,7 +342,7 @@ const Dashboard = () => {
                     className={`${settingsTab === "danger" ? style.activeTab : ""} ${style.dangerTab}`}
                     onClick={() => setSettingsTab("danger")}
                   >
-                    <AiOutlineUserDelete /> <span>Account</span>
+                    <AiOutlineUserDelete /> <span>Delete</span>
                   </button>
                 </nav>
 
@@ -312,8 +359,25 @@ const Dashboard = () => {
                         alwaysVisible={true}
                       >
                         <div className={style.settingsCard}>
-                          <div className={style.cardHeader}><h3>Personal Information</h3></div>
-                          <div className={style.cardBody}><UpdateUser /></div>
+                          <div className={style.cardHeader}>
+                            <h3>{isEditing ? "Update Profile" : "Personal Information"}</h3>
+                          </div>
+
+                          <div className={style.cardBody}>
+                            {isEditing ? (
+                              <>
+                                <UpdateUser onSuccess={() => setIsEditing(false)} />
+                                <button
+                                  className={style.cancelBtn}
+                                  onClick={() => setIsEditing(false)}
+                                >
+                                  Cancel
+                                </button>
+                              </>
+                            ) : (
+                              <ProfileDisplay onEditClick={() => setIsEditing(true)} />
+                            )}
+                          </div>
                         </div>
                       </Motion>
                     )}
@@ -329,7 +393,28 @@ const Dashboard = () => {
                       >
                         <div className={style.settingsCard}>
                           <div className={style.cardHeader}><h3>Security Settings</h3></div>
-                          <div className={style.cardBody}><UpdatePassword /></div>
+                          {state.auth0Id ? (
+                            <div className={style.socialLoginNotice}>
+                              <div className={style.noticeHeader}>
+                                <svg fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                </svg>
+                                Account Managed Externally
+                              </div>
+                              <p className={style.noticeBody}>
+                                You are currently signed in via
+                                <span className={style.providerTag}>{getProviderName()}</span>.
+                                Your credentials and multi-factor authentication are handled by them for your security.
+                              </p>
+                              <p className={style.noticeFooter}>
+                                To update your password or email, please visit your {getProviderName()} account settings.
+                              </p>
+                            </div>
+                          ) : (
+                            <div className={style.cardBody}>
+                              <UpdatePassword />
+                            </div>
+                          )}
                         </div>
                       </Motion>
                     )}

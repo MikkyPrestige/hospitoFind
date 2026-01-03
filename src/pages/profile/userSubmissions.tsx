@@ -13,6 +13,7 @@ const UserSubmissions = () => {
 
         useEffect(() => {
             const fetchMyData = async () => {
+                // if (!state.id) return
                 if (!state.accessToken) return;
                 try {
                     const { data } = await axiosPrivate.get("/hospitals/submissions");
