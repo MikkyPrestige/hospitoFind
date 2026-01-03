@@ -33,6 +33,10 @@
   background: #f0fdf4;
   color: #22c55e;
 }
+.iconCircle.purple {
+  background: #f5f3ff;
+  color: #8b5cf6;
+}
 
 .statInfo span {
   display: block;

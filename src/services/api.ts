@@ -1,8 +1,8 @@
 import { Hospital } from "./hospital";
 import axios from "axios";
 
-// const BASE_URL =  import.meta.env.VITE_BASE_URL;
-const BASE_URL =  import.meta.env.VITE_BASE_URLLocal;
+const BASE_URL =  import.meta.env.VITE_BASE_URL;
+// const BASE_URL =  import.meta.env.VITE_BASE_URLLocal;
 
 // get all hospitals
 export async function getHospitals() {
@@ -143,7 +143,6 @@ export async function deleteHospital(id: number) {
 
 // axios api
 // helper to manage the loading state outside of React components
-
 let activeRequests = 0;
 
 const showLoader = () => {
@@ -193,6 +192,9 @@ api.interceptors.request.use(
 /**
  * RESPONSE INTERCEPTOR
  */
+/**
+ * RESPONSE INTERCEPTOR (Update this section in api.ts)
+ */
 api.interceptors.response.use(
   (response) => {
     hideLoader();
@@ -200,10 +202,11 @@ api.interceptors.response.use(
   },
   async (error) => {
     const prevRequest = error?.config;
-    // const currentPath = window.location.pathname;
-const tokenInStorage = localStorage.getItem("accessToken");
+    const tokenInStorage = localStorage.getItem("accessToken");
 
-    if (error?.response?.status === 401 && !prevRequest?._retry && tokenInStorage) {
+    const isAuthError = error?.response?.status === 401 || error?.response?.status === 403;
+
+    if (isAuthError && !prevRequest?._retry && tokenInStorage) {
       prevRequest._retry = true;
 
       try {
@@ -217,7 +220,7 @@ const tokenInStorage = localStorage.getItem("accessToken");
         localStorage.setItem("accessToken", accessToken);
 
         Object.entries(newAuthData).forEach(([key, value]) => {
-            if (value) localStorage.setItem(key, value.toString());
+            if (value && key !== 'accessToken') localStorage.setItem(key, value.toString());
         });
 
         prevRequest.headers["Authorization"] = `Bearer ${accessToken}`;
@@ -225,10 +228,12 @@ const tokenInStorage = localStorage.getItem("accessToken");
         return api(prevRequest);
 
       } catch (refreshError) {
+        console.error("Refresh failed:", refreshError);
         localStorage.clear();
-       if (!window.location.pathname.includes('/login')) {
-         window.location.href = "/login?expired=true";
-      }
+
+        if (!window.location.pathname.includes('/login')) {
+             window.location.href = "/login?expired=true";
+        }
         return Promise.reject(refreshError);
       } finally {
         hideLoader();
@@ -239,3 +244,48 @@ const tokenInStorage = localStorage.getItem("accessToken");
     return Promise.reject(error);
   }
 );
+// api.interceptors.response.use(
+//   (response) => {
+//     hideLoader();
+//     return response;
+//   },
+//   async (error) => {
+//     const prevRequest = error?.config;
+// const tokenInStorage = localStorage.getItem("accessToken");
+
+//     if (error?.response?.status === 401 && !prevRequest?._retry && tokenInStorage) {
+//       prevRequest._retry = true;
+
+//       try {
+//         const response = await axios.get(`${BASE_URL}/auth/refresh`, {
+//             withCredentials: true,
+//         });
+
+//         const newAuthData = response.data;
+//         const { accessToken } = newAuthData;
+
+//         localStorage.setItem("accessToken", accessToken);
+
+//         Object.entries(newAuthData).forEach(([key, value]) => {
+//             if (value) localStorage.setItem(key, value.toString());
+//         });
+
+//         prevRequest.headers["Authorization"] = `Bearer ${accessToken}`;
+
+//         return api(prevRequest);
+
+//       } catch (refreshError) {
+//         localStorage.clear();
+//        if (!window.location.pathname.includes('/login')) {
+//          window.location.href = "/login?expired=true";
+//       }
+//         return Promise.reject(refreshError);
+//       } finally {
+//         hideLoader();
+//       }
+//     }
+
+//     hideLoader();
+//     return Promise.reject(error);
+//   }
+// );

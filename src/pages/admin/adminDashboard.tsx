@@ -1,10 +1,11 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import { Link } from "react-router-dom";
 import useAxiosPrivate from "@/hooks/user/useAxiosPrivate";
 import {
     FiActivity, FiClock, FiCheckCircle, FiUsers, FiArrowRight, FiUserCheck, FiDatabase
 } from "react-icons/fi";
 import styles from "./style/scss/adminDashboard/adminDashboard.module.scss";
+import GoogleImport from "./googleImport";
 
 interface DashboardStats {
     totalHospitals: number;
@@ -20,19 +21,33 @@ const AdminDashboard = () => {
     const [loading, setLoading] = useState(true);
     const axiosPrivate = useAxiosPrivate();
 
-    useEffect(() => {
-        const fetchStats = async () => {
-            try {
-                const response = await axiosPrivate.get("/hospitals/admin/stats");
-                setStats(response.data);
-            } catch (err) {
-                console.error("Dashboard Stats Error:", err);
-            } finally {
-                setLoading(false);
-            }
-        };
-        fetchStats();
+    const fetchStats = useCallback(async () => {
+        try {
+            const response = await axiosPrivate.get("/hospitals/admin/stats");
+            setStats(response.data);
+        } catch (err) {
+            console.error("Dashboard Stats Error:", err);
+        } finally {
+            setLoading(false);
+        }
     }, [axiosPrivate]);
+
+    useEffect(() => {
+        fetchStats();
+    }, [fetchStats]);
+    // useEffect(() => {
+    //     const fetchStats = async () => {
+    //         try {
+    //             const response = await axiosPrivate.get("/hospitals/admin/stats");
+    //             setStats(response.data);
+    //         } catch (err) {
+    //             console.error("Dashboard Stats Error:", err);
+    //         } finally {
+    //             setLoading(false);
+    //         }
+    //     };
+    //     fetchStats();
+    // }, [axiosPrivate]);
 
     if (loading) {
         return (
@@ -133,6 +148,17 @@ const AdminDashboard = () => {
                         </Link>
                     </div>
                 </section>
+
+            <section className={styles.adminNav} style={{ marginTop: '3rem' }}>
+                <div className={styles.sectionHeader}>
+                    <h2>Data Acquisition Tools</h2>
+                    <div className={styles.headerLine}></div>
+                </div>
+
+                <div style={{ marginTop: '1.5rem' }}>
+                    <GoogleImport onSuccess={fetchStats} />
+                </div>
+            </section>
             </div>
     );
 };

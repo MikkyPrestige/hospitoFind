@@ -1,0 +1,248 @@
+@use 'sass:color'; // 1. Import the color module
+
+/* Variables matching your theme */
+$primary-color: #08299B;
+$primary-light: #e0e7ff;
+$success-color: #10b981;
+$warning-color: #f59e0b;
+$text-dark: #1f2937;
+$text-light: #6b7280;
+$border-color: #e5e7eb;
+
+.importCard {
+  background: white;
+  border-radius: 12px;
+  padding: 2rem;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  border: 1px solid $border-color;
+  position: relative;
+  overflow: hidden;
+  max-width: 600px;
+  margin: 0 auto;
+
+  .header {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+    margin-bottom: 2rem;
+
+    .iconWrapper {
+      width: 48px;
+      height: 48px;
+      border-radius: 10px;
+      background: $primary-light;
+      color: $primary-color;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.5rem;
+    }
+
+    h3 {
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: $text-dark;
+      margin: 0;
+    }
+
+    p {
+      color: $text-light;
+      font-size: 0.9rem;
+      margin: 0.25rem 0 0 0;
+    }
+  }
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+
+  .inputGroup {
+    display: flex;
+    gap: 1rem;
+
+    @media (max-width: 640px) {
+      flex-direction: column;
+    }
+  }
+
+  .inputWrapper {
+    position: relative;
+    flex: 1;
+
+    .inputIcon {
+      position: absolute;
+      left: 1rem;
+      top: 50%;
+      transform: translateY(-50%);
+      color: $text-light;
+    }
+
+    input {
+      width: 100%;
+      padding: 0.8rem 1rem 0.8rem 2.8rem;
+      border: 1px solid $border-color;
+      border-radius: 8px;
+      font-size: 0.95rem;
+      transition: all 0.2s;
+
+      &:focus {
+        border-color: $primary-color;
+        outline: none;
+        // Replaced rgba with color.change if needed, usually rgba is still tolerated but best to be strict
+        box-shadow: 0 0 0 3px rgba(8, 41, 155, 0.1);
+      }
+    }
+  }
+
+  .importBtn {
+    background: $primary-color;
+    color: white;
+    border: none;
+    padding: 0.9rem;
+    border-radius: 8px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.2s;
+
+    &:hover:not(:disabled) {
+      // FIX 1: darken -> color.adjust with negative lightness
+      background: color.adjust($primary-color, $lightness: -5%);
+    }
+
+    &:disabled {
+      opacity: 0.7;
+      cursor: not-allowed;
+    }
+  }
+}
+
+.resultBox {
+  text-align: center;
+  animation: fadeIn 0.3s ease-in;
+
+  .statsGrid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+
+    .stat {
+      padding: 1.5rem;
+      border-radius: 12px;
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+
+      .count {
+        font-size: 2rem;
+        font-weight: 800;
+        margin-bottom: 0.25rem;
+      }
+
+      .label {
+        font-size: 0.85rem;
+        font-weight: 500;
+        opacity: 0.9;
+      }
+
+      .statIcon {
+        position: absolute;
+        top: 1rem;
+        right: 1rem;
+        font-size: 1.2rem;
+        opacity: 0.5;
+      }
+
+      &.success {
+        // FIX 2: lighten -> color.adjust (positive)
+        background: color.adjust($success-color, $lightness: 45%);
+        // FIX 3: darken -> color.adjust (negative)
+        color: color.adjust($success-color, $lightness: -10%);
+        border: 1px solid color.adjust($success-color, $lightness: 30%);
+      }
+
+      &.skipped {
+        // FIX 4: lighten -> color.adjust
+        background: color.adjust($warning-color, $lightness: 45%);
+        // FIX 5: darken -> color.adjust
+        color: color.adjust($warning-color, $lightness: -15%);
+        border: 1px solid color.adjust($warning-color, $lightness: 30%);
+      }
+    }
+  }
+
+  .resultMsg {
+    color: $text-dark;
+    margin-bottom: 1.5rem;
+    font-weight: 500;
+  }
+
+  .resetBtn {
+    background: transparent;
+    border: 1px solid $border-color;
+    color: $text-dark;
+    padding: 0.6rem 1.2rem;
+    border-radius: 6px;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.9rem;
+    transition: all 0.2s;
+
+    &:hover {
+      background: #f9fafb;
+      // FIX 6: darken -> color.adjust
+      border-color: color.adjust($border-color, $lightness: -10%);
+    }
+  }
+}
+
+.loaderOverlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(255, 255, 255, 0.9);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  z-index: 10;
+
+  .spinner {
+    width: 30px;
+    height: 30px;
+    border: 3px solid $primary-light;
+    border-top: 3px solid $primary-color;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    margin-bottom: 0.8rem;
+  }
+
+  p {
+    color: $primary-color;
+    font-weight: 600;
+    font-size: 0.9rem;
+    animation: pulse 1.5s infinite;
+  }
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.6; }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
