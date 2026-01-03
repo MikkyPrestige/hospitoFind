@@ -1,0 +1,220 @@
+/* Variables matching your theme */
+.importCard {
+  background: white;
+  border-radius: 12px;
+  padding: 2rem;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  border: 1px solid #e5e7eb;
+  position: relative;
+  overflow: hidden;
+  max-width: 600px;
+  margin: 0 auto;
+}
+.importCard .header {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+  margin-bottom: 2rem;
+}
+.importCard .header .iconWrapper {
+  width: 48px;
+  height: 48px;
+  border-radius: 10px;
+  background: #e0e7ff;
+  color: #08299B;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+}
+.importCard .header h3 {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: #1f2937;
+  margin: 0;
+}
+.importCard .header p {
+  color: #6b7280;
+  font-size: 0.9rem;
+  margin: 0.25rem 0 0 0;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+.form .inputGroup {
+  display: flex;
+  gap: 1rem;
+}
+@media (max-width: 640px) {
+  .form .inputGroup {
+    flex-direction: column;
+  }
+}
+.form .inputWrapper {
+  position: relative;
+  flex: 1;
+}
+.form .inputWrapper .inputIcon {
+  position: absolute;
+  left: 1rem;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #6b7280;
+}
+.form .inputWrapper input {
+  width: 100%;
+  padding: 0.8rem 1rem 0.8rem 2.8rem;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  font-size: 0.95rem;
+  transition: all 0.2s;
+}
+.form .inputWrapper input:focus {
+  border-color: #08299B;
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(8, 41, 155, 0.1);
+}
+.form .importBtn {
+  background: #08299B;
+  color: white;
+  border: none;
+  padding: 0.9rem;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+.form .importBtn:hover:not(:disabled) {
+  background: rgb(6.7484662577, 34.5858895706, 130.7515337423);
+}
+.form .importBtn:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
+.resultBox {
+  text-align: center;
+  animation: fadeIn 0.3s ease-in;
+}
+.resultBox .statsGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+.resultBox .statsGrid .stat {
+  padding: 1.5rem;
+  border-radius: 12px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.resultBox .statsGrid .stat .count {
+  font-size: 2rem;
+  font-weight: 800;
+  margin-bottom: 0.25rem;
+}
+.resultBox .statsGrid .stat .label {
+  font-size: 0.85rem;
+  font-weight: 500;
+  opacity: 0.9;
+}
+.resultBox .statsGrid .stat .statIcon {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  font-size: 1.2rem;
+  opacity: 0.5;
+}
+.resultBox .statsGrid .stat.success {
+  background: rgb(181.828358209, 248.671641791, 226.5223880597);
+  color: rgb(11.9402985075, 138.0597014925, 96.2686567164);
+  border: 1px solid rgb(111.4179104478, 242.5820895522, 199.1194029851);
+}
+.resultBox .statsGrid .stat.skipped {
+  background: rgb(254.0354330709, 245.6437007874, 231.4645669291);
+  color: rgb(172.4330708661, 110.9507874016, 7.0669291339);
+  border: 1px solid rgb(251.0236220472, 216.4291338583, 157.9763779528);
+}
+.resultBox .resultMsg {
+  color: #1f2937;
+  margin-bottom: 1.5rem;
+  font-weight: 500;
+}
+.resultBox .resetBtn {
+  background: transparent;
+  border: 1px solid #e5e7eb;
+  color: #1f2937;
+  padding: 0.6rem 1.2rem;
+  border-radius: 6px;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.9rem;
+  transition: all 0.2s;
+}
+.resultBox .resetBtn:hover {
+  background: #f9fafb;
+  border-color: rgb(200.1739130435, 204.3913043478, 212.8260869565);
+}
+
+.loaderOverlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(255, 255, 255, 0.9);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  z-index: 10;
+}
+.loaderOverlay .spinner {
+  width: 30px;
+  height: 30px;
+  border: 3px solid #e0e7ff;
+  border-top: 3px solid #08299B;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  margin-bottom: 0.8rem;
+}
+.loaderOverlay p {
+  color: #08299B;
+  font-weight: 600;
+  font-size: 0.9rem;
+  animation: pulse 1.5s infinite;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.6;
+  }
+}
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}/*# sourceMappingURL=googleImport.module.css.map */

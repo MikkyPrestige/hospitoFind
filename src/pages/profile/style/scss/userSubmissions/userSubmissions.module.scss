@@ -3,9 +3,27 @@
 }
 
 .header {
-    margin-bottom: 2rem;
-    h2 { font-size: 1.8rem; color: #1e293b; margin-bottom: 0.5rem; }
-    p { color: #64748b; font-size: 1.2rem; }
+    display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2rem;
+
+  .headerText {
+    h2 { font-size: 1.8rem; margin-bottom: 0.5rem; }
+    p { color: #666; font-size: 1.2rem; }
+  }
+
+  // h2 { font-size: 1.8rem; color: #1e293b; margin-bottom: 0.5rem; }
+    // p { color: #64748b; font-size: 1.2rem; }
+
+    .countBadge {
+    background: #eef2ff;
+    color: #08299B;
+    padding: 0.4rem 0.8rem;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    font-weight: 600;
+  }
 }
 
 .list {
@@ -56,21 +74,52 @@
     gap: 6px;
 }
 
-.emptyState {
-    text-align: center;
-    padding: 4rem 2rem;
-    color: #94a3b8;
-    background: #f8fafc;
-    border-radius: 16px;
-    border: 2px dashed #e2e8f0;
-    p { margin-top: 1rem; font-weight: 500; }
-}
-
 .cardStatus {
     display: flex;
     align-items: center;
     justify-content: flex-end;
     min-width: 120px;
+}
+
+.pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1.5rem;
+  margin-top: 2rem;
+  padding-top: 1rem;
+  border-top: 1px solid #eee;
+
+  .pageInfo {
+    font-size: 0.9rem;
+    color: #666;
+    font-weight: 500;
+  }
+
+  .pageBtn {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem 1rem;
+    border: 1px solid #ddd;
+    background: white;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    color: #333;
+    transition: all 0.2s;
+
+    &:hover:not(:disabled) {
+      background: #f5f5f5;
+      border-color: #ccc;
+    }
+
+    &:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+      background: #f9f9f9;
+    }
+  }
 }
 
 .loader {
@@ -83,6 +132,50 @@
     font-size: 1.1rem;
     letter-spacing: 0.5px;
     animation: pulse 1.5s infinite ease-in-out;
+}
+
+.emptyState {
+   display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 4rem 2rem;
+  text-align: center;
+  color: #888;
+  background: #f8f9fa;
+  border-radius: 12px;
+  border: 1px dashed #ddd;
+
+   p {
+    margin-top: 1rem;
+    font-size: 1rem;
+    max-width: 300px;
+    line-height: 1.5;
+  }
+
+  .retryBtn {
+    margin-top: 1.5rem;
+    padding: 0.6rem 1.5rem;
+    background-color: #08299B;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    font-size: 0.95rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    box-shadow: 0 2px 5px rgba(8, 41, 155, 0.2);
+
+    &:hover {
+      background-color: #061f75;
+      transform: translateY(-1px);
+    }
+
+    &:active {
+      transform: translateY(0);
+      box-shadow: none;
+    }
+  }
 }
 
 @keyframes pulse {

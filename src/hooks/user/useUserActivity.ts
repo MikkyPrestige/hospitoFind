@@ -1,27 +1,33 @@
-// import { api } from "@/services/api";
+import useAxiosPrivate from "./useAxiosPrivate";
 
-// const useUserActivity = () => {
-//   const syncFavorite = async (hospitalId: string) => {
-//     try {
-//         const token = localStorage.getItem("accessToken");
-//      const res = await api.post("/hospitals/favorite", { hospitalId }, { headers: { Authorization: `Bearer ${token}` }});
-//       return res.data;
-//     } catch (err) { console.error("Sync failed", err);
-//         return null;
-//     }
-//   };
+export const useUserActivity = () => {
+  const axiosPrivate = useAxiosPrivate();
 
-//   const syncView = async (hospitalId: string) => {
-//     try {
-//         const token = localStorage.getItem("accessToken");
-//        const res = await api.post("/hospitals/view", { hospitalId }, { headers: { Authorization: `Bearer ${token}` } });
-//       return res.data;
-//     } catch (err) { console.error("Sync failed", err);
-//         return null;
-//     }
-//   };
+  const syncFavorite = async (hospitalId: string) => {
+    try {
+      await axiosPrivate.post("/users/favorites", { hospitalId });
+    } catch (err) {
+      console.error("Background Sync Error (Fav):", err);
+    }
+  };
 
-//   return { syncFavorite, syncView };
-// };
+  const syncView = async (hospitalId: string) => {
+    try {
+      return await axiosPrivate.post("/users/view", { hospitalId });
+    } catch (err) {
+      console.error("Background Sync Error (View):", err);
+    }
+  };
 
-// export default useUserActivity;
+  const fetchActivity = async () => {
+    try {
+      const { data } = await axiosPrivate.get("/users/activity");
+      return data;
+    } catch (err) {
+      console.error("Hydration Error:", err);
+      return null;
+    }
+  };
+
+  return { syncFavorite, syncView, fetchActivity };
+};

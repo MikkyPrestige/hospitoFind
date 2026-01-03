@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import useAxiosPrivate from "@/hooks/user/useAxiosPrivate";
-import { FiCheckCircle, FiPlusSquare } from "react-icons/fi";
+import { FiAward, FiCheckCircle, FiPlusSquare } from "react-icons/fi";
 import styles from "./style/scss/accountStats/accountStats.module.scss";
 
 const AccountStats = () => {
@@ -45,7 +45,7 @@ const AccountStats = () => {
                     <h3>{stats?.verifiedSubmissions || 0}</h3>
                 </div>
             </div>
-            {/*
+
             <div className={styles.statCard}>
                 <div className={`${styles.iconCircle} ${styles.purple}`}>
                     <FiAward />
@@ -54,7 +54,7 @@ const AccountStats = () => {
                     <span>Rank</span>
                     <h3>{stats?.contributorLevel}</h3>
                 </div>
-            </div> */}
+            </div>
         </div>
     );
 };

@@ -80,7 +80,7 @@ export const ContextProvider = ({ children }: { children: ReactNode }) => {
 };
 
 // --- API CONFIG ---
-export const BASE_URL = import.meta.env.VITE_BASE_URLLocal;
+export const BASE_URL = import.meta.env.VITE_BASE_URL;
 // export const BASE_URL = import.meta.env.PROD
 //  ? import.meta.env.VITE_BASE_URL_PROD
 //   : import.meta.env.VITE_BASE_URLLocal;

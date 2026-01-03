@@ -24,17 +24,17 @@ import Logout from "@/userConfig/logoutUser";
 import AccountStats from "./accountStats";
 import MySubmissions from "./userSubmissions";
 import ProfileDisplay from "./profileDisplay";
+import { useUserActivity } from "@/hooks/user/useUserActivity";
 import style from "./style/scss/dashboard/dashboard.module.scss";
 import HospitalPic from "@/assets/images/hospital-logo.jpg";
 import { Avatar } from "@/components/avatar";
 import Motion from "@/components/motion";
-// import { api } from "@/services/api";
 import { fadeUp, sectionReveal, settingsTabVariants } from "@/hooks/animations";
 import { AnimatePresence } from "framer-motion";
 
 const Dashboard = () => {
   const [selected, setSelected] = useState<string>("find-hospital");
-  const [sidebarExpanded, setSidebarExpanded] = useState<boolean>(true);
+  const [sidebarExpanded, setSidebarExpanded] = useState<boolean>(false);
   const [settingsTab, setSettingsTab] = useState<"profile" | "security" | "danger">("profile");
   const [isEditing, setIsEditing] = useState(false);
   const { state } = useAuthContext();
@@ -45,49 +45,39 @@ const Dashboard = () => {
   const [favorites, setFavorites] = useState<any[]>([]);
   const [recentlyViewed, setRecentlyViewed] = useState<any[]>([]);
   const [weeklyViews, setWeeklyViews] = useState<number>(0);
+  const { fetchActivity } = useUserActivity();
 
-
-  // useEffect(() => {
-  //   if (!state?.id) return;
-
-  //   const localFavs = JSON.parse(localStorage.getItem(FAVORITES_KEY) || "[]");
-  //   const localRecents = JSON.parse(localStorage.getItem(RECENTLY_KEY) || "[]");
-  //   const localWeekly = JSON.parse(localStorage.getItem(WEEKLY_KEY) || "{}");
-
-  //   setFavorites(localFavs);
-  //   setRecentlyViewed(localRecents);
-  //   setWeeklyViews(localWeekly.count || 0);
-
-  //   const syncWithDatabase = async () => {
-  //     try {
-  //       const res = await api.get("/hospitals/activity");
-  //       const { favorites: dbFavs, recentlyViewed: dbRecents, weeklyViews } = res.data;
-
-  //       if (dbFavs.length > 0) {
-  //         localStorage.setItem(FAVORITES_KEY, JSON.stringify(dbFavs));
-  //         setFavorites(dbFavs);
-  //       }
-  //       if (dbRecents.length > 0) {
-  //         localStorage.setItem(RECENTLY_KEY, JSON.stringify(dbRecents));
-  //         setRecentlyViewed(dbRecents);
-  //       }
-  //       setWeeklyViews(weeklyViews);
-  //     }
-  //     catch (err) {
-  //       console.error("Database sync failed, using local data only.", err);
-  //     }
-  //   };
-
-  //   syncWithDatabase();
-  // }, [state?.id]);
   useEffect(() => {
-    if (state?.username) {
-      setFavorites(JSON.parse(localStorage.getItem(FAVORITES_KEY) || "[]"));
-      setRecentlyViewed(JSON.parse(localStorage.getItem(RECENTLY_KEY) || "[]"));
-      const savedWeekly = JSON.parse(localStorage.getItem(WEEKLY_KEY) || "{}");
-      setWeeklyViews(savedWeekly.count || 0);
-    }
-  }, [state?.username, FAVORITES_KEY, RECENTLY_KEY, WEEKLY_KEY]);
+    const hydrateData = async () => {
+      if (!state?.accessToken) return;
+
+      // Load from LocalStorage first (Fast load)
+      const localFavs = JSON.parse(localStorage.getItem(FAVORITES_KEY) || "[]");
+      const localRecents = JSON.parse(localStorage.getItem(RECENTLY_KEY) || "[]");
+      setFavorites(localFavs);
+      setRecentlyViewed(localRecents);
+
+      // Fetch "Truth" from DB
+      const dbData = await fetchActivity();
+
+      if (dbData) {
+        // Update State
+        setFavorites(dbData.favorites);
+        setRecentlyViewed(dbData.recentlyViewed);
+        setWeeklyViews(dbData.weeklyViews);
+
+        // Sync "Truth" back to LocalStorage (so it's ready for next refresh)
+        localStorage.setItem(FAVORITES_KEY, JSON.stringify(dbData.favorites));
+        localStorage.setItem(RECENTLY_KEY, JSON.stringify(dbData.recentlyViewed));
+        localStorage.setItem(WEEKLY_KEY, JSON.stringify({
+          count: dbData.weeklyViews,
+          lastReset: Date.now()
+        }));
+      }
+    };
+
+    hydrateData();
+  }, [state.accessToken, FAVORITES_KEY]);
 
   const handleRecentUpdate = () => {
     setRecentlyViewed(JSON.parse(localStorage.getItem(RECENTLY_KEY) || "[]"));

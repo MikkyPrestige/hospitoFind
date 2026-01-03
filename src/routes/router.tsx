@@ -35,7 +35,7 @@ const Unauthorized = lazy(() => import("@/pages/admin/unauthorized"));
 const VerifyEmail = lazy(() => import("@/pages/profile/verifyEmail"));
 const EmailSent = lazy(() => import("@/pages/profile/emailSent"));
 
-// 🛡️ Helper to wrap lazy components in Suspense automatically
+// elper to wrap lazy components in Suspense automatically
 const Loadable = (Component: any) => (props: any) => (
     <Suspense fallback={<ComponentPulse />}>
         <Component {...props} />
@@ -103,7 +103,7 @@ export const router = createBrowserRouter([
                             { path: "admin", element: Loadable(AdminDashboard)({}) },
                             { path: "admin/pending", element: Loadable(AdminPendingList)({}) },
                             { path: "admin/users", element: Loadable(UserManagement)({}) },
-                            { path: "admin/hospitals", element: Loadable(HospitalManagement)({}) }
+                            { path: "admin/hospitals", element: Loadable(HospitalManagement)({}) },
                         ],
                     },
                 ],
