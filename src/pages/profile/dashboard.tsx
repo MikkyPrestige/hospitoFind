@@ -31,6 +31,8 @@ import { Avatar } from "@/components/avatar";
 import Motion from "@/components/motion";
 import { fadeUp, sectionReveal, settingsTabVariants } from "@/hooks/animations";
 import { AnimatePresence } from "framer-motion";
+import useAxiosPrivate from "@/hooks/user/useAxiosPrivate";
+import { toast } from "react-toastify";
 
 const Dashboard = () => {
   const [selected, setSelected] = useState<string>("find-hospital");
@@ -38,6 +40,8 @@ const Dashboard = () => {
   const [settingsTab, setSettingsTab] = useState<"profile" | "security" | "danger">("profile");
   const [isEditing, setIsEditing] = useState(false);
   const { state } = useAuthContext();
+  const axiosPrivate = useAxiosPrivate();
+  const { fetchActivity } = useUserActivity();
   const userPrefix = state?.username || "guest";
   const FAVORITES_KEY = `${userPrefix}_favorites`;
   const RECENTLY_KEY = `${userPrefix}_recentlyViewed`;
@@ -45,13 +49,10 @@ const Dashboard = () => {
   const [favorites, setFavorites] = useState<any[]>([]);
   const [recentlyViewed, setRecentlyViewed] = useState<any[]>([]);
   const [weeklyViews, setWeeklyViews] = useState<number>(0);
-  const { fetchActivity } = useUserActivity();
 
   useEffect(() => {
     const hydrateData = async () => {
       if (!state?.accessToken) return;
-
-      // Load from LocalStorage first (Fast load)
       const localFavs = JSON.parse(localStorage.getItem(FAVORITES_KEY) || "[]");
       const localRecents = JSON.parse(localStorage.getItem(RECENTLY_KEY) || "[]");
       setFavorites(localFavs);
@@ -61,12 +62,10 @@ const Dashboard = () => {
       const dbData = await fetchActivity();
 
       if (dbData) {
-        // Update State
         setFavorites(dbData.favorites);
         setRecentlyViewed(dbData.recentlyViewed);
         setWeeklyViews(dbData.weeklyViews);
 
-        // Sync "Truth" back to LocalStorage (so it's ready for next refresh)
         localStorage.setItem(FAVORITES_KEY, JSON.stringify(dbData.favorites));
         localStorage.setItem(RECENTLY_KEY, JSON.stringify(dbData.recentlyViewed));
         localStorage.setItem(WEEKLY_KEY, JSON.stringify({
@@ -109,23 +108,39 @@ const Dashboard = () => {
     localStorage.setItem("selectedLink", link);
   };
 
-  const removeFavorite = (e: React.MouseEvent, name: string) => {
+  const removeFavorite = async (e: React.MouseEvent, id: string) => {
     e.preventDefault(); e.stopPropagation();
-    const next = favorites.filter((item: any) => item.name !== name);
+
+    const next = favorites.filter((item: any) => item._id !== id);
     setFavorites(next);
     localStorage.setItem(FAVORITES_KEY, JSON.stringify(next));
+
+    try {
+      await axiosPrivate.delete(`/users/favorites/${id}`);
+      toast.success("Removed from saved collections");
+    } catch (err) {
+      console.error("Failed to delete favorite", err);
+      toast.error("Could not sync with server");
+    }
   };
 
-  const removeRecent = (e: React.MouseEvent, name: string) => {
+  const removeRecent = async (e: React.MouseEvent, id: string) => {
     e.preventDefault(); e.stopPropagation();
-    const next = recentlyViewed.filter((item: any) => item.name !== name);
+
+    const next = recentlyViewed.filter((item: any) => item._id !== id);
     setRecentlyViewed(next);
     localStorage.setItem(RECENTLY_KEY, JSON.stringify(next));
+    try {
+      await axiosPrivate.delete(`/users/history/${id}`);
+      toast.success("Removed from recent history");
+    } catch (err) {
+      console.error("Failed to delete history item", err);
+      toast.error("Could not sync with server");
+    }
   };
 
   const getProviderName = () => {
     if (!state.auth0Id) return 'Social Provider';
-
     const id = state.auth0Id.toLowerCase();
     if (id.includes('google')) return 'Google';
     if (id.includes('facebook')) return 'Facebook';
@@ -179,7 +194,7 @@ const Dashboard = () => {
               <div className={style.bg}></div>
 
               <header className={style.greetingHeader}>
-                <h1>Good to see you, <span className={style.userName}>{state?.username || 'User'}</span>.</h1>
+                <h1>Welcome back, <span className={style.userName}>{state?.username || 'User'}</span>.</h1>
 
                 {/* Impact Stats Card */}
                 <Motion variants={fadeUp}>
@@ -187,8 +202,8 @@ const Dashboard = () => {
                 </Motion>
 
                 <p className={style.activityStats}>
-                  You've viewed <strong>{recentlyViewed.length}</strong> hospitals recently
-                  (<strong>{weeklyViews}</strong> this week).
+                  Activity Overview: You have viewed <strong>{recentlyViewed.length}</strong> facilities recently
+                  (<strong>{weeklyViews}</strong> visits this week).
                 </p>
               </header>
 
@@ -209,7 +224,7 @@ const Dashboard = () => {
                       className={`${style.sectionHeader} ${openFavorites ? style.headerOpen : ""}`}
                       onClick={() => setOpenFavorites(!openFavorites)}
                     >
-                      <h2>❤️ Saved Hospitals</h2>
+                      <h2>❤️ Saved Collections</h2>
                       {openFavorites ? <AiOutlineUp /> : <AiOutlineDown />}
                     </div>
                     <AnimatePresence>
@@ -232,11 +247,11 @@ const Dashboard = () => {
                                       <span className={style.ctaText}>View details →</span>
                                     </div>
                                   </Link>
-                                  <button className={style.removeBtn} onClick={(e) => removeFavorite(e, h.name)}>✕</button>
+                                  <button className={style.removeBtn} onClick={(e) => removeFavorite(e, h._id)}>✕</button>
                                 </div>
                               ))}
                             </div>
-                          ) : <p className={style.emptyMsg}>No saved hospitals yet.</p>}
+                          ) : <p className={style.emptyMsg}>You haven't saved any facility yet.</p>}
                         </Motion>
                       )}
                     </AnimatePresence>
@@ -248,7 +263,7 @@ const Dashboard = () => {
                       className={`${style.sectionHeader} ${openRecents ? style.headerOpen : ""}`}
                       onClick={() => setOpenRecents(!openRecents)}
                     >
-                      <h2>🕒 Recently Viewed</h2>
+                      <h2>🕒 Recent History</h2>
                       {openRecents ? <AiOutlineUp /> : <AiOutlineDown />}
                     </div>
                     <AnimatePresence>
@@ -271,11 +286,11 @@ const Dashboard = () => {
                                       <span className={style.ctaText}>View details →</span>
                                     </div>
                                   </Link>
-                                  <button className={style.removeBtn} onClick={(e) => removeRecent(e, r.name)}>✕</button>
+                                  <button className={style.removeBtn} onClick={(e) => removeRecent(e, r._id)}>✕</button>
                                 </div>
                               ))}
                             </div>
-                          ) : <p className={style.emptyMsg}>Start exploring our verified database.</p>}
+                          ) : <p className={style.emptyMsg}>No recent browsing history available.</p>}
                         </Motion>
                       )}
                     </AnimatePresence>
@@ -284,10 +299,8 @@ const Dashboard = () => {
               )}
             </div>
           )}
-
           {/* VIEW: ADD HOSPITAL */}
           {selected === "add-hospital" && <Motion variants={fadeUp} className={style.viewPanel}><Editor /></Motion>}
-
           {/* VIEW: MY SUBMISSIONS */}
           {selected === "my-submissions" && (
             <Motion variants={fadeUp} className={style.viewPanel}>
@@ -295,21 +308,21 @@ const Dashboard = () => {
             </Motion>
           )}
 
-          {/* VIEW: CONSOLIDATED SETTINGS HUB */}
+          {/* VIEW: SETTINGS HUB */}
           {selected === "settings" && (
             <Motion variants={fadeUp} className={style.viewPanel}>
               <div className={style.settingsHub}>
                 <header className={style.hubHeader}>
                   <div className={style.titleBox}>
-                    <h1>Account Settings</h1>
-                    <p>Update your personal details and security preferences.</p>
+                    <h1>Account & Security</h1>
+                    <p>Manage your profile details and security preferences.</p>
                   </div>
                   <div className={style.metaStats}>
                     <div className={style.metaItem}>
-                      <FiCalendar /> <span>Member since: {state?.createdAt ? new Date(state.createdAt).toLocaleDateString() : 'N/A'}</span>
+                      <FiCalendar /> <span>Joined: {state?.createdAt ? new Date(state.createdAt).toLocaleDateString() : 'N/A'}</span>
                     </div>
                     <div className={style.metaItem}>
-                      <FiActivity /> <span>Last update: {state?.updatedAt ? new Date(state.updatedAt).toLocaleDateString() : 'N/A'}</span>
+                      <FiActivity /> <span>Last Updated: {state?.updatedAt ? new Date(state.updatedAt).toLocaleDateString() : 'N/A'}</span>
                     </div>
                   </div>
                 </header>
@@ -350,7 +363,7 @@ const Dashboard = () => {
                       >
                         <div className={style.settingsCard}>
                           <div className={style.cardHeader}>
-                            <h3>{isEditing ? "Update Profile" : "Personal Information"}</h3>
+                            <h3>{isEditing ? "Edit Profile" : "Profile Details"}</h3>
                           </div>
 
                           <div className={style.cardBody}>
@@ -387,14 +400,10 @@ const Dashboard = () => {
                             <div className={style.socialLoginNotice}>
                               <div className={style.noticeHeader}>
                                 <svg fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-                                </svg>
-                                Account Managed Externally
-                              </div>
+                                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>Federated Account</div>
                               <p className={style.noticeBody}>
-                                You are currently signed in via
+                                You are signed in via
                                 <span className={style.providerTag}>{getProviderName()}</span>.
-                                Your credentials and multi-factor authentication are handled by them for your security.
                               </p>
                               <p className={style.noticeFooter}>
                                 To update your password or email, please visit your {getProviderName()} account settings.
@@ -419,11 +428,10 @@ const Dashboard = () => {
                         alwaysVisible={true}
                       >
                         <div className={`${style.settingsCard} ${style.dangerZone}`}>
-                          <div className={style.cardHeader}><h3>Account Management</h3></div>
+                          <div className={style.cardHeader}><h3>Account Deletion</h3></div>
                           <div className={style.cardBody}>
                             <p className={style.warningText}>
-                              Warning: Deleting your account is a permanent action. All your verified submissions
-                              and saved hospitals will be removed from the platform.
+                              Warning: This action is permanent. All your submitted data and saved lists will be erased.
                             </p>
                             <DeleteBtn />
                           </div>

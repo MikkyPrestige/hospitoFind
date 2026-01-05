@@ -1,182 +1,176 @@
 .section {
+  width: 100%;
+  max-width: 1400px;
   margin: 0 auto;
-  padding: 2rem 1.5rem;
-  max-width: 1200px;
+  padding: 4rem 1.5rem 2rem;
+}
+
+.headerRow {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 2rem;
 }
 
 .note {
-  background-color: #fffbe6;
-  color: #7a6200;
-  border-left: 4px solid #ffcc00;
-  padding: 1rem 1.2rem;
-  border-radius: 8px;
-  margin-bottom: 2rem;
-  font-size: 1.1rem;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.02);
-}
-
-.status {
-  text-align: center;
-  color: #777;
-  font-size: 1.2rem;
-  padding: 3rem 0;
+  font-size: 1.5rem;
+  color: #08299b;
+  background-color: #f0f7ff;
+  padding: 0.8rem 1.5rem;
+  border-radius: 50px;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
 }
 
 .grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   gap: 2rem;
 }
 
 .card {
-  background: #ffffff;
-  border-radius: 14px;
+  background: white;
+  border-radius: 1.5rem;
   overflow: hidden;
-  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.08);
-  transition: transform 0.3s cubic-bezier(0.165, 0.84, 0.44, 1),
-    box-shadow 0.3s ease;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+  transition: transform 0.3s ease;
+  border: 1px solid #e2e8f0;
   display: flex;
   flex-direction: column;
-  height: 100%;
 }
 
 .card:hover {
-  transform: translateY(-8px);
-  box-shadow: 0 12px 24px rgba(14, 61, 183, 0.12);
+  transform: translateY(-5px);
+  box-shadow: 0 15px 35px rgba(8, 41, 155, 0.1);
+  border-color: #08299b;
 }
 
 .imageContainer {
+  position: relative;
+  height: 200px;
   width: 100%;
-  height: 180px;
-  overflow: hidden;
-  background-color: #f8fafc;
-  border-bottom: 1px solid #f1f5f9;
 }
 
 .image {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  transition: opacity 0.3s ease;
+}
+
+.distBadge {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  background: rgba(0, 0, 0, 0.7);
+  color: white;
+  padding: 0.3rem 0.8rem;
+  border-radius: 20px;
+  font-size: 1rem;
+  font-weight: 700;
+  backdrop-filter: blur(4px);
 }
 
 .cardContent {
-  padding: 1rem;
+  padding: 1.5rem;
   display: flex;
   flex-direction: column;
-  gap: 0.75rem;
-  flex-grow: 1;
+  gap: 0.8rem;
+  flex: 1;
 }
 
 .cardHeader {
   display: flex;
-  align-items: flex-start;
   justify-content: space-between;
-  gap: 0.5rem;
+  align-items: flex-start;
+  gap: 1rem;
 }
 
 .title {
-  font-size: 1.2rem;
+  font-size: 1.4rem;
   font-weight: 700;
-  color: #222;
+  color: #1e293b;
   margin: 0;
-  flex: 1;
 }
 
 .typeBadge {
-  font-size: 0.75rem;
-  padding: 0.25rem 0.6rem;
-  border-radius: 6px;
+  font-size: 0.85rem;
+  padding: 0.3rem 0.8rem;
+  border-radius: 50px;
   font-weight: 700;
   text-transform: uppercase;
-  letter-spacing: 0.02em;
+  background: #f1f5f9;
+  color: #64748b;
+  white-space: nowrap;
 }
 
 .privateBadge {
-  background-color: #ffe6e6;
-  color: #b30000;
+  background: #e0e7ff;
+  color: #3730a3;
 }
-
 .publicBadge {
-  background-color: #e8f9ee;
-  color: #067a39;
+  background: #dcfce7;
+  color: #166534;
 }
 
 .location {
-  font-size: 0.95rem;
-  color: #666;
   display: flex;
   align-items: center;
+  gap: 0.5rem;
+  color: #64748b;
+  font-size: 1.25rem;
 }
 
-.distance {
-  font-size: 0.95rem;
-  color: #0e3db7;
-  font-weight: 700;
-  margin-top: auto;
+.pinIcon {
+  color: #08299b;
+  font-size: 1.3rem;
+  flex-shrink: 0;
 }
 
 .viewBtn {
-  align-self: flex-start;
-  margin-top: 0.3rem;
-  background-color: #0e3db7;
-  color: white;
-  font-weight: 600;
-  padding: 0.6rem 1.2rem;
-  border-radius: 8px;
-  border: none;
+  margin-top: auto;
+  width: 100%;
+  padding: 0.8rem;
+  border: 1px solid #08299b;
+  background: transparent;
+  color: #08299b;
+  border-radius: 12px;
+  font-weight: 700;
   cursor: pointer;
-  transition: all 0.2s ease;
+  transition: all 0.2s;
 }
 
 .viewBtn:hover {
-  background-color: #164cd8;
-  transform: scale(1.02);
+  background: #08299b;
+  color: white;
 }
 
 .actionWrapper {
   display: flex;
   justify-content: center;
-  align-items: center;
-  margin-top: 2.5rem;
-  width: 100%;
-  clear: both;
+  margin-top: 1.5rem;
 }
 
 .viewAllBtn {
-  background-color: transparent;
-  color: #0e3db7;
-  border: 2px solid #0e3db7;
-  padding: 0.8rem 2rem;
-  border-radius: 8px;
+  background: #08299b;
+  color: white;
+  padding: 1rem 2.5rem;
+  border-radius: 50px;
   font-weight: 700;
-  cursor: pointer;
-  transition: all 0.3s ease;
   font-size: 1rem;
-  display: inline-block;
+  border: none;
+  cursor: pointer;
+  transition: transform 0.2s;
 }
 
 .viewAllBtn:hover {
-  background-color: #0e3db7;
-  color: #ffffff;
-  transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(14, 61, 183, 0.2);
+  transform: translateY(-3px);
+  background: #0a47d5;
 }
 
-@media (max-width: 768px) {
-  .section {
-    padding: 1.5rem 1rem;
-  }
-  .grid {
-    grid-template-columns: 1fr;
-    gap: 1rem;
-  }
-
-  .card {
-    width: 100%;
-  }
-
-  .title {
-    font-size: 1.1rem;
-  }
+.emptyState {
+  text-align: center;
+  padding: 4rem;
+  color: #64748b;
+  font-size: 1.2rem;
 }

@@ -19,7 +19,7 @@ interface CountryData {
 }
 
 const COUNTRYTOCONTINENT: Record<string, string> = {
-// AFRICA
+  // AFRICA
   "Nigeria": "Africa",
   "Ghana": "Africa",
   "Kenya": "Africa",
@@ -97,10 +97,10 @@ const ExplorePage = () => {
   }, [countries, query, selectedContinent]);
 
   return (
-    <div className={style.pageWrapper}>
+<>
       <SEOHelmet
         title="Global Directory"
-        description="Browse our database of 281+ verified hospitals across the globe. Search by country or continent to find healthcare facilities near you."
+        description="Navigate our worldwide index of verified healthcare facilities. Browse by country or continent to find medical care anywhere."
         canonical="https://hospitofind.online/directory"
         schemaType="global"
         schemaData={countries}
@@ -109,15 +109,16 @@ const ExplorePage = () => {
 
       <Header />
 
+      <div className={style.pageWrapper}>
       <main className={style.explore}>
         <header className={style.hero}>
           <div className={style.heroContainer}>
             <Motion as="div" className={style.heroContent} variants={sectionReveal}>
-              <span className={style.badge}><FiGlobe /> Global Healthcare Atlas</span>
-              <h1>Explore Hospitals Around the World</h1>
+              <span className={style.badge}><FiGlobe />Worldwide Healthcare Directory</span>
+              <h1>Navigate Verified Care Globally</h1>
               <p>
-                Browse our verified database of healthcare facilities
-                grouped by country to find the best care options.
+                Access our comprehensive index of accredited hospitals and medical centers,
+                organized by region to ensure you find trusted care wherever you go.
               </p>
             </Motion>
 
@@ -126,7 +127,7 @@ const ExplorePage = () => {
               className={style.heroVisual}
               variants={fadeUp}
             >
-              <img src={MapPin} alt="Global Hospital Map" className={style.tabletImg} />
+              <img src={MapPin} alt="3D Map illustration showing global hospital locations" className={style.tabletImg} />
             </Motion>
           </div>
         </header>
@@ -136,7 +137,7 @@ const ExplorePage = () => {
             <FiSearch className={style.searchIcon} />
             <input
               type="search"
-              placeholder="Search by country name..."
+              placeholder="Locate a country..."
               className={style.searchInput}
               value={query}
               onChange={(e) => setQuery(e.target.value)}
@@ -159,15 +160,15 @@ const ExplorePage = () => {
         <section className={style.contentSection}>
           {loading ? (
             <div>
-              <AnimatedLoader message="Syncing global hospital data..." variant="card" count={8} />
+              <AnimatedLoader message="Retrieving global index..." variant="card" count={8} />
             </div>
           ) : filtered.length === 0 ? (
             <Motion as="div" className={style.emptyState} variants={fadeUp}>
               <div className={style.emptyIcon}><FiMapPin /></div>
-              <h2>No Hospitals Found</h2>
-              <p>We couldn't find any verified hospitals matching "{query}" in {selectedContinent}.</p>
+              <h2>No Matching Regions Found</h2>
+              <p>We couldn't locate "{query}" in {selectedContinent}. Please verify the spelling or try a broader region.</p>
               <button onClick={() => { setQuery(""); setSelectedContinent("All"); }} className={style.resetBtn}>
-                Clear All Filters
+                Reset Search Filters
               </button>
             </Motion>
           ) : (
@@ -187,10 +188,10 @@ const ExplorePage = () => {
           )}
         </section>
       </main>
-
-      <Footer />
-    </div>
-  );
+</div >
+  <Footer />
+    </>
+      );
 };
 
 export default ExplorePage;

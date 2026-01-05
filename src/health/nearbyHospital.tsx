@@ -1,159 +1,158 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import { useNavigate } from "react-router-dom";
 import style from "./style/nearbyHospital.module.css";
 import AnimatedLoader from "../components/utils/AnimatedLoader";
-import HospitalPic from "../assets/images/hospital-logo.jpg"
+import HospitalPic from "../assets/images/hospital-logo.jpg";
+import { FiMapPin, FiNavigation } from "react-icons/fi";
+import { BASE_URL } from "@/context/userContext";
 
 type Hospital = {
-    _id?: string;
+    _id: string;
     name: string;
-    slug?: string;
+    slug: string;
     address?: {
         state?: string;
         city?: string;
     };
-    lat?: number;
-    lon?: number;
     type?: string;
     distance?: string;
     photoUrl?: string;
+    location?: { coordinates: number[] };
 };
 
 type Props = {
     triggerLocation?: number;
 };
 
-const URL = import.meta.env.VITE_BASE_URL;
-
 const NearbyHospitals = ({ triggerLocation = 0 }: Props) => {
     const [hospitals, setHospitals] = useState<Hospital[]>([]);
     const [loading, setLoading] = useState<boolean>(true);
-    const [message, setMessage] = useState<string>("");
+    const [message, setMessage] = useState<string>("Locating nearby services...");
     const navigate = useNavigate();
 
-    const fetchHospitals = async (lat?: number, lon?: number, useFallback = false): Promise<void> => {
+    // Unified Fetcher Function
+    const fetchHospitals = useCallback(async (lat?: number, lon?: number) => {
         setLoading(true);
         try {
-            let url = `${URL}/hospitals/nearby?limit=3`;
+            const params = new URLSearchParams({ limit: "3" });
 
-            if (useFallback) {
-                url = `${URL}/hospitals/top`;
-            } else if (lat && lon) {
-                url = `${URL}/hospitals/nearby?lat=${lat}&lon=${lon}&limit=3`;
+            // Check if lat/lon are valid numbers (including 0)
+            if (typeof lat === 'number' && typeof lon === 'number') {
+                params.append("lat", lat.toString());
+                params.append("lon", lon.toString());
             }
 
-            const res = await fetch(url);
+            const res = await fetch(`${BASE_URL}/hospitals/nearby?${params.toString()}`);
+
+            if (!res.ok) throw new Error("API Request Failed");
+
             const data = await res.json();
 
-            // Handle multiple API response formats safely
-            const results = Array.isArray(data) ? data : (data?.results || []);
+            const results = Array.isArray(data) ? data : (data.results || []);
             setHospitals(results);
 
-            // user-facing message
-            if (results.length > 0) {
-                if (lat && lon) setMessage("Showing verified hospitals near your current location.");
-                else if (useFallback) setMessage("Showing top-rated hospitals worldwide.");
-                else setMessage("Explore hospitals from our global directory.");
-            } else {
-                setMessage("No hospitals found in this area.");
-            }
+            if (data.message) setMessage(data.message);
+            else if (results.length === 0) setMessage("No hospitals found.");
+
         } catch (err) {
-            setMessage("Unable to load hospitals. Check your connection.");
+            console.error(err);
+            setMessage("Could not load hospitals. Please check connection.");
             setHospitals([]);
         } finally {
             setLoading(false);
         }
-    };
+    }, []);
 
-    // requestLocation logic
-    const handleRequestLocation = () => {
-        if (!navigator.geolocation) {
-            setMessage("Location not supported — showing global hospitals.");
-            fetchHospitals(undefined, undefined, true);
-            return;
-        }
-
-        navigator.geolocation.getCurrentPosition(
-            (pos) => fetchHospitals(pos.coords.latitude, pos.coords.longitude),
-            () => {
-                setMessage("Location access denied — displaying top global hospitals.");
-                fetchHospitals(undefined, undefined, true);
-            }
-        );
-    };
-
+    // Geolocation Handler
     useEffect(() => {
         if (triggerLocation > 0) {
-            handleRequestLocation();
+            if (!navigator.geolocation) {
+                setMessage("Geolocation not supported.");
+                fetchHospitals();
+                return;
+            }
+            setMessage("Acquiring location...");
+            navigator.geolocation.getCurrentPosition(
+                (pos) => fetchHospitals(pos.coords.latitude, pos.coords.longitude),
+                () => {
+                    setMessage("Location denied. Showing popular hospitals.");
+                    fetchHospitals();
+                },
+                { timeout: 10000 }
+            );
         } else {
-            fetchHospitals(undefined, undefined, true);
+            // Initial Load
+            fetchHospitals();
         }
-    }, [triggerLocation]);
+    }, [triggerLocation, fetchHospitals]);
 
     return (
         <section className={style.section}>
-            {message && <p className={style.note}>{message}</p>}
+            <div className={style.headerRow}>
+                <p className={style.note}>
+                    {loading ? "Syncing..." : <><FiNavigation /> {message}</>}
+                </p>
+            </div>
 
             {loading ? (
-                <AnimatedLoader message="Searching for hospitals near you..." variant="card" count={3} />
-            ) : hospitals.length > 0 ? (
+                <AnimatedLoader message="Scanning directory..." variant="card" count={3} />
+            ) : (
                 <>
-                    <div className={style.grid}>
-                        {hospitals.map((h, i) => (
-                            <div key={h._id || i} className={style.card}>
-                                <div className={style.imageContainer}>
-                                    <img
-                                        src={h.photoUrl || HospitalPic}
-                                        alt={`Photo of ${h.name}`}
-                                        className={style.image}
-                                        loading="lazy"
-                                    />
-                                </div>
-                                <div className={style.cardContent}>
-                                    <div className={style.cardHeader}>
-                                        <h3 className={style.title}>{h.name || "Unnamed Hospital"}</h3>
-                                        {h.type && (
-                                            <span className={`${style.typeBadge} ${h.type.toLowerCase() === 'private' ? style.privateBadge : style.publicBadge}`}>
-                                                {h.type}
-                                            </span>
-                                        )}
+                    {hospitals.length > 0 ? (
+                        <div className={style.grid}>
+                            {hospitals.map((h) => (
+                                <div key={h._id} className={style.card}>
+                                    <div className={style.imageContainer}>
+                                        <img
+                                            src={h.photoUrl || HospitalPic}
+                                            alt={h.name}
+                                            className={style.image}
+                                            loading="lazy"
+                                        />
+                                        {h.distance && <span className={style.distBadge}>{h.distance} away</span>}
                                     </div>
 
-                                    <p className={style.location}>
-                                        📍 {h.address?.city || h.address?.state
-                                            ? [h.address?.city, h.address?.state].filter(Boolean).join(", ")
-                                            : "Verified Global Location"}
-                                    </p>
-                                    {h.distance && (
-                                        <p className={style.distance}>
-                                            <strong>{h.distance}</strong> from you
-                                        </p>
-                                    )}
+                                    <div className={style.cardContent}>
+                                        <div className={style.cardHeader}>
+                                            <h3 className={style.title}>{h.name}</h3>
+                                            {h.type && (
+                                                <span className={`${style.typeBadge} ${h.type.toLowerCase() === 'private' ? style.privateBadge : style.publicBadge}`}>
+                                                    {h.type}
+                                                </span>
+                                            )}
+                                        </div>
 
-                                    <button
-                                        className={style.viewBtn}
-                                        aria-label={`View details for ${h.name}`}
-                                        onClick={() => navigate(`/hospital/${h.address?.state}/${h.address?.city}/${h.slug}`)}
-                                    >
-                                        Details →
-                                    </button>
+                                        <p className={style.location}>
+                                            <FiMapPin className={style.pinIcon} />
+                                            {h.address?.city || h.address?.state
+                                                ? [h.address?.city, h.address?.state].filter(Boolean).join(", ")
+                                                : "Verified Location"}
+                                        </p>
+
+                                        <button
+                                            className={style.viewBtn}
+                                            onClick={() => navigate(`/hospital/${h.address?.state}/${h.address?.city}/${h.slug}`)}
+                                        >
+                                            View Profile
+                                        </button>
+                                    </div>
                                 </div>
-                            </div>
-                        ))}
-                    </div>
+                            ))}
+                        </div>
+                    ) : (
+                        <div className={style.emptyState}>
+                            <p>No verified hospitals available right now.</p>
+                        </div>
+                    )}
+
                     {hospitals.length > 0 && (
                         <div className={style.actionWrapper}>
-                            <button
-                                className={style.viewAllBtn}
-                                onClick={() => navigate("/directory")}
-                            >
-                                View All Nearby Hospitals
+                            <button className={style.viewAllBtn} onClick={() => navigate("/directory")}>
+                                Browse Global Directory
                             </button>
                         </div>
                     )}
                 </>
-            ) : (
-                <p className={style.status}>No hospitals found nearby.</p>
             )}
         </section>
     );

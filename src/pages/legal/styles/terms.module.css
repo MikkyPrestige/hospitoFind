@@ -1,6 +1,6 @@
 .termsContainer {
   background-color: #f8fafc;
-  padding: 12rem 2rem 6rem;
+  padding: 7rem 2rem;
   display: flex;
   justify-content: center;
 }
@@ -9,7 +9,7 @@
   background: #ffffff;
   max-width: 900px;
   width: 100%;
-  padding: 4rem;
+  padding: 2rem;
   border-radius: 2rem;
   box-shadow: 0 10px 40px rgba(0, 0, 0, 0.03);
   border: 1px solid #edf2f7;
@@ -17,12 +17,12 @@
 
 .header {
   border-bottom: 2px solid #f1f5f9;
-  margin-bottom: 3rem;
+  margin-bottom: 1rem;
 }
 
 .title {
-  font-size: 3rem;
-  font-weight: 900;
+  font-size: 2rem;
+  font-weight: 700;
   color: #08299b;
 }
 
@@ -37,14 +37,14 @@
 }
 
 .section h2 {
-  font-size: 1.6rem;
-  font-weight: 800;
+  font-size: 1.4rem;
+  font-weight: 700;
   color: #1e293b;
   margin-bottom: 0.2rem;
 }
 
 .section p {
-  font-size: 1.2rem;
+  font-size: 1.1rem;
   line-height: 1.8;
   color: #475569;
 }
@@ -72,17 +72,4 @@
 
 .contactNote a:hover {
   text-decoration: underline;
-}
-
-
-@media (max-width: 900px) {
-  .termsContainer {
-    padding-top: 5rem;
-  }
-}
-
-@media (max-width: 480px) {
-  .title {
-    font-size: 2.2rem;
-  }
 }

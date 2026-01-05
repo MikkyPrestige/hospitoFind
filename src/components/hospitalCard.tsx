@@ -2,14 +2,13 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { Hospital } from "../services/hospital";
 import style from "./style/hospitalCard.module.css";
-import { FiArrowRight, FiExternalLink } from "react-icons/fi";
+import { FiArrowRight, FiExternalLink, FiPhone, FiMail, FiMapPin } from "react-icons/fi";
 
 interface HospitalCardProps {
   hospital: Hospital;
 }
 
 const HospitalCard: React.FC<HospitalCardProps> = ({ hospital }) => {
-
   const { name, type, address, phoneNumber, email, website, photoUrl } = hospital;
   const hasImage = Boolean(photoUrl);
 
@@ -46,17 +45,30 @@ const HospitalCard: React.FC<HospitalCardProps> = ({ hospital }) => {
 
       <div className={style.content}>
         <div className={style.mainInfo}>
-          <h2 className={style.name}>{name}</h2>
-          {type && <p className={style.type}>{type}</p>}
-          <p className={style.info}>
-            {address?.city && <span>{address.city}, </span>}
-            {address?.country}
-          </p>
+          <div className={style.header}>
+            <h2 className={style.name}>{name}</h2>
+            {type && <p className={style.type}>{type}</p>}
+          </div>
+          <div className={style.addressRow}>
+            <FiMapPin className={style.mapIcon} />
+            <span className={style.addressText}>
+              {address?.city && <span>{address.city}, </span>}
+              {address?.country}
+            </span>
+          </div>
         </div>
 
         <div className={style.contactInfo}>
-          {phoneNumber && <p className={style.phone}>📞 {phoneNumber}</p>}
-          {email && <p className={style.email}>✉️ {email}</p>}
+          {phoneNumber && (
+            <p className={style.phone}>
+              <FiPhone className={style.contactIcon} /> {phoneNumber}
+            </p>
+          )}
+          {email && (
+            <p className={style.email}>
+              <FiMail className={style.contactIcon} /> {email}
+            </p>
+          )}
         </div>
 
         {website && (
@@ -66,7 +78,7 @@ const HospitalCard: React.FC<HospitalCardProps> = ({ hospital }) => {
             rel="noopener noreferrer"
             className={style.externalLink}
           >
-            Visit Website <FiExternalLink size={14} />
+            Visit Website <FiExternalLink className={style.linkIcon} />
           </a>
         )}
 
@@ -74,7 +86,7 @@ const HospitalCard: React.FC<HospitalCardProps> = ({ hospital }) => {
           to={`/hospital/${encodeURIComponent(address.country || "location")}/${encodeURIComponent(address.city)}/${hospital.slug || hospital._id}`}
           className={style.detailsBtn}
         >
-          View Full Profile <FiArrowRight />
+          View Full Profile <FiArrowRight className={style.btnIcon} />
         </Link>
       </div>
     </section>

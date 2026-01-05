@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Link } from "react-router-dom";
 import usePasswordUpdate from "@/hooks/user/updatePassword";
 import { useAuthContext } from "@/context/userContext";
 import { Button } from "@/components/button";
@@ -23,7 +24,7 @@ const UpdatePassword = () => {
 
     if (!passwords.oldPassword) newErrors.old = "Current password is required";
     if (!passRegex.test(passwords.newPassword)) {
-      newErrors.new = "At least 6 chars, 1 uppercase, 1 lowercase & 1 number";
+      newErrors.new = "Must contain 6+ chars, 1 uppercase, 1 lowercase & 1 number";
     }
     if (passwords.newPassword !== passwords.confirmPassword) {
       newErrors.confirm = "Passwords do not match";
@@ -45,12 +46,16 @@ const UpdatePassword = () => {
     }
   };
 
+  const toggleShow = (key: string) => {
+    setShowPass(prev => ({ ...prev, [key]: !prev[key as keyof typeof showPass] }));
+  };
+
   return (
     <form onSubmit={handleSubmit} className={style.form}>
       {[
-        { id: 'old', label: 'Current Password', key: 'oldPassword' },
-        { id: 'new', label: 'New Password', key: 'newPassword' },
-        { id: 'confirm', label: 'Confirm New Password', key: 'confirmPassword' }
+        { id: 'current', label: 'Current Password', key: 'oldPassword' as const, placeholder: '••••••••' },
+        { id: 'new', label: 'New Password', key: 'newPassword' as const, placeholder: '••••••••' },
+        { id: 'confirm', label: 'Confirm New Password', key: 'confirmPassword' as const, placeholder: '••••••••' }
       ].map((field) => (
         <div className={style.wrapper} key={field.id}>
           <p className={style.subtitle}>{field.label}</p>
@@ -59,20 +64,36 @@ const UpdatePassword = () => {
               type={showPass[field.id as keyof typeof showPass] ? "text" : "password"}
               value={passwords[field.key as keyof typeof passwords]}
               onChange={(e) => setPasswords({ ...passwords, [field.key]: e.target.value })}
-              className={style.input}
-              placeholder={`Enter ${field.label.toLowerCase()}`}
+              className={`${style.input} ${errors[field.id] ? style.invalid : ''}`}
+              placeholder={field.placeholder}
             />
-            <span className={style.eyeIcon} onClick={() => setShowPass({ ...showPass, [field.id]: !showPass[field.id as keyof typeof showPass] })}>
+            <span
+              className={style.eyeIcon}
+              onClick={() => toggleShow(field.id)}
+              role="button"
+              tabIndex={0}
+            >
               {showPass[field.id as keyof typeof showPass] ? <AiOutlineEyeInvisible /> : <AiOutlineEye />}
             </span>
           </div>
           {errors[field.id] && <p className={style.error}>{errors[field.id]}</p>}
         </div>
       ))}
+      <div className={style.forgotRow}>
+        Forgot your current password?{' '}
+        <Link
+          to="/forgot-password"
+          className={style.resetLink}
+        >
+          Reset it here
+        </Link>
+      </div>
 
-      <Button type="submit" disabled={loading} className={style.btn2}>
-        {loading ? "Processing..." : "Change Password"}
+      <div className={style.actionRow}>
+      <Button type="submit" disabled={loading} className={style.btn}>
+        {loading ? "Updating Security..." : "Change Password"}
       </Button>
+      </div>
     </form>
   );
 };

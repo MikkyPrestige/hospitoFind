@@ -12,6 +12,7 @@ import TrustedSection from '@/components/trustedHospitals'
 import Motion from '@/components/motion'
 import { fadeUp, sectionReveal } from '@/hooks/animations'
 import { SEOHelmet } from '@/components/utils/seoUtils'
+import { FiMapPin } from 'react-icons/fi'
 
 
 const Home = () => {
@@ -22,7 +23,7 @@ const Home = () => {
 
   const handleSearch = () => {
     if (!searchQuery.trim()) {
-      setError("Please enter a city, country, or hospital name.");
+      setError("Please enter a location or hospital name to search.");
       return;
     }
 
@@ -33,13 +34,13 @@ const Home = () => {
   return (
     <>
       <SEOHelmet
-        title="Hospital Finder & Healthcare Directory"
-        description="Find hospitals near you with HospitoFind. Search by city, country, or name to discover verified healthcare facilities and services worldwide."
+        title="Find Trusted Hospitals Near You | Global Healthcare Directory"
+        description="Instantly locate verified hospitals, clinics, and emergency centers worldwide. View services, contact info, and real-time health alerts."
         canonical="https://hospitofind.online"
         image="/src/assets/images/hero.png"
         schemaType="global"
         schemaData={[]}
-        autoBreadcrumbs={true}
+        autoBreadcrumbs={false}
         extraSchema={[
           {
             "@context": "https://schema.org",
@@ -67,10 +68,10 @@ const Home = () => {
           <Motion className={style.container} variants={sectionReveal} as="section">
             <div className={style.header}>
               <h1 className={style.title}>
-                Find Trusted Hospitals Near You — Fast and Easy!
+                Find Trusted Care, <span className={style.accent}>Anywhere.</span>
               </h1>
               <p className={style.subtitle}>
-                Locate verified healthcare facilities worldwide. Search by City, Country, or Hospital Name.
+                Instantly connect with verified hospitals, clinics, and emergency centers globally. Your health journey starts here.
               </p>
             </div>
 
@@ -79,7 +80,7 @@ const Home = () => {
                 <span className={style.searchIcon}>🔍</span>
                 <input
                   type="text"
-                  placeholder="City, country, or hospital..."
+                  placeholder="Enter city, region, or hospital name..."
                   className={style.mainInput}
                   value={searchQuery}
                   onChange={(e) => {
@@ -87,17 +88,18 @@ const Home = () => {
                     if (error) setError("");
                   }}
                   onKeyDown={(e) => e.key === 'Enter' && handleSearch()}
+                  aria-label="Search for hospitals"
                 />
               </div>
 
               {error && <p className={style.errorMessage}>{error}</p>}
 
-              <button className={style.locationBtn} onClick={() => setTriggerLocation(Date.now())}>
-                📍 Use My Location
+              <button className={style.locationBtn} onClick={() => setTriggerLocation(Date.now())} title="Find hospitals near my current location">
+                <FiMapPin /> Near Me
               </button>
 
               <button className={style.btnPrimary} onClick={handleSearch}>
-                Search Now
+                Find Hospitals
               </button>
             </div>
           </Motion>
@@ -105,8 +107,11 @@ const Home = () => {
           <Motion className={style.imgContainer} variants={fadeUp}>
             <img
               src={HeroImage}
-              alt="A mother and child using a smartphone to find verified hospitals on the HospitoFind directory."
+              alt="Mother and child using the HospitoFind app to locate medical care"
               className={style.heroImage}
+              width="600"
+              height="500"
+              loading="eager"
             />
           </Motion>
         </div>

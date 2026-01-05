@@ -34,6 +34,8 @@ const HospitalManagement = lazy(() => import("@/pages/admin/hospitalManagement")
 const Unauthorized = lazy(() => import("@/pages/admin/unauthorized"));
 const VerifyEmail = lazy(() => import("@/pages/profile/verifyEmail"));
 const EmailSent = lazy(() => import("@/pages/profile/emailSent"));
+const ForgotPassword = lazy(() => import("@/pages/profile/forgotPassword"));
+const ResetPassword = lazy(() => import("@/userConfig/resetPassword"));
 
 // elper to wrap lazy components in Suspense automatically
 const Loadable = (Component: any) => (props: any) => (
@@ -69,6 +71,8 @@ export const router = createBrowserRouter([
             { path: "terms", element: Loadable(Terms)({}) },
             { path: "faq", element: Loadable(FAQPage)({}) },
             { path: "unauthorized", element: Loadable(Unauthorized)({}) },
+            { path: "forgot-password", element: Loadable(ForgotPassword)({}) },
+            { path: "reset-password/:resetToken", element: Loadable(ResetPassword)({}) },
             { path: "hospital/:id", element: Loadable(HospitalDetails)({}) },
             { path: "hospital/:country/:city/:slug", element: Loadable(HospitalDetails)({}) },
             { path: "hospitals/share/:linkId", element: Loadable(ShareHospitalList)({}) },

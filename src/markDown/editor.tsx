@@ -14,7 +14,7 @@ import { zoomIn } from '@/hooks/animations';
 type HospitalSubmission = Omit<Hospital, '_id' | 'slug' | 'longitude' | 'latitude'>;
 
 const INITIAL_TEMPLATE = `
-Please verify the hospital information before submitting to help keep our data accurate. Thank you!
+**Instructions:** Please fill in the details below. Do not remove the headers (lines starting with #).
 
 # Name:
 
@@ -29,12 +29,13 @@ Please verify the hospital information before submitting to help keep our data a
 # Photo-Url:
 
 # Type:
-(Options: Public or Private)
+(Public / Private / Missionary)
 
 # Services:
-(Eg: Dental consultation, Outpatient consultations etc.)
+(e.g., Emergency, Dental, Pediatrics - separate with commas)
 
 # Comments:
+(Any additional details about the facility)
 
 # Hours
 - Day: Monday | Open - Close:
@@ -59,6 +60,7 @@ const Editor = () => {
     setMarkdown(INITIAL_TEMPLATE);
     setError('');
     setShowSuccess(false);
+    setSelectedTab('write');
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -100,7 +102,7 @@ const Editor = () => {
     }
 
     if (!hospitalData.name || !hospitalData.address.city || !country) {
-      setError("Name, City, and Country are required.");
+      setError("Please ensure the Name, City, and Country fields are filled out.");
       return;
     }
 
@@ -109,7 +111,7 @@ const Editor = () => {
       await axiosPrivate.post(`/hospitals`, hospitalData);
       setShowSuccess(true);
     } catch (err: any) {
-      setError(err.response?.data?.message || 'Submission failed.');
+      setError(err.response?.data?.message || 'Unable to submit hospital data. Please check your inputs.');
     } finally {
       setLoading(false);
     }
@@ -119,14 +121,17 @@ const Editor = () => {
     <section className={style.editorContainer}>
       <header className={style.editorHeader}>
         <h1 className={style.title}>
-          Help Others Find Care Faster — <span className={style.accent}>Add A Hospital To The Map.</span>
+          Submit a New Facility
         </h1>
+        <p className={style.subtitle}>
+          Help us expand our reach. Add verified hospital details below to assist users in finding the care they need.
+        </p>
       </header>
 
       <form onSubmit={handleSubmit} className={style.editorForm}>
         <div className={style.toolbar}>
           <button type="button" onClick={resetTemplate} className={style.resetBtn}>
-            <MdOutlineRestartAlt /> Reset Template
+            <MdOutlineRestartAlt /> Reset Form
           </button>
         </div>
 
@@ -141,12 +146,16 @@ const Editor = () => {
           minEditorHeight={450}
         />
 
-        {error && <div className={style.errorBox}><MdErrorOutline /> {error}</div>}
+       {error && (
+          <motion.div initial={{ opacity: 0, y: -10 }} animate={{ opacity: 1, y: 0 }} className={style.errorBox}>
+            <MdErrorOutline size={20} /> {error}
+          </motion.div>
+        )}
 
         <div className={style.formActions}>
           <Button disabled={loading} type="submit">
             <span className={style.btnContent}>
-              {loading ? 'Processing...' : 'Submit Facility'}
+              {loading ? 'Submitting...' : 'Submit for Verification'}
             </span>
           </Button>
         </div>
@@ -161,8 +170,8 @@ const Editor = () => {
                 <MdCheckCircleOutline className={style.checkIcon} />
               </div>
               <h2>Submission Received!</h2>
-              <p>Thank you, <strong>{state?.username}</strong>. The facility data has been sent to our team for verification. It will appear on the map once approved.</p>
-              <button onClick={resetTemplate} className={style.closeModalBtn}>Great, Got it!</button>
+              <p>Thank you, <strong>{state?.username}</strong>. The facility data has been sent to our team for verification. It will appear on the map once verified.</p>
+              <button onClick={resetTemplate} className={style.closeModalBtn}>Submit Another</button>
             </motion.div>
           </div>
         )}

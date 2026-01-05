@@ -65,16 +65,16 @@ export async function findHospitals(query: string) {
   }
 }
 
-// get hospital by state or city
-export async function searchHospitals(query: string) {
-  try {
-    const response = await axios.get(`${BASE_URL}/hospitals/search?${query}`);
-    const searchedHospitals = response.data;
-    return searchedHospitals;
-  } catch (error) {
-    throw error
-  }
-}
+// // get hospital by state or city
+// export async function searchHospitals(query: string) {
+//   try {
+//     const response = await axios.get(`${BASE_URL}/hospitals/search?${query}`);
+//     const searchedHospitals = response.data;
+//     return searchedHospitals;
+//   } catch (error) {
+//     throw error
+//   }
+// }
 
 // share hospital
 export async function shareHospital(searchParams: any) {
@@ -229,7 +229,12 @@ api.interceptors.response.use(
 
       } catch (refreshError) {
         console.error("Refresh failed:", refreshError);
-        localStorage.clear();
+        localStorage.removeItem("accessToken");
+        localStorage.removeItem("username");
+        localStorage.removeItem("role");
+        localStorage.removeItem("id");
+        localStorage.removeItem("email");
+        localStorage.removeItem("auth0.is_authenticated");
 
         if (!window.location.pathname.includes('/login')) {
              window.location.href = "/login?expired=true";
@@ -244,48 +249,3 @@ api.interceptors.response.use(
     return Promise.reject(error);
   }
 );
-// api.interceptors.response.use(
-//   (response) => {
-//     hideLoader();
-//     return response;
-//   },
-//   async (error) => {
-//     const prevRequest = error?.config;
-// const tokenInStorage = localStorage.getItem("accessToken");
-
-//     if (error?.response?.status === 401 && !prevRequest?._retry && tokenInStorage) {
-//       prevRequest._retry = true;
-
-//       try {
-//         const response = await axios.get(`${BASE_URL}/auth/refresh`, {
-//             withCredentials: true,
-//         });
-
-//         const newAuthData = response.data;
-//         const { accessToken } = newAuthData;
-
-//         localStorage.setItem("accessToken", accessToken);
-
-//         Object.entries(newAuthData).forEach(([key, value]) => {
-//             if (value) localStorage.setItem(key, value.toString());
-//         });
-
-//         prevRequest.headers["Authorization"] = `Bearer ${accessToken}`;
-
-//         return api(prevRequest);
-
-//       } catch (refreshError) {
-//         localStorage.clear();
-//        if (!window.location.pathname.includes('/login')) {
-//          window.location.href = "/login?expired=true";
-//       }
-//         return Promise.reject(refreshError);
-//       } finally {
-//         hideLoader();
-//       }
-//     }
-
-//     hideLoader();
-//     return Promise.reject(error);
-//   }
-// );

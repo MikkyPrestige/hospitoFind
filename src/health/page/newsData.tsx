@@ -5,6 +5,8 @@ import Header from "@/layouts/header/nav";
 import Footer from "@/layouts/footer/footer";
 import AnimatedLoader from "@/components/utils/AnimatedLoader";
 import style from "./style/newsData.module.css";
+import { BASE_URL } from "@/context/userContext";
+import { FiExternalLink, FiCalendar, FiActivity } from "react-icons/fi";
 
 type Article = {
     title: string;
@@ -14,8 +16,6 @@ type Article = {
     pubDate?: string;
     source_id?: string;
 };
-
-const URL = import.meta.env.VITE_BASE_URL;
 
 const NewsData = () => {
     const [articles, setArticles] = useState<Article[]>([]);
@@ -27,12 +27,13 @@ const NewsData = () => {
             try {
                 setLoading(true);
                 setError(null);
-                const res = await fetch(`${URL}/health/news`);
+                const res = await fetch(`${BASE_URL}/health/news`);
                 if (!res.ok) throw new Error("Failed to fetch health news");
                 const data = await res.json();
-                setArticles(data.slice(0, 12));
+                const list = Array.isArray(data) ? data : (data.results || []);
+                setArticles(list.slice(0, 12));
             } catch (err) {
-                setError("Failed to load latest health news. Please try again later.");
+                setError("Unable to load the latest headlines. Please check your connection.");
             } finally {
                 setLoading(false);
             }
@@ -40,32 +41,49 @@ const NewsData = () => {
         fetchNews();
     }, []);
 
+    // Format date cleanly
+    const formatDate = (dateString?: string) => {
+        if (!dateString) return "Recent Update";
+        try {
+            return new Date(dateString).toLocaleDateString(undefined, {
+                month: "short", day: "numeric", year: "numeric"
+            });
+        } catch (e) {
+            return "Recent Update";
+        }
+    };
+
     return (
         <>
             <Header />
             <section className={style.section}>
                 <Motion variants={sectionReveal} className={style.pageHeader}>
                     <div className={style.titleGroup}>
-                        <h1 className={style.heading}>🩺 Global Health News</h1>
-                        <span className={style.liveBadge}>Live Updates</span>
+                        <h1 className={style.heading}>
+                            <FiActivity className={style.headerIcon} /> Global Health News
+                        </h1>
+                        <span className={style.liveBadge}>Live Feed</span>
                     </div>
                     <p className={style.subHeading}>
-                        Stay informed with curated real-time health updates and medical breakthroughs from around the world.
+                        Stay informed with curated real-time health updates, research findings, and medical breakthroughs from trusted global sources.
                     </p>
                 </Motion>
 
                 <div className={style.container}>
                     {loading ? (
-                            <AnimatedLoader
-                                message="Fetching the latest medical headlines..."
-                                variant="card"
-                                count={6}
-                                showImage
-                                imageHeight={220}
-                            />
+                        <AnimatedLoader
+                            message="Curating latest medical headlines..."
+                            variant="card"
+                            count={6}
+                            showImage
+                            imageHeight={220}
+                        />
                     ) : error ? (
                         <div className={style.errorBox}>
                             <p>{error}</p>
+                            <button onClick={() => window.location.reload()} className={style.retryBtn}>
+                                Try Again
+                            </button>
                         </div>
                     ) : (
                         <div className={style.newsGrid}>
@@ -81,11 +99,11 @@ const NewsData = () => {
                                             />
                                         ) : (
                                             <div className={style.imagePlaceholder}>
-                                                <span>Health News</span>
+                                                <span>Medical Update</span>
                                             </div>
                                         )}
                                         <div className={style.sourceTag}>
-                                            {article.source_id || "Medical News"}
+                                            {article.source_id || "Health News"}
                                         </div>
                                     </div>
 
@@ -93,8 +111,8 @@ const NewsData = () => {
                                         <h3 className={style.newsTitle}>{article.title}</h3>
                                         <p className={style.newsDesc}>
                                             {article.description
-                                                ? `${article.description.slice(0, 110)}...`
-                                                : "Click below to read the full details of this medical update."}
+                                                ? `${article.description.slice(0, 120)}...`
+                                                : "Read the full details of this medical update at the source link below."}
                                         </p>
 
                                         <div className={style.newsFooter}>
@@ -104,10 +122,11 @@ const NewsData = () => {
                                                 rel="noopener noreferrer"
                                                 className={style.readMore}
                                             >
-                                                Read Article →
+                                                Read Full Article <FiExternalLink />
                                             </a>
                                             <small className={style.date}>
-                                                📅 {article.pubDate ? article.pubDate.split(" ")[0] : "Recently"}
+                                                <FiCalendar className={style.dateIcon} />
+                                                {formatDate(article.pubDate)}
                                             </small>
                                         </div>
                                     </div>

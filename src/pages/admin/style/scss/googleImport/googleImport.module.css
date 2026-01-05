@@ -185,11 +185,22 @@
   animation: spin 1s linear infinite;
   margin-bottom: 0.8rem;
 }
-.loaderOverlay p {
+.loaderOverlay .loadingText {
   color: #08299B;
-  font-weight: 600;
-  font-size: 0.9rem;
-  animation: pulse 1.5s infinite;
+  font-weight: 700;
+  font-size: 1.1rem;
+  margin-top: 1rem;
+  margin-bottom: 0.3rem;
+  text-align: center;
+  animation: pulse 1.5s ease-in-out infinite;
+}
+.loaderOverlay .loadingSubtext {
+  color: #6b7280;
+  font-size: 0.85rem;
+  font-weight: 500;
+  opacity: 0.8;
+  text-align: center;
+  font-style: italic;
 }
 
 @keyframes spin {

@@ -1,3 +1,5 @@
+import { Hospital } from "@/services/hospital";
+
 const toSlug = (text: string | undefined | null) => {
   if (!text) return "";
 
@@ -18,4 +20,18 @@ const standardizeText = (text: string) => {
         .join(' ');
 };
 
-export { toSlug, standardizeText };
+// Helper to remove duplicates from the dropdown
+const getUniqueCities = (hospitals: Hospital[]) => {
+  const seen = new Set();
+  return (hospitals || [])
+    .map(h => h.address?.city?.trim())
+    .filter(city => {
+      if (!city) return false;
+      const lower = city.toLowerCase();
+      if (seen.has(lower)) return false;
+      seen.add(lower);
+      return true;
+    });
+};
+
+export { toSlug, standardizeText, getUniqueCities };

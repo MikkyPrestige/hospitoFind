@@ -332,8 +332,7 @@
   border: 1px solid #e2e8f0;
   padding: 0.5rem;
   border-radius: 6px;
-  font-size: 0.9rem;
-  background: #fbfcfe;
+  font-size: 1rem;
 }
 .hourRow select:focus, .hourRow input:focus {
   border-color: #4f46e5;

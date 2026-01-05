@@ -50,17 +50,34 @@ const authReducer = (state: AuthState, action: AuthAction): AuthState => {
     // Clear everything on Logout or Account Deletion
     case "LOGOUT":
     case "DELETE":
-      localStorage.clear();
+      const keysToRemove = [
+        "accessToken",
+        "username",
+        "name",
+        "email",
+        "role",
+        "id",
+        "_id",
+        "auth0Id",
+        "createdAt",
+        "updatedAt",
+        "auth0.is_authenticated",
+        "selectedLink"
+      ];
+      keysToRemove.forEach(key => localStorage.removeItem(key));
       return {
         ...initialState,
+        _id: null,
         username: null,
         name: null,
         email: null,
         role: null,
-        accessToken: null,
-        _id: null,
+        auth0Id: null,
         createdAt: null,
         updatedAt: null,
+        accessToken: null,
+        password: null,
+        newPassword: null,
       };
 
     default:

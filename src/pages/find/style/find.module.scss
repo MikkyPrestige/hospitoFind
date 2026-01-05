@@ -1,249 +1,315 @@
 @use "sass:color" as color;
 
-$color-blue: #2563EB;
-$color-dark-blue: #08299b;
-$color-white: #ffffff;
-$color-gray: #64748b;
-$color-light-bg: #f8fafc;
-$color-red: #ef4444;
-$font-sans: 'Inter', sans-serif;
-$font-heading: 'Fira Sans', sans-serif;
-$header-height: 3rem;
-
+/* --- VARIABLES --- */
 .findSection {
- width: 100%;
-  height: calc(100vh - #{$header-height});
-  display: flex;
-  flex-direction: column;
-  background-color: #ffffff;
-  padding-top: 8rem;
+  --color-blue: #2563EB;
+  --color-dark-blue: #08299b;
+  --color-white: #ffffff;
+  --color-gray: #64748b;
+  --color-light-bg: #f8fafc;
+  --color-red: #ef4444;
+  --color-border: #e2e8f0;
+  --header-height: 70px;
+
+  width: 100%;
+  height: 100vh;
+  background-color: var(--color-white);
+  padding-top: var(--header-height);
   overflow: hidden;
 
-  .sr-only {
-    position: absolute;
-    width: 1px;
-    height: 1px;
-    padding: 0;
-    margin: -1px;
-    overflow: hidden;
-    clip: rect(0, 0, 0, 0);
-    border: 0;
-  }
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  justify-content: flex-start;
+}
 
-  .search {
-  display: flex !important;
-    width: 100% !important;
-    height: 100% !important;
-    flex-direction: column;
-    overflow: visible !important;
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  border: 0;
+}
 
-    @include respond(tab-land) {
-      flex-direction: row !important;
-    }
+.search {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column-reverse;
+  align-items: stretch;
+  justify-content: flex-start;
+}
 
-    .hospitals {
-     width: 100%;
-      flex: 1;
-      overflow-y: auto;
-      padding: 1.5rem;
-      background: #fff;
-      order: 2;
+/* --- SIDEBAR (Results) --- */
+.hospitals {
+  width: 100%;
+  flex: 1;
+  overflow-y: auto;
+  background: #fff;
+  position: relative;
+}
 
-      @include respond(tab-land) {
-        height: 100% !important;
-        order: 1;
-        border-right: 1px solid #eee;
-      }
+.searchContainer {
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(8px);
+  padding: 1.5rem;
+  border-bottom: 1px solid var(--color-light-bg);
+}
 
-      .searchContainer {
-      position: sticky;
-        top: 0;
-        z-index: 10;
-        background: #fff;
-        padding-bottom: 1rem;
+.form {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  background: var(--color-light-bg);
+  border: 1px solid var(--color-border);
+  border-radius: 12px;
+  overflow: hidden;
+  transition: all 0.3s ease;
+}
 
-        .form {
-        display: flex;
-          background: #f8fafc;
-          border: 1px solid #e2e8f0;
-          border-radius: 12px;
-          overflow: hidden;
+.form:focus-within {
+  border-color: var(--color-blue);
+  background: #fff;
+  box-shadow: 0 4px 12px rgba(37, 99, 235, 0.1);
+}
 
-          &:focus-within {
-            border-color: $color-blue;
-            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
-          }
+.input {
+  flex: 1;
+  padding: 1rem;
+  border: none;
+  background: transparent;
+  font-size: 1.2rem;
+  color: var(--color-dark-blue);
+  font-family: 'Inter', sans-serif;
+}
 
-          .input {
-           flex: 1;
-           padding: 0.8rem;
-           border: none;
-           background: transparent;
+.input:focus {
+  outline: none;
+}
 
-            &:focus { outline: none; }
-          }
+.cta {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--color-blue);
+  color: white;
+  padding: 0 1.5rem;
+  height: 3.5rem;
+  border: none;
+  cursor: pointer;
+  font-weight: 600;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  transition: background 0.2s;
+}
 
-          .cta {
-          background: $color-blue;
-          color: white;
-          padding: 0 1.2rem;
-          border: none;
-          cursor: pointer;
-
-            &:hover { background: color.adjust($color-blue, $lightness: -5%); }
-            .icon { font-size: 1.2rem; }
-          }
-
-          .loading {
-            background: $color-gray;
-            cursor: wait;
-          }
-        }
-
-        .error {
-          color: $color-red;
-          font-size: 0.85rem;
-          margin-top: 0.5rem;
-          font-weight: 500;
-        }
-      }
-    }
-
-    .map {
-    width: 100%;
-      height: 40vh;
-      order: 1;
-      background: #e5e7eb;
-
-      @include respond(tab-land) {
-      flex: 1 !important;
-        height: 100% !important;
-        order: 2;
-      }
-
-.mapBox { width: 100%; height: 100%; }
-    }
-  }
+.cta:hover {
+  background-color: #1d4ed8;
 }
 
 .resultsContent {
-  flex: 1;
-  width: 100%;
+  padding: 0 1.5rem 2rem 1.5rem;
+}
 
-  .found {
+.heading {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--color-dark-blue);
+  margin-bottom: 0.5rem;
+  margin-top: 1rem;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+}
+
+.highlight {
+  color: var(--color-blue);
+}
+
+.subtitle {
+  font-size: 1.2rem;
+  color: var(--color-gray);
+  margin-bottom: 1.5rem;
+  line-height: 1.5;
+  font-family: 'Inter', sans-serif;
+}
+
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 1.2rem;
+  width: 100%;
+}
+
+/* --- MAP --- */
+.map {
+  width: 100%;
+  height: 36vh;
+  background: #e5e7eb;
+  position: relative;
+}
+
+.mapBox {
+  width: 100%;
+  height: 100%;
+}
+
+/* --- RESULT CARD --- */
+.card {
+  width: 100%;
+  background: #fff;
+  border-radius: 16px;
+  border: 1px solid var(--color-light-bg);
+  overflow: hidden;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  display: block;
+}
+
+.card:hover {
+  transform: translateY(-4px);
+  border-color: rgba(37, 99, 235, 0.2);
+  box-shadow: 0 12px 24px -10px rgba(0, 0, 0, 0.08);
+}
+
+.img {
+  width: 100%;
+  height: 20rem;
+  background-color: var(--color-light-bg);
+}
+
+.img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.details {
+  padding: 1.25rem;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  width: 100%;
+}
+
+.name {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #1e293b;
+  margin-bottom: 0.25rem;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+}
+
+.details p {
+  color: var(--color-gray);
+  font-size: 1.1rem;
+  margin-bottom: 1rem;
+  font-family: 'Inter', sans-serif;
+}
+
+.btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  background: rgba(37, 99, 235, 0.08);
+  color: var(--color-blue);
+  padding: 0.7rem;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 1rem;
+  text-decoration: none;
+  transition: all 0.2s;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+}
+
+.btn:hover {
+  background: var(--color-blue);
+  color: #fff;
+}
+
+/* --- NO RESULTS --- */
+.noResults {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 4rem 2rem;
+  text-align: center;
+}
+
+.found {
     display: flex;
     flex-direction: column;
     width: 100%;
+}
 
-    .heading {
-      font-size: 1.4rem;
-      font-weight: 700;
-       color: $color-dark-blue;
+.noResultsIcon {
+  font-size: 3rem;
+  color: #cbd5e1;
+  margin-bottom: 1rem;
+}
 
-       .highlight {
-        color: $color-blue;
-        text-transform: capitalize;
-       }
-      }
+.noResultsText {
+  color: var(--color-gray);
+  margin-bottom: 1rem;
+  line-height: 1.6;
+  font-family: 'Inter', sans-serif;
+}
 
-  .subtitle { font-size: 0.9rem; color: #64748b; margin-bottom: 1.5rem; }
+.addLink {
+  color: var(--color-blue);
+  font-weight: 700;
+  cursor: pointer;
+}
 
-  .wrapper { display: flex; flex-direction: column; gap: 1.5rem; width: 100%; }
+.retryLink {
+  display: inline-block;
+  color: var(--color-blue);
+  font-weight: 600;
+  cursor: pointer;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+}
+
+
+@media (min-width: 56.25em) {
+  .search {
+    flex-direction: row;
+    align-items: flex-start;
   }
 
-  .noResults {
-   text-align: center;
-    padding: 3rem 1.5rem;
-    background: #fff;
-    border-radius: 16px;
-    border: 2px dashed #e2e8f0;
+  .hospitals {
+    flex: 0 0 55%;
+    max-width: 55%;
+    height: 100%;
+    border-right: 1px solid var(--color-border);
+    z-index: 2;
+    box-shadow: 4px 0 24px rgba(0,0,0,0.05);
+  }
+
+  .map {
+    flex: 1;
+    height: 100%;
+  }
+
+  .card {
     display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 1.2rem;
-    margin: 2rem 0;
+    flex-direction: row;
+    align-items: flex-start;
+  }
 
-    .noResultsIcon {
-      font-size: 3.5rem;
-      color: $color-blue;
-      opacity: 0.8;
-    }
-
-    .noResultsText {
-font-size: 1.05rem;
-      color: #475569;
-      line-height: 1.6;
-      max-width: 32ch;
-
-      .addLink {
-        color: $color-blue;
-        font-weight: 700;
-        cursor: pointer;
-        text-decoration: underline;
-        transition: color 0.2s ease;
-        display: inline-block;
-
-        &:hover {
-          color: $color-dark-blue;
-          text-decoration: none;
-        }
-      }
-     }
-    .retryLink {
-     color: $color-blue;
-      font-weight: 700;
-      cursor: pointer;
-      font-size: 0.95rem;
-      padding: 0.6rem 1.2rem;
-      border: 1.5px solid $color-blue;
-      border-radius: 8px;
-      transition: all 0.2s ease;
-      margin-top: 0.5rem;
-
-      &:hover {
-background-color: $color-blue;
-        color: white;
-        transform: translateY(-2px);
-       }
-
-       &:active {
-        transform: translateY(0);
-      }
-    }
+  .img {
+    width: 150px;
+    height: 100%;
   }
 }
 
-.card {
-background: #fff;
-  border-radius: 12px;
-  border: 1px solid #e2e8f0;
-  overflow: hidden;
-  transition: transform 0.2s;
-
-  &:hover { transform: translateY(-4px); }
-
-.img { width: 100%; height: 160px; object-fit: cover; }
-
-.details {
-   padding: 1rem;
-
-   .name {
-    font-weight: 700;
-    color: $color-dark-blue;
-  }
-
-  .btn {
-    display: inline-block;
-    margin-top: 10px;
-    background: $color-dark-blue;
-    color: #fff;
-    padding: 0.5rem 1rem;
-    border-radius: 6px;
-    text-decoration: none;
-  }
-}
-}
-
+/* Scrollbar Styling */
 .hospitals::-webkit-scrollbar { width: 6px; }
 .hospitals::-webkit-scrollbar-track { background: transparent; }
 .hospitals::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 10px; }
