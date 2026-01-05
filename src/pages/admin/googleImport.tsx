@@ -1,9 +1,15 @@
-import { useState } from "react";
-import { FiDownloadCloud, FiCheckCircle, FiAlertCircle, FiMapPin } from "react-icons/fi";
+import { useState, useEffect, useRef } from "react";
+import {
+    FiDownloadCloud,
+    FiCheckCircle,
+    FiAlertCircle,
+    FiMapPin,
+    FiGlobe
+} from "react-icons/fi";
 import { MdOutlineCleaningServices } from "react-icons/md";
 import useAxiosPrivate from "@/hooks/user/useAxiosPrivate";
 import { toast } from "react-toastify";
-import styles from "./style/scss/googleImport/googleImport.module.scss";
+import styles from "./style//scss/googleImport/googleImport.module.scss";
 
 // Interface for the API response
 interface ImportResult {
@@ -16,13 +22,24 @@ const GoogleImport = ({ onSuccess }: { onSuccess?: () => void }) => {
     const [city, setCity] = useState("");
     const [country, setCountry] = useState("");
     const [loading, setLoading] = useState(false);
+    const [loadingText, setLoadingText] = useState("Connecting to Google...");
     const [result, setResult] = useState<ImportResult | null>(null);
 
+    // Refs to manage timers prevents memory leaks if component unmounts
+    const timersRef = useRef<NodeJS.Timeout[]>([]);
     const axiosPrivate = useAxiosPrivate();
+
+    // Cleanup timers on unmount
+    useEffect(() => {
+        return () => {
+            timersRef.current.forEach(clearTimeout);
+        };
+    }, []);
 
     const handleImport = async (e: React.FormEvent) => {
         e.preventDefault();
 
+        // Validation
         if (!city || !country) {
             toast.error("Please enter both City and Country");
             return;
@@ -30,23 +47,37 @@ const GoogleImport = ({ onSuccess }: { onSuccess?: () => void }) => {
 
         setLoading(true);
         setResult(null);
+        setLoadingText("Searching for locations...");
+
+        //  UX: Cycle messages to keep user engaged during the 5-10s wait
+        // clear any existing timers first
+        timersRef.current.forEach(clearTimeout);
+        timersRef.current = [
+            setTimeout(() => setLoadingText("Found locations. Fetching details..."), 2500),
+            setTimeout(() => setLoadingText("Downloading photos & reviews..."), 5500),
+            setTimeout(() => setLoadingText("Finalizing database entries..."), 9000),
+        ];
 
         try {
+            // API Call
             const { data } = await axiosPrivate.post("/admin/hospitals/import-google", {
                 city: city.trim(),
                 targetCountry: country.trim()
             });
 
             setResult(data);
-            toast.success(`Successfully imported ${data.imported} hospitals!`);
+            toast.success(`Success! Added ${data.imported} locations with rich data.`);
 
+            // Refresh the parent dashboard numbers
             if (onSuccess) onSuccess();
 
         } catch (err: any) {
+            console.error("Import Error:", err);
             const msg = err.response?.data?.message || "Import failed. Check your API limits.";
             toast.error(msg);
-            console.error("Import Error:", err);
         } finally {
+            // Cleanup
+            timersRef.current.forEach(clearTimeout);
             setLoading(false);
         }
     };
@@ -55,6 +86,7 @@ const GoogleImport = ({ onSuccess }: { onSuccess?: () => void }) => {
         setCity("");
         setCountry("");
         setResult(null);
+        setLoadingText("Connecting to Google...");
     };
 
     return (
@@ -65,31 +97,29 @@ const GoogleImport = ({ onSuccess }: { onSuccess?: () => void }) => {
                 </div>
                 <div>
                     <h3>Import from Google Maps</h3>
-                    <p>Bulk add hospitals from Google Places API to your review queue.</p>
+                    <p>Bulk add hospitals with photos, hours, and reviews.</p>
                 </div>
             </header>
 
             {!result ? (
+                /* --- INPUT FORM --- */
                 <form onSubmit={handleImport} className={styles.form}>
                     <div className={styles.inputGroup}>
-                        {/* CITY INPUT */}
                         <div className={styles.inputWrapper}>
                             <FiMapPin className={styles.inputIcon} />
                             <input
                                 type="text"
-                                placeholder="City (e.g. Sao Paulo)"
+                                placeholder="City (e.g. London)"
                                 value={city}
                                 onChange={(e) => setCity(e.target.value)}
                                 disabled={loading}
                             />
                         </div>
-
-                        {/* COUNTRY INPUT */}
                         <div className={styles.inputWrapper}>
-                            <FiMapPin className={styles.inputIcon} />
+                            <FiGlobe className={styles.inputIcon} />
                             <input
                                 type="text"
-                                placeholder="Country (e.g. Brazil)"
+                                placeholder="Country (e.g. UK)"
                                 value={country}
                                 onChange={(e) => setCountry(e.target.value)}
                                 disabled={loading}
@@ -102,11 +132,11 @@ const GoogleImport = ({ onSuccess }: { onSuccess?: () => void }) => {
                         className={styles.importBtn}
                         disabled={loading || !city || !country}
                     >
-                        {loading ? "Connecting to Google..." : "Start Import"}
+                        {loading ? "Processing..." : "Start Rich Import"}
                     </button>
                 </form>
             ) : (
-                /* RESULT VIEW */
+                /* --- RESULT SUMMARY --- */
                 <div className={styles.resultBox}>
                     <div className={styles.statsGrid}>
                         <div className={`${styles.stat} ${styles.success}`}>
@@ -129,11 +159,14 @@ const GoogleImport = ({ onSuccess }: { onSuccess?: () => void }) => {
                 </div>
             )}
 
-            {/* LOADER OVERLAY */}
+            {/* --- LOADING OVERLAY --- */}
             {loading && (
                 <div className={styles.loaderOverlay}>
                     <div className={styles.spinner}></div>
-                    <p>Fetching data from Google Maps...</p>
+                    <p className={styles.loadingText}>{loadingText}</p>
+                    <small className={styles.loadingSubtext}>
+                        (Rich data import takes 5-10 seconds per batch)
+                    </small>
                 </div>
             )}
         </div>

@@ -2,6 +2,8 @@ import { useEffect, useState } from "react";
 import style from "./style/healthAlert.module.css";
 import AnimatedLoader from "../components/utils/AnimatedLoader";
 import { useNavigate } from "react-router-dom";
+import { FiAlertTriangle, FiArrowRight, FiCalendar, FiExternalLink } from "react-icons/fi";
+import { BASE_URL } from "@/context/userContext";
 
 type Alert = {
     title: string;
@@ -11,22 +13,22 @@ type Alert = {
     source: string;
 };
 
-const URL = import.meta.env.VITE_BASE_URL;
-
 const HealthAlerts = () => {
     const [alerts, setAlerts] = useState<Alert[]>([]);
     const [loading, setLoading] = useState(true);
+    const [error, setError] = useState<string | null>(null);
     const navigate = useNavigate();
 
     useEffect(() => {
         const fetchAlerts = async () => {
             setLoading(true);
             try {
-                const res = await fetch(`${URL}/health/alerts`);
+                const res = await fetch(`${BASE_URL}/health/alerts`);
                 const data = await res.json();
-                setAlerts(data.slice(0, 3));
+                const list = Array.isArray(data) ? data : (data.results || []);
+                setAlerts(list.slice(0, 3));
             } catch (err) {
-                // handle error
+                setError("Failed to health alerts");
             } finally {
                 setLoading(false);
             }
@@ -34,64 +36,66 @@ const HealthAlerts = () => {
         fetchAlerts();
     }, []);
 
+    if (loading) {
+        return <AnimatedLoader message="Scanning for health alerts..." variant="list" count={3} />;
+    }
+
+    if (error) return null;
+
     return (
         <section className={style.section}>
             <div className={style.headerRow}>
                 <div className={style.titleGroup}>
-                    <h2 className={style.heading}>⚠️ Outbreaks Alert</h2>
-                    <span className={style.badge}>Live updates</span>
+                    <span className={style.iconWrapper}><FiAlertTriangle /></span>
+                    <h2 className={style.heading}>Outbreaks & Alerts</h2>
+                    <span className={style.badge}>Live Feed</span>
                 </div>
+
+                <p className={style.subHeadingDesktop}>
+                    Track active disease outbreaks and health emergencies reported globally.
+                </p>
+
                 <button
                     className={style.viewAllLink}
                     onClick={() => navigate("/disease-outbreaks")}
                 >
-                    See All Alerts →
+                    View All <FiArrowRight />
                 </button>
             </div>
 
-            <p className={style.subHeading}>
-                Stay informed about current health concerns and outbreaks worldwide.
+            {/* Mobile Subheading */}
+            <p className={style.subHeadingMobile}>
+                Track active disease outbreaks and health emergencies reported globally.
             </p>
 
-            {loading ? (
-                <AnimatedLoader message="Getting latest disease alerts..." variant="list" count={4} />
-            ) : alerts.length > 0 ? (
+            {alerts.length > 0 ? (
                 <div className={style.listWrapper}>
                     <ul className={style.list}>
                         {alerts.map((a, i) => {
-                            const sourceLower = a.source.toLowerCase();
+                            const sourceLower = a.source ? a.source.toLowerCase() : "";
                             const isWHO = sourceLower.includes("who");
+                            const isCDC = sourceLower.includes("cdc");
                             const isArchived = sourceLower.includes("archived");
-                            const isMedia = sourceLower.includes("newsdata") || sourceLower.includes("media");
 
                             return (
-                                <li
-                                    key={i}
-                                    className={`${style.card} ${isArchived ? style.cardArchived : ""}`}
-                                >
+                                <li key={i} className={`${style.card} ${isArchived ? style.cardArchived : ""}`}>
                                     <div className={style.cardBody}>
-                                        <div className={style.titleRow}>
-                                            <h3 className={style.title}>{a.title}</h3>
-
+                                        <div className={style.metaHeader}>
                                             <span className={`
                                                 ${style.sourceBadge}
-                                                ${isArchived ? style.sourceArchived : ''}
-                                                ${isWHO ? style.sourceWHO : ''}
-                                                ${isMedia ? style.sourceMedia : ''}
+                                                ${isWHO ? style.sourceWHO : isCDC ? style.sourceCDC : style.sourceGeneral}
                                             `}>
-                                                {isArchived ? "Archived" : isWHO ? "WHO Verified" : "Media Report"}
+                                                {a.source || "Global Report"}
                                             </span>
-                                        </div>
-
-                                        <div className={style.metaRow}>
                                             <span className={style.date}>
-                                                📅 {a.date ? new Date(a.date).toLocaleDateString(undefined, {
-                                                    year: 'numeric',
-                                                    month: 'short',
-                                                    day: 'numeric'
+                                                <FiCalendar className={style.dateIcon} />
+                                                {a.date ? new Date(a.date).toLocaleDateString(undefined, {
+                                                    month: 'short', day: 'numeric', year: 'numeric'
                                                 }) : "Recent"}
                                             </span>
                                         </div>
+
+                                        <h3 className={style.title}>{a.title}</h3>
 
                                         <p className={style.summary}>{a.summary}</p>
 
@@ -102,7 +106,7 @@ const HealthAlerts = () => {
                                                 rel="noopener noreferrer"
                                                 className={style.link}
                                             >
-                                                Read full report →
+                                                Full Report <FiExternalLink />
                                             </a>
                                         </div>
                                     </div>
@@ -112,7 +116,9 @@ const HealthAlerts = () => {
                     </ul>
                 </div>
             ) : (
-                <p className={style.status}>No current health alerts found.</p>
+                <div className={style.emptyState}>
+                    <p>No active health alerts at this time.</p>
+                </div>
             )}
         </section>
     );

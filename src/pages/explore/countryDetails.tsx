@@ -93,10 +93,10 @@ const CountryDetailPage: React.FC = () => {
   }, [hospitals, searchTerm, activeType]);
 
   return (
-    <div className={style.layoutContainer}>
+    <>
       <SEOHelmet
         title={`Verified Hospitals in ${decodedCountry}`}
-        description={`Explore ${hospitals.length} verified hospitals in ${decodedCountry}. Filter by type and find the best medical care.`}
+        description={`Browse ${hospitals.length}+ verified hospitals and clinics in ${decodedCountry}. View services, contact info, and directions.`}
         canonical={`https://hospitofind.online/directory/${decodedCountry.toLowerCase()}`}
         schemaType="country"
         schemaData={hospitals}
@@ -105,88 +105,90 @@ const CountryDetailPage: React.FC = () => {
 
       <Header />
 
-      <main className={style.page}>
-        <header className={style.header}>
-          <div className={style.headerContainer}>
-            <div className={style.headerContent}>
-              <Link to="/directory" className={style.backBtn}>
-                <FiArrowLeft /> Countries
-              </Link>
-              <Motion variants={fadeUp} as="div">
-                <h1 className={style.title}>
-                  Hospitals in <span className={style.accent}>{decodedCountry}</span>
-                </h1>
-                <p className={style.resultCount}>
-                  Discover {filteredHospitals.length} verified facilities in the {decodedCountry} region.
-                </p>
+      <div className={style.layoutContainer}>
+        <main className={style.page}>
+          <header className={style.header}>
+            <div className={style.headerContainer}>
+              <div className={style.headerContent}>
+                <Link to="/directory" className={style.backBtn}>
+                  <FiArrowLeft /> Back to Global Directory
+                </Link>
+                <Motion variants={fadeUp} as="div">
+                  <h1 className={style.title}>
+                    Healthcare in <span className={style.accent}>{decodedCountry}</span>
+                  </h1>
+                  <p className={style.resultCount}>
+                    Access {filteredHospitals.length} verified healthcare providers and medical centers in the {decodedCountry} region.
+                  </p>
+                </Motion>
+              </div>
+
+              <Motion
+                as="div"
+                className={style.heroVisual}
+                variants={fadeUp}
+              >
+                <img src={MapPin} alt={`Map pin illustration for ${decodedCountry}`} className={style.tabletImg} />
               </Motion>
             </div>
+          </header>
 
-            <Motion
-              as="div"
-              className={style.heroVisual}
-              variants={fadeUp}
-            >
-              <img src={MapPin} alt={`${decodedCountry} medical map`} className={style.tabletImg} />
-            </Motion>
-          </div>
-        </header>
-
-        <section className={style.toolbar}>
-          <div className={style.searchWrapper}>
-            <FiSearch className={style.searchIcon} />
-            <input
-              type="text"
-              placeholder={`Search in ${decodedCountry}...`}
-              value={searchTerm}
-              onChange={(e) => setSearchTerm(e.target.value)}
-            />
-          </div>
-
-          <div className={style.filterGroup}>
-            {["All", "Public", "Private", "Missionary", "Primary"].map((type) => (
-              <button
-                key={type}
-                className={`${style.chip} ${activeType === type ? style.activeChip : ""}`}
-                onClick={() => setActiveType(type)}
-              >
-                {type}
-              </button>
-            ))}
-          </div>
-        </section>
-
-        <section className={style.contentSection}>
-          {loading && page === 1 ? (
-            <AnimatedLoader message={`Syncing ${decodedCountry} medical records...`} variant="card" count={6} />
-          ) : filteredHospitals.length === 0 ? (
-            <div className={style.empty}>
-              <h3>No Match Found</h3>
-              <p>Try adjusting your search or filter settings for {decodedCountry}.</p>
+          <section className={style.toolbar}>
+            <div className={style.searchWrapper}>
+              <FiSearch className={style.searchIcon} />
+              <input
+                type="text"
+                placeholder={`Search for a hospital or clinic in ${decodedCountry}...`}
+                value={searchTerm}
+                onChange={(e) => setSearchTerm(e.target.value)}
+              />
             </div>
-          ) : (
-            <div className={style.grid}>
-              {filteredHospitals.map((h, i) => (
-                <div
-                  key={h._id || i}
-                  ref={i === hospitals.length - 1 ? lastItemRef : null}
-                  className={style.cardWrapper}
+
+            <div className={style.filterGroup}>
+              {["All", "Public", "Private", "Missionary", "Primary"].map((type) => (
+                <button
+                  key={type}
+                  className={`${style.chip} ${activeType === type ? style.activeChip : ""}`}
+                  onClick={() => setActiveType(type)}
                 >
-                  <Motion variants={fadeUp}>
-                    <HospitalCard hospital={h} />
-                  </Motion>
-                </div>
+                  {type}
+                </button>
               ))}
             </div>
-          )}
-        </section>
+          </section>
 
-        {fetchingMore && <div className={style.loadingMore}>Fetching more results...</div>}
-      </main>
+          <section className={style.contentSection}>
+            {loading && page === 1 ? (
+              <AnimatedLoader message={`Syncing ${decodedCountry} medical records...`} variant="card" count={6} />
+            ) : filteredHospitals.length === 0 ? (
+              <div className={style.empty}>
+                <h3>No Match Found</h3>
+                <p>We couldn't find any facilities matching "{searchTerm}" in {decodedCountry}. Try adjusting your filters.</p>
+              </div>
+            ) : (
+              <div className={style.grid}>
+                {filteredHospitals.map((h, i) => (
+                  <div
+                    key={h._id || i}
+                    ref={i === hospitals.length - 1 ? lastItemRef : null}
+                    className={style.cardWrapper}
+                  >
+                    <Motion variants={fadeUp}>
+                      <HospitalCard hospital={h} />
+                    </Motion>
+                  </div>
+                ))}
+              </div>
+            )}
+          </section>
+
+          {fetchingMore && <div className={style.loadingMore}>Loading additional records...</div>}
+        </main>
+      </div>
 
       <Footer />
-    </div>
-  );
+      </>
+      );
 };
 
-export default CountryDetailPage;
+      export default CountryDetailPage;

@@ -5,6 +5,8 @@ import axios from "axios";
 import { motion } from "framer-motion";
 import { BASE_URL, useAuthContext } from "@/context/userContext";
 import Logo from "@/assets/images/logo.svg";
+import Header from "@/layouts/header/nav";
+import style from "./style/scss/forgotPassword/forgotPassword.module.scss"
 
 const VerifyEmail = () => {
     const { dispatch } = useAuthContext();
@@ -55,46 +57,52 @@ const VerifyEmail = () => {
     }, [token, dispatch, navigate]);
 
     return (
-        <div style={{
-            height: "100vh", display: "flex", flexDirection: "column",
-            alignItems: "center", justifyContent: "center", padding: "2rem",
-            background: "linear-gradient(180deg, #f9fbff 0%, #ffffff 100%)"
-        }}>
-            <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                style={{
-                    backgroundColor: "#fff", padding: "3rem", borderRadius: "20px",
-                    boxShadow: "0 10px 30px rgba(14, 61, 183, 0.08)",
-                    textAlign: "center", maxWidth: "450px", width: "100%"
-                }}
-            >
-                <img src={Logo} alt="Logo" style={{ width: 80, marginBottom: "1.5rem" }} />
+        <>
+            <Header />
+            <div style={{
+                height: "100vh", display: "flex", flexDirection: "column",
+                alignItems: "center", justifyContent: "center", padding: "2rem",
+                background: "linear-gradient(180deg, #f9fbff 0%, #ffffff 100%)"
+            }}>
+                <motion.div
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    style={{
+                        backgroundColor: "#fff", padding: "3rem", borderRadius: "20px",
+                        boxShadow: "0 10px 30px rgba(14, 61, 183, 0.08)",
+                        textAlign: "center", maxWidth: "450px", width: "100%"
+                    }}
+                >
+                    <img src={Logo} alt="Logo" style={{ width: 80, marginBottom: "1.5rem" }} />
 
-                <h1 style={{
-                    fontSize: "1.5rem", fontWeight: 700,
-                    color: status === "error" ? "#FF033E" : "#0e3db7",
-                    marginBottom: "1rem"
-                }}>
-                    {status === "loading" ? "Almost there..." :
-                        status === "success" ? "Verification Successful!" : "Verification Failed"}
-                </h1>
-
-                <p style={{ color: "#555", lineHeight: "1.6", marginBottom: "2rem" }}>
-                    {message}
-                </p>
-
-                {status !== "loading" && (
-                    <Link to="/login" style={{
-                        display: "inline-block", backgroundColor: "#0e3db7", color: "#fff",
-                        padding: "0.8rem 2rem", borderRadius: "10px", textDecoration: "none",
-                        fontWeight: 600, transition: "transform 0.2s"
+                    <h1 style={{
+                        fontSize: "1.5rem", fontWeight: 700,
+                        color: status === "error" ? "#FF033E" : "#0e3db7",
+                        marginBottom: "1rem"
                     }}>
-                        Proceed to Login
-                    </Link>
-                )}
-            </motion.div>
-        </div>
+                        {status === "loading" ? "Almost there..." :
+                            status === "success" ? "Verification Successful!" : "Verification Failed"}
+                    </h1>
+
+                    <p style={{ color: "#555", lineHeight: "1.6", marginBottom: "2rem" }}>
+                        {message}
+                    </p>
+
+                    {status !== "loading" && (
+                        <Link to="/login" style={{
+                            display: "inline-block", backgroundColor: "#0e3db7", color: "#fff",
+                            padding: "0.8rem 2rem", borderRadius: "10px", textDecoration: "none",
+                            fontWeight: 600, transition: "transform 0.2s"
+                        }}>
+                            Proceed to Login
+                        </Link>
+                    )}
+                </motion.div>
+            </div>
+            <div className={style.copyright}>
+                <p>&copy; {new Date().getFullYear()} HospitoFind Inc. All rights reserved.</p>
+            </div>
+        </>
     );
 };
 

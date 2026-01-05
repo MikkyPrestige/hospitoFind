@@ -41,11 +41,12 @@ const TrustedSection = () => {
             transition={{ duration: 0.8 }}
         >
             <div className={style.contentHeader}>
+                <span className={style.badge}>Global Network</span>
                 <h3 className={style.trustedTitle}>
-                    Empowering Care with World-Class Partners
+                    Trusted by World-Class <span className={style.accent}>Medical Institutions</span>
                 </h3>
                 <p className={style.subText}>
-                    Search through a verified network of leading medical facilities across the globe.
+                    We collaborate with accredited hospitals worldwide to ensure you receive verified, high-quality care wherever you are.
                 </p>
             </div>
 
@@ -58,6 +59,7 @@ const TrustedSection = () => {
                                     src={hospital.logo}
                                     alt={hospital.name}
                                     className={style.hospitalLogo}
+                                    loading="lazy"
                                     />
                             </div>
                             <span className={style.hospitalName}>{hospital.name}</span>

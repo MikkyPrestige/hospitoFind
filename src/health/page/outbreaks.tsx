@@ -5,6 +5,8 @@ import Header from "@/layouts/header/nav";
 import Footer from "@/layouts/footer/footer";
 import AnimatedLoader from "@/components/utils/AnimatedLoader";
 import style from "./style/outbreaks.module.css";
+import { BASE_URL } from "@/context/userContext";
+import { FiAlertTriangle, FiCalendar, FiExternalLink, FiGlobe, FiShield, FiPhone, FiInfo } from "react-icons/fi";
 
 const continentData = {
     AF: {
@@ -67,8 +69,6 @@ type Alert = {
     link: string;
 };
 
-const URL = import.meta.env.VITE_BASE_URL;
-
 const Outbreaks = () => {
     const [alerts, setAlerts] = useState<Alert[]>([]);
     const [loading, setLoading] = useState(true);
@@ -78,9 +78,10 @@ const Outbreaks = () => {
         const fetchAlerts = async () => {
             setLoading(true);
             try {
-                const res = await fetch(`${URL}/health/alerts`);
+                const res = await fetch(`${BASE_URL}/health/alerts`);
                 const data = await res.json();
-                setAlerts(data);
+                const list = Array.isArray(data) ? data : (data.results || []);
+                setAlerts(list);
             } catch (err) {
                 console.error("Fetch error:", err);
             } finally {
@@ -100,7 +101,7 @@ const Outbreaks = () => {
                     setSelectedContinent(data.continent_code);
                 }
             } catch (err) {
-                console.warn("Location detection failed, defaulting to GLOBAL.");
+                // Silently default to GLOBAL
             }
         };
         autoDetectRegion();
@@ -113,21 +114,24 @@ const Outbreaks = () => {
             <Header />
             <div className={style.section}>
                 <Motion variants={sectionReveal} className={style.pageHeader}>
-                    <h1 className={style.pageTitle}>⚠️ Outbreaks Alert</h1>
+                    <div className={style.titleGroup}>
+                        <FiAlertTriangle className={style.headerIcon} />
+                        <h1 className={style.pageTitle}>Outbreak Alerts</h1>
+                        <span className={style.liveBadge}>Live Feed</span>
+                    </div>
                     <p className={style.pageSubtitle}>
-                        Stay informed about current health concerns and live disease updates worldwide.
+                        Stay informed about current health concerns, safety protocols, and live disease updates worldwide.
                     </p>
-                    <span className={style.liveBadge}>Live Updates</span>
                 </Motion>
 
                 <div className={style.layout}>
                     <main className={style.mainFeed}>
                         {loading ? (
-                            <AnimatedLoader message="Getting latest disease alerts..." variant="list" count={6} />
+                            <AnimatedLoader message="Scanning global health reports..." variant="list" count={6} />
                         ) : alerts.length > 0 ? (
                             <ul className={style.list}>
                                 {alerts.map((a, i) => {
-                                    const sourceLower = a.source.toLowerCase();
+                                    const sourceLower = a.source ? a.source.toLowerCase() : "";
                                     const isWHO = sourceLower.includes("who");
                                     const isArchived = sourceLower.includes("archived");
                                     const isMedia = sourceLower.includes("newsdata");
@@ -140,23 +144,32 @@ const Outbreaks = () => {
                                                     {isArchived ? "Archived" : isWHO ? "WHO Alert" : isMedia ? "Media Report" : a.source}
                                                 </span>
                                             </div>
-                                            <p className={style.date}>📅 {a.date ? new Date(a.date).toLocaleDateString() : "Recent"}</p>
+                                            <p className={style.date}>
+                                                <FiCalendar className={style.iconSmall} />
+                                                {a.date ? new Date(a.date).toLocaleDateString(undefined, {
+                                                    year: 'numeric', month: 'long', day: 'numeric'
+                                                }) : "Recent Update"}
+                                            </p>
                                             <p className={style.summary}>{a.summary}</p>
-                                            <a href={a.link} target="_blank" rel="noopener noreferrer" className={style.readMoreLink}>Full Report →</a>
+                                            <a href={a.link} target="_blank" rel="noopener noreferrer" className={style.readMoreLink}>
+                                                Full Report <FiExternalLink />
+                                            </a>
                                         </Motion>
                                     );
                                 })}
                             </ul>
                         ) : (
-                            <div className={style.noAlerts}><p>No current health alerts found.</p></div>
+                            <div className={style.noAlerts}>
+                                <p>No active health alerts reported at this time.</p>
+                            </div>
                         )}
                     </main>
 
                     {/* --- DYNAMIC SIDEBAR --- */}
                     <aside className={style.sidebar}>
                         <div className={style.regionCard}>
-                            <h3>🌍 Regional Safety Center</h3>
-                            <p className={style.sidebarHint}>Showing info for your continent</p>
+                            <h3><FiGlobe className={style.cardIcon} /> Regional Safety Center</h3>
+                            <p className={style.sidebarHint}>Showing protocols for your region</p>
                             <select
                                 value={selectedContinent}
                                 onChange={(e) => setSelectedContinent(e.target.value)}
@@ -166,27 +179,27 @@ const Outbreaks = () => {
                                 <option value="EU">Europe</option>
                                 <option value="NA">North America</option>
                                 <option value="AS">Asia</option>
-                                <option value="GLOBAL">Other / International</option>
+                                <option value="GLOBAL">Global / International</option>
                             </select>
                         </div>
 
                         <div className={style.safetyCard}>
-                            <h3>🛡️ {activeData.name} Protocols</h3>
+                            <h3><FiShield className={style.cardIcon} /> {activeData.name} Protocols</h3>
                             <ul className={style.protocolList}>
                                 {activeData.protocols.map((tip, i) => (
-                                    <li key={i}>{tip}</li>
+                                    <li key={i}><FiInfo className={style.listIcon} /> {tip}</li>
                                 ))}
                             </ul>
                         </div>
 
                         <div className={style.emergencyCard}>
-                            <h3>🚨 {activeData.agency}</h3>
+                            <h3><FiPhone className={style.cardIcon} /> {activeData.agency}</h3>
                             <div className={style.contactItem}>
-                                <strong>Emergency Number:</strong>
+                                <strong>Emergency Contact:</strong>
                                 <span>{activeData.hotline}</span>
                             </div>
                             <p className={style.emergencyNote}>
-                                Contact local authorities if you are experiencing a medical emergency.
+                                Contact local authorities immediately if you are experiencing a medical emergency.
                             </p>
                         </div>
                     </aside>

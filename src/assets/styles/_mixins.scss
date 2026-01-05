@@ -96,6 +96,19 @@
   justify-content: center;
 }
 
+// @mixin flex($direction: row, $justify: center, $align: center, $wrap: nowrap) {
+//   display: flex;
+//   flex-direction: $direction;
+//   justify-content: $justify;
+//   align-items: $align;
+//   flex-wrap: $wrap;
+// }
+
+// @mixin center {
+//   display: grid;
+//   place-items: center;
+// }
+
 // MEDIA QUERY MANAGER
 // 0 ==> 480px        phone-sm
 // 481px ==> 600px    phone-nm

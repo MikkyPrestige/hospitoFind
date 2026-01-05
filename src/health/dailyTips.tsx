@@ -2,6 +2,9 @@ import { useEffect, useState } from "react";
 import style from "./style/dailyTips.module.css";
 import AnimatedLoader from "../components/utils/AnimatedLoader";
 import { useNavigate } from "react-router-dom";
+import { BASE_URL } from "@/context/userContext";
+import { HiLightBulb } from "react-icons/hi";
+import { FiArrowRight, FiExternalLink } from "react-icons/fi";
 
 type Tip = {
     Title: string;
@@ -9,8 +12,6 @@ type Tip = {
     ImageAlt?: string;
     Link: string;
 };
-
-const URL = import.meta.env.VITE_BASE_URL;
 
 const DailyHealthTip = () => {
     const [tips, setTips] = useState<Tip[]>([]);
@@ -30,7 +31,7 @@ const DailyHealthTip = () => {
 
         const fetchTips = async () => {
             try {
-                const res = await fetch(`${URL}/health/tips`);
+                const res = await fetch(`${BASE_URL}/health/tips`);
                 const data = await res.json();
                 if (Array.isArray(data) && data.length > 0) {
                     setTips(data);
@@ -38,6 +39,7 @@ const DailyHealthTip = () => {
                     localStorage.setItem("dailyHealthTipDate", today);
                 }
             } catch (err) {
+                // fail silent
             } finally {
                 setLoading(false);
             }
@@ -47,7 +49,7 @@ const DailyHealthTip = () => {
     }, []);
 
     if (loading) {
-        return <AnimatedLoader message="Getting daily health tips..." variant="card" count={1} />;
+        return <AnimatedLoader message="Loading daily tip..." variant="card" count={1} />;
     }
 
     if (!tips.length) return null;
@@ -58,37 +60,44 @@ const DailyHealthTip = () => {
         <section className={style.section}>
             <div className={style.headerRow}>
                 <div className={style.titleGroup}>
-                    <h2 className={style.heading}>💡 Health Tip of the Day</h2>
-                    <span className={style.badge}>Updated daily</span>
+                    <span className={style.iconWrapper}><HiLightBulb /></span>
+                    <h2 className={style.heading}>Daily Wellness</h2>
                 </div>
                 <button
                     className={style.viewAllLink}
                     onClick={() => navigate("/health-tips")}
                 >
-                    See Wellness Library →
+                    All Tips <FiArrowRight />
                 </button>
             </div>
 
             <div className={style.featuredCard}>
                 <div className={style.imageWrapper}>
                     {featuredTip.ImageUrl ? (
-                        <img src={featuredTip.ImageUrl} alt={featuredTip.ImageAlt} className={style.image} />
+                        <img
+                            src={featuredTip.ImageUrl}
+                            alt={featuredTip.ImageAlt || "Health Tip"}
+                            className={style.image}
+                            loading="lazy"
+                        />
                     ) : (
-                        <div className={style.imagePlaceholder}>💡</div>
+                        <div className={style.imagePlaceholder}>
+                            <HiLightBulb size={50} />
+                        </div>
                     )}
                 </div>
+
                 <div className={style.content}>
+                    <span className={style.cardBadge}>Today's Focus</span>
                     <h3 className={style.title}>{featuredTip.Title}</h3>
-                    <p className={style.description}>
-                        Discover simple ways to improve your wellbeing and maintain a healthy lifestyle.
-                    </p>
+
                     <a
                         href={featuredTip.Link}
                         target="_blank"
                         rel="noopener noreferrer"
                         className={style.readMore}
                     >
-                        Learn More about this Tip →
+                        Read Advice <FiExternalLink />
                     </a>
                 </div>
             </div>

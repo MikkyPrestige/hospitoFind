@@ -5,6 +5,8 @@ import Header from "@/layouts/header/nav";
 import Footer from "@/layouts/footer/footer";
 import AnimatedLoader from "@/components/utils/AnimatedLoader";
 import style from "./style/healthTips.module.css";
+import { BASE_URL } from "@/context/userContext";
+import { FiExternalLink, FiSun, FiActivity, FiHeart } from "react-icons/fi";
 
 type Tip = {
     Title: string;
@@ -13,8 +15,6 @@ type Tip = {
     Link: string;
     Category?: string;
 };
-
-const URL = import.meta.env.VITE_BASE_URL;
 
 const HealthTips = () => {
     const [tips, setTips] = useState<Tip[]>([]);
@@ -34,7 +34,7 @@ const HealthTips = () => {
         const fetchTips = async () => {
             try {
                 setLoading(true);
-                const res = await fetch(`${URL}/health/tips`);
+                const res = await fetch(`${BASE_URL}/health/tips`);
                 const data = await res.json();
 
                 if (Array.isArray(data) && data.length > 0) {
@@ -52,18 +52,26 @@ const HealthTips = () => {
         fetchTips();
     }, []);
 
+    // Helper to get random icon for placeholder
+    const getRandomIcon = (index: number) => {
+        const icons = [<FiSun size={30} />, <FiHeart size={30} />, <FiActivity size={30} />];
+        return icons[index % icons.length];
+    };
+
     return (
         <>
             <Header />
-            <div className={style.section}>
+            <section className={style.section}>
                 <Motion variants={sectionReveal} className={style.pageHeader}>
-                    <h1 className={style.pageTitle}>💡Daily Health Tips</h1>
+                    <div className={style.titleGroup}>
+                        <h1 className={style.pageTitle}>Daily Wellness</h1>
+                        <div className={style.dateBadge}>
+                            {new Date().toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' })}
+                        </div>
+                    </div>
                     <p className={style.pageSubtitle}>
                         Small, actionable steps you can take every day to improve your physical and mental well-being.
                     </p>
-                    <div className={style.dateBadge}>
-                        Today: {new Date().toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' })}
-                    </div>
                 </Motion>
 
                 <div className={style.container}>
@@ -81,20 +89,29 @@ const HealthTips = () => {
                                 <Motion key={i} variants={fadeUp} className={style.tipCard}>
                                     <div className={style.imageWrapper}>
                                         {tip.ImageUrl ? (
-                                            <img src={tip.ImageUrl} alt={tip.ImageAlt} className={style.tipImage} />
+                                            <img
+                                                src={tip.ImageUrl}
+                                                alt={tip.ImageAlt}
+                                                className={style.tipImage}
+                                                loading="lazy"
+                                            />
                                         ) : (
                                             <div className={style.imagePlaceholder}>
-                                                <span>Daily Wellness</span>
+                                                <div className={style.placeholderIcon}>
+                                                    {getRandomIcon(i)}
+                                                </div>
+                                                <span>Health Tip</span>
                                             </div>
                                         )}
                                         <div className={style.categoryTag}>
-                                            {tip.Category || "General Health"}
+                                            {tip.Category || "Lifestyle"}
                                         </div>
                                     </div>
+
                                     <div className={style.content}>
                                         <h3 className={style.title}>{tip.Title}</h3>
                                         <p className={style.shortDesc}>
-                                            Practical advice curated by medical experts to enhance your daily routine.
+                                            Simple, science-backed advice to help you live healthier.
                                         </p>
                                         <a
                                             href={tip.Link}
@@ -102,7 +119,7 @@ const HealthTips = () => {
                                             rel="noopener noreferrer"
                                             className={style.actionBtn}
                                         >
-                                            Learn More →
+                                            View Tip <FiExternalLink />
                                         </a>
                                     </div>
                                 </Motion>
@@ -110,11 +127,11 @@ const HealthTips = () => {
                         </div>
                     ) : (
                         <div className={style.emptyState}>
-                            <p>Check back later for your fresh dose of wellness tips!</p>
+                            <p>No tips available right now. Check back tomorrow!</p>
                         </div>
                     )}
                 </div>
-            </div>
+            </section>
             <Footer />
         </>
     );
