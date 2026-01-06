@@ -18,7 +18,7 @@ import useSignUp from "@/hooks/user/signup";
 import usePageTransition from "@/hooks/pageTransition";
 import { User as UserType } from "@/services/user";
 import { Button } from "@/components/button";
-import Header from "@/layouts/header/nav";
+import SimpleHeader from "@/layouts/header/simpleHeader";
 import { SEOHelmet } from "@/components/utils/seoUtils";
 import style from "./style/scss/signup/signup.module.scss";
 import Logo from "@/assets/images/logo.svg"
@@ -84,7 +84,7 @@ const navigate = useNavigate();
         description="Sign up to access verified hospital data, save your favorite facilities, and contribute to the global healthcare directory."
       />
 
-      <Header />
+      <SimpleHeader />
 
       <main className={`${style.section} ${style[transitionClass]}`}>
         <section className={style.left}>

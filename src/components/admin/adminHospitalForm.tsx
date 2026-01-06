@@ -226,6 +226,7 @@ const AdminHospitalForm = ({ formData, setFormData, onSubmit, loading, title }: 
                     placeholder="List services separated by commas (e.g. Surgery, Lab, MRI)"
                     value={Array.isArray(formData.services) ? formData.services.join(", ") : formData.services || ""}
                     onChange={e => setFormData({ ...formData, services: e.target.value })}
+                    className={styles.commentArea}
                 />
             </div>
 

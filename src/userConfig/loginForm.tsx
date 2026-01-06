@@ -16,7 +16,7 @@ import useLogin from "@/hooks/user/login";
 import usePageTransition from "@/hooks/pageTransition";
 import { Login as LoginType } from "@/services/user";
 import { Button } from "@/components/button";
-import Header from "@/layouts/header/nav";
+import SimpleHeader from "@/layouts/header/simpleHeader";
 import { SEOHelmet } from "@/components/utils/seoUtils";
 import { BASE_URL } from "@/context/userContext";
 import style from "./style/scss/login/login.module.scss";
@@ -102,7 +102,7 @@ const LoginForm = () => {
   return (
     <>
       <SEOHelmet title="Secure Login" description="Sign in to access your saved hospitals and track your healthcare history." />
-      <Header />
+      <SimpleHeader />
 
       <main className={`${style.section} ${style[transitionClass]}`}>
         <section className={style.left}>
@@ -181,7 +181,6 @@ const LoginForm = () => {
                 </div>
               </div>
 
-              {/* 🛡️ Verification Warning Box */}
               {needsVerification && (
                 <div style={{
                   marginTop: "1.5rem",

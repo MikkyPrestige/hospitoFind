@@ -5,14 +5,15 @@ import { FiMenu, FiLogOut, FiLayout, FiShield, FiUser } from "react-icons/fi";
 import Logo from "@/assets/images/logo.svg";
 import style from "./style/nav.module.scss";
 import { useAuthContext } from "@/context/userContext";
-import ThemeToggle from "../../components/themeToggle"
+import ThemeToggle from "@/components/themeToggle"
+import GoogleTranslate from "@/components/googleTranslate";
 
 const Header = () => {
   const [scrolled, setScrolled] = useState(false);
   const [showMenu, setShowMenu] = useState(false);
   const { state, dispatch } = useAuthContext();
 
-  // Handle Scroll Effect
+  // Scroll Effect
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 20);
     window.addEventListener("scroll", handleScroll);
@@ -61,6 +62,7 @@ const Header = () => {
         {/* ACTIONS*/}
         <div className={style.actions}>
           <ThemeToggle />
+          <GoogleTranslate />
           {state?.username ? (
             <div className={style.userProfile}>
               <Link to="/dashboard" className={style.profileTrigger}>
@@ -127,7 +129,6 @@ const Header = () => {
               </div>
             ) : (
               <div className={style.drawerAuth}>
-                  <ThemeToggle />
                 <Link to="/login" onClick={toggleMenu} className={style.mobileLogin}>Log In</Link>
                 <Link to="/signup" onClick={toggleMenu} className={style.mobileSignup}>Create Free Account</Link>
               </div>

@@ -127,7 +127,7 @@ const HospitalManagement = () => {
         }
     };
 
-    // 🛡️ COMPUTED LOGIC: Search, Filter, and Dynamic Sort
+    // Search, Filter, and Dynamic Sort
     const filteredHospitals = hospitals
         .filter((h) => {
             const matchesSearch =

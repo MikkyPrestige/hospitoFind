@@ -36,7 +36,7 @@
   width: 100%;
   flex: 1;
   overflow-y: auto;
-  background: #fff;
+  background: var(--color-white);
   position: relative;
 }
 
@@ -44,7 +44,7 @@
   position: sticky;
   top: 0;
   z-index: 20;
-  background: rgba(255, 255, 255, 0.95);
+  background: var(--color-white);
   backdrop-filter: blur(8px);
   padding: 1.5rem;
   border-bottom: 1px solid var(--color-ash);

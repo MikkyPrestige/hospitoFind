@@ -315,7 +315,7 @@ background: var(--color-white);
   height: 300px;
   border: none;
   display: block;
-  background: var(--color-ash-dark);
+  /* background: var(--color-ash-dark); */
 }
 .directionsBtn {
   display: block;
@@ -364,9 +364,10 @@ background: var(--color-white);
   display: flex;
   justify-content: center;
 }
+
 .finalBackBtn {
 background: var(--color-blue);
-  color: var(--color-white);
+  color: var(--color-bg-light);
   padding: 0.8rem 2rem;
   border-radius: 50px;
   font-weight: 700;

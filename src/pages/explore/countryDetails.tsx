@@ -8,8 +8,6 @@ import React, {
 import { useParams, Link } from "react-router-dom";
 import HospitalCard from "../../components/hospitalCard";
 import { Hospital } from "@/services/hospital";
-import Footer from "../../layouts/footer/footer";
-import Header from "../../layouts/header/nav";
 import { FiArrowLeft, FiSearch } from "react-icons/fi";
 import style from "./style/countryDetails.module.css";
 import Motion from "@/components/motion";
@@ -103,8 +101,6 @@ const CountryDetailPage: React.FC = () => {
         autoBreadcrumbs={true}
       />
 
-      <Header />
-
       <div className={style.layoutContainer}>
         <main className={style.page}>
           <header className={style.header}>
@@ -185,8 +181,6 @@ const CountryDetailPage: React.FC = () => {
           {fetchingMore && <div className={style.loadingMore}>Loading additional records...</div>}
         </main>
       </div>
-
-      <Footer />
     </>
   );
 };

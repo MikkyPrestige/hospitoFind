@@ -2,12 +2,10 @@ import { useNavigate } from 'react-router-dom'
 import { useState } from 'react'
 import HeroImage from '@/assets/images/mother.png'
 import style from './style/home.module.scss'
-import Header from '@/layouts/header/nav'
 import DailyHealthTip from '@/health/dailyTips'
 import NearbyHospitals from '@/hospitalsConfig/nearbyHospital'
 import HealthNews from '@/health/healthNews'
 import HealthAlerts from '@/health/healthAlert'
-import Footer from '@/layouts/footer/footer'
 import TrustedSection from '@/components/trustedHospitals'
 import Motion from '@/components/motion'
 import { fadeUp, sectionReveal } from '@/hooks/animations'
@@ -60,8 +58,6 @@ const Home = () => {
           }
         ]}
       />
-
-      <Header />
 
       <main className={style.bg}>
         <div className={style.wrapper}>
@@ -131,8 +127,6 @@ const Home = () => {
           <HealthAlerts />
         </Motion>
       </main >
-
-      <Footer />
     </>
   );
 };

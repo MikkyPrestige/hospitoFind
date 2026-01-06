@@ -1,4 +1,5 @@
 import { Link, useLocation } from "react-router-dom";
+import ThemeToggle from "@/components/themeToggle"
 
 const AdminBreadcrumbs = () => {
     const location = useLocation();
@@ -47,6 +48,7 @@ const AdminBreadcrumbs = () => {
                         </li>
                     );
                 })}
+                <ThemeToggle />
             </ol>
         </nav>
     );

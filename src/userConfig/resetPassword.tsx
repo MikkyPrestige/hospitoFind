@@ -4,6 +4,7 @@ import axios from "axios";
 import { toast } from "react-toastify";
 import { BASE_URL } from "@/context/userContext";
 import styles from "../pages/profile/style/scss/forgotPassword/forgotPassword.module.scss"
+import SimpleHeader from "@/layouts/header/simpleHeader";
 
 const ResetPassword = () => {
     const [password, setPassword] = useState("");
@@ -22,6 +23,8 @@ const ResetPassword = () => {
     };
 
     return (
+        <>
+            <SimpleHeader />
         <div className={styles.authContainer}>
             <div className={styles.authCard}>
                 <h2>Reset Password</h2>
@@ -44,6 +47,10 @@ const ResetPassword = () => {
                 </form>
             </div>
         </div>
+            <div className={styles.copyright}>
+                <p>&copy; {new Date().getFullYear()} HospitoFind Inc. All rights reserved.</p>
+            </div>
+        </>
     );
 };
 export default ResetPassword;

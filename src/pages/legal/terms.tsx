@@ -1,5 +1,3 @@
-import Header from "@/layouts/header/nav";
-import Footer from "@/layouts/footer/footer";
 import { SEOHelmet } from "@/components/utils/seoUtils";
 import Motion from "@/components/motion";
 import { fadeUp } from "@/hooks/animations";
@@ -14,7 +12,6 @@ const Terms = () => {
                 title="Terms of Service"
                 description="Read the terms and conditions for using the HospitoFind hospital directory simulation."
             />
-            <Header />
 
             <main className={style.termsContainer}>
                 <Motion variants={fadeUp} className={style.content}>
@@ -75,8 +72,6 @@ const Terms = () => {
                     </footer>
                 </Motion>
             </main >
-
-            <Footer />
         </>
     );
 };

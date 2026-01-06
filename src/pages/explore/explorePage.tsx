@@ -3,8 +3,6 @@ import { Link } from "react-router-dom";
 import { FiSearch, FiMapPin, FiGlobe } from "react-icons/fi";
 import CountryCard from "@/components/countryCard";
 import { Hospital } from "@/services/hospital";
-import Header from "@/layouts/header/nav";
-import Footer from "@/layouts/footer/footer";
 import Motion from "@/components/motion";
 import { fadeUp, zoomIn, sectionReveal } from "@/hooks/animations";
 import MapPin from "../../assets/images/mapPin.png"
@@ -107,8 +105,6 @@ const ExplorePage = () => {
         autoBreadcrumbs={true}
       />
 
-      <Header />
-
       <div className={style.pageWrapper}>
         <main className={style.explore}>
           <header className={style.hero}>
@@ -189,7 +185,6 @@ const ExplorePage = () => {
           </section>
         </main>
       </div >
-      <Footer />
     </>
   );
 };

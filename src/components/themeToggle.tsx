@@ -1,5 +1,4 @@
-import React from 'react';
-import { useTheme } from '../hooks/useTheme';
+import { useTheme } from "@/context/themeContext";
 import { FiSun, FiMoon } from 'react-icons/fi';
 import styles from './style/themeToggle.module.css';
 

@@ -1,25 +1,55 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="apple-mobile-web-app-title" content="HospitoFind" />
+    <meta name="application-name" content="HospitoFind" />
+    <meta name="msapplication-TileColor" content="#2d89ef" />
 
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="apple-mobile-web-app-title" content="HospitoFind">
-  <meta name="application-name" content="HospitoFind">
-  <meta name="msapplication-TileColor" content="#2d89ef">
-  <meta name="theme-color" content="#ffffff">
-  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
-  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
-  <link rel="manifest" href="/site.webmanifest">
-  <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
-  <title>HospitoFind</title>
-</head>
+    <meta name="theme-color" content="#f8faff" />
 
-<body>
-  <div id="root"></div>
-  <script type="module" src="/src/main.tsx"></script>
-<script async src="https://scripts.simpleanalyticscdn.com/latest.js"></script>
-</body>
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+    <link rel="manifest" href="/site.webmanifest" />
+    <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5" />
+    <title>HospitoFind</title>
 
+    <script>
+      ;(function () {
+        try {
+          const localTheme = localStorage.getItem('theme')
+          const systemTheme = window.matchMedia(
+            '(prefers-color-scheme: dark)'
+          ).matches
+          const metaThemeColor = document.querySelector(
+            'meta[name="theme-color"]'
+          )
+
+          const darkBg = '#020617'
+          const lightBg = '#f8faff'
+
+          if (localTheme === 'dark' || (!localTheme && systemTheme)) {
+            document.documentElement.setAttribute('data-theme', 'dark')
+            if (metaThemeColor) metaThemeColor.setAttribute('content', darkBg)
+          } else {
+            document.documentElement.setAttribute('data-theme', 'light')
+            if (metaThemeColor) metaThemeColor.setAttribute('content', lightBg)
+          }
+        } catch (e) {
+          console.error('Theme script failed', e)
+        }
+      })()
+    </script>
+  </head>
+
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+    <script
+      async
+      src="https://scripts.simpleanalyticscdn.com/latest.js"
+    ></script>
+  </body>
 </html>

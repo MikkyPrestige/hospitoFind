@@ -33,13 +33,13 @@ export default function RootLayout() {
             <style>
                 {`
                     #nprogress .bar {
-                        background: #0e3db7 !important;
+                        background: var(--color-blue) !important;
                         height: 3px !important;
-                        box-shadow: 0 0 10px rgba(14, 61, 183, 0.5);
+                        box-shadow: 0 0 10px var(--color-blue-light);
                         z-index: 10001 !important;
                     }
                     #nprogress .peg {
-                        box-shadow: 0 0 10px #0e3db7, 0 0 5px #0e3db7 !important;
+                        box-shadow: 0 0 10px var(--color-blue), 0 0 5px var(--color-blue) !important;
                     }
                 `}
             </style>
@@ -53,9 +53,7 @@ export default function RootLayout() {
                     left: 0,
                     width: "100vw",
                     height: "100vh",
-                    backgroundColor: "rgba(255, 255, 255, 0.8)",
-                    backdropFilter: "blur(6px)",
-                    WebkitBackdropFilter: "blur(6px)",
+                    backgroundColor: "var(--color-bg)",
                     display: "none",
                     justifyContent: "center",
                     alignItems: "center",
@@ -97,9 +95,9 @@ export default function RootLayout() {
                                 alignItems: "center",
                                 height: "100vh",
                                 width: "100vw",
-                                background: "linear-gradient(180deg, #f9fbff 0%, #ffffff 100%)",
-                                color: "#0e3db7",
-                                fontFamily: "'Inter', sans-serif",
+                                backgroundColor: "var(--color-bg)",
+                                color: "var(--color-blue)",
+                                fontFamily: "var(--font-inter)",
                             }}
                         >
                             <motion.img
@@ -119,9 +117,9 @@ export default function RootLayout() {
 
                             <motion.h2
                                 style={{
-                                    fontSize: "1.2rem",
+                                    fontSize: "1rem",
                                     fontWeight: 600,
-                                    color: "#0e3db7",
+                                    color: "var(--color-blue)",
                                     letterSpacing: "0.3px",
                                 }}
                                 initial={{ opacity: 0, y: 15 }}

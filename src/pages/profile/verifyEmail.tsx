@@ -5,8 +5,8 @@ import axios from "axios";
 import { motion } from "framer-motion";
 import { BASE_URL, useAuthContext } from "@/context/userContext";
 import Logo from "@/assets/images/logo.svg";
-import Header from "@/layouts/header/nav";
 import style from "./style/scss/forgotPassword/forgotPassword.module.scss"
+import SimpleHeader from "@/layouts/header/simpleHeader";
 
 const VerifyEmail = () => {
     const { dispatch } = useAuthContext();
@@ -58,7 +58,7 @@ const VerifyEmail = () => {
 
     return (
         <>
-            <Header />
+            <SimpleHeader />
             <div style={{
                 height: "100vh", display: "flex", flexDirection: "column",
                 alignItems: "center", justifyContent: "center", padding: "2rem",
