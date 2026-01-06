@@ -7,7 +7,7 @@ import { Hospital } from "@/services/hospital";
 import HospitalPic from "@/assets/images/hospital-logo.jpg";
 import { Avatar } from "@/components/avatar";
 import style from "../components/style/popular.module.css";
-import AnimatedLoader from "../components/utils/AnimatedLoader";
+import AnimatedLoader from "../components/utils/animatedLoader";
 
 const BASE_URL = import.meta.env.VITE_BASE_URL;
 

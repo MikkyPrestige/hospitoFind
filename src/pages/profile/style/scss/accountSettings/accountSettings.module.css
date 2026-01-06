@@ -5,28 +5,30 @@
 }
 .settingsWrapper h1 {
   margin-bottom: 2rem;
-  color: #1e293b;
+  color: var(--color-black);
+  font-family: var(--font-plus);
 }
 
 .sectionCard {
-  background: white;
+  background: var(--color-white);
   border-radius: 12px;
   padding: 2rem;
   margin-bottom: 2rem;
-  border: 1px solid #e2e8f0;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  border: 1px solid var(--color-border);
+  box-shadow: var(--shadow-card);
 }
 .sectionCard.dangerZone {
   border-color: #fecaca;
-  background-color: #fffafb;
+  background-color: #fff5f5;
 }
 .sectionCard.dangerZone h2 {
-  color: #dc2626;
+  color: var(--color-red);
 }
 .sectionCard.dangerZone p {
   color: #991b1b;
   font-size: 0.9rem;
   margin-bottom: 1rem;
+  font-family: var(--font-inter);
 }
 
 .sectionHeader {
@@ -34,15 +36,16 @@
   align-items: center;
   gap: 0.75rem;
   margin-bottom: 1.5rem;
-  color: #475569;
+  color: var(--text-slate);
 }
 .sectionHeader h2 {
   font-size: 1.25rem;
   margin: 0;
+  font-family: var(--font-plus);
 }
 .sectionHeader svg {
   font-size: 1.4rem;
-  color: #4f46e5;
+  color: var(--color-blue);
 }
 
 .inputGroup {
@@ -52,41 +55,47 @@
   display: block;
   font-size: 0.85rem;
   font-weight: 600;
-  color: #64748b;
+  color: var(--color-gray);
   margin-bottom: 0.5rem;
+  font-family: var(--font-plus);
 }
 .inputGroup input {
   width: 100%;
   padding: 0.75rem;
-  border: 1px solid #cbd5e1;
+  border: 1px solid var(--color-border);
   border-radius: 8px;
+  font-family: var(--font-inter);
+  color: var(--color-black);
+  background: var(--color-white);
 }
 .inputGroup input:focus {
   outline: none;
-  border-color: #4f46e5;
-  box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.1);
+  border-color: var(--color-blue);
+  box-shadow: 0 0 0 4px rgba(8, 41, 155, 0.1);
 }
 
 button {
-  background: #4f46e5;
-  color: white;
+  background: var(--color-blue);
+  color: var(--color-white);
   padding: 0.75rem 1.5rem;
   border: none;
   border-radius: 8px;
   font-weight: 600;
   cursor: pointer;
   transition: background 0.2s;
+  font-family: var(--font-inter);
 }
 button:hover {
-  background: #4338ca;
+  background: var(--color-blue-dark);
 }
 button:disabled {
   opacity: 0.6;
   cursor: not-allowed;
+  background-color: var(--icon-gray);
 }
 
 .deleteBtn {
-  background: #dc2626;
+  background: var(--color-red);
   display: flex;
   align-items: center;
   gap: 0.5rem;
@@ -96,128 +105,18 @@ button:disabled {
 }
 
 .errorText {
-  color: #dc2626;
+  color: var(--color-error);
   font-size: 0.85rem;
   margin: 1rem 0;
+  font-family: var(--font-inter);
 }
 
 .successText {
-  color: #16a34a;
+  color: var(--color-success);
   font-size: 0.85rem;
   margin: 1rem 0;
   display: flex;
   align-items: center;
   gap: 0.5rem;
-}
-
-.settingsWrapper {
-  max-width: 800px;
-  margin: 0 auto;
-  padding: 2rem;
-}
-.settingsWrapper h1 {
-  margin-bottom: 2rem;
-  color: #1e293b;
-}
-
-.sectionCard {
-  background: white;
-  border-radius: 12px;
-  padding: 2rem;
-  margin-bottom: 2rem;
-  border: 1px solid #e2e8f0;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-}
-.sectionCard.dangerZone {
-  border-color: #fecaca;
-  background-color: #fffafb;
-}
-.sectionCard.dangerZone h2 {
-  color: #dc2626;
-}
-.sectionCard.dangerZone p {
-  color: #991b1b;
-  font-size: 0.9rem;
-  margin-bottom: 1rem;
-}
-
-.sectionHeader {
-  display: flex;
-  align-items: center;
-  gap: 0.75rem;
-  margin-bottom: 1.5rem;
-  color: #475569;
-}
-.sectionHeader h2 {
-  font-size: 1.25rem;
-  margin: 0;
-}
-.sectionHeader svg {
-  font-size: 1.4rem;
-  color: #4f46e5;
-}
-
-.inputGroup {
-  margin-bottom: 1.25rem;
-}
-.inputGroup label {
-  display: block;
-  font-size: 0.85rem;
-  font-weight: 600;
-  color: #64748b;
-  margin-bottom: 0.5rem;
-}
-.inputGroup input {
-  width: 100%;
-  padding: 0.75rem;
-  border: 1px solid #cbd5e1;
-  border-radius: 8px;
-}
-.inputGroup input:focus {
-  outline: none;
-  border-color: #4f46e5;
-  box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.1);
-}
-
-button {
-  background: #4f46e5;
-  color: white;
-  padding: 0.75rem 1.5rem;
-  border: none;
-  border-radius: 8px;
-  font-weight: 600;
-  cursor: pointer;
-  transition: background 0.2s;
-}
-button:hover {
-  background: #4338ca;
-}
-button:disabled {
-  opacity: 0.6;
-  cursor: not-allowed;
-}
-
-.deleteBtn {
-  background: #dc2626;
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-}
-.deleteBtn:hover {
-  background: #b91c1c;
-}
-
-.errorText {
-  color: #dc2626;
-  font-size: 0.85rem;
-  margin: 1rem 0;
-}
-
-.successText {
-  color: #16a34a;
-  font-size: 0.85rem;
-  margin: 1rem 0;
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
+  font-family: var(--font-inter);
 }/*# sourceMappingURL=accountSettings.module.css.map */

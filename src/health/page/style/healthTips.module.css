@@ -1,6 +1,6 @@
 .section {
   width: 100%;
-  background-color: #f8fafc;
+  background-color: var(--color-bg);
   min-height: 100vh;
   padding: 7rem 1.5rem 4rem;
 }
@@ -21,28 +21,28 @@
 }
 
 .pageTitle {
-  font-family: 'Plus Jakarta Sans', sans-serif;
+font-family: var(--font-plus);
   font-size: clamp(2.2rem, 5vw, 3.2rem);
   font-weight: 600;
-  color: #1e293b;
+  color: var(--color-black);
   line-height: 1.1;
   letter-spacing: -0.02em;
 }
 
 .dateBadge {
-  background: #e0f2fe;
-  color: #0284c7;
+background: var(--bg-blue-tag);
+  color: var(--color-blue-light);
   padding: 0.5rem 1rem;
   border-radius: 50px;
   font-weight: 700;
   font-size: 1.1rem;
-  font-family: 'Inter', sans-serif;
+  font-family: var(--font-inter);
 }
 
 .pageSubtitle {
-  font-family: 'Inter', sans-serif;
+ font-family: var(--font-inter);
   font-size: 1.25rem;
-  color: #64748b;
+  color: var(--color-gray);
   line-height: 1.6;
   max-width: 700px;
   margin: 0 auto;
@@ -61,11 +61,11 @@
 }
 
 .tipCard {
-  background: #ffffff;
+background: var(--color-white);
   border-radius: 20px;
   overflow: hidden;
-  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
-  border: 1px solid #f1f5f9;
+  box-shadow: var(--shadow-card);
+  border: 1px solid var(--color-border);
   transition: all 0.3s ease;
   height: 100%;
   display: flex;
@@ -74,7 +74,7 @@
 
 .tipCard:hover {
   transform: translateY(-8px);
-  box-shadow: 0 20px 40px -5px rgba(8, 41, 155, 0.1);
+ box-shadow: var(--shadow-card-blue-hover);
   border-color: rgba(8, 41, 155, 0.2);
 }
 
@@ -83,7 +83,7 @@
   height: 200px;
   position: relative;
   overflow: hidden;
-  background-color: #f1f5f9;
+ background-color: var(--color-bg-contrast);
 }
 
 .tipImage {
@@ -98,14 +98,14 @@
 }
 
 .imagePlaceholder {
-  width: 100%;
+ width: 100%;
   height: 100%;
-  background: #f8fafc;
+  background: var(--color-ash);
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  color: #94a3b8;
+  color: var(--icon-gray);
   font-weight: 700;
   font-size: 1.2rem;
   text-transform: uppercase;
@@ -113,16 +113,16 @@
 }
 
 .placeholderIcon {
-  color: #cbd5e1;
+  color: var(--icon-gray-light);
   margin-bottom: 0.2rem;
 }
 
 .categoryTag {
-  position: absolute;
+position: absolute;
   top: 1rem;
   left: 1rem;
   background: rgba(255, 255, 255, 0.95);
-  color: #08299b;
+  color: var(--color-blue);
   padding: 0.3rem 0.8rem;
   border-radius: 8px;
   font-size: 1rem;
@@ -141,17 +141,17 @@
 }
 
 .title {
-  font-family: 'Plus Jakarta Sans', sans-serif;
+ font-family: var(--font-plus);
   font-size: 1.3rem;
-  color: #1e293b;
+  color: var(--color-black);
   font-weight: 800;
   margin-bottom: 0.5rem;
   line-height: 1.3;
 }
 
 .shortDesc {
-  font-family: 'Inter', sans-serif;
-  color: #64748b;
+ font-family: var(--font-inter);
+  color: var(--color-gray);
   font-size: 1.2rem;
   line-height: 1.6;
   margin-bottom: 1rem;
@@ -162,7 +162,7 @@
   display: inline-flex;
   align-items: center;
   gap: 0.5rem;
-  color: #08299b;
+  color: var(--color-blue);
   font-weight: 700;
   text-decoration: none;
   font-size: 1rem;
@@ -176,26 +176,11 @@
 }
 
 .emptyState {
-  text-align: center;
+text-align: center;
   padding: 5rem;
-  color: #64748b;
+  color: var(--color-gray);
   font-weight: 600;
-  background: #ffffff;
+  background: var(--color-white);
   border-radius: 20px;
-  border: 1px dashed #cbd5e1;
+  border: 1px dashed var(--icon-gray-light);
 }
-
-/* @media (max-width: 768px) {
-  .section {
-    padding-top: 12rem;
-  }
-
-  .tipsGrid {
-    grid-template-columns: 1fr;
-  }
-
-  .titleGroup {
-    flex-direction: column;
-    gap: 0.5rem;
-  }
-} */

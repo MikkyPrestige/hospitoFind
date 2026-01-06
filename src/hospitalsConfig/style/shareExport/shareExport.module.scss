@@ -1,6 +1,3 @@
-@use "sass:color" as color;
-
-/* --- COMPONENT CONTAINER --- */
 .cta {
   display: flex;
   flex-direction: column;
@@ -8,7 +5,6 @@
   width: 100%;
   align-items: center;
 
-  // Horizontal layout for tablets and desktops
   @include respond(tab-port) {
     flex-direction: row;
     justify-content: center;
@@ -16,12 +12,11 @@
   }
 }
 
-/* --- BUTTON BASE STYLES --- */
 .btn {
   width: 100%;
   max-width: 320px;
   height: 3.8rem;
-  color: #fff;
+  color: var(--color-white);
   border: none;
   border-radius: 12px;
   font-size: 1.1rem;
@@ -32,6 +27,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  font-family: var(--font-inter);
 
   &:disabled {
     opacity: 0.7;
@@ -42,7 +38,6 @@
     transform: scale(0.97);
   }
 
-  // Content Wrapper
   .span {
     display: flex;
     align-items: center;
@@ -54,34 +49,32 @@
     font-size: 1.8rem;
   }
 
-  /* BUTTON VARIANTS */
   &.share {
-    background: linear-gradient(135deg, #08299B, #1e40af);
+    background: linear-gradient(135deg, var(--color-blue), var(--color-blue-dark));
 
     &:hover:not(:disabled) {
-      background: color.adjust(#08299B, $lightness: -5%);
+      background: var(--color-blue-dark);
       transform: translateY(-2px);
-      box-shadow: 0 8px 20px rgba(8, 41, 155, 0.2);
+      box-shadow: var(--shadow-card-blue);
     }
   }
 
   &.export {
-    background: linear-gradient(135deg, #28a745, #15803d);
+    background: linear-gradient(135deg, var(--color-success), #15803d);
 
     &:hover:not(:disabled) {
-      background: color.adjust(#28a745, $lightness: -5%);
+      background: #15803d;
       transform: translateY(-2px);
       box-shadow: 0 8px 20px rgba(40, 167, 69, 0.2);
     }
   }
 
   &.successBtn {
-    background: #08299B;
-    pointer-events: none; // Disable while showing success
+    background: var(--color-blue);
+    pointer-events: none;
   }
-} // <--- Fixed: Added missing closing brace for .btn
+}
 
-/* --- GENERATED LINK STYLES --- */
 .btnLink {
   width: 100%;
   max-width: 320px;
@@ -93,18 +86,18 @@
   .linkWrapper {
     display: flex;
     align-items: center;
-    background: #f1f5f9;
-    border: 1px dashed $color-blue;
+    background: var(--color-ash);
+    border: 1px dashed var(--color-blue);
     border-radius: 10px;
     padding: 2px;
     width: 100%;
-  } // <--- Fixed: Closed linkWrapper properly if it was meant to be a sibling/parent container
+  }
 
   .link {
     flex: 1;
     background: transparent;
     border: none;
-    color: $color-blue;
+    color: var(--color-blue);
     padding: 0.8rem 1rem;
     font-size: 0.9rem;
     font-weight: 700;
@@ -113,9 +106,10 @@
     align-items: center;
     justify-content: space-between;
     min-width: 0;
+    font-family: var(--font-inter);
 
     &:hover {
-      color: color.adjust($color-blue, $lightness: 15%);
+      color: var(--color-blue-dark);
     }
 
     .copyIcon {
@@ -125,9 +119,9 @@
   }
 
   .clearBtn {
-    background: #e2e8f0;
+    background: var(--color-border);
     border: none;
-    color: #64748b;
+    color: var(--icon-gray);
     width: 2.5rem;
     height: 2.5rem;
     border-radius: 8px;
@@ -140,12 +134,11 @@
 
     &:hover {
       background: #fee2e2;
-      color: $color-red;
+      color: var(--color-red);
     }
   }
 }
 
-/* --- TOAST NOTIFICATIONS --- */
 .toast {
   position: fixed;
   bottom: 3rem;
@@ -153,26 +146,25 @@
   transform: translateX(-50%);
   padding: 1.2rem 2.5rem;
   border-radius: 50px;
-  color: #fff;
+  color: var(--color-white);
   font-weight: 700;
   z-index: 10000;
   backdrop-filter: blur(8px);
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+  font-family: var(--font-plus);
 
-  &.success { background: rgba(40, 167, 69, 0.95); }
-  &.error { background: rgba(220, 38, 38, 0.95); }
+  &.success { background: var(--color-success); opacity: 0.95; }
+  &.error { background: var(--color-error); opacity: 0.95; }
 }
 
-/* --- ERROR TEXT --- */
 .error {
-  color: #ef4444;
+  color: var(--color-error);
   font-size: 0.9rem;
   font-weight: 600;
   text-align: center;
   margin-top: 0.5rem;
 }
 
-/* --- ANIMATIONS --- */
 @keyframes slideUpFade {
   0% { opacity: 0; transform: translate(-50%, 20px); }
   15%, 85% { opacity: 1; transform: translate(-50%, 0); }
@@ -183,139 +175,3 @@
   from { opacity: 0; transform: translateY(5px); }
   to { opacity: 1; transform: translateY(0); }
 }
-
-// @use "sass:color" as color;
-
-// .cta {
-//   @include flexCol;
-//   gap: 1rem;
-//   position: relative;
-//   width: 100%;
-
-//   .btn {
-//     color: $color-white;
-//     border: none;
-//     border-radius: 0.8rem;
-//     font-size: $font-size-2;
-//     font-weight: $font-weight-md;
-//     padding: 0.7rem 1.4rem;
-//     cursor: pointer;
-//     transition: all 0.3s ease-in-out;
-//     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
-
-//     &.share {
-//         background: linear-gradient(
-//   135deg,
-//   color.adjust($color-blue, $lightness: 0%),
-//   color.adjust($color-blue, $lightness: 15%) 100%);
-//       &:hover {
-//         background: color.adjust($color-blue, $lightness: -8%);
-//         transform: translateY(-1px);
-//       }
-//     }
-
-//     &.export {
-//         background: linear-gradient(
-//   135deg,
-//   color.adjust(#28a745, $lightness: 0%),
-//   color.adjust(#28a745, $lightness: 15%) 100%);
-//       &:hover {
-//         background: color.adjust(#28a745, $lightness: -8%);
-//         transform: translateY(-1px);
-//       }
-//     }
-
-//     &:active {
-//       transform: scale(0.97);
-//     }
-
-//      .span {
-//       @include flexRow;
-//       gap: 0.5rem;
-//       font-size: $font-size-2;
-//       font-weight: $font-weight-bd;
-//       letter-spacing: 0.02rem;
-//       text-transform: capitalize;
-//     }
-
-//     .icon {
-//       width: 1.6rem;
-//       height: 1.6rem;
-//       fill: $color-white;
-//     }
-//   }
-
-//   .btnLink {
-//     @include flexRow;
-//     gap: 0.8rem;
-//     align-items: center;
-//     flex-wrap: wrap;
-
-//     .link {
-//       background: #f5f8ff;
-//       border: 1px solid rgba(8, 41, 155, 0.2);
-//       color: $color-blue;
-//       border-radius: 0.6rem;
-//       padding: 0.4rem 0.8rem;
-//       font-size: $font-size-2;
-//       cursor: pointer;
-//       transition: all 0.25s ease;
-
-//       &:hover {
-//         background: $color-blue;
-//         color: $color-white;
-//       }
-//     }
-//   }
-
-//   .toast {
-//     position: fixed;
-//     bottom: 2rem;
-//     right: 2rem;
-//     background: linear-gradient(135deg, #3dbb6a, #28a745);
-//     color: white;
-//     padding: 0.8rem 1.2rem;
-//     border-radius: 0.6rem;
-//     font-size: $font-size-2;
-//     font-weight: $font-weight-md;
-//     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
-//     animation: fadeInOut 3s ease forwards;
-//     z-index: 9999;
-
-//      &.success {
-//       background: linear-gradient(135deg, #3dbb6a, #28a745);
-//       color: white;
-//     }
-
-//     &.error {
-//       background: linear-gradient(135deg, #e63946, #d62828);
-//       color: white;
-//     }
-//   }
-
-//   .error {
-//     color: $color-red;
-//     font-size: $font-size-1;
-//     margin-top: 0.5rem;
-//     font-weight: $font-weight-md;
-//   }
-// }
-
-// @keyframes fadeInOut {
-//   0% {
-//     opacity: 0;
-//     transform: translateY(10px);
-//   }
-//   15% {
-//     opacity: 1;
-//     transform: translateY(0);
-//   }
-//   85% {
-//     opacity: 1;
-//     transform: translateY(0);
-//   }
-//   100% {
-//     opacity: 0;
-//     transform: translateY(10px);
-//   }
-// }

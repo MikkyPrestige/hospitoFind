@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import style from "./style/healthAlert.module.css";
-import AnimatedLoader from "../components/utils/AnimatedLoader";
+import AnimatedLoader from "../components/utils/animatedLoader";
 import { useNavigate } from "react-router-dom";
 import { FiAlertTriangle, FiArrowRight, FiCalendar, FiExternalLink } from "react-icons/fi";
 import { BASE_URL } from "@/context/userContext";

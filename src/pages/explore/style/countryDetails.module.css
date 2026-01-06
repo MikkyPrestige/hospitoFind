@@ -1,19 +1,8 @@
-/* --- VARIABLES --- */
 .layoutContainer {
-  --color-blue: #08299b;
-  --color-blue-dark: #1e40af;
-  --color-blue-light: #60a5fa;
-  --color-white: #ffffff;
-  --color-text-dark: #1e293b;
-  --color-text-light: #64748b;
-  --color-bg: #f8faff;
-  --color-border: #e2e8f0;
-  --shadow-header: 0 10px 30px rgba(8, 41, 155, 0.15);
-
   min-height: 100vh;
   padding-top: 6rem;
   background-color: var(--color-bg);
-  font-family: 'Inter', sans-serif;
+  font-family: var(--font-inter);
 }
 
 .page {
@@ -36,7 +25,7 @@
   overflow: hidden;
   border-bottom-left-radius: 2rem;
   border-bottom-right-radius: 2rem;
-  box-shadow: var(--shadow-header);
+  box-shadow: var(--shadow-card-blue-hover);
 }
 
 .header::after {
@@ -96,7 +85,7 @@
   font-weight: 800;
   margin-bottom: 0.5rem;
   line-height: 1.1;
-  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-family: var(--font-plus);
 }
 
 .accent {
@@ -145,8 +134,8 @@
   align-items: center;
   padding: 0.5rem 1.5rem;
   border-radius: 1.2rem;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
-  border: 1px solid rgba(8, 41, 155, 0.1);
+  box-shadow: var(--shadow-card);
+  border: var(--border-blue-faint);
   transition: transform 0.3s ease;
 }
 
@@ -168,12 +157,12 @@
   font-size: 1.1rem;
   font-weight: 500;
   outline: none;
-  color: var(--color-text-dark);
-  font-family: 'Inter', sans-serif;
+  color: var(--color-black);
+  font-family: var(--font-inter);
 }
 
 .searchWrapper input::placeholder {
-  color: #94a3b8;
+  color: var(--icon-gray);
 }
 
 .filterGroup {
@@ -189,11 +178,11 @@
   padding: 0.7rem 1.5rem;
   border-radius: 50px;
   font-weight: 600;
-  color: var(--color-text-light);
+  color: var(--color-gray);
   cursor: pointer;
   transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
   font-size: 0.95rem;
-  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-family: var(--font-plus);
 }
 
 .chip:hover {
@@ -206,7 +195,7 @@
   background: var(--color-blue) !important;
   color: var(--color-white) !important;
   border-color: var(--color-blue) !important;
-  box-shadow: 0 8px 20px rgba(8, 41, 155, 0.25);
+  box-shadow: var(--shadow-card-blue);
   transform: translateY(-2px);
 }
 
@@ -219,10 +208,7 @@
 .grid {
   display: grid;
   gap: 2rem;
-  grid-template-columns: repeat(
-    auto-fill,
-    minmax(340px, 1fr)
-  );
+  grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
 }
 
 .cardWrapper {
@@ -241,14 +227,14 @@
 }
 
 .empty h3 {
-  color: var(--color-text-dark);
+  color: var(--color-black);
   font-size: 1.8rem;
   margin-bottom: 0.5rem;
   font-weight: 700;
 }
 
 .empty p {
-  color: var(--color-text-light);
+  color: var(--color-gray);
   line-height: 1.6;
 }
 
@@ -303,7 +289,6 @@
     max-width: 400px;
   }
 }
-
 
 @keyframes spin {
   to {

@@ -1,8 +1,8 @@
 .trusted {
-  background: #f8faff;
+  background: var(--color-bg);
   padding: 2rem;
   text-align: center;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+  border-bottom: 1px solid var(--color-border);
   overflow: hidden;
 }
 
@@ -18,34 +18,34 @@
 }
 
 .badge {
-  background: rgba(8, 41, 155, 0.08);
-  color: #08299b;
+  background: var(--bg-blue-faint);
+  color: var(--color-blue);
   font-size: 1rem;
   font-weight: 700;
   padding: 0.4rem 1rem;
   border-radius: 50px;
   text-transform: uppercase;
   letter-spacing: 0.05em;
-  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-family: var(--font-plus);
 }
 
 .trustedTitle {
-  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-family: var(--font-plus);
   font-size: clamp(2rem, 5vw, 2.8rem);
   font-weight: 800;
-  color: #1e293b;
+  color: var(--color-black);
   line-height: 1.15;
   letter-spacing: -0.03em;
 }
 
 .accent {
-  color: #08299b;
+  color: var(--color-blue);
 }
 
 .subText {
-  font-family: 'Inter', sans-serif;
+  font-family: var(--font-inter);
   font-size: 1.2rem;
-  color: #64748b;
+  color: var(--color-gray);
   line-height: 1.6;
   max-width: 600px;
   font-weight: 500;
@@ -71,19 +71,19 @@
 
 .marquee::before {
   left: 0;
-  background: linear-gradient(to right, #f8faff, transparent);
+  background: linear-gradient(to right, var(--color-bg), transparent);
 }
 
 .marquee::after {
   right: 0;
-  background: linear-gradient(to left, #f8faff, transparent);
+  background: linear-gradient(to left, var(--color-bg), transparent);
 }
 
 .track {
   display: flex;
   gap: 2rem;
   width: max-content;
-  padding: .5rem 0;
+  padding: 0.5rem 0;
   animation: scrollInfinite 45s linear infinite;
 }
 
@@ -109,15 +109,15 @@
 .imageWrapper {
   width: 100%;
   height: 100%;
-  background: #ffffff;
+  background: var(--color-white);
   border-radius: 20px;
   display: flex;
   align-items: center;
   justify-content: center;
   padding: 1rem;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+  box-shadow: var(--shadow-card);
   margin-bottom: 1rem;
-  border: 1px solid #e2e8f0;
+  border: 1px solid var(--color-border);
   transition: all 0.3s ease;
 }
 
@@ -137,21 +137,21 @@
 }
 
 .logoCard:hover .imageWrapper {
-  border-color: #08299b;
-  box-shadow: 0 15px 35px rgba(8, 41, 155, 0.1);
+  border-color: var(--color-blue);
+  box-shadow: var(--shadow-card-blue-hover);
 }
 
 .hospitalName {
-  font-family: 'Plus Jakarta Sans', sans-serif;
-  font-size: 0.9rem;
-  color: #94a3b8;
+  font-family: var(--font-plus);
+  font-size: 1rem;
+  color: var(--icon-gray);
   font-weight: 600;
   transition: color 0.3s ease;
   text-align: center;
 }
 
 .logoCard:hover .hospitalName {
-  color: #08299b;
+  color: var(--color-blue);
 }
 
 @keyframes scrollInfinite {

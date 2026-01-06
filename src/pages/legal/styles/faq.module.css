@@ -1,18 +1,18 @@
 .faqContainer {
-  background-color: #f8fafc;
+  background-color: var(--color-bg);
   padding: 5rem 2rem;
   display: flex;
   justify-content: center;
 }
 
 .content {
-  background: #ffffff;
+  background: var(--color-white);
   max-width: 1000px;
   width: 100%;
   padding: 2rem;
   border-radius: 2.5rem;
-  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.04);
-  border: 1px solid #e2e8f0;
+  box-shadow: var(--shadow-soft);
+  border: 1px solid var(--color-border);
 }
 
 .header {
@@ -29,21 +29,23 @@
 }
 
 .mainIcon {
-  color: #08299b;
+  color: var(--color-blue);
 }
 
 .title {
   font-size: 2rem;
   font-weight: 800;
-  color: #08299b;
+  color: var(--color-blue);
   letter-spacing: -1px;
+  font-family: var(--font-plus);
 }
 
 .subtitle {
   font-size: 1.3rem;
-  color: #64748b;
+  color: var(--color-gray);
   max-width: 600px;
   margin: 1rem auto;
+  font-family: var(--font-inter);
 }
 
 .faqList {
@@ -53,15 +55,15 @@
 }
 
 .faqItem {
-  border: 1.5px solid #f1f5f9;
+  border: 1.5px solid var(--color-border);
   border-radius: 1.5rem;
-  background: #ffffff;
+  background: var(--color-white);
   transition: all 0.3s ease;
 }
 
 .activeItem {
-  border-color: #08299b;
-  box-shadow: 0 8px 20px rgba(8, 41, 155, 0.05);
+  border-color: var(--color-blue);
+  box-shadow: var(--shadow-card-blue);
 }
 
 .faqQuestion {
@@ -70,7 +72,7 @@
   padding: 1.8rem 2rem;
   font-size: 1.2rem;
   font-weight: 600;
-  color: #1e293b;
+  color: var(--color-black);
   background: none;
   border: none;
   cursor: pointer;
@@ -78,14 +80,15 @@
   justify-content: space-between;
   align-items: center;
   transition: color 0.2s;
+  font-family: var(--font-plus);
 }
 
 .faqQuestion:hover {
-  color: #08299b;
+  color: var(--color-blue);
 }
 
 .toggleIcon {
-  color: #08299b;
+  color: var(--color-blue);
 }
 
 .faqAnswer {
@@ -108,7 +111,8 @@
 .answerInner p {
   font-size: 1.2rem;
   line-height: 1.8;
-  color: #475569;
+  color: var(--text-slate);
+  font-family: var(--font-inter);
 }
 
 @media (max-width: 480px) {

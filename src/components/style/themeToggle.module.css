@@ -1,0 +1,27 @@
+.toggleBtn {
+  background: var(--color-white);
+  border: 1px solid var(--color-border);
+  width: 2.8rem;
+  height: 2.8rem;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  box-shadow: var(--shadow-card);
+}
+
+.toggleBtn:hover {
+  transform: translateY(-2px);
+  border-color: var(--color-blue);
+}
+
+.icon {
+  font-size: 1.4rem;
+  color: var(--color-black);
+}
+
+:global([data-theme='dark']) .icon {
+  color: var(--warning-color);
+}

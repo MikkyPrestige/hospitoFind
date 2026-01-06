@@ -11,14 +11,17 @@
 .header .headerText h2 {
   font-size: 1.8rem;
   margin-bottom: 0.5rem;
+  color: var(--color-black);
+  font-family: var(--font-plus);
 }
 .header .headerText p {
-  color: #666;
+  color: var(--color-gray);
   font-size: 1.2rem;
+  font-family: var(--font-inter);
 }
 .header .countBadge {
-  background: #eef2ff;
-  color: #08299B;
+  background: var(--bg-blue-tag);
+  color: var(--color-blue);
   padding: 0.4rem 0.8rem;
   border-radius: 20px;
   font-size: 0.85rem;
@@ -32,8 +35,8 @@
 }
 
 .subCard {
-  background: white;
-  border: 1px solid #e2e8f0;
+  background: var(--color-white);
+  border: 1px solid var(--color-border);
   padding: 1.25rem;
   border-radius: 12px;
   display: flex;
@@ -43,22 +46,24 @@
 }
 .subCard:hover {
   transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  box-shadow: var(--shadow-card-blue-hover);
 }
 
 .cardInfo h3 {
   font-size: 1.4rem;
-  color: #334155;
+  color: var(--text-slate);
   margin-bottom: 0.25rem;
+  font-family: var(--font-plus);
 }
 .cardInfo p {
   font-size: 1rem;
-  color: #94a3b8;
+  color: var(--icon-gray);
+  font-family: var(--font-inter);
 }
 
 .statusPending {
   background: #fff7ed;
-  color: #c2410c;
+  color: var(--warning-color);
   padding: 6px 12px;
   border-radius: 20px;
   font-size: 0.75rem;
@@ -69,8 +74,8 @@
 }
 
 .statusApproved {
-  background: #f0fdf4;
-  color: #15803d;
+  background: var(--color-success-bg);
+  color: var(--color-success);
   padding: 6px 12px;
   border-radius: 20px;
   font-size: 0.75rem;
@@ -94,11 +99,11 @@
   gap: 1.5rem;
   margin-top: 2rem;
   padding-top: 1rem;
-  border-top: 1px solid #eee;
+  border-top: 1px solid var(--color-border);
 }
 .pagination .pageInfo {
   font-size: 0.9rem;
-  color: #666;
+  color: var(--color-gray);
   font-weight: 500;
 }
 .pagination .pageBtn {
@@ -106,12 +111,12 @@
   align-items: center;
   gap: 0.5rem;
   padding: 0.5rem 1rem;
-  border: 1px solid #ddd;
-  background: white;
+  border: 1px solid var(--color-border);
+  background: var(--color-white);
   border-radius: 6px;
   cursor: pointer;
   font-size: 0.9rem;
-  color: #333;
+  color: var(--color-black);
   transition: all 0.2s;
 }
 .pagination .pageBtn:hover:not(:disabled) {
@@ -129,7 +134,7 @@
   justify-content: center;
   align-items: center;
   min-height: 200px;
-  color: #4f46e5;
+  color: var(--color-blue);
   font-weight: 600;
   font-size: 1.1rem;
   letter-spacing: 0.5px;
@@ -143,32 +148,33 @@
   justify-content: center;
   padding: 4rem 2rem;
   text-align: center;
-  color: #888;
-  background: #f8f9fa;
+  color: var(--icon-gray);
+  background: var(--color-bg-light);
   border-radius: 12px;
-  border: 1px dashed #ddd;
+  border: 1px dashed var(--color-border);
 }
 .emptyState p {
   margin-top: 1rem;
   font-size: 1rem;
   max-width: 300px;
   line-height: 1.5;
+  font-family: var(--font-inter);
 }
 .emptyState .retryBtn {
   margin-top: 1.5rem;
   padding: 0.6rem 1.5rem;
-  background-color: #08299B;
-  color: white;
+  background-color: var(--color-blue);
+  color: var(--color-white);
   border: none;
   border-radius: 6px;
-  font-size: 0.95rem;
+  font-size: 1rem;
   font-weight: 500;
   cursor: pointer;
   transition: all 0.2s ease;
-  box-shadow: 0 2px 5px rgba(8, 41, 155, 0.2);
+  box-shadow: var(--shadow-card-blue);
 }
 .emptyState .retryBtn:hover {
-  background-color: #061f75;
+  background-color: var(--color-blue-dark);
   transform: translateY(-1px);
 }
 .emptyState .retryBtn:active {

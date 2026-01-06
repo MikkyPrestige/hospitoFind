@@ -1,17 +1,5 @@
-@use "sass:color" as color;
-
-$color-blue: #08299B;
-$color-blue-light: #2563EB;
-$color-navy: #1a237e;
-$color-ash: #f8fafc;
-$color-ash-dark: #e2e8f0;
-$color-white: #ffffff;
-$color-black: #1e293b;
-$color-gold: #fbbf24;
-$color-green: #10b981;
-
 .bg {
-  background-color: $color-white;
+  background-color: var(--color-white);
   width: 100%;
   padding-top: 7rem;
   display: flex;
@@ -48,13 +36,13 @@ $color-green: #10b981;
     .heroTitle {
       font-size: 3rem;
       font-weight: 800;
-      color: $color-black;
+      color: var(--color-black);
       line-height: 1.15;
       margin-bottom: 1.5rem;
-      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-family: var(--font-plus);
 
       .span {
-        color: $color-blue;
+        color: var(--color-blue);
         display: block;
       }
 
@@ -65,7 +53,7 @@ $color-green: #10b981;
 
     .heroPara {
       font-size: 1.15rem;
-      color: #475569;
+      color: var(--text-slate);
       line-height: 1.7;
       margin-bottom: 2.5rem;
     }
@@ -76,7 +64,7 @@ $color-green: #10b981;
     gap: 3rem;
     margin-bottom: 2.5rem;
     padding-bottom: 2rem;
-    border-bottom: 1px solid $color-ash-dark;
+    border-bottom: 1px solid var(--color-border);
 
     .statItem {
       display: flex;
@@ -85,7 +73,7 @@ $color-green: #10b981;
       .statNumber {
         font-size: 2.5rem;
         font-weight: 800;
-        color: $color-blue;
+        color: var(--color-blue);
         line-height: 1;
         margin-bottom: 0.2rem;
       }
@@ -93,7 +81,7 @@ $color-green: #10b981;
       .statLabel {
         font-size: 1rem;
         font-weight: 600;
-        color: #64748b;
+        color: var(--color-gray);
         text-transform: uppercase;
         letter-spacing: 0.5px;
       }
@@ -116,7 +104,7 @@ $color-green: #10b981;
     width: 48%;
     border-radius: 24px;
     overflow: hidden;
-    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.15);
+    box-shadow: var(--shadow-card);
     height: 100%;
   }
 
@@ -126,7 +114,7 @@ $color-green: #10b981;
 
 /* --- MISSION SECTION --- */
 .missionWrapper {
-  background: #f0f7ff;
+  background: var(--color-bg-light);
   padding: 3rem 5%;
   border-radius: 3rem;
   margin: 0 2%;
@@ -143,15 +131,15 @@ $color-green: #10b981;
       .sectionHeading {
         font-size: 2.5rem;
         font-weight: 800;
-        color: $color-blue;
+        color: var(--color-blue);
         margin-bottom: 1rem;
-        font-family: 'Plus Jakarta Sans', sans-serif;
+        font-family: var(--font-plus);
       }
 
       p {
         font-size: 1.15rem;
         line-height: 1.8;
-        color: #334155;
+        color: var(--text-slate);
       }
     }
 
@@ -163,13 +151,13 @@ $color-green: #10b981;
       .valueItem {
         display: flex;
         gap: 1.2rem;
-        background: white;
+        background: var(--color-white);
         padding: 1.5rem;
         border-radius: 20px;
-        box-shadow: 0 10px 30px rgba(0,0,0,0.03);
+        box-shadow: var(--shadow-soft);
 
         .iconBox {
-          background: rgba(37, 99, 235, 0.1);
+          background: var(--bg-blue-tag);
           width: 3.5rem;
           height: 3.5rem;
           border-radius: 12px;
@@ -180,19 +168,19 @@ $color-green: #10b981;
 
           .valueIcon {
             font-size: 1.5rem;
-            color: $color-blue-light;
+            color: var(--color-blue-light);
           }
         }
 
         h4 {
-          color: $color-black;
+          color: var(--color-black);
           font-size: 1.2rem;
           font-weight: 700;
           margin-bottom: 0.3rem;
         }
 
         p {
-          color: #64748b;
+          color: var(--color-gray);
           font-size: 1rem;
           line-height: 1.5;
           margin: 0;
@@ -214,13 +202,13 @@ $color-green: #10b981;
     h2 {
       font-size: 2.5rem;
       font-weight: 800;
-      color: $color-black;
-      font-family: 'Plus Jakarta Sans', sans-serif;
+      color: var(--color-black);
+      font-family: var(--font-plus);
     }
 
     p {
       font-size: 1.2rem;
-      color: #64748b;
+      color: var(--color-gray);
     }
   }
 
@@ -232,27 +220,27 @@ $color-green: #10b981;
     gap: 2rem;
 
     .featureBox {
-      background: white;
+      background: var(--color-white);
       padding: 2rem;
       border-radius: 24px;
       text-align: left;
       transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-      border: 1px solid $color-ash-dark;
+      border: 1px solid var(--color-border);
 
       &:hover {
         transform: translateY(-8px);
-        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08);
+        box-shadow: var(--shadow-card-blue-hover);
         border-color: rgba(37, 99, 235, 0.3);
 
         .iconWrapper {
-          background: $color-blue;
-          color: white;
+          background: var(--color-blue);
+          color: var(--color-white);
         }
       }
 
       .iconWrapper {
-        background: $color-ash;
-        color: $color-blue;
+        background: var(--color-ash);
+        color: var(--color-blue);
         width: 3.5rem;
         height: 3.5rem;
         border-radius: 12px;
@@ -267,13 +255,13 @@ $color-green: #10b981;
       .featureTitle {
         font-size: 1.3rem;
         font-weight: 700;
-        color: $color-black;
+        color: var(--color-black);
         margin-bottom: 0.5rem;
       }
 
       .featureText {
         font-size: 1.1rem;
-        color: #64748b;
+        color: var(--color-gray);
         line-height: 1.6;
       }
     }
@@ -284,7 +272,7 @@ $color-green: #10b981;
 .howItWorksWrapper {
   width: 100%;
   overflow: hidden;
-  background-color: #ffffff;
+  background-color: var(--color-white);
 
   .semiCircle_container {
     position: relative;
@@ -310,10 +298,10 @@ $color-green: #10b981;
       border-radius: 50% 50% 0 0;
     }
 
-    .one { background: #f8fafc; top: 0; }
-    .two { background: #f1f5f9; top: 5%; }
+    .one { background: var(--color-bg); top: 0; }
+    .two { background: var(--color-ash); top: 5%; }
     .three {
-      background: linear-gradient(180deg, #1e293b 0%, #0f172a 100%);
+      background: linear-gradient(180deg, var(--color-black) 0%, #0f172a 100%);
       top: 15%;
     }
   }
@@ -329,7 +317,7 @@ $color-green: #10b981;
     .heading {
       font-size: 2.5rem;
       font-weight: 800;
-      color: $color-blue;
+      color: var(--color-blue);
       margin-bottom: 0.5rem;
       position: relative;
       z-index: 20;
@@ -337,16 +325,16 @@ $color-green: #10b981;
 
     .subHeading {
         font-size: 1.5rem;
-        color: $color-gold;
+        color: var(--warning-color);
         margin-bottom: 2rem;
         position: relative;
         z-index: 20;
     }
 
     /* Change text color when over dark background */
-    // @media (min-width: 768px) {
-    //     .heading, .subHeading { color: white; text-shadow: 0 2px 10px rgba(0,0,0,0.3); }
-    // }
+    @media (min-width: 768px) {
+        .heading, .subHeading { color: white; text-shadow: 0 2px 10px rgba(0,0,0,1); }
+    }
 
     .stepsGrid {
       display: grid;
@@ -357,10 +345,10 @@ $color-green: #10b981;
       @media (max-width: 600px) { grid-template-columns: 1fr; }
 
       .stepCard {
-        background: white;
+        background: var(--color-white);
         padding: 2rem 1.5rem;
         border-radius: 20px;
-        box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+        box-shadow: var(--shadow-card);
         display: flex;
         flex-direction: column;
         align-items: center;
@@ -379,8 +367,8 @@ $color-green: #10b981;
             position: absolute;
             top: 0;
             right: 0;
-            background: $color-blue;
-            color: white;
+            background: var(--color-blue);
+            color: var(--color-white);
             width: 2rem;
             height: 2rem;
             border-radius: 50%;
@@ -396,13 +384,13 @@ $color-green: #10b981;
         .stepHead {
           font-size: 1.2rem;
           font-weight: 700;
-          color: $color-black;
+          color: var(--color-black);
           margin-bottom: 0.5rem;
         }
 
         .stepText {
           font-size: 0.95rem;
-          color: #64748b;
+          color: var(--color-gray);
           line-height: 1.5;
         }
       }
@@ -413,7 +401,7 @@ $color-green: #10b981;
 /* --- REVIEWS --- */
 .reviewSection {
   position: relative;
-  background-color: white;
+  background-color: var(--color-white);
   padding: 2rem 5%;
 
   .reviewHeader {
@@ -424,13 +412,13 @@ $color-green: #10b981;
     .review_title {
         font-size: 2.5rem;
         font-weight: 800;
-        color: $color-black;
+        color: var(--color-black);
         margin-bottom: 0.1rem;
-        font-family: 'Plus Jakarta Sans', sans-serif;
+        font-family: var(--font-plus);
     }
 
     .review_subtitle {
-        color: #64748b;
+        color: var(--color-gray);
         font-size: 1.2rem;
     }
   }
@@ -446,8 +434,8 @@ $color-green: #10b981;
       background: #fff;
       padding: 2rem;
       border-radius: 20px;
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.04);
-      border: 1px solid $color-ash-dark;
+      box-shadow: var(--shadow-soft);
+      border: 1px solid var(--color-border);
       text-align: left;
       display: flex;
       flex-direction: column;
@@ -456,14 +444,14 @@ $color-green: #10b981;
 
       .starRow {
         display: flex;
-        color: $color-gold;
+        color: var(--warning-color);
         font-size: 1.1rem;
       }
 
       .review_text {
           font-style: italic;
           line-height: 1.6;
-          color: #334155;
+          color: var(--text-slate);
           font-size: 1rem;
           flex-grow: 1;
       }
@@ -473,7 +461,7 @@ $color-green: #10b981;
         align-items: center;
         gap: 1rem;
         margin-top: 1rem;
-        border-top: 1px dashed $color-ash-dark;
+        border-top: 1px dashed var(--color-border);
         padding-top: 1rem;
 
         div {
@@ -484,13 +472,13 @@ $color-green: #10b981;
 
         .userName {
             font-weight: 700;
-            color: $color-black;
+            color: var(--color-blue);
             font-size: 0.95rem;
         }
 
         .userRole {
            font-size: 0.85rem;
-            color: $color-blue-light;
+            color: var(--color-blue-light);
             font-weight: 600;
             text-transform: uppercase;
             letter-spacing: 0.5px;
@@ -504,18 +492,18 @@ $color-green: #10b981;
 .ctaLink {
   display: inline-block;
   padding: 1rem 2.5rem;
-  background: $color-blue-light;
-  color: white;
+  background: var(--color-blue-light);
+  color: var(--color-white);
   border-radius: 50px;
   font-weight: 700;
   text-decoration: none;
   font-size: 1.1rem;
   transition: all 0.2s ease;
-  box-shadow: 0 4px 15px rgba(37, 99, 235, 0.3);
+  box-shadow: var(--shadow-card-blue);
 
   &:hover {
-    background: darken($color-blue-light, 5%);
+    background: #1d4ed8;
     transform: translateY(-2px);
-    box-shadow: 0 8px 25px rgba(37, 99, 235, 0.4);
+    box-shadow: var(--shadow-card-blue-hover);
   }
 }

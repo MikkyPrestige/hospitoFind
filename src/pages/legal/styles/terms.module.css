@@ -1,35 +1,37 @@
 .termsContainer {
-  background-color: #f8fafc;
+  background-color: var(--color-bg);
   padding: 7rem 2rem;
   display: flex;
   justify-content: center;
 }
 
 .content {
-  background: #ffffff;
+  background: var(--color-white);
   max-width: 900px;
   width: 100%;
   padding: 2rem;
   border-radius: 2rem;
-  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.03);
-  border: 1px solid #edf2f7;
+  box-shadow: var(--shadow-soft);
+  border: 1px solid var(--color-border);
 }
 
 .header {
-  border-bottom: 2px solid #f1f5f9;
+  border-bottom: 2px solid var(--color-border);
   margin-bottom: 1rem;
 }
 
 .title {
   font-size: 2rem;
   font-weight: 700;
-  color: #08299b;
+  color: var(--color-blue);
+  font-family: var(--font-plus);
 }
 
 .updated {
   font-size: 1.1rem;
-  color: #94a3b8;
+  color: var(--icon-gray);
   font-weight: 600;
+  font-family: var(--font-inter);
 }
 
 .section {
@@ -39,33 +41,36 @@
 .section h2 {
   font-size: 1.4rem;
   font-weight: 700;
-  color: #1e293b;
+  color: var(--color-black);
   margin-bottom: 0.2rem;
+  font-family: var(--font-plus);
 }
 
 .section p {
   font-size: 1.1rem;
   line-height: 1.8;
-  color: #475569;
+  color: var(--text-slate);
+  font-family: var(--font-inter);
 }
 
 .section p strong {
-  color: #08299b;
+  color: var(--color-blue);
 }
 
 .contactNote {
   padding-top: 2rem;
-  border-top: 1px solid #f1f5f9;
+  border-top: 1px solid var(--color-border);
   text-align: center;
 }
 
 .contactNote p {
   font-size: 1.1rem;
-  color: #64748b;
+  color: var(--color-gray);
+  font-family: var(--font-inter);
 }
 
 .contactNote a {
-  color: #08299b;
+  color: var(--color-blue);
   font-weight: 700;
   text-decoration: none;
 }

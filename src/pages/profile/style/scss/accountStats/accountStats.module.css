@@ -6,14 +6,14 @@
 }
 
 .statCard {
-  background: white;
+  background: var(--color-white);
   padding: 1rem;
   border-radius: 16px;
-  border: 1px solid #f1f5f9;
+  border: 1px solid var(--color-border);
   display: flex;
   align-items: center;
   gap: 1.25rem;
-  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+  box-shadow: var(--shadow-card);
 }
 
 .iconCircle {
@@ -26,34 +26,37 @@
   font-size: 1.4rem;
 }
 .iconCircle.blue {
-  background: #eff6ff;
-  color: #3b82f6;
+  background: var(--bg-blue-tag);
+  color: var(--color-blue);
 }
 .iconCircle.green {
-  background: #f0fdf4;
-  color: #22c55e;
+  background: var(--color-success-bg);
+  color: var(--color-success);
 }
 .iconCircle.purple {
-  background: #f5f3ff;
-  color: #8b5cf6;
+  background: var(--primary-light);
+  color: var(--color-indigo);
 }
 
 .statInfo span {
   display: block;
   font-size: 1rem;
-  color: #64748b;
+  color: var(--color-gray);
   font-weight: 500;
   margin-bottom: 0.2rem;
+  font-family: var(--font-inter);
 }
 .statInfo h3 {
   font-size: 1.5rem;
-  color: #1e293b;
+  color: var(--color-black);
   margin: 0;
+  font-family: var(--font-plus);
 }
 
 .statsLoader {
   padding: 2rem;
   text-align: center;
-  color: #94a3b8;
+  color: var(--icon-gray);
   font-style: italic;
+  font-family: var(--font-inter);
 }/*# sourceMappingURL=accountStats.module.css.map */

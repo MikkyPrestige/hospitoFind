@@ -1,13 +1,7 @@
-$color-bg: #f8faff;
-$color-blue: #08299B;
-$color-text-main: #1e293b;
-$color-text-muted: #64748b;
-$color-red: #FF033E;
-
 .dashboard {
   width: 100%;
   min-height: 100vh;
-  background-color: $color-bg;
+  background-color: var(--color-bg);
   display: flex;
   flex-direction: column;
   overflow-x: hidden;
@@ -21,7 +15,7 @@ $color-red: #FF033E;
   justify-content: space-between;
   align-items: center;
   padding: 0 4%;
-  background: #fff;
+  background: var(--color-white);
   box-shadow: 0 2px 10px rgba(0,0,0,0.02);
   z-index: 100;
   position: sticky;
@@ -36,7 +30,7 @@ $color-red: #FF033E;
 
   .sidebarToggle .sidebarIcon {
     font-size: 5rem;
-    color: $color-blue;
+    color: var(--color-blue);
     cursor: pointer;
     @include respond(tab-port) { font-size: 3.5rem; }
   }
@@ -64,7 +58,7 @@ $color-red: #FF033E;
 .nav {
   width: 100%;
   padding: 0.8rem;
-  background: #fff;
+  background: var(--color-white);
   border-radius: 1.5rem;
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
   transition: all 0.3s ease;
@@ -102,10 +96,14 @@ $color-red: #FF033E;
   border-radius: 12px;
   cursor: pointer;
   transition: all 0.2s;
-  color: $color-text-muted;
+  color: var(--icon-gray);
 
-  &:hover { background: #f1f5f9; color: $color-blue; }
-  &.active { background: $color-blue; color: #fff !important; .icon { color: #fff !important; } }
+  &:hover { background: #f1f5f9; color: var(--color-blue); }
+  &.active {
+    background: var(--color-blue);
+    color: var(--color-white) !important;
+    .icon { color: var(--color-white) !important; }
+  }
 
   .icon { font-size: 2rem; @include respond(laptop) { font-size: 1.6rem; } }
   .label { font-size: 1.5rem; font-weight: 600; @include respond(laptop) { font-size: 0.95rem; } }
@@ -128,6 +126,7 @@ $color-red: #FF033E;
   background: rgba(255, 255, 255, 0.6);
   backdrop-filter: blur(10px);
   border-radius: 2rem;
+
   @include respond(tab-port) { padding: 3rem 2rem; }
 
   .bg {
@@ -147,11 +146,22 @@ $color-red: #FF033E;
   text-align: center;
   h1 {
     font-size: 2.5rem;
-    color: $color-text-main;
+    color: var(--color-black);
     font-weight: 800;
-    .userName { color: $color-blue; }
+    .userName {
+       color: var(--color-blue);
+       background: linear-gradient(
+         135deg,
+         var(--color-blue-light),
+         #1976d2
+       );
+       background-clip: text;
+       -webkit-background-clip: text;
+       -webkit-text-fill-color: transparent;
+       display: inline-block;
+    }
   }
-  .activityStats { font-size: 1.8rem; color: $color-text-muted; margin-top: 0.8rem; @include respond(tab-port) { font-size: 1.1rem; } }
+  .activityStats { font-size: 1.8rem; color: var(--icon-gray); margin-top: 0.8rem; @include respond(tab-port) { font-size: 1.1rem; } }
 }
 
 .searchSection {
@@ -176,17 +186,17 @@ $color-red: #FF033E;
   justify-content: space-between;
   align-items: center;
   padding: 2.5rem 2rem;
-  background: #fff;
+  background: var(--color-white);
   cursor: pointer;
   border-radius: 1.5rem;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03);
   @include respond(tab-port) { padding: 1.5rem 2rem; }
-  h2 { font-size: 1.5rem; color: $color-blue; font-weight: 700; @include respond(tab-port) { font-size: 1.2rem; } }
+  h2 { font-size: 1.5rem; color: var(--color-blue); font-weight: 700; @include respond(tab-port) { font-size: 1.2rem; } }
   &.headerOpen { border-bottom-left-radius: 0; border-bottom-right-radius: 0; box-shadow: none; border-bottom: 1px solid #f1f5f9; }
 }
 
 .accordionContent {
-  background: #fff;
+  background: var(--color-white);
   border-bottom-left-radius: 1.5rem;
   border-bottom-right-radius: 1.5rem;
   box-shadow: 0 10px 15px rgba(0, 0, 0, 0.03);
@@ -198,7 +208,7 @@ $color-red: #FF033E;
 .dashboardCard {
   display: flex;
   align-items: center;
-  background: #f8faff;
+  background: var(--color-bg-light);
   padding: 1rem;
   border-radius: 1rem;
   position: relative;
@@ -209,15 +219,15 @@ $color-red: #FF033E;
   .cardAvatar { width: 5.5rem; height: 5.5rem; border-radius: 1rem; object-fit: cover; }
   .cardInfo {
     display: flex; flex-direction: column;
-    .cardName { font-weight: 700; color: $color-text-main; font-size: 1.2rem; }
-    .cardLocation { font-size: 0.9rem; color: $color-text-muted; }
-    .ctaText { font-size: 0.85rem; color: $color-blue; font-weight: 700; margin-top: 0.3rem; }
+    .cardName { font-weight: 700; color: var(--color-black); font-size: 1.2rem; }
+    .cardLocation { font-size: 0.9rem; color: var(--icon-gray); }
+    .ctaText { font-size: 0.85rem; color: var(--color-blue); font-weight: 700; margin-top: 0.3rem; }
   }
 }
 
-.removeBtn { background: none; border: none; color: #cbd5e1; cursor: pointer; padding: 0.5rem; &:hover { color: $color-red; } }
+.removeBtn { background: none; border: none; color: #cbd5e1; cursor: pointer; padding: 0.5rem; &:hover { color: var(--color-red); } }
 
-/* --- SETTINGS HUB (The Unified Panel) --- */
+/* --- SETTINGS --- */
 .settingsHub {
     display: flex;
     flex-direction: column;
@@ -235,8 +245,8 @@ $color-red: #FF033E;
     border-bottom: 2px solid #f1f5f9;
 
     .titleBox {
-        h1 { font-size: 2.4rem; color: $color-text-main; margin-bottom: 0.5rem; }
-        p { color: $color-text-muted; font-size: 1.4rem; }
+        h1 { font-size: 2.4rem; color: var(--color-black); margin-bottom: 0.5rem; }
+        p { color: var(--icon-gray); font-size: 1.4rem; }
     }
 
     .metaStats {
@@ -248,14 +258,14 @@ $color-red: #FF033E;
             align-items: center;
             gap: 0.8rem;
             font-size: 1rem;
-            color: $color-text-muted;
-            svg { color: $color-blue; font-size: 1.1rem; }
+            color: var(--icon-gray);
+            svg { color: var(--color-blue); font-size: 1.1rem; }
         }
     }
 }
 
 .settingsCard {
-  background: #fff;
+  background: var(--color-white);
   border-radius: 2rem;
   box-shadow: 0 10px 40px rgba(0, 0, 0, 0.04);
   overflow: hidden;
@@ -267,8 +277,8 @@ $color-red: #FF033E;
     display: flex;
     align-items: center;
     gap: 1rem;
-    svg { font-size: 1.5rem; color: $color-blue; }
-    h3 { font-size: 1.5rem; margin: 0; font-weight: 800; color: $color-text-main; }
+    svg { font-size: 1.5rem; color: var(--color-blue); }
+    h3 { font-size: 1.5rem; margin: 0; font-weight: 800; color: var(--color-black); }
   }
 
   .cardBody { padding: 1rem 2rem; }
@@ -277,7 +287,7 @@ $color-red: #FF033E;
     border: 1px solid #fee2e2;
     .cardHeader {
         background: #fffafa;
-        svg, h3 { color: $color-red; }
+        svg, h3 { color: var(--color-red); }
     }
     p { font-size: 0.95rem; color: #991b1b; margin-bottom: 2rem; line-height: 1.6; }
   }
@@ -293,17 +303,12 @@ $color-red: #FF033E;
     to { opacity: 1; transform: translateY(0); }
 }
 
-.modalOverlay { position: fixed; inset: 0; background: rgba(8,41,155,0.15); backdrop-filter: blur(8px); display: flex; align-items: center; justify-content: center; z-index: 1000; }
-.modalContent { background: #fff; width: 95%; max-width: 500px; border-radius: 1.5rem; overflow: hidden; }
-.modalHeader { background: $color-blue; padding: 1rem; color: #fff; display: flex; justify-content: space-between; h4 { font-size: 1.1rem; margin: 0; } button { background: none; border: none; color: #fff; font-size: 1.5rem; cursor: pointer; } }
-.modalBody { padding: 1.5rem; }
-
 .emptyMsg { padding: 1rem 3rem; text-align: center; color: #94a3b8; font-size: 1.1rem; font-style: italic; }
 
 .tabsNav {
   display: flex;
   gap: 1rem;
-  border-bottom: 1px solid #e2e8f0;
+  border-bottom: 1px solid var(--color-border);
   padding-bottom: 1rem;
 
   button {
@@ -311,7 +316,7 @@ $color-red: #FF033E;
     border: none;
     padding: 0.75rem 1.5rem;
     font-weight: 600;
-    color: #64748b;
+    color: var(--color-gray);
     cursor: pointer;
     display: flex;
     align-items: center;
@@ -324,11 +329,11 @@ $color-red: #FF033E;
 
     &:hover {
       background: #f1f5f9;
-      color: #08299B;
+      color: var(--color-blue);
     }
 
     &.activeTab {
-      color: #08299B;
+      color: var(--color-blue);
       background: #eff6ff;
       position: relative;
 
@@ -339,33 +344,22 @@ $color-red: #FF033E;
         left: 0;
         width: 100%;
         height: 3px;
-        background: #08299B;
+        background: var(--color-blue);
         border-radius: 10px;
       }
     }
 
     &.dangerTab:hover {
-      color: #FF033E;
+      color: var(--color-red);
       background: #fff1f2;
     }
 
     &.dangerTab.activeTab {
-        color: #FF033E;
+        color: var(--color-red);
         background: #fff1f2;
-        &::after { background: #FF033E; }
+        &::after { background: var(--color-red); }
     }
   }
-}
-
-.warningMsg {
-  color: #991b1b;
-  font-size: 0.9rem;
-  background: #fff5f5;
-  padding: 1rem;
-  border-radius: 8px;
-  border-left: 4px solid #FF033E;
-  margin-bottom: 1.5rem;
-  line-height: 1.5;
 }
 
 .tabContent {
@@ -373,19 +367,19 @@ $color-red: #FF033E;
   min-height: 400px;
 }
 
-.warningText {
+.warningMsg {
   color: #991b1b;
-  font-size: 0.85rem;
+  font-size: 1rem;
   line-height: 1.5;
   background-color: #fef2f2;
-  border-left: 4px solid #ff033e;
+  border-left: 4px solid var(--color-red);
   padding: 1rem;
   border-radius: 8px;
   margin-bottom: 1.5rem;
 }
 
 .socialLoginNotice {
-  background: #f0f7ff;
+  background: var(--color-bg-light);
   border: 1px solid #cce3ff;
   border-radius: 12px;
   padding: 2rem;
@@ -397,7 +391,7 @@ $color-red: #FF033E;
     display: flex;
     align-items: center;
     gap: .5rem;
-    color: #0e3db7;
+    color: var(--color-blue);
     font-weight: 700;
     font-size: 1.4rem;
 
@@ -408,7 +402,7 @@ $color-red: #FF033E;
   }
 
   .noticeBody {
-    color: #4a5568;
+    color: var(--text-slate);
     line-height: 1.5;
     font-size: 1.1rem;
 
@@ -434,7 +428,7 @@ $color-red: #FF033E;
 .cancelBtn {
   background: transparent;
   border: 1px solid #e2e8f0;
-  color: #4a5568;
+  color: var(--text-slate);
   padding: 10px 18px;
   border-radius: 8px;
   font-weight: 600;

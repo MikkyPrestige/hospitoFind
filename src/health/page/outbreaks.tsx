@@ -3,7 +3,7 @@ import Motion from "@/components/motion";
 import { fadeUp, sectionReveal } from "@/hooks/animations";
 import Header from "@/layouts/header/nav";
 import Footer from "@/layouts/footer/footer";
-import AnimatedLoader from "@/components/utils/AnimatedLoader";
+import AnimatedLoader from "@/components/utils/animatedLoader";
 import style from "./style/outbreaks.module.css";
 import { BASE_URL } from "@/context/userContext";
 import { FiAlertTriangle, FiCalendar, FiExternalLink, FiGlobe, FiShield, FiPhone, FiInfo } from "react-icons/fi";

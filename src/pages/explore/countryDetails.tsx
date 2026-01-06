@@ -15,7 +15,7 @@ import style from "./style/countryDetails.module.css";
 import Motion from "@/components/motion";
 import { fadeUp } from "@/hooks/animations";
 import { SEOHelmet } from "@/components/utils/seoUtils";
-import AnimatedLoader from "@/components/utils/AnimatedLoader";
+import AnimatedLoader from "@/components/utils/animatedLoader";
 import MapPin from "../../assets/images/mapPin.png"
 
 interface HospitalResponse {
@@ -187,8 +187,8 @@ const CountryDetailPage: React.FC = () => {
       </div>
 
       <Footer />
-      </>
-      );
+    </>
+  );
 };
 
-      export default CountryDetailPage;
+export default CountryDetailPage;

@@ -1,7 +1,7 @@
 .settingsCard {
-  background: #ffffff;
+  background: var(--color-white);
   border-radius: 12px;
-  border: 1px solid #e2e8f0;
+  border: 1px solid var(--color-border);
   overflow: hidden;
 }
 
@@ -24,32 +24,34 @@
 .infoItem label {
   font-size: 1.3rem;
   font-weight: 700;
-  color: #718096;
+  color: var(--color-gray);
   text-transform: uppercase;
   letter-spacing: 0.025em;
+  font-family: var(--font-plus);
 }
 
 .infoItem p {
   font-size: 1.1rem;
   font-weight: 500;
-  color: #2d3748;
+  color: var(--color-black);
   margin: 0;
+  font-family: var(--font-inter);
 }
 
 .badge {
   display: inline-block;
   padding: 0.4rem 1rem;
-  background-color: #ebf4ff;
-  color: #3182ce;
+  background-color: var(--bg-blue-tag);
+  color: var(--color-blue-light);
   border-radius: 9999px;
   font-size: 1rem;
   font-weight: 600;
-  border: 1px solid #bee3f8;
+  border: 1px solid var(--color-blue-light);
 }
 
 .editBtn {
-  background-color: #0e3db7;
-  color: white;
+  background-color: var(--color-blue);
+  color: var(--color-white);
   padding: 1rem 1.8rem;
   border-radius: 8px;
   font-weight: 600;
@@ -59,13 +61,13 @@
 }
 
 .editBtn:hover {
-  background-color: #0a2d8a;
+  background-color: var(--color-blue-dark);
 }
 
 .cancelBtn {
   background: none;
-  border: 1px solid #cbd5e0;
-  color: #4a5568;
+  border: 1px solid var(--color-border);
+  color: var(--text-slate);
   padding: 0.8rem 1.6rem;
   border-radius: 6px;
   cursor: pointer;
@@ -73,19 +75,19 @@
 }
 
 .cancelBtn:hover {
-  background-color: #f7fafc;
+  background-color: var(--color-ash);
 }
 
 .joinDate {
   grid-column: 1 / -1;
   margin-top: 1rem;
   padding-top: 1.5rem;
-  border-top: 1px dashed #e2e8f0;
+  border-top: 1px dashed var(--color-border);
   display: flex;
   align-items: center;
   gap: 0.8rem;
   font-size: 0.95rem;
-  color: #718096;
+  color: var(--color-gray);
 }
 
 .joinDate svg {
@@ -96,7 +98,7 @@
 .socialWarning {
   grid-column: 1 / -1;
   background-color: #fffaf0;
-  border: 1px solid #feebc8;
+  border: 1px solid var(--warning-color);
   padding: 1rem 1.5rem;
   border-radius: .8rem;
   display: flex;
@@ -108,7 +110,7 @@
 .socialWarning svg {
   width: 2rem;
   height: 2rem;
-  color: #dd6b20;
+  color: var(--warning-color);
   flex-shrink: 0;
 }
 
@@ -117,4 +119,5 @@
   color: #744210;
   margin: 0;
   line-height: 1.4;
+  font-family: var(--font-inter);
 }

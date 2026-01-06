@@ -1,105 +1,258 @@
-$primary-dark: #0f172a;
-$indigo: #4f46e5;
-$border: #e2e8f0;
-$danger: #ef4444;
-$success: #10b981;
-$gray-text: #64748b;
-
-.container { padding: 2rem; max-width: 1400px; width: 100%; margin: 0 auto; }
+.container {
+    padding: 2rem;
+    max-width: 1400px;
+    width: 100%;
+    margin: 0 auto;
+}
 
 .header {
     margin-bottom: 2rem;
-    .titleRow { display: flex; justify-content: space-between; align-items: center; h1 { margin: 0; font-size: 2rem; } }
+    .titleRow {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        h1 {
+            margin: 0;
+            font-size: 2rem;
+            color: var(--color-black);
+            font-family: var(--font-plus);
+        }
+    }
 }
 
 .addBtn {
-    background: $indigo; color: white; border: none; padding: 0.75rem 1.5rem; border-radius: 10px;
-    display: flex; align-items: center; gap: 0.5rem; font-weight: 700; cursor: pointer;
-    &:hover { background: #4338ca; }
+    background: var(--color-indigo);
+    color: var(--color-white);
+    border: none;
+    padding: 0.75rem 1.5rem;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-weight: 700;
+    cursor: pointer;
+    font-family: var(--font-inter);
+
+    &:hover {
+        background: #4338ca;
+    }
 }
 
 .controls {
-    display: flex; gap: 1rem; margin-bottom: 2rem;
-    .searchBar, .filterBox {
-        background: white; border: 1px solid $border; border-radius: 10px; padding: 0.6rem 1rem;
-        display: flex; align-items: center; gap: 0.75rem; color: #94a3b8;
-    }
-    .searchBar { flex: 1; input { border: none; outline: none; width: 100%; font-size: 0.95rem; } }
-    .filterGroup {
     display: flex;
     gap: 1rem;
+    margin-bottom: 2rem;
 
-    @media (max-width: 768px) {
-        flex-direction: column;
-        width: 100%;
+    .searchBar, .filterBox {
+        background: var(--color-white);
+        border: 1px solid var(--color-border);
+        border-radius: 10px;
+        padding: 0.6rem 1rem;
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+        color: var(--icon-gray);
     }
 
-.filterBox {
-    background: white;
-    border: 1px solid $border;
-    border-radius: 10px;
-    padding: 0.6rem 1rem;
-    display: flex;
-    align-items: center;
-    gap: 0.75rem;
-    color: #94a3b8;
+    .searchBar {
+        flex: 1;
+        input {
+            border: none;
+            outline: none;
+            width: 100%;
+            font-size: 0.95rem;
+            font-family: var(--font-inter);
+            color: var(--color-black);
+        }
+    }
 
-    select {
-        border: none;
-        outline: none;
-        background: none;
-        font-weight: 600;
-        color: $primary-dark;
-        cursor: pointer;
+    .filterGroup {
+        display: flex;
+        gap: 1rem;
+
+        @media (max-width: 768px) {
+            flex-direction: column;
+            width: 100%;
+        }
+
+        .filterBox {
+            background: var(--color-white);
+            border: 1px solid var(--color-border);
+            border-radius: 10px;
+            padding: 0.6rem 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            color: var(--icon-gray);
+
+            select {
+                border: none;
+                outline: none;
+                background: none;
+                font-weight: 600;
+                color: var(--color-black);
+                cursor: pointer;
+                font-family: var(--font-inter);
+            }
+        }
     }
 }
-}
-}
 
-.tableWrapper { background: white; border-radius: 16px; border: 1px solid $border; overflow: hidden; }
+.tableWrapper {
+    background: var(--color-white);
+    border-radius: 16px;
+    border: 1px solid var(--color-border);
+    overflow: hidden;
+    box-shadow: var(--shadow-card);
+}
 
 .hospTable {
-    width: 100%; border-collapse: collapse;
-    th { text-align: left; padding: 1.25rem; background: #f8fafc; color: #64748b; font-size: 0.85rem; text-transform: uppercase; border-bottom: 2px solid $border; }
-    td { padding: 1.25rem; border-bottom: 1px solid #f1f5f9; vertical-align: middle; }
+    width: 100%;
+    border-collapse: collapse;
+
+    th {
+        text-align: left;
+        padding: 1.25rem;
+        background: var(--color-bg);
+        color: var(--color-gray);
+        font-size: 0.85rem;
+        text-transform: uppercase;
+        border-bottom: 2px solid var(--color-border);
+        font-family: var(--font-inter);
+    }
+
+    td {
+        padding: 1.25rem;
+        border-bottom: 1px solid var(--color-border);
+        vertical-align: middle;
+        font-family: var(--font-inter);
+    }
 }
 
 .nameCell {
-    strong { display: block; color: $primary-dark; font-size: 1rem; }
-    span { font-size: 0.8rem; color: #94a3b8; }
+    strong {
+        display: block;
+        color: var(--color-black);
+        font-size: 1rem;
+        font-family: var(--font-plus);
+    }
+    span {
+        font-size: 0.8rem;
+        color: var(--icon-gray);
+    }
 }
 
-.statusVerified { color: $success; background: #ecfdf5; padding: 0.4rem 0.8rem; border-radius: 20px; font-weight: 700; font-size: 0.75rem; display: inline-flex; align-items: center; gap: 0.4rem; }
-.statusPending { color: $danger; background: #fef2f2; padding: 0.4rem 0.8rem; border-radius: 20px; font-weight: 700; font-size: 0.75rem; display: inline-flex; align-items: center; gap: 0.4rem; }
+.statusVerified {
+    color: var(--color-success);
+    background: #ecfdf5;
+    padding: 0.4rem 0.8rem;
+    border-radius: 20px;
+    font-weight: 700;
+    font-size: 0.75rem;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+}
+
+.statusPending {
+    color: var(--color-error);
+    background: #fef2f2;
+    padding: 0.4rem 0.8rem;
+    border-radius: 20px;
+    font-weight: 700;
+    font-size: 0.75rem;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+}
 
 .actions {
-    display: flex; gap: 0.75rem;
+    display: flex;
+    gap: 0.75rem;
+
     button {
-        background: white; border: 1px solid $border; border-radius: 8px; width: 36px; height: 36px;
-        display: flex; align-items: center; justify-content: center; cursor: pointer; transition: 0.2s;
+        background: var(--color-white);
+        border: 1px solid var(--color-border);
+        border-radius: 8px;
+        width: 36px;
+        height: 36px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        transition: 0.2s;
     }
-    .editBtn:hover { color: $indigo; border-color: $indigo; background: #f5f3ff; }
-    .deleteBtn:hover { color: $danger; border-color: $danger; background: #fff1f2; }
+
+    .editBtn:hover {
+        color: var(--color-indigo);
+        border-color: var(--color-indigo);
+        background: #f5f3ff;
+    }
+
+    .deleteBtn:hover {
+        color: var(--color-error);
+        border-color: var(--color-error);
+        background: #fff1f2;
+    }
 }
 
 .modalOverlay {
-    position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(15, 23, 42, 0.6);
-    display: flex; align-items: center; justify-content: center; z-index: 2000; backdrop-filter: blur(4px);
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(15, 23, 42, 0.6);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 2000;
+    backdrop-filter: blur(4px);
 }
 
 .modalContent {
-    background: white; padding: 2.5rem; border-radius: 20px; width: 90%; max-width: 800px; max-height: 90vh; overflow-y: auto; position: relative;
-    .closeBtn { position: absolute; top: 1.5rem; right: 1.5rem; background: none; border: none; font-size: 1.5rem; cursor: pointer; color: #94a3b8; &:hover { color: $danger; } }
+    background: var(--color-white);
+    padding: 2.5rem;
+    border-radius: 20px;
+    width: 90%;
+    max-width: 800px;
+    max-height: 90vh;
+    overflow-y: auto;
+    position: relative;
+    box-shadow: var(--shadow-soft);
+
+    .closeBtn {
+        position: absolute;
+        top: 1.5rem;
+        right: 1.5rem;
+        background: none;
+        border: none;
+        font-size: 1.5rem;
+        cursor: pointer;
+        color: var(--icon-gray);
+
+        &:hover {
+            color: var(--color-error);
+        }
+    }
 }
 
 .verifyBtn {
-    color: #10b981;
-    &:hover { background: #ecfdf5; border-color: #10b981; }
+    color: var(--color-success);
+
+    &:hover {
+        background: #ecfdf5;
+        border-color: var(--color-success);
+    }
 }
 
 .unverifyBtn {
     color: #f59e0b;
-    &:hover { background: #fffbeb; border-color: #f59e0b; }
+
+    &:hover {
+        background: #fffbeb;
+        border-color: #f59e0b;
+    }
 }
 
 .loading {
@@ -108,7 +261,8 @@ $gray-text: #64748b;
     align-items: center;
     min-height: 400px;
     font-size: 1.2rem;
-    color: $gray-text;
+    color: var(--color-gray);
     font-weight: 600;
     text-align: center;
+    font-family: var(--font-inter);
 }
