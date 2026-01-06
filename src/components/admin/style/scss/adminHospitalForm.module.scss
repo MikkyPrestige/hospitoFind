@@ -117,7 +117,7 @@
     font-size: 1rem;
     color: var(--color-black);
     resize: vertical;
-    background: #fdfcfb;
+    background: var(--color-bg-light);
 
     &:focus {
         outline: none;
@@ -144,7 +144,7 @@
         &:focus {
             outline: none;
             border-color: var(--color-indigo);
-            background: white;
+            background: var(--color-white);
             box-shadow: 0 0 0 4px rgba(79, 70, 229, 0.1);
         }
     }
@@ -155,7 +155,7 @@
     right: 8px;
     top: 50%;
     transform: translateY(-50%);
-    background: white;
+    background: var(--color-white);
     border: 1px solid var(--color-border);
     color: var(--icon-gray);
     width: 32px;
@@ -206,7 +206,7 @@
         &:focus {
             outline: none;
             border-color: var(--color-indigo);
-            background: white;
+            background: var(--color-white);
             box-shadow: 0 0 0 4px rgba(79, 70, 229, 0.1);
         }
     }
@@ -253,7 +253,7 @@
 .submitBtn {
     margin-top: 1rem;
     background: var(--color-black);
-    color: white;
+    color: var(--color-white);
     padding: 1.1rem;
     border: none;
     border-radius: 12px;
@@ -268,7 +268,7 @@
     font-family: var(--font-inter);
 
     &:hover {
-        background: #1e293b;
+        background: var(--color-black);
         transform: translateY(-2px);
     }
 
@@ -330,7 +330,7 @@
     display: flex;
     gap: 10px;
     align-items: center;
-    background: white;
+    background: var(--color-white);
     padding: 0.4rem;
     border-radius: 8px;
     border: 1px solid var(--color-border);

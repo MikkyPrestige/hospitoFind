@@ -5,8 +5,6 @@ import { MdStarBorderPurple500 } from "react-icons/md";
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import style from "./style/about.module.scss";
-import Header from "@/layouts/header/nav";
-import Footer from "@/layouts/footer/footer";
 import { BASE_URL } from "@/context/userContext";
 import Motion from "@/components/motion";
 import { Avatar } from "@/components/avatar";
@@ -62,8 +60,6 @@ const About = () => {
         description="We are dedicated to making global healthcare accessible, transparent, and verified for everyone, everywhere."
         canonical="https://hospitofind.online/about"
       />
-
-      <Header />
 
       <main className={style.bg}>
         <Motion className={style.heroWrapper} variants={fadeUp} as="section">
@@ -208,8 +204,6 @@ const About = () => {
           </div>
         </Motion>
       </main>
-
-      <Footer />
     </>
   );
 };

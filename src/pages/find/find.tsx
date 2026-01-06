@@ -1,26 +1,26 @@
+import axios from "axios";
 import { NavLink, useNavigate, useSearchParams } from "react-router-dom";
 import { useState, useEffect, useRef } from "react";
 import mapboxgl from "mapbox-gl";
 import "mapbox-gl/dist/mapbox-gl.css";
-import axios from "axios";
-import { FaHospital } from "react-icons/fa";
+import { useTheme } from "@/context/themeContext";
 import { accessToken } from "@/config/mapbox";
 import { BASE_URL } from "@/context/userContext";
 import { findHospitals } from "@/services/api";
 import PopularHospitals from "@/components/popular";
-import Header from "@/layouts/header/nav";
-import Footer from "@/layouts/footer/footer";
 import Motion from "@/components/motion";
 import { fadeUp, sectionReveal, zoomIn } from "@/hooks/animations";
 import { Hospital } from "@/services/hospital";
-import HospitalPic from "@/assets/images/hospital-logo.jpg";
+import { FaHospital } from "react-icons/fa";
 import { Avatar } from "@/components/avatar";
+import HospitalPic from "@/assets/images/hospital-logo.jpg";
 import style from "./style/find.module.scss";
 import { SEOHelmet } from "@/components/utils/seoUtils";
 
 mapboxgl.accessToken = accessToken;
 
 const FindHospital = () => {
+    const { theme } = useTheme();
     const navigate = useNavigate();
     const [searchParams] = useSearchParams();
     const initialQ = searchParams.get("q") || "";
@@ -38,12 +38,17 @@ const FindHospital = () => {
     const markersRef = useRef<mapboxgl.Marker[]>([]);
     const [searchMode, setSearchMode] = useState<"term" | "nearby">("term");
     const [locationName, setLocationName] = useState<string | null>(null);
+    const LIGHT_STYLE = "mapbox://styles/mapbox/streets-v11";
+    const DARK_STYLE = "mapbox://styles/mapbox/navigation-night-v1";
 
     //  Initialize Map
     useEffect(() => {
+        if (map) return;
+
         const mapInstance = new mapboxgl.Map({
             container: mapContainer.current!,
-            style: "mapbox://styles/mapbox/streets-v11",
+            style: theme === 'dark' ? DARK_STYLE : LIGHT_STYLE,
+            // style: "mapbox://styles/mapbox/streets-v11",
             center: [0, 0],
             zoom: 1.5,
             attributionControl: false,
@@ -76,6 +81,12 @@ const FindHospital = () => {
         return () => mapInstance.remove();
     }, []);
 
+    // Dynamic Theme Switcher Effect
+    useEffect(() => {
+        if (!map) return;
+        map.setStyle(theme === 'dark' ? DARK_STYLE : LIGHT_STYLE);
+    }, [theme, map]);
+
     // Helper function to update markers
     const updateMapMarkers = (data: Hospital[], mapInstance: mapboxgl.Map, userCoords?: [number, number]) => {
         markersRef.current.forEach((m) => m.remove());
@@ -87,10 +98,10 @@ const FindHospital = () => {
 
         data.forEach((hospital) => {
             if (hospital.longitude && hospital.latitude) {
-                const marker = new mapboxgl.Marker({ color: "#2563EB" })
+                const marker = new mapboxgl.Marker({ color: "var(--color-blue-light)" })
                     .setLngLat([hospital.longitude, hospital.latitude])
                     .setPopup(
-                        new mapboxgl.Popup({ offset: 16 }).setHTML(`
+                        new mapboxgl.Popup({ offset: 16, className: theme === 'dark' ? 'dark-popup' : '' }).setHTML(`
                             <strong>${hospital.name}</strong><br/>
                             ${hospital.address?.street || ""}, ${hospital.address?.city || ""}<br/>
                             <a href="/hospital/${hospital.address.state}/${hospital.address.city}/${hospital.slug}" class="popup-link">View Details</a>
@@ -157,7 +168,7 @@ const FindHospital = () => {
                     if (feature && map) {
                         map.flyTo({ center: feature.center, zoom: 6 });
                     }
-                } catch (e) { /* ignore geocoding error */ }
+                } catch (e) { }
                 return;
             }
 
@@ -256,8 +267,6 @@ const FindHospital = () => {
                 autoBreadcrumbs={true}
             />
 
-            <Header />
-
             <main className={style.findSection}>
                 <h1 className={style['sr-only']}>Find Hospitals and Healthcare Facilities</h1>
                 <Motion
@@ -341,13 +350,12 @@ const FindHospital = () => {
                         </div>
                     </aside>
 
-                    {/* RIGHT SIDE: Fixed Map */}
+                    {/* RIGHT SIDE: Map */}
                     <Motion className={style.map} variants={zoomIn}>
                         <div ref={mapContainer} className={style.mapBox} />
                     </Motion>
                 </Motion>
             </main>
-            <Footer />
         </>
     );
 };

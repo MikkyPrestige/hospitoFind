@@ -20,7 +20,7 @@ const RequireAuth = ({ allowedRoles }: Props) => {
             <div style={{
                 display: "flex", flexDirection: "column", justifyContent: "center",
                 alignItems: "center", height: "100vh",
-                background: "linear-gradient(180deg, #f9fbff 0%, #ffffff 100%)",
+                backgroundColor: "var(--color-bg)",
             }}>
                 <motion.img
                     src={Logo}
@@ -37,22 +37,20 @@ const RequireAuth = ({ allowedRoles }: Props) => {
                     }}
                 />
                 <p style={{
-                    color: "#0e3db7",
-                    fontSize: "0.9rem",
+                    color: "var(--color-blue)",
+                    fontSize: "1rem",
                     fontWeight: 600,
                     letterSpacing: "0.5px",
-                    fontFamily: "Inter, sans-serif"
+                    fontFamily: "var(--font-inter)"
                 }}>
-                    Securing your session...
+                    Verifying permissions...
                 </p>
             </div>
         );
     }
 
-    // const isUserLoggedIn = !!(state.accessToken || state.username || isAuthenticated);
     const isUserLoggedIn = !!(state.accessToken && state.role);
 
-    // const hasRequiredRole = state.role && allowedRoles.includes(state.role as "user" | "admin");
     const hasRequiredRole = state.role && allowedRoles.includes(state.role as "user" | "admin");
 
     if (isUserLoggedIn && hasRequiredRole) {

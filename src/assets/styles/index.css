@@ -17,7 +17,8 @@
   --font-plus: 'Plus Jakarta Sans', sans-serif;
 
   /* Transitions */
-  --transition-theme: background-color 0.3s ease, border-color 0.3s ease, color 0.3s ease, box-shadow 0.3s ease;
+  --transition-theme: background-color 0.3s ease, border-color 0.3s ease,
+    color 0.3s ease, box-shadow 0.3s ease;
 }
 
 /* --- LIGHT THEME (Default) --- */
@@ -103,6 +104,14 @@
   --shadow-soft: none;
 }
 
+[data-theme="dark"] .goog-te-gadget-simple {
+    color: white !important;
+}
+
+[data-theme="dark"] .goog-te-gadget-simple span {
+    color: white !important;
+}
+
 *,
 *::before,
 *::after {
@@ -155,9 +164,22 @@ body {
   background-color: var(--color-bg);
   color: var(--color-black);
   transition: var(--transition-theme);
+  top: 0px !important;
 }
 
-div, section, article, header, footer, nav, button, input, select, textarea, .card, .input, .btn {
+div,
+section,
+article,
+header,
+footer,
+nav,
+button,
+input,
+select,
+textarea,
+.card,
+.input,
+.btn {
   transition: var(--transition-theme);
 }
 
@@ -237,6 +259,41 @@ input:disabled:focus {
   height: 3rem;
   margin: 0 auto;
   animation: spin 1s linear infinite;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--color-bg);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--icon-gray-light);
+  border-radius: 5px;
+  border: 2px solid var(--color-bg);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--icon-gray);
+}
+
+.goog-te-banner-frame.skiptranslate {
+    display: none !important;
+}
+
+.goog-te-gadget-icon {
+    display: none !important;
+}
+
+.goog-te-gadget-simple {
+    background-color: transparent !important;
+    border: none !important;
+    padding: 0 !important;
+    font-family: 'Inter', sans-serif !important;
+    font-size: 0.9rem !important;
 }
 
 /* --- FIX INPUT ZOOM ON MOBILE --- */

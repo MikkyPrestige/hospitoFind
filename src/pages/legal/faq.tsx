@@ -1,7 +1,5 @@
 import React, { useState } from "react";
 import { SEOHelmet } from "@/components/utils/seoUtils";
-import Header from "@/layouts/header/nav";
-import Footer from "@/layouts/footer/footer";
 import Motion from "@/components/motion";
 import { fadeUp } from "@/hooks/animations";
 import { HelpCircle, ChevronDown, ChevronUp } from "lucide-react";
@@ -58,7 +56,6 @@ const FAQPage: React.FC = () => {
                 schemaType="faq"
                 schemaData={faqData}
             />
-            <Header />
 
             <main className={style.faqContainer}>
                 <Motion variants={fadeUp} className={style.content}>
@@ -97,8 +94,6 @@ const FAQPage: React.FC = () => {
                     </div>
                 </Motion>
             </main>
-
-            <Footer />
         </>
     );
 };

@@ -8,9 +8,10 @@
   display: flex;
   align-items: center;
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  background: rgba(255, 255, 255, 0.95);
+  background: var(--color-white);
+  opacity: 0.98;
   backdrop-filter: blur(12px);
-  border-bottom: 1px solid rgba(0,0,0,0.05);
+  border-bottom: 1px solid var(--color-border);
 
   @include respond(tab-land) {
     height: 5rem;
@@ -20,8 +21,8 @@
 
   &.scrolled {
     height: 4.5rem;
-    background: rgba(255, 255, 255, 0.98);
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+    background: var(--color-white);
+  box-shadow: var(--shadow-card);
     border-bottom: 1px solid var(--color-border);
   }
 }

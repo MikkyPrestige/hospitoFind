@@ -8,9 +8,8 @@ export const ComponentPulse = () => (
         left: 0,
         width: "100vw",
         height: "100vh",
-        backgroundColor: "rgba(255, 255, 255, 0.8)",
-        backdropFilter: "blur(6px)",
-        WebkitBackdropFilter: "blur(6px)",
+        backgroundColor: "var(--color-bg)",
+        zIndex: 9999,
         display: 'flex',
         flexDirection: 'column',
         alignItems: 'center',
@@ -20,7 +19,7 @@ export const ComponentPulse = () => (
         <motion.img
             src={Logo}
             alt="HospitoFind Pulse"
-            style={{ width: 75, height: 75 }}
+            style={{ width: 80, height: 80 }}
             animate={{
                 scale: [1, 1.15, 1],
                 opacity: [0.6, 1, 0.6]

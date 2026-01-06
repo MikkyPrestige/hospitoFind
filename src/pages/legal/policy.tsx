@@ -1,5 +1,3 @@
-import Header from "@/layouts/header/nav";
-import Footer from "@/layouts/footer/footer";
 import { SEOHelmet } from "@/components/utils/seoUtils";
 import Motion from "@/components/motion";
 import { fadeUp } from "@/hooks/animations";
@@ -16,7 +14,6 @@ const Policy = () => {
                 description="Understand how HospitoFind handles your data and protects your information within our verified hospital directory."
                 canonical="https://hospitofind.online/policy"
             />
-            <Header />
 
             <main className={style.policyContainer}>
                 <Motion variants={fadeUp} className={style.content}>
@@ -92,7 +89,6 @@ const Policy = () => {
                 </Motion>
             </main>
 
-            <Footer />
         </>
     );
 };

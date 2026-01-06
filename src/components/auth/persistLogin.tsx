@@ -15,19 +15,16 @@ const PersistLogin = () => {
         let isMounted = true;
 
         const verifyRefreshToken = async () => {
-            console.log("🔄 PersistLogin: Verifying persistent session...");
             try {
                 const response = await axios.get(`${BASE_URL}/auth/refresh`, {
                     withCredentials: true
                 });
 
-                console.log("✅ PersistLogin: Session synchronized.");
                 dispatch({
                     type: 'REFRESH',
                     payload: response.data
                 });
             } catch (err) {
-                console.warn("❌ PersistLogin: No valid session found.");
 
                 const authPages = ['/login', '/signup', '/verify-email', '/email-sent'];
                 const isAuthPage = authPages.some(path => location.pathname.includes(path));
@@ -66,13 +63,13 @@ const PersistLogin = () => {
                         alignItems: "center",
                         height: "100vh",
                         width: "100vw",
-                        background: "linear-gradient(180deg, #f9fbff 0%, #ffffff 100%)",
+                        backgroundColor: "var(--color-bg)",
                         zIndex: 30000
                     }}
                 >
                     <motion.img
                         src={Logo}
-                        alt="HospitoFind"
+                        alt="HospitoFind Logo"
                         style={{ width: 80, height: 80, marginBottom: "1.5rem" }}
                         animate={{ scale: [1, 1.05, 1], opacity: [0.7, 1, 0.7] }}
                         transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}
@@ -80,7 +77,7 @@ const PersistLogin = () => {
                     <motion.p
                         initial={{ opacity: 0 }}
                         animate={{ opacity: 1 }}
-                        style={{ color: "#0e3db7", fontWeight: 600, fontSize: "0.95rem" }}
+                        style={{ color: "var(--color-blue)", fontWeight: 600, fontSize: "1rem" }}
                     >
                         Securing your session...
                     </motion.p>
@@ -93,42 +90,3 @@ const PersistLogin = () => {
 };
 
 export default PersistLogin;
-
-// import { Outlet } from "react-router-dom";
-// import { useState, useEffect } from "react";
-// import useRefresh from "@/hooks/user/useRefresh";
-// import { useAuthContext } from "@/context/userContext";
-
-// const PersistLogin = () => {
-//     const [isLoading, setIsLoading] = useState(true);
-//     const refresh = useRefresh();
-//     const { state } = useAuthContext();
-
-//     useEffect(() => {
-//         let isMounted = true;
-
-//         const verifyRefreshToken = async () => {
-//             try {
-//                 //  Call refresh to get new access token
-//                 await refresh();
-//             } catch (err) {
-//                 console.error(err);
-//             } finally {
-//                 isMounted && setIsLoading(false);
-//             }
-//         };
-
-//         //  If no access token, try to refresh it
-//         !state.accessToken ? verifyRefreshToken() : setIsLoading(false);
-
-//         return () => { isMounted = false };
-//     }, []);
-
-//     return (
-//         <>
-//             {isLoading ? <p>Loading...</p> : <Outlet />}
-//         </>
-//     );
-// };
-
-// export default PersistLogin;
