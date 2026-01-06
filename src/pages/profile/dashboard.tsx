@@ -430,7 +430,7 @@ const Dashboard = () => {
                         <div className={`${style.settingsCard} ${style.dangerZone}`}>
                           <div className={style.cardHeader}><h3>Account Deletion</h3></div>
                           <div className={style.cardBody}>
-                            <p className={style.warningText}>
+                            <p className={style.warningMsg}>
                               Warning: This action is permanent. All your submitted data and saved lists will be erased.
                             </p>
                             <DeleteBtn />

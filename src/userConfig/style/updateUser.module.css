@@ -17,10 +17,11 @@
 .subtitle {
   font-size: 1.2rem;
   font-weight: 600;
-  color: #64748b;
+  color: var(--color-gray);
   text-transform: uppercase;
   letter-spacing: 0.025em;
   margin-left: 0.2rem;
+  font-family: var(--font-plus);
 }
 
 .input {
@@ -28,18 +29,19 @@
   height: 5.5rem;
   padding: 0 1rem;
   font-size: 1.2rem;
-  border: 2px solid #e2e8f0;
+  border: 2px solid var(--color-border);
   border-radius: 12px;
-  background-color: #ffffff;
-  color: #1e293b;
+  background-color: var(--color-white);
+  color: var(--color-black);
   transition: all 0.2s ease;
   appearance: none;
+  font-family: var(--font-inter);
 }
 
 .input:focus {
   outline: none;
-  border-color: #08299b;
-  background-color: #fff;
+  border-color: var(--color-blue);
+  background-color: var(--color-white);
   box-shadow: 0 0 0 4px rgba(8, 41, 155, 0.08);
 }
 
@@ -47,8 +49,8 @@
   width: 50%;
   height: 4.4rem;
   margin-top: 0.5rem;
-  background-color: #08299b !important;
-  color: #fff !important;
+  background-color: var(--color-blue) !important;
+  color: var(--color-white) !important;
   font-weight: 700 !important;
   font-size: 1rem !important;
   border-radius: 12px !important;
@@ -56,6 +58,7 @@
   align-self: center;
   justify-self: center;
   transition: opacity 0.2s ease;
+  font-family: var(--font-inter);
 }
 
 .btn2:active {
@@ -63,12 +66,12 @@
 }
 
 .btn2:disabled {
-  background-color: #94a3b8 !important;
+  background-color: var(--icon-gray) !important;
   opacity: 0.7;
   cursor: not-allowed;
 }
 
-/* --- TABLET / DESKTOP (Min-width 768px) --- */
+/* --- TABLET / DESKTOP --- */
 @media (min-width: 768px) {
   .form {
     max-width: 500px;

@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import style from "./style/dailyTips.module.css";
-import AnimatedLoader from "../components/utils/AnimatedLoader";
+import AnimatedLoader from "../components/utils/animatedLoader";
 import { useNavigate } from "react-router-dom";
 import { BASE_URL } from "@/context/userContext";
 import { HiLightBulb } from "react-icons/hi";

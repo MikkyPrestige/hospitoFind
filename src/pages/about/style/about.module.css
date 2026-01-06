@@ -1,5 +1,5 @@
 .bg {
-  background-color: #ffffff;
+  background-color: var(--color-white);
   width: 100%;
   padding-top: 7rem;
   display: flex;
@@ -38,13 +38,13 @@
 .heroWrapper .heroContent .heroTitle {
   font-size: 3rem;
   font-weight: 800;
-  color: #1e293b;
+  color: var(--color-black);
   line-height: 1.15;
   margin-bottom: 1.5rem;
-  font-family: "Plus Jakarta Sans", sans-serif;
+  font-family: var(--font-plus);
 }
 .heroWrapper .heroContent .heroTitle .span {
-  color: #08299B;
+  color: var(--color-blue);
   display: block;
 }
 @media (max-width: 768px) {
@@ -54,7 +54,7 @@
 }
 .heroWrapper .heroContent .heroPara {
   font-size: 1.15rem;
-  color: #475569;
+  color: var(--text-slate);
   line-height: 1.7;
   margin-bottom: 2.5rem;
 }
@@ -63,7 +63,7 @@
   gap: 3rem;
   margin-bottom: 2.5rem;
   padding-bottom: 2rem;
-  border-bottom: 1px solid #e2e8f0;
+  border-bottom: 1px solid var(--color-border);
 }
 .heroWrapper .statsRow .statItem {
   display: flex;
@@ -72,14 +72,14 @@
 .heroWrapper .statsRow .statItem .statNumber {
   font-size: 2.5rem;
   font-weight: 800;
-  color: #08299B;
+  color: var(--color-blue);
   line-height: 1;
   margin-bottom: 0.2rem;
 }
 .heroWrapper .statsRow .statItem .statLabel {
   font-size: 1rem;
   font-weight: 600;
-  color: #64748b;
+  color: var(--color-gray);
   text-transform: uppercase;
   letter-spacing: 0.5px;
 }
@@ -100,7 +100,7 @@
   width: 48%;
   border-radius: 24px;
   overflow: hidden;
-  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.15);
+  box-shadow: var(--shadow-card);
   height: 100%;
 }
 .heroImages .img1 {
@@ -112,7 +112,7 @@
 
 /* --- MISSION SECTION --- */
 .missionWrapper {
-  background: #f0f7ff;
+  background: var(--color-bg-light);
   padding: 3rem 5%;
   border-radius: 3rem;
   margin: 0 2%;
@@ -128,14 +128,14 @@
 .missionWrapper .missionGrid .missionText .sectionHeading {
   font-size: 2.5rem;
   font-weight: 800;
-  color: #08299B;
+  color: var(--color-blue);
   margin-bottom: 1rem;
-  font-family: "Plus Jakarta Sans", sans-serif;
+  font-family: var(--font-plus);
 }
 .missionWrapper .missionGrid .missionText p {
   font-size: 1.15rem;
   line-height: 1.8;
-  color: #334155;
+  color: var(--text-slate);
 }
 .missionWrapper .missionGrid .valuesList {
   display: flex;
@@ -145,13 +145,13 @@
 .missionWrapper .missionGrid .valuesList .valueItem {
   display: flex;
   gap: 1.2rem;
-  background: white;
+  background: var(--color-white);
   padding: 1.5rem;
   border-radius: 20px;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.03);
+  box-shadow: var(--shadow-soft);
 }
 .missionWrapper .missionGrid .valuesList .valueItem .iconBox {
-  background: rgba(37, 99, 235, 0.1);
+  background: var(--bg-blue-tag);
   width: 3.5rem;
   height: 3.5rem;
   border-radius: 12px;
@@ -162,16 +162,16 @@
 }
 .missionWrapper .missionGrid .valuesList .valueItem .iconBox .valueIcon {
   font-size: 1.5rem;
-  color: #2563EB;
+  color: var(--color-blue-light);
 }
 .missionWrapper .missionGrid .valuesList .valueItem h4 {
-  color: #1e293b;
+  color: var(--color-black);
   font-size: 1.2rem;
   font-weight: 700;
   margin-bottom: 0.3rem;
 }
 .missionWrapper .missionGrid .valuesList .valueItem p {
-  color: #64748b;
+  color: var(--color-gray);
   font-size: 1rem;
   line-height: 1.5;
   margin: 0;
@@ -189,12 +189,12 @@
 .featureSection .sectionHeaderCenter h2 {
   font-size: 2.5rem;
   font-weight: 800;
-  color: #1e293b;
-  font-family: "Plus Jakarta Sans", sans-serif;
+  color: var(--color-black);
+  font-family: var(--font-plus);
 }
 .featureSection .sectionHeaderCenter p {
   font-size: 1.2rem;
-  color: #64748b;
+  color: var(--color-gray);
 }
 .featureSection .featureContainer {
   max-width: 1300px;
@@ -204,25 +204,25 @@
   gap: 2rem;
 }
 .featureSection .featureContainer .featureBox {
-  background: white;
+  background: var(--color-white);
   padding: 2rem;
   border-radius: 24px;
   text-align: left;
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  border: 1px solid #e2e8f0;
+  border: 1px solid var(--color-border);
 }
 .featureSection .featureContainer .featureBox:hover {
   transform: translateY(-8px);
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08);
+  box-shadow: var(--shadow-card-blue-hover);
   border-color: rgba(37, 99, 235, 0.3);
 }
 .featureSection .featureContainer .featureBox:hover .iconWrapper {
-  background: #08299B;
-  color: white;
+  background: var(--color-blue);
+  color: var(--color-white);
 }
 .featureSection .featureContainer .featureBox .iconWrapper {
-  background: #f8fafc;
-  color: #08299B;
+  background: var(--color-ash);
+  color: var(--color-blue);
   width: 3.5rem;
   height: 3.5rem;
   border-radius: 12px;
@@ -236,12 +236,12 @@
 .featureSection .featureContainer .featureBox .featureTitle {
   font-size: 1.3rem;
   font-weight: 700;
-  color: #1e293b;
+  color: var(--color-black);
   margin-bottom: 0.5rem;
 }
 .featureSection .featureContainer .featureBox .featureText {
   font-size: 1.1rem;
-  color: #64748b;
+  color: var(--color-gray);
   line-height: 1.6;
 }
 
@@ -249,7 +249,7 @@
 .howItWorksWrapper {
   width: 100%;
   overflow: hidden;
-  background-color: #ffffff;
+  background-color: var(--color-white);
 }
 .howItWorksWrapper .semiCircle_container {
   position: relative;
@@ -274,15 +274,15 @@
   border-radius: 50% 50% 0 0;
 }
 .howItWorksWrapper .semiCircle_bg .one {
-  background: #f8fafc;
+  background: var(--color-bg);
   top: 0;
 }
 .howItWorksWrapper .semiCircle_bg .two {
-  background: #f1f5f9;
+  background: var(--color-ash);
   top: 5%;
 }
 .howItWorksWrapper .semiCircle_bg .three {
-  background: linear-gradient(180deg, #1e293b 0%, #0f172a 100%);
+  background: linear-gradient(180deg, var(--color-black) 0%, #0f172a 100%);
   top: 15%;
 }
 .howItWorksWrapper .howItWorks_inner {
@@ -297,17 +297,23 @@
 .howItWorksWrapper .howItWorks_inner .heading {
   font-size: 2.5rem;
   font-weight: 800;
-  color: #08299B;
+  color: var(--color-blue);
   margin-bottom: 0.5rem;
   position: relative;
   z-index: 20;
 }
 .howItWorksWrapper .howItWorks_inner .subHeading {
   font-size: 1.5rem;
-  color: #fbbf24;
+  color: var(--warning-color);
   margin-bottom: 2rem;
   position: relative;
   z-index: 20;
+}
+@media (min-width: 768px) {
+  .howItWorksWrapper .howItWorks_inner .heading, .howItWorksWrapper .howItWorks_inner .subHeading {
+    color: white;
+    text-shadow: 0 2px 10px rgb(0, 0, 0);
+  }
 }
 .howItWorksWrapper .howItWorks_inner .stepsGrid {
   display: grid;
@@ -325,10 +331,10 @@
   }
 }
 .howItWorksWrapper .howItWorks_inner .stepsGrid .stepCard {
-  background: white;
+  background: var(--color-white);
   padding: 2rem 1.5rem;
   border-radius: 20px;
-  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+  box-shadow: var(--shadow-card);
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -348,8 +354,8 @@
   position: absolute;
   top: 0;
   right: 0;
-  background: #08299B;
-  color: white;
+  background: var(--color-blue);
+  color: var(--color-white);
   width: 2rem;
   height: 2rem;
   border-radius: 50%;
@@ -363,19 +369,19 @@
 .howItWorksWrapper .howItWorks_inner .stepsGrid .stepCard .stepHead {
   font-size: 1.2rem;
   font-weight: 700;
-  color: #1e293b;
+  color: var(--color-black);
   margin-bottom: 0.5rem;
 }
 .howItWorksWrapper .howItWorks_inner .stepsGrid .stepCard .stepText {
   font-size: 0.95rem;
-  color: #64748b;
+  color: var(--color-gray);
   line-height: 1.5;
 }
 
 /* --- REVIEWS --- */
 .reviewSection {
   position: relative;
-  background-color: white;
+  background-color: var(--color-white);
   padding: 2rem 5%;
 }
 .reviewSection .reviewHeader {
@@ -386,12 +392,12 @@
 .reviewSection .reviewHeader .review_title {
   font-size: 2.5rem;
   font-weight: 800;
-  color: #1e293b;
+  color: var(--color-black);
   margin-bottom: 0.1rem;
-  font-family: "Plus Jakarta Sans", sans-serif;
+  font-family: var(--font-plus);
 }
 .reviewSection .reviewHeader .review_subtitle {
-  color: #64748b;
+  color: var(--color-gray);
   font-size: 1.2rem;
 }
 .reviewSection .review_grid {
@@ -405,8 +411,8 @@
   background: #fff;
   padding: 2rem;
   border-radius: 20px;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.04);
-  border: 1px solid #e2e8f0;
+  box-shadow: var(--shadow-soft);
+  border: 1px solid var(--color-border);
   text-align: left;
   display: flex;
   flex-direction: column;
@@ -415,13 +421,13 @@
 }
 .reviewSection .review_grid .review_box .starRow {
   display: flex;
-  color: #fbbf24;
+  color: var(--warning-color);
   font-size: 1.1rem;
 }
 .reviewSection .review_grid .review_box .review_text {
   font-style: italic;
   line-height: 1.6;
-  color: #334155;
+  color: var(--text-slate);
   font-size: 1rem;
   flex-grow: 1;
 }
@@ -430,7 +436,7 @@
   align-items: center;
   gap: 1rem;
   margin-top: 1rem;
-  border-top: 1px dashed #e2e8f0;
+  border-top: 1px dashed var(--color-border);
   padding-top: 1rem;
 }
 .reviewSection .review_grid .review_box .userInfo div {
@@ -440,12 +446,12 @@
 }
 .reviewSection .review_grid .review_box .userInfo .userName {
   font-weight: 700;
-  color: #1e293b;
+  color: var(--color-blue);
   font-size: 0.95rem;
 }
 .reviewSection .review_grid .review_box .userInfo .userRole {
   font-size: 0.85rem;
-  color: #2563EB;
+  color: var(--color-blue-light);
   font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 0.5px;
@@ -455,17 +461,17 @@
 .ctaLink {
   display: inline-block;
   padding: 1rem 2.5rem;
-  background: #2563EB;
-  color: white;
+  background: var(--color-blue-light);
+  color: var(--color-white);
   border-radius: 50px;
   font-weight: 700;
   text-decoration: none;
   font-size: 1.1rem;
   transition: all 0.2s ease;
-  box-shadow: 0 4px 15px rgba(37, 99, 235, 0.3);
+  box-shadow: var(--shadow-card-blue);
 }
 .ctaLink:hover {
-  background: rgb(20.7142857143, 84.9285714286, 225.7857142857);
+  background: #1d4ed8;
   transform: translateY(-2px);
-  box-shadow: 0 8px 25px rgba(37, 99, 235, 0.4);
+  box-shadow: var(--shadow-card-blue-hover);
 }/*# sourceMappingURL=about.module.css.map */

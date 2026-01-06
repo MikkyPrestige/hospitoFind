@@ -15,7 +15,7 @@
 
 .box_icon {
   font-size: 4rem;
-  color: #0e3db7;
+  color: var(--color-blue);
   opacity: 0.9;
   animation: pulse 2s infinite ease-in-out;
 }
@@ -23,38 +23,41 @@
 .head {
   font-size: 2rem;
   font-weight: 700;
-  color: #1a202c;
+  color: var(--color-black);
   margin-bottom: 0.5rem;
   letter-spacing: -0.02em;
+  font-family: var(--font-plus);
 }
 
 .subhead {
-  color: #718096;
+  color: var(--color-gray);
   font-size: 1.5rem;
   line-height: 1.5;
+  font-family: var(--font-inter);
 }
 
 .btn {
   width: fit-content;
   height: 3rem !important;
-  background-color: #0e3db7 !important;
-  color: white;
+  background-color: var(--color-blue) !important;
+  color: var(--color-white);
   border-radius: 8px;
   font-weight: 600;
   border: none;
   cursor: pointer;
   transition: transform 0.2s;
-  box-shadow: 0 4px 12px rgba(8, 41, 155, 0.2) !important;
+  box-shadow: var(--shadow-card-blue) !important;
   font-size: 1.1rem !important;
+  font-family: var(--font-inter);
 }
 
 .btn:hover:not(:disabled) {
-  background-color: #0a2d8a;
+  background-color: var(--color-blue-dark);
   transform: translateY(-2px);
 }
 
 .btn:disabled {
-  background-color: #cbd5e0;
+  background-color: var(--icon-gray-light);
   cursor: not-allowed;
   opacity: 0.7;
 }

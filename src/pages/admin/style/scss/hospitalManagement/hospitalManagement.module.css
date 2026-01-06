@@ -16,11 +16,13 @@
 .header .titleRow h1 {
   margin: 0;
   font-size: 2rem;
+  color: var(--color-black);
+  font-family: var(--font-plus);
 }
 
 .addBtn {
-  background: #4f46e5;
-  color: white;
+  background: var(--color-indigo);
+  color: var(--color-white);
   border: none;
   padding: 0.75rem 1.5rem;
   border-radius: 10px;
@@ -29,6 +31,7 @@
   gap: 0.5rem;
   font-weight: 700;
   cursor: pointer;
+  font-family: var(--font-inter);
 }
 .addBtn:hover {
   background: #4338ca;
@@ -40,14 +43,14 @@
   margin-bottom: 2rem;
 }
 .controls .searchBar, .controls .filterBox {
-  background: white;
-  border: 1px solid #e2e8f0;
+  background: var(--color-white);
+  border: 1px solid var(--color-border);
   border-radius: 10px;
   padding: 0.6rem 1rem;
   display: flex;
   align-items: center;
   gap: 0.75rem;
-  color: #94a3b8;
+  color: var(--icon-gray);
 }
 .controls .searchBar {
   flex: 1;
@@ -57,6 +60,8 @@
   outline: none;
   width: 100%;
   font-size: 0.95rem;
+  font-family: var(--font-inter);
+  color: var(--color-black);
 }
 .controls .filterGroup {
   display: flex;
@@ -69,29 +74,31 @@
   }
 }
 .controls .filterGroup .filterBox {
-  background: white;
-  border: 1px solid #e2e8f0;
+  background: var(--color-white);
+  border: 1px solid var(--color-border);
   border-radius: 10px;
   padding: 0.6rem 1rem;
   display: flex;
   align-items: center;
   gap: 0.75rem;
-  color: #94a3b8;
+  color: var(--icon-gray);
 }
 .controls .filterGroup .filterBox select {
   border: none;
   outline: none;
   background: none;
   font-weight: 600;
-  color: #0f172a;
+  color: var(--color-black);
   cursor: pointer;
+  font-family: var(--font-inter);
 }
 
 .tableWrapper {
-  background: white;
+  background: var(--color-white);
   border-radius: 16px;
-  border: 1px solid #e2e8f0;
+  border: 1px solid var(--color-border);
   overflow: hidden;
+  box-shadow: var(--shadow-card);
 }
 
 .hospTable {
@@ -101,30 +108,33 @@
 .hospTable th {
   text-align: left;
   padding: 1.25rem;
-  background: #f8fafc;
-  color: #64748b;
+  background: var(--color-bg);
+  color: var(--color-gray);
   font-size: 0.85rem;
   text-transform: uppercase;
-  border-bottom: 2px solid #e2e8f0;
+  border-bottom: 2px solid var(--color-border);
+  font-family: var(--font-inter);
 }
 .hospTable td {
   padding: 1.25rem;
-  border-bottom: 1px solid #f1f5f9;
+  border-bottom: 1px solid var(--color-border);
   vertical-align: middle;
+  font-family: var(--font-inter);
 }
 
 .nameCell strong {
   display: block;
-  color: #0f172a;
+  color: var(--color-black);
   font-size: 1rem;
+  font-family: var(--font-plus);
 }
 .nameCell span {
   font-size: 0.8rem;
-  color: #94a3b8;
+  color: var(--icon-gray);
 }
 
 .statusVerified {
-  color: #10b981;
+  color: var(--color-success);
   background: #ecfdf5;
   padding: 0.4rem 0.8rem;
   border-radius: 20px;
@@ -136,7 +146,7 @@
 }
 
 .statusPending {
-  color: #ef4444;
+  color: var(--color-error);
   background: #fef2f2;
   padding: 0.4rem 0.8rem;
   border-radius: 20px;
@@ -152,8 +162,8 @@
   gap: 0.75rem;
 }
 .actions button {
-  background: white;
-  border: 1px solid #e2e8f0;
+  background: var(--color-white);
+  border: 1px solid var(--color-border);
   border-radius: 8px;
   width: 36px;
   height: 36px;
@@ -164,13 +174,13 @@
   transition: 0.2s;
 }
 .actions .editBtn:hover {
-  color: #4f46e5;
-  border-color: #4f46e5;
+  color: var(--color-indigo);
+  border-color: var(--color-indigo);
   background: #f5f3ff;
 }
 .actions .deleteBtn:hover {
-  color: #ef4444;
-  border-color: #ef4444;
+  color: var(--color-error);
+  border-color: var(--color-error);
   background: #fff1f2;
 }
 
@@ -190,7 +200,7 @@
 }
 
 .modalContent {
-  background: white;
+  background: var(--color-white);
   padding: 2.5rem;
   border-radius: 20px;
   width: 90%;
@@ -198,6 +208,7 @@
   max-height: 90vh;
   overflow-y: auto;
   position: relative;
+  box-shadow: var(--shadow-soft);
 }
 .modalContent .closeBtn {
   position: absolute;
@@ -207,18 +218,18 @@
   border: none;
   font-size: 1.5rem;
   cursor: pointer;
-  color: #94a3b8;
+  color: var(--icon-gray);
 }
 .modalContent .closeBtn:hover {
-  color: #ef4444;
+  color: var(--color-error);
 }
 
 .verifyBtn {
-  color: #10b981;
+  color: var(--color-success);
 }
 .verifyBtn:hover {
   background: #ecfdf5;
-  border-color: #10b981;
+  border-color: var(--color-success);
 }
 
 .unverifyBtn {
@@ -235,7 +246,8 @@
   align-items: center;
   min-height: 400px;
   font-size: 1.2rem;
-  color: #64748b;
+  color: var(--color-gray);
   font-weight: 600;
   text-align: center;
+  font-family: var(--font-inter);
 }/*# sourceMappingURL=hospitalManagement.module.css.map */

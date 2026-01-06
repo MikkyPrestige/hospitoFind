@@ -13,7 +13,7 @@ import HospitalPic from "@/assets/images/hospital-logo.jpg";
 import ExportButton from "@/hospitalsConfig/export";
 import ShareButton from "@/hospitalsConfig/share";
 import style from "./style/search/search.module.scss";
-import AnimatedLoader from "../components/utils/AnimatedLoader";
+import AnimatedLoader from "../components/utils/animatedLoader";
 
 export default function SearchForm({
   onSearchResultsChange,
@@ -234,7 +234,7 @@ export default function SearchForm({
                   ))}
                 </div>
               ))
-              ) : <div className={style.dropdownItem}>No matching locations found</div>}
+            ) : <div className={style.dropdownItem}>No matching locations found</div>}
           </div>
         )}
       </div>

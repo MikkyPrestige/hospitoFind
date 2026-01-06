@@ -5,6 +5,7 @@ import { FiMenu, FiLogOut, FiLayout, FiShield, FiUser } from "react-icons/fi";
 import Logo from "@/assets/images/logo.svg";
 import style from "./style/nav.module.scss";
 import { useAuthContext } from "@/context/userContext";
+import ThemeToggle from "../../components/themeToggle"
 
 const Header = () => {
   const [scrolled, setScrolled] = useState(false);
@@ -59,6 +60,7 @@ const Header = () => {
 
         {/* ACTIONS*/}
         <div className={style.actions}>
+          <ThemeToggle />
           {state?.username ? (
             <div className={style.userProfile}>
               <Link to="/dashboard" className={style.profileTrigger}>
@@ -125,6 +127,7 @@ const Header = () => {
               </div>
             ) : (
               <div className={style.drawerAuth}>
+                  <ThemeToggle />
                 <Link to="/login" onClick={toggleMenu} className={style.mobileLogin}>Log In</Link>
                 <Link to="/signup" onClick={toggleMenu} className={style.mobileSignup}>Create Free Account</Link>
               </div>

@@ -1,7 +1,7 @@
 import { useState, useEffect, useCallback } from "react";
 import { useNavigate } from "react-router-dom";
 import style from "./style/nearbyHospital.module.css";
-import AnimatedLoader from "../components/utils/AnimatedLoader";
+import AnimatedLoader from "../components/utils/animatedLoader";
 import HospitalPic from "../assets/images/hospital-logo.jpg";
 import { FiMapPin, FiNavigation } from "react-icons/fi";
 import { BASE_URL } from "@/context/userContext";
@@ -90,7 +90,7 @@ const NearbyHospitals = ({ triggerLocation = 0 }: Props) => {
         <section className={style.section}>
             <div className={style.headerRow}>
                 <p className={style.note}>
-                    {loading ? "Syncing..." : <><FiNavigation /> {message}</>}
+                    {loading ? "..." : <><FiNavigation /> {message}</>}
                 </p>
             </div>
 

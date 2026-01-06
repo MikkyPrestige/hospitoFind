@@ -1,20 +1,9 @@
-@use 'sass:color'; // 1. Import the color module
-
-/* Variables matching your theme */
-$primary-color: #08299B;
-$primary-light: #e0e7ff;
-$success-color: #10b981;
-$warning-color: #f59e0b;
-$text-dark: #1f2937;
-$text-light: #6b7280;
-$border-color: #e5e7eb;
-
 .importCard {
-  background: white;
+  background: var(--color-white);
   border-radius: 12px;
   padding: 2rem;
-  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
-  border: 1px solid $border-color;
+  box-shadow: var(--shadow-card);
+  border: 1px solid var(--color-border);
   position: relative;
   overflow: hidden;
   max-width: 600px;
@@ -30,8 +19,8 @@ $border-color: #e5e7eb;
       width: 48px;
       height: 48px;
       border-radius: 10px;
-      background: $primary-light;
-      color: $primary-color;
+      background: var(--bg-blue-tag);
+      color: var(--color-blue);
       display: flex;
       align-items: center;
       justify-content: center;
@@ -41,14 +30,16 @@ $border-color: #e5e7eb;
     h3 {
       font-size: 1.25rem;
       font-weight: 700;
-      color: $text-dark;
+      color: var(--color-black);
       margin: 0;
+      font-family: var(--font-plus);
     }
 
     p {
-      color: $text-light;
+      color: var(--color-gray);
       font-size: 0.9rem;
       margin: 0.25rem 0 0 0;
+      font-family: var(--font-inter);
     }
   }
 }
@@ -76,39 +67,39 @@ $border-color: #e5e7eb;
       left: 1rem;
       top: 50%;
       transform: translateY(-50%);
-      color: $text-light;
+      color: var(--icon-gray);
     }
 
     input {
       width: 100%;
       padding: 0.8rem 1rem 0.8rem 2.8rem;
-      border: 1px solid $border-color;
+      border: 1px solid var(--color-border);
       border-radius: 8px;
       font-size: 0.95rem;
       transition: all 0.2s;
+      font-family: var(--font-inter);
 
       &:focus {
-        border-color: $primary-color;
+        border-color: var(--color-blue);
         outline: none;
-        // Replaced rgba with color.change if needed, usually rgba is still tolerated but best to be strict
         box-shadow: 0 0 0 3px rgba(8, 41, 155, 0.1);
       }
     }
   }
 
   .importBtn {
-    background: $primary-color;
-    color: white;
+    background: var(--color-blue);
+    color: var(--color-white);
     border: none;
     padding: 0.9rem;
     border-radius: 8px;
     font-weight: 600;
     cursor: pointer;
     transition: background 0.2s;
+    font-family: var(--font-inter);
 
     &:hover:not(:disabled) {
-      // FIX 1: darken -> color.adjust with negative lightness
-      background: color.adjust($primary-color, $lightness: -5%);
+      background: var(--color-blue-dark);
     }
 
     &:disabled {
@@ -140,12 +131,14 @@ $border-color: #e5e7eb;
         font-size: 2rem;
         font-weight: 800;
         margin-bottom: 0.25rem;
+        font-family: var(--font-plus);
       }
 
       .label {
         font-size: 0.85rem;
         font-weight: 500;
         opacity: 0.9;
+        font-family: var(--font-inter);
       }
 
       .statIcon {
@@ -157,33 +150,30 @@ $border-color: #e5e7eb;
       }
 
       &.success {
-        // FIX 2: lighten -> color.adjust (positive)
-        background: color.adjust($success-color, $lightness: 45%);
-        // FIX 3: darken -> color.adjust (negative)
-        color: color.adjust($success-color, $lightness: -10%);
-        border: 1px solid color.adjust($success-color, $lightness: 30%);
+        background: var(--color-success-bg);
+        color: var(--color-success);
+        border: 1px solid var(--color-success);
       }
 
       &.skipped {
-        // FIX 4: lighten -> color.adjust
-        background: color.adjust($warning-color, $lightness: 45%);
-        // FIX 5: darken -> color.adjust
-        color: color.adjust($warning-color, $lightness: -15%);
-        border: 1px solid color.adjust($warning-color, $lightness: 30%);
+        background: #fff7ed;
+        color: var(--warning-color);
+        border: 1px solid var(--warning-color);
       }
     }
   }
 
   .resultMsg {
-    color: $text-dark;
+    color: var(--color-black);
     margin-bottom: 1.5rem;
     font-weight: 500;
+    font-family: var(--font-inter);
   }
 
   .resetBtn {
     background: transparent;
-    border: 1px solid $border-color;
-    color: $text-dark;
+    border: 1px solid var(--color-border);
+    color: var(--color-black);
     padding: 0.6rem 1.2rem;
     border-radius: 6px;
     cursor: pointer;
@@ -192,11 +182,11 @@ $border-color: #e5e7eb;
     gap: 0.5rem;
     font-size: 0.9rem;
     transition: all 0.2s;
+    font-family: var(--font-inter);
 
     &:hover {
       background: #f9fafb;
-      // FIX 6: darken -> color.adjust
-      border-color: color.adjust($border-color, $lightness: -10%);
+      border-color: #cbd5e1;
     }
   }
 }
@@ -217,30 +207,32 @@ $border-color: #e5e7eb;
   .spinner {
     width: 30px;
     height: 30px;
-    border: 3px solid $primary-light;
-    border-top: 3px solid $primary-color;
+    border: 3px solid var(--bg-blue-tag);
+    border-top: 3px solid var(--color-blue);
     border-radius: 50%;
     animation: spin 1s linear infinite;
     margin-bottom: 0.8rem;
   }
 
 .loadingText {
-    color: $primary-color;
+    color: var(--color-blue);
     font-weight: 700;
     font-size: 1.1rem;
     margin-top: 1rem;
     margin-bottom: 0.3rem;
     text-align: center;
     animation: pulse 1.5s ease-in-out infinite;
+    font-family: var(--font-plus);
   }
 
   .loadingSubtext {
-    color: $text-light;
+    color: var(--color-gray);
     font-size: 0.85rem;
     font-weight: 500;
     opacity: 0.8;
     text-align: center;
     font-style: italic;
+    font-family: var(--font-inter);
   }
 }
 

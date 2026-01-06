@@ -11,7 +11,7 @@ import Footer from "@/layouts/footer/footer";
 import { getHospitalDetails } from "@/services/api";
 import useAxiosPrivate from "@/hooks/user/useAxiosPrivate";
 import { SEOHelmet } from "@/components/utils/seoUtils";
-import AnimatedLoader from "./utils/AnimatedLoader";
+import AnimatedLoader from "./utils/animatedLoader";
 import Logo from "../assets/images/logo.svg";
 import {
     MdLocationOn,

@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import style from "./style/healthNews.module.css";
-import AnimatedLoader from "../components/utils/AnimatedLoader";
+import AnimatedLoader from "../components/utils/animatedLoader";
 import { HiOutlineNewspaper } from "react-icons/hi";
 import { FiExternalLink, FiArrowRight } from "react-icons/fi";
 import { BASE_URL } from "@/context/userContext";

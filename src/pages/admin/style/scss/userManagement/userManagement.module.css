@@ -1,4 +1,3 @@
-/* --- Container Layout --- */
 .container {
   padding: 2.5rem;
   max-width: 1300px;
@@ -23,12 +22,14 @@
   font-size: 2.25rem;
   font-weight: 800;
   margin: 0;
-  color: #111827;
+  color: var(--color-black);
+  font-family: var(--font-plus);
 }
 .header .titleRow p {
-  color: #6b7280;
+  color: var(--color-gray);
   margin-top: 0.25rem;
   font-size: 1rem;
+  font-family: var(--font-inter);
 }
 
 /* --- Controls: Search & Filters --- */
@@ -38,16 +39,17 @@
   align-items: center;
   gap: 1.5rem;
   flex-wrap: wrap;
-  background: white;
+  background: var(--color-white);
   padding: 1.25rem;
   border-radius: 12px;
-  border: 1px solid #e5e7eb;
+  border: 1px solid var(--color-border);
+  box-shadow: var(--shadow-card);
 }
 
 .searchBar {
   display: flex;
   align-items: center;
-  background: #f3f4f6;
+  background: var(--color-ash);
   padding: 0.75rem 1.25rem;
   border-radius: 10px;
   border: 1px solid transparent;
@@ -57,8 +59,8 @@
   transition: all 0.2s;
 }
 .searchBar:focus-within {
-  background: white;
-  border-color: #4f46e5;
+  background: var(--color-white);
+  border-color: var(--color-indigo);
   box-shadow: 0 0 0 4px rgba(79, 70, 229, 0.1);
 }
 .searchBar input {
@@ -67,10 +69,11 @@
   outline: none;
   width: 100%;
   font-size: 0.95rem;
-  color: #111827;
+  color: var(--color-black);
+  font-family: var(--font-inter);
 }
 .searchBar svg {
-  color: #9ca3af;
+  color: var(--icon-gray);
   font-size: 1.1rem;
 }
 
@@ -84,10 +87,10 @@
   display: flex;
   align-items: center;
   gap: 0.6rem;
-  background: white;
+  background: var(--color-white);
   padding: 0.6rem 1rem;
   border-radius: 10px;
-  border: 1px solid #e5e7eb;
+  border: 1px solid var(--color-border);
   transition: border-color 0.2s;
 }
 .filterBox:hover {
@@ -99,16 +102,17 @@
   outline: none;
   background: transparent;
   font-size: 0.9rem;
-  color: #111827;
+  color: var(--color-black);
   cursor: pointer;
+  font-family: var(--font-inter);
 }
 .filterBox svg {
-  color: #9ca3af;
+  color: var(--icon-gray);
 }
 
 .addBtn {
-  background: #111827;
-  color: white;
+  background: var(--color-black);
+  color: var(--color-white);
   padding: 0.75rem 1.5rem;
   border-radius: 10px;
   border: none;
@@ -118,6 +122,7 @@
   cursor: pointer;
   font-weight: 700;
   transition: all 0.2s;
+  font-family: var(--font-inter);
 }
 .addBtn:hover {
   background: #1f2937;
@@ -127,11 +132,11 @@
 
 /* --- Table Styles --- */
 .tableWrapper {
-  background: white;
+  background: var(--color-white);
   border-radius: 16px;
-  border: 1px solid #e5e7eb;
+  border: 1px solid var(--color-border);
   overflow-x: auto;
-  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.05);
+  box-shadow: var(--shadow-soft);
 }
 
 .userTable {
@@ -144,20 +149,21 @@
   vertical-align: middle;
 }
 .userTable th {
-  background: #f8fafc;
+  background: var(--color-bg);
   font-weight: 700;
-  color: #475569;
+  color: var(--color-gray);
   font-size: 0.75rem;
   text-transform: uppercase;
   letter-spacing: 0.05em;
-  border-bottom: 1px solid #e2e8f0;
+  border-bottom: 1px solid var(--color-border);
+  font-family: var(--font-inter);
 }
 .userTable tbody tr {
   transition: background 0.2s;
-  border-bottom: 1px solid #f1f5f9;
+  border-bottom: 1px solid var(--color-border);
 }
 .userTable tbody tr:hover {
-  background: #fbfcfe;
+  background: var(--color-ash);
 }
 .userTable tbody tr:last-child {
   border-bottom: none;
@@ -171,8 +177,8 @@
 .userInfo .avatar {
   width: 40px;
   height: 40px;
-  background: #e5e7eb;
-  color: #111827;
+  background: var(--color-ash);
+  color: var(--color-black);
   border-radius: 10px;
   display: flex;
   align-items: center;
@@ -182,12 +188,14 @@
 }
 .userInfo .username {
   font-weight: 700;
-  color: #111827;
+  color: var(--color-black);
+  font-family: var(--font-plus);
 }
 
 .emailCell {
-  color: #6b7280;
+  color: var(--icon-gray);
   font-size: 0.95rem;
+  font-family: var(--font-inter);
 }
 
 .roleBadge {
@@ -198,12 +206,12 @@
   display: inline-block;
 }
 .roleBadge.admin {
-  background: #e0e7ff;
-  color: #4338ca;
+  background: var(--bg-blue-tag);
+  color: var(--color-blue);
 }
 .roleBadge.user {
-  background: #f1f5f9;
-  color: #475569;
+  background: var(--color-ash);
+  color: var(--text-slate);
 }
 
 /* --- Management Buttons --- */
@@ -213,8 +221,8 @@
   justify-content: flex-end;
 }
 .actionBtns button {
-  background: #f8fafc;
-  border: 1px solid #e2e8f0;
+  background: var(--color-white);
+  border: 1px solid var(--color-border);
   width: 36px;
   height: 36px;
   border-radius: 8px;
@@ -222,21 +230,21 @@
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  color: #64748b;
+  color: var(--icon-gray);
   transition: all 0.2s;
 }
 .actionBtns button:hover {
   background: white;
 }
 .actionBtns .roleBtn:hover {
-  color: #4f46e5;
-  border-color: #4f46e5;
-  background: rgba(79, 70, 229, 0.05);
+  color: var(--color-indigo);
+  border-color: var(--color-indigo);
+  background: #eef2ff;
 }
 .actionBtns .deleteBtn:hover {
-  color: #ef4444;
-  border-color: #ef4444;
-  background: rgba(239, 68, 68, 0.05);
+  color: var(--color-error);
+  border-color: var(--color-error);
+  background: #fff1f2;
 }
 
 /* --- Status Toggles --- */
@@ -257,8 +265,8 @@
 }
 
 .activeStatus {
-  background: #f0fdf4;
-  color: #16a34a;
+  background: var(--color-success-bg);
+  color: var(--color-success);
   border-color: #bbf7d0;
 }
 .activeStatus:hover {
@@ -266,8 +274,8 @@
 }
 
 .suspendedStatus {
-  background: #fef2f2;
-  color: #dc2626;
+  background: #fff1f2;
+  color: var(--color-error);
   border-color: #fecaca;
 }
 .suspendedStatus:hover {
@@ -275,21 +283,21 @@
 }
 
 .suspendedRow {
-  background-color: #f8fafc;
+  background-color: var(--color-ash);
 }
 .suspendedRow .username, .suspendedRow .emailCell {
-  color: #94a3b8;
+  color: var(--icon-gray);
   text-decoration: line-through;
 }
 .suspendedRow .avatar {
   opacity: 0.5;
 }
 
-/* --- Modal Styles --- */
+/* --- Modal --- */
 .modalOverlay {
   position: fixed;
   inset: 0;
-  background: rgba(17, 24, 39, 0.6);
+  background: rgba(0, 0, 0, 0.6);
   -webkit-backdrop-filter: blur(4px);
           backdrop-filter: blur(4px);
   display: flex;
@@ -299,12 +307,12 @@
 }
 
 .modalContent {
-  background: white;
+  background: var(--color-white);
   padding: 2.5rem;
   border-radius: 20px;
   width: 100%;
   max-width: 450px;
-  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+  box-shadow: var(--shadow-soft);
 }
 .modalContent .modalHeader {
   display: flex;
@@ -315,11 +323,12 @@
 .modalContent .modalHeader h2 {
   font-size: 1.5rem;
   font-weight: 800;
-  color: #111827;
+  color: var(--color-black);
+  font-family: var(--font-plus);
 }
 .modalContent .modalHeader .closeIcon {
   cursor: pointer;
-  color: #6b7280;
+  color: var(--icon-gray);
   font-size: 1.5rem;
 }
 
@@ -336,23 +345,25 @@
 .modalForm .inputGroup label {
   font-size: 0.85rem;
   font-weight: 700;
-  color: #111827;
+  color: var(--color-black);
+  font-family: var(--font-plus);
 }
 .modalForm .inputGroup input, .modalForm .inputGroup select {
   padding: 0.8rem 1rem;
-  border: 1px solid #d1d5db;
+  border: 1px solid var(--color-border);
   border-radius: 10px;
   font-size: 1rem;
   width: 100%;
+  font-family: var(--font-inter);
 }
 .modalForm .inputGroup input:focus, .modalForm .inputGroup select:focus {
-  border-color: #4f46e5;
+  border-color: var(--color-indigo);
   outline: none;
   box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.1);
 }
 .modalForm .submitBtn {
-  background: #4f46e5;
-  color: white;
+  background: var(--color-indigo);
+  color: var(--color-white);
   padding: 1rem;
   border-radius: 12px;
   border: none;
@@ -361,6 +372,7 @@
   cursor: pointer;
   margin-top: 1rem;
   transition: background 0.2s;
+  font-family: var(--font-inter);
 }
 .modalForm .submitBtn:hover {
   background: #4338ca;
@@ -370,20 +382,21 @@
 .loading {
   padding: 5rem;
   text-align: center;
-  color: #6b7280;
+  color: var(--color-gray);
   font-weight: 600;
   font-size: 1.1rem;
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 1rem;
+  font-family: var(--font-inter);
 }
 .loading::before {
   content: "";
   width: 30px;
   height: 30px;
-  border: 4px solid #f3f4f6;
-  border-top: 4px solid #4f46e5;
+  border: 4px solid var(--color-bg-light);
+  border-top: 4px solid var(--color-indigo);
   border-radius: 50%;
   animation: spin 1s linear infinite;
 }

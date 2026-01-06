@@ -1,14 +1,5 @@
-@use "sass:color" as color;
-
-/* --- BRAND VARIABLES --- */
-$color-blue: #08299B;
-$color-bg-light: #f5f7ff;
-$color-text-main: #111827;
-$color-text-muted: #6b7280;
-$shadow-soft: 0 4px 10px rgba(0, 0, 0, 0.05);
-
 .searchContainer {
-padding: 1rem;
+  padding: 1rem;
   width: 100%;
   max-width: 900px;
   margin: 0 auto;
@@ -18,44 +9,9 @@ padding: 1rem;
   }
 }
 
-/* --- GREETING (If rendered in SearchForm) --- */
-// .searchHeader {
-//   text-align: center;
-//   margin-bottom: 1rem;
-// }
-
-// .heading {
-//   font-size: 1.6rem;
-//   font-weight: 800;
-//   color: #1e293b;
-
-//   @include respond(tab-port) {
-//     font-size: 2rem;
-//   }
-// }
-
-// .name {
-//   color: $color-blue;
-//   background: linear-gradient(
-//     135deg,
-//     color.adjust($color-blue, $lightness: 10%),
-//     color.adjust(#1976d2, $lightness: -10%)
-//   );
-//   background-clip: text;
-//   -webkit-background-clip: text;
-//   -webkit-text-fill-color: transparent;
-//   display: inline-block;
-// }
-
-// .subtext {
-//   color: $color-text-muted;
-//   font-size: 1.1rem;
-//   margin-top: 0.5rem;
-// }
-
 /* --- SEARCH BOX & INPUT --- */
 .searchBox {
- position: relative;
+  position: relative;
   width: 100%;
   display: flex;
   justify-content: center;
@@ -66,10 +22,10 @@ padding: 1rem;
   align-items: center;
   width: 100%;
   height: 5.5rem;
-  border: 1px solid #dcdfe4;
+  border: 1px solid var(--color-border);
   border-radius: 12px;
   overflow: hidden;
-  background: #fff;
+  background: var(--color-white);
   transition: border-color 0.2s, box-shadow 0.2s;
 
   @include respond(tab-port) {
@@ -78,8 +34,8 @@ padding: 1rem;
   }
 
   &:focus-within {
-    border-color: $color-blue;
-    box-shadow: 0 0 0 4px rgba(8, 41, 155, 0.08);
+    border-color: var(--color-blue);
+    box-shadow: 0 0 0 4px rgba(79, 70, 229, 0.1);
   }
 }
 
@@ -89,17 +45,17 @@ padding: 1rem;
   border: none;
   outline: none;
   font-size: 1rem;
-  color: $color-text-main;
+  color: var(--color-black);
   font-family: inherit;
 
   &::placeholder {
-    color: #9ca3af;
+    color: var(--icon-gray);
   }
 }
 
 .searchBtn {
-  background: $color-blue;
-  color: #fff;
+  background: var(--color-blue);
+  color: var(--color-white);
   width: 4rem;
   height: 100%;
   border: none;
@@ -111,7 +67,7 @@ padding: 1rem;
   transition: background 0.2s;
 
   &:hover {
-    background: color.adjust($color-blue, $lightness: -5%);
+    background: var(--color-blue-dark);
   }
 }
 
@@ -120,10 +76,10 @@ padding: 1rem;
   position: absolute;
   top: 110%;
   width: 100%;
-  background: #fff;
-  border: 1px solid #e5e7eb;
+  background: var(--color-white);
+  border: 1px solid var(--color-border);
   border-radius: 12px;
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+  box-shadow: var(--shadow-card);
   max-height: 300px;
   overflow-y: auto;
   z-index: 999;
@@ -135,7 +91,7 @@ padding: 1rem;
 
 .dropdownGroup {
   padding: 1rem;
-  border-bottom: 1px solid #f3f4f6;
+  border-bottom: 1px solid var(--color-border);
 
   &:last-child {
     border-bottom: none;
@@ -144,7 +100,7 @@ padding: 1rem;
 
 .dropdownCountry {
   font-weight: 700;
-  color: $color-blue;
+  color: var(--color-blue);
   font-size: 0.85rem;
   text-transform: uppercase;
   letter-spacing: 0.05em;
@@ -154,21 +110,21 @@ padding: 1rem;
 .dropdownCity {
   padding: 0.5rem 0.8rem;
   cursor: pointer;
-  color: $color-text-main;
+  color: var(--color-black);
   font-weight: 500;
   border-radius: 6px;
   transition: all 0.2s;
 
   &:hover {
-    background: $color-bg-light;
-    color: $color-blue;
+    background: var(--color-ash);
+    color: var(--color-blue);
     transform: translateX(4px);
   }
 }
 
 .dropdownItem {
   padding: 1.5rem;
-  color: $color-text-muted;
+  color: var(--color-gray);
   text-align: center;
   font-size: 0.95rem;
 }
@@ -195,14 +151,14 @@ padding: 1rem;
 }
 
 .hospitalCard {
-background: #fff;
+  background: var(--color-white);
   border-radius: 16px;
-  box-shadow: $shadow-soft;
+  box-shadow: var(--shadow-soft);
   overflow: hidden;
 
   &:hover {
     transform: translateY(-6px);
-    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.08);
+    box-shadow: var(--shadow-card-blue-hover);
   }
 
   .cardAvatar {
@@ -218,13 +174,13 @@ background: #fff;
   h3 {
     font-size: 1.2rem;
     font-weight: 700;
-    color: #1e293b;
+    color: var(--color-black);
     margin-bottom: 0.25rem;
   }
 
   p {
-    font-size: 01rem;
-    color: $color-text-muted;
+    font-size: 1rem;
+    color: var(--color-gray);
   }
 }
 
@@ -236,7 +192,7 @@ background: #fff;
 }
 
 .exploreBtn {
-  color: $color-blue;
+  color: var(--color-blue);
   font-weight: 700;
   font-size: 1rem;
   text-decoration: none;
@@ -271,7 +227,7 @@ background: #fff;
 .actionButtons {
   margin-top: 3rem;
   padding: 2rem;
-  border-top: 1px solid rgba(8, 41, 155, 0.08);
+  border-top: 1px solid var(--color-border);
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -306,8 +262,8 @@ background: #fff;
 
 .backBtn {
   background: transparent;
-  color: $color-text-muted;
-  border: 1px solid #e2e8f0;
+  color: var(--color-gray);
+  border: 1px solid var(--color-border);
   padding: 0.8rem 1.8rem;
   border-radius: 12px;
   font-weight: 700;
@@ -315,9 +271,9 @@ background: #fff;
   transition: all 0.2s;
 
   &:hover {
-    background: #f8fafc;
-    border-color: #cbd5e1;
-    color: $color-text-main;
+    background: var(--color-ash);
+    border-color: var(--color-border);
+    color: var(--color-black);
   }
 }
 
@@ -325,10 +281,10 @@ background: #fff;
 .message, .error {
   text-align: center;
   padding: 3rem 0;
-  color: $color-text-muted;
+  color: var(--color-gray);
   font-weight: 500;
 }
 
 .error {
-  color: #ef4444;
+  color: var(--color-error);
 }

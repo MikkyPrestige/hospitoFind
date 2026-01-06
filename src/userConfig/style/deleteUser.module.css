@@ -9,13 +9,14 @@
 
 .subhead {
   font-size: 1rem;
-  color: #475569;
+  color: var(--text-slate);
   line-height: 1.6;
   margin: 0;
+  font-family: var(--font-inter);
 }
 
 .subhead strong {
-  color: #ff033e;
+  color: var(--color-red);
 }
 
 .form {
@@ -34,23 +35,24 @@
 
 .instruction {
   font-size: 1.2rem !important;
-  color: #4a5568 !important;
+  color: var(--text-slate) !important;
   text-align: center;
+  font-family: var(--font-inter);
 }
 
 .usernameHighlight {
-  background: #edf2f7;
+  background: var(--color-ash);
   padding: 0.2rem 0.5rem;
   border-radius: 4px;
   font-family: 'Courier New', Courier, monospace;
-  color: #e53e3e;
+  color: var(--color-red);
   font-weight: 700;
 }
 
 .dangerBtn {
   width: fit-content;
-  background-color: #ff033e;
-  color: white;
+  background-color: var(--color-red);
+  color: var(--color-white);
   padding: 1.2rem;
   border-radius: 8px;
   font-weight: 700;
@@ -59,6 +61,7 @@
   align-self: center;
   justify-self: center;
   transition: all 0.2s ease;
+  font-family: var(--font-inter);
 }
 
 .dangerBtn:hover:not(:disabled) {
@@ -68,24 +71,26 @@
 }
 
 .dangerBtn:disabled {
-  background-color: #cbd5e0;
+  background-color: var(--icon-gray-light);
   cursor: not-allowed;
   opacity: 0.7;
 }
 
 .minimalInput {
   border: none;
-  border-bottom: 2px solid #e2e8f0;
+  border-bottom: 2px solid var(--color-border);
   border-radius: 0;
   padding: 1rem;
   width: 100%;
   font-size: 1.3rem;
   transition: border-color 0.2s;
   background: transparent;
+  color: var(--color-black);
+  font-family: var(--font-inter);
 }
 
 .minimalInput:focus {
-  border-bottom-color: #ff033e;
+  border-bottom-color: var(--color-red);
   outline: none;
 }
 
@@ -94,106 +99,4 @@
   .form {
     max-width: 500px;
   }
-
-  /* .subtitle {
-    font-size: 1rem;
-  }
-
-  .btn {
-    width: fit-content;
-    padding: 0 2rem;
-  } */
 }
-
-/* @media (min-width: 900px) {
-  .input {
-    height: 3.5rem;
-  }
-
-  .btn {
-    height: 3rem;
-  }
-} */
-
-/* .container {
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  text-align: center;
-} */
-/* .wrapper {
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
-  text-align: left;
-}
-
-.subtitle {
-  font-size: 1.2rem;
-  font-weight: 600;
-  color: #1e293b;
-}
-
-.subtitle strong {
-  color: #ff033e;
-  background: #fff1f2;
-  padding: 0 4px;
-  border-radius: 4px;
-}
-
-.passwordBox {
-  position: relative;
-  width: 100%;
-}
-
-.input {
-  width: 100%;
-  height: 5.5rem;
-  padding: 0 1rem;
-  font-size: 1rem;
-  border: 2px solid #e2e8f0;
-  border-radius: 12px;
-  background-color: #ffffff;
-  transition: all 0.2s ease;
-}
-
-.passwordBox .input {
-  padding-right: 3.5rem;
-}
-
-.input:focus {
-  outline: none;
-  border-color: #ff033e;
-  box-shadow: 0 0 0 4px rgba(255, 3, 62, 0.08);
-}
-
-.btn {
-  width: 50%;
-  height: 4.4rem;
-  border: none;
-  border-radius: 12px;
-  color: white;
-  font-weight: 700;
-  font-size: 1rem;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  align-self: center;
-  justify-self: center;
-  -webkit-tap-highlight-color: transparent;
-}
-
-.btn:active:not(:disabled) {
-  transform: scale(0.97);
-}
-
-.socialNotice {
-  background-color: #f0fdf4;
-  border: 1px solid #bbf7d0;
-  padding: 10px;
-  border-radius: 6px;
-  margin-bottom: 1rem;
-  font-size: 0.9rem;
-  color: #166534;
-} */

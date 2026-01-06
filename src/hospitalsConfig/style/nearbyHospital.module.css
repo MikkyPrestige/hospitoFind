@@ -13,14 +13,15 @@
 
 .note {
   font-size: 1.5rem;
-  color: #08299b;
-  background-color: #f0f7ff;
+  color: var(--color-blue);
+  background-color: var(--bg-blue-tag);
   padding: 0.8rem 1.5rem;
   border-radius: 50px;
   font-weight: 600;
   display: flex;
   align-items: center;
   gap: 0.5rem;
+  font-family: var(--font-inter);
 }
 
 .grid {
@@ -30,20 +31,20 @@
 }
 
 .card {
-  background: white;
+  background: var(--color-white);
   border-radius: 1.5rem;
   overflow: hidden;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+  box-shadow: var(--shadow-card);
   transition: transform 0.3s ease;
-  border: 1px solid #e2e8f0;
+  border: 1px solid var(--color-border);
   display: flex;
   flex-direction: column;
 }
 
 .card:hover {
   transform: translateY(-5px);
-  box-shadow: 0 15px 35px rgba(8, 41, 155, 0.1);
-  border-color: #08299b;
+  box-shadow: var(--shadow-card-blue-hover);
+  border-color: var(--color-blue);
 }
 
 .imageContainer {
@@ -63,12 +64,13 @@
   top: 1rem;
   right: 1rem;
   background: rgba(0, 0, 0, 0.7);
-  color: white;
+  color: var(--color-white);
   padding: 0.3rem 0.8rem;
   border-radius: 20px;
   font-size: 1rem;
   font-weight: 700;
   backdrop-filter: blur(4px);
+  font-family: var(--font-inter);
 }
 
 .cardContent {
@@ -89,8 +91,9 @@
 .title {
   font-size: 1.4rem;
   font-weight: 700;
-  color: #1e293b;
+  color: var(--color-black);
   margin: 0;
+  font-family: var(--font-plus);
 }
 
 .typeBadge {
@@ -99,30 +102,33 @@
   border-radius: 50px;
   font-weight: 700;
   text-transform: uppercase;
-  background: #f1f5f9;
-  color: #64748b;
+  background: var(--color-ash);
+  color: var(--color-gray);
   white-space: nowrap;
+  font-family: var(--font-inter);
 }
 
 .privateBadge {
-  background: #e0e7ff;
-  color: #3730a3;
+  background: var(--primary-light);
+  color: var(--color-indigo);
 }
+
 .publicBadge {
-  background: #dcfce7;
-  color: #166534;
+  background: var(--color-success-bg);
+  color: var(--color-success);
 }
 
 .location {
   display: flex;
   align-items: center;
   gap: 0.5rem;
-  color: #64748b;
+  color: var(--color-gray);
   font-size: 1.25rem;
+  font-family: var(--font-inter);
 }
 
 .pinIcon {
-  color: #08299b;
+  color: var(--color-blue);
   font-size: 1.3rem;
   flex-shrink: 0;
 }
@@ -131,18 +137,19 @@
   margin-top: auto;
   width: 100%;
   padding: 0.8rem;
-  border: 1px solid #08299b;
+  border: 1px solid var(--color-blue);
   background: transparent;
-  color: #08299b;
+  color: var(--color-blue);
   border-radius: 12px;
   font-weight: 700;
   cursor: pointer;
   transition: all 0.2s;
+  font-family: var(--font-inter);
 }
 
 .viewBtn:hover {
-  background: #08299b;
-  color: white;
+  background: var(--color-blue);
+  color: var(--color-white);
 }
 
 .actionWrapper {
@@ -152,8 +159,8 @@
 }
 
 .viewAllBtn {
-  background: #08299b;
-  color: white;
+  background: var(--color-blue);
+  color: var(--color-white);
   padding: 1rem 2.5rem;
   border-radius: 50px;
   font-weight: 700;
@@ -161,16 +168,17 @@
   border: none;
   cursor: pointer;
   transition: transform 0.2s;
+  font-family: var(--font-inter);
 }
 
 .viewAllBtn:hover {
   transform: translateY(-3px);
-  background: #0a47d5;
+  background: var(--color-blue-light);
 }
 
 .emptyState {
   text-align: center;
   padding: 4rem;
-  color: #64748b;
+  color: var(--color-gray);
   font-size: 1.2rem;
 }

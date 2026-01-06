@@ -1,6 +1,6 @@
 .section {
   width: 100%;
-  background-color: #f8fafc;
+  background-color: var(--color-bg);
   min-height: 100vh;
   padding: 7rem 1.5rem 4rem;
 }
@@ -12,7 +12,7 @@
 }
 
 .titleGroup {
-display: flex;
+  display: flex;
   align-items: center;
   justify-content: center;
   gap: 1rem;
@@ -21,25 +21,25 @@ display: flex;
 }
 
 .headerIcon {
-font-size: 3rem;
-  color: #dc2626;
+  font-size: 3rem;
+  color: var(--color-red);
   margin-right: -0.2rem;
 }
 
 .pageTitle {
-font-family: 'Plus Jakarta Sans', sans-serif;
+  font-family: var(--font-plus);
   font-size: clamp(2.2rem, 5vw, 3.2rem);
   font-weight: 600;
-  color: #1e293b;
+  color: var(--color-black);
   letter-spacing: -0.02em;
   margin: 0;
   line-height: 1.1;
 }
 
 .pageSubtitle {
-  font-family: 'Inter', sans-serif;
+  font-family: var(--font-inter);
   font-size: 1.25rem;
-  color: #64748b;
+  color: var(--color-gray);
   max-width: 700px;
   margin: 0 auto 1.5rem;
   line-height: 1.6;
@@ -48,13 +48,13 @@ font-family: 'Plus Jakarta Sans', sans-serif;
 .liveBadge {
   display: inline-block;
   background: rgba(220, 38, 38, 0.1);
-  color: #dc2626;
+  color: var(--color-red);
   padding: 0.4rem 1rem;
   border-radius: 50px;
   font-weight: 700;
   font-size: 1rem;
   text-transform: uppercase;
-  font-family: 'Inter', sans-serif;
+  font-family: var(--font-inter);
   border: 1px solid rgba(220, 38, 38, 0.2);
   animation: pulse 2s infinite;
   margin-top: 5px;
@@ -79,24 +79,23 @@ font-family: 'Plus Jakarta Sans', sans-serif;
 }
 
 .card {
-  background: #ffffff;
+  background: var(--color-white);
   padding: 2rem;
   border-radius: 20px;
-  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
-  border: 1px solid #e2e8f0;
-  border-left: 6px solid #dc2626;
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: var(--shadow-card);
+  border: 1px solid var(--color-border);
+  border-left: 6px solid var(--color-red);
 }
 
 .cardArchived {
   opacity: 0.8;
-  border-left-color: #94a3b8;
-  background: #f8fafc;
+  border-left-color: var(--color-gray);
+  background: var(--color-ash);
 }
 
 .card:hover {
   transform: translateY(-4px);
-  box-shadow: 0 15px 30px -5px rgba(220, 38, 38, 0.1);
+  box-shadow: 0 15px 30px -5px rgba(220, 38, 38, 0.15);
   border-color: rgba(220, 38, 38, 0.2);
 }
 
@@ -110,10 +109,10 @@ font-family: 'Plus Jakarta Sans', sans-serif;
 }
 
 .title {
-  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-family: var(--font-plus);
   font-size: 1.4rem;
   font-weight: 800;
-  color: #1e293b;
+  color: var(--color-black);
   line-height: 1.3;
   margin: 0;
   flex: 1;
@@ -134,25 +133,25 @@ font-family: 'Plus Jakarta Sans', sans-serif;
 
 .sourceWHO {
   background: #fee2e2;
-  color: #b91c1c;
+  color: var(--color-red);
 }
 .sourceArchived {
-  background: #f1f5f9;
-  color: #64748b;
+  background: var(--color-ash-dark);
+  color: var(--color-gray);
 }
 .sourceMedia {
-  background: #e0f2fe;
-  color: #0284c7;
+  background: var(--bg-blue-tag);
+  color: var(--color-blue-light);
 }
 .sourceDefault {
   background: #dcfce7;
-  color: #166534;
+  color: var(--color-green);
 }
 
 .date {
-  font-family: 'Inter', sans-serif;
+  font-family: var(--font-inter);
   font-size: 1rem;
-  color: #64748b;
+  color: var(--color-gray);
   font-weight: 500;
   margin-bottom: 1rem;
   display: flex;
@@ -165,10 +164,10 @@ font-family: 'Plus Jakarta Sans', sans-serif;
 }
 
 .summary {
-  font-family: 'Inter', sans-serif;
+ font-family: var(--font-inter);
   font-size: 1.1rem;
   line-height: 1.7;
-  color: #475569;
+  color: var(--text-slate);
   margin-bottom: 1.5rem;
 }
 
@@ -176,7 +175,7 @@ font-family: 'Plus Jakarta Sans', sans-serif;
   display: inline-flex;
   align-items: center;
   gap: 0.5rem;
-  color: #dc2626;
+  color: var(--color-red);
   font-weight: 700;
   text-decoration: none;
   font-size: 1rem;
@@ -192,15 +191,15 @@ font-family: 'Plus Jakarta Sans', sans-serif;
 .safetyCard,
 .emergencyCard,
 .regionCard {
-  background: #ffffff;
+background: var(--color-white);
   padding: 1.5rem;
   border-radius: 20px;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03);
-  border: 1px solid #f1f5f9;
+  box-shadow: var(--shadow-card);
+  border: 1px solid var(--color-border);
 }
 
 .cardIcon {
-  color: #08299b;
+  color: var(--color-blue);
   vertical-align: middle;
   margin-right: 0.5rem;
 }
@@ -208,8 +207,8 @@ font-family: 'Plus Jakarta Sans', sans-serif;
 .regionCard h3,
 .safetyCard h3,
 .emergencyCard h3 {
-  font-family: 'Plus Jakarta Sans', sans-serif;
-  color: #1e293b;
+  font-family: var(--font-plus);
+  color: var(--color-black);
   font-size: 1.4rem;
   font-weight: 800;
   margin-bottom: 0.5rem;
@@ -219,7 +218,7 @@ font-family: 'Plus Jakarta Sans', sans-serif;
 
 .sidebarHint {
   font-size: 1rem;
-  color: #64748b;
+  color: var(--color-gray);
   margin-bottom: 1rem;
   font-weight: 500;
 }
@@ -228,9 +227,9 @@ font-family: 'Plus Jakarta Sans', sans-serif;
   width: 100%;
   padding: 0.8rem 1rem;
   border-radius: 12px;
-  border: 1px solid #cbd5e1;
-  background-color: #f8fafc;
-  color: #1e293b;
+ border: 1px solid var(--color-border);
+  background-color: var(--color-ash);
+  color: var(--color-black);
   font-size: 1rem;
   font-weight: 600;
   cursor: pointer;
@@ -239,7 +238,7 @@ font-family: 'Plus Jakarta Sans', sans-serif;
 
 .regionSelect:focus {
   outline: none;
-  border-color: #08299b;
+  border-color: var(--color-blue);
   box-shadow: 0 0 0 3px rgba(8, 41, 155, 0.1);
 }
 
@@ -250,10 +249,10 @@ font-family: 'Plus Jakarta Sans', sans-serif;
 }
 
 .protocolList li {
-  padding: 0.8rem 0;
-  border-bottom: 1px solid #f1f5f9;
+ padding: 0.8rem 0;
+  border-bottom: 1px solid var(--color-border);
   font-size: 1rem;
-  color: #475569;
+  color: var(--text-slate);
   display: flex;
   align-items: flex-start;
   gap: 0.6rem;
@@ -265,7 +264,7 @@ font-family: 'Plus Jakarta Sans', sans-serif;
 }
 
 .listIcon {
-  color: #08299b;
+ color: var(--color-blue);
   flex-shrink: 0;
   margin-top: 3px;
 }
@@ -296,16 +295,16 @@ font-family: 'Plus Jakarta Sans', sans-serif;
 .emergencyNote {
   font-size: 1.2rem;
   line-height: 1.5;
-  color: #64748b;
+ color: var(--color-gray);
   font-style: italic;
 }
 
 .noAlerts {
   text-align: center;
   padding: 4rem;
-  color: #64748b;
+color: var(--color-gray);
   font-weight: 600;
-  background: white;
+  background: var(--color-white);
   border-radius: 20px;
 }
 
@@ -326,12 +325,6 @@ font-family: 'Plus Jakarta Sans', sans-serif;
     gap: 1.5rem;
   }
 }
-
-/* @media (max-width: 768px) {
-  .section {
-    padding-top: 12rem;
-  }
-} */
 
 @keyframes pulse {
   0% {

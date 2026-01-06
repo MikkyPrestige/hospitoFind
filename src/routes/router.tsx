@@ -37,7 +37,7 @@ const EmailSent = lazy(() => import("@/pages/profile/emailSent"));
 const ForgotPassword = lazy(() => import("@/pages/profile/forgotPassword"));
 const ResetPassword = lazy(() => import("@/userConfig/resetPassword"));
 
-// elper to wrap lazy components in Suspense automatically
+// wrap lazy components in Suspense automatically
 const Loadable = (Component: any) => (props: any) => (
     <Suspense fallback={<ComponentPulse />}>
         <Component {...props} />

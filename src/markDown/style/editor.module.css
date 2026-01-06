@@ -1,28 +1,14 @@
-/* --- VARIABLES --- */
 .editorContainer {
-  --brand-blue: #08299b;
-  --brand-accent: #50c878;
-  --text-dark: #1e293b;
-  --text-gray: #64748b;
-  --bg-white: #ffffff;
-  --bg-light: #f8fafc;
-  --border-color: #e2e8f0;
-  --error-bg: #fff1f2;
-  --error-text: #e11d48;
-  --success: #10b981;
-  --shadow-soft: 0 10px 40px rgba(8, 41, 155, 0.05);
-
   width: 100%;
   max-width: 1000px;
   margin: 0 auto;
   display: flex;
   flex-direction: column;
   gap: 2rem;
-  padding: 2rem 1rem;
-  font-family: 'Inter', sans-serif;
+  padding: 0rem 1rem;
+  font-family: var(--font-inter);
 }
 
-/* HEADER TYPOGRAPHY */
 .editorHeader {
   text-align: center;
 }
@@ -30,20 +16,19 @@
 .title {
   font-size: 2.4rem;
   font-weight: 800;
-  color: var(--brand-blue);
-  font-family: 'Plus Jakarta Sans', sans-serif;
+  color: var(--color-blue);
+  font-family: var(--font-plus);
   letter-spacing: -0.03em;
   line-height: 1.2;
   margin-bottom: 1rem;
 }
 
 .accent {
-  color: var(--brand-accent);
+  color: var(--color-success);
   position: relative;
   white-space: nowrap;
 }
 
-/* Underline effect for accent text */
 .accent::after {
   content: '';
   position: absolute;
@@ -51,14 +36,14 @@
   left: 0;
   width: 100%;
   height: 8px;
-  background: rgba(80, 200, 120, 0.2); /* Soft green highlight */
+  background: rgba(80, 200, 120, 0.2);
   z-index: -1;
   border-radius: 4px;
 }
 
 .subtitle {
   font-size: 1.2rem;
-  color: var(--text-gray);
+  color: var(--color-gray);
   max-width: 60ch;
   margin: 0 auto;
   line-height: 1.6;
@@ -66,24 +51,24 @@
 
 /* FORM CONTAINER */
 .editorForm {
-  background: var(--bg-white);
+  background: var(--color-white);
   border-radius: 24px;
   padding: 1rem 2rem;
   box-shadow: var(--shadow-soft);
-  border: 1px solid var(--border-color);
+  border: 1px solid var(--color-border);
 }
 
 .toolbar {
   display: flex;
   justify-content: flex-end;
-  border-bottom: 1px dashed var(--border-color);
+  border-bottom: 1px dashed var(--color-border);
   padding-bottom: 1rem;
 }
 
 .resetBtn {
-  background: var(--bg-light);
-  border: 1px solid var(--border-color);
-  color: var(--text-gray);
+  background: var(--color-bg-light);
+  border: 1px solid var(--color-border);
+  color: var(--color-gray);
   padding: 0.6rem 1.2rem;
   border-radius: 50px;
   font-weight: 600;
@@ -93,40 +78,41 @@
   align-items: center;
   gap: 8px;
   transition: all 0.2s ease;
-  font-family: 'Inter', sans-serif;
+  font-family: var(--font-inter);
 }
 
 .resetBtn:hover {
   background: #e2e8f0;
-  color: var(--text-dark);
+  color: var(--color-black);
   transform: translateY(-1px);
 }
 
+/* REACT MDE OVERRIDES */
 :global(.react-mde) {
-  border: 1px solid var(--border-color) !important;
+  border: 1px solid var(--color-border) !important;
   border-radius: 16px !important;
   box-shadow: none !important;
   overflow: hidden;
-  font-family: 'Inter', sans-serif !important;
+  font-family: var(--font-inter) !important;
 }
 
 :global(.mde-header) {
-  background-color: var(--bg-light) !important;
-  border-bottom: 1px solid var(--border-color) !important;
+  background-color: var(--color-bg-light) !important;
+  border-bottom: 1px solid var(--color-border) !important;
   padding: 0.5rem 1rem !important;
 }
 
 :global(.mde-tabs button) {
-  font-family: 'Plus Jakarta Sans', sans-serif !important;
+  font-family: var(--font-plus) !important;
   font-weight: 600 !important;
-  color: var(--text-gray) !important;
+  color: var(--color-gray) !important;
   font-size: 1rem !important;
   padding: 8px 16px !important;
 }
 
 :global(.mde-tabs button.selected) {
-  color: var(--brand-blue) !important;
-  border-bottom: 2px solid var(--brand-blue) !important;
+  color: var(--color-blue) !important;
+  border-bottom: 2px solid var(--color-blue) !important;
 }
 
 :global(.mde-text) {
@@ -145,19 +131,19 @@
   text-align: left;
   padding: 3rem;
   background: #fff;
-  color: var(--text-dark);
-  font-family: 'Inter', sans-serif;
+  color: var(--color-black);
+  font-family: var(--font-inter);
 }
 
 .markdownBody h1 {
   font-size: 1.8rem;
-  color: var(--brand-blue);
-  border-bottom: 2px solid var(--bg-light);
+  color: var(--color-blue);
+  border-bottom: 2px solid var(--color-bg-light);
   padding-bottom: 10px;
   font-weight: 700;
   margin-top: 2rem;
   margin-bottom: 1rem;
-  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-family: var(--font-plus);
 }
 
 .markdownBody h1:first-child {
@@ -170,24 +156,23 @@
   margin-bottom: 0.8rem;
   list-style: none;
   font-weight: 500;
-  color: var(--text-gray);
+  color: var(--color-gray);
 }
 
 .markdownBody li::before {
   content: '✓';
-  color: var(--success);
+  color: var(--color-success);
   position: absolute;
   left: 0;
   font-weight: bold;
 }
 
-/* FOOTER ACTIONS */
 .formActions {
   margin-top: 1rem;
   display: flex;
   justify-content: center;
   padding-top: 1.5rem;
-  border-top: 1px dashed var(--border-color);
+  border-top: 1px dashed var(--color-border);
 }
 
 .btnContent {
@@ -203,8 +188,8 @@
 
 /* ERROR STATE */
 .errorBox {
-  background: var(--error-bg);
-  color: var(--error-text);
+  background: #fff1f2;
+  color: var(--color-error);
   padding: 1rem 1.5rem;
   border-radius: 12px;
   display: flex;
@@ -221,7 +206,7 @@
 .modalOverlay {
   position: fixed;
   inset: 0;
-  background: rgba(15, 23, 42, 0.4); /* Darker overlay for better contrast */
+  background: rgba(15, 23, 42, 0.4);
   backdrop-filter: blur(6px);
   display: flex;
   align-items: center;
@@ -231,7 +216,7 @@
 }
 
 .successModal {
-  background: #fff;
+  background: var(--color-white);
   padding: 3.5rem 3rem;
   border-radius: 32px;
   text-align: center;
@@ -250,27 +235,27 @@
 
 .checkIcon {
   font-size: 4rem;
-  color: var(--success);
+  color: var(--color-success);
 }
 
 .successModal h2 {
   font-size: 2rem;
   font-weight: 800;
-  color: var(--text-dark);
+  color: var(--color-black);
   margin-bottom: 1rem;
   letter-spacing: -0.02em;
-  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-family: var(--font-plus);
 }
 
 .successModal p {
-  color: var(--text-gray);
+  color: var(--color-gray);
   line-height: 1.6;
   font-size: 1.2rem;
   margin-bottom: 1.5rem;
 }
 
 .closeModalBtn {
-  background: var(--brand-blue);
+  background: var(--color-blue);
   color: #fff;
   padding: 1rem 3rem;
   border-radius: 50px;
@@ -286,7 +271,7 @@
 .closeModalBtn:hover {
   transform: translateY(-2px);
   box-shadow: 0 15px 30px rgba(8, 41, 155, 0.25);
-  background: #1e40af;
+  background: var(--color-blue-dark);
 }
 
 /* --- RESPONSIVE --- */

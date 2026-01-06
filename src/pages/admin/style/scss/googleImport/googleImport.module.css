@@ -1,10 +1,9 @@
-/* Variables matching your theme */
 .importCard {
-  background: white;
+  background: var(--color-white);
   border-radius: 12px;
   padding: 2rem;
-  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
-  border: 1px solid #e5e7eb;
+  box-shadow: var(--shadow-card);
+  border: 1px solid var(--color-border);
   position: relative;
   overflow: hidden;
   max-width: 600px;
@@ -20,8 +19,8 @@
   width: 48px;
   height: 48px;
   border-radius: 10px;
-  background: #e0e7ff;
-  color: #08299B;
+  background: var(--bg-blue-tag);
+  color: var(--color-blue);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -30,13 +29,15 @@
 .importCard .header h3 {
   font-size: 1.25rem;
   font-weight: 700;
-  color: #1f2937;
+  color: var(--color-black);
   margin: 0;
+  font-family: var(--font-plus);
 }
 .importCard .header p {
-  color: #6b7280;
+  color: var(--color-gray);
   font-size: 0.9rem;
   margin: 0.25rem 0 0 0;
+  font-family: var(--font-inter);
 }
 
 .form {
@@ -62,33 +63,35 @@
   left: 1rem;
   top: 50%;
   transform: translateY(-50%);
-  color: #6b7280;
+  color: var(--icon-gray);
 }
 .form .inputWrapper input {
   width: 100%;
   padding: 0.8rem 1rem 0.8rem 2.8rem;
-  border: 1px solid #e5e7eb;
+  border: 1px solid var(--color-border);
   border-radius: 8px;
   font-size: 0.95rem;
   transition: all 0.2s;
+  font-family: var(--font-inter);
 }
 .form .inputWrapper input:focus {
-  border-color: #08299B;
+  border-color: var(--color-blue);
   outline: none;
   box-shadow: 0 0 0 3px rgba(8, 41, 155, 0.1);
 }
 .form .importBtn {
-  background: #08299B;
-  color: white;
+  background: var(--color-blue);
+  color: var(--color-white);
   border: none;
   padding: 0.9rem;
   border-radius: 8px;
   font-weight: 600;
   cursor: pointer;
   transition: background 0.2s;
+  font-family: var(--font-inter);
 }
 .form .importBtn:hover:not(:disabled) {
-  background: rgb(6.7484662577, 34.5858895706, 130.7515337423);
+  background: var(--color-blue-dark);
 }
 .form .importBtn:disabled {
   opacity: 0.7;
@@ -117,11 +120,13 @@
   font-size: 2rem;
   font-weight: 800;
   margin-bottom: 0.25rem;
+  font-family: var(--font-plus);
 }
 .resultBox .statsGrid .stat .label {
   font-size: 0.85rem;
   font-weight: 500;
   opacity: 0.9;
+  font-family: var(--font-inter);
 }
 .resultBox .statsGrid .stat .statIcon {
   position: absolute;
@@ -131,24 +136,25 @@
   opacity: 0.5;
 }
 .resultBox .statsGrid .stat.success {
-  background: rgb(181.828358209, 248.671641791, 226.5223880597);
-  color: rgb(11.9402985075, 138.0597014925, 96.2686567164);
-  border: 1px solid rgb(111.4179104478, 242.5820895522, 199.1194029851);
+  background: var(--color-success-bg);
+  color: var(--color-success);
+  border: 1px solid var(--color-success);
 }
 .resultBox .statsGrid .stat.skipped {
-  background: rgb(254.0354330709, 245.6437007874, 231.4645669291);
-  color: rgb(172.4330708661, 110.9507874016, 7.0669291339);
-  border: 1px solid rgb(251.0236220472, 216.4291338583, 157.9763779528);
+  background: #fff7ed;
+  color: var(--warning-color);
+  border: 1px solid var(--warning-color);
 }
 .resultBox .resultMsg {
-  color: #1f2937;
+  color: var(--color-black);
   margin-bottom: 1.5rem;
   font-weight: 500;
+  font-family: var(--font-inter);
 }
 .resultBox .resetBtn {
   background: transparent;
-  border: 1px solid #e5e7eb;
-  color: #1f2937;
+  border: 1px solid var(--color-border);
+  color: var(--color-black);
   padding: 0.6rem 1.2rem;
   border-radius: 6px;
   cursor: pointer;
@@ -157,10 +163,11 @@
   gap: 0.5rem;
   font-size: 0.9rem;
   transition: all 0.2s;
+  font-family: var(--font-inter);
 }
 .resultBox .resetBtn:hover {
   background: #f9fafb;
-  border-color: rgb(200.1739130435, 204.3913043478, 212.8260869565);
+  border-color: #cbd5e1;
 }
 
 .loaderOverlay {
@@ -179,28 +186,30 @@
 .loaderOverlay .spinner {
   width: 30px;
   height: 30px;
-  border: 3px solid #e0e7ff;
-  border-top: 3px solid #08299B;
+  border: 3px solid var(--bg-blue-tag);
+  border-top: 3px solid var(--color-blue);
   border-radius: 50%;
   animation: spin 1s linear infinite;
   margin-bottom: 0.8rem;
 }
 .loaderOverlay .loadingText {
-  color: #08299B;
+  color: var(--color-blue);
   font-weight: 700;
   font-size: 1.1rem;
   margin-top: 1rem;
   margin-bottom: 0.3rem;
   text-align: center;
   animation: pulse 1.5s ease-in-out infinite;
+  font-family: var(--font-plus);
 }
 .loaderOverlay .loadingSubtext {
-  color: #6b7280;
+  color: var(--color-gray);
   font-size: 0.85rem;
   font-weight: 500;
   opacity: 0.8;
   text-align: center;
   font-style: italic;
+  font-family: var(--font-inter);
 }
 
 @keyframes spin {

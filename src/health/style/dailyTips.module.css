@@ -2,7 +2,7 @@
   margin: 0 auto;
   padding: 2rem;
   max-width: 1200px;
-  background-color: #ffffff;
+ background-color: var(--color-white);
 }
 
 .headerRow {
@@ -10,7 +10,7 @@
   align-items: center;
   justify-content: space-between;
   padding-bottom: 1rem;
-  border-bottom: 1px solid #f1f5f9;
+  border-bottom: 1px solid var(--color-bg-contrast);
 }
 
 .titleGroup {
@@ -20,23 +20,23 @@
 }
 
 .iconWrapper {
-  color: #f59e0b;
+  color: var(--warning-color);
   font-size: 2rem;
   display: flex;
   align-items: center;
 }
 
 .heading {
-  font-family: 'Plus Jakarta Sans', sans-serif;
+font-family: var(--font-plus);
   font-size: clamp(1.4rem, 4vw, 1.8rem);
   font-weight: 800;
-  color: #1e293b;
+  color: var(--color-black);
   margin: 0;
   letter-spacing: -0.02em;
 }
 
 .viewAllLink {
-  color: #08299b;
+ color: var(--color-blue);
   background: none;
   border: none;
   font-weight: 700;
@@ -56,24 +56,24 @@
 /* --- CARD DESIGN --- */
 .featuredCard {
   display: flex;
-  background: #ffffff;
+background: var(--color-white);
   border-radius: 24px;
   overflow: hidden;
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.06);
-  border: 1px solid #e2e8f0;
+  box-shadow: var(--shadow-card);
+  border: 1px solid var(--color-border);
   min-height: 200px;
   transition: transform 0.3s ease;
 }
 
 .featuredCard:hover {
   transform: translateY(-4px);
-  box-shadow: 0 25px 50px rgba(8, 41, 155, 0.1);
+  box-shadow: var(--shadow-card-blue-hover);
   border-color: rgba(8, 41, 155, 0.2);
 }
 
 .imageWrapper {
   flex: 1;
-  background: #f8fafc;
+ background: var(--color-ash);
   position: relative;
   overflow: hidden;
   max-width: 45%;
@@ -96,8 +96,8 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  color: #cbd5e1;
-  background-color: #f1f5f9;
+ color: var(--icon-gray-light);
+  background-color: var(--color-bg-contrast);
 }
 
 .content {
@@ -111,21 +111,21 @@
 }
 
 .cardBadge {
-  background: #f0f9ff;
-  color: #08299b;
+  background: var(--bg-blue-tag);
+  color: var(--color-blue);
   font-size: 1rem;
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.05em;
   padding: 0.4rem 0.8rem;
   border-radius: 6px;
-  font-family: 'Inter', sans-serif;
+  font-family: var(--font-inter);
 }
 
 .title {
-  font-family: 'Plus Jakarta Sans', sans-serif;
+ font-family: var(--font-plus);
   font-size: clamp(1.8rem, 4vw, 2.2rem);
-  color: #1e293b;
+  color: var(--color-black);
   font-weight: 800;
   line-height: 1.1;
   margin: 0;
@@ -133,11 +133,11 @@
 }
 
 .readMore {
-  display: inline-flex;
+display: inline-flex;
   align-items: center;
   gap: 0.5rem;
-  background-color: #08299b;
-  color: #ffffff;
+  background-color: var(--color-blue);
+  color: var(--color-white);
   font-weight: 600;
   text-decoration: none;
   font-size: 1.1rem;
@@ -148,7 +148,7 @@
 }
 
 .readMore:hover {
-  background-color: #0a47d5;
+ background-color: var(--color-blue-light);
   padding-right: 2.2rem;
 }
 
