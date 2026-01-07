@@ -336,9 +336,9 @@ const FindHospital = () => {
                                 <Motion variants={fadeUp} className={style.noResults}>
                                     <div className={style.noResultsIcon}><FaHospital /></div>
                                     <p className={style.noResultsText}>{message}</p>
-                                    <p className={style.retryLink} onClick={fetchNearbyHospitals}>
-                                        Or browse verified facilities near you 📍
-                                    </p>
+                                        <button className={style.retryBtn} onClick={fetchNearbyHospitals}>
+                                            Browse verified facilities near you 📍
+                                        </button>
                                 </Motion>
                             ) : (
                                 !searching && (

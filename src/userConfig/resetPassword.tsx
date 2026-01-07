@@ -5,6 +5,7 @@ import { toast } from "react-toastify";
 import { BASE_URL } from "@/context/userContext";
 import styles from "../pages/profile/style/scss/forgotPassword/forgotPassword.module.scss"
 import SimpleHeader from "@/layouts/header/simpleHeader";
+import SimpleFooter from "@/layouts/footer/simpleFooter";
 
 const ResetPassword = () => {
     const [password, setPassword] = useState("");
@@ -47,9 +48,7 @@ const ResetPassword = () => {
                 </form>
             </div>
         </div>
-            <div className={styles.copyright}>
-                <p>&copy; {new Date().getFullYear()} HospitoFind Inc. All rights reserved.</p>
-            </div>
+            <SimpleFooter />
         </>
     );
 };

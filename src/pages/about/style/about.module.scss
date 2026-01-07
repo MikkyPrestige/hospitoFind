@@ -301,7 +301,7 @@
     .one { background: var(--color-bg); top: 0; }
     .two { background: var(--color-ash); top: 5%; }
     .three {
-      background: linear-gradient(180deg, var(--color-black) 0%, #0f172a 100%);
+      background: linear-gradient(180deg, var(--color-black) 0%, var(--color-bg-light) 100%);
       top: 15%;
     }
   }
@@ -333,7 +333,7 @@
 
     /* Change text color when over dark background */
     @media (min-width: 768px) {
-        .heading, .subHeading { color: white; text-shadow: 0 2px 10px rgba(0,0,0,1); }
+        .heading, .subHeading { color: var(--color-white); text-shadow: 0 2px 10px rgba(0,0,0,1); }
     }
 
     .stepsGrid {
@@ -377,19 +377,19 @@
             justify-content: center;
             font-weight: 800;
             font-size: 0.9rem;
-            border: 3px solid white;
+            border: 3px solid var(--color-white);
           }
         }
 
         .stepHead {
-          font-size: 1.2rem;
+          font-size: 1.3rem;
           font-weight: 700;
           color: var(--color-black);
           margin-bottom: 0.5rem;
         }
 
         .stepText {
-          font-size: 0.95rem;
+          font-size: 1.2rem;
           color: var(--color-gray);
           line-height: 1.5;
         }
@@ -431,7 +431,7 @@
     margin: 0 auto;
 
     .review_box {
-      background: #fff;
+      background: var(--color-white);
       padding: 2rem;
       border-radius: 20px;
       box-shadow: var(--shadow-soft);

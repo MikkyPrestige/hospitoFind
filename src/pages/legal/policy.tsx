@@ -88,7 +88,6 @@ const Policy = () => {
                     </footer>
                 </Motion>
             </main>
-
         </>
     );
 };

@@ -16,7 +16,7 @@ const LogIn = lazy(() => import("@/userConfig/loginForm"));
 const SignUp = lazy(() => import("@/userConfig/signupForm"));
 const Callback = lazy(() => import("@/config/authCallback"));
 const Dashboard = lazy(() => import("@/pages/profile/dashboard"));
-const HospitalInfo = lazy(() => import("@/hospitalsConfig/info"));
+// const HospitalInfo = lazy(() => import("@/hospitalsConfig/info"));
 const Directory = lazy(() => import("@/pages/explore/explorePage"));
 const CountryDetailPage = lazy(() => import("@/pages/explore/countryDetails"));
 const ShareHospitalList = lazy(() => import("@/hospitalsConfig/shareHospitalList"));
@@ -63,24 +63,27 @@ export const router = createBrowserRouter([
                 children: [
                     { index: true, element: Loadable(Home)({}) },
                     { path: "about", element: Loadable(About)({}) },
-                    { path: "directory", element: Loadable(Directory)({}) },
-                    { path: "country/:country", element: Loadable(CountryDetailPage)({}) },
                     { path: "health-news", element: Loadable(NewsData)({}) },
                     { path: "health-tips", element: Loadable(HealthTips)({}) },
                     { path: "disease-outbreaks", element: Loadable(Outbreaks)({}) },
                     { path: "policy", element: Loadable(Policy)({}) },
                     { path: "terms", element: Loadable(Terms)({}) },
                     { path: "faq", element: Loadable(FAQPage)({}) },
+                    { path: "directory", element: Loadable(Directory)({}) },
+                    { path: "country/:country", element: Loadable(CountryDetailPage)({}) },
                     { path: "hospital/:id", element: Loadable(HospitalDetails)({}) },
                     { path: "hospital/:country/:city/:slug", element: Loadable(HospitalDetails)({}) },
                     { path: "hospitals/share/:linkId", element: Loadable(ShareHospitalList)({}) },
-                    { path: "hospitals/share/:linkId/:name", element: Loadable(HospitalInfo)({}) },
+                    { path: "hospitals/share/:linkId/:name", element: Loadable(HospitalDetails)({}) },
+                    // { path: "hospitals/share/:linkId/:name", element: Loadable(HospitalInfo)({}) },
+                    { path: "unauthorized", element: Loadable(Unauthorized)({}) },
                     {
                         path: "find-hospital",
                         children: [
                             { index: true, element: Loadable(FindHospital)({}) },
-                            { path: ":name", element: Loadable(HospitalInfo)({}) },
-                            // { path: ":country/:city/:slug", element: Loadable(HospitalDetails)({}) }
+                            { path: ":country/:city/:slug", element: Loadable(HospitalDetails)({})},
+                            { path: ":name", element: Loadable(HospitalDetails)({}) },
+                            // { path: ":name", element: Loadable(HospitalInfo)({}) },
                         ],
                     },
                 ]
@@ -96,7 +99,6 @@ export const router = createBrowserRouter([
             { path: "callback", element: Loadable(Callback)({}) },
             { path: "forgot-password", element: Loadable(ForgotPassword)({}) },
             { path: "reset-password/:resetToken", element: Loadable(ResetPassword)({}) },
-            { path: "unauthorized", element: Loadable(Unauthorized)({}) },
 
             // ============================================================
             //  PROTECTED ROUTES
@@ -113,8 +115,8 @@ export const router = createBrowserRouter([
                                         path: "dashboard",
                                         children: [
                                             { index: true, element: Loadable(Dashboard)({}) },
-                                            // {path: ":country/:city/:slug", element: Loadable(HospitalDetails)({})}
-                                            { path: ":name", element: Loadable(HospitalInfo)({}) },
+                                            { path: ":name", element: Loadable(HospitalDetails)({}) },
+                                            // { path: ":name", element: Loadable(HospitalInfo)({}) },
                                         ],
                                     },
                                 ],

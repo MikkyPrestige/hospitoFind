@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import { useForgotPassword } from "@/hooks/user/forgotPassword";
 import SimpleHeader from "@/layouts/header/simpleHeader";
+import SimpleFooter from "@/layouts/footer/simpleFooter";
 import styles from "./style/scss/forgotPassword/forgotPassword.module.scss";
 
 const ForgotPassword = () => {
@@ -45,9 +46,7 @@ const ForgotPassword = () => {
                     </div>
                 </div>
             </div>
-            <div className={styles.copyright}>
-                <p>&copy; {new Date().getFullYear()} HospitoFind Inc. All rights reserved.</p>
-            </div>
+            <SimpleFooter/>
         </>
     );
 };

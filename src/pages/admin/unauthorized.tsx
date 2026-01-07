@@ -1,15 +1,12 @@
 import { useNavigate } from "react-router-dom";
 import { ShieldAlert, ArrowLeft, Home } from "lucide-react";
 import styles from "./style/unauthorized.module.css";
-import style from "../profile/style/scss/forgotPassword/forgotPassword.module.scss"
-import SimpleHeader from "@/layouts/header/simpleHeader";
 
 const Unauthorized = () => {
     const navigate = useNavigate();
 
     return (
         <>
-            <SimpleHeader />
             <div className={styles.container}>
                 <div className={styles.contentCard}>
                     <div className={styles.iconWrapper}>
@@ -34,9 +31,6 @@ const Unauthorized = () => {
                         <p>Think this is a mistake? Contact your system administrator.</p>
                     </div>
                 </div>
-            </div>
-            <div className={style.copyright}>
-                <p>&copy; {new Date().getFullYear()} HospitoFind Inc. All rights reserved.</p>
             </div>
         </>
     );

@@ -241,7 +241,7 @@
   transition: all 0.2s;
 }
 .actionBtns button:hover {
-  background: white;
+  background: var(--color-white);
 }
 .actionBtns .roleBtn:hover {
   color: var(--color-indigo);

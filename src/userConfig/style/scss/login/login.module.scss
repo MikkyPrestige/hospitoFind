@@ -417,25 +417,6 @@
   }
 }
 
-  .copyright {
-    margin-top: 2rem;
-    text-align: center;
-    width: 100%;
-
-    @include respond(laptop) {
-      margin-top: auto;
-      padding: 1rem;
-    }
-
-    p {
-      font-size: 1.2rem;
-      color: var(--color-gray);
-      font-weight: 500;
-      opacity: 0.8;
-      font-family: var(--font-inter);
-    }
-  }
-
 @keyframes fadeUp {
   from { opacity: 0; transform: translateY(20px); }
   to { opacity: 1; transform: translateY(0); }

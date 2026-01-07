@@ -5,8 +5,8 @@ import axios from "axios";
 import { motion } from "framer-motion";
 import { BASE_URL, useAuthContext } from "@/context/userContext";
 import Logo from "@/assets/images/logo.svg";
-import style from "./style/scss/forgotPassword/forgotPassword.module.scss"
 import SimpleHeader from "@/layouts/header/simpleHeader";
+import SimpleFooter from "@/layouts/footer/simpleFooter";
 
 const VerifyEmail = () => {
     const { dispatch } = useAuthContext();
@@ -99,9 +99,7 @@ const VerifyEmail = () => {
                     )}
                 </motion.div>
             </div>
-            <div className={style.copyright}>
-                <p>&copy; {new Date().getFullYear()} HospitoFind Inc. All rights reserved.</p>
-            </div>
+            <SimpleFooter />
         </>
     );
 };
