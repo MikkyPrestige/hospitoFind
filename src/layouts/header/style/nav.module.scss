@@ -260,7 +260,7 @@
 .drawerNav {
   display: flex;
   flex-direction: column;
-  height: 40vh;
+  height: 50vh;
 }
 
 .drawerLinks {
@@ -269,7 +269,7 @@
   margin: 0;
   display: flex;
   flex-direction: column;
-  gap: 1.5rem;
+  gap: 3rem;
 
   li a {
     font-family: var(--font-plus);
@@ -331,7 +331,7 @@
 .drawerUser {
     display: flex;
     flex-direction: column;
-    gap: 1.5rem;
+    gap: 2rem;
 }
 
 .drawerUserInfo {

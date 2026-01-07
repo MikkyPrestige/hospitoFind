@@ -22,18 +22,26 @@ const ShareButton = ({ searchParams }: SearchProps) => {
   }, [shareableLink]);
 
   const handleShare = async () => {
+    // 1. Validation
     const { city, state, address } = searchParams;
     if (!city && !state && !address) {
-      setToast({ message: '⚠️ Missing search parameters', type: 'error' });
+      setToast({ message: '⚠️ Select a location first', type: 'error' });
       return;
     }
 
     setGenerating(true);
+
     try {
-      const res = await shareHospital(searchParams);
-      setShareableLink(res);
-      setToast({ message: '✅ Link generated successfully!', type: 'success' });
-    } catch {
+      const linkId = await shareHospital(searchParams);
+
+      if (typeof linkId !== 'string') {
+        throw new Error("Invalid ID received");
+      }
+
+      setShareableLink(linkId);
+      setToast({ message: '✅ Link generated!', type: 'success' });
+
+    } catch (error) {
       setToast({ message: '❌ Link generation failed', type: 'error' });
     } finally {
       setGenerating(false);

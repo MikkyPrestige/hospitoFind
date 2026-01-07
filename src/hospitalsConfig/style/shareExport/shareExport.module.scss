@@ -1,4 +1,5 @@
 .cta {
+  position: relative;
   display: flex;
   flex-direction: column;
   gap: 1.2rem;
@@ -28,6 +29,7 @@
   align-items: center;
   justify-content: center;
   font-family: var(--font-inter);
+  position: relative;
 
   &:disabled {
     opacity: 0.7;
@@ -76,50 +78,70 @@
 }
 
 .btnLink {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  margin: 0 auto;
   width: 100%;
   max-width: 320px;
+  z-index: 50;
   display: flex;
   justify-content: center;
-  margin-top: 0.5rem;
-  animation: fadeIn 0.4s ease forwards;
+  animation: fadeIn 0.3s ease forwards;
+  filter: drop-shadow(0 10px 15px rgba(0,0,0,0.15));
 
   .linkWrapper {
     display: flex;
     align-items: center;
-    background: var(--color-ash);
-    border: 1px dashed var(--color-blue);
+   background: var(--color-white);;
+    border: 1px solid var(--color-border);
     border-radius: 10px;
     padding: 2px;
     width: 100%;
+
+    &::before {
+      content: "";
+      position: absolute;
+      top: -6px;
+      left: 50%;
+      transform: translateX(-50%) rotate(45deg);
+      width: 12px;
+      height: 12px;
+     background: var(--color-white);
+      border-left: 1px solid var(--color-border);
+      border-top: 1px solid var(--color-border);
+    }
   }
 
   .link {
     flex: 1;
     background: transparent;
     border: none;
-    color: var(--color-blue);
+   color: var(--color-black);
     padding: 0.8rem 1rem;
-    font-size: 0.9rem;
+    font-size: 1rem;
     font-weight: 700;
     cursor: pointer;
     display: flex;
     align-items: center;
     justify-content: space-between;
     min-width: 0;
-    font-family: var(--font-inter);
+    font-family: monospace;
 
     &:hover {
-      color: var(--color-blue-dark);
+      color: var(--color-blue);
     }
 
     .copyIcon {
       font-size: 1.2rem;
       margin-left: 0.5rem;
+      color: var(--color-blue);
     }
   }
 
   .clearBtn {
-    background: var(--color-border);
+    background: var(--color-ash);
     border: none;
     color: var(--icon-gray);
     width: 2.5rem;
@@ -172,6 +194,6 @@
 }
 
 @keyframes fadeIn {
-  from { opacity: 0; transform: translateY(5px); }
+  from { opacity: 0; transform: translateY(-5px); }
   to { opacity: 1; transform: translateY(0); }
 }

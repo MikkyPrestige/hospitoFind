@@ -77,21 +77,34 @@ export async function findHospitals(query: string) {
 // }
 
 // share hospital
-export async function shareHospital(searchParams: any) {
+export const shareHospital = async (searchParams: any) => {
   try {
-    const response = await axios.post(`${BASE_URL}/hospitals/share`, {
-      searchParams: {
-        address: searchParams.address,
-        city: searchParams.city,
-        state: searchParams.state
-      }
-    });
-    const shareLink = response.data.shareableLink;
-    return shareLink;
+    const response = await axios.post(`${BASE_URL}/hospitals/share`, { searchParams });
+
+    if (response.data && response.data.linkId) {
+        return response.data.linkId;
+    }
+
+    return response.data;
   } catch (error) {
-    throw error
+    throw error;
   }
-}
+};
+// export async function shareHospital(searchParams: any) {
+//   try {
+//     const response = await axios.post(`${BASE_URL}/hospitals/share`, {
+//       searchParams: {
+//         address: searchParams.address,
+//         city: searchParams.city,
+//         state: searchParams.state
+//       }
+//     });
+//     const shareLink = response.data.shareableLink;
+//     return shareLink;
+//   } catch (error) {
+//     throw error
+//   }
+// }
 
 // export hospital in csv download format
 export async function exportHospital(searchParams: any) {

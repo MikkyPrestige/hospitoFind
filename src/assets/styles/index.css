@@ -36,6 +36,7 @@
   --color-gray: #64748b;
   --icon-gray: #94a3b8;
   --text-slate: #475569;
+  --color-text-secondary: #64748b;
 
   /* Borders */
   --color-border: #e2e8f0;
@@ -74,9 +75,10 @@
 
   /* Text: White/Off-White */
   --color-black: #f8fafc;
-  --color-gray: #94a3b8;
-  --icon-gray: #64748b;
-  --text-slate: #cbd5e1;
+  --color-gray: #cbd5e1;
+  --icon-gray: #cbd5e1;
+  --text-slate: #e2e8f0;
+  --color-text-secondary: #cbd5e1;
 
   /* Borders: Darker & Subtle */
   --color-border: #334155;
@@ -104,12 +106,12 @@
   --shadow-soft: none;
 }
 
-[data-theme="dark"] .goog-te-gadget-simple {
-    color: white !important;
+[data-theme='dark'] .goog-te-gadget-simple {
+  color: white !important;
 }
 
-[data-theme="dark"] .goog-te-gadget-simple span {
-    color: white !important;
+[data-theme='dark'] .goog-te-gadget-simple span {
+  color: white !important;
 }
 
 *,
@@ -121,13 +123,13 @@
 }
 
 html {
-  font-size: 45%;
+  font-size: 55%;
   /* 1rem = 7.2px; 7.2px/16px = 45% */
 }
 
 @media (min-width: 30.0625em) {
   html {
-    font-size: 50%;
+    font-size: 55%;
   }
 } /* 1rem = 8px */
 @media (min-width: 37.5625em) {
@@ -281,19 +283,25 @@ input:disabled:focus {
 }
 
 .goog-te-banner-frame.skiptranslate {
-    display: none !important;
+  display: none !important;
 }
 
 .goog-te-gadget-icon {
-    display: none !important;
+  display: none !important;
 }
 
 .goog-te-gadget-simple {
-    background-color: transparent !important;
-    border: none !important;
-    padding: 0 !important;
-    font-family: 'Inter', sans-serif !important;
-    font-size: 0.9rem !important;
+  background-color: transparent !important;
+  border: none !important;
+  padding: 0 !important;
+  font-family: 'Inter', sans-serif !important;
+  font-size: 0.9rem !important;
+}
+
+div[id^="sidebar-tip"],
+.react-tooltip {
+    z-index: 9999 !important;
+    opacity: 1 !important;
 }
 
 /* --- FIX INPUT ZOOM ON MOBILE --- */
@@ -302,6 +310,18 @@ input:disabled:focus {
   select,
   textarea {
     font-size: 16px !important;
+  }
+
+  p,
+  li,
+  .small-text,
+  span {
+    line-height: 1.6;
+    font-size: max(1.5rem, 16px);
+  }
+
+  h1, h2, h3, h4 {
+      line-height: 1.3;
   }
 }
 

@@ -4,11 +4,21 @@ import { FiSearch, FiMapPin, FiGlobe } from "react-icons/fi";
 import CountryCard from "@/components/countryCard";
 import { Hospital } from "@/services/hospital";
 import Motion from "@/components/motion";
+import { BASE_URL } from "@/context/userContext";
 import { fadeUp, zoomIn, sectionReveal } from "@/hooks/animations";
 import MapPin from "../../assets/images/mapPin.png"
 import style from "./style/explore.module.css";
 import { SEOHelmet } from "@/components/utils/seoUtils";
 import AnimatedLoader from "@/components/utils/animatedLoader";
+import { normalizeName } from "@/components/utils/helper"
+import { countries as countriesData } from "countries-list";
+import * as iso from "i18n-iso-countries";
+import enLocale from "i18n-iso-countries/langs/en.json";
+
+// Register locale safely
+// @ts-ignore
+const isoLib = iso.default ? iso.default : iso;
+isoLib.registerLocale(enLocale);
 
 interface CountryData {
   country: string;
@@ -16,46 +26,9 @@ interface CountryData {
   hospitals: Hospital[];
 }
 
-const COUNTRYTOCONTINENT: Record<string, string> = {
-  // AFRICA
-  "Nigeria": "Africa",
-  "Ghana": "Africa",
-  "Kenya": "Africa",
-  "South Africa": "Africa",
-  "Uganda": "Africa",
-  "Egypt": "Africa",
-  "Morocco": "Africa",
-  "Angola": "Africa",
-  "Botswana": "Africa",
-  "Eritrea": "Africa",
-  "Niger": "Africa",
-  // AMERICAS
-  "United States": "Americas",
-  "Canada": "Americas",
-  // ASIA
-  "South Korea": "Asia",
-  "China": "Asia",
-  "Japan": "Asia",
-  "India": "Asia",
-  "Saudi Arabia": "Asia",
-  "Singapore": "Asia",
-  "Thailand": "Asia",
-  "UAE": "Asia",
-  // EUROPE
-  "United Kingdom": "Europe",
-  "Germany": "Europe",
-  "Sweden": "Europe",
-  "Belgium": "Europe",
-  "Spain": "Europe",
-  "France": "Europe",
-  "Italy": "Europe",
-  "Malta": "Europe",
-  "Netherlands": "Europe",
-  "Switzerland": "Europe",
-  "Denmark": "Europe",
-  // OCEANIA
-  "Australia": "Oceania",
-  "New Zealand": "Oceania",
+interface CountryListEntry {
+  name: string;
+  continent: string;
 }
 
 const CONTINENTS = ["All", "Africa", "Americas", "Asia", "Europe", "Oceania"];
@@ -69,7 +42,7 @@ const ExplorePage = () => {
   useEffect(() => {
     const fetchCountries = async () => {
       try {
-        const res = await fetch(`${import.meta.env.VITE_BASE_URL}/hospitals/explore`);
+        const res = await fetch(`${BASE_URL}/hospitals/explore`);
         if (!res.ok) throw new Error("Failed to fetch");
         const data = await res.json();
         setCountries(data);
@@ -82,17 +55,63 @@ const ExplorePage = () => {
     fetchCountries();
   }, []);
 
+  const getContinent = (countryName: string) => {
+    const cleanName = countryName.trim();
+
+    if (cleanName === "South Korea") return "Asia";
+    if (cleanName === "UAE") return "Asia";
+
+    const code = isoLib.getAlpha2Code(cleanName, "en");
+
+    if (!code) return "Other";
+
+    // @ts-ignore
+    const data = countriesData[code] as CountryListEntry;
+    const continentCode = data?.continent;
+
+    switch (continentCode) {
+      case "AF": return "Africa";
+      case "NA":
+      case "SA": return "Americas";
+      case "AS": return "Asia";
+      case "EU": return "Europe";
+      case "OC": return "Oceania";
+      default: return "Other";
+    }
+  };
+
+  const unifiedCountries = useMemo(() => {
+    const map = new Map<string, CountryData>();
+
+    countries.forEach((item) => {
+      const key = normalizeName(item.country);
+
+      if (map.has(key)) {
+        const existing = map.get(key)!;
+        existing.hospitals = [...existing.hospitals, ...item.hospitals];
+
+        if (item.country.match(/[^\w\s-]/)) {
+          existing.country = item.country;
+        }
+      } else {
+        map.set(key, { ...item, continent: getContinent(item.country) });
+      }
+    });
+
+    return Array.from(map.values());
+  }, [countries]);
+
   const filtered = useMemo(() => {
-    return countries.filter((c) => {
+    return unifiedCountries.filter((c) => {
       const countryName = c.country.trim();
       const matchesSearch = countryName.toLowerCase().includes(query.trim().toLowerCase());
 
-      const continent = c.continent || COUNTRYTOCONTINENT[countryName] || "Other";
+      const continent = c.continent || "Other";
       const matchesContinent = selectedContinent === "All" || continent === selectedContinent;
 
       return matchesSearch && matchesContinent;
     });
-  }, [countries, query, selectedContinent]);
+  }, [unifiedCountries, query, selectedContinent]);
 
   return (
     <>

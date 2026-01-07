@@ -100,7 +100,6 @@ const CountryDetailPage: React.FC = () => {
         schemaData={hospitals}
         autoBreadcrumbs={true}
       />
-
       <div className={style.layoutContainer}>
         <main className={style.page}>
           <header className={style.header}>

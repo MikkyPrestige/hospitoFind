@@ -34,4 +34,12 @@ const getUniqueCities = (hospitals: Hospital[]) => {
     });
 };
 
-export { toSlug, standardizeText, getUniqueCities };
+const normalizeName = (name: string) => {
+  return name
+    .toLowerCase()
+    .normalize("NFD")
+    .replace(/[\u0300-\u036f]/g, "")
+    .trim();
+};
+
+export { toSlug, standardizeText, getUniqueCities, normalizeName };

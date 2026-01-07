@@ -6,8 +6,8 @@ import axios from "axios";
 import { toast } from "react-toastify";
 import { BASE_URL } from "@/context/userContext";
 import SimpleHeader from "@/layouts/header/simpleHeader";
+import SimpleFooter from "@/layouts/footer/simpleFooter";
 import Logo from "@/assets/images/logo.svg";
-import style from "./style/scss/forgotPassword/forgotPassword.module.scss"
 
 const EmailSent = () => {
     const location = useLocation();
@@ -95,9 +95,7 @@ const EmailSent = () => {
                 </Link>
             </motion.div>
         </div>
-            <div className={style.copyright}>
-                <p>&copy; {new Date().getFullYear()} HospitoFind Inc. All rights reserved.</p>
-            </div>
+            <SimpleFooter />
         </>
     );
 };

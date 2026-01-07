@@ -1,12 +1,12 @@
 .card {
-    width: 100%;
+  width: 100%;
   max-width: 230px;
-  background: linear-gradient(180deg, rgba(255, 255, 255, 0.95), var(--color-white));
+  background: var(--color-bg-contrast);
   border-radius: 18px;
   padding: 1.8rem 1rem;
   text-align: center;
-  box-shadow: var(--shadow-card-blue);
- border: var(--border-blue-faint);
+  box-shadow: var(--shadow-card);
+  border: 1px solid var(--color-border);
   transition: all 0.25s ease;
   cursor: pointer;
   backdrop-filter: blur(8px);
@@ -14,32 +14,32 @@
 
 .card:hover {
   transform: translateY(-6px);
- box-shadow: var(--shadow-card-blue-hover);
-  border-color: rgba(14, 61, 183, 0.25);
+  box-shadow: var(--shadow-card-blue-hover);
+  border-color: var(--color-blue);
 }
 
 .flagWrap {
   display: flex;
   justify-content: center;
   align-items: center;
-  background: var(--bg-blue-faint);
+  background: var(--bg-blue-tag);
   width: 3.4rem;
   height: 3.4rem;
   border-radius: 50%;
   margin: 0 auto 1rem;
- box-shadow: var(--shadow-card-blue);
+  box-shadow: var(--shadow-card-blue);
 }
 
 .name {
   font-size: 1.05rem;
   font-weight: 600;
-  color: var(--color-blue);
+ color: var(--color-black);
   letter-spacing: 0.2px;
   margin-bottom: 0.3rem;
 }
 
 .count {
   font-size: 0.9rem;
- color: var(--text-light);
+ color: var(--color-gray);
   margin: 0;
 }

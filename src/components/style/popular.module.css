@@ -65,7 +65,6 @@
   align-items: center;
   justify-content: flex-start;
   width: 100%;
-  max-width: 24rem;
 }
 
 .card:hover {
@@ -126,7 +125,7 @@
   margin-top: auto;
   background-color: var(--primary-light);
   color: var(--color-blue);
-  font-size: 0.95rem;
+  font-size: 1rem;
   font-weight: 600;
   border-radius: 0.75rem;
   cursor: pointer;
@@ -136,18 +135,60 @@
 }
 
 .btn:hover {
-background-color: var(--color-blue);
+  background-color: var(--color-blue);
   color: var(--color-white);
 }
 
 .error {
-color: var(--color-error);
+  color: var(--color-error);
   font-size: 1rem;
   font-weight: 500;
   margin-top: 2rem;
   padding: 1rem;
   background: #fee2e2;
   border-radius: 8px;
+}
+
+/* --- SHARE PAGE LAYOUT --- */
+
+.sharePage {
+ width: 100%;
+  min-height: 80vh;
+  padding: 4rem 2rem;
+  background-color: var(--color-bg);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.shareContent {
+display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 2rem;
+  width: 100%;
+  max-width: 1200px;
+  list-style: none;
+  padding: 5rem 1rem 1rem;
+}
+
+.img {
+    height: 200px;
+    width: 100%;
+    overflow: hidden;
+    border-radius: 1.2rem;
+    margin-bottom: 1rem;
+}
+
+/* Mobile Responsiveness */
+@media (max-width: 768px) {
+  .sharePage {
+    padding: 2rem 1rem;
+  }
+
+  .shareContent {
+    gap: 1.5rem;
+    grid-template-columns: 1fr;
+  }
 }
 
 @media (min-width: 48em) {
@@ -158,20 +199,11 @@ color: var(--color-error);
   .subtitle {
     font-size: 1.1rem;
   }
-
-  .card {
-    width: 45%;
-    max-width: none;
-  }
 }
 
 /* Desktop */
 @media (min-width: 75em) {
   .heading {
     font-size: 2.25rem;
-  }
-
-  .card {
-    width: 30%;
   }
 }

@@ -1,15 +1,12 @@
 import { useState, useEffect } from "react";
 import { NavLink, useParams } from "react-router-dom";
 import axios from "axios";
-import Header from "@/layouts/header/nav";
-import Footer from "@/layouts/footer/footer";
 import { Hospital } from "@/services/hospital";
 import HospitalPic from "@/assets/images/hospital-logo.jpg";
 import { Avatar } from "@/components/avatar";
 import style from "../components/style/popular.module.css";
 import AnimatedLoader from "../components/utils/animatedLoader";
-
-const BASE_URL = import.meta.env.VITE_BASE_URL;
+import { BASE_URL } from "../context/userContext";
 
 const ShareHospitalList = () => {
   const { linkId } = useParams<{ linkId: string }>();
@@ -35,7 +32,6 @@ const ShareHospitalList = () => {
 
   return (
     <>
-      <Header />
       <div className={style.sharePage}>
         {error && <div>{error}</div>}
         {loading ? (
@@ -62,7 +58,6 @@ const ShareHospitalList = () => {
           </div>
         )}
       </div>
-      <Footer />
     </>
   );
 }

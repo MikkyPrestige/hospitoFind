@@ -1,8 +1,6 @@
 import { useEffect, useState } from "react";
 import Motion from "@/components/motion";
 import { fadeUp, sectionReveal } from "@/hooks/animations";
-import Header from "@/layouts/header/nav";
-import Footer from "@/layouts/footer/footer";
 import AnimatedLoader from "@/components/utils/animatedLoader";
 import style from "./style/newsData.module.css";
 import { BASE_URL } from "@/context/userContext";
@@ -55,7 +53,6 @@ const NewsData = () => {
 
     return (
         <>
-            <Header />
             <section className={style.section}>
                 <Motion variants={sectionReveal} className={style.pageHeader}>
                     <div className={style.titleGroup}>
@@ -136,7 +133,6 @@ const NewsData = () => {
                     )}
                 </div>
             </section>
-            <Footer />
         </>
     );
 };

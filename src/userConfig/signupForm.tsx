@@ -19,6 +19,7 @@ import usePageTransition from "@/hooks/pageTransition";
 import { User as UserType } from "@/services/user";
 import { Button } from "@/components/button";
 import SimpleHeader from "@/layouts/header/simpleHeader";
+import SimpleFooter from "@/layouts/footer/simpleFooter";
 import { SEOHelmet } from "@/components/utils/seoUtils";
 import style from "./style/scss/signup/signup.module.scss";
 import Logo from "@/assets/images/logo.svg"
@@ -281,9 +282,7 @@ const navigate = useNavigate();
           </div>
         </section>
       </main>
-      <div className={style.copyright}>
-        <p>&copy; {new Date().getFullYear()} HospitoFind Inc. All rights reserved.</p>
-      </div>
+      <SimpleFooter />
     </>
   );
 };

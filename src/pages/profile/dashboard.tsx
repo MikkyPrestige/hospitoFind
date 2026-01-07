@@ -91,11 +91,11 @@ const Dashboard = () => {
   const [hasResults, setHasResults] = useState<boolean>(false);
 
   const menuItems = useMemo(() => [
-    { id: "find-hospital", label: "Find Hospital", icon: <MdFindInPage />, color: "#08299B" },
-    { id: "add-hospital", label: "Add Hospital", icon: <BsBuildingAdd />, color: "#08299B" },
-    { id: "my-submissions", label: "My Submissions", icon: <FiList />, color: "#08299B" },
-    { id: "settings", label: "Settings", icon: <FiSettings />, color: "#08299B" },
-    { id: "logout", label: "Log Out", icon: <IoIosLogOut />, color: "#FF033E" },
+    { id: "find-hospital", label: "Find Hospital", icon: <MdFindInPage /> },
+    { id: "add-hospital", label: "Add Hospital", icon: <BsBuildingAdd /> },
+    { id: "my-submissions", label: "My Submissions", icon: <FiList /> },
+    { id: "settings", label: "Settings", icon: <FiSettings /> },
+    { id: "logout", label: "Log Out", icon: <IoIosLogOut className={style.logoutItem} /> },
   ], []);
 
   useEffect(() => {
@@ -179,7 +179,7 @@ const Dashboard = () => {
                 data-tooltip-id="sidebar-tip"
                 data-tooltip-content={!sidebarExpanded ? item.label : ""}
               >
-                <span className={style.icon} style={{ color: item.color }}>{item.icon}</span>
+                <span className={style.icon}>{item.icon}</span>
                 {sidebarExpanded && <span className={style.label}>{item.label}</span>}
               </li>
             ))}
