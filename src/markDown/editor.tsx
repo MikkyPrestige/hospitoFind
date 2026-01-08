@@ -1,15 +1,15 @@
 import { useState } from 'react';
-import useAxiosPrivate from "@/hooks/user/useAxiosPrivate";
+import useAxiosPrivate from "@/hooks/useAxiosPrivate";
 import ReactMde from 'react-mde';
 import ReactMarkdown from 'react-markdown';
 import 'react-mde/lib/styles/css/react-mde-all.css';
 import { Hospital } from '@/services/hospital';
-import { Button } from '@/components/button';
-import style from './style/editor.module.css';
+import { Button } from '@/components/ui/Button';
+import style from './styles/editor.module.css';
 import { MdOutlineRestartAlt, MdErrorOutline, MdCheckCircleOutline } from 'react-icons/md';
-import { useAuthContext } from "@/context/userContext";
+import { useAuthContext } from "@/context/UserProvider";
 import { motion, AnimatePresence } from 'framer-motion';
-import { zoomIn } from '@/hooks/animations';
+import { zoomIn } from '@/utils/animations';
 
 type HospitalSubmission = Omit<Hospital, '_id' | 'slug' | 'longitude' | 'latitude'>;
 
@@ -146,7 +146,7 @@ const Editor = () => {
           minEditorHeight={450}
         />
 
-       {error && (
+        {error && (
           <motion.div initial={{ opacity: 0, y: -10 }} animate={{ opacity: 1, y: 0 }} className={style.errorBox}>
             <MdErrorOutline size={20} /> {error}
           </motion.div>

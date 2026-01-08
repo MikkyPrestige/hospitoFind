@@ -1,13 +1,13 @@
 import { useState, useEffect, useCallback } from "react";
 import { Link } from "react-router-dom";
-import useAxiosPrivate from "@/hooks/user/useAxiosPrivate";
+import useAxiosPrivate from "@/hooks/useAxiosPrivate";
 import {
     FiActivity, FiClock, FiCheckCircle, FiUsers, FiArrowRight, FiUserCheck, FiDatabase, FiLogOut
 } from "react-icons/fi";
-import styles from "./style/scss/adminDashboard/adminDashboard.module.scss";
-import GoogleImport from "./googleImport";
-import ThemeToggle from "@/components/themeToggle"
-import useLogout from "@/hooks/user/logout";
+import styles from "./styles/scss/adminDashboard/adminDashboard.module.scss";
+import GoogleImport from "./GoogleImport";
+import ThemeToggle from "@/components/ui/ThemeToggle"
+import useLogout from "@/hooks/useLogout";
 
 interface DashboardStats {
     totalHospitals: number;
@@ -107,7 +107,7 @@ const AdminDashboard = () => {
                 </div>
             </div>
 
-            {/* --- MANAGEMENT SYSTEMS --- */}
+            {/* --- Nav --- */}
             <section className={styles.adminNav}>
                 <div className={styles.sectionHeader}>
                     <h2>Management Systems</h2>

@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
-import useAxiosPrivate from "@/hooks/user/useAxiosPrivate";
+import useAxiosPrivate from "@/hooks/useAxiosPrivate";
 import { FiAward, FiCheckCircle, FiPlusSquare } from "react-icons/fi";
-import styles from "./style/scss/accountStats/accountStats.module.scss";
+import styles from "./styles/scss/accountStats/accountStats.module.scss";
 
 const AccountStats = () => {
     const [stats, setStats] = useState<any>(null);

@@ -7,11 +7,10 @@ import {
     FiGlobe
 } from "react-icons/fi";
 import { MdOutlineCleaningServices } from "react-icons/md";
-import useAxiosPrivate from "@/hooks/user/useAxiosPrivate";
+import useAxiosPrivate from "@/hooks/useAxiosPrivate";
 import { toast } from "react-toastify";
-import styles from "./style//scss/googleImport/googleImport.module.scss";
+import styles from "./styles/scss/googleImport/googleImport.module.scss";
 
-// Interface for the API response
 interface ImportResult {
     message: string;
     imported: number;
@@ -25,11 +24,10 @@ const GoogleImport = ({ onSuccess }: { onSuccess?: () => void }) => {
     const [loadingText, setLoadingText] = useState("Connecting to Google...");
     const [result, setResult] = useState<ImportResult | null>(null);
 
-    // Refs to manage timers prevents memory leaks if component unmounts
+    // manage timers prevents memory leaks if component unmounts
     const timersRef = useRef<NodeJS.Timeout[]>([]);
     const axiosPrivate = useAxiosPrivate();
 
-    // Cleanup timers on unmount
     useEffect(() => {
         return () => {
             timersRef.current.forEach(clearTimeout);
@@ -39,7 +37,6 @@ const GoogleImport = ({ onSuccess }: { onSuccess?: () => void }) => {
     const handleImport = async (e: React.FormEvent) => {
         e.preventDefault();
 
-        // Validation
         if (!city || !country) {
             toast.error("Please enter both City and Country");
             return;
@@ -49,8 +46,6 @@ const GoogleImport = ({ onSuccess }: { onSuccess?: () => void }) => {
         setResult(null);
         setLoadingText("Searching for locations...");
 
-        //  UX: Cycle messages to keep user engaged during the 5-10s wait
-        // clear any existing timers first
         timersRef.current.forEach(clearTimeout);
         timersRef.current = [
             setTimeout(() => setLoadingText("Found locations. Fetching details..."), 2500),
@@ -59,7 +54,6 @@ const GoogleImport = ({ onSuccess }: { onSuccess?: () => void }) => {
         ];
 
         try {
-            // API Call
             const { data } = await axiosPrivate.post("/admin/hospitals/import-google", {
                 city: city.trim(),
                 targetCountry: country.trim()
@@ -68,15 +62,12 @@ const GoogleImport = ({ onSuccess }: { onSuccess?: () => void }) => {
             setResult(data);
             toast.success(`Success! Added ${data.imported} locations with rich data.`);
 
-            // Refresh the parent dashboard numbers
             if (onSuccess) onSuccess();
 
         } catch (err: any) {
-            console.error("Import Error:", err);
             const msg = err.response?.data?.message || "Import failed. Check your API limits.";
             toast.error(msg);
         } finally {
-            // Cleanup
             timersRef.current.forEach(clearTimeout);
             setLoading(false);
         }

@@ -47,8 +47,6 @@ export type LocationInput = {
   name?: string;
 };
 
-
-// admin interfaces for hospital management
 export interface HospitalFormData {
     _id?: string;
     name: string;

@@ -1,5 +1,5 @@
 import { Link, useLocation } from "react-router-dom";
-import ThemeToggle from "@/components/themeToggle"
+import ThemeToggle from "@/components/ui/ThemeToggle"
 
 const AdminBreadcrumbs = () => {
     const location = useLocation();
@@ -19,7 +19,7 @@ const AdminBreadcrumbs = () => {
                 alignItems: "center"
             }}>
                 <li>
-                    <Link to="/admin" style={{ color: "#0e3db7", textDecoration: "none", fontWeight: 500, fontSize: "1.5rem" }}>
+                    <Link to="/admin" style={{ color: "var(--color-blue)", textDecoration: "none", fontWeight: 500, fontSize: "1.5rem" }}>
                         Admin
                     </Link>
                 </li>
@@ -37,11 +37,11 @@ const AdminBreadcrumbs = () => {
 
                     return (
                         <li key={to} style={{ display: "flex", alignItems: "center", gap: "10px" }}>
-                            <span style={{ color: "#ccc", fontSize: "1.5rem", fontWeight: 800, }}>/</span>
+                            <span style={{ color: "var(--color-gray)", fontSize: "1.5rem", fontWeight: 800, }}>/</span>
                             {last ? (
-                                <span style={{ color: "#666", fontWeight: 600, fontSize: "1.5rem" }}>{displayName}</span>
+                                <span style={{ color: "var(--color-ash)", fontWeight: 600, fontSize: "1.5rem" }}>{displayName}</span>
                             ) : (
-                                <Link to={to} style={{ color: "#0e3db7", textDecoration: "none" }}>
+                                    <Link to={to} style={{ color: "var(--color-blue)", textDecoration: "none" }}>
                                     {displayName}
                                 </Link>
                             )}

@@ -1,6 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import { ShieldAlert, ArrowLeft, Home } from "lucide-react";
-import styles from "./style/unauthorized.module.css";
+import styles from "./styles/unauthorized.module.css";
 
 const Unauthorized = () => {
     const navigate = useNavigate();

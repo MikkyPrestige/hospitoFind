@@ -1,16 +1,16 @@
 import { useEffect, useState, useMemo } from "react";
 import { Link } from "react-router-dom";
 import { FiSearch, FiMapPin, FiGlobe } from "react-icons/fi";
-import CountryCard from "@/components/countryCard";
+import CountryCard from "@/components/hospital/CountryCard";
 import { Hospital } from "@/services/hospital";
-import Motion from "@/components/motion";
-import { BASE_URL } from "@/context/userContext";
-import { fadeUp, zoomIn, sectionReveal } from "@/hooks/animations";
-import MapPin from "../../assets/images/mapPin.png"
-import style from "./style/explore.module.css";
-import { SEOHelmet } from "@/components/utils/seoUtils";
-import AnimatedLoader from "@/components/utils/animatedLoader";
-import { normalizeName } from "@/components/utils/helper"
+import Motion from "@/components/ui/Motion";
+import { BASE_URL } from "@/context/UserProvider";
+import { fadeUp, zoomIn, sectionReveal } from "@/utils/animations";
+import MapPin from "@/assets/images/mapPin.png"
+import style from "./styles/explore.module.css";
+import { SEOHelmet } from "@/components/ui/SeoHelmet";
+import AnimatedLoader from "@/components/ui/AnimatedLoader";
+import { normalizeName } from "@/utils/formatters"
 import { countries as countriesData } from "countries-list";
 import * as iso from "i18n-iso-countries";
 import enLocale from "i18n-iso-countries/langs/en.json";
@@ -181,7 +181,7 @@ const ExplorePage = () => {
               <Motion as="div" className={style.emptyState} variants={fadeUp}>
                 <div className={style.emptyIcon}><FiMapPin /></div>
                 <h2>No Matching Regions Found</h2>
-                <p>We couldn't locate "{query}" in {selectedContinent}. Please verify the spelling or try a broader region.</p>
+                  <p>We couldn't locate <strong>{query}</strong> in {selectedContinent}. Please verify the spelling or try a broader region.</p>
                 <button onClick={() => { setQuery(""); setSelectedContinent("All"); }} className={style.resetBtn}>
                   Reset Search Filters
                 </button>

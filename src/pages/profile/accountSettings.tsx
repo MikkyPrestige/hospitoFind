@@ -1,10 +1,10 @@
 import { useState } from 'react';
-import { useAuthContext } from '@/context/userContext';
-import useUpdate from '@/hooks/user/update';
-import usePasswordUpdate from '@/src/hooks/user/updatePassword';
-import useDelete from '@/hooks/user/delete';
+import { useAuthContext } from '@/context/UserProvider';
+import useUpdate from '@/hooks/useUpdateUser';
+import usePasswordUpdate from '@/hooks/useUpdatePassword';
+import useDelete from '@/hooks/useDeleteUser';
 import { FiUser, FiLock, FiTrash2, FiAlertTriangle } from 'react-icons/fi';
-import styles from './style/scss/accountSettings/accountSettings.module.scss';
+import styles from './styles/scss/accountSettings/accountSettings.module.scss';
 
 const AccountSettings = () => {
     const { state } = useAuthContext();

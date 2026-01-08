@@ -40,24 +40,6 @@ export interface AuthState {
   newPassword?: string | null;
 }
 
-// export interface UserPayload {
-//   accessToken: string;
-//   username: string;
-//   role: string;
-//   id: string;
-//   auth0Id?: string;
-// }
-
-
-// export type AuthAction =
-//   | { type: "LOGIN"; payload: UserData }
-//   | { type: "REFRESH"; payload: UserData }
-//   | { type: "REGISTER"; payload: UserData }
-//   | { type: "UPDATE"; payload: Partial<UserData> }
-//   | { type: "PASSWORD-UPDATE" }
-//   | { type: "DELETE" }
-//   | { type: "LOGOUT" };
-
 export type AuthAction = {
   type: "LOGIN" | "REGISTER" | "UPDATE" | "REFRESH" | "PASSWORD-UPDATE" | "DELETE" | "LOGOUT";
   payload?: Partial<AuthState>;
@@ -68,7 +50,6 @@ export interface AuthContextType {
   dispatch: React.Dispatch<AuthAction>;
 }
 
-// admin interfaces for user management
 export interface UserData {
     _id: string;
     username: string;

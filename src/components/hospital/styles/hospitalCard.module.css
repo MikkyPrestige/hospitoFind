@@ -1,0 +1,230 @@
+.card {
+  background: var(--color-white);
+  border: var(--border-blue-faint);
+  border-radius: 18px;
+  box-shadow: var(--shadow-card-blue);
+  overflow: hidden;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.card:hover {
+  transform: translateY(-8px);
+  box-shadow: var(--shadow-card-blue-hover);
+}
+
+.imageWrapper {
+  width: 100%;
+  aspect-ratio: 16 / 10;
+  background: var(--color-bg-contrast);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.noImage {
+  background: linear-gradient(
+    180deg,
+    var(--color-ash) 0%,
+    var(--color-bg-contrast) 100%
+  );
+  border-bottom: var(--border-blue-faint);
+}
+
+.image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+
+.card:hover .image {
+  transform: scale(1.05);
+}
+
+.placeholder {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: var(--icon-gray);
+  gap: 0.5rem;
+}
+
+.placeholderIcon {
+  width: 2.5rem;
+  height: 2.5rem;
+  color: var(--icon-gray-light);
+  stroke-width: 1.5;
+}
+
+.placeholder p {
+  font-size: 0.85rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.content {
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  gap: 1rem;
+}
+
+.mainInfo {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.name {
+  font-size: 1.25rem;
+  font-weight: 800;
+  color: var(--color-blue);
+  line-height: 1.3;
+}
+
+.type {
+  display: inline-block;
+  background: var(--bg-blue-tag);
+  color: var(--color-blue);
+  font-size: 1rem;
+  font-weight: 700;
+  padding: 0.3rem 0.8rem;
+  border-radius: 50px;
+  text-transform: uppercase;
+  margin-top: 0.5rem;
+  align-self: flex-start;
+}
+
+/* --- ADDRESS STYLING --- */
+.addressRow {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.5rem;
+  margin-top: 0.5rem;
+  font-size: 1rem;
+  color: var(--color-gray);
+  line-height: 1.5;
+  font-weight: 500;
+}
+
+.mapIcon {
+  color: var(--icon-gray);
+  flex-shrink: 0;
+  margin-top: 3px;
+}
+
+.addressText span {
+  color: var(--text-slate);
+  font-weight: 600;
+}
+
+/* --- CONTACT INFO --- */
+.contactInfo {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  font-size: 1rem;
+  color: var(--text-slate);
+}
+
+.phone,
+.email {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-size: 1rem;
+  color: var(--text-slate);
+  font-weight: 500;
+  transition: color 0.2s ease;
+}
+
+.contactIcon {
+  color: var(--icon-gray);
+  font-size: 1rem;
+  transition: color 0.2s;
+}
+
+.phone:hover,
+.email:hover {
+  color: var(--color-blue);
+}
+
+.phone:hover .contactIcon,
+.email:hover .contactIcon {
+  color: var(--color-blue);
+}
+
+/* --- EXTERNAL LINK --- */
+.externalLink {
+  color: var(--color-gray);
+  font-weight: 600;
+  font-size: 1rem;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  transition: color 0.2s;
+}
+
+.linkIcon {
+  font-size: 1rem;
+}
+
+.externalLink:hover {
+  color: var(--color-blue);
+}
+
+/* --- BUTTON --- */
+.detailsBtn {
+  margin-top: auto;
+  background: var(--color-blue);
+  color: var(--color-white);
+  text-align: center;
+  padding: 1.5rem;
+  border-radius: 12px;
+  font-size: 1.2rem;
+  font-weight: 700;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6rem;
+  transition: all 0.25s ease;
+}
+
+.btnIcon {
+  font-size: 1.1rem;
+  transition: transform 0.2s ease;
+}
+
+.detailsBtn:hover {
+  background: var(--color-blue-dark);
+  box-shadow: 0 4px 12px rgba(8, 41, 155, 0.2);
+}
+
+.detailsBtn:hover .btnIcon {
+  transform: translateX(3px);
+}
+
+.detailsBtn:active {
+  transform: scale(0.98);
+}
+
+@media (min-width: 768px) {
+  .detailsBtn {
+    padding: 1rem;
+  }
+}

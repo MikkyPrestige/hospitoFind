@@ -1,9 +1,9 @@
 import { Link } from "react-router-dom";
 import { FaLinkedin, FaEnvelope } from "react-icons/fa";
 import { Heart, Newspaper, Flame, Lightbulb, ArrowRight, ShieldCheck, MapPin, Building2, Target, HelpCircle, FileText } from "lucide-react";
-import style from "./style/footer.module.scss";
-import Motion from "@/components/motion";
-import { fadeUp, sectionReveal } from "@/hooks/animations";
+import style from "./styles/footer.module.scss";
+import Motion from "@/components/ui/Motion";
+import { fadeUp, sectionReveal } from "@/utils/animations";
 import BrandLogo from "@/assets/images/logo.svg"
 
 const Footer = () => {
