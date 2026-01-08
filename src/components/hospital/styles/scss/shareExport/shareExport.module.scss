@@ -1,0 +1,199 @@
+.cta {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+  width: 100%;
+  align-items: center;
+
+  @include respond(tab-port) {
+    flex-direction: row;
+    justify-content: center;
+    gap: 1.5rem;
+  }
+}
+
+.btn {
+  width: 100%;
+  max-width: 320px;
+  height: 3.8rem;
+  color: var(--color-white);
+  border: none;
+  border-radius: 12px;
+  font-size: 1.1rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-inter);
+  position: relative;
+
+  &:disabled {
+    opacity: 0.7;
+    cursor: not-allowed;
+  }
+
+  &:active {
+    transform: scale(0.97);
+  }
+
+  .span {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    text-transform: capitalize;
+  }
+
+  .icon {
+    font-size: 1.8rem;
+  }
+
+  &.share {
+    background: linear-gradient(135deg, var(--color-blue), var(--color-blue-dark));
+
+    &:hover:not(:disabled) {
+      background: var(--color-blue-dark);
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-card-blue);
+    }
+  }
+
+  &.export {
+    background: linear-gradient(135deg, var(--color-success), #15803d);
+
+    &:hover:not(:disabled) {
+      background: #15803d;
+      transform: translateY(-2px);
+      box-shadow: 0 8px 20px rgba(40, 167, 69, 0.2);
+    }
+  }
+
+  &.successBtn {
+    background: var(--color-blue);
+    pointer-events: none;
+  }
+}
+
+.btnLink {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  margin: 0 auto;
+  width: 100%;
+  max-width: 320px;
+  z-index: 50;
+  display: flex;
+  justify-content: center;
+  animation: fadeIn 0.3s ease forwards;
+  filter: drop-shadow(0 10px 15px rgba(0,0,0,0.15));
+
+  .linkWrapper {
+    display: flex;
+    align-items: center;
+   background: var(--color-white);;
+    border: 1px solid var(--color-border);
+    border-radius: 10px;
+    padding: 2px;
+    width: 100%;
+
+    &::before {
+      content: "";
+      position: absolute;
+      top: -6px;
+      left: 50%;
+      transform: translateX(-50%) rotate(45deg);
+      width: 12px;
+      height: 12px;
+     background: var(--color-white);
+      border-left: 1px solid var(--color-border);
+      border-top: 1px solid var(--color-border);
+    }
+  }
+
+  .link {
+    flex: 1;
+    background: transparent;
+    border: none;
+   color: var(--color-black);
+    padding: 0.8rem 1rem;
+    font-size: 1rem;
+    font-weight: 700;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    min-width: 0;
+    font-family: monospace;
+
+    &:hover {
+      color: var(--color-blue);
+    }
+
+    .copyIcon {
+      font-size: 1.2rem;
+      margin-left: 0.5rem;
+      color: var(--color-blue);
+    }
+  }
+
+  .clearBtn {
+    background: var(--color-ash);
+    border: none;
+    color: var(--icon-gray);
+    width: 2.5rem;
+    height: 2.5rem;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.2s;
+    margin-right: 2px;
+
+    &:hover {
+      background: #fee2e2;
+      color: var(--color-red);
+    }
+  }
+}
+
+.toast {
+  position: fixed;
+  bottom: 3rem;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 1.2rem 2.5rem;
+  border-radius: 50px;
+  color: var(--color-white);
+  font-weight: 700;
+  z-index: 10000;
+  backdrop-filter: blur(8px);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+  font-family: var(--font-plus);
+
+  &.success { background: var(--color-success); opacity: 0.95; }
+  &.error { background: var(--color-error); opacity: 0.95; }
+}
+
+.error {
+  color: var(--color-error);
+  font-size: 0.9rem;
+  font-weight: 600;
+  text-align: center;
+  margin-top: 0.5rem;
+}
+
+@keyframes slideUpFade {
+  0% { opacity: 0; transform: translate(-50%, 20px); }
+  15%, 85% { opacity: 1; transform: translate(-50%, 0); }
+  100% { opacity: 0; transform: translate(-50%, -20px); }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-5px); }
+  to { opacity: 1; transform: translateY(0); }
+}

@@ -1,26 +1,15 @@
-import { Suspense } from "react";
-import { ErrorBoundary } from "react-error-boundary"
-import { Fallback } from "@/components/fallback"
-import { AppRoutes } from "./routes"
-import Loading from "@/assets/images/loading.gif";
+import { RouterProvider } from "react-router-dom";
+import { router } from "@/routes/Router";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 function App() {
-
   return (
-    <ErrorBoundary FallbackComponent={Fallback}>
-      <Suspense fallback={
-        <div style={{
-          display: "flex",
-          justifyContent: "center",
-          alignItems: "center",
-          height: "100vh"
-        }}>
-          <img src={Loading} alt="Loading gif" /></div>
-      }>
-        <AppRoutes />
-      </Suspense>
-    </ErrorBoundary>
-  )
+    <>
+      <RouterProvider router={router} />
+      <ToastContainer position="bottom-right" theme="colored" autoClose={3000} hideProgressBar={false} />
+    </>
+  );
 }
 
-export default App
+export default App;

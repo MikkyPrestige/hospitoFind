@@ -9,6 +9,7 @@ export interface Address {
   street: string;
   city: string;
   state: string;
+  country?: string;
 }
 
 export interface Hours {
@@ -17,27 +18,51 @@ export interface Hours {
 }
 
 export interface Hospital {
+  _id: string;
   name: string;
+  slug?: string;
   address: Address;
-  phoneNumber: string;
-  email: string;
-  website: string;
-  photoUrl: string;
+  phoneNumber?: string;
+  email?: string;
+  website?: string;
+  photoUrl?: string;
   type: string;
   services: string[];
   comments: string[];
   hours: Hours[];
-}
-
-export type FindInput = {
-  street?: string;
-  cityState?: string;
-  name?: string;
+  verified: boolean;
+  longitude?: number;
+  latitude?: number;
+ isFeatured?: boolean;
+  createdBy?: string;
+  createdAt?: string;
+  updatedAt?: string;
 }
 
 export type LocationInput = {
   address?: string;
   city?: string;
   state?: string;
+  country?: string;
   name?: string;
 };
+
+export interface HospitalFormData {
+    _id?: string;
+    name: string;
+    type: string;
+    street: string;
+    city: string;
+    state: string;
+    phoneNumber: string;
+    email: string;
+    website: string;
+    photoUrl: string;
+    services: string;
+    comments: string[];
+    hours: Hours[];
+    longitude: string;
+    latitude: string;
+    isFeatured: boolean;
+    verified?: boolean;
+}

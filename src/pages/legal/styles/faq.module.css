@@ -1,0 +1,132 @@
+.faqContainer {
+  background-color: var(--color-bg);
+  padding: 5rem 2rem;
+  display: flex;
+  justify-content: center;
+}
+
+.content {
+  background: var(--color-white);
+  max-width: 1000px;
+  width: 100%;
+  padding: 2rem;
+  border-radius: 2.5rem;
+  box-shadow: var(--shadow-soft);
+  border: 1px solid var(--color-border);
+}
+
+.header {
+  text-align: center;
+  margin-bottom: 1rem;
+}
+
+.titleGroup {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  margin-bottom: 0.1rem;
+}
+
+.mainIcon {
+  color: var(--color-blue);
+}
+
+.title {
+  font-size: 2rem;
+  font-weight: 800;
+  color: var(--color-blue);
+  letter-spacing: -1px;
+  font-family: var(--font-plus);
+}
+
+.subtitle {
+  font-size: 1.3rem;
+  color: var(--color-gray);
+  max-width: 600px;
+  margin: 1rem auto;
+  font-family: var(--font-inter);
+}
+
+.faqList {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.faqItem {
+  border: 1.5px solid var(--color-border);
+  border-radius: 1.5rem;
+  background: var(--color-white);
+  transition: all 0.3s ease;
+}
+
+.activeItem {
+  border-color: var(--color-blue);
+  box-shadow: var(--shadow-card-blue);
+}
+
+.faqQuestion {
+  width: 100%;
+  text-align: left;
+  padding: 1.8rem 2rem;
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: var(--color-black);
+  background: none;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: color 0.2s;
+  font-family: var(--font-plus);
+}
+
+.faqQuestion:hover {
+  color: var(--color-blue);
+}
+
+.toggleIcon {
+  color: var(--color-blue);
+}
+
+.faqAnswer {
+  max-height: 0;
+  opacity: 0;
+  overflow: hidden;
+  transition: max-height 0.5s cubic-bezier(0, 1, 0, 1), opacity 0.3s ease;
+}
+
+.open {
+  max-height: 1000px;
+  opacity: 1;
+  transition: max-height 0.8s ease-in-out, opacity 0.5s ease;
+}
+
+.answerInner {
+  padding: 0 2rem 2rem;
+}
+
+.answerInner p {
+  font-size: 1.2rem;
+  line-height: 1.8;
+  color: var(--text-slate);
+  font-family: var(--font-inter);
+}
+
+@media (max-width: 480px) {
+  .content {
+    padding: 2rem 1.2rem;
+  }
+  .title {
+    font-size: 2rem;
+  }
+  .faqQuestion {
+    font-size: 1.2rem;
+    padding: 1.5rem;
+  }
+  .answerInner p {
+    font-size: 1.1rem;
+  }
+}

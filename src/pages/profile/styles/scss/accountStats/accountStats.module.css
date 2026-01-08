@@ -1,0 +1,62 @@
+.statsGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 1.5rem;
+  margin: 1rem;
+}
+
+.statCard {
+  background: var(--color-white);
+  padding: 1rem;
+  border-radius: 16px;
+  border: 1px solid var(--color-border);
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+  box-shadow: var(--shadow-card);
+}
+
+.iconCircle {
+  width: 50px;
+  height: 50px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.4rem;
+}
+.iconCircle.blue {
+  background: var(--bg-blue-tag);
+  color: var(--color-blue);
+}
+.iconCircle.green {
+  background: var(--color-success-bg);
+  color: var(--color-success);
+}
+.iconCircle.purple {
+  background: var(--primary-light);
+  color: var(--color-indigo);
+}
+
+.statInfo span {
+  display: block;
+  font-size: 1rem;
+  color: var(--color-gray);
+  font-weight: 500;
+  margin-bottom: 0.2rem;
+  font-family: var(--font-inter);
+}
+.statInfo h3 {
+  font-size: 1.5rem;
+  color: var(--color-black);
+  margin: 0;
+  font-family: var(--font-plus);
+}
+
+.statsLoader {
+  padding: 2rem;
+  text-align: center;
+  color: var(--icon-gray);
+  font-style: italic;
+  font-family: var(--font-inter);
+}/*# sourceMappingURL=accountStats.module.css.map */

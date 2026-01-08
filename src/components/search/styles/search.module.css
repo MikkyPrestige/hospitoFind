@@ -1,0 +1,260 @@
+.searchContainer {
+  padding: 2rem;
+  width: 100%;
+  max-width: 900px;
+  margin: auto;
+}
+
+.searchHeader {
+  text-align: center;
+  margin-bottom: 1.5rem;
+}
+
+.heading {
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: #0e3db7;
+}
+
+.name {
+  color: #08299B;
+  font-weight: 700;
+  font-family: "DM Sans", sans-serif;
+  background: linear-gradient(135deg, rgb(10.5030674847, 53.8282208589, 203.4969325153), rgb(5.4969325153, 28.1717791411, 106.5030674847));
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: fadeIn 0.6s ease-in-out;
+  position: relative;
+  transition: all 0.3s ease;
+}
+.name::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -3px;
+  width: 0;
+  height: 2px;
+  background: linear-gradient(135deg, rgb(10.5030674847, 53.8282208589, 203.4969325153), rgb(5.4969325153, 28.1717791411, 106.5030674847));
+  transition: width 0.3s ease;
+  border-radius: 2px;
+}
+.name:hover::after {
+  width: 100%;
+}
+
+.subtext {
+  color: #6b7280;
+  font-size: 1.5rem;
+}
+
+.searchBox {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.inputGroup {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 50%;
+  height: 3rem;
+  border: 1px solid #dcdfe4;
+  border-radius: 8px;
+  overflow: hidden;
+  background: #fff;
+}
+@media (max-width: 768px) {
+  .inputGroup {
+    width: 80%;
+    height: 4rem;
+  }
+}
+
+.input {
+  flex: 1;
+  padding: 0.8rem 1rem;
+  border: none;
+  outline: none;
+  font-size: 1rem;
+  color: #111827;
+}
+
+.searchBtn {
+  background: #0e3db7;
+  color: #fff;
+  padding: 0.8rem 1rem;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.searchBtn:hover {
+  background: rgb(12.1878172589, 53.1040609137, 159.3121827411);
+}
+
+.dropdown {
+  position: absolute;
+  top: 110%;
+  width: 50%;
+  background: #fff;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+  max-height: 280px;
+  overflow-y: auto;
+  z-index: 999;
+}
+
+.dropdownItem {
+  padding: 0.75rem 1rem;
+  color: #6b7280;
+  font-size: 0.9rem;
+  text-align: center;
+}
+
+.dropdownGroup {
+  padding: 0.75rem 1rem;
+  border-bottom: 1px solid #f3f4f6;
+}
+.dropdownGroup:last-child {
+  border-bottom: none;
+}
+
+.dropdownCountry {
+  font-weight: 600;
+  color: #0e3db7;
+  margin-bottom: 0.4rem;
+}
+
+.dropdownCity {
+  padding: 0.3rem 0;
+  cursor: pointer;
+  color: #111827;
+  transition: background 0.2s;
+}
+.dropdownCity:hover {
+  background: #f9fafb;
+}
+
+.actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 1rem;
+  margin: 1rem 0;
+}
+
+.results {
+  margin-top: 1.5rem;
+}
+
+.message,
+.error {
+  text-align: center;
+  padding: 1.5rem 0;
+  color: #6b7280;
+}
+
+.error {
+  color: #c53030;
+}
+
+.resultsGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 1rem;
+}
+
+.hospitalCard {
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  overflow: hidden;
+  transition: transform 0.2s ease;
+}
+.hospitalCard:hover {
+  transform: translateY(-4px);
+}
+
+.hospitalInfo {
+  padding: 1rem;
+}
+.hospitalInfo h3 {
+  font-size: 1rem;
+  font-weight: 600;
+  margin-bottom: 0.4rem;
+}
+.hospitalInfo p {
+  font-size: 0.85rem;
+  color: #6b7280;
+}
+
+.cardActions {
+  margin-top: 0.6rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.exploreBtn {
+  color: #0e3db7;
+  font-weight: 600;
+  text-decoration: none;
+}
+.exploreBtn:hover {
+  text-decoration: underline;
+}
+
+.favBtn {
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+.favBtn svg {
+  width: 1.2rem;
+  height: 1.2rem;
+  transition: transform 0.2s ease;
+}
+.favBtn:hover svg {
+  transform: scale(1.1);
+}
+
+.container {
+  margin-top: 2rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+  padding: 1rem;
+}
+
+.backBtn {
+  background: #f5f7ff;
+  color: #0e3db7;
+  border: 1px solid rgba(14, 61, 183, 0.2);
+  padding: 0.7rem 1.2rem;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+.backBtn:hover {
+  background: #0e3db7;
+  color: #fff;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}/*# sourceMappingURL=search.module.css.map */

@@ -1,7 +1,7 @@
 import { Hospital } from "./hospital";
 import axios from "axios";
 
-const BASE_URL = "https://strange-blue-battledress.cyclic.app";
+const BASE_URL =  import.meta.env.VITE_BASE_URL;
 
 // get all hospitals
 export async function getHospitals() {
@@ -11,6 +11,24 @@ export async function getHospitals() {
     return hospitals;
   } catch (error) {
     throw error
+  }
+}
+
+// get hospital details by id or slug
+export async function getHospitalDetails(params: any) {
+  try {
+    if (params.slug) {
+      const response = await axios.get(
+        `${BASE_URL}/hospitals/${params.country}/${params.city}/${params.slug}`
+      );
+      return response.data;
+    }
+
+    const response = await axios.get(`${BASE_URL}/hospitals/${params.id}`);
+    return response.data;
+
+  } catch (error) {
+    throw error;
   }
 }
 
@@ -40,40 +58,26 @@ export async function getHospitalByName(name: string) {
 export async function findHospitals(query: string) {
   try {
     const response = await axios.get(`${BASE_URL}/hospitals/find?${query}`);
-    const foundHospital = response.data;
-    return foundHospital;
+    return response.data;
   } catch (error) {
-    throw error
-  }
-}
-
-// get hospital by state or city
-export async function searchHospitals(query: string) {
-  try {
-    const response = await axios.get(`${BASE_URL}/hospitals/search?${query}`);
-    const searchedHospitals = response.data;
-    return searchedHospitals;
-  } catch (error) {
-    throw error
+    throw error;
   }
 }
 
 // share hospital
-export async function shareHospital(searchParams: any) {
+export const shareHospital = async (searchParams: any) => {
   try {
-    const response = await axios.post(`${BASE_URL}/hospitals/share`, {
-      searchParams: {
-        address: searchParams.address,
-        city: searchParams.city,
-        state: searchParams.state
-      }
-    });
-    const shareLink = response.data.shareableLink;
-    return shareLink;
+    const response = await axios.post(`${BASE_URL}/hospitals/share`, { searchParams });
+
+    if (response.data && response.data.linkId) {
+        return response.data.linkId;
+    }
+
+    return response.data;
   } catch (error) {
-    throw error
+    throw error;
   }
-}
+};
 
 // export hospital in csv download format
 export async function exportHospital(searchParams: any) {
@@ -84,7 +88,6 @@ export async function exportHospital(searchParams: any) {
     });
     console.log(searchParams)
     const exportedData = data;
-    console.log(data)
     return exportedData;
   } catch (error) {
     throw error
@@ -123,3 +126,108 @@ export async function deleteHospital(id: number) {
     throw error
   }
 }
+
+// axios api
+let activeRequests = 0;
+// Manage the loading state outside of React components
+const showLoader = () => {
+  const loader = document.getElementById("global-loader");
+  if (loader) {
+    activeRequests++;
+    loader.style.display = "flex";
+  }
+};
+
+const hideLoader = () => {
+  const loader = document.getElementById("global-loader");
+  if (loader) {
+    activeRequests--;
+    if (activeRequests <= 0) {
+      activeRequests = 0;
+      loader.style.display = "none";
+    }
+  }
+};
+
+// Custom instance
+export const api = axios.create({
+  baseURL: BASE_URL,
+  withCredentials: true,
+});
+
+/**
+ * REQUEST INTERCEPTOR
+ */
+api.interceptors.request.use(
+  (config) => {
+    showLoader();
+
+    const token = localStorage.getItem("accessToken");
+    if (token && !config.headers["Authorization"]) {
+      config.headers["Authorization"] = `Bearer ${token}`;
+    }
+    return config;
+  },
+  (error) => {
+    hideLoader();
+    return Promise.reject(error);
+  }
+);
+
+/**
+ * RESPONSE INTERCEPTOR
+ */
+api.interceptors.response.use(
+  (response) => {
+    hideLoader();
+    return response;
+  },
+  async (error) => {
+    const prevRequest = error?.config;
+    const tokenInStorage = localStorage.getItem("accessToken");
+
+    const isAuthError = error?.response?.status === 401 || error?.response?.status === 403;
+
+    if (isAuthError && !prevRequest?._retry && tokenInStorage) {
+      prevRequest._retry = true;
+
+      try {
+        const response = await axios.get(`${BASE_URL}/auth/refresh`, {
+            withCredentials: true,
+        });
+
+        const newAuthData = response.data;
+        const { accessToken } = newAuthData;
+
+        localStorage.setItem("accessToken", accessToken);
+
+        Object.entries(newAuthData).forEach(([key, value]) => {
+            if (value && key !== 'accessToken') localStorage.setItem(key, value.toString());
+        });
+
+        prevRequest.headers["Authorization"] = `Bearer ${accessToken}`;
+
+        return api(prevRequest);
+
+      } catch (refreshError) {
+        console.error("Refresh failed:", refreshError);
+        localStorage.removeItem("accessToken");
+        localStorage.removeItem("username");
+        localStorage.removeItem("role");
+        localStorage.removeItem("id");
+        localStorage.removeItem("email");
+        localStorage.removeItem("auth0.is_authenticated");
+
+        if (!window.location.pathname.includes('/login')) {
+             window.location.href = "/login?expired=true";
+        }
+        return Promise.reject(refreshError);
+      } finally {
+        hideLoader();
+      }
+    }
+
+    hideLoader();
+    return Promise.reject(error);
+  }
+);

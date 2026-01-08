@@ -1,0 +1,308 @@
+/* --- VARIABLES --- */
+.findSection {
+  width: 100%;
+  height: 100vh;
+  background-color: var(--color-white);
+  padding-top: var(--header-height);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  justify-content: flex-start;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  border: 0;
+}
+
+.search {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column-reverse;
+  align-items: stretch;
+  justify-content: flex-start;
+}
+
+/* --- SIDEBAR (Results) --- */
+.hospitals {
+  width: 100%;
+  flex: 1;
+  overflow-y: auto;
+  background: #fff;
+  position: relative;
+}
+
+.searchContainer {
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  background: rgba(255, 255, 255, 0.95);
+  -webkit-backdrop-filter: blur(8px);
+          backdrop-filter: blur(8px);
+  padding: 1.5rem;
+  border-bottom: 1px solid var(--color-light-bg);
+}
+
+.form {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  background: var(--color-light-bg);
+  border: 1px solid var(--color-border);
+  border-radius: 12px;
+  overflow: hidden;
+  transition: all 0.3s ease;
+}
+
+.form:focus-within {
+  border-color: var(--color-blue);
+  background: #fff;
+  box-shadow: 0 4px 12px rgba(37, 99, 235, 0.1);
+}
+
+.input {
+  flex: 1;
+  padding: 1rem;
+  border: none;
+  background: transparent;
+  font-size: 1.2rem;
+  color: var(--color-dark-blue);
+  font-family: "Inter", sans-serif;
+}
+
+.input:focus {
+  outline: none;
+}
+
+.cta {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--color-blue);
+  color: white;
+  padding: 0 1.5rem;
+  height: 3.5rem;
+  border: none;
+  cursor: pointer;
+  font-weight: 600;
+  font-family: "Plus Jakarta Sans", sans-serif;
+  transition: background 0.2s;
+}
+
+.cta:hover {
+  background-color: #1d4ed8;
+}
+
+.resultsContent {
+  padding: 0 1.5rem 2rem 1.5rem;
+}
+
+.heading {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--color-dark-blue);
+  margin-bottom: 0.5rem;
+  margin-top: 1rem;
+  font-family: "Plus Jakarta Sans", sans-serif;
+}
+
+.highlight {
+  color: var(--color-blue);
+}
+
+.subtitle {
+  font-size: 1.2rem;
+  color: var(--color-gray);
+  margin-bottom: 1.5rem;
+  line-height: 1.5;
+  font-family: "Inter", sans-serif;
+}
+
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 1.2rem;
+  width: 100%;
+}
+
+/* --- MAP --- */
+.map {
+  width: 100%;
+  height: 36vh;
+  background: #e5e7eb;
+  position: relative;
+}
+
+.mapBox {
+  width: 100%;
+  height: 100%;
+}
+
+/* --- RESULT CARD --- */
+.card {
+  width: 100%;
+  background: #fff;
+  border-radius: 16px;
+  border: 1px solid var(--color-light-bg);
+  overflow: hidden;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  display: block;
+}
+
+.card:hover {
+  transform: translateY(-4px);
+  border-color: rgba(37, 99, 235, 0.2);
+  box-shadow: 0 12px 24px -10px rgba(0, 0, 0, 0.08);
+}
+
+.img {
+  width: 100%;
+  height: 20rem;
+  background-color: var(--color-light-bg);
+}
+
+.img img {
+  width: 100%;
+  height: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+
+.details {
+  padding: 1.25rem;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  width: 100%;
+}
+
+.name {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #1e293b;
+  margin-bottom: 0.25rem;
+  font-family: "Plus Jakarta Sans", sans-serif;
+}
+
+.details p {
+  color: var(--color-gray);
+  font-size: 1.1rem;
+  margin-bottom: 1rem;
+  font-family: "Inter", sans-serif;
+}
+
+.btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  background: rgba(37, 99, 235, 0.08);
+  color: var(--color-blue);
+  padding: 0.7rem;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 1rem;
+  text-decoration: none;
+  transition: all 0.2s;
+  font-family: "Plus Jakarta Sans", sans-serif;
+}
+
+.btn:hover {
+  background: var(--color-blue);
+  color: #fff;
+}
+
+/* --- NO RESULTS --- */
+.noResults {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 4rem 2rem;
+  text-align: center;
+}
+
+.found {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.noResultsIcon {
+  font-size: 3rem;
+  color: #cbd5e1;
+  margin-bottom: 1rem;
+}
+
+.noResultsText {
+  color: var(--color-gray);
+  margin-bottom: 1rem;
+  line-height: 1.6;
+  font-family: "Inter", sans-serif;
+}
+
+.addLink {
+  color: var(--color-blue);
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.retryLink {
+  display: inline-block;
+  color: var(--color-blue);
+  font-weight: 600;
+  cursor: pointer;
+  font-family: "Plus Jakarta Sans", sans-serif;
+}
+
+@media (min-width: 56.25em) {
+  .search {
+    flex-direction: row;
+    align-items: flex-start;
+  }
+  .hospitals {
+    flex: 0 0 55%;
+    max-width: 55%;
+    height: 100%;
+    border-right: 1px solid var(--color-border);
+    z-index: 2;
+    box-shadow: 4px 0 24px rgba(0, 0, 0, 0.05);
+  }
+  .map {
+    flex: 1;
+    height: 100%;
+  }
+  .card {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+  }
+  .img {
+    width: 150px;
+    height: 100%;
+  }
+}
+/* Scrollbar Styling */
+.hospitals::-webkit-scrollbar {
+  width: 6px;
+}
+
+.hospitals::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.hospitals::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 10px;
+}/*# sourceMappingURL=find.module.css.map */

@@ -1,324 +1,183 @@
-import { useState } from 'react'
-import axios from 'axios'
-import ReactMde, { Suggestion } from 'react-mde'
-import ReactMarkdown from 'react-markdown'
-import 'react-mde/lib/styles/css/react-mde-all.css'
-import { BsDatabaseAdd } from 'react-icons/bs'
-import { Hospital } from '@/services/hospital'
-import { Button } from '@/components/button'
-import style from '../components/style/random.module.css'
+import { useState } from 'react';
+import useAxiosPrivate from "@/hooks/useAxiosPrivate";
+import ReactMde from 'react-mde';
+import ReactMarkdown from 'react-markdown';
+import 'react-mde/lib/styles/css/react-mde-all.css';
+import { Hospital } from '@/services/hospital';
+import { Button } from '@/components/ui/Button';
+import style from './styles/editor.module.css';
+import { MdOutlineRestartAlt, MdErrorOutline, MdCheckCircleOutline } from 'react-icons/md';
+import { useAuthContext } from "@/context/UserProvider";
+import { motion, AnimatePresence } from 'framer-motion';
+import { zoomIn } from '@/utils/animations';
 
-const BASE_URL = 'https://hospitofind-server.onrender.com'
+type HospitalSubmission = Omit<Hospital, '_id' | 'slug' | 'longitude' | 'latitude'>;
 
-// load suggestions
-const loadSuggestions = async (text: string) => {
-  return new Promise<Suggestion[]>((accept) => {
-    setTimeout(() => {
-      const suggestions: Suggestion[] = [
-        {
-          preview: 'Public',
-          value: 'Public',
-        },
-        {
-          preview: 'Private',
-          value: 'Private',
-        },
-        {
-          preview: 'Delta',
-          value: 'Delta',
-        },
-        {
-          preview: 'Lagos',
-          value: 'Lagos',
-        },
-        {
-          preview: 'Benin',
-          value: 'Benin',
-        },
-        {
-          preview: 'Nasarawa',
-          value: 'Nasarawa',
-        },
-        {
-          preview: 'Kogi',
-          value: 'Kogi',
-        },
-        {
-          preview: 'Abuja',
-          value: 'Abuja',
-        },
-        {
-          preview: 'Benue',
-          value: 'Benue',
-        },
-        {
-          preview: 'Bayelsa',
-          value: 'Bayelsa',
-        },
-        {
-          preview: 'Anambra',
-          value: 'Anambra',
-        },
-        {
-          preview: 'Enugu',
-          value: 'Enugu',
-        },
-      ].filter((i) => i.preview.toLowerCase().includes(text.toLowerCase()))
-      accept(suggestions)
-    }, 250)
-  })
-}
+const INITIAL_TEMPLATE = `
+**Instructions:** Please fill in the details below. Do not remove the headers (lines starting with #).
 
-// suggestionTriggerCharacters
-const suggestionTriggerCharacters = [
-  'D',
-  'A',
-  'L',
-  'B',
-  'N',
-  'K',
-  'E',
-  'P',
-  'S',
-  'T',
-  'O',
-  'I',
-]
+# Name:
+
+# Address
+- Street:
+- City:
+- Country:
+
+# Phone:
+# Website:
+# Email:
+# Photo-Url:
+
+# Type:
+(Public / Private / Missionary)
+
+# Services:
+(e.g., Emergency, Dental, Pediatrics - separate with commas)
+
+# Comments:
+(Any additional details about the facility)
+
+# Hours
+- Day: Monday | Open - Close:
+- Day: Tuesday | Open - Close:
+- Day: Wednesday | Open - Close:
+- Day: Thursday | Open - Close:
+- Day: Friday | Open - Close:
+- Day: Saturday | Open - Close:
+- Day: Sunday | Open - Close:
+`;
 
 const Editor = () => {
-  const [selectedTab, setSelectedTab] = useState<'write' | 'preview'>('write')
-  const [error, setError] = useState('')
-  const [loading, setLoading] = useState(false)
-  const [markdown, setMarkdown] = useState(`
-  **Please make sure you have the right information before submitting. Thank you!!!**
+  const [selectedTab, setSelectedTab] = useState<'write' | 'preview'>('write');
+  const [error, setError] = useState('');
+  const [loading, setLoading] = useState(false);
+  const [showSuccess, setShowSuccess] = useState(false);
+  const [markdown, setMarkdown] = useState(INITIAL_TEMPLATE);
+  const { state } = useAuthContext();
+  const axiosPrivate = useAxiosPrivate();
 
-  # Name:
+  const resetTemplate = () => {
+    setMarkdown(INITIAL_TEMPLATE);
+    setError('');
+    setShowSuccess(false);
+    setSelectedTab('write');
+  };
 
-  # Address
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setError('');
 
-  - Street:
-  - City:
-  - State:
+    const getValue = (regex: RegExp) => {
+      const match = regex.exec(markdown);
+      return match ? match[1].trim() : '';
+    };
 
-  # Phone:
+    const addressMatch = /- Street:\s*([\s\S]*?)\s*- City:\s*([\s\S]*?)\s*- Country:\s*([\s\S]*?)(?=# Phone)/.exec(markdown);
+    const country = addressMatch ? addressMatch[3].trim() : '';
 
-  # Website:
-
-  # Email:
-
-  # Photo-Url:
-
-  # Type:
-
-  # Services:
-
-  # Comments:
-
-  # Hours
-
-  - Day: Monday
-  - Open - Close:
-
-  - Day: Tuesday
-  - Open - Close:
-
-  - Day: Wednesday
-  - Open - Close:
-
-  - Day: Thursday
-  - Open - Close:
-
-  - Day: Friday
-  - Open - Close:
-
-  - Day: Saturday
-  - Open - Close:
-
-  - Day: Sunday
-  - Open - Close:
-  `)
-
-  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault()
-    const nameMatch = /# Name:\s*([\s\S]*?)(?=# Address)/.exec(markdown)
-    const name = nameMatch ? nameMatch[1].trim() : ''
-    const addressMatch =
-      /- Street:\s*([\s\S]*?)\s*- City:\s*([\s\S]*?)\s*- State:\s*([\s\S]*?)(?=# Phone)/.exec(
-        markdown
-      )
-    const street = addressMatch ? addressMatch[1].trim() : ''
-    const city = addressMatch ? addressMatch[2].trim() : ''
-    const state = addressMatch ? addressMatch[3].trim() : ''
-    const phoneNumberMatch = /# Phone:\s*([\s\S]*?)(?=# Website)/.exec(markdown)
-    const phoneNumber = phoneNumberMatch ? phoneNumberMatch[1].trim() : ''
-    const websiteMatch = /# Website:\s*([\s\S]*?)(?=# Email)/.exec(markdown)
-    const website = websiteMatch ? websiteMatch[1].trim() : ''
-    const emailMatch = /# Email:\s*([\s\S]*?)(?=# Photo-Url)/.exec(markdown)
-    const email = emailMatch ? emailMatch[1].trim() : ''
-    const photoUrlMatch = /# Photo-Url:\s*([\s\S]*?)(?=# Type)/.exec(markdown)
-    const photoUrl = photoUrlMatch ? photoUrlMatch[1].trim() : ''
-    const typeMatch = /# Type:\s*([\s\S]*?)(?=# Services)/.exec(markdown)
-    const type = typeMatch ? typeMatch[1].trim() : ''
-    const servicesMatch = /# Services:\s*([\s\S]*?)(?=# Comments)/.exec(
-      markdown
-    )
-    const services = servicesMatch ? servicesMatch[1].trim() : ''
-    const commentsMatch = /# Comments:\s*([\s\S]*?)(?=# Hours)/.exec(markdown)
-    const comments = commentsMatch ? commentsMatch[1].trim() : ''
-    const hoursMatches = /- Day:\s*(.*?)\s*- Open - Close:\s*(.*?)$/gm
-    const hoursData: { day: string; open: string }[] = []
-    let hoursMatch
-    while ((hoursMatch = hoursMatches.exec(markdown))) {
-      const day = hoursMatch[1].trim()
-      const open = hoursMatch[2].trim()
-      hoursData.push({ day, open })
-    }
-
-    // Create a hospital object
-    const hospital = {
-      name,
+    const hospitalData: HospitalSubmission = {
+      name: getValue(/# Name:\s*([\s\S]*?)(?=# Address)/),
       address: {
-        street,
-        city,
-        state,
+        street: addressMatch ? addressMatch[1].trim() : '',
+        city: addressMatch ? addressMatch[2].trim() : '',
+        state: country,
+        country: country,
       },
-      phoneNumber,
-      website,
-      email,
-      photoUrl,
-      type,
-      services,
-      comments,
-      hours: hoursData,
+      phoneNumber: getValue(/# Phone:\s*([\s\S]*?)(?=# Website)/),
+      website: getValue(/# Website:\s*([\s\S]*?)(?=# Email)/),
+      email: getValue(/# Email:\s*([\s\S]*?)(?=# Photo-Url)/),
+      photoUrl: getValue(/# Photo-Url:\s*([\s\S]*?)(?=# Type)/),
+      type: getValue(/# Type:\s*([\s\S]*?)\n/),
+      services: getValue(/# Services:\s*([\s\S]*?)(?=# Comments)/).split(',').map(s => s.trim()),
+      comments: [getValue(/# Comments:\s*([\s\S]*?)(?=# Hours)/)],
+      hours: [],
+      verified: false
+    };
+
+    // Hours Parsing
+    const hoursMatches = /- Day:\s*(.*?)\s*\|\s*Open - Close:\s*(.*?)$/gm;
+    let hMatch;
+    while ((hMatch = hoursMatches.exec(markdown))) {
+      hospitalData.hours?.push({ day: hMatch[1].trim(), open: hMatch[2].trim() });
     }
 
-    const isValidPhoneNumber = (phoneNumber: string) => {
-      const phoneRegex =
-        /^(?:\+?([0-9]{2})\)?[-. ]?)?([0-9]{3})[-. ]?([0-9]{3})[-. ]?([0-9]{4,6})$/
-      return phoneRegex.test(phoneNumber)
+    if (!hospitalData.name || !hospitalData.address.city || !country) {
+      setError("Please ensure the Name, City, and Country fields are filled out.");
+      return;
     }
 
-    const isValidWebsite = (website: string) => {
-      const websiteRegex =
-        /^(http:\/\/www\.|https:\/\/www\.|http:\/\/|https:\/\/)?[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,5}$/
-      return websiteRegex.test(website)
+    try {
+      setLoading(true);
+      await axiosPrivate.post(`/hospitals`, hospitalData);
+      setShowSuccess(true);
+    } catch (err: any) {
+      setError(err.response?.data?.message || 'Unable to submit hospital data. Please check your inputs.');
+    } finally {
+      setLoading(false);
     }
-
-    const isValidEmail = (email: string) => {
-      const emailRegex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/
-      return emailRegex.test(email)
-    }
-
-    const isValidPhotoUrl = (photoUrl: string) => {
-      const photoUrlRegex = /(http(s?):)([/|.|\w|\s|-])*\.(?:jpg|gif|png)/
-      return photoUrlRegex.test(photoUrl)
-    }
-
-    const isValidType = (type: string) => {
-      const typeRegex = /^(Public|Private)$/
-      return typeRegex.test(type)
-    }
-
-    if (!hospital.name) {
-      setError('Please enter a hospital name')
-      return
-    } else if (!hospital.address.city) {
-      setError('Please enter a city the hospital is located')
-      return
-    } else if (!hospital.address.state) {
-      setError('Please enter a state the hospital is located')
-      return
-    } else if (
-      hospital.phoneNumber &&
-      !isValidPhoneNumber(hospital.phoneNumber)
-    ) {
-      setError('Please enter a valid phone number (Remove all whitespace)')
-      return
-    } else if (hospital.website && !isValidWebsite(hospital.website)) {
-      setError('Please enter a valid website')
-      return
-    } else if (hospital.email && !isValidEmail(hospital.email)) {
-      setError('Please enter a valid email')
-      return
-    } else if (hospital.photoUrl && !isValidPhotoUrl(hospital.photoUrl)) {
-      setError('Please enter a valid photo url')
-      return
-    } else if (!hospital.type) {
-      setError('Please enter a hospital type')
-      return
-    } else if (!isValidType(hospital.type)) {
-      setError('Please enter a valid hospital type')
-      return
-    } else {
-      try {
-        setLoading(true)
-        await axios.post<Hospital>(`${BASE_URL}/hospitals`, hospital)
-        setMarkdown(
-          `Successfully added ${hospital?.name} to our database! Thanks for your contribution.`
-        )
-        setError('')
-        setLoading(false)
-      } catch (error: any) {
-        setError(error.response.data.message)
-        setLoading(false)
-      }
-    }
-  }
+  };
 
   return (
-    <section className={style.editor}>
-      <h1 className={style.title}>Can't Find a Hospital? Add It Here!</h1>
-      <form onSubmit={handleSubmit} className={style.form}>
+    <section className={style.editorContainer}>
+      <header className={style.editorHeader}>
+        <h1 className={style.title}>
+          Submit a New Facility
+        </h1>
+        <p className={style.subtitle}>
+          Help us expand our reach. Add verified hospital details below to assist users in finding the care they need.
+        </p>
+      </header>
+
+      <form onSubmit={handleSubmit} className={style.editorForm}>
+        <div className={style.toolbar}>
+          <button type="button" onClick={resetTemplate} className={style.resetBtn}>
+            <MdOutlineRestartAlt /> Reset Form
+          </button>
+        </div>
+
         <ReactMde
           value={markdown}
           onChange={setMarkdown}
           selectedTab={selectedTab}
           onTabChange={setSelectedTab}
-          generateMarkdownPreview={(markdown) =>
-            Promise.resolve(<ReactMarkdown>{markdown}</ReactMarkdown>)
+          generateMarkdownPreview={(md) =>
+            Promise.resolve(<div className={style.markdownBody}><ReactMarkdown>{md}</ReactMarkdown></div>)
           }
-          loadSuggestions={loadSuggestions}
-          suggestionTriggerCharacters={suggestionTriggerCharacters}
-          minEditorHeight={500}
-          childProps={{
-            writeButton: {
-              tabIndex: -1,
-            },
-          }}
-          loadingPreview={
-            <div className="loading-preview">
-              <p
-                style={{
-                  color: '#00FF00',
-                  fontSize: '1.5rem',
-                  margin: '5rem auto',
-                }}
-              >
-                Loading...
-              </p>
-            </div>
-          }
+          minEditorHeight={450}
         />
-        {error && <p className={style.error}>{error}</p>}
-        <div className={style.cta}>
-          <Button
-            disabled={loading}
-            children={
-              <span className={style.btn}>
-                {loading ? (
-                  'Submitting...'
-                ) : (
-                  <span className={style.btn_span}>
-                    Submit
-                    <BsDatabaseAdd className={style.btn_icon} />
-                  </span>
-                )}
-              </span>
-            }
-          />
+
+        {error && (
+          <motion.div initial={{ opacity: 0, y: -10 }} animate={{ opacity: 1, y: 0 }} className={style.errorBox}>
+            <MdErrorOutline size={20} /> {error}
+          </motion.div>
+        )}
+
+        <div className={style.formActions}>
+          <Button disabled={loading} type="submit">
+            <span className={style.btnContent}>
+              {loading ? 'Submitting...' : 'Submit for Verification'}
+            </span>
+          </Button>
         </div>
       </form>
+
+      {/* --- SUCCESS MODAL --- */}
+      <AnimatePresence>
+        {showSuccess && (
+          <div className={style.modalOverlay}>
+            <motion.div variants={zoomIn} initial="hidden" animate="visible" exit="hidden" className={style.successModal}>
+              <div className={style.checkWrapper}>
+                <MdCheckCircleOutline className={style.checkIcon} />
+              </div>
+              <h2>Submission Received!</h2>
+              <p>Thank you, <strong>{state?.username}</strong>. The facility data has been sent to our team for verification. It will appear on the map once verified.</p>
+              <button onClick={resetTemplate} className={style.closeModalBtn}>Submit Another</button>
+            </motion.div>
+          </div>
+        )}
+      </AnimatePresence>
     </section>
-  )
-}
-export default Editor
+  );
+};
+
+export default Editor;
