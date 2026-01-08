@@ -14,24 +14,24 @@ import {
 } from "react-icons/tb";
 import { AiOutlineUserDelete, AiOutlineDown, AiOutlineUp } from "react-icons/ai";
 import Logo from "@/assets/images/logo.svg";
-import { useAuthContext } from "@/context/userContext";
-import SearchForm from "@/hospitalsConfig/search";
-import Editor from "@/markDown/editor";
-import UpdateUser from "@/userConfig/updateUser";
-import UpdatePassword from "@/userConfig/updatePassword";
-import DeleteBtn from "@/userConfig/deleteUser";
-import Logout from "@/userConfig/logoutUser";
-import AccountStats from "./accountStats";
-import MySubmissions from "./userSubmissions";
-import ProfileDisplay from "./profileDisplay";
-import { useUserActivity } from "@/hooks/user/useUserActivity";
-import style from "./style/scss/dashboard/dashboard.module.scss";
+import { useAuthContext } from "@/context/UserProvider";
+import SearchForm from "@/components/search/Search";
+import Editor from "@/markDown/Editor";
+import UpdateUser from "@/components/user/UpdateUser";
+import UpdatePassword from "@/components/user/UpdatePassword";
+import DeleteBtn from "@/components/user/DeleteUser";
+import Logout from "@/components/user/LogoutUser";
+import AccountStats from "./AccountStats";
+import MySubmissions from "./Submissions";
+import ProfileDisplay from "./ProfileDisplay";
+import { useUserActivity } from "@/hooks/useUserActivity";
+import style from "./styles/scss/dashboard/dashboard.module.scss";
 import HospitalPic from "@/assets/images/hospital-logo.jpg";
-import { Avatar } from "@/components/avatar";
-import Motion from "@/components/motion";
-import { fadeUp, sectionReveal, settingsTabVariants } from "@/hooks/animations";
+import { Avatar } from "@/components/ui/Avatar";
+import Motion from "@/components/ui/Motion";
+import { fadeUp, sectionReveal, settingsTabVariants } from "@/utils/animations";
 import { AnimatePresence } from "framer-motion";
-import useAxiosPrivate from "@/hooks/user/useAxiosPrivate";
+import useAxiosPrivate from "@/hooks/useAxiosPrivate";
 import { toast } from "react-toastify";
 
 const Dashboard = () => {
@@ -58,7 +58,6 @@ const Dashboard = () => {
       setFavorites(localFavs);
       setRecentlyViewed(localRecents);
 
-      // Fetch "Truth" from DB
       const dbData = await fetchActivity();
 
       if (dbData) {
@@ -301,7 +300,7 @@ const Dashboard = () => {
           )}
           {/* VIEW: ADD HOSPITAL */}
           {selected === "add-hospital" && <Motion variants={fadeUp} className={style.viewPanel}><Editor /></Motion>}
-          {/* VIEW: MY SUBMISSIONS */}
+          {/* VIEW: SUBMISSIONS */}
           {selected === "my-submissions" && (
             <Motion variants={fadeUp} className={style.viewPanel}>
               <MySubmissions />

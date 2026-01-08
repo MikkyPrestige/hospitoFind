@@ -1,5 +1,5 @@
-import { useAuthContext } from "@/context/userContext";
-import style from "./style/profileDisplay.module.css";
+import { useAuthContext } from "@/context/UserProvider";
+import style from "./styles/profileDisplay.module.css";
 
 interface ProfileDisplayProps {
     onEditClick: () => void;

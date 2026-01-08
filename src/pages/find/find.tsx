@@ -3,19 +3,19 @@ import { NavLink, useNavigate, useSearchParams } from "react-router-dom";
 import { useState, useEffect, useRef } from "react";
 import mapboxgl from "mapbox-gl";
 import "mapbox-gl/dist/mapbox-gl.css";
-import { useTheme } from "@/context/themeContext";
+import { useTheme } from "@/context/ThemeProvider";
 import { accessToken } from "@/config/mapbox";
-import { BASE_URL } from "@/context/userContext";
+import { BASE_URL } from "@/context/UserProvider";
 import { findHospitals } from "@/services/api";
-import PopularHospitals from "@/components/popular";
-import Motion from "@/components/motion";
-import { fadeUp, sectionReveal, zoomIn } from "@/hooks/animations";
+import PopularHospitals from "@/components/hospital/PopularHospitals";
+import Motion from "@/components/ui/Motion";
+import { fadeUp, sectionReveal, zoomIn } from "@/utils/animations";
 import { Hospital } from "@/services/hospital";
 import { FaHospital } from "react-icons/fa";
-import { Avatar } from "@/components/avatar";
+import { Avatar } from "@/components/ui/Avatar";
 import HospitalPic from "@/assets/images/hospital-logo.jpg";
-import style from "./style/find.module.scss";
-import { SEOHelmet } from "@/components/utils/seoUtils";
+import style from "./styles/find.module.scss";
+import { SEOHelmet } from "@/components/ui/SeoHelmet";
 
 mapboxgl.accessToken = accessToken;
 
@@ -48,7 +48,6 @@ const FindHospital = () => {
         const mapInstance = new mapboxgl.Map({
             container: mapContainer.current!,
             style: theme === 'dark' ? DARK_STYLE : LIGHT_STYLE,
-            // style: "mapbox://styles/mapbox/streets-v11",
             center: [0, 0],
             zoom: 1.5,
             attributionControl: false,
@@ -81,13 +80,13 @@ const FindHospital = () => {
         return () => mapInstance.remove();
     }, []);
 
-    // Dynamic Theme Switcher Effect
+    // Dynamic Theme Switcher
     useEffect(() => {
         if (!map) return;
         map.setStyle(theme === 'dark' ? DARK_STYLE : LIGHT_STYLE);
     }, [theme, map]);
 
-    // Helper function to update markers
+    // Update markers
     const updateMapMarkers = (data: Hospital[], mapInstance: mapboxgl.Map, userCoords?: [number, number]) => {
         markersRef.current.forEach((m) => m.remove());
         markersRef.current = [];
@@ -336,9 +335,9 @@ const FindHospital = () => {
                                 <Motion variants={fadeUp} className={style.noResults}>
                                     <div className={style.noResultsIcon}><FaHospital /></div>
                                     <p className={style.noResultsText}>{message}</p>
-                                        <button className={style.retryBtn} onClick={fetchNearbyHospitals}>
-                                            Browse verified facilities near you 📍
-                                        </button>
+                                    <button className={style.retryBtn} onClick={fetchNearbyHospitals}>
+                                        Browse verified facilities near you 📍
+                                    </button>
                                 </Motion>
                             ) : (
                                 !searching && (

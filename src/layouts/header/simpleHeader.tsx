@@ -1,8 +1,8 @@
 import { Link } from "react-router-dom";
 import Logo from "@/assets/images/logo.svg";
-import ThemeToggle from "@/components/themeToggle";
+import ThemeToggle from "@/components/ui/ThemeToggle";
 import { FiArrowLeft } from "react-icons/fi";
-import { useTheme } from "@/context/themeContext";
+import { useTheme } from "@/context/ThemeProvider";
 
 const SimpleHeader = () => {
     const { theme } = useTheme();

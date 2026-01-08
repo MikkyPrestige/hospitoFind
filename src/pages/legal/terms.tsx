@@ -1,6 +1,6 @@
-import { SEOHelmet } from "@/components/utils/seoUtils";
-import Motion from "@/components/motion";
-import { fadeUp } from "@/hooks/animations";
+import { SEOHelmet } from "@/components/ui/SeoHelmet";
+import Motion from "@/components/ui/Motion";
+import { fadeUp } from "@/utils/animations";
 import style from "./styles/terms.module.css";
 
 const Terms = () => {

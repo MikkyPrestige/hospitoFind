@@ -1,7 +1,7 @@
 import { Outlet, useLocation } from "react-router-dom";
 import { useState, useEffect, useRef } from "react";
 import axios from "axios";
-import { useAuthContext, BASE_URL } from "@/context/userContext";
+import { useAuthContext, BASE_URL } from "@/context/UserProvider";
 import { motion } from "framer-motion";
 import Logo from "@/assets/images/logo.svg";
 

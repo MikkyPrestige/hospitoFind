@@ -1,0 +1,198 @@
+.container {
+  padding: 1.5rem;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2rem;
+}
+.header .headerText h2 {
+  font-size: 2rem;
+  margin-bottom: 0.5rem;
+  color: var(--color-black);
+  font-family: var(--font-plus);
+}
+.header .headerText p {
+  color: var(--color-gray);
+  font-size: 1.4rem;
+  font-family: var(--font-inter);
+}
+.header .countBadge {
+  background: var(--bg-blue-tag);
+  color: var(--color-black);
+  padding: 0.4rem 0.8rem;
+  border-radius: 20px;
+  font-size: 1.5rem;
+  font-weight: 600;
+}
+
+.list {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.subCard {
+  background: var(--color-white);
+  border: 1px solid var(--color-border);
+  padding: 1.25rem;
+  border-radius: 12px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: transform 0.2s;
+}
+.subCard:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-card-blue-hover);
+}
+
+.cardInfo h3 {
+  font-size: 1.4rem;
+  color: var(--text-slate);
+  margin-bottom: 0.25rem;
+  font-family: var(--font-plus);
+}
+.cardInfo p {
+  font-size: 1.1rem;
+  color: var(--icon-gray);
+  font-family: var(--font-inter);
+}
+
+.statusPending {
+  background: var(--color-bg-light);
+  color: var(--warning-color);
+  padding: 6px 12px;
+  border-radius: 20px;
+  font-size: 1.2rem;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.statusApproved {
+  background: var(--color-bg-light);
+  color: var(--color-success);
+  padding: 6px 12px;
+  border-radius: 20px;
+  font-size: 1.2rem;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.cardStatus {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  min-width: 120px;
+}
+
+.pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1.5rem;
+  margin-top: 1.5rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--color-border);
+}
+.pagination .pageInfo {
+  font-size: 1rem;
+  color: var(--color-gray);
+  font-weight: 500;
+}
+.pagination .pageBtn {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 1rem;
+  border: 1px solid var(--color-border);
+  background: var(--color-white);
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 1rem;
+  color: var(--color-black);
+  transition: all 0.2s;
+}
+.pagination .pageBtn:hover:not(:disabled) {
+  background: var(--color-bg);
+  border-color: var(--color-border);
+}
+.pagination .pageBtn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  background: var(--color-bg-light);
+}
+
+.loader {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 200px;
+  color: var(--color-blue);
+  font-weight: 600;
+  font-size: 1.1rem;
+  letter-spacing: 0.5px;
+  animation: pulse 1.5s infinite ease-in-out;
+}
+
+.emptyState {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 4rem 2rem;
+  text-align: center;
+  color: var(--icon-gray);
+  background: var(--color-bg-light);
+  border-radius: 12px;
+  border: 1px dashed var(--color-border);
+}
+.emptyState p {
+  margin-top: 1rem;
+  font-size: 1.2rem;
+  max-width: 300px;
+  line-height: 1.5;
+  font-family: var(--font-inter);
+}
+.emptyState .retryBtn {
+  margin-top: 1.5rem;
+  padding: 0.6rem 1.5rem;
+  background-color: var(--color-blue);
+  color: var(--color-white);
+  border: none;
+  border-radius: 6px;
+  font-size: 1.1rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  box-shadow: var(--shadow-card-blue);
+}
+.emptyState .retryBtn:hover {
+  background-color: var(--color-blue-dark);
+  transform: translateY(-1px);
+}
+.emptyState .retryBtn:active {
+  transform: translateY(0);
+  box-shadow: none;
+}
+
+@keyframes pulse {
+  0% {
+    opacity: 0.6;
+    transform: scale(0.98);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  100% {
+    opacity: 0.6;
+    transform: scale(0.98);
+  }
+}/*# sourceMappingURL=userSubmissions.module.css.map */

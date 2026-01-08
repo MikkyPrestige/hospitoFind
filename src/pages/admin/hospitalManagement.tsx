@@ -1,12 +1,12 @@
 import { useState, useEffect } from "react";
-import useAxiosPrivate from "@/hooks/user/useAxiosPrivate";
+import useAxiosPrivate from "@/hooks/useAxiosPrivate";
 import {
     FiPlus, FiEdit, FiTrash2,
     FiSearch, FiFilter, FiX, FiCheckCircle, FiClock, FiActivity, FiXCircle
 } from "react-icons/fi";
 import { toast } from "react-toastify";
-import AdminHospitalForm from "@/components/admin/adminHospitalForm";
-import styles from "./style/scss/hospitalManagement/hospitalManagement.module.scss";
+import AdminHospitalForm from "@/components/admin/AdminHospitalForm";
+import styles from "./styles/scss/hospitalManagement/hospitalManagement.module.scss";
 import { HospitalFormData } from "@/services/hospital";
 
 const HospitalManagement = () => {
@@ -150,114 +150,114 @@ const HospitalManagement = () => {
         });
 
     return (
-            <div className={styles.container}>
-                <header className={styles.header}>
-                    <div className={styles.titleRow}>
-                        <div>
-                            <h1>Hospital Directory</h1>
-                            <p>Managing {hospitals.length} entries in the global database</p>
-                        </div>
-                        <button className={styles.addBtn} onClick={handleOpenAdd}>
-                            <FiPlus /> Add New Hospital
-                        </button>
+        <div className={styles.container}>
+            <header className={styles.header}>
+                <div className={styles.titleRow}>
+                    <div>
+                        <h1>Hospital Directory</h1>
+                        <p>Managing {hospitals.length} entries in the global database</p>
                     </div>
-                </header>
+                    <button className={styles.addBtn} onClick={handleOpenAdd}>
+                        <FiPlus /> Add New Hospital
+                    </button>
+                </div>
+            </header>
 
-                <div className={styles.controls}>
-                    <div className={styles.searchBar}>
-                        <FiSearch />
-                        <input
-                            type="text"
-                            placeholder="Search by name or city..."
-                            value={searchTerm}
-                            onChange={(e) => setSearchTerm(e.target.value)}
-                        />
-                    </div>
-
-                    <div className={styles.filterGroup}>
-                        <div className={styles.filterBox}>
-                            <FiFilter />
-                            <select value={filter} onChange={(e) => setFilter(e.target.value)}>
-                                <option value="all">All Status</option>
-                                <option value="verified">Live / Verified</option>
-                                <option value="unverified">Pending Review</option>
-                            </select>
-                        </div>
-
-                        <div className={styles.filterBox}>
-                            <FiActivity />
-                            <select value={sortBy} onChange={(e) => setSortBy(e.target.value)}>
-                                <option value="newest">Recently Created</option>
-                                <option value="oldest">Oldest First</option>
-                                <option value="name">Alphabetical (A-Z)</option>
-                            </select>
-                        </div>
-                    </div>
+            <div className={styles.controls}>
+                <div className={styles.searchBar}>
+                    <FiSearch />
+                    <input
+                        type="text"
+                        placeholder="Search by name or city..."
+                        value={searchTerm}
+                        onChange={(e) => setSearchTerm(e.target.value)}
+                    />
                 </div>
 
-                <div className={styles.tableWrapper}>
-                    {isLoading ? (
-                        <div className={styles.loading}>Synchronizing database...</div>
-                    ) : (
-                        <table className={styles.hospTable}>
-                            <thead>
-                                <tr>
-                                    <th>Hospital</th>
-                                    <th>Location</th>
-                                    <th>Status</th>
-                                    <th>Actions</th>
+                <div className={styles.filterGroup}>
+                    <div className={styles.filterBox}>
+                        <FiFilter />
+                        <select value={filter} onChange={(e) => setFilter(e.target.value)}>
+                            <option value="all">All Status</option>
+                            <option value="verified">Live / Verified</option>
+                            <option value="unverified">Pending Review</option>
+                        </select>
+                    </div>
+
+                    <div className={styles.filterBox}>
+                        <FiActivity />
+                        <select value={sortBy} onChange={(e) => setSortBy(e.target.value)}>
+                            <option value="newest">Recently Created</option>
+                            <option value="oldest">Oldest First</option>
+                            <option value="name">Alphabetical (A-Z)</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <div className={styles.tableWrapper}>
+                {isLoading ? (
+                    <div className={styles.loading}>Synchronizing database...</div>
+                ) : (
+                    <table className={styles.hospTable}>
+                        <thead>
+                            <tr>
+                                <th>Hospital</th>
+                                <th>Location</th>
+                                <th>Status</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {filteredHospitals.map(h => (
+                                <tr key={h._id}>
+                                    <td className={styles.nameCell}>
+                                        <strong>{h.name}</strong>
+                                        <span>{h.type}</span>
+                                    </td>
+                                    <td>{h.address?.city}, {h.address?.state}</td>
+                                    <td>
+                                        <span className={h.verified ? styles.statusVerified : styles.statusPending}>
+                                            {h.verified ? <><FiCheckCircle /> Live</> : <><FiClock /> Pending</>}
+                                        </span>
+                                    </td>
+                                    <td className={styles.actions}>
+                                        <button
+                                            onClick={() => handleToggleStatus(h._id)}
+                                            className={h.verified ? styles.unverifyBtn : styles.verifyBtn}
+                                            title={h.verified ? "Set to Pending" : "Set to Live"}
+                                        >
+                                            {h.verified ? <FiXCircle /> : <FiCheckCircle />}
+                                        </button>
+
+                                        <button onClick={() => handleOpenEdit(h)} className={styles.editBtn} title="Edit"><FiEdit /></button>
+                                        <button onClick={() => handleDelete(h._id, h.name)} className={styles.deleteBtn} title="Delete"><FiTrash2 /></button>
+                                    </td>
                                 </tr>
-                            </thead>
-                            <tbody>
-                                {filteredHospitals.map(h => (
-                                    <tr key={h._id}>
-                                        <td className={styles.nameCell}>
-                                            <strong>{h.name}</strong>
-                                            <span>{h.type}</span>
-                                        </td>
-                                        <td>{h.address?.city}, {h.address?.state}</td>
-                                        <td>
-                                            <span className={h.verified ? styles.statusVerified : styles.statusPending}>
-                                                {h.verified ? <><FiCheckCircle /> Live</> : <><FiClock /> Pending</>}
-                                            </span>
-                                        </td>
-                                        <td className={styles.actions}>
-                                            <button
-                                                onClick={() => handleToggleStatus(h._id)}
-                                                className={h.verified ? styles.unverifyBtn : styles.verifyBtn}
-                                                title={h.verified ? "Set to Pending" : "Set to Live"}
-                                            >
-                                                {h.verified ? <FiXCircle /> : <FiCheckCircle />}
-                                            </button>
-
-                                            <button onClick={() => handleOpenEdit(h)} className={styles.editBtn} title="Edit"><FiEdit /></button>
-                                            <button onClick={() => handleDelete(h._id, h.name)} className={styles.deleteBtn} title="Delete"><FiTrash2 /></button>
-                                        </td>
-                                    </tr>
-                                ))}
-                            </tbody>
-                        </table>
-                    )}
-                </div>
-
-                {/* MODAL OVERLAY */}
-                {showModal && (
-                    <div className={styles.modalOverlay}>
-                        <div className={styles.modalContent}>
-                            <button className={styles.closeBtn} onClick={() => setShowModal(false)}>
-                                <FiX />
-                            </button>
-                            <AdminHospitalForm
-                                title={isEditing ? "Edit Hospital Entry" : "Create New Entry"}
-                                formData={formData}
-                                setFormData={setFormData}
-                                onSubmit={handleSubmit}
-                                loading={false}
-                            />
-                        </div>
-                    </div>
+                            ))}
+                        </tbody>
+                    </table>
                 )}
             </div>
+
+            {/* MODAL OVERLAY */}
+            {showModal && (
+                <div className={styles.modalOverlay}>
+                    <div className={styles.modalContent}>
+                        <button className={styles.closeBtn} onClick={() => setShowModal(false)}>
+                            <FiX />
+                        </button>
+                        <AdminHospitalForm
+                            title={isEditing ? "Edit Hospital Entry" : "Create New Entry"}
+                            formData={formData}
+                            setFormData={setFormData}
+                            onSubmit={handleSubmit}
+                            loading={false}
+                        />
+                    </div>
+                </div>
+            )}
+        </div>
     );
 };
 

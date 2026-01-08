@@ -1,5 +1,5 @@
 import { useLocation, Navigate, Outlet } from "react-router-dom";
-import { useAuthContext } from "@/context/userContext";
+import { useAuthContext } from "@/context/UserProvider";
 import { useAuth0 } from "@auth0/auth0-react";
 import { motion } from "framer-motion";
 import Logo from "@/assets/images/logo.svg";

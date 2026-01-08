@@ -1,0 +1,54 @@
+import { useState } from "react";
+import { Link } from "react-router-dom";
+import { useForgotPassword } from "@/hooks/useForgotPassword";
+import SimpleHeader from "@/layouts/header/SimpleHeader";
+import SimpleFooter from "@/layouts/footer/SimpleFooter";
+import styles from "./styles/forgotPassword/forgotPassword.module.scss"
+
+const ForgotPassword = () => {
+    const [email, setEmail] = useState("");
+    const { sendResetLink, loading } = useForgotPassword();
+
+    const handleSubmit = async (e: React.FormEvent) => {
+        e.preventDefault();
+        if (!email) return;
+
+        const success = await sendResetLink(email);
+        if (success) setEmail("");
+    };
+
+    return (
+        <>
+            <SimpleHeader />
+
+            <div className={styles.authContainer}>
+                <div className={styles.authCard}>
+                    <h2>Forgot Password?</h2>
+                    <p>Enter your email and we'll send you a reset link.</p>
+
+                    <form onSubmit={handleSubmit}>
+                        <div className={styles.inputGroup}>
+                            <input
+                                type="email"
+                                placeholder="Enter your email"
+                                value={email}
+                                onChange={(e) => setEmail(e.target.value)}
+                                required
+                            />
+                        </div>
+                        <button type="submit" disabled={loading} className={styles.submitBtn}>
+                            {loading ? "Sending..." : "Send Reset Link"}
+                        </button>
+                    </form>
+
+                    <div className={styles.authFooter}>
+                        <Link to="/login">Back to Login</Link>
+                    </div>
+                </div>
+            </div>
+            <SimpleFooter />
+        </>
+    );
+};
+
+export default ForgotPassword;

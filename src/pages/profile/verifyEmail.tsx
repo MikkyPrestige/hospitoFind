@@ -3,10 +3,10 @@ import { useNavigate } from "react-router-dom";
 import { useSearchParams, Link } from "react-router-dom";
 import axios from "axios";
 import { motion } from "framer-motion";
-import { BASE_URL, useAuthContext } from "@/context/userContext";
+import { BASE_URL, useAuthContext } from "@/context/UserProvider";
 import Logo from "@/assets/images/logo.svg";
-import SimpleHeader from "@/layouts/header/simpleHeader";
-import SimpleFooter from "@/layouts/footer/simpleFooter";
+import SimpleHeader from "@/layouts/header/SimpleHeader";
+import SimpleFooter from "@/layouts/footer/SimpleFooter";
 
 const VerifyEmail = () => {
     const { dispatch } = useAuthContext();

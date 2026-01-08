@@ -1,8 +1,7 @@
 import { Hospital } from "./hospital";
 import axios from "axios";
 
-const BASE_URL =  import.meta.env.VITE_BASE_URL;
-// const BASE_URL =  import.meta.env.VITE_BASE_URLLocal;
+const BASE_URL =  import.meta.env.VITE_BASE_URLLocal;
 
 // get all hospitals
 export async function getHospitals() {
@@ -20,7 +19,7 @@ export async function getHospitalDetails(params: any) {
   try {
     if (params.slug) {
       const response = await axios.get(
-        `${BASE_URL}/hospital/${params.country}/${params.city}/${params.slug}`
+        `${BASE_URL}/hospitals/${params.country}/${params.city}/${params.slug}`
       );
       return response.data;
     }
@@ -65,17 +64,6 @@ export async function findHospitals(query: string) {
   }
 }
 
-// // get hospital by state or city
-// export async function searchHospitals(query: string) {
-//   try {
-//     const response = await axios.get(`${BASE_URL}/hospitals/search?${query}`);
-//     const searchedHospitals = response.data;
-//     return searchedHospitals;
-//   } catch (error) {
-//     throw error
-//   }
-// }
-
 // share hospital
 export const shareHospital = async (searchParams: any) => {
   try {
@@ -90,21 +78,6 @@ export const shareHospital = async (searchParams: any) => {
     throw error;
   }
 };
-// export async function shareHospital(searchParams: any) {
-//   try {
-//     const response = await axios.post(`${BASE_URL}/hospitals/share`, {
-//       searchParams: {
-//         address: searchParams.address,
-//         city: searchParams.city,
-//         state: searchParams.state
-//       }
-//     });
-//     const shareLink = response.data.shareableLink;
-//     return shareLink;
-//   } catch (error) {
-//     throw error
-//   }
-// }
 
 // export hospital in csv download format
 export async function exportHospital(searchParams: any) {
@@ -155,9 +128,8 @@ export async function deleteHospital(id: number) {
 }
 
 // axios api
-// helper to manage the loading state outside of React components
 let activeRequests = 0;
-
+// Manage the loading state outside of React components
 const showLoader = () => {
   const loader = document.getElementById("global-loader");
   if (loader) {
@@ -177,7 +149,7 @@ const hideLoader = () => {
   }
 };
 
-// 🛡️ Create the custom instance
+// Custom instance
 export const api = axios.create({
   baseURL: BASE_URL,
   withCredentials: true,
@@ -204,9 +176,6 @@ api.interceptors.request.use(
 
 /**
  * RESPONSE INTERCEPTOR
- */
-/**
- * RESPONSE INTERCEPTOR (Update this section in api.ts)
  */
 api.interceptors.response.use(
   (response) => {

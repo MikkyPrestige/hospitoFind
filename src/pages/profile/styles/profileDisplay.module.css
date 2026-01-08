@@ -1,0 +1,125 @@
+.settingsCard {
+  background: var(--color-white);
+  border-radius: 12px;
+  border: 1px solid var(--color-border);
+  overflow: hidden;
+}
+
+.infoGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 2.5rem;
+
+  @media (min-width: 48.0625em) {
+    gap: 1.2rem;
+  }
+}
+
+.infoItem {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.infoItem label {
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: var(--color-gray);
+  text-transform: uppercase;
+  letter-spacing: 0.025em;
+  font-family: var(--font-plus);
+}
+
+.infoItem p {
+  font-size: 1.1rem;
+  font-weight: 500;
+  color: var(--color-black);
+  margin: 0;
+  font-family: var(--font-inter);
+}
+
+.badge {
+  display: inline-block;
+  padding: 0.4rem 1rem;
+  background-color: var(--bg-blue-tag);
+  color: var(--color-blue-light);
+  border-radius: 9999px;
+  font-size: 1rem;
+  font-weight: 600;
+  border: 1px solid var(--color-blue-light);
+}
+
+.editBtn {
+  background-color: var(--color-blue);
+  color: #f9fbff;
+  padding: 1rem 1.8rem;
+  border-radius: 8px;
+  font-size: 1.2rem;
+  font-weight: 600;
+  border: none;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.editBtn:hover {
+  background-color: var(--color-blue-dark);
+}
+
+.cancelBtn {
+  background: none;
+  border: 1px solid var(--color-border);
+  color: var(--text-slate);
+  font-size: 1.2rem;
+  padding: 0.8rem 1.6rem;
+  border-radius: 6px;
+  cursor: pointer;
+  margin-top: 1rem;
+}
+
+.cancelBtn:hover {
+  background-color: var(--color-ash);
+}
+
+.joinDate {
+  grid-column: 1 / -1;
+  margin-top: 1rem;
+  padding-top: 1.5rem;
+  border-top: 1px dashed var(--color-border);
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  font-size: 1rem;
+  color: var(--color-gray);
+}
+
+.joinDate svg {
+  width: 16px;
+  height: 16px;
+}
+
+.socialWarning {
+  grid-column: 1 / -1;
+  background-color: #fffaf0;
+  border: 1px solid var(--warning-color);
+  padding: 1rem 1.5rem;
+  border-radius: .8rem;
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.socialWarning svg {
+  width: 2rem;
+  height: 2rem;
+  color: var(--warning-color);
+  flex-shrink: 0;
+}
+
+.socialWarning p {
+  font-size: .2;
+  color: #744210;
+  margin: 0;
+  line-height: 1.4;
+  font-family: var(--font-inter);
+}

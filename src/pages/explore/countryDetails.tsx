@@ -6,15 +6,15 @@ import React, {
   useMemo
 } from "react";
 import { useParams, Link } from "react-router-dom";
-import HospitalCard from "../../components/hospitalCard";
+import HospitalCard from "@/components/hospital/HospitalCard";
 import { Hospital } from "@/services/hospital";
 import { FiArrowLeft, FiSearch } from "react-icons/fi";
-import style from "./style/countryDetails.module.css";
-import Motion from "@/components/motion";
-import { fadeUp } from "@/hooks/animations";
-import { SEOHelmet } from "@/components/utils/seoUtils";
-import AnimatedLoader from "@/components/utils/animatedLoader";
-import MapPin from "../../assets/images/mapPin.png"
+import style from "./styles/countryDetails.module.css";
+import Motion from "@/components/ui/Motion";
+import { fadeUp } from "@/utils/animations";
+import { SEOHelmet } from "@/components/ui/SeoHelmet";
+import AnimatedLoader from "@/components/ui/AnimatedLoader";
+import MapPin from "@/assets/images/mapPin.png"
 
 interface HospitalResponse {
   hospitals?: Hospital[];
@@ -67,7 +67,7 @@ const CountryDetailPage: React.FC = () => {
     fetchHospitals();
   }, [fetchHospitals]);
 
-  // Infinite Scroll Observer
+  // Infinite Scroll
   const lastItemRef = useCallback(
     (node: Element | null) => {
       if (loading || fetchingMore || page >= totalPages) return;
@@ -158,7 +158,10 @@ const CountryDetailPage: React.FC = () => {
             ) : filteredHospitals.length === 0 ? (
               <div className={style.empty}>
                 <h3>No Match Found</h3>
-                <p>We couldn't find any facilities matching "{searchTerm}" in {decodedCountry}. Try adjusting your filters.</p>
+                  <p>We couldn't find any facilities matching <strong>{searchTerm}</strong> in {decodedCountry}. Try adjusting your filters.</p>
+                  <button onClick={() => { setSearchTerm(""); setActiveType("All"); }} className={style.resetBtn}>
+                    Reset Search Filters
+                  </button>
               </div>
             ) : (
               <div className={style.grid}>

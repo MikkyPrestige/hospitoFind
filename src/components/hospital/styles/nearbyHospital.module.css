@@ -1,0 +1,184 @@
+.section {
+  width: 100%;
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 4rem 1.5rem 2rem;
+}
+
+.headerRow {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 2rem;
+}
+
+.note {
+  font-size: 1.5rem;
+  color: var(--color-blue);
+  background-color: var(--bg-blue-tag);
+  padding: 0.8rem 1.5rem;
+  border-radius: 50px;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-family: var(--font-inter);
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+}
+
+.card {
+  background: var(--color-white);
+  border-radius: 1.5rem;
+  overflow: hidden;
+  box-shadow: var(--shadow-card);
+  transition: transform 0.3s ease;
+  border: 1px solid var(--color-border);
+  display: flex;
+  flex-direction: column;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: var(--shadow-card-blue-hover);
+  border-color: var(--color-blue);
+}
+
+.imageContainer {
+  position: relative;
+  height: 200px;
+  width: 100%;
+}
+
+.image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.distBadge {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  background: var(--color-bg-contrast);
+  color: var(--color-black);
+  padding: 0.3rem 0.8rem;
+  border-radius: 20px;
+  font-size: 1rem;
+  font-weight: 700;
+  backdrop-filter: blur(4px);
+  font-family: var(--font-inter);
+}
+
+.cardContent {
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+  flex: 1;
+}
+
+.cardHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 1rem;
+}
+
+.title {
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: var(--color-black);
+  margin: 0;
+  font-family: var(--font-plus);
+}
+
+.typeBadge {
+  font-size: 0.85rem;
+  padding: 0.3rem 0.8rem;
+  border-radius: 50px;
+  font-weight: 700;
+  text-transform: uppercase;
+  background: var(--color-ash);
+  color: var(--color-gray);
+  white-space: nowrap;
+  font-family: var(--font-inter);
+}
+
+.privateBadge {
+  background: var(--primary-light);
+  color: var(--color-indigo);
+}
+
+.publicBadge {
+  background: var(--color-success-bg);
+  color: var(--color-success);
+}
+
+.location {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: var(--color-gray);
+  font-size: 1.25rem;
+  font-family: var(--font-inter);
+}
+
+.pinIcon {
+  color: var(--color-blue);
+  font-size: 1.3rem;
+  flex-shrink: 0;
+}
+
+.viewBtn {
+  margin-top: auto;
+  width: 100%;
+  padding: 0.8rem;
+  border: 1px solid var(--color-blue);
+  background: transparent;
+  color: var(--color-blue);
+  border-radius: 12px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.2s;
+  font-family: var(--font-inter);
+}
+
+.viewBtn:hover {
+  background: var(--color-blue);
+  color: var(--color-white);
+}
+
+.actionWrapper {
+  display: flex;
+  justify-content: center;
+  margin-top: 1.5rem;
+}
+
+.viewAllBtn {
+  background: var(--color-blue);
+  color: var(--color-white);
+  padding: 1rem 2.5rem;
+  border-radius: 50px;
+  font-weight: 700;
+  font-size: 1rem;
+  border: none;
+  cursor: pointer;
+  transition: transform 0.2s;
+  font-family: var(--font-inter);
+}
+
+.viewAllBtn:hover {
+  transform: translateY(-3px);
+  background: var(--color-blue-light);
+}
+
+.emptyState {
+  text-align: center;
+  padding: 4rem;
+  color: var(--color-gray);
+  font-size: 1.2rem;
+}
