@@ -1,0 +1,9 @@
+User-agent: *
+Disallow: /dashboard
+Allow: /
+Sitemap: https://hospitofind.online/sitemap.xml
+Sitemap: https://hospitofind.online/sitemap-static.xml
+Sitemap: https://hospitofind.online/sitemap-countries.xml
+Sitemap: https://hospitofind.online/sitemap-cities.xml
+Sitemap: https://hospitofind.online/sitemap-hospitals.xml
+Sitemap: https://hospitofind.online/sitemap-images.xml

@@ -1,233 +1,264 @@
-import { BsHospital, BsBuildingAdd } from "react-icons/bs"
-import { FaFileExport } from "react-icons/fa"
-import { SlShareAlt } from "react-icons/sl"
-import { MdStarBorderPurple500 } from "react-icons/md"
-import style from "./style/about.module.css";
-import { Avatar } from "@/components/avatar";
-import Doctor from "@/assets/images/patient-doctor.jpg";
+import { useEffect, useState } from "react";
+import { BsGlobe2, BsShieldCheck, BsLightningCharge } from "react-icons/bs";
+import { FaNotesMedical, FaMapMarkedAlt, FaRegNewspaper } from "react-icons/fa";
+import { MdStarBorderPurple500 } from "react-icons/md";
+import { motion } from "framer-motion";
+import { Link } from "react-router-dom";
+import style from "./styles/about.module.scss";
+import { BASE_URL } from "@/context/UserProvider";
+import Motion from "@/components/ui/Motion";
+import { Avatar } from "@/components/ui/Avatar";
+import { SEOHelmet } from "@/components/ui/SeoHelmet";
+import { fadeUp, slideLeft, slideRight, zoomIn, sectionReveal } from "@/utils/animations";
 import Stethoscope from "@/assets/images/stethoscope.jpg";
 import Handset from "@/assets/images/handset.jpg";
 import Laptop from "@/assets/images/laptop.jpg";
+import Lobby from "@/assets/images/hospitalLobby.png"
 import Search from "@/assets/images/hospitalSearch.png";
-import Reviewer1 from "@/assets/images/reviewer1.jpg";
-import Reviewer2 from "@/assets/images/reviewer2.jpg";
-import Reviewer3 from "@/assets/images/reviewer3.jpg";
-import Patient from "@/assets/images/patient.jpg";
-import { Button } from "@/components/button";
-import Header from "@/layouts/header/nav";
-import Footer from "@/layouts/footer/footer";
-import { Link } from "react-router-dom";
-import { Helmet } from "react-helmet-async";
+import PhoneMap from "@/assets/images/phone.jpg";
+import Reviewer2 from "@/assets/images/man1.jpg";
+import Reviewer4 from "@/assets/images/man2.jpg";
+import Reviewer7 from "@/assets/images/woman3.jpg";
+import Reviewer9 from "@/assets/images/woman5.jpg";
+import Reviewer8 from "@/assets/images/woman8.jpg";
+import Reviewer10 from "@/assets/images/woman9.jpg";
+
 
 const About = () => {
+  const [count, setCount] = useState<number | null>(null);
+  const [countryCount, setCountryCount] = useState(null);
+
+  useEffect(() => {
+    const fetchGlobalStats = async () => {
+      try {
+        // Promise.all to fetch both in parallel
+        const [countRes, countryRes] = await Promise.all([
+          fetch(`${BASE_URL}/hospitals/count`),
+          fetch(`${BASE_URL}/hospitals/stats/countries`)
+        ]);
+
+        const countData = await countRes.json();
+        const countryData = await countryRes.json();
+
+        setCount(countData.total);
+
+        setCountryCount(countryData.length);
+
+      } catch (err) {
+        console.error("Failed to fetch stats:", err);
+      }
+    };
+
+    fetchGlobalStats();
+  }, []);
+
   return (
     <>
-      <Helmet>
-        <title>About | Hospital Finder</title>
-        <meta name="description" content="About HospitoFind" />
-        <meta name="keywords" content="hospital, doctor, appointment, health, care, medical, clinic, find, search, nearby, nearest" />
-      </Helmet>
-      <Header />
-      <section className={style.bg}>
-        <section className={style.wrapper}>
-          <div className={style.top}>
-            <h1 className={style.title}>Welcome to <span className={style.span}>HospitoFind</span></h1>
-            <p className={style.para}>HospitoFind is a platform where users can search for hospitals in their areas, export hospital details for your records and  enhance your healthcare experience by connecting with others and sharing valuable resources.</p>
-            <Button children={<span className={style.cta}>
-              <Link to="/find">OUR SERVICES</Link>
-            </span>} />
+      <SEOHelmet
+        title="Our Mission"
+        description="We are dedicated to making global healthcare accessible, transparent, and verified for everyone, everywhere."
+        canonical="https://hospitofind.online/about"
+      />
+
+      <main className={style.bg}>
+        <Motion className={style.heroWrapper} variants={fadeUp} as="section">
+          <div className={style.heroContent}>
+            <h1 className={style.heroTitle}>
+              Connecting You to <span className={style.span}>Verified Global Healthcare</span>
+            </h1>
+            <p className={style.heroPara}>
+              In a medical emergency, accurate information saves lives. HospitoFind is the world's most reliable directory for verified hospitals, clinics, and emergency centers. We bridge the gap between patients and quality care through technology and transparency.
+            </p>
+
+            <div className={style.statsRow}>
+              <div className={style.statItem}>
+                <span className={style.statNumber}>
+                  {count ? count.toLocaleString() : "500"}+
+                </span>
+                <span className={style.statLabel}>Verified Facilities</span>
+              </div>
+
+              <div className={style.statItem}>
+                <span className={style.statNumber}>
+                  {countryCount ? countryCount : "50"}+
+                </span>
+                <span className={style.statLabel}>Countries Covered</span>
+              </div>
+            </div>
+
+            <Link to="/find-hospital" className={style.ctaLink}>
+              Locate a Facility
+            </Link>
           </div>
-          <div className={style.img}>
-            <div className={style.img_1}>
-              <Avatar
-                image={Patient}
-                alt="Patient"
-                style={{ width: "100%", height: "100%", borderRadius: "1rem" }}
-              />
-            </div>
-            <div className={style.img_2}>
-              <Avatar
-                image={Doctor}
-                alt="Doctor and patient"
-                style={{ width: "100%", height: "100%", borderRadius: "1rem" }}
-              />
-            </div>
+
+          <div className={style.heroImages}>
+            <motion.div variants={slideLeft} className={style.img1}>
+              <Avatar image={PhoneMap} alt="HospitoFind Mobile Interface showing map" style={{ width: "100%", height: "100%", objectFit: "cover", borderRadius: "2rem", display: "block" }} />
+            </motion.div>
+            <motion.div variants={slideRight} className={style.img2}>
+              <Avatar image={Lobby} alt="Modern Hospital Lobby" style={{
+                width: "100%", height: "100%", objectFit: "cover", borderRadius: "2rem", display: "block"
+              }} />
+            </motion.div>
           </div>
-        </section>
-        <section className={style.wrapper2}>
-          <div className={style.container}>
-            <div className={style.box}>
-              <div className={style.icon_box}>
-                <BsHospital className={style.icon} />
-              </div>
-              <div className={style.box2}>
-                <h2 className={style.title}>Search Hospital</h2>
-                <p className={style.subtitle}>
-                  Effortlessly Find the Best Hospitals Near You by entering your location or name of hospital you are looking for.
-                </p>
-              </div>
+        </Motion>
+
+        <Motion className={style.missionWrapper} variants={sectionReveal} as="section">
+          <div className={style.missionGrid}>
+            <div className={style.missionText}>
+              <h2 className={style.sectionHeading}>Our Mission</h2>
+              <p>
+                To democratize healthcare access by providing a centralized, verified source of medical facility data. We envision a world where finding safe, reliable medical care is immediate and stress-free, regardless of your location, language, or circumstance.
+              </p>
             </div>
-            <div className={style.box}>
-              <div className={style.icon_box}>
-                <FaFileExport className={style.icon} />
-              </div>
-              <div className={style.box2}>
-                <h2 className={style.title}>Export Hospital</h2>
-                <p className={style.subtitle}>
-                  Export the list of hospitals searched, for your records via CSV format.
-                </p>
-              </div>
-            </div>
-            <div className={style.box}>
-              <div className={style.icon_box}>
-                <SlShareAlt className={style.icon} />
-              </div>
-              <div className={style.box2}>
-                <h2 className={style.title}>Share Hospital</h2>
-                <p className={style.subtitle}>
-                  Share the list of hospitals you searched with others by generating a shareable link.
-                </p>
-              </div>
-            </div>
-            <div className={style.box}>
-              <div className={style.icon_box}>
-                <BsBuildingAdd className={style.icon} />
-              </div>
-              <div className={style.box2}>
-                <h2 className={style.title}>Add Hospital</h2>
-                <p className={style.subtitle}>
-                  Add a hospital to our database and help others find the best hospitals near them.
-                </p>
-              </div>
-            </div>
-          </div>
-          <div className={style.semiCircle_bg}>
-            <div className={`${style.semiCircle} ${style.one}`}>{""}</div>
-            <div className={`${style.semiCircle} ${style.two}`}>{""}</div>
-            <div className={`${style.semiCircle} ${style.three}`}>{""}</div>
-            <h2 className={style.heading}>How It Works</h2>
-            <div className={style.content}>
-              <div className={`${style.item} ${style.content1}`}>
-                <Avatar
-                  image={Search}
-                  alt="Search hospital"
-                  style={{ width: "7rem", height: "7rem", borderRadius: "50%" }}
-                />
-                <h3 className={style.head}>Find Hospital</h3>
-                <p className={style.text}>Find the best hospitals and doctors near you, our efficient search engine provides you with the best results.</p>
-                <div className={`${style.arrow} ${style.arrow1}`}>
-                  <div className={style.arrow_line}></div>
-                  <div className={style.arrow_head}></div>
+            <div className={style.valuesList}>
+              <div className={style.valueItem}>
+                <BsShieldCheck className={style.valueIcon} />
+                <div>
+                  <h4>Data Integrity</h4>
+                  <p>We rigorously verify every facility to ensure you have accurate contact details and location data when it matters most.</p>
                 </div>
               </div>
-              <div className={`${style.item} ${style.content2}`}>
-                <Avatar
-                  image={Stethoscope}
-                  alt="Stethoscope"
-                  style={{ width: "7rem", height: "7rem", borderRadius: "50%" }}
-                />
-                <h3 className={style.head}>Sign up / Login</h3>
-                <p className={style.text}>
-                  Join our community to enjoy seamless access to all the features of our web app.
-                </p>
-                <div className={`${style.arrow} ${style.arrow2}`}>
-                  <div className={style.arrow_line}></div>
-                  <div className={style.arrow_head}></div>
+              <div className={style.valueItem}>
+                <BsLightningCharge className={style.valueIcon} />
+                <div>
+                  <h4>Rapid Access</h4>
+                  <p>Our platform is optimized for speed, delivering critical information instantly—even in low-bandwidth environments.</p>
                 </div>
-              </div>
-              <div className={`${style.item} ${style.content3}`}>
-                <Avatar
-                  image={Handset}
-                  alt="Handset"
-                  style={{ width: "7rem", height: "7rem", borderRadius: "50%" }}
-                />
-                <h3 className={style.head}>Export or Share hospital</h3>
-                <p className={style.text}>
-                  Export the list of hospitals you searched for your records via CSV format or share the list of hospitals you searched with others via generating a shareable link.
-                </p>
-                <div className={`${style.arrow} ${style.arrow3}`}>
-                  <div className={style.arrow_line}></div>
-                  <div className={style.arrow_head}></div>
-                </div>
-              </div>
-              <div className={`${style.item} ${style.content4}`}>
-                <Avatar
-                  image={Laptop}
-                  alt="Laptop"
-                  style={{ width: "7rem", height: "7rem", borderRadius: "50%" }}
-                />
-                <h3 className={style.head}>Add Hospitals</h3>
-                <p className={style.text}>
-                  Add a hospital to our database and help others find the best hospitals near them.
-                </p>
               </div>
             </div>
           </div>
-        </section>
-        <section className={style.review}>
-          <h2 className={style.review_title}><span className={style.review_title_span}>{""}</span> Testimonials</h2>
-          <h3 className={style.review_subtitle}>What Our Users Say</h3>
-          <div className={style.review_container}>
-            <div className={style.review_box}>
-              <p className={style.review_text}>Finding the right hospital has never been easier! With this website, I was able to locate a nearby hospital quickly and efficiently. The search feature is user-friendly, and it provided me with all the essential information I needed. Highly recommended</p>
-              <div className={style.star}>
-                <MdStarBorderPurple500 className={style.star_icon} />
-                <MdStarBorderPurple500 className={style.star_icon} />
-                <MdStarBorderPurple500 className={style.star_icon} />
-                <MdStarBorderPurple500 className={style.star_icon} />
-                <MdStarBorderPurple500 className={style.star_icon} />
-              </div>
-              <figure className={style.user}>
-                <Avatar
-                  image={Reviewer1}
-                  alt="Reviewer"
-                  style={{ width: "3.5rem", height: "3.5rem", borderRadius: "50%" }}
-                />
-                <figcaption className={style.name}>Sarah M.</figcaption>
-              </figure>
-            </div>
-            <div className={style.review_box}>
-              <p className={style.review_text}>I can't express how grateful I am for HospitoFind website. When i needed urgent medical care while traveling, it helped me locate the nearest hospital in a matter of  seconds. The accurate results and detailed directions saved me valuable time and ensured i received the care i needed</p>
-              <div className={style.star}>
-                <MdStarBorderPurple500 className={style.star_icon} />
-                <MdStarBorderPurple500 className={style.star_icon} />
-                <MdStarBorderPurple500 className={style.star_icon} />
-                <MdStarBorderPurple500 className={style.star_icon} />
-                <MdStarBorderPurple500 className={style.star_icon} />
-              </div>
-              <figure className={style.user}>
-                <Avatar
-                  image={Reviewer2}
-                  alt="Reviewer"
-                  style={{ width: "3.5rem", height: "3.5rem", borderRadius: "50%" }}
-                />
-                <figcaption className={style.name}>John D.</figcaption>
-              </figure>
-            </div>
-            <div className={style.review_box}>
-              <p className={style.review_text}>I recently moved to a new city and had no idea where to go for medical assistance, my friend shared me some hospital details using the HospitoFind website. It made my life easier, i was able to fine reputable hospitals near me effortlessly. The website’s is user friendly interface and comprehensive search gave me peace of mind. I highly recommend.</p>
-              <div className={style.star}>
-                <MdStarBorderPurple500 className={style.star_icon} />
-                <MdStarBorderPurple500 className={style.star_icon} />
-                <MdStarBorderPurple500 className={style.star_icon} />
-                <MdStarBorderPurple500 className={style.star_icon} />
-                <MdStarBorderPurple500 className={style.star_icon} />
-              </div>
-              <figure className={style.user}>
-                <Avatar
-                  image={Reviewer3}
-                  alt="Reviewer"
-                  style={{ width: "3.5rem", height: "3.5rem", borderRadius: "50%" }}
-                />
-                <figcaption className={style.name}>Emily T.</figcaption>
-              </figure>
-            </div>
+        </Motion>
+
+        <section className={style.featureSection}>
+          <div className={style.sectionHeaderCenter}>
+            <h2>Why Choose HospitoFind?</h2>
+            <p>Tools designed to empower your healthcare decisions.</p>
+          </div>
+          <div className={style.featureContainer}>
+            {features.map((item, i) => (
+              <Motion key={i} className={style.featureBox} variants={fadeUp}>
+                <div className={style.iconWrapper}>{item.icon}</div>
+                <h3 className={style.featureTitle}>{item.title}</h3>
+                <p className={style.featureText}>{item.text}</p>
+              </Motion>
+            ))}
           </div>
         </section>
-      </section>
-      <Footer />
+
+        <Motion className={style.howItWorksWrapper} variants={sectionReveal} as="section">
+          <div className={style.semiCircle_container}>
+            <div className={style.semiCircle_bg}>
+              <div className={`${style.semiCircle} ${style.one}`}></div>
+              <div className={`${style.semiCircle} ${style.two}`}></div>
+              <div className={`${style.semiCircle} ${style.three}`}></div>
+            </div>
+
+            <div className={style.howItWorks_inner}>
+              <h2 className={style.heading}>Navigating the Platform</h2>
+              <p className={style.subHeading}>Four simple steps to accessing or contributing to our global network.</p>
+
+              <div className={style.stepsGrid}>
+                {steps.map((step, i) => (
+                  <motion.div
+                    key={i}
+                    className={style.stepCard}
+                    variants={zoomIn}
+                  >
+                    <div className={style.stepAvatarWrapper}>
+                      <Avatar image={step.img} alt={step.head} style={{ width: "6.5rem", height: "6.5rem", borderRadius: "50%", border: "3px solid white" }} />
+                      <span className={style.stepNumber}>{i + 1}</span>
+                    </div>
+                    <h3 className={style.stepHead}>{step.head}</h3>
+                    <p className={style.stepText}>{step.text}</p>
+                  </motion.div>
+                ))}
+              </div>
+            </div>
+          </div>
+        </Motion>
+
+        <Motion className={style.reviewSection} variants={sectionReveal} as="section">
+          <div className={style.reviewHeader}>
+            <h2 className={style.review_title}>Trusted by Patients & Providers</h2>
+            <p className={style.review_subtitle}>See how HospitoFind is making a difference in communities worldwide.</p>
+          </div>
+
+          <div className={style.review_grid}>
+            {reviews.map((review, i) => (
+              <motion.div key={i} className={style.review_box} variants={fadeUp}>
+                <p className={style.review_text}>"{review.text}"</p>
+                <div className={style.starRow}>
+                  {[...Array(5)].map((_, j) => (
+                    <MdStarBorderPurple500 key={j} />
+                  ))}
+                </div>
+                <div className={style.userInfo}>
+                  <Avatar image={review.img} alt={review.name} style={{ width: "3.5rem", height: "3.5rem", borderRadius: "50%" }} />
+                  <span className={style.userName}>{review.name}</span>
+                  <span className={style.userRole}>{review.role}</span>
+                </div>
+              </motion.div>
+            ))}
+          </div>
+        </Motion>
+      </main>
     </>
   );
-}
+};
+
+// --- DATA ARRAYS ---
+const features = [
+  { icon: <FaNotesMedical />, title: "Comprehensive Profiles", text: "Access detailed facility records, including specialized services, accreditation status, and direct contact channels." },
+  { icon: <FaMapMarkedAlt />, title: "Interactive Mapping", text: "Visualize healthcare density in your region with our precision mapping tools and get instant turn-by-turn directions." },
+  { icon: <BsGlobe2 />, title: "Global Directory", text: "Seamlessly switch between countries to find care while traveling or for family members abroad." },
+  { icon: <FaRegNewspaper />, title: "Health Intelligence", text: "Stay informed with curated health alerts and epidemiological updates relevant to your location." },
+];
+
+const steps = [
+  { img: Search, head: "Search & Discover", text: "Enter your city or region to instantly view a curated list of verified medical facilities near you.", pos: "content1" },
+  { img: Stethoscope, head: "Create Profile", text: "Sign up to save critical contacts, track your history, and unlock advanced search filters.", pos: "content2" },
+  { img: Handset, head: "Save & Share", text: "Export facility details to PDF or share secure links with family members in emergencies.", pos: "content3" },
+  { img: Laptop, head: "Contribute Data", text: "Help the community by submitting new facilities or updating existing records for verification.", pos: "content4" },
+];
+
+const reviews = [
+  {
+    text: "While traveling abroad, HospitoFind helped me quickly locate hospitals in a new country. The map and distance area made it stress free to get care when I needed it most.",
+    img: Reviewer7,
+    name: "Abena A.",
+    role: "International Traveler"
+  },
+  {
+    text: "Creating an account was a game-changer. I tracked my searches, downloaded lists, and shared options with my family while planning a surgery abroad. It’s intuitive and genuinely helpful.",
+    img: Reviewer9,
+    name: "Elena Marquez",
+    role: "Caregiver"
+  },
+  {
+    text: "HospitoFind gave me more than directions. From services to daily health tips, it feels like having a healthcare guide in my pocket.",
+    img: Reviewer2,
+    name: "Oliver Ray",
+    role: "Health Enthusiast"
+  },
+  {
+    text: "The outbreak alerts kept me informed during a local health scare. HospitoFind isn’t just about finding hospitals—it’s about staying safe, prepared, and ahead of the curve.",
+    img: Reviewer8,
+    name: "Bolu Adeboye",
+    role: "Community Member"
+  },
+  {
+    text: "I love that I can contribute by adding verified hospitals. Knowing my input helps others in my community find trusted care makes me feel part of a global movement.",
+    img: Reviewer4,
+    name: "Emeka O.",
+    role: "Contributor"
+  },
+  {
+    text: "The ‘recently viewed’ feature saved me so much time. I didn’t have to repeat searches; I could quickly compare hospitals I checked earlier and finalize my choice.",
+    img: Reviewer10,
+    name: "Amira Solano",
+    role: "Patient"
+  }
+];
 
 export default About;
