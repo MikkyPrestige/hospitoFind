@@ -97,7 +97,7 @@ export const ContextProvider = ({ children }: { children: ReactNode }) => {
 };
 
 
-export const BASE_URL = import.meta.env.VITE_BASE_URLLocal;
+export const BASE_URL = import.meta.env.VITE_BASE_URL;
 
 export const useAuthContext = (): AuthContextType => {
   const context = useContext(AuthContext);
