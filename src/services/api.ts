@@ -1,7 +1,7 @@
 import { Hospital } from "./hospital";
 import axios from "axios";
 
-const BASE_URL =  import.meta.env.VITE_BASE_URLLocal;
+const BASE_URL =  import.meta.env.VITE_BASE_URL;
 
 // get all hospitals
 export async function getHospitals() {
