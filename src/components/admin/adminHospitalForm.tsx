@@ -1,6 +1,6 @@
 import { FiSave, FiMapPin, FiClock, FiImage, FiActivity, FiZap, FiSearch, FiAlertTriangle, FiCheck, FiMessageSquare, FiPlus, FiX } from "react-icons/fi";
-import styles from "./style/scss/adminHospitalForm.module.scss";
-import { standardizeText } from "../../utils/formatters";
+import styles from "./styles/adminHospitalForm.module.scss";
+import { standardizeText } from "@/utils/formatters";
 import { useState } from "react";
 import { toast } from "react-toastify";
 import useAxiosPrivate from "@/hooks/useAxiosPrivate";
