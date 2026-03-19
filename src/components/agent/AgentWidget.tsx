@@ -214,7 +214,6 @@ const AgentWidget = ({
 
     //  Core start function
     const startWithContext = useCallback(() => {
-        console.log('startWithContext called:', { started: startedRef.current, ctx: hospitalContextRef.current });
         if (startedRef.current) return;
         startedRef.current = true;
 
@@ -245,7 +244,6 @@ const AgentWidget = ({
 
     //  Auto-start
     useEffect(() => {
-        console.log('AUTO-START EFFECT:', { isEmbedded, phase, variant, hospitalContext, started: startedRef.current });
         if (!isEmbedded || phase !== 'idle' || startedRef.current) return;
 
         if (variant === 'dashboard') {
