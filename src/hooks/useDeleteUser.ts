@@ -14,7 +14,7 @@ const useDelete = () => {
   const deleteUser = async (username: string, password?: string) => {
     setLoading(true);
     try {
-      await api.delete(`/users`, {
+      await api.delete(`/user`, {
         data: { username, password },
       });
 

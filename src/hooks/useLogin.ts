@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAuthContext } from '@/context/UserProvider';
 import { api } from '@/services/api';
-import { Login } from '@/services/user';
+import { Login } from '@/src/types/user';
 import { toast } from 'react-toastify';
 
 

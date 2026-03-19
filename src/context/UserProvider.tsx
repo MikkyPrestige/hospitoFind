@@ -1,5 +1,5 @@
 import { useContext, createContext, useReducer, ReactNode } from "react";
-import { AuthState, AuthAction, AuthContextType } from "@/services/user";
+import { AuthState, AuthAction, AuthContextType } from "@/src/types/user";
 
 // --- INITIAL STATE ---
 const initialState: AuthState = {
@@ -26,7 +26,6 @@ const authReducer = (state: AuthState, action: AuthAction): AuthState => {
     case "UPDATE":
     case "REFRESH":
       if (action.payload) {
-        // Dynamically update localStorage for every key provided in the payload
         Object.entries(action.payload).forEach(([key, value]) => {
           if (value !== undefined && value !== null) {
             localStorage.setItem(key, value.toString());
@@ -47,7 +46,6 @@ const authReducer = (state: AuthState, action: AuthAction): AuthState => {
         auth0Id: data.auth0Id || null,
       };
 
-    // Clear everything on Logout or Account Deletion
     case "LOGOUT":
     case "DELETE":
       const keysToRemove = [
@@ -85,7 +83,7 @@ const authReducer = (state: AuthState, action: AuthAction): AuthState => {
   }
 };
 
-// --- PROVIDER COMPONENT ---
+// --- PROVIDER ---
 export const ContextProvider = ({ children }: { children: ReactNode }) => {
   const [state, dispatch] = useReducer(authReducer, initialState);
 
@@ -97,7 +95,8 @@ export const ContextProvider = ({ children }: { children: ReactNode }) => {
 };
 
 
-export const BASE_URL = import.meta.env.VITE_BASE_URL;
+// export const BASE_URL = import.meta.env.VITE_BASE_URL;
+export const BASE_URL = import.meta.env.VITE_BASE_URLLocal;
 
 export const useAuthContext = (): AuthContextType => {
   const context = useContext(AuthContext);

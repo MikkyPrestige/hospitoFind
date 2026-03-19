@@ -1,6 +1,6 @@
 import { useState, useEffect, useMemo } from "react";
 import { Helmet } from "react-helmet-async";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { Tooltip } from "react-tooltip";
 import { MdFindInPage } from "react-icons/md";
 import { CgProfile } from "react-icons/cg";
@@ -24,6 +24,7 @@ import Logout from "@/components/user/LogoutUser";
 import AccountStats from "./AccountStats";
 import MySubmissions from "./Submissions";
 import ProfileDisplay from "./ProfileDisplay";
+import HealthTimeline from './HealthTimeline';
 import { useUserActivity } from "@/hooks/useUserActivity";
 import style from "./styles/scss/dashboard/dashboard.module.scss";
 import HospitalPic from "@/assets/images/hospital-logo.jpg";
@@ -49,6 +50,31 @@ const Dashboard = () => {
   const [favorites, setFavorites] = useState<any[]>([]);
   const [recentlyViewed, setRecentlyViewed] = useState<any[]>([]);
   const [weeklyViews, setWeeklyViews] = useState<number>(0);
+  const location = useLocation();
+  const navigate = useNavigate();
+  const [savedHospitalContext, setSavedHospitalContext] = useState<{
+    name: string; city?: string; country?: string;
+  } | null>(null);
+
+  useEffect(() => {
+    const routerState = location.state as {
+      tab?: string;
+      hospitalContext?: { name: string; city?: string; country?: string };
+    } | null;
+
+    if (routerState?.tab) {
+      setSelected(routerState.tab);
+      localStorage.setItem('selectedLink', routerState.tab);
+    }
+
+    if (routerState?.hospitalContext) {
+      setSavedHospitalContext(routerState.hospitalContext);
+    }
+
+    if (routerState?.hospitalContext || routerState?.tab) {
+      navigate(location.pathname, { replace: true, state: null });
+    }
+  }, []);
 
   useEffect(() => {
     const hydrateData = async () => {
@@ -91,6 +117,7 @@ const Dashboard = () => {
 
   const menuItems = useMemo(() => [
     { id: "find-hospital", label: "Find Hospital", icon: <MdFindInPage /> },
+    { id: "health-history", label: "Health Timeline", icon: <FiActivity /> },
     { id: "add-hospital", label: "Add Hospital", icon: <BsBuildingAdd /> },
     { id: "my-submissions", label: "My Submissions", icon: <FiList /> },
     { id: "settings", label: "Settings", icon: <FiSettings /> },
@@ -298,6 +325,11 @@ const Dashboard = () => {
               )}
             </div>
           )}
+          {selected === "health-history" && (
+            <Motion variants={fadeUp} className={style.viewPanel}>
+              <HealthTimeline hospitalContext={savedHospitalContext} />
+            </Motion>
+          )}
           {/* VIEW: ADD HOSPITAL */}
           {selected === "add-hospital" && <Motion variants={fadeUp} className={style.viewPanel}><Editor /></Motion>}
           {/* VIEW: SUBMISSIONS */}
@@ -348,7 +380,6 @@ const Dashboard = () => {
                   </button>
                 </nav>
 
-                {/* Tab Content with AnimatePresence for smooth sliding */}
                 <div className={style.tabContent}>
                   <AnimatePresence mode="wait">
                     {settingsTab === "profile" && (
@@ -443,7 +474,6 @@ const Dashboard = () => {
             </Motion>
           )}
 
-          {/* LOGOUT VIEW */}
           {selected === "logout" && <Motion variants={fadeUp} className={style.viewPanel}><Logout /></Motion>}
         </section>
       </section>

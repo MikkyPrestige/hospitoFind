@@ -1,5 +1,5 @@
 import { shareHospital } from '@/services/api';
-import { SearchProps } from '@/services/hospital';
+import { SearchProps } from '@/src/types/hospital';
 import { useState, useEffect } from 'react';
 import style from './styles/scss/shareExport/shareExport.module.scss';
 import { CgShare, CgCopy, CgClose } from 'react-icons/cg';
