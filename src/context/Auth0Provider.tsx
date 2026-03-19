@@ -6,8 +6,8 @@ const AuthProvider = ({ children }: any) => {
 
   const domain = import.meta.env.VITE_Auth0_Domain;
   const clientId = import.meta.env.VITE_Auth0_ClientID;
-  // const redirectUri = import.meta.env.VITE_Auth0_RedirectURL;
-  const redirectUri = import.meta.env.VITE_Auth0_RedirectURLLocal;
+  const redirectUri = import.meta.env.VITE_Auth0_RedirectURL;
+  // const redirectUri = import.meta.env.VITE_Auth0_RedirectURLLocal;
 
   const onRedirectCallback = (appState: any) => {
     navigate(appState?.returnTo || window.location.pathname);
