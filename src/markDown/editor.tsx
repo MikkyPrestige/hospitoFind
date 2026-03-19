@@ -3,7 +3,7 @@ import useAxiosPrivate from "@/hooks/useAxiosPrivate";
 import ReactMde from 'react-mde';
 import ReactMarkdown from 'react-markdown';
 import 'react-mde/lib/styles/css/react-mde-all.css';
-import { Hospital } from '@/services/hospital';
+import { Hospital } from '@/src/types/hospital';
 import { Button } from '@/components/ui/Button';
 import style from './styles/editor.module.css';
 import { MdOutlineRestartAlt, MdErrorOutline, MdCheckCircleOutline } from 'react-icons/md';
