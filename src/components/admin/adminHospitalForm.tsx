@@ -4,7 +4,7 @@ import { standardizeText } from "@/utils/formatters";
 import { useState } from "react";
 import { toast } from "react-toastify";
 import useAxiosPrivate from "@/hooks/useAxiosPrivate";
-import { Hours } from "@/services/hospital";
+import { Hours } from "@/src/types/hospital";
 
 interface AdminHospitalFormProps {
     formData: any;

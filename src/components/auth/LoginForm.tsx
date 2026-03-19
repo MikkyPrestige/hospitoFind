@@ -14,7 +14,7 @@ import {
 import { Heart, Mail, Lock, ArrowRight, ShieldCheck, RefreshCw, Globe } from 'lucide-react';
 import useLogin from "@/hooks/useLogin";
 import usePageTransition from "@/hooks/usePageTransition";
-import { Login as LoginType } from "@/services/user";
+import { Login as LoginType } from "@/src/types/user";
 import { Button } from "@/components/ui/Button";
 import SimpleHeader from "@/layouts/header/SimpleHeader";
 import SimpleFooter from "@/layouts/footer/SimpleFooter";
