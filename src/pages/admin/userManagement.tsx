@@ -6,7 +6,7 @@ import {
 } from "react-icons/fi";
 import { toast } from "react-toastify";
 import styles from "./styles/scss/userManagement/userManagement.module.scss";
-import { UserData } from "@/services/user";
+import { UserData } from "@/src/types/user";
 
 const UserManagement = () => {
     const [users, setUsers] = useState<UserData[]>([]);

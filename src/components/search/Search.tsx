@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import { NavLink, Outlet } from "react-router-dom";
 import { AiFillHeart, AiOutlineHeart, AiOutlineSearch } from "react-icons/ai";
-import { LocationInput, Hospital } from "@/services/hospital";
+import { LocationInput, Hospital } from "@/src/types/hospital";
 import { findHospitals } from "@/services/api";
 import { useAuthContext, BASE_URL } from "@/context/UserProvider";
 import { getUniqueCities } from "@/utils/formatters"
@@ -197,7 +197,7 @@ export default function SearchForm({
     if (state.accessToken) {
       try {
         await axiosPrivate.post("/users/view", { hospitalId: hospital._id });
-      } catch (e) {}
+      } catch (e) { }
     }
   };
   // const handleExplore = async (hospital: Hospital) => {

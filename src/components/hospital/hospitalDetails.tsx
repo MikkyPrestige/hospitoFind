@@ -127,6 +127,33 @@ const HospitalDetails = () => {
         }
     };
 
+
+    const handleMatchMe = () => {
+        const hospitalContext = {
+            name: hospital.name,
+            city: hospital.address?.city,
+            country: hospital.address?.state,  // address.state = country in your schema
+        };
+
+        if (state?.accessToken) {
+            // Logged-in user → go to dashboard health timeline with context
+            navigate('/dashboard', {
+                state: {
+                    tab: 'health-history',
+                    hospitalContext,
+                },
+            });
+        } else {
+            // Guest → go to homepage with context as query params
+            const params = new URLSearchParams({
+                hospital: hospitalContext.name,
+                city: hospitalContext.city || '',
+                country: hospitalContext.country || '',
+            });
+            navigate(`/?${params.toString()}`);
+        }
+    };
+
     const handleBack = () => {
         setIsExiting(true);
     };
@@ -227,6 +254,13 @@ const HospitalDetails = () => {
                                         <button onClick={() => window.print()} className={style.printBtn}>
                                             <MdOutlinePrint size={20} /> Print
                                         </button>
+                                            <button
+                                                type="button"
+                                                onClick={handleMatchMe}
+                                                className={style.matchBtn}
+                                            >
+                                               ✦ Match Me Here
+                                            </button>
                                     </div>
                                 </div>
 

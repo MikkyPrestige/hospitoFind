@@ -1,4 +1,4 @@
-import { Hospital } from "@/services/hospital";
+import { Hospital } from "@/src/types/hospital";
 
 const toSlug = (text: string | undefined | null) => {
   if (!text) return "";

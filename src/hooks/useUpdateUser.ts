@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { User } from '@/services/user';
+import { User } from '@/src/types/user';
 import { useAuthContext } from '@/context/UserProvider';
 import { api } from '@/services/api';
 import { toast } from "react-toastify";
@@ -11,7 +11,7 @@ const useUpdate = () => {
   const update = async (user: User, onSuccess?: () => void) => {
     setLoading(true);
     try {
-      const response = await api.patch<User>(`/users`, user);
+      const response = await api.patch<User>(`/user`, user);
 
       dispatch({
         type: 'UPDATE',
