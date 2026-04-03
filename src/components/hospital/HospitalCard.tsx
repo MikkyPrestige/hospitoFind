@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { FiArrowRight, FiExternalLink, FiPhone, FiMail, FiMapPin } from "react-icons/fi";
-import { Hospital } from "@/services/hospital";
+import { Hospital } from "@/src/types/hospital";
 import style from "./styles/hospitalCard.module.css";
 
 interface HospitalCardProps {

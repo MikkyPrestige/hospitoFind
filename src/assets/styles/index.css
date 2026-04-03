@@ -36,6 +36,7 @@
   --color-gray: #64748b;
   --icon-gray: #94a3b8;
   --text-slate: #475569;
+  --text-white: #ffffff;
   /* --color-text-secondary: #64748b; */
 
   /* Borders */
@@ -70,8 +71,8 @@
   --color-bg: #020617;
   --color-bg-light: #0f172a;
   --color-bg-contrast: #0f172a;
-  --color-white: #1e293b;
-  --color-ash: #0f172a;
+  --color-white: #0f172a;
+  --color-ash: #1e293b;
 
   /* Text: White/Off-White */
   --color-black: #f8fafc;
@@ -95,6 +96,7 @@
   --color-error: #f87171;
   --color-red: #fb7185;
   --warning-color: #fbbf24;
+  --text-dark: #0f172a;
 
   /* Specific Components */
   --bg-blue-tag: rgba(59, 130, 246, 0.15);
@@ -107,11 +109,11 @@
 }
 
 [data-theme='dark'] .goog-te-gadget-simple {
-  color: white !important;
+  color: var(--text-white) !important;
 }
 
 [data-theme='dark'] .goog-te-gadget-simple span {
-  color: white !important;
+  color: var(--text-white) !important;
 }
 
 *,
