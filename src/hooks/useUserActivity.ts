@@ -5,7 +5,7 @@ export const useUserActivity = () => {
 
   const syncFavorite = async (hospitalId: string) => {
     try {
-      await axiosPrivate.post("/users/favorites", { hospitalId });
+      await axiosPrivate.post("/user/favorites", { hospitalId });
     } catch (err) {
       console.error("Background Sync Error (Fav):", err);
     }
@@ -13,7 +13,7 @@ export const useUserActivity = () => {
 
   const syncView = async (hospitalId: string) => {
     try {
-      return await axiosPrivate.post("/users/view", { hospitalId });
+      return await axiosPrivate.post("/user/view", { hospitalId });
     } catch (err) {
       console.error("Background Sync Error (View):", err);
     }
@@ -21,7 +21,7 @@ export const useUserActivity = () => {
 
   const fetchActivity = async () => {
     try {
-      const { data } = await axiosPrivate.get("/users/activity");
+      const { data } = await axiosPrivate.get("/user/activity");
       return data;
     } catch (err) {
       console.error("Hydration Error:", err);

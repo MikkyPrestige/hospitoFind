@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { PasswordUpdate } from '@/services/user'
+import { PasswordUpdate } from '@/src/types/user'
 import useLogout from './useLogout';
 import { api } from '@/services/api'
 import { toast } from 'react-toastify';
@@ -11,7 +11,7 @@ const usePasswordUpdate = () => {
   const updatePassword = async (user: PasswordUpdate) => {
     setLoading(true);
     try {
-      await api.patch(`/users/password`, user);
+      await api.patch(`/user/password`, user);
 
       toast.success("Password updated successfully!", { position: "top-center" });
       localStorage.removeItem("accessToken");

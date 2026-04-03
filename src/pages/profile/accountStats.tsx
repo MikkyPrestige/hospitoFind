@@ -11,7 +11,7 @@ const AccountStats = () => {
     useEffect(() => {
         const fetchStats = async () => {
             try {
-                const { data } = await axiosPrivate.get("/users/stats");
+                const { data } = await axiosPrivate.get("/user/stats");
                 setStats(data);
             } catch (err) {
                 console.error("Stats fetch failed");
