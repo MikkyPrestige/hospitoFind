@@ -168,6 +168,28 @@
   fill: var(--color-red);
 }
 
+.matchBtn {
+   display: inline-flex;
+   align-items: center;
+   gap: 0.4rem;
+   background: var(--color-blue);
+   color: #ffffff;
+   border: none;
+   border-radius: 50px;
+   padding: 0.55rem 1.2rem;
+   font-size: 0.85rem;
+   font-weight: 700;
+   cursor: pointer;
+   font-family: var(--font-plus);
+   transition: background 0.2s ease, transform 0.15s ease;
+   white-space: nowrap;
+ }
+
+ .matchBtn:hover {
+   background: var(--color-blue-dark);
+   transform: translateY(-2px);
+ }
+
 /* IMAGE */
 .image {
   width: 100%;
