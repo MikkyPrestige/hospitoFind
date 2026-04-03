@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { getRandomHospitals } from "@/services/api";
-import { Hospital } from "@/services/hospital";
+import { Hospital } from "@/src/types/hospital";
 import { Avatar } from "@/components/ui/Avatar";
 import Motion from "@/components/ui/Motion";
 import { fadeUp, sectionReveal } from "@/utils/animations";

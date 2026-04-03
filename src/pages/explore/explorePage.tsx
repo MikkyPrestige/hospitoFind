@@ -2,7 +2,7 @@ import { useEffect, useState, useMemo } from "react";
 import { Link } from "react-router-dom";
 import { FiSearch, FiMapPin, FiGlobe } from "react-icons/fi";
 import CountryCard from "@/components/hospital/CountryCard";
-import { Hospital } from "@/services/hospital";
+import { Hospital } from "@/src/types/hospital";
 import Motion from "@/components/ui/Motion";
 import { BASE_URL } from "@/context/UserProvider";
 import { fadeUp, zoomIn, sectionReveal } from "@/utils/animations";
@@ -181,7 +181,7 @@ const ExplorePage = () => {
               <Motion as="div" className={style.emptyState} variants={fadeUp}>
                 <div className={style.emptyIcon}><FiMapPin /></div>
                 <h2>No Matching Regions Found</h2>
-                  <p>We couldn't locate <strong>{query}</strong> in {selectedContinent}. Please verify the spelling or try a broader region.</p>
+                <p>We couldn't locate <strong>{query}</strong> in {selectedContinent}. Please verify the spelling or try a broader region.</p>
                 <button onClick={() => { setQuery(""); setSelectedContinent("All"); }} className={style.resetBtn}>
                   Reset Search Filters
                 </button>

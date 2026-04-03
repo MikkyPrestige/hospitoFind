@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { User } from "@/services/user";
+import { User } from "@/src/types/user";
 import { useAuthContext } from "@/context/UserProvider";
 import useUpdate from "@/hooks/useUpdateUser";
 import { Button } from "@/components/ui/Button";
