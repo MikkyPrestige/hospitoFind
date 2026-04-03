@@ -31,7 +31,6 @@ const About = () => {
   useEffect(() => {
     const fetchGlobalStats = async () => {
       try {
-        // Promise.all to fetch both in parallel
         const [countRes, countryRes] = await Promise.all([
           fetch(`${BASE_URL}/hospitals/count`),
           fetch(`${BASE_URL}/hospitals/stats/countries`)

@@ -7,7 +7,7 @@ import {
 import { toast } from "react-toastify";
 import AdminHospitalForm from "@/components/admin/AdminHospitalForm";
 import styles from "./styles/scss/hospitalManagement/hospitalManagement.module.scss";
-import { HospitalFormData } from "@/services/hospital";
+import { HospitalFormData } from "@/src/types/hospital";
 
 const HospitalManagement = () => {
     const [hospitals, setHospitals] = useState<any[]>([]);

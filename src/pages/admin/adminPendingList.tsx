@@ -4,7 +4,7 @@ import { Check, Trash2, MapPin, Globe, Phone, Clock } from "lucide-react";
 import { FiClock, FiEdit, FiImage, FiX } from "react-icons/fi";
 import { toast } from 'react-toastify';
 import styles from "./styles/adminPendingList.module.css";
-import { Hospital } from "@/services/hospital";
+import { Hospital } from "@/src/types/hospital";
 import AdminHospitalForm from "@/components/admin/AdminHospitalForm";
 
 const AdminPendingList = () => {

@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { NavLink, useParams } from "react-router-dom";
 import axios from "axios";
-import { Hospital } from "@/services/hospital";
+import { Hospital } from "@/src/types/hospital";
 import HospitalPic from "@/assets/images/hospital-logo.jpg";
 import { Avatar } from "@/components/ui/Avatar";
 import style from "./styles/popular.module.css";

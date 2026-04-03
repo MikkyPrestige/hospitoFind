@@ -1,6 +1,6 @@
 // import { useEffect } from "react";
 // import { useNavigate } from "react-router-dom";
-// import { useAuthContext } from "@/context/userContext";
+// import { useAuthContext } from "@/context/UserProvider";
 
 // export const useAuthMock = () => {
 //   const navigate = useNavigate();

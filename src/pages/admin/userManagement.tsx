@@ -1,12 +1,12 @@
 import { useState, useEffect } from "react";
-import useAxiosPrivate from "@/src/hooks/useAxiosPrivate";
+import useAxiosPrivate from "@/hooks/useAxiosPrivate";
 import {
     FiSearch, FiRefreshCcw, FiTrash2, FiUserPlus,
     FiX, FiFilter, FiPower, FiShield
 } from "react-icons/fi";
 import { toast } from "react-toastify";
-import styles from "./style/scss/userManagement/userManagement.module.scss";
-import { UserData } from "@/services/user";
+import styles from "./styles/scss/userManagement/userManagement.module.scss";
+import { UserData } from "@/src/types/user";
 
 const UserManagement = () => {
     const [users, setUsers] = useState<UserData[]>([]);

@@ -1,7 +1,6 @@
-import { Hospital } from "./hospital";
+import { Hospital } from "../types/hospital";
 import axios from "axios";
-
-const BASE_URL =  import.meta.env.VITE_BASE_URL;
+import { BASE_URL } from "@/context/UserProvider"
 
 // get all hospitals
 export async function getHospitals() {
@@ -160,7 +159,10 @@ export const api = axios.create({
  */
 api.interceptors.request.use(
   (config) => {
-    showLoader();
+     const isAgentRequest = config.url?.includes('/agent/');
+    if (!isAgentRequest) {
+      showLoader();
+    }
 
     const token = localStorage.getItem("accessToken");
     if (token && !config.headers["Authorization"]) {
@@ -179,10 +181,17 @@ api.interceptors.request.use(
  */
 api.interceptors.response.use(
   (response) => {
-    hideLoader();
+      const isAgentRequest = response.config.url?.includes('/agent/');
+    if (!isAgentRequest) {
+      hideLoader();
+    }
     return response;
   },
   async (error) => {
+      const isAgentRequest = error?.config?.url?.includes('/agent/');
+    if (!isAgentRequest) {
+      hideLoader();
+    }
     const prevRequest = error?.config;
     const tokenInStorage = localStorage.getItem("accessToken");
 
