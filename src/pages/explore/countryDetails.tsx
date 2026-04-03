@@ -7,7 +7,7 @@ import React, {
 } from "react";
 import { useParams, Link } from "react-router-dom";
 import HospitalCard from "@/components/hospital/HospitalCard";
-import { Hospital } from "@/services/hospital";
+import { Hospital } from "@/src/types/hospital";
 import { FiArrowLeft, FiSearch } from "react-icons/fi";
 import style from "./styles/countryDetails.module.css";
 import Motion from "@/components/ui/Motion";
@@ -158,10 +158,10 @@ const CountryDetailPage: React.FC = () => {
             ) : filteredHospitals.length === 0 ? (
               <div className={style.empty}>
                 <h3>No Match Found</h3>
-                  <p>We couldn't find any facilities matching <strong>{searchTerm}</strong> in {decodedCountry}. Try adjusting your filters.</p>
-                  <button onClick={() => { setSearchTerm(""); setActiveType("All"); }} className={style.resetBtn}>
-                    Reset Search Filters
-                  </button>
+                <p>We couldn't find any facilities matching <strong>{searchTerm}</strong> in {decodedCountry}. Try adjusting your filters.</p>
+                <button onClick={() => { setSearchTerm(""); setActiveType("All"); }} className={style.resetBtn}>
+                  Reset Search Filters
+                </button>
               </div>
             ) : (
               <div className={style.grid}>

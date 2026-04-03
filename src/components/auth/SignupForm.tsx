@@ -16,7 +16,7 @@ import {
 
 import useSignUp from "@/hooks/useSignup";
 import usePageTransition from "@/hooks/usePageTransition";
-import { User as UserType } from "@/services/user";
+import { User as UserType } from "@/types/user";
 import { Button } from "@/components/ui/Button";
 import SimpleHeader from "@/layouts/header/SimpleHeader";
 import SimpleFooter from "@/layouts/footer/SimpleFooter";
@@ -49,7 +49,7 @@ const SignUp = () => {
 
     if (!password.trim())
       newErrors.password = "Password is required";
-    else if (!/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{6,}$/.test(password))
+    else if (!/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{6,}$/.test(password))
       newErrors.password = "Must contain 6+ chars, 1 uppercase, 1 lowercase, & 1 number";
 
     if (password !== confirmPassword)
