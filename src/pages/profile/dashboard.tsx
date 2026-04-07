@@ -142,7 +142,7 @@ const Dashboard = () => {
     localStorage.setItem(FAVORITES_KEY, JSON.stringify(next));
 
     try {
-      await axiosPrivate.delete(`/users/favorites/${id}`);
+      await axiosPrivate.delete(`/user/favorites/${id}`);
       toast.success("Removed from saved collections");
     } catch (err) {
       console.error("Failed to delete favorite", err);
@@ -157,7 +157,7 @@ const Dashboard = () => {
     setRecentlyViewed(next);
     localStorage.setItem(RECENTLY_KEY, JSON.stringify(next));
     try {
-      await axiosPrivate.delete(`/users/history/${id}`);
+      await axiosPrivate.delete(`/user/history/${id}`);
       toast.success("Removed from recent history");
     } catch (err) {
       console.error("Failed to delete history item", err);
