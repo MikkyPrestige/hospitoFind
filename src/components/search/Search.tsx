@@ -77,7 +77,6 @@ export default function SearchForm({
     setFavorites(JSON.parse(localStorage.getItem(FAV_KEY) || "[]"));
   }, [FAV_KEY]);
 
-  // UNIFIED SEARCH FUNCTION
   async function performSearch({ typedQuery, city, country }: { typedQuery?: string; city?: string; country?: string; }) {
     setLoading(true);
     setError("");
@@ -151,7 +150,7 @@ export default function SearchForm({
 
     if (state.accessToken) {
       try {
-        await axiosPrivate.post(`/users/favorites-status/${h._id}`);
+        await axiosPrivate.post(`/user/favorites-status/${h._id}`);
       } catch (error) {
         console.error("Sync failed");
       }
@@ -196,7 +195,7 @@ export default function SearchForm({
     // 6. Sync with Backend
     if (state.accessToken) {
       try {
-        await axiosPrivate.post("/users/view", { hospitalId: hospital._id });
+        await axiosPrivate.post("/user/view", { hospitalId: hospital._id });
       } catch (e) { }
     }
   };
@@ -218,7 +217,7 @@ export default function SearchForm({
 
   //   if (state.accessToken) {
   //     try {
-  //       await axiosPrivate.post("/users/view", { hospitalId: hospital._id });
+  //       await axiosPrivate.post("/user/view", { hospitalId: hospital._id });
   //     } catch (e) { }
   //   }
   // };
