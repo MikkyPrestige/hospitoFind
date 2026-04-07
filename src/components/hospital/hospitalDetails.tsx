@@ -48,7 +48,7 @@ const HospitalDetails = () => {
 
         if (state.accessToken && hospitalData._id) {
             try {
-                await axiosPrivate.post("/users/view", { hospitalId: hospitalData._id });
+                await axiosPrivate.post("/user/view", { hospitalId: hospitalData._id });
             } catch (err) { console.warn("Background history sync failed"); }
         }
     };
@@ -114,7 +114,7 @@ const HospitalDetails = () => {
 
         if (state.accessToken && hospital._id) {
             try {
-                await axiosPrivate.post(`/users/favorites-status/${hospital._id}`);
+                await axiosPrivate.post(`/user/favorites-status/${hospital._id}`);
                 if (!previousState) toast.success("Saved to your dashboard");
                 else toast.info("Removed from saved list");
             } catch (err) {
@@ -132,11 +132,10 @@ const HospitalDetails = () => {
         const hospitalContext = {
             name: hospital.name,
             city: hospital.address?.city,
-            country: hospital.address?.state,  // address.state = country in your schema
+            country: hospital.address?.state,
         };
 
         if (state?.accessToken) {
-            // Logged-in user → go to dashboard health timeline with context
             navigate('/dashboard', {
                 state: {
                     tab: 'health-history',
@@ -144,7 +143,6 @@ const HospitalDetails = () => {
                 },
             });
         } else {
-            // Guest → go to homepage with context as query params
             const params = new URLSearchParams({
                 hospital: hospitalContext.name,
                 city: hospitalContext.city || '',
@@ -213,7 +211,6 @@ const HospitalDetails = () => {
                         exit={{ opacity: 0, y: -40 }}
                         transition={{ duration: 0.5, ease: "easeInOut" }}
                     >
-                        {/* PRINT HEADER */}
                         <div className={style.printHeader}>
                             <div className={style.printBranding}>
                                 <img src={Logo} alt="HospitoFind Logo" className={style.printLogo} />
@@ -229,7 +226,6 @@ const HospitalDetails = () => {
                         </div>
 
                         <Motion variants={fadeUp} className={style.detailsLayout}>
-                            {/* LEFT SIDE: INFO */}
                             <div className={style.infoSection}>
                                 <div className={style.headerMain}>
                                     <div className={style.titleBlock}>
@@ -254,13 +250,13 @@ const HospitalDetails = () => {
                                         <button onClick={() => window.print()} className={style.printBtn}>
                                             <MdOutlinePrint size={20} /> Print
                                         </button>
-                                            <button
-                                                type="button"
-                                                onClick={handleMatchMe}
-                                                className={style.matchBtn}
-                                            >
-                                               ✦ Match Me Here
-                                            </button>
+                                        <button
+                                            type="button"
+                                            onClick={handleMatchMe}
+                                            className={style.matchBtn}
+                                        >
+                                            ✦ Match Me Here
+                                        </button>
                                     </div>
                                 </div>
 
@@ -320,7 +316,6 @@ const HospitalDetails = () => {
                                 )}
                             </div>
 
-                            {/* RIGHT SIDE: SIDEBAR */}
                             <aside className={style.mapWrapper}>
                                 <div className={style.mapCard}>
                                     <h3>Location Map</h3>
