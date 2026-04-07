@@ -18,8 +18,8 @@ import useSignUp from "@/hooks/useSignup";
 import usePageTransition from "@/hooks/usePageTransition";
 import { User as UserType } from "@/types/user";
 import { Button } from "@/components/ui/Button";
-import SimpleHeader from "@/layouts/header/SimpleHeader";
-import SimpleFooter from "@/layouts/footer/SimpleFooter";
+import SimpleHeader from "@/layouts/header/simpleHeader";
+import SimpleFooter from "@/layouts/footer/simpleFooter";
 import { SEOHelmet } from "@/components/ui/SeoHelmet";
 import style from "./styles/signup/signup.module.scss";
 import Logo from "@/assets/images/logo.svg"

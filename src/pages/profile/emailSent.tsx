@@ -5,8 +5,8 @@ import { useState } from "react";
 import axios from "axios";
 import { toast } from "react-toastify";
 import { BASE_URL } from "@/context/UserProvider";
-import SimpleHeader from "@/layouts/header/SimpleHeader";
-import SimpleFooter from "@/layouts/footer/SimpleFooter";
+import SimpleHeader from "@/layouts/header/simpleHeader";
+import SimpleFooter from "@/layouts/footer/simpleFooter";
 import Logo from "@/assets/images/logo.svg";
 
 const EmailSent = () => {

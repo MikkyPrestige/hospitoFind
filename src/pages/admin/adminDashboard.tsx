@@ -5,7 +5,7 @@ import {
     FiActivity, FiClock, FiCheckCircle, FiUsers, FiArrowRight, FiUserCheck, FiDatabase, FiLogOut
 } from "react-icons/fi";
 import styles from "./styles/scss/adminDashboard/adminDashboard.module.scss";
-import GoogleImport from "./GoogleImport";
+import GoogleImport from "./googleImport";
 import ThemeToggle from "@/components/ui/ThemeToggle"
 import useLogout from "@/hooks/useLogout";
 
