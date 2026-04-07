@@ -8,7 +8,7 @@ import { HiSparkles } from 'react-icons/hi2';
 import { useHealthHistory, type HealthSession, type FeedbackPayload } from '@/hooks/useHealthHistory';
 import AgentWidget, { type HospitalContext } from '@/components/agent/AgentWidget';
 import { toast } from 'react-toastify';
-import style from './styles/scss/healthHistory/HealthTimeline.module.scss';
+import style from './styles/scss/healthTimeline/HealthTimeline.module.scss';
 
 // ── localStorage keys ──
 const LS_PROMPTED = 'hf_feedback_prompted';

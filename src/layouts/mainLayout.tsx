@@ -1,6 +1,6 @@
 import { Outlet, useLocation } from "react-router-dom";
-import Header from "./header/Header";
-import Footer from "./footer/Footer";
+import Header from "./header/header";
+import Footer from "./footer/footer";
 import AgentWidget from "@/components/agent/AgentWidget";
 
 const MainLayout = () => {

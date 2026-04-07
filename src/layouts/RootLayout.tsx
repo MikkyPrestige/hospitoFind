@@ -3,7 +3,7 @@ import { Suspense, useEffect } from "react";
 import { motion } from "framer-motion";
 import NProgress from "nprogress";
 import "nprogress/nprogress.css";
-import AdminBreadcrumbs from "@/components/admin/BreadCrumbs";
+import AdminBreadcrumbs from "@/components/admin/breadCrumbs";
 import Logo from "@/assets/images/logo.svg";
 
 //  NProgress Configuration
