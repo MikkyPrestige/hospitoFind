@@ -16,14 +16,14 @@ import { AiOutlineUserDelete, AiOutlineDown, AiOutlineUp } from "react-icons/ai"
 import Logo from "@/assets/images/logo.svg";
 import { useAuthContext } from "@/context/UserProvider";
 import SearchForm from "@/components/search/Search";
-import Editor from "@/markDown/Editor";
+import Editor from "@/markDown/editor";
 import UpdateUser from "@/components/user/UpdateUser";
 import UpdatePassword from "@/components/user/UpdatePassword";
 import DeleteBtn from "@/components/user/DeleteUser";
 import Logout from "@/components/user/LogoutUser";
-import AccountStats from "./AccountStats";
+import AccountStats from "./accountStats";
 import MySubmissions from "./Submissions";
-import ProfileDisplay from "./ProfileDisplay";
+import ProfileDisplay from "./profileDisplay";
 import HealthTimeline from './HealthTimeline';
 import { useUserActivity } from "@/hooks/useUserActivity";
 import style from "./styles/scss/dashboard/dashboard.module.scss";

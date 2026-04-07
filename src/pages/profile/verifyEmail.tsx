@@ -5,8 +5,8 @@ import axios from "axios";
 import { motion } from "framer-motion";
 import { BASE_URL, useAuthContext } from "@/context/UserProvider";
 import Logo from "@/assets/images/logo.svg";
-import SimpleHeader from "@/layouts/header/SimpleHeader";
-import SimpleFooter from "@/layouts/footer/SimpleFooter";
+import SimpleHeader from "@/layouts/header/simpleHeader";
+import SimpleFooter from "@/layouts/footer/simpleFooter";
 
 const VerifyEmail = () => {
     const { dispatch } = useAuthContext();
