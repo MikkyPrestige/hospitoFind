@@ -5,7 +5,7 @@ import {
     FiSearch, FiFilter, FiX, FiCheckCircle, FiClock, FiActivity, FiXCircle
 } from "react-icons/fi";
 import { toast } from "react-toastify";
-import AdminHospitalForm from "@/components/admin/AdminHospitalForm";
+import AdminHospitalForm from "@/components/admin/adminHospitalForm";
 import styles from "./styles/scss/hospitalManagement/hospitalManagement.module.scss";
 import { HospitalFormData } from "@/src/types/hospital";
 

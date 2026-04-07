@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import SimpleHeader from '@/layouts/header/SimpleHeader';
-import SimpleFooter from '@/layouts/footer/SimpleFooter';
+import SimpleHeader from '@/layouts/header/simpleHeader';
+import SimpleFooter from '@/layouts/footer/simpleFooter';
 
 type ErrorFallbackProps = {
   error ?: Error;

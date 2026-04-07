@@ -4,8 +4,8 @@ import axios from "axios";
 import { toast } from "react-toastify";
 import { BASE_URL } from "@/context/UserProvider";
 import styles from "./styles/forgotPassword/forgotPassword.module.scss"
-import SimpleHeader from "@/layouts/header/SimpleHeader";
-import SimpleFooter from "@/layouts/footer/SimpleFooter";
+import SimpleHeader from "@/layouts/header/simpleHeader";
+import SimpleFooter from "@/layouts/footer/simpleFooter";
 
 const ResetPassword = () => {
     const [password, setPassword] = useState("");
