@@ -1,35 +1,23 @@
 import { Link } from "react-router-dom";
+import styles from "./styles/simpleFooter.module.css";
 
 const SimpleFooter = () => {
     const year = new Date().getFullYear();
 
     return (
-        <footer style={{
-            width: "100%",
-            padding: "1.5rem",
-            textAlign: "center",
-            marginTop: "auto",
-            position: "relative",
-            zIndex: 10,
-            fontSize: "0.85rem",
-            color: "var(--color-gray)",
-            display: "flex",
-            flexDirection: "column",
-            gap: "0.5rem",
-            alignItems: "center"
-        }}>
-            <div>
+        <footer className={styles.footer}>
+            <div className={styles.copyright}>
                 © {year} HospitoFind. All rights reserved.
             </div>
 
-            <div style={{ display: "flex", gap: "1.5rem", fontSize: "0.8rem" }}>
-                <Link to="/policy" style={{ textDecoration: "none", color: "inherit", opacity: 0.8 }}>
+            <div className={styles.links}>
+                <Link to="/policy" className={styles.link}>
                     Privacy Policy
                 </Link>
-                <Link to="/terms" style={{ textDecoration: "none", color: "inherit", opacity: 0.8 }}>
+                <Link to="/terms" className={styles.link}>
                     Terms of Service
                 </Link>
-                <Link to="/faq" style={{ textDecoration: "none", color: "inherit", opacity: 0.8 }}>
+                <Link to="/faq" className={styles.link}>
                     Help
                 </Link>
             </div>

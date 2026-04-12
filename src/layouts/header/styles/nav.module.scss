@@ -1,418 +1,308 @@
 .header {
   position: fixed;
   top: 0;
-  left: 0;
   width: 100%;
   z-index: 1000;
-  height: 5.5rem;
+  height: 8.5rem;
   display: flex;
   align-items: center;
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   background: var(--color-white);
-  opacity: 0.98;
-  backdrop-filter: blur(12px);
   border-bottom: 1px solid var(--color-border);
-
-  @include respond(tab-land) {
-    height: 5rem;
-    background: transparent;
-    border-bottom: none;
-  }
+  transition: all 0.3s ease;
 
   &.scrolled {
-    height: 4.5rem;
-    background: var(--color-white);
-  box-shadow: var(--shadow-card);
-    border-bottom: 1px solid var(--color-border);
+    height: 5.5rem;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.04);
   }
+
+   @include respond(tab-land) {
+    height: 6rem;
+   }
 }
 
 .container {
   width: 100%;
-  max-width: 1400px;
+  max-width: 1300px;
   margin: 0 auto;
-  padding: 1rem;
+  padding: 0 2rem;
   display: flex;
   align-items: center;
   justify-content: space-between;
-
-  @include respond(tab-land) {
-    padding: 0 3rem;
-  }
 }
 
-/* --- LOGO --- */
-.logoWrapper {
-  flex-shrink: 0;
+.leftSection {
   display: flex;
   align-items: center;
-  z-index: 1100;
-
-  .logo {
-    height: 10rem;
-    width: auto;
-    transition: height 0.3s ease;
-
-    @include respond(tab-land) {
-      height: 5rem;
-    }
-  }
+  gap: 4rem;
 }
 
-/* --- DESKTOP NAV --- */
-.desktopNav {
-  display: none;
-  flex: 1;
+.logoWrapper .logo {
+  height: 6.5rem;
+  width: auto;
 
   @include respond(tab-land) {
-    display: flex;
-    justify-content: center;
-  }
+    height: 4.5rem;
+   }
+}
+
+.desktopNav {
+  display: none;
+  @include respond(tab-land) { display: block; }
 
   .navLinks {
     display: flex;
+    gap: 3rem;
     list-style: none;
-    gap: 5rem;
-    align-items: center;
 
     a {
       text-decoration: none;
-      font-family: var(--font-plus);
-      font-size: 1.8rem;
-      font-weight: 700;
+      font-size: 1.5rem;
+      font-weight: 600;
       color: var(--color-black);
-      transition: all 0.2s ease;
-      padding: 0.5rem 0;
-      position: relative;
-
-      &:hover {
-        color: var(--color-blue);
-      }
-
-      &.active {
-        color: var(--color-blue);
-        font-weight: 700;
-
-        &::after {
-          content: '';
-          position: absolute;
-          bottom: 0;
-          left: 0;
-          width: 100%;
-          height: 2px;
-          background: var(--color-blue);
-          border-radius: 2px;
-        }
-      }
-    }
-
-    .adminLink {
-      color: var(--color-red);
-      display: flex;
-      align-items: center;
-      gap: 0.4rem;
-
-      .icon {
-        font-size: 1.8rem;
-      }
+      opacity: 0.7;
+      transition: 0.2s;
 
       &:hover, &.active {
-        color: #dc2626;
-        &::after { background: #dc2626; }
+        opacity: 1;
+        color: var(--color-blue);
       }
     }
   }
 }
 
-/* --- ACTIONS --- */
 .actions {
   display: flex;
   align-items: center;
-  gap: 1rem;
-  flex-shrink: 0;
-  z-index: 1100;
-
-  @include respond(tab-land) {
-    gap: 1.5rem;
-  }
-
-  .authButtons {
-    display: none;
-    gap: 1rem;
-
-    @include respond(tab-land) {
-      display: flex;
-      align-items: center;
-    }
-
-    .loginBtn {
-      text-decoration: none;
-      font-family: var(--font-plus);
-      font-weight: 700;
-      font-size: 1.5rem;
-      color: var(--color-black);
-      &:hover { color: var(--color-blue); }
-    }
-
-    .signupBtn {
-      text-decoration: none;
-      background: var(--color-blue);
-      color: var(--color-white);
-      padding: 0.7rem 1.5rem;
-      border-radius: 50px;
-      font-family: var(--font-plus);
-      font-weight: 700;
-      font-size: 1.2rem;
-      transition: all 0.3s ease;
-      box-shadow: var(--shadow-card-blue);
-
-      &:hover {
-        background: var(--color-blue-dark);
-        transform: translateY(-2px);
-        box-shadow: 0 8px 15px rgba(8, 41, 155, 0.25);
-      }
-    }
-  }
+  // gap: 2rem;
 }
 
-.userProfile {
+.desktopUtilities {
   display: none;
 
   @include respond(tab-land) {
-      display: block;
-  }
-
-  .profileTrigger {
     display: flex;
     align-items: center;
-    gap: 0.8rem;
+    gap: 1.5rem;
+    padding-right: 2rem;
+    border-right: 1px solid var(--color-border);
+    margin-right: 1rem;
+  }
+}
+
+.authWrapper {
+  display: flex;
+  align-items: center;
+}
+
+.authButtons {
+  display: none;
+  gap: 2rem;
+  @include respond(tab-port) { display: flex; align-items: center; }
+
+  .loginBtn {
     text-decoration: none;
-    padding: 0.4rem;
-    border-radius: 50px;
-    transition: background 0.2s;
+    font-weight: 700;
+    font-size: 1.5rem;
+    color: var(--color-black);
+  }
 
-    &:hover {
-        background: var(--color-ash);
-    }
+  .signupBtn {
+    text-decoration: none;
+    background: var(--color-blue);
+    color: var(--color-invert);
+    padding: 1rem 2.2rem;
+    border-radius: 8px;
+    font-weight: 700;
+    font-size: 1.4rem;
+    box-shadow: 0 4px 10px rgba(8, 41, 155, 0.15);
+  }
+}
 
-    .avatar {
-      width: 2.2rem;
-      height: 2.2rem;
-      background: var(--color-blue);
-      color: white;
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-weight: 700;
-      font-size: 2rem;
-    }
+.userProfile .profileTrigger {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  text-decoration: none;
+  background: var(--color-ash);
+  padding: 0.5rem 1.2rem 0.5rem 0.5rem;
+  border-radius: 50px;
 
-    .avatarIcon {
-      font-size: 1.2rem;
-    }
+  .avatar {
+    width: 2.8rem;
+    height: 2.8rem;
+    background: var(--color-blue);
+    color: var(--color-invert);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.4rem;
+  }
 
-    .userName {
-      font-family: var(--font-inter);
-      font-weight: 600;
-      font-size: 1.5rem;
-      color: var(--color-black);
-    }
+  .userName {
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: var(--color-black);
   }
 }
 
 .mobileToggle {
-  background: transparent;
+  background: var(--color-ash);
   border: none;
-  cursor: pointer;
+  width: 5rem;
+  height: 5rem;
+  border-radius: 1rem;
+  color: var(--color-blue);
+  font-size: 3.5rem;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 5rem;
-  color: var(--color-blue);
-  padding: 0.5rem;
-
-  @include respond(tab-land) {
-    display: none;
-  }
+  z-index: 9999;
+  margin-left: 1rem;
+  @include respond(tab-land) { display: none; }
 }
 
 .mobileDrawer {
   position: fixed;
-  top: 0;
-  right: -100%;
-  width: 100%;
-  height: 100dvh;
+  inset: 0;
   background: var(--color-white);
-  z-index: 1000;
-  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-  padding: 10rem 2rem 2rem;
-  display: flex;
-  flex-direction: column;
+  padding: 10rem 2rem 3rem;
   transform: translateX(100%);
-
-  &.drawerOpen {
-    transform: translateX(0);
-    right: 0;
-  }
-}
-
-.drawerNav {
+  transition: 0.4s cubic-bezier(0.4, 0, 0.2, 1);
   display: flex;
   flex-direction: column;
-  height: 50vh;
+  z-index: 999;
+
+  &.drawerOpen { transform: translateX(0); }
 }
 
 .drawerLinks {
   list-style: none;
-  padding: 0;
-  margin: 0;
   display: flex;
   flex-direction: column;
-  gap: 3rem;
+  gap: 2.5rem;
+  margin-bottom: auto;
 
-  li a {
-    font-family: var(--font-plus);
-    font-size: 1.8rem;
+  a {
+    font-size: 2.8rem;
     font-weight: 800;
     color: var(--color-black);
     text-decoration: none;
-    display: block;
-    transition: color 0.2s;
+    &.active { color: var(--color-blue); }
+  }
+}
 
-    &:hover, &.active {
-        color: var(--color-blue);
+.mobileUtilities {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin-bottom: 3rem;
+  padding: 1.5rem;
+  background: var(--color-ash);
+  border-radius: 1rem;
+
+  @include respond(tab-land) {
+    display: none;
+  }
+
+  .utilityItem {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    span {
+      font-weight: 600;
+      font-size: 1.8rem;
+      color: var(--color-black);
     }
   }
 }
 
-.drawerDivider {
-  height: 1px;
-  background: var(--color-border);
-  margin: auto 0 2rem;
-  width: 100%;
+.drawerFooter {
+  border-top: 1px solid var(--color-border);
+  padding-top: 3rem;
 }
 
-.drawerFooter {
+.drawerUserCard {
+  background: var(--color-ash);
+  padding: 2rem;
+  border-radius: 1.2rem;
+
+  .userInfo {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+
+    .userAvatar {
+      width: 5rem;
+      height: 5rem;
+      background: var(--color-blue);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--color-invert);
+      font-size: 2rem;
+    }
+
+    .userMeta {
+      .uName { font-weight: 700; font-size: 1.8rem; margin: 0; }
+    .uRole { font-size: 1.3rem; color: var(--color-indigo); margin: 0; }
+    }
+  }
+}
+
+.userActions {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+
+  a, button {
+    padding: 1.2rem;
+    border-radius: 1rem;
+    background: var(--color-white);
+    text-decoration: none;
+    color: var(--color-black);
+    font-weight: 600;
+    font-size: 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    border: none;
     width: 100%;
+  }
+
+  .adminBtn {
+    background: rgba(239, 68, 68, 0.2);
+    color: var(--color-red);
+    border: 1px solid rgba(239, 68, 68, 0.1);
+  }
+
+  .logoutBtn { color: var(--color-red); }
 }
 
 .drawerAuth {
   display: flex;
   flex-direction: column;
-  gap: 1rem;
-}
+  gap: 1.5rem;
 
-.mobileLogin {
-  font-family: var(--font-plus);
-  font-size: 1.5rem;
-  font-weight: 700;
-  color: var(--color-black);
-  text-align: center;
-  padding: 1rem;
-  border: 2px solid var(--color-border);
-  border-radius: 12px;
-  text-decoration: none;
-}
+  .mobileSignup {
+    background: var(--color-blue);
+    color: var(--color-white);
+    padding: 1.8rem;
+    border-radius: 1rem;
+    text-align: center;
+    font-weight: 700;
+    font-size: 1.6rem;
+    text-decoration: none;
+  }
 
-.mobileSignup {
-  font-family: var(--font-plus);
-  font-size: 1.5rem;
-  font-weight: 700;
-  background: var(--color-blue);
-  color: var(--color-white);
-  text-align: center;
-  padding: 1rem;
-  border-radius: 12px;
-  text-decoration: none;
-}
-
-/* Logged In State Mobile */
-.drawerUser {
-    display: flex;
-    flex-direction: column;
-    gap: 2rem;
-}
-
-.drawerUserInfo {
-    display: flex;
-    align-items: center;
-    gap: 1rem;
-
-    .bigAvatar {
-        width: 5rem;
-        height: 5rem;
-        background: var(--color-blue);
-        color: var(--color-white);
-        border-radius: 50%;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-size: 2rem;
-        font-weight: 800;
-    }
-
-    .userDetails {
-        display: flex;
-        flex-direction: column;
-
-        .uName { font-weight: 700; font-size: 2rem; color: var(--color-black); }
-        .uRole { font-size: 1.5rem; color: var(--icon-gray); text-transform: capitalize; }
-    }
-}
-
-.drawerUserActions {
-    display: flex;
-    flex-direction: column;
-    gap: 1.5rem;
-
-    a, button {
-        display: flex;
-        align-items: center;
-        gap: 0.8rem;
-        padding: 1rem;
-        font-weight: 600;
-        font-size: 1.5rem;
-        border-radius: 12px;
-        text-decoration: none;
-        background: var(--color-bg);
-        color: var(--color-black);
-        transition: background 0.2s;
-
-        &:hover {
-          background: var(--color-ash);
-        }
-    }
-
-.dashBtn {
-        display: flex;
-        align-items: center;
-        gap: 0.8rem;
-        padding: 1rem;
-        font-weight: 600;
-        font-size: 1.5rem;
-        border-radius: 12px;
-        text-decoration: none;
-        background: var(--color-bg);
-        color: var(--color-black);
-        transition: background 0.2s;
-
-        &:hover { background: var(--color-ash); }
-    }
-
-    .logoutBtn {
-        color: var(--color-red);
-        background: rgba(239, 68, 68, 0.05);
-        border: none;
-        width: 100%;
-        font-size: 1.5rem;
-        cursor: pointer;
-        font-family: var(--font-inter);
-    }
-
-    .adminBtnMobile {
-        color: var(--color-red);
-        background: transparent;
-        border: 1px dashed var(--color-red);
-    }
+  .mobileLogin {
+    text-align: center;
+    color: var(--color-black);
+    font-weight: 600;
+    font-size: 1.5rem;
+    text-decoration: none;
+  }
 }
