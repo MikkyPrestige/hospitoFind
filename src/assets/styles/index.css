@@ -30,6 +30,7 @@
   --color-bg-contrast: #f1f5f9;
   --color-white: #ffffff;
   --color-ash: #f8fafc;
+  --color-invert: #fff;
 
   /* Text */
   --color-black: #1e293b;
@@ -78,6 +79,7 @@
   --color-bg-contrast: #0f172a;
   --color-white: #0f172a;
   --color-ash: #1e293b;
+  --color-invert: #fff;
 
   /* Text: White/Off-White */
   --color-black: #f8fafc;
