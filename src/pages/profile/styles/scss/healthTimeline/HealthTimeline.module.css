@@ -556,4 +556,22 @@
 }
 .errorState {
   color: var(--color-error);
+}
+
+.contextBanner {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  background: var(--bg-blue-tag);
+  border: 1px solid rgba(8, 41, 155, 0.15);
+  border-radius: 0.75rem;
+  padding: 0.65rem 1rem;
+  font-size: 0.82rem;
+  font-family: var(--font-inter);
+  color: var(--color-black);
+  flex-shrink: 0;
+}
+.contextBanner strong {
+  color: var(--color-blue);
+  font-weight: 700;
 }/*# sourceMappingURL=HealthTimeline.module.css.map */
