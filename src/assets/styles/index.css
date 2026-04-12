@@ -64,6 +64,11 @@
   --shadow-card-blue: 0 8px 20px rgba(8, 41, 155, 0.08);
   --shadow-card-blue-hover: 0 10px 26px rgba(8, 41, 155, 0.15);
   --shadow-soft: 0 10px 40px rgba(8, 41, 155, 0.08);
+
+  --footer-bg: #050a15;
+  --footer-text: #94a3b8;
+  --footer-heading: #ffffff;
+  --footer-border: rgba(255, 255, 255, 0.1);
 }
 
 /* --- DARK THEME  --- */
@@ -106,6 +111,10 @@
   --shadow-card-blue: 0 8px 20px rgba(0, 0, 0, 0.4);
   --shadow-card-blue-hover: 0 10px 26px rgba(0, 0, 0, 0.5);
   --shadow-soft: none;
+
+  --footer-bg: #020617;
+  --footer-text: #64748b;
+  --footer-heading: #f8fafc;
 }
 
 [data-theme='dark'] .goog-te-gadget-simple {
@@ -300,10 +309,10 @@ input:disabled:focus {
   font-size: 0.9rem !important;
 }
 
-div[id^="sidebar-tip"],
+div[id^='sidebar-tip'],
 .react-tooltip {
-    z-index: 9999 !important;
-    opacity: 1 !important;
+  z-index: 9999 !important;
+  opacity: 1 !important;
 }
 
 /* --- FIX INPUT ZOOM ON MOBILE --- */
@@ -322,8 +331,11 @@ div[id^="sidebar-tip"],
     font-size: max(1.5rem, 16px);
   }
 
-  h1, h2, h3, h4 {
-      line-height: 1.3;
+  h1,
+  h2,
+  h3,
+  h4 {
+    line-height: 1.3;
   }
 }
 
