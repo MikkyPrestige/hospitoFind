@@ -1,6 +1,6 @@
 import { useState, useRef, useEffect, useCallback } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
-import { FiX, FiSend, FiMessageCircle, FiRefreshCw } from 'react-icons/fi';
+import { FiX, FiSend, FiMessageCircle, FiRefreshCw, FiUser } from 'react-icons/fi';
 import { useAgent } from '@/hooks/useAgent';
 import HospitalMatchCards from './HospitalMatchCards';
 import style from './styles/widget/AgentWidget.module.scss';
@@ -22,7 +22,7 @@ const TypingIndicator = () => (
 
 const MessageBubble = ({ role, content }: { role: string; content: string }) => (
     <div className={`${style.bubble} ${style[role]}`}>
-        {role === 'assistant' && <div className={style.avatar}>H</div>}
+        {role === 'assistant' && <div className={style.avatar}><FiUser /></div>}
         <div className={style.bubbleContent}>
             {content.split(/(\*\*[^*]+\*\*)/).map((part, i) =>
                 part.startsWith('**') && part.endsWith('**')
@@ -62,7 +62,7 @@ const ChatPanel = ({
     <div className={`${style.panel} ${style[`panel_${variant}`]}`}>
         <div className={`${style.panelHeader} ${style[`header_${variant}`]}`}>
             <div className={style.headerLeft}>
-                <div className={style.headerAvatar}>H</div>
+                <div className={style.headerAvatar}><FiUser /></div>
                 <div>
                     <p className={style.headerName}>HospitoFind Assistant</p>
                     <p className={style.headerStatus}>

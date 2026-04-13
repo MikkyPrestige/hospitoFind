@@ -1,59 +1,65 @@
 .bg {
-  background: linear-gradient(180deg, var(--color-bg-light) 0%, var(--color-white) 100%);
-  min-height: calc(100vh - 8rem);
+  background: var(--color-bg);
+  background-image:
+    radial-gradient(circle at 10% 20%, rgba(59, 130, 246, 0.05) 0%, transparent 40%),
+    radial-gradient(circle at 90% 80%, rgba(59, 130, 246, 0.05) 0%, transparent 40%);
+  min-height: 100vh;
   width: 100%;
-  padding: 10rem 1.5rem 1rem;
+  padding: 12rem 3rem 2rem;
+  overflow-x: hidden;
 
   @include respond(tab-land) {
-    padding: 8rem 5% 2rem;
+    padding: 8rem 2.5% 2.5rem;
   }
 
-  /* ─────────────────────────────────────────
-     HERO SECTION — two-tier layout
-  ───────────────────────────────────────── */
   .heroSection {
-    max-width: 1400px;
+    max-width: 1440px;
     margin: 0 auto;
     display: flex;
     flex-direction: column;
-    gap: 2.5rem;
+    align-items: center;
+    gap: 2rem;
   }
 
   .heroHeader {
     text-align: center;
+    max-width: 900px;
     display: flex;
     flex-direction: column;
     align-items: center;
     gap: 0.5rem;
-    padding: 0 1rem;
   }
 
   .title {
-    font-size: clamp(2.6rem, 6vw, 4.5rem);
-    font-weight: 800;
+    font-size: clamp(3rem, 7vw, 5.5rem);
+    font-weight: 900;
+    line-height: 1.05;
+    letter-spacing: -0.04em;
     color: var(--color-black);
-    line-height: 1.1;
-    font-family: var(--font-plus);
-    letter-spacing: -0.02em;
 
     .accent {
-      color: var(--color-blue);
+      background: linear-gradient(135deg, var(--color-blue) 0%, #60a5fa 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
     }
   }
 
   .subtitle {
-    font-size: clamp(1.1rem, 2.5vw, 1.35rem);
-    color: var(--color-gray);
+    font-size: clamp(1.1rem, 2vw, 1.4rem);
+    color: var(--color-text-secondary);
     font-weight: 500;
-    line-height: 1.6;
-    min-height: 2rem;
+    max-width: 600px;
+    margin: 0 auto;
     display: flex;
+    justify-content: center;
     align-items: center;
-    gap: 2px;
+    min-height: 3rem;
+    line-height: 1.6;
   }
 
   .typewriter {
-    color: var(--color-gray);
+    color: var(--color-text-secondary);
   }
 
   .cursor {
@@ -67,54 +73,47 @@
   }
 
   .heroRow {
-    display: flex;
-    flex-direction: column;
-    gap: 2rem;
-    align-items: center;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 3rem;
+    align-items: stretch;
+    width: 100%;
 
     @include respond(tab-land) {
-      flex-direction: row;
-      align-items: flex-start;
-      gap: 3rem;
+      grid-template-columns: repeat(2, 1fr);
     }
   }
 
-  /* ── Left column — widget ── */
   .widgetCol {
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    gap: 0.85rem;
     position: relative;
-    flex-shrink: 0;
+  background: var(--color-bg);
+  backdrop-filter: blur(20px);
+  border: 1px solid var(--color-border);
+  border-radius: 2.5rem;
+  padding: 1.5rem;
+  box-shadow: 0 2rem 4rem -1rem rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
 
-    @include respond(tab-land) {
-      flex: 1;
-      max-width: 520px;
-      height: 448px;
-      overflow: hidden;
-    }
+    @include respond(phone) {
+    padding: 1.5rem;
+    border-radius: 1.5rem;
+  }
   }
 
   .aiBadge {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.4rem;
-    background: rgba(8, 41, 155, 0.08);
-    border: 1px solid rgba(8, 41, 155, 0.18);
-    color: var(--color-blue);
-    font-size: 0.78rem;
-    font-weight: 700;
+    align-self: flex-start;
+  padding: 0.5rem 1rem;
+  background: rgba(8, 41, 155, 0.2);
+  color: var(--color-blue);
+  border-radius: 100px;
+  font-size: 0.85rem;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
     letter-spacing: 0.04em;
-    padding: 0.35rem 0.75rem;
-    border-radius: 50px;
-    font-family: var(--font-inter);
-    align-self: center;
-    flex-shrink: 0;
-
-    @include respond(tab-land) {
-      align-self: flex-start;
-    }
   }
 
   .widgetGlow {
@@ -140,79 +139,66 @@
     flex-shrink: 0;
   }
 
-  /* ── Right column — image ── */
   .imageCol {
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    order: -1;
-
-    @include respond(tab-land) {
-      flex: 1;
-      order: 1;
-      justify-content: flex-end;
-      height: 440px;
-      align-items: flex-start;
-    }
-  }
-
-  .imageWrapper {
     position: relative;
-    width: 80%;
-    max-width: 340px;
 
-    @include respond(tab-land) {
-      width: 100%;
-      max-width: 100%;
-      height: 100%;
+      .imageWrapper {
+    height: 100%;
+    min-height: 450px;
+    border-radius: 2.5rem;
+    overflow: hidden;
+    position: relative;
+    border: 1px solid var(--color-border);
+
+    &::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(15, 23, 42, 0.4), transparent);
     }
-  }
 
-  .heroImage {
+      .heroImage {
     width: 100%;
-    height: auto;
-    border-radius: 1rem;
-    opacity: 0.95;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.8s cubic-bezier(0.2, 0, 0.2, 1);
     box-shadow: 0 2rem 5rem rgba(8, 41, 155, 0.12);
-    display: block;
 
-    @include respond(tab-land) {
-      opacity: 1;
-      border-radius: 1.5rem;
-      height: 100%;
-      object-fit: cover;
-      object-position: center top;
-    }
+    &:hover .heroImage {
+    transform: scale(1.05);
+  }
+  }
+  }
   }
 
-  /* ─────────────────────────────────────────
-     STATS BAR
-  ───────────────────────────────────────── */
   .statsBar {
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: 0;
-    max-width: 700px;
-    margin: 4rem auto 0;
-    background: var(--color-white);
-    border-radius: 1.5rem;
+    background: var(--color-bg);
+    backdrop-filter: blur(10px);
+    border: 1px solid var(--color-border);
+    border-radius: 100px;
+    padding: 2rem 3rem;
+    margin: 6rem auto 1rem;
     box-shadow: 0 8px 32px rgba(8, 41, 155, 0.07);
-    border: 1px solid rgba(8, 41, 155, 0.08);
-    overflow: hidden;
+    max-width: 700px;
 
-    @include respond(tab-land) {
-      margin: 5rem auto 0;
-    }
+    @include respond(tab-port) {
+    border-radius: 2rem;
+    padding: 2rem;
+    gap: 2rem;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
   }
 
   .statItem {
+    text-align: center;
     flex: 1;
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: 2rem 1rem;
     gap: 0.35rem;
     position: relative;
 
@@ -228,14 +214,10 @@
   }
 
   .statValue {
+    display: block;
     font-size: clamp(1.8rem, 4vw, 2.4rem);
     font-weight: 800;
     color: var(--color-blue);
-    font-family: var(--font-plus);
-    line-height: 1;
-    min-height: 2.4rem;
-    display: flex;
-    align-items: center;
   }
 
   .shimmer {
@@ -254,37 +236,25 @@
   }
 
   .statLabel {
-    font-size: 1rem;
-    color: var(--color-gray);
-    font-weight: 500;
-    text-align: center;
-
-    @include respond(tab-land) {
-      font-size: 1.1rem;
-    }
+    font-size: 0.9rem;
+    color: var(--color-text-secondary);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
   }
 
-  /* ─────────────────────────────────────────
-     HOW IT WORKS
-  ───────────────────────────────────────── */
-  .howSection {
-    max-width: 1100px;
-    margin: 5rem auto 0;
-    padding: 0 0 1rem;
-    text-align: center;
 
-    @include respond(tab-land) {
-      margin: 7rem auto 0;
-    }
+  .howSection {
+    padding: 5rem 0 1rem;
+    text-align: center;
   }
 
   .howEyebrow {
-    font-size: 1rem;
+     font-size: clamp(1.5rem, 3vw, 2rem);
     font-weight: 700;
     letter-spacing: 0.15em;
     text-transform: uppercase;
     color: var(--color-blue);
-    margin-bottom: 0.75rem;
+    margin-bottom: 0.5rem;
   }
 
   .howTitle {
@@ -292,38 +262,29 @@
     font-weight: 800;
     color: var(--color-black);
     font-family: var(--font-plus);
-    margin-bottom: 3rem;
     line-height: 1.2;
-
-    @include respond(tab-land) {
-      margin-bottom: 4rem;
-    }
   }
 
   .howGrid {
     display: grid;
     grid-template-columns: 1fr;
-    gap: 1.5rem;
+    gap: 2.5rem;
+    margin-top: 2.5rem;
 
-    @include respond(tab-land) {
-      grid-template-columns: repeat(3, 1fr);
-      gap: 2rem;
-    }
+    @include respond(tab-port) {
+     grid-template-columns: repeat(3, 1fr);
+  }
   }
 
   .howCard {
     background: var(--color-bg);
-    border-radius: 1.5rem;
-    padding: 2.5rem 2rem;
+    border: 1px solid var(--color-border);
+    padding: 2.5rem;
+    border-radius: 2rem;
     text-align: left;
-    border: 1px solid rgba(8, 41, 155, 0.08);
-    box-shadow: 0 4px 24px rgba(8, 41, 155, 0.05);
-    display: flex;
-    flex-direction: column;
-    gap: 0.75rem;
-    transition: transform 0.25s ease, box-shadow 0.25s ease;
+    transition: all 0.3s ease;
     position: relative;
-    overflow: hidden;
+    box-shadow: 0 4px 24px rgba(8, 41, 155, 0.05);
 
     &::before {
       content: '';
@@ -338,27 +299,27 @@
     }
 
     &:hover {
-      transform: translateY(-4px);
-      box-shadow: 0 12px 40px rgba(8, 41, 155, 0.1);
-
-      &::before { opacity: 1; }
+      border-color: var(--color-blue);
+      transform: translateY(-10px);
+      box-shadow: 0 30px 60px -12px rgba(0, 0, 0, 0.1);
     }
   }
 
   .howIcon {
-    width: 3rem;
-    height: 3rem;
-    background: rgba(8, 41, 155, 0.07);
-    border-radius: 0.75rem;
+    width: 4rem;
+    height: 4rem;
+    background: var(--color-blue);
+    color: var(--color-invert);
+    border-radius: 1rem;
     display: flex;
     align-items: center;
     justify-content: center;
-    color: var(--color-blue);
-    margin-bottom: 0.25rem;
+    margin-bottom: 1rem;
+    box-shadow: 0 1rem 2rem rgba(59, 130, 246, 0.2);
   }
 
   .howStep {
-    font-size: 0.85rem;
+    font-size: 1rem;
     font-weight: 800;
     letter-spacing: 0.1em;
     color: var(--color-blue);
@@ -366,23 +327,20 @@
   }
 
   .howCardTitle {
-    font-size: 1.2rem;
+    font-size: 1.4rem;
     font-weight: 700;
     color: var(--color-black);
     font-family: var(--font-plus);
   }
 
   .howCardDesc {
-    font-size: 1rem;
+    font-size: 1.2rem;
     color: var(--color-gray);
     font-weight: 500;
     line-height: 1.6;
   }
 }
 
-/* ─────────────────────────────────────────
-   ANIMATIONS
-───────────────────────────────────────── */
 @keyframes shimmer {
   0%   { background-position: 200% 0; }
   100% { background-position: -200% 0; }
