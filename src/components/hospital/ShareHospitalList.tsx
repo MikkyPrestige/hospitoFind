@@ -40,7 +40,7 @@ const ShareHospitalList = () => {
           <div className={`${style.shareContent} ${style.wrapper}`}>
             {hospitalList.map((hospital, id) => (
               <li key={id} className={style.card}>
-                <div className={style.img}>
+                <div className={style.shareImg}>
                   {hospital?.photoUrl ? <Avatar image={hospital.photoUrl} alt={`Photo of ${hospital.name} in ${hospital.address.city}`} style={{ width: "100%", height: "100%", borderRadius: "1.2rem", objectFit: "cover" }} /> : <Avatar image={HospitalPic} alt="Photo of an hospital" style={{ width: "100%", height: "100%", borderRadius: "1.2rem", objectFit: "cover" }} />}
                 </div>
                 <div className={style.details}>
