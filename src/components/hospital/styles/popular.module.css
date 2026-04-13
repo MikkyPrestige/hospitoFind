@@ -5,14 +5,13 @@
   justify-content: center;
   gap: 1rem;
   width: 100%;
-  padding: 3rem 1.5rem 4rem;
+  padding: 1rem 1.5rem;
   background-color: var(--color-bg-light);
   border-radius: 1rem;
   text-align: center;
-  margin-top: 1rem;
 }
 
-.sr-only {
+.srOnly {
   position: absolute;
   width: 1px;
   height: 1px;
@@ -34,7 +33,7 @@
 }
 
 .subtitle {
-  font-size: 1rem;
+  font-size: 1.2rem;
   font-weight: 400;
   color: var(--color-gray);
   margin: 0 auto 2.5rem;
@@ -45,17 +44,18 @@
 
 .wrapper {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
   gap: 2rem;
   width: 100%;
+  max-width: 1200px;
 }
 
 .card {
-  background: var(--color-white);
+  background: var(--color-bg);
   border-radius: 1.2rem;
   box-shadow: var(--shadow-card);
   overflow: hidden;
-  transition: all 0.3s ease;
+  transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
   border: 1px solid transparent;
   display: flex;
   flex-direction: column;
@@ -70,21 +70,21 @@
   border-color: var(--color-blue-light);
 }
 
-.img {
+.imgContainer {
   width: 100%;
-  height: 14rem;
+  aspect-ratio: 16 / 9;
   overflow: hidden;
-  background-color: var(--color-ash-dark);
+  background-color: var(--color-ash);
 }
 
-.img img {
+.imgContainer img {
   width: 100%;
   height: 100%;
   object-fit: cover;
   transition: transform 0.5s ease;
 }
 
-.img:hover img {
+.imgContainer:hover img {
   transform: scale(1.05);
 }
 
@@ -100,7 +100,7 @@
 }
 
 .name {
-  font-size: 1.25rem;
+  font-size: 1.4rem;
   font-weight: 700;
   color: var(--color-black);
   line-height: 1.3;
@@ -108,9 +108,10 @@
 }
 
 .address {
-  font-size: 0.95rem;
+  font-size: 1.2rem;
   color: var(--color-gray);
   margin-bottom: 0.5rem;
+  text-align: center;
 }
 
 .btn {
@@ -120,11 +121,12 @@
   justify-content: center;
   padding: 0.75rem 1.5rem;
   margin-top: auto;
-  background-color: var(--primary-light);
+  background: transparent;
   color: var(--color-blue);
-  font-size: 1rem;
+  border-radius: 8px;
+  border: 1.5px solid var(--color-blue);
+  font-size: 1.2rem;
   font-weight: 600;
-  border-radius: 0.75rem;
   cursor: pointer;
   text-decoration: none;
   transition: all 0.2s ease;
@@ -133,21 +135,20 @@
 
 .btn:hover {
   background-color: var(--color-blue);
-  color: var(--color-white);
+  color: var(--color-invert);
 }
 
 .error {
   color: var(--color-error);
   font-size: 1rem;
   font-weight: 500;
-  margin-top: 2rem;
+  width: 100%;
   padding: 1rem;
   background: #fee2e2;
   border-radius: 8px;
 }
 
 /* --- SHARE PAGE LAYOUT --- */
-
 .sharePage {
   width: 100%;
   min-height: 80vh;
@@ -168,7 +169,7 @@
   padding: 5rem 1rem 1rem;
 }
 
-.img {
+.shareImg {
   height: 200px;
   width: 100%;
   overflow: hidden;
@@ -176,19 +177,13 @@
   margin-bottom: 1rem;
 }
 
-/* Mobile Responsiveness */
 @media (max-width: 768px) {
-  .wrapper {
-    grid-template-columns: 1fr;
-  }
-
   .sharePage {
     padding: 2rem 1rem;
   }
-
   .shareContent {
     gap: 1.5rem;
-    grid-template-columns: 1fr;
+    padding: 2rem 0.5rem 1rem;
   }
 }
 
@@ -196,13 +191,11 @@
   .heading {
     font-size: 2rem;
   }
-
   .subtitle {
     font-size: 1.1rem;
   }
 }
 
-/* Desktop */
 @media (min-width: 75em) {
   .heading {
     font-size: 2.25rem;
