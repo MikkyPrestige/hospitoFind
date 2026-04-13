@@ -11,7 +11,7 @@ import PopularHospitals from "@/components/hospital/PopularHospitals";
 import Motion from "@/components/ui/Motion";
 import { fadeUp, sectionReveal, zoomIn } from "@/utils/animations";
 import { Hospital } from "@/src/types/hospital";
-import { FaHospital } from "react-icons/fa";
+import { FaHospital, FaMapMarkerAlt, FaSearch } from "react-icons/fa";
 import { Avatar } from "@/components/ui/Avatar";
 import HospitalPic from "@/assets/images/hospital-logo.jpg";
 import style from "./styles/find.module.scss";
@@ -41,7 +41,6 @@ const FindHospital = () => {
     const LIGHT_STYLE = "mapbox://styles/mapbox/streets-v11";
     const DARK_STYLE = "mapbox://styles/mapbox/navigation-night-v1";
 
-    //  Initialize Map
     useEffect(() => {
         if (map) return;
 
@@ -80,13 +79,11 @@ const FindHospital = () => {
         return () => mapInstance.remove();
     }, []);
 
-    // Dynamic Theme Switcher
     useEffect(() => {
         if (!map) return;
         map.setStyle(theme === 'dark' ? DARK_STYLE : LIGHT_STYLE);
     }, [theme, map]);
 
-    // Update markers
     const updateMapMarkers = (data: Hospital[], mapInstance: mapboxgl.Map, userCoords?: [number, number]) => {
         markersRef.current.forEach((m) => m.remove());
         markersRef.current = [];
@@ -117,7 +114,6 @@ const FindHospital = () => {
         }
     };
 
-    // Search Function
     const performSearch = async (overrideParams?: { term?: string, city?: string, state?: string }) => {
         setSearchMode("term");
         setError("");
@@ -128,7 +124,6 @@ const FindHospital = () => {
             let apiQuery = "";
             let displayString = "";
 
-            // Prioritize Override Params (from URL)
             if (overrideParams?.city && overrideParams?.state) {
                 apiQuery = `city=${encodeURIComponent(overrideParams.city)}&state=${encodeURIComponent(overrideParams.state)}`;
                 displayString = `${overrideParams.city}, ${overrideParams.state}`;
@@ -136,7 +131,6 @@ const FindHospital = () => {
                 apiQuery = `term=${encodeURIComponent(overrideParams.term)}`;
                 displayString = overrideParams.term;
             } else if (term.trim()) {
-                // Fallback to State Term
                 apiQuery = `term=${encodeURIComponent(term.trim())}`;
                 displayString = term.trim();
             } else {
@@ -145,7 +139,6 @@ const FindHospital = () => {
 
             const data = await findHospitals(apiQuery);
 
-            // No results found
             if (!data || data.length === 0) {
                 setHospitals([]);
                 setSearchedTerm("");
@@ -160,7 +153,6 @@ const FindHospital = () => {
                     </>
                 );
 
-                // Geocode to move map
                 try {
                     const geoRes = await axios.get(`https://api.mapbox.com/geocoding/v5/mapbox.places/${encodeURIComponent(displayString)}.json?access_token=${accessToken}`);
                     const feature = geoRes.data.features?.[0];
@@ -171,13 +163,11 @@ const FindHospital = () => {
                 return;
             }
 
-            // Results found
             setHospitals(data);
             setSearchedTerm(displayString);
 
             if (map) {
                 updateMapMarkers(data, map);
-                // Zoom if single result
                 if (data.length === 1 && data[0].longitude && data[0].latitude) {
                     map.flyTo({
                         center: [data[0].longitude, data[0].latitude],
@@ -201,17 +191,14 @@ const FindHospital = () => {
         const urlState = searchParams.get("state");
 
         if (urlCity && urlState) {
-            // Precise Dropdown Search
             setTerm(`${urlCity}, ${urlState}`);
             performSearch({ city: urlCity, state: urlState });
         } else if (urlQ) {
-            // Standard Text Search
             setTerm(urlQ);
             performSearch({ term: urlQ });
         }
     }, [searchParams]);
 
-    // Form Submit Handler
     const handleSearch = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         if (term.trim() === "") {
@@ -268,61 +255,67 @@ const FindHospital = () => {
 
             <main className={style.findSection}>
                 <h1 className={style['sr-only']}>Find Hospitals and Healthcare Facilities</h1>
+
                 <Motion
-                    className={style.search}
+                    className={style.searchLayout}
                     variants={fadeUp}
                     initial="hidden"
                     animate="visible"
                     as="section"
-                    style={{ overflow: "visible", display: "flex" }}
                 >
-                    {/* LEFT SIDE: Sidebar containing Search and Results */}
-                    <aside className={style.hospitals}>
-                        <div className={style.searchContainer}>
+                    <aside className={style.sidebar}>
+                        <div className={style.searchHeader}>
                             <form onSubmit={handleSearch} className={style.form}>
-                                <input className={style.input} value={term} onChange={(e) => setTerm(e.target.value)} />
+                                <div className={style.inputWrapper}>
+                                    <FaSearch className={style.searchIcon} />
+                                    <input
+                                        className={style.input}
+                                        value={term}
+                                        onChange={(e) => setTerm(e.target.value)}
+                                        placeholder="Search by city, state, or facility name..."
+                                    />
+                                </div>
                                 <button className={style.cta}>Search</button>
                             </form>
                         </div>
 
-                        {/* Scrollable Content Area */}
-                        <div className={style.resultsContent}>
+                        <div className={style.resultsArea}>
                             {hospitals.length > 0 ? (
-                                <Motion variants={sectionReveal} initial="hidden" animate="visible" className={style.found}>
-                                    <Motion variants={fadeUp}>
+                                <Motion variants={sectionReveal} initial="hidden" animate="visible" className={style.resultsList}>
+                                    <div className={style.resultsMeta}>
                                         <h2 className={style.heading}>
                                             {hospitals.length === 1 && hospitals[0].name.toLowerCase().includes(searchedTerm.toLowerCase()) ? (
                                                 <>Match found: <span className={style.highlight}>"{hospitals[0].name}"</span></>
                                             ) : searchMode === "nearby" ? (
-                                                <>{hospitals.length} facilities found {locationName ? `near ${locationName}` : "near you"}</>
+                                                <>{hospitals.length} facilities near {locationName ? <span className={style.highlight}>{locationName}</span> : "you"}</>
                                             ) : (
-                                                <>{hospitals.length} facilities found in <span className={style.highlight}>"{searchedTerm || term}"</span></>
+                                                <>{hospitals.length} facilities in <span className={style.highlight}>"{searchedTerm || term}"</span></>
                                             )}
                                         </h2>
-                                    </Motion>
-
-                                    <Motion variants={fadeUp}>
                                         <p className={style.subtitle}>
-                                            Connect with top-rated medical centers and verified healthcare providers in {searchedTerm || 'your area'}.
+                                            Connect with top-rated medical centers and verified healthcare providers.
                                         </p>
-                                    </Motion>
+                                    </div>
 
-                                    <div className={style.wrapper}>
+                                    <div className={style.cardsWrapper}>
                                         {hospitals.map((hospital, id) => (
                                             <Motion key={id} variants={fadeUp} className={style.card}>
-                                                <div className={style.img}>
+                                                <div className={style.cardImageWrapper}>
                                                     <Avatar
                                                         image={hospital.photoUrl || HospitalPic}
                                                         alt={`Photo of ${hospital.name}`}
-                                                        style={{ width: "100%", height: "100%", borderRadius: "1.2rem", objectFit: "cover" }}
+                                                        style={{ width: "100%", height: "100%", objectFit: "cover" }}
                                                     />
                                                 </div>
-                                                <div className={style.details}>
-                                                    <h3 className={style.name}>{hospital.name}</h3>
-                                                    <p>{hospital.address?.street}, {hospital.address?.city}</p>
+                                                <div className={style.cardDetails}>
+                                                    <h3 className={style.cardName}>{hospital.name}</h3>
+                                                    <p className={style.cardAddress}>
+                                                        <FaMapMarkerAlt className={style.pinIcon} />
+                                                        {hospital.address?.street}, {hospital.address?.city}
+                                                    </p>
                                                     <NavLink
                                                         to={`/hospital/${hospital.address.state}/${hospital.address.city}/${hospital.slug}`}
-                                                        className={style.btn}
+                                                        className={style.viewBtn}
                                                     >
                                                         View Details
                                                     </NavLink>
@@ -332,11 +325,11 @@ const FindHospital = () => {
                                     </div>
                                 </Motion>
                             ) : message ? (
-                                <Motion variants={fadeUp} className={style.noResults}>
-                                    <div className={style.noResultsIcon}><FaHospital /></div>
-                                    <p className={style.noResultsText}>{message}</p>
+                                <Motion variants={fadeUp} className={style.emptyState}>
+                                    <div className={style.emptyStateIcon}><FaHospital /></div>
+                                    <p className={style.emptyStateText}>{message}</p>
                                     <button className={style.retryBtn} onClick={fetchNearbyHospitals}>
-                                        Browse verified facilities near you 📍
+                                        <FaMapMarkerAlt /> Browse facilities near me
                                     </button>
                                 </Motion>
                             ) : (
@@ -349,8 +342,7 @@ const FindHospital = () => {
                         </div>
                     </aside>
 
-                    {/* RIGHT SIDE: Map */}
-                    <Motion className={style.map} variants={zoomIn}>
+                    <Motion className={style.mapWrapper} variants={zoomIn}>
                         <div ref={mapContainer} className={style.mapBox} />
                     </Motion>
                 </Motion>
