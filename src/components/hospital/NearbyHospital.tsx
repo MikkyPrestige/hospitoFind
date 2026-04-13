@@ -30,13 +30,11 @@ const NearbyHospitals = ({ triggerLocation = 0 }: Props) => {
     const [message, setMessage] = useState<string>("Locating nearby services...");
     const navigate = useNavigate();
 
-    // Unified Fetcher Function
     const fetchHospitals = useCallback(async (lat?: number, lon?: number) => {
         setLoading(true);
         try {
             const params = new URLSearchParams({ limit: "3" });
 
-            // Check if lat/lon are valid numbers (including 0)
             if (typeof lat === 'number' && typeof lon === 'number') {
                 params.append("lat", lat.toString());
                 params.append("lon", lon.toString());
@@ -81,7 +79,6 @@ const NearbyHospitals = ({ triggerLocation = 0 }: Props) => {
                 { timeout: 10000 }
             );
         } else {
-            // Initial Load
             fetchHospitals();
         }
     }, [triggerLocation, fetchHospitals]);
@@ -89,19 +86,32 @@ const NearbyHospitals = ({ triggerLocation = 0 }: Props) => {
     return (
         <section className={style.section}>
             <div className={style.headerRow}>
-                <p className={style.note}>
-                    {loading ? "..." : <><FiNavigation /> {message}</>}
-                </p>
+                <div className={style.note}>
+                    {loading ? (
+                        "Scanning Area..."
+                    ) : (
+                        <>
+                            <FiNavigation className={style.pulse} />
+                            <span>{message}</span>
+                        </>
+                    )}
+                </div>
+
+                {!loading && hospitals.length > 0 && (
+                    <button onClick={() => navigate("/directory")} className={style.textLink}>
+                        View full directory →
+                    </button>
+                )}
             </div>
 
             {loading ? (
-                <AnimatedLoader message="Scanning directory..." variant="card" count={3} />
+                <AnimatedLoader message="Scanning for local facilities..." variant="card" count={3} />
             ) : (
                 <>
                     {hospitals.length > 0 ? (
                         <div className={style.grid}>
                             {hospitals.map((h) => (
-                                <div key={h._id} className={style.card}>
+                                <article key={h._id} className={style.card}>
                                     <div className={style.imageContainer}>
                                         <img
                                             src={h.photoUrl || HospitalPic}
@@ -109,12 +119,11 @@ const NearbyHospitals = ({ triggerLocation = 0 }: Props) => {
                                             className={style.image}
                                             loading="lazy"
                                         />
-                                        {h.distance && <span className={style.distBadge}>{h.distance} away</span>}
+                                        {h.distance && <span className={style.distBadge}>{h.distance}</span>}
                                     </div>
 
                                     <div className={style.cardContent}>
                                         <div className={style.cardHeader}>
-                                            <h3 className={style.title}>{h.name}</h3>
                                             {h.type && (
                                                 <span className={`${style.typeBadge} ${h.type.toLowerCase() === 'private' ? style.privateBadge : style.publicBadge}`}>
                                                     {h.type}
@@ -122,26 +131,28 @@ const NearbyHospitals = ({ triggerLocation = 0 }: Props) => {
                                             )}
                                         </div>
 
+                                        <h3 className={style.title}>{h.name}</h3>
+
                                         <p className={style.location}>
                                             <FiMapPin className={style.pinIcon} />
                                             {h.address?.city || h.address?.state
                                                 ? [h.address?.city, h.address?.state].filter(Boolean).join(", ")
-                                                : "Verified Location"}
+                                                : "Verified Facility"}
                                         </p>
 
                                         <button
                                             className={style.viewBtn}
                                             onClick={() => navigate(`/hospital/${h.address?.state}/${h.address?.city}/${h.slug}`)}
                                         >
-                                            View Profile
+                                            View Details
                                         </button>
                                     </div>
-                                </div>
+                                </article>
                             ))}
                         </div>
                     ) : (
                         <div className={style.emptyState}>
-                            <p>No verified hospitals available right now.</p>
+                            <p>No verified hospitals found in this specific area yet.</p>
                         </div>
                     )}
 
