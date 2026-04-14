@@ -133,7 +133,7 @@
     .mobileLogo {
       display: flex;
       align-items: center;
-      margin-top: 2rem;
+      margin-top: 3rem;
 
       @include respond(laptop) {
         display: none;
