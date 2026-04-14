@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { BsGlobe2, BsShieldCheck, BsLightningCharge } from "react-icons/bs";
-import { FaNotesMedical, FaMapMarkedAlt, FaRegNewspaper } from "react-icons/fa";
-import { MdStarBorderPurple500 } from "react-icons/md";
+import { FaNotesMedical, FaMapMarkedAlt } from "react-icons/fa";
+import { MdStarBorderPurple500, MdOutlineManageSearch } from "react-icons/md";
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import style from "./styles/about.module.scss";
@@ -62,6 +62,7 @@ const About = () => {
       <main className={style.bg}>
         <Motion className={style.heroWrapper} variants={fadeUp} as="section">
           <div className={style.heroContent}>
+            <div className={style.badge}>About HospitoFind</div>
             <h1 className={style.heroTitle}>
               Connecting You to <span className={style.span}>Verified Global Healthcare</span>
             </h1>
@@ -76,7 +77,7 @@ const About = () => {
                 </span>
                 <span className={style.statLabel}>Verified Facilities</span>
               </div>
-
+              <div className={style.divider}></div>
               <div className={style.statItem}>
                 <span className={style.statNumber}>
                   {countryCount ? countryCount : "50"}+
@@ -92,12 +93,10 @@ const About = () => {
 
           <div className={style.heroImages}>
             <motion.div variants={slideLeft} className={style.img1}>
-              <Avatar image={PhoneMap} alt="HospitoFind Mobile Interface showing map" style={{ width: "100%", height: "100%", objectFit: "cover", borderRadius: "2rem", display: "block" }} />
+              <Avatar image={PhoneMap} alt="HospitoFind Mobile Interface" style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }} />
             </motion.div>
             <motion.div variants={slideRight} className={style.img2}>
-              <Avatar image={Lobby} alt="Modern Hospital Lobby" style={{
-                width: "100%", height: "100%", objectFit: "cover", borderRadius: "2rem", display: "block"
-              }} />
+              <Avatar image={Lobby} alt="Modern Hospital Lobby" style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }} />
             </motion.div>
           </div>
         </Motion>
@@ -112,17 +111,21 @@ const About = () => {
             </div>
             <div className={style.valuesList}>
               <div className={style.valueItem}>
-                <BsShieldCheck className={style.valueIcon} />
-                <div>
+                <div className={style.iconBox}>
+                  <BsShieldCheck className={style.valueIcon} />
+                </div>
+                <div className={style.valueContent}>
                   <h4>Data Integrity</h4>
                   <p>We rigorously verify every facility to ensure you have accurate contact details and location data when it matters most.</p>
                 </div>
               </div>
               <div className={style.valueItem}>
-                <BsLightningCharge className={style.valueIcon} />
-                <div>
+                <div className={style.iconBox}>
+                  <BsLightningCharge className={style.valueIcon} />
+                </div>
+                <div className={style.valueContent}>
                   <h4>Rapid Access</h4>
-                  <p>Our platform is optimized for speed, delivering critical information instantly—even in low-bandwidth environments.</p>
+                  <p>Our platform is optimized for speed, delivering critical information instantly, even in low-bandwidth environments.</p>
                 </div>
               </div>
             </div>
@@ -131,7 +134,7 @@ const About = () => {
 
         <section className={style.featureSection}>
           <div className={style.sectionHeaderCenter}>
-            <h2>Why Choose HospitoFind?</h2>
+            <h2>Why Choose <span>HospitoFind</span>?</h2>
             <p>Tools designed to empower your healthcare decisions.</p>
           </div>
           <div className={style.featureContainer}>
@@ -146,33 +149,23 @@ const About = () => {
         </section>
 
         <Motion className={style.howItWorksWrapper} variants={sectionReveal} as="section">
-          <div className={style.semiCircle_container}>
-            <div className={style.semiCircle_bg}>
-              <div className={`${style.semiCircle} ${style.one}`}></div>
-              <div className={`${style.semiCircle} ${style.two}`}></div>
-              <div className={`${style.semiCircle} ${style.three}`}></div>
-            </div>
-
-            <div className={style.howItWorks_inner}>
+          <div className={style.howItWorks_inner}>
+            <div className={style.sectionHeaderCenter}>
               <h2 className={style.heading}>Navigating the Platform</h2>
               <p className={style.subHeading}>Four simple steps to accessing or contributing to our global network.</p>
+            </div>
 
-              <div className={style.stepsGrid}>
-                {steps.map((step, i) => (
-                  <motion.div
-                    key={i}
-                    className={style.stepCard}
-                    variants={zoomIn}
-                  >
-                    <div className={style.stepAvatarWrapper}>
-                      <Avatar image={step.img} alt={step.head} style={{ width: "6.5rem", height: "6.5rem", borderRadius: "50%", border: "3px solid white" }} />
-                      <span className={style.stepNumber}>{i + 1}</span>
-                    </div>
-                    <h3 className={style.stepHead}>{step.head}</h3>
-                    <p className={style.stepText}>{step.text}</p>
-                  </motion.div>
-                ))}
-              </div>
+            <div className={style.stepsGrid}>
+              {steps.map((step, i) => (
+                <motion.div key={i} className={style.stepCard} variants={zoomIn}>
+                  <div className={style.stepAvatarWrapper}>
+                    <Avatar image={step.img} alt={step.head} style={{ width: "100%", height: "100%", borderRadius: "50%", objectFit: "cover" }} />
+                    <span className={style.stepNumber}>{i + 1}</span>
+                  </div>
+                  <h3 className={style.stepHead}>{step.head}</h3>
+                  <p className={style.stepText}>{step.text}</p>
+                </motion.div>
+              ))}
             </div>
           </div>
         </Motion>
@@ -186,17 +179,19 @@ const About = () => {
           <div className={style.review_grid}>
             {reviews.map((review, i) => (
               <motion.div key={i} className={style.review_box} variants={fadeUp}>
-                <p className={style.review_text}>"{review.text}"</p>
+                <div className={style.review_top}>
+                  <Avatar image={review.img} alt={review.name} style={{ width: "3.5rem", height: "3.5rem", borderRadius: "50%" }} />
+                  <div className={style.userInfo}>
+                    <span className={style.userName}>{review.name}</span>
+                    <span className={style.userRole}>{review.role}</span>
+                  </div>
+                </div>
                 <div className={style.starRow}>
                   {[...Array(5)].map((_, j) => (
                     <MdStarBorderPurple500 key={j} />
                   ))}
                 </div>
-                <div className={style.userInfo}>
-                  <Avatar image={review.img} alt={review.name} style={{ width: "3.5rem", height: "3.5rem", borderRadius: "50%" }} />
-                  <span className={style.userName}>{review.name}</span>
-                  <span className={style.userRole}>{review.role}</span>
-                </div>
+                <p className={style.review_text}>"{review.text}"</p>
               </motion.div>
             ))}
           </div>
@@ -211,7 +206,7 @@ const features = [
   { icon: <FaNotesMedical />, title: "Comprehensive Profiles", text: "Access detailed facility records, including specialized services, accreditation status, and direct contact channels." },
   { icon: <FaMapMarkedAlt />, title: "Interactive Mapping", text: "Visualize healthcare density in your region with our precision mapping tools and get instant turn-by-turn directions." },
   { icon: <BsGlobe2 />, title: "Global Directory", text: "Seamlessly switch between countries to find care while traveling or for family members abroad." },
-  { icon: <FaRegNewspaper />, title: "Health Intelligence", text: "Stay informed with curated health alerts and epidemiological updates relevant to your location." },
+  { icon: <MdOutlineManageSearch />, title: "Agent Intelligence", text: "Utilize our intelligent routing agent to navigate healthcare networks and find the most suitable, verified facilities tailored to your specific needs." },
 ];
 
 const steps = [
