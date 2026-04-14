@@ -1,0 +1,308 @@
+.footer {
+  background: var(--footer-bg);
+  color: var(--footer-text);
+  border-top: 1px solid var(--footer-border);
+  padding-top: 4rem;
+  padding-bottom: 2rem;
+  font-family: var(--font-inter);
+  overflow: hidden;
+}
+
+.container {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+.ctaWrapper {
+  padding: 0 2rem;
+  margin-bottom: -5rem;
+  margin-top: 3rem;
+  position: relative;
+  z-index: 10;
+  transform: translateY(-50%);
+
+   @include respond(tab-land) {
+    margin-top: 0rem;
+    margin-bottom: -3rem;
+   }
+}
+
+.ctaBar {
+  max-width: 1200px;
+  margin: 0 auto;
+  background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
+  padding: 3rem;
+  border-radius: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  gap: 2rem;
+  text-align: center;
+  box-shadow: 0 2rem 4rem rgba(0, 0, 0, 0.3);
+
+  @include respond(tab-land) {
+    flex-direction: row;
+    text-align: left;
+  }
+
+  .ctaContent {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+
+    h2 {
+    font-size: clamp(1.5rem, 4vw, 2rem);
+    font-weight: 800;
+    color: var(--footer-heading);
+    margin-bottom: 0.5rem;
+  }
+
+  p {
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 1.2rem;
+  }
+
+  @include respond(tab-land) {
+    max-width: 60%;
+  }
+}
+
+.ctaActions {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+}
+
+.ctaButton {
+  background: var(--footer-heading);
+  color: var( --color-blue);
+  padding: 1rem 2rem;
+  border-radius: 1rem;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+
+  &:hover {
+    transform: translateY(-3px) scale(1.02);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+  }
+}
+
+.mainGrid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 4rem;
+  margin-bottom: 2rem;
+
+  @include respond(tab-land) {
+    grid-template-columns: 1.5fr 2fr 1.2fr;
+  }
+}
+
+.brandCol {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+
+  .brandColContent {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+    .logoLink {
+  display: inline-flex;
+  align-items: center;
+  transition: opacity 0.3s ease;
+  height: 10rem;
+
+   &:hover {
+    opacity: 0.8;
+  }
+
+    .brandLogo {
+    height: 100%;
+    width: auto;
+    filter: brightness(0) invert(1);
+      }
+    }
+
+  .brandDesc {
+    font-size: 1.2rem;
+    line-height: 1.6;
+    color: var(--footer-text);
+    margin-bottom: 1rem;
+    }
+  }
+
+  .socialRow {
+  display: flex;
+  gap: 1rem;
+
+  a {
+    width: 5rem;
+    height: 5rem;
+    border-radius: 1rem;
+    background: rgba(255, 255, 255, 0.05);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+    color: var(--footer-text);
+    transition: all 0.3s ease;
+
+    &:hover {
+      background: var( --color-blue-light);
+      color: var(--footer-heading);
+      transform: translateY(-3px);
+      }
+    }
+  }
+}
+
+.linkGroup {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 2rem;
+
+  @include respond(tab-port) {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.linkCol {
+  h3 {
+    color: var(--footer-heading);
+    font-size: 1.4rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+
+  a {
+    display: block;
+    color: var(--footer-text);
+    margin-bottom: 0.8rem;
+    font-size: 1.2rem;
+    transition: 0.2s;
+
+    &:hover {
+      color: var(--color-blue);
+      padding-left: 5px;
+    }
+  }
+}
+
+.newsletterCol {
+  h3 {
+    color: var(--footer-heading);
+    font-size: 1.3rem;
+    font-weight: 700;
+    margin-bottom: 1.5rem;
+  }
+
+  p {
+    font-size: 1.1rem;
+    color: var(--footer-text);
+    margin-bottom: 1rem;
+  }
+}
+
+.subscribeForm {
+  display: flex;
+  background: rgba(255, 255, 255, 0.05);
+  padding: 0.5rem;
+  border-radius: 1rem;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+
+  input {
+    background: transparent;
+    border: none;
+    color: var(--footer-heading);
+    padding: 0.5rem 1rem;
+    flex: 1;
+    outline: none;
+    width: 100%;
+    &::placeholder { color: var(--footer-text); }
+  }
+
+  button {
+    background: var(--color-blue);
+    color: var(--footer-heading);;
+    border: none;
+    padding: 0.8rem;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: 0.3s;
+
+    &:hover { background: var(--color-blue); }
+  }
+}
+
+.bottomBar {
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  padding-top: 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.5rem;
+  color: var(--footer-text);;
+  font-size: 0.9rem;
+
+  @include respond(tab-land) {
+    flex-direction: row;
+    justify-content: space-between;
+  }
+}
+
+.legalLinks {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+  font-size: 1.2rem;
+
+  a:hover { color: var(--footer-heading); }
+
+  .divider {
+  color: var(--footer-border, rgba(255, 255, 255, 0.1));
+  font-weight: 300;
+  user-select: none;
+}
+}
+
+.security {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: var(--color-success);
+}
+
+.credit {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 1rem;
+  color: var(--footer-text);
+
+  .heartIcon {
+      color: var(--color-red);
+  display: inline;
+    animation: heartBeat 1.5s ease-in-out infinite;
+  }
+}
+
+
+@keyframes heartBeat {
+  0% { transform: scale(1); }
+  14% { transform: scale(1.3); }
+  28% { transform: scale(1); }
+  42% { transform: scale(1.3); }
+  70% { transform: scale(1); }
+}

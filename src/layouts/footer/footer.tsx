@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import { FaLinkedin, FaEnvelope, FaTwitter } from "react-icons/fa";
 import { Heart, ArrowRight, ShieldCheck, Mail } from "lucide-react";
-import style from "./styles/footer.module.scss";
+import style from "./styles/scss/footer.module.scss";
 import Motion from "@/components/ui/Motion";
 import { fadeUp, sectionReveal } from "@/utils/animations";
 import BrandLogo from "@/assets/images/logo.svg";

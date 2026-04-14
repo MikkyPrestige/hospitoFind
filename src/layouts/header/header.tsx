@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import { MdClose } from "react-icons/md";
 import { FiMenu, FiLogOut, FiLayout, FiShield, FiUser } from "react-icons/fi";
 import Logo from "@/assets/images/logo.svg";
-import style from "./styles/nav.module.scss";
+import style from "./styles/scss/nav.module.scss";
 import { useAuthContext } from "@/context/UserProvider";
 import ThemeToggle from "@/components/ui/ThemeToggle"
 import GoogleTranslate from "@/components/ui/GoogleTranslate";
