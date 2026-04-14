@@ -105,6 +105,7 @@ const LoginForm = () => {
       <SEOHelmet title="Secure Login" description="Sign in to access your saved hospitals and track your healthcare history." />
       <SimpleHeader />
 
+
       <main className={`${style.section} ${style[transitionClass]}`}>
         <section className={style.left}>
           <div className={style.overlay}></div>
@@ -138,6 +139,7 @@ const LoginForm = () => {
           <div className={style.mobileLogo}>
             <img src={Logo} alt="HospitoFind Logo" />
           </div>
+
           <div className={style.wrapper}>
             <div className={style.header}>
               <h1 className={style.title}>Secure Login</h1>
@@ -146,6 +148,7 @@ const LoginForm = () => {
 
             <form onSubmit={handleLogin} className={style.form}>
               <div className={style.form_wrapper}>
+
                 <div className={style.form_group}>
                   <label htmlFor="email">Email Address</label>
                   <div className={style.inputWrapper}>
@@ -159,10 +162,9 @@ const LoginForm = () => {
                       className={`${style.form_input} ${errors.email ? style.invalid : ""}`}
                     />
                   </div>
-                  {errors.email && <p className={style.form_error}>{errors.email}</p>}
+                  {errors.email && <span className={style.form_error} role="alert">{errors.email}</span>}
                 </div>
 
-                {/* Password Input */}
                 <div className={style.form_group}>
                   <label htmlFor="password">Password</label>
                   <div className={style.inputWrapper}>
@@ -170,41 +172,34 @@ const LoginForm = () => {
                     <input
                       id="password"
                       type={showPassword ? "text" : "password"}
+                      placeholder="••••••••"
                       value={password}
                       onChange={(e) => setPassword(e.target.value)}
                       className={`${style.form_input} ${errors.password ? style.invalid : ""}`}
                     />
-                    <button type="button" className={style.togglePassword} onClick={() => setShowPassword(!showPassword)}>
+                    <button
+                      type="button"
+                      className={style.togglePassword}
+                      onClick={() => setShowPassword(!showPassword)}
+                      aria-label={showPassword ? "Hide password" : "Show password"}
+                    >
                       {showPassword ? <FaRegEyeSlash size={20} /> : <FaRegEye size={20} />}
                     </button>
                   </div>
-                  {errors.password && <p className={style.form_error}>{errors.password}</p>}
+                  {errors.password && <span className={style.form_error} role="alert">{errors.password}</span>}
                 </div>
               </div>
 
               {needsVerification && (
-                <div style={{
-                  marginTop: "1.5rem",
-                  padding: "1rem",
-                  backgroundColor: "#fff5f5",
-                  border: "1px solid #feb2b2",
-                  borderRadius: "12px",
-                  textAlign: "center"
-                }}>
-                  <p style={{ color: "#c53030", fontSize: "0.85rem", fontWeight: 500, marginBottom: "0.5rem" }}>
-                    Action Required: Email Verification Pending
-                  </p>
+                <div className={style.verificationAlert} role="alert">
+                  <p className={style.alertMessage}>Action Required: Email Verification Pending</p>
                   <button
                     type="button"
                     disabled={resending}
                     onClick={handleResendLink}
-                    style={{
-                      color: "#0e3db7", fontSize: "0.85rem", fontWeight: 700,
-                      background: "none", border: "none", cursor: "pointer",
-                      display: "flex", alignItems: "center", justifyContent: "center", gap: "5px", width: "100%"
-                    }}
+                    className={style.alertButton}
                   >
-                    {resending ? <RefreshCw size={14} className="animate-spin" /> : null}
+                    {resending && <RefreshCw size={14} className={style.spinIcon} />}
                     {resending ? "Sending Email..." : "Request New Verification Link"}
                   </button>
                 </div>
@@ -232,33 +227,36 @@ const LoginForm = () => {
 
             <div className={style.divider}><span className={style.dividerText}>Or sign in using</span></div>
 
-            {/* Social Buttons */}
             <div className={style.socialBtn}>
               <button
+                type="button"
                 onClick={() => loginWithRedirect({ authorizationParams: { connection: 'google-oauth2' } })}
                 className={style.social}
-                title="Sign in with Google"
+                aria-label="Sign in with Google"
               >
                 <FcGoogle size={24} />
               </button>
               <button
+                type="button"
                 onClick={() => loginWithRedirect({ authorizationParams: { connection: 'facebook' } })}
                 className={style.social}
-                title="Sign in with Facebook"
+                aria-label="Sign in with Facebook"
               >
                 <FaFacebook size={24} color="#1877F2" />
               </button>
               <button
+                type="button"
                 onClick={() => loginWithRedirect({ authorizationParams: { connection: 'twitter' } })}
                 className={style.social}
-                title="Sign in with Twitter"
+                aria-label="Sign in with Twitter"
               >
                 <FaTwitter size={24} color="#1DA1F2" />
               </button>
               <button
+                type="button"
                 onClick={() => loginWithRedirect({ authorizationParams: { connection: 'linkedin' } })}
                 className={style.social}
-                title="Sign in with LinkedIn"
+                aria-label="Sign in with LinkedIn"
               >
                 <FaLinkedin size={24} color="#0A66C2" />
               </button>
