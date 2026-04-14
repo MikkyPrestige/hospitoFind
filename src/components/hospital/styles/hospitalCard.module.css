@@ -1,48 +1,83 @@
 .card {
-  background: var(--color-white);
-  border: var(--border-blue-faint);
+  background: var(--color-bg-contrast);
+  border: 1px solid var(--color-border);
+  box-shadow: var(--shadow-card);
   border-radius: 18px;
-  box-shadow: var(--shadow-card-blue);
   overflow: hidden;
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   display: flex;
   flex-direction: column;
   height: 100%;
+  position: relative;
 }
 
 .card:hover {
-  transform: translateY(-8px);
+  transform: translateY(-6px);
   box-shadow: var(--shadow-card-blue-hover);
+  border-color: var(--color-blue-light);
 }
 
 .imageWrapper {
   width: 100%;
-  aspect-ratio: 16 / 10;
-  background: var(--color-bg-contrast);
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  aspect-ratio: 16 / 9;
+  background: var(--color-black);
+  position: relative;
   overflow: hidden;
-}
-
-.noImage {
-  background: linear-gradient(
-    180deg,
-    var(--color-ash) 0%,
-    var(--color-bg-contrast) 100%
-  );
-  border-bottom: var(--border-blue-faint);
 }
 
 .image {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  transition: transform 0.5s ease;
+  transition: transform 0.6s ease;
 }
 
 .card:hover .image {
-  transform: scale(1.05);
+  transform: scale(1.08);
+}
+
+.badgeOverlay {
+  position: absolute;
+  top: 1rem;
+  left: 1rem;
+  right: 1rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  z-index: 5;
+}
+
+.typeTag {
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(4px);
+  color: var(--color-blue);
+  font-size: 0.75rem;
+  font-weight: 800;
+  padding: 0.4rem 0.8rem;
+  border-radius: 50px;
+  text-transform: uppercase;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.verifiedBadge {
+  background: var(--color-blue);
+  color: var(--color-invert);
+  font-size: 0.75rem;
+  font-weight: 700;
+  padding: 0.4rem 0.8rem;
+  border-radius: 50px;
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+  box-shadow: 0 4px 10px rgba(8, 41, 155, 0.2);
+}
+
+.noImage {
+  background: linear-gradient(135deg, #f1f5f9 0%, #e2e8f0 100%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 
 .placeholder {
@@ -50,181 +85,146 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  color: var(--icon-gray);
+  color: var(--color-gray);
   gap: 0.5rem;
+  text-align: center;
+  padding: 1rem;
 }
 
 .placeholderIcon {
-  width: 2.5rem;
-  height: 2.5rem;
-  color: var(--icon-gray-light);
+  width: 3rem;
+  height: 3rem;
+  color: var(--color-ash);
   stroke-width: 1.5;
 }
 
-.placeholder p {
-  font-size: 0.85rem;
-  font-weight: 600;
+.noImageText {
+  font-size: 0.7rem;
+  color: var(--color-gray);
+  font-weight: 700;
   text-transform: uppercase;
-  letter-spacing: 0.05em;
+  margin-top: 0.5rem;
 }
 
 .content {
-  padding: 1.5rem;
+  padding: 1rem 1.5rem;
   display: flex;
   flex-direction: column;
   flex-grow: 1;
-  gap: 1rem;
 }
 
 .mainInfo {
   display: flex;
   flex-direction: column;
-  gap: 0.25rem;
-}
-
-.header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
+  gap: 0.5rem;
+  margin-bottom: 0.5rem;
 }
 
 .name {
-  font-size: 1.25rem;
+  font-size: 1.4rem;
   font-weight: 800;
-  color: var(--color-blue);
+  color: var(--color-blue-dark);
   line-height: 1.3;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
 }
 
-.type {
-  display: inline-block;
-  background: var(--bg-blue-tag);
-  color: var(--color-blue);
-  font-size: 1rem;
-  font-weight: 700;
-  padding: 0.3rem 0.8rem;
-  border-radius: 50px;
-  text-transform: uppercase;
-  margin-top: 0.5rem;
-  align-self: flex-start;
-}
-
-/* --- ADDRESS STYLING --- */
-.addressRow {
+.location {
   display: flex;
-  align-items: flex-start;
+  align-items: center;
   gap: 0.5rem;
-  margin-top: 0.5rem;
-  font-size: 1rem;
+  font-size: 1.2rem;
   color: var(--color-gray);
-  line-height: 1.5;
   font-weight: 500;
 }
 
-.mapIcon {
-  color: var(--icon-gray);
+.icon {
+  color: var(--color-blue-light);
   flex-shrink: 0;
-  margin-top: 3px;
+}
+
+.addressText {
+  color: var(--color-black);
+  line-height: 1.4;
+  font-weight: 500;
 }
 
 .addressText span {
-  color: var(--text-slate);
+  color: var(--color-blue);
   font-weight: 600;
 }
 
-/* --- CONTACT INFO --- */
-.contactInfo {
+.contactGrid {
+  margin: 1rem 0;
   display: flex;
   flex-direction: column;
-  gap: 0.6rem;
-  font-size: 1rem;
-  color: var(--text-slate);
+  gap: 0.5rem;
 }
 
-.phone,
-.email {
+.contactItem {
   display: flex;
   align-items: center;
   gap: 0.6rem;
-  font-size: 1rem;
-  color: var(--text-slate);
-  font-weight: 500;
-  transition: color 0.2s ease;
-}
-
-.contactIcon {
-  color: var(--icon-gray);
-  font-size: 1rem;
-  transition: color 0.2s;
-}
-
-.phone:hover,
-.email:hover {
-  color: var(--color-blue);
-}
-
-.phone:hover .contactIcon,
-.email:hover .contactIcon {
-  color: var(--color-blue);
-}
-
-/* --- EXTERNAL LINK --- */
-.externalLink {
   color: var(--color-gray);
-  font-weight: 600;
-  font-size: 1rem;
+  font-weight: 500;
+}
+
+.phoneText,
+.emailText {
+font-size: 1.1rem;
+}
+
+.actions {
+  margin-top: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+}
+
+.websiteLink {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--color-black);
   text-decoration: none;
-  display: inline-flex;
+  display: flex;
   align-items: center;
+  justify-content: center;
   gap: 0.4rem;
-  transition: color 0.2s;
+  padding: 0.6rem;
+  transition: all 0.2s;
 }
 
-.linkIcon {
-  font-size: 1rem;
-}
-
-.externalLink:hover {
+.websiteLink:hover {
   color: var(--color-blue);
 }
 
-/* --- BUTTON --- */
-.detailsBtn {
-  margin-top: auto;
+.profileBtn {
   background: var(--color-blue);
-  color: var(--color-white);
+  color: var(--color-invert);
   text-align: center;
-  padding: 1.5rem;
-  border-radius: 12px;
-  font-size: 1.2rem;
+  padding: 0.95rem;
+  border-radius: 1rem;
+  font-size: 1.1rem;
   font-weight: 700;
   text-decoration: none;
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 0.6rem;
-  transition: all 0.25s ease;
+  gap: 0.5rem;
+  transition: all 0.2s;
 }
 
-.btnIcon {
-  font-size: 1.1rem;
-  transition: transform 0.2s ease;
+.profileBtn svg {
+  transition: transform 0.2s;
 }
 
-.detailsBtn:hover {
+.profileBtn:hover {
   background: var(--color-blue-dark);
-  box-shadow: 0 4px 12px rgba(8, 41, 155, 0.2);
+  box-shadow: 0 8px 20px rgba(8, 41, 155, 0.2);
 }
 
-.detailsBtn:hover .btnIcon {
-  transform: translateX(3px);
-}
-
-.detailsBtn:active {
-  transform: scale(0.98);
-}
-
-@media (min-width: 768px) {
-  .detailsBtn {
-    padding: 1rem;
-  }
+.profileBtn:hover svg {
+  transform: translateX(4px);
 }
