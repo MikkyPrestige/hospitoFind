@@ -1,0 +1,308 @@
+.header {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 1000;
+  height: 8.5rem;
+  display: flex;
+  align-items: center;
+  background: var(--color-white);
+  border-bottom: 1px solid var(--color-border);
+  transition: all 0.3s ease;
+
+  &.scrolled {
+    height: 5.5rem;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.04);
+  }
+
+   @include respond(tab-land) {
+    height: 6rem;
+   }
+}
+
+.container {
+  width: 100%;
+  max-width: 1300px;
+  margin: 0 auto;
+  padding: 0 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.leftSection {
+  display: flex;
+  align-items: center;
+  gap: 4rem;
+}
+
+.logoWrapper .logo {
+  height: 6.5rem;
+  width: auto;
+
+  @include respond(tab-land) {
+    height: 4.5rem;
+   }
+}
+
+.desktopNav {
+  display: none;
+  @include respond(tab-land) { display: block; }
+
+  .navLinks {
+    display: flex;
+    gap: 3rem;
+    list-style: none;
+
+    a {
+      text-decoration: none;
+      font-size: 1.5rem;
+      font-weight: 600;
+      color: var(--color-black);
+      opacity: 0.7;
+      transition: 0.2s;
+
+      &:hover, &.active {
+        opacity: 1;
+        color: var(--color-blue);
+      }
+    }
+  }
+}
+
+.actions {
+  display: flex;
+  align-items: center;
+  // gap: 2rem;
+}
+
+.desktopUtilities {
+  display: none;
+
+  @include respond(tab-land) {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    padding-right: 2rem;
+    border-right: 1px solid var(--color-border);
+    margin-right: 1rem;
+  }
+}
+
+.authWrapper {
+  display: flex;
+  align-items: center;
+}
+
+.authButtons {
+  display: none;
+  gap: 2rem;
+  @include respond(tab-port) { display: flex; align-items: center; }
+
+  .loginBtn {
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 1.5rem;
+    color: var(--color-black);
+  }
+
+  .signupBtn {
+    text-decoration: none;
+    background: var(--color-blue);
+    color: var(--color-invert);
+    padding: 1rem 2.2rem;
+    border-radius: 8px;
+    font-weight: 700;
+    font-size: 1.4rem;
+    box-shadow: 0 4px 10px rgba(8, 41, 155, 0.15);
+  }
+}
+
+.userProfile .profileTrigger {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  text-decoration: none;
+  background: var(--color-ash);
+  padding: 0.5rem 1.2rem 0.5rem 0.5rem;
+  border-radius: 50px;
+
+  .avatar {
+    width: 2.8rem;
+    height: 2.8rem;
+    background: var(--color-blue);
+    color: var(--color-invert);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.4rem;
+  }
+
+  .userName {
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: var(--color-black);
+  }
+}
+
+.mobileToggle {
+  background: var(--color-ash);
+  border: none;
+  width: 5rem;
+  height: 5rem;
+  border-radius: 1rem;
+  color: var(--color-blue);
+  font-size: 3.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+  margin-left: 1rem;
+  @include respond(tab-land) { display: none; }
+}
+
+.mobileDrawer {
+  position: fixed;
+  inset: 0;
+  background: var(--color-white);
+  padding: 10rem 2rem 3rem;
+  transform: translateX(100%);
+  transition: 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  display: flex;
+  flex-direction: column;
+  z-index: 999;
+
+  &.drawerOpen { transform: translateX(0); }
+}
+
+.drawerLinks {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 2.5rem;
+  margin-bottom: auto;
+
+  a {
+    font-size: 2.8rem;
+    font-weight: 800;
+    color: var(--color-black);
+    text-decoration: none;
+    &.active { color: var(--color-blue); }
+  }
+}
+
+.mobileUtilities {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin-bottom: 3rem;
+  padding: 1.5rem;
+  background: var(--color-ash);
+  border-radius: 1rem;
+
+  @include respond(tab-land) {
+    display: none;
+  }
+
+  .utilityItem {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    span {
+      font-weight: 600;
+      font-size: 1.8rem;
+      color: var(--color-black);
+    }
+  }
+}
+
+.drawerFooter {
+  border-top: 1px solid var(--color-border);
+  padding-top: 3rem;
+}
+
+.drawerUserCard {
+  background: var(--color-ash);
+  padding: 2rem;
+  border-radius: 1.2rem;
+
+  .userInfo {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+
+    .userAvatar {
+      width: 5rem;
+      height: 5rem;
+      background: var(--color-blue);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--color-invert);
+      font-size: 2rem;
+    }
+
+    .userMeta {
+      .uName { font-weight: 700; font-size: 1.8rem; margin: 0; }
+    .uRole { font-size: 1.3rem; color: var(--color-indigo); margin: 0; }
+    }
+  }
+}
+
+.userActions {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+
+  a, button {
+    padding: 1.2rem;
+    border-radius: 1rem;
+    background: var(--color-white);
+    text-decoration: none;
+    color: var(--color-black);
+    font-weight: 600;
+    font-size: 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    border: none;
+    width: 100%;
+  }
+
+  .adminBtn {
+    background: rgba(239, 68, 68, 0.2);
+    color: var(--color-red);
+    border: 1px solid rgba(239, 68, 68, 0.1);
+  }
+
+  .logoutBtn { color: var(--color-red); }
+}
+
+.drawerAuth {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+
+  .mobileSignup {
+    background: var(--color-blue);
+    color: var(--color-white);
+    padding: 1.8rem;
+    border-radius: 1rem;
+    text-align: center;
+    font-weight: 700;
+    font-size: 1.6rem;
+    text-decoration: none;
+  }
+
+  .mobileLogin {
+    text-align: center;
+    color: var(--color-black);
+    font-weight: 600;
+    font-size: 1.5rem;
+    text-decoration: none;
+  }
+}

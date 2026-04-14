@@ -2,6 +2,7 @@ import React from "react";
 import ReactCountryFlag from "react-country-flag";
 import * as countries from "i18n-iso-countries";
 import enLocale from "i18n-iso-countries/langs/en.json";
+import { FiGlobe } from 'react-icons/fi';
 import style from "./styles/countryCard.module.css";
 
 // @ts-ignore
@@ -29,12 +30,14 @@ const CountryCard: React.FC<CountryCardProps> = ({ country, count }) => {
         {code ? (
           <ReactCountryFlag
             svg
-            style={{ width: "2.2rem", height: "2.2rem", objectFit: "cover", borderRadius: "50%" }}
+            className={style.flagIcon}
             countryCode={code}
             title={country}
           />
         ) : (
-            <span style={{ fontSize: "1.5rem" }} role="img" aria-label="Globe">🌍</span>
+            <span className={style.fallbackEmoji} role="img" aria-label="Globe">
+              <FiGlobe color="royalblue" size="2em" />
+            </span>
         )}
       </div>
 
