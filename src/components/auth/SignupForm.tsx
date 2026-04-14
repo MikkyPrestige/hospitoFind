@@ -211,7 +211,7 @@ const SignUp = () => {
                       className={style.togglePassword}
                       onClick={() => setShowPassword(!showPassword)}
                     >
-                      {showPassword ? <FaRegEyeSlash size={20} /> : <FaRegEye size={20} />}
+                      {showPassword ? <FaRegEyeSlash size={18} /> : <FaRegEye size={18} />}
                     </button>
                   </div>
                   {errors.password && <p className={style.form_error}>{errors.password}</p>}
@@ -260,16 +260,16 @@ const SignUp = () => {
 
             <div className={style.socialBtn}>
               <button onClick={() => loginWithRedirect({ authorizationParams: { connection: 'google-oauth2' } })} className={style.social} title="Google">
-                <FcGoogle size={24} />
+                <FcGoogle size={22} />
               </button>
               <button onClick={() => loginWithRedirect({ authorizationParams: { connection: 'facebook' } })} className={style.social} title="Facebook">
-                <FaFacebook size={24} color="#1877F2" />
+                <FaFacebook size={22} color="#1877F2" />
               </button>
               <button onClick={() => loginWithRedirect({ authorizationParams: { connection: 'twitter' } })} className={style.social} title="Twitter">
-                <FaTwitter size={24} color="#1DA1F2" />
+                <FaTwitter size={22} color="#1DA1F2" />
               </button>
               <button onClick={() => loginWithRedirect({ authorizationParams: { connection: 'linkedin' } })} className={style.social} title="LinkedIn">
-                <FaLinkedin size={24} color="#0A66C2" />
+                <FaLinkedin size={22} color="#0A66C2" />
               </button>
             </div>
 
@@ -282,6 +282,7 @@ const SignUp = () => {
           </div>
         </section>
       </main>
+
       <SimpleFooter />
     </>
   );
