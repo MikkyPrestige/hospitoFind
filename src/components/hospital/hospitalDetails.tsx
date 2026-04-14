@@ -34,7 +34,6 @@ const HospitalDetails = () => {
     const FAV_KEY = `${userPrefix}_favorites`;
     const REC_KEY = `${userPrefix}_recentlyViewed`;
 
-    // --- HISTORY HANDLER ---
     const addToHistory = async (hospitalData: any) => {
         if (!hospitalData) return;
         try {
@@ -53,14 +52,12 @@ const HospitalDetails = () => {
         }
     };
 
-    // --- FETCH DATA ---
     useEffect(() => {
         const fetchHospital = async () => {
             try {
                 setLoading(true);
                 let res;
 
-                // SMART SEARCH
                 if (name) {
                     // Scenario A: Name only
                     res = await getHospitalByName(name);
@@ -76,12 +73,10 @@ const HospitalDetails = () => {
 
                 setHospital(res);
 
-                // Check Favorites
                 const saved = JSON.parse(localStorage.getItem(FAV_KEY) || "[]");
                 const isFav = saved.some((h: any) => h._id === res._id || h.name === res.name);
                 setIsFavorite(isFav);
 
-                // Add to History
                 if (res?._id && lastRecordedId.current !== res._id) {
                     addToHistory(res);
                     lastRecordedId.current = res._id;
@@ -97,7 +92,6 @@ const HospitalDetails = () => {
         fetchHospital();
     }, [id, country, city, slug, name, FAV_KEY]);
 
-    // --- FAVORITE TOGGLE ---
     const toggleFavorite = async () => {
         if (!hospital) return;
         const previousState = isFavorite;
@@ -171,15 +165,17 @@ const HospitalDetails = () => {
 
     if (!hospital) return (
         <div className={style.errorContainer}>
-            <div className={style.errorCard}>
-                <MdErrorOutline size={60} color="#ef4444" className={style.errorIcon} />
-                <h2 className={style.errorTitle}>Facility Record Unavailable</h2>
-                <p className={style.errorText}>
-                    The healthcare facility you requested cannot be found. It may have been removed or the link is invalid.
-                </p>
-                <button onClick={() => navigate("/find-hospital")} className={style.errorBtn}>
-                    ← Return to Directory
-                </button>
+            <div className={style.errorContainer}>
+                <div className={style.errorCard}>
+                    <MdErrorOutline size={60} className={style.errorIcon} />
+                    <h2 className={style.errorTitle}>Facility Record Unavailable</h2>
+                    <p className={style.errorText}>
+                        The healthcare facility you requested cannot be found. It may have been removed or the link is invalid.
+                    </p>
+                    <button onClick={() => navigate("/find-hospital")} className={style.errorBtn}>
+                        ← Return to Directory
+                    </button>
+                </div>
             </div>
         </div>
     );
@@ -226,119 +222,137 @@ const HospitalDetails = () => {
                         </div>
 
                         <Motion variants={fadeUp} className={style.detailsLayout}>
-                            <div className={style.infoSection}>
-                                <div className={style.headerMain}>
-                                    <div className={style.titleBlock}>
-                                        <h1 className={style.name}>{hospital.name}</h1>
-                                        <div className={style.badgeRow}>
-                                            <span className={style.verifiedBadge}>
-                                                <MdVerified /> Verified Facility
-                                            </span>
-                                            {hospital.type && (
-                                                <span className={`${style.typeBadge} ${hospital.type.toLowerCase() === "private" ? style.privateBadge : style.publicBadge}`}>
-                                                    {hospital.type}
+                            <div className={style.mainColumn}>
+                                <div className={style.infoSection}>
+                                    <div className={style.headerMain}>
+                                        <div className={style.titleBlock}>
+                                            <div className={style.badgeRow}>
+                                                <span className={style.verifiedBadge}>
+                                                    <MdVerified /> Verified Facility
                                                 </span>
-                                            )}
+                                                {hospital.type && (
+                                                    <span className={`${style.typeBadge} ${hospital.type.toLowerCase() === "private" ? style.privateBadge : style.publicBadge}`}>
+                                                        {hospital.type}
+                                                    </span>
+                                                )}
+                                            </div>
+                                            <h1 className={style.name}>{hospital.name}</h1>
+                                        </div>
+
+                                        <div className={style.actionButtons}>
+                                            <button onClick={toggleFavorite} className={`${style.actionBtn} ${isFavorite ? style.isFav : ""}`}>
+                                                {isFavorite ? <AiFillHeart size={20} /> : <AiOutlineHeart size={20} />}
+                                                {isFavorite ? "Saved" : "Save"}
+                                            </button>
+                                            <button onClick={() => window.print()} className={style.actionBtn}>
+                                                <MdOutlinePrint size={20} /> Print
+                                            </button>
+                                            <button type="button" onClick={handleMatchMe} className={style.matchBtn}>
+                                                ✦ Match Me Here
+                                            </button>
                                         </div>
                                     </div>
 
-                                    <div className={style.actionButtons}>
-                                        <button onClick={toggleFavorite} className={`${style.favBtn} ${isFavorite ? style.isFav : ""}`}>
-                                            {isFavorite ? <AiFillHeart size={20} /> : <AiOutlineHeart size={20} />}
-                                            {isFavorite ? "Saved" : "Save"}
-                                        </button>
-                                        <button onClick={() => window.print()} className={style.printBtn}>
-                                            <MdOutlinePrint size={20} /> Print
-                                        </button>
-                                        <button
-                                            type="button"
-                                            onClick={handleMatchMe}
-                                            className={style.matchBtn}
-                                        >
-                                            ✦ Match Me Here
-                                        </button>
-                                    </div>
-                                </div>
-
-                                {hospital.photoUrl && (
-                                    <Motion variants={fadeUp}>
-                                        <img src={hospital.photoUrl} alt={`View of ${hospital.name}`} className={style.image} />
-                                    </Motion>
-                                )}
-
-                                <div className={style.contactGrid}>
-                                    <div className={style.contactItem}>
-                                        <MdLocationOn className={style.contactIcon} />
-                                        <span>{hospital.address?.street}, {hospital.address?.city}, {hospital.address?.state}</span>
-                                    </div>
-                                    {hospital.phoneNumber && (
-                                        <div className={style.contactItem}>
-                                            <MdPhone className={style.contactIcon} />
-                                            <a href={`tel:${hospital.phoneNumber}`} className={style.infoLink}>{hospital.phoneNumber}</a>
-                                        </div>
+                                    {hospital.photoUrl && (
+                                        <Motion variants={fadeUp}>
+                                            <div className={style.imageWrapper}>
+                                                <img src={hospital.photoUrl} alt={`View of ${hospital.name}`} className={style.image} />
+                                            </div>
+                                        </Motion>
                                     )}
-                                    {hospital.email && (
-                                        <div className={style.contactItem}>
-                                            <MdEmail className={style.contactIcon} />
-                                            <a href={`mailto:${hospital.email}`} className={style.infoLink}>{hospital.email}</a>
-                                        </div>
-                                    )}
-                                    {hospital.website && (
-                                        <div className={style.contactItem}>
-                                            <MdLanguage className={style.contactIcon} />
-                                            <a href={hospital.website} target="_blank" rel="noopener noreferrer" className={style.infoLink}>Website →</a>
-                                        </div>
-                                    )}
-                                </div>
 
-                                {hospital.services && hospital.services.length > 0 && (
-                                    <div className={style.servicesSection}>
-                                        <h3 className={style.sectionTitle}><MdLocalHospital /> Specialties</h3>
-                                        <div className={style.amenitiesGrid}>
-                                            {hospital.services.map((service: string, index: number) => (
-                                                <div key={index} className={style.amenityChip}>
-                                                    <MdVerified className={style.chipIcon} /> {service.trim()}
+                                    <div className={style.contactGrid}>
+                                        <div className={style.contactItem}>
+                                            <div className={style.iconWrapper}><MdLocationOn /></div>
+                                            <div className={style.contactContent}>
+                                                <span className={style.contactLabel}>Address</span>
+                                                <span>{hospital.address?.street}, {hospital.address?.city}, {hospital.address?.state}</span>
+                                            </div>
+                                        </div>
+                                        {hospital.phoneNumber && (
+                                            <div className={style.contactItem}>
+                                                <div className={style.iconWrapper}><MdPhone /></div>
+                                                <div className={style.contactContent}>
+                                                    <span className={style.contactLabel}>Phone</span>
+                                                    <a href={`tel:${hospital.phoneNumber}`} className={style.infoLink}>{hospital.phoneNumber}</a>
                                                 </div>
-                                            ))}
-                                        </div>
+                                            </div>
+                                        )}
+                                        {hospital.email && (
+                                            <div className={style.contactItem}>
+                                                <div className={style.iconWrapper}><MdEmail /></div>
+                                                <div className={style.contactContent}>
+                                                    <span className={style.contactLabel}>Email</span>
+                                                    <a href={`mailto:${hospital.email}`} className={style.infoLink}>{hospital.email}</a>
+                                                </div>
+                                            </div>
+                                        )}
+                                        {hospital.website && (
+                                            <div className={style.contactItem}>
+                                                <div className={style.iconWrapper}><MdLanguage /></div>
+                                                <div className={style.contactContent}>
+                                                    <span className={style.contactLabel}>Online</span>
+                                                    <a href={hospital.website} target="_blank" rel="noopener noreferrer" className={style.infoLink}>Visit Website →</a>
+                                                </div>
+                                            </div>
+                                        )}
                                     </div>
-                                )}
 
-                                {hospital.comments && hospital.comments.length > 0 && (
-                                    <div className={style.commentsSection}>
-                                        <h3 className={style.commentsTitle}><MdInfoOutline /> Info & Reviews</h3>
-                                        <ul className={style.commentsList}>
-                                            {hospital.comments.map((comment: string, i: number) => (
-                                                <li key={i} className={style.commentItem}>{comment}</li>
-                                            ))}
-                                        </ul>
-                                    </div>
-                                )}
+                                    {hospital.services && hospital.services.length > 0 && (
+                                        <div className={style.servicesSection}>
+                                            <h3 className={style.sectionTitle}><MdLocalHospital /> Specialties & Services</h3>
+                                            <div className={style.amenitiesGrid}>
+                                                {hospital.services.map((service: string, index: number) => (
+                                                    <div key={index} className={style.amenityChip}>
+                                                        <MdVerified className={style.chipIcon} /> {service.trim()}
+                                                    </div>
+                                                ))}
+                                            </div>
+                                        </div>
+                                    )}
+
+                                    {hospital.comments && hospital.comments.length > 0 && (
+                                        <div className={style.commentsSection}>
+                                            <h3 className={style.commentsTitle}><MdInfoOutline /> Facility Information</h3>
+                                            <ul className={style.commentsList}>
+                                                {hospital.comments.map((comment: string, i: number) => (
+                                                    <li key={i} className={style.commentItem}>{comment}</li>
+                                                ))}
+                                            </ul>
+                                        </div>
+                                    )}
+                                </div>
                             </div>
 
-                            <aside className={style.mapWrapper}>
-                                <div className={style.mapCard}>
-                                    <h3>Location Map</h3>
-                                    <iframe
-                                        title={`Map of ${hospital.name}`}
-                                        src={mapUrl}
-                                        className={style.mapIframe}
-                                        allowFullScreen
-                                        loading="lazy"
-                                        referrerPolicy="no-referrer-when-downgrade"
-                                        style={{
-                                            filter: theme === 'dark' ? 'invert(90%) hue-rotate(180deg)' : 'none',
-                                            mixBlendMode: theme === 'dark' ? 'luminosity' : 'normal',
-                                        }}
-                                    ></iframe>
+                            {/* SIDEBAR COLUMN */}
+                            <aside className={style.sidebarColumn}>
+                                <div className={style.sidebarCard}>
+                                    <div className={style.cardHeader}>
+                                        <h3>Location Map</h3>
+                                    </div>
+                                    <div className={style.mapContainer}>
+                                        <iframe
+                                            title={`Map of ${hospital.name}`}
+                                            src={mapUrl}
+                                            className={style.mapIframe}
+                                            allowFullScreen
+                                            loading="lazy"
+                                            referrerPolicy="no-referrer-when-downgrade"
+                                            style={{
+                                                filter: theme === 'dark' ? 'invert(90%) hue-rotate(180deg) brightness(95%)' : 'none',
+                                            }}
+                                        ></iframe>
+                                    </div>
                                     <a href={directionsUrl} target="_blank" rel="noopener noreferrer" className={style.directionsBtn}>
                                         Get Directions
                                     </a>
                                 </div>
 
                                 {hospital.hours && hospital.hours.length > 0 && (
-                                    <div className={style.hoursCard}>
-                                        <h3><MdAccessTime /> Hours</h3>
+                                    <div className={style.sidebarCard}>
+                                        <div className={style.cardHeader}>
+                                            <h3><MdAccessTime /> Operating Hours</h3>
+                                        </div>
                                         <ul className={style.hoursList}>
                                             {hospital.hours.map((hour: any, i: number) => (
                                                 <li key={i}>
@@ -353,7 +367,9 @@ const HospitalDetails = () => {
                         </Motion>
 
                         <div className={style.backRow}>
-                            <Button onClick={handleBack} className={style.finalBackBtn}><AiOutlineArrowLeft /> Back</Button>
+                            <Button onClick={handleBack} className={style.finalBackBtn}>
+                                <AiOutlineArrowLeft /> Back to Directory
+                            </Button>
                         </div>
                     </Motion>
                 )}
