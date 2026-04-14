@@ -1,8 +1,8 @@
 .section {
   width: 100%;
- background-color: var(--color-bg);
+  background-color: var(--color-bg);
   min-height: 100vh;
-  padding: 7rem 1.5rem 4rem;
+  padding: 10rem 2rem 5rem;
 }
 
 .pageHeader {
@@ -58,7 +58,6 @@
   line-height: 1.6;
 }
 
-/* --- GRID --- */
 .container {
   max-width: 1280px;
   margin: 0 auto;
@@ -133,7 +132,6 @@ box-shadow: var(--shadow-card-blue-hover);
   font-size: 1.2rem;
 }
 
-/* --- CONTENT --- */
 .newsContent {
   padding: 1.5rem;
   display: flex;
@@ -205,7 +203,6 @@ font-family: var(--font-plus);
   font-size: 1.2rem;
 }
 
-/* --- ERROR STATE --- */
 .errorBox {
   text-align: center;
   padding: 4rem 2rem;

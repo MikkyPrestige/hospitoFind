@@ -1,6 +1,6 @@
 .termsContainer {
   background-color: var(--color-bg);
-  padding: 7rem 2rem;
+   padding: 10rem 2rem 5rem;
   display: flex;
   justify-content: center;
 }
@@ -47,7 +47,7 @@
 }
 
 .section p {
-  font-size: 1.1rem;
+  font-size: 1.2rem;
   line-height: 1.8;
   color: var(--text-slate);
   font-family: var(--font-inter);
@@ -64,7 +64,7 @@
 }
 
 .contactNote p {
-  font-size: 1.1rem;
+  font-size: 1.2rem;
   color: var(--color-gray);
   font-family: var(--font-inter);
 }

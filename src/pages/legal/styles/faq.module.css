@@ -1,6 +1,6 @@
 .faqContainer {
   background-color: var(--color-bg);
-  padding: 5rem 2rem;
+  padding: 10rem 2rem 5rem;
   display: flex;
   justify-content: center;
 }
@@ -70,7 +70,7 @@
   width: 100%;
   text-align: left;
   padding: 1.8rem 2rem;
-  font-size: 1.2rem;
+  font-size: 1.3rem;
   font-weight: 600;
   color: var(--color-black);
   background: none;
@@ -123,10 +123,7 @@
     font-size: 2rem;
   }
   .faqQuestion {
-    font-size: 1.2rem;
+    font-size: 1.3rem;
     padding: 1.5rem;
-  }
-  .answerInner p {
-    font-size: 1.1rem;
   }
 }
