@@ -70,7 +70,7 @@ const PersistLogin = () => {
                     <motion.img
                         src={Logo}
                         alt="HospitoFind Logo"
-                        style={{ width: 80, height: 80, marginBottom: "1.5rem" }}
+                        style={{ width: 60, height: 60, marginBottom: "1.2rem" }}
                         animate={{ scale: [1, 1.05, 1], opacity: [0.7, 1, 0.7] }}
                         transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}
                     />
