@@ -15,8 +15,8 @@ const LogIn = lazy(() => import("@/components/auth/LoginForm"));
 const SignUp = lazy(() => import("@/components/auth/SignupForm"));
 const Callback = lazy(() => import("@/pages/auth0/AuthCallback"));
 const Dashboard = lazy(() => import("@/pages/profile/dashboard"));
-const Directory = lazy(() => import("@/pages/explore/explorePage"));
-const CountryDetailPage = lazy(() => import("@/pages/explore/countryDetails"));
+const GlobalDirectory = lazy(() => import("@/pages/directory/globalDirectory"));
+const RegionalDirectory = lazy(() => import("@/pages/directory/countryRegistry"));
 const ShareHospitalList = lazy(() => import("@/components/hospital/ShareHospitalList"));
 const HospitalDetails = lazy(() => import("@/components/hospital/hospitalDetails"));
 const NewsData = lazy(() => import("@/pages/health/NewsData"));
@@ -65,8 +65,8 @@ export const router = createBrowserRouter([
                     { path: "policy", element: Loadable(Policy)({}) },
                     { path: "terms", element: Loadable(Terms)({}) },
                     { path: "faq", element: Loadable(FAQPage)({}) },
-                    { path: "directory", element: Loadable(Directory)({}) },
-                    { path: "country/:country", element: Loadable(CountryDetailPage)({}) },
+                    { path: "directory", element: Loadable(GlobalDirectory)({}) },
+                    { path: "directory/:country", element: Loadable(RegionalDirectory)({}) },
                     { path: "hospital/:id", element: Loadable(HospitalDetails)({}) },
                     { path: "hospital/:country/:city/:slug", element: Loadable(HospitalDetails)({}) },
                     { path: "hospitals/share/:linkId", element: Loadable(ShareHospitalList)({}) },

@@ -66,3 +66,7 @@ export interface HospitalFormData {
     isFeatured: boolean;
     verified?: boolean;
 }
+
+export interface HospitalCardProps {
+  hospital: Hospital;
+}
