@@ -1,6 +1,6 @@
 import { shareHospital } from '@/services/api';
 import { SearchProps } from '@/src/types/hospital';
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import style from './styles/scss/shareExport/shareExport.module.scss';
 import { CgShare, CgCopy, CgClose } from 'react-icons/cg';
 import Motion from "@/components/ui/Motion";
@@ -12,14 +12,6 @@ const ShareButton = ({ searchParams }: SearchProps) => {
   const [generating, setGenerating] = useState<boolean>(false);
   const [copied, setCopied] = useState<boolean>(false);
   const [toast, setToast] = useState<{ message: string; type: 'success' | 'error' } | null>(null);
-
-  // useEffect(() => {
-  //   let timer: NodeJS.Timeout;
-  //   if (shareableLink) {
-  //     timer = setTimeout(() => setShareableLink(''), 15000);
-  //   }
-  //   return () => clearTimeout(timer);
-  // }, [shareableLink]);
 
   const handleShare = async () => {
     if (!searchParams.city && !searchParams.state) {
