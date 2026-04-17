@@ -13,21 +13,25 @@ import { zoomIn } from '@/utils/animations';
 
 type HospitalSubmission = Omit<Hospital, '_id' | 'slug' | 'longitude' | 'latitude'>;
 
-const INITIAL_TEMPLATE = `
+const INITIAL_TEMPLATE = `---
 **Instructions:** Please fill in the details below. Do not remove the headers (lines starting with #).
 
+## 🏥 Basic Information
 # Name:
 
+## 📍 Location Details
 # Address
 - Street:
 - City:
 - Country:
 
+## 📞 Contact & Media
 # Phone:
 # Website:
 # Email:
 # Photo-Url:
 
+## ⚕️ Facility Specs
 # Type:
 (Public / Private / Missionary)
 
@@ -35,17 +39,17 @@ const INITIAL_TEMPLATE = `
 (e.g., Emergency, Dental, Pediatrics - separate with commas)
 
 # Comments:
-(Any additional details about the facility)
+(Additional details about the facility)
 
-# Hours
-- Day: Monday | Open - Close:
-- Day: Tuesday | Open - Close:
+## ⏰ Operating Hours
+- Day: Monday    | Open - Close:
+- Day: Tuesday   | Open - Close:
 - Day: Wednesday | Open - Close:
-- Day: Thursday | Open - Close:
-- Day: Friday | Open - Close:
-- Day: Saturday | Open - Close:
-- Day: Sunday | Open - Close:
-`;
+- Day: Thursday  | Open - Close:
+- Day: Friday    | Open - Close:
+- Day: Saturday  | Open - Close:
+- Day: Sunday    | Open - Close:
+---`;
 
 const Editor = () => {
   const [selectedTab, setSelectedTab] = useState<'write' | 'preview'>('write');

@@ -3,7 +3,8 @@ import { Link } from "react-router-dom";
 import { useForgotPassword } from "@/hooks/useForgotPassword";
 import SimpleHeader from "@/layouts/header/simpleHeader";
 import SimpleFooter from "@/layouts/footer/simpleFooter";
-import styles from "./styles/forgotPassword/forgotPassword.module.scss"
+import styles from "./styles/forgotPassword.module.css"
+import { FiArrowLeft } from "react-icons/fi";
 
 const ForgotPassword = () => {
     const [email, setEmail] = useState("");
@@ -21,7 +22,42 @@ const ForgotPassword = () => {
         <>
             <SimpleHeader />
 
-            <div className={styles.authContainer}>
+            <main className={styles.authContainer}>
+                <div className={styles.authCard}>
+                    <h2 className={styles.title}>Forgot Password?</h2>
+                    <p className={styles.subtitle}>
+                        Enter your email address below and we'll send you a secure link to reset your account password.
+                    </p>
+
+                    <form onSubmit={handleSubmit}>
+                        <div className={styles.inputGroup}>
+                            <input
+                                type="email"
+                                className={styles.input}
+                                placeholder="name@example.com"
+                                value={email}
+                                onChange={(e) => setEmail(e.target.value)}
+                                required
+                                autoComplete="email"
+                            />
+                        </div>
+                        <button
+                            type="submit"
+                            disabled={loading || !email}
+                            className={styles.submitBtn}
+                        >
+                            {loading ? "Sending Link..." : "Send Reset Link"}
+                        </button>
+                    </form>
+
+                    <div className={styles.authFooter}>
+                        <Link to="/login" className={styles.backLink}>
+                            <FiArrowLeft className={styles.backIcon} />Back to Login
+                        </Link>
+                    </div>
+                </div>
+            </main>
+            {/* <div className={styles.authContainer}>
                 <div className={styles.authCard}>
                     <h2>Forgot Password?</h2>
                     <p>Enter your email and we'll send you a reset link.</p>
@@ -45,7 +81,7 @@ const ForgotPassword = () => {
                         <Link to="/login">Back to Login</Link>
                     </div>
                 </div>
-            </div>
+            </div> */}
             <SimpleFooter />
         </>
     );
