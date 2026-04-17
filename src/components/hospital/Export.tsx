@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { exportHospital } from '@/services/api';
 import style from './styles/scss/shareExport/shareExport.module.scss';
 import { TiExport, TiTick } from 'react-icons/ti';
@@ -10,14 +10,6 @@ const ExportButton = ({ searchParams }: SearchProps) => {
   const [exporting, setExporting] = useState<boolean>(false);
   const [downloaded, setDownloaded] = useState<boolean>(false);
   const [toast, setToast] = useState<{ message: string; type: 'success' | 'error' } | null>(null);
-
-  // useEffect(() => {
-  //   let timer: NodeJS.Timeout;
-  //   if (downloaded) {
-  //     timer = setTimeout(() => setDownloaded(false), 5000);
-  //   }
-  //   return () => clearTimeout(timer);
-  // }, [downloaded]);
 
   const handleExport = async () => {
     if (!searchParams.city && !searchParams.state) {
