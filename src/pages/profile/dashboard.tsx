@@ -7,7 +7,7 @@ import { CgProfile } from "react-icons/cg";
 import { RiLockPasswordLine } from "react-icons/ri";
 import { IoIosLogOut } from "react-icons/io";
 import { BsBuildingAdd } from "react-icons/bs";
-import { FiList, FiSettings, FiCalendar, FiActivity } from "react-icons/fi";
+import { FiList, FiSettings, FiCalendar, FiActivity, FiClock, FiHeart, FiX } from "react-icons/fi";
 import {
   TbLayoutSidebarLeftCollapse,
   TbLayoutSidebarRightCollapse,
@@ -214,23 +214,22 @@ const Dashboard = () => {
         </nav>
 
         <section className={style.contentArea}>
-          {/* VIEW: FIND HOSPITAL */}
           {selected === "find-hospital" && (
             <div className={style.viewContainer}>
               <div className={style.bg}></div>
 
               <header className={style.greetingHeader}>
-                <h1>Welcome back, <span className={style.userName}>{state?.username || 'User'}</span>.</h1>
+                <div className={style.greetingText}>
+                  <h1>Welcome back, <span className={style.userName}>{state?.username || 'User'}</span></h1>
+                  <p className={style.activityStats}>
+                    You have viewed <strong>{recentlyViewed.length}</strong> facilities recently
+                    (<strong>{weeklyViews}</strong> visits this week).
+                  </p>
+                </div>
 
-                {/* Impact Stats Card */}
-                <Motion variants={fadeUp}>
+                <Motion variants={fadeUp} className={style.statsWrapper}>
                   <AccountStats />
                 </Motion>
-
-                <p className={style.activityStats}>
-                  Activity Overview: You have viewed <strong>{recentlyViewed.length}</strong> facilities recently
-                  (<strong>{weeklyViews}</strong> visits this week).
-                </p>
               </header>
 
               <div className={style.searchSection}>
@@ -244,14 +243,13 @@ const Dashboard = () => {
 
               {!hasResults && (
                 <div className={style.overviewGrid}>
-                  {/* SAVED SECTION */}
                   <div className={style.accordionSection}>
                     <div
                       className={`${style.sectionHeader} ${openFavorites ? style.headerOpen : ""}`}
                       onClick={() => setOpenFavorites(!openFavorites)}
                     >
-                      <h2>❤️ Saved Collections</h2>
-                      {openFavorites ? <AiOutlineUp /> : <AiOutlineDown />}
+                      <h2><FiHeart className={style.headerIcon} /> Saved Collections</h2>
+                      <div className={style.chevron}>{openFavorites ? <AiOutlineUp /> : <AiOutlineDown />}</div>
                     </div>
                     <AnimatePresence>
                       {openFavorites && (
@@ -269,11 +267,11 @@ const Dashboard = () => {
                                     <Avatar image={h.photoUrl || HospitalPic} alt={h.name} className={style.cardAvatar} />
                                     <div className={style.cardInfo}>
                                       <span className={style.cardName}>{h.name}</span>
-                                      <span className={style.cardLocation}>{h.address.city}</span>
-                                      <span className={style.ctaText}>View details →</span>
+                                      <span className={style.cardLocation}>{h.address.city}, {h.address.country}</span>
+                                      <span className={style.ctaText}>View details &rarr;</span>
                                     </div>
                                   </Link>
-                                  <button className={style.removeBtn} onClick={(e) => removeFavorite(e, h._id)}>✕</button>
+                                  <button className={style.removeBtn} onClick={(e) => removeFavorite(e, h._id)} aria-label="Remove favorite"><FiX /></button>
                                 </div>
                               ))}
                             </div>
@@ -283,14 +281,13 @@ const Dashboard = () => {
                     </AnimatePresence>
                   </div>
 
-                  {/* RECENT SECTION */}
                   <div className={style.accordionSection}>
                     <div
                       className={`${style.sectionHeader} ${openRecents ? style.headerOpen : ""}`}
                       onClick={() => setOpenRecents(!openRecents)}
                     >
-                      <h2>🕒 Recent History</h2>
-                      {openRecents ? <AiOutlineUp /> : <AiOutlineDown />}
+                      <h2><FiClock className={style.headerIcon} /> Recent History</h2>
+                      <div className={style.chevron}>{openRecents ? <AiOutlineUp /> : <AiOutlineDown />}</div>
                     </div>
                     <AnimatePresence>
                       {openRecents && (
@@ -308,11 +305,11 @@ const Dashboard = () => {
                                     <Avatar image={r.photoUrl || HospitalPic} alt={r.name} className={style.cardAvatar} />
                                     <div className={style.cardInfo}>
                                       <span className={style.cardName}>{r.name}</span>
-                                      <span className={style.cardLocation}>{r.address.city}</span>
-                                      <span className={style.ctaText}>View details →</span>
+                                      <span className={style.cardLocation}>{r.address.city}, {r.address.country}</span>
+                                      <span className={style.ctaText}>View details &rarr;</span>
                                     </div>
                                   </Link>
-                                  <button className={style.removeBtn} onClick={(e) => removeRecent(e, r._id)}>✕</button>
+                                  <button className={style.removeBtn} onClick={(e) => removeRecent(e, r._id)} aria-label="Remove recent"><FiX /></button>
                                 </div>
                               ))}
                             </div>
@@ -325,21 +322,25 @@ const Dashboard = () => {
               )}
             </div>
           )}
+
           {selected === "health-history" && (
             <Motion variants={fadeUp} className={style.viewPanel}>
               <HealthTimeline hospitalContext={savedHospitalContext} />
             </Motion>
           )}
-          {/* VIEW: ADD HOSPITAL */}
-          {selected === "add-hospital" && <Motion variants={fadeUp} className={style.viewPanel}><Editor /></Motion>}
-          {/* VIEW: SUBMISSIONS */}
+
+          {selected === "add-hospital" && (
+            <Motion variants={fadeUp} className={style.viewPanel}>
+              <Editor />
+              </Motion>
+          )}
+
           {selected === "my-submissions" && (
             <Motion variants={fadeUp} className={style.viewPanel}>
               <MySubmissions />
             </Motion>
           )}
 
-          {/* VIEW: SETTINGS HUB */}
           {selected === "settings" && (
             <Motion variants={fadeUp} className={style.viewPanel}>
               <div className={style.settingsHub}>
@@ -358,7 +359,6 @@ const Dashboard = () => {
                   </div>
                 </header>
 
-                {/* Segmented Tab Control */}
                 <nav className={style.tabsNav}>
                   <button
                     className={settingsTab === "profile" ? style.activeTab : ""}
@@ -366,12 +366,14 @@ const Dashboard = () => {
                   >
                     <CgProfile /> <span>Profile</span>
                   </button>
+
                   <button
                     className={settingsTab === "security" ? style.activeTab : ""}
                     onClick={() => setSettingsTab("security")}
                   >
                     <RiLockPasswordLine /> <span>Security</span>
                   </button>
+
                   <button
                     className={`${settingsTab === "danger" ? style.activeTab : ""} ${style.dangerTab}`}
                     onClick={() => setSettingsTab("danger")}
@@ -386,26 +388,17 @@ const Dashboard = () => {
                       <Motion
                         key="profile"
                         variants={settingsTabVariants}
-                        initial="hidden"
-                        animate="visible"
-                        exit="exit"
-                        alwaysVisible={true}
+                        initial="hidden" animate="visible" exit="exit" alwaysVisible={true}
                       >
                         <div className={style.settingsCard}>
                           <div className={style.cardHeader}>
                             <h3>{isEditing ? "Edit Profile" : "Profile Details"}</h3>
                           </div>
-
                           <div className={style.cardBody}>
                             {isEditing ? (
                               <>
                                 <UpdateUser onSuccess={() => setIsEditing(false)} />
-                                <button
-                                  className={style.cancelBtn}
-                                  onClick={() => setIsEditing(false)}
-                                >
-                                  Cancel
-                                </button>
+                                <button className={style.cancelBtn} onClick={() => setIsEditing(false)}>Close</button>
                               </>
                             ) : (
                               <ProfileDisplay onEditClick={() => setIsEditing(true)} />
@@ -419,10 +412,7 @@ const Dashboard = () => {
                       <Motion
                         key="security"
                         variants={settingsTabVariants}
-                        initial="hidden"
-                        animate="visible"
-                        exit="exit"
-                        alwaysVisible={true}
+                        initial="hidden" animate="visible" exit="exit" alwaysVisible={true}
                       >
                         <div className={style.settingsCard}>
                           <div className={style.cardHeader}><h3>Security Settings</h3></div>
@@ -430,10 +420,11 @@ const Dashboard = () => {
                             <div className={style.socialLoginNotice}>
                               <div className={style.noticeHeader}>
                                 <svg fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>Federated Account</div>
+                                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                </svg>Federated Account
+                              </div>
                               <p className={style.noticeBody}>
-                                You are signed in via
-                                <span className={style.providerTag}>{getProviderName()}</span>.
+                                You are signed in via <span className={style.providerTag}>{getProviderName()}</span>.
                               </p>
                               <p className={style.noticeFooter}>
                                 To update your password or email, please visit your {getProviderName()} account settings.
@@ -452,10 +443,7 @@ const Dashboard = () => {
                       <Motion
                         key="danger"
                         variants={settingsTabVariants}
-                        initial="hidden"
-                        animate="visible"
-                        exit="exit"
-                        alwaysVisible={true}
+                        initial="hidden" animate="visible" exit="exit" alwaysVisible={true}
                       >
                         <div className={`${style.settingsCard} ${style.dangerZone}`}>
                           <div className={style.cardHeader}><h3>Account Deletion</h3></div>

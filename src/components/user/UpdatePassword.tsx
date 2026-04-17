@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import usePasswordUpdate from "@/hooks/useUpdatePassword";
 import { useAuthContext } from "@/context/UserProvider";
@@ -17,6 +17,11 @@ const UpdatePassword = () => {
   });
   const [errors, setErrors] = useState<Record<string, string>>({});
   const [showPass, setShowPass] = useState({ old: false, new: false, confirm: false });
+  const [isDirty, setIsDirty] = useState(false);
+
+  useEffect(() => {
+    setIsDirty(!!(passwords.oldPassword && passwords.newPassword && passwords.confirmPassword));
+  }, [passwords]);
 
   const validate = () => {
     const newErrors: Record<string, string> = {};
@@ -50,51 +55,106 @@ const UpdatePassword = () => {
     setShowPass(prev => ({ ...prev, [key]: !prev[key as keyof typeof showPass] }));
   };
 
+  const fields = [
+    { id: 'old' as const, label: 'Current Password', key: 'oldPassword' as const, placeholder: '••••••••' },
+    { id: 'new' as const, label: 'New Password', key: 'newPassword' as const, placeholder: '••••••••' },
+    { id: 'confirm' as const, label: 'Confirm New Password', key: 'confirmPassword' as const, placeholder: '••••••••' }
+  ];
+
   return (
+    <section className={style.section}>
+      <div className={style.securityCard}>
     <form onSubmit={handleSubmit} className={style.form}>
-      {[
-        { id: 'current', label: 'Current Password', key: 'oldPassword' as const, placeholder: '••••••••' },
-        { id: 'new', label: 'New Password', key: 'newPassword' as const, placeholder: '••••••••' },
-        { id: 'confirm', label: 'Confirm New Password', key: 'confirmPassword' as const, placeholder: '••••••••' }
-      ].map((field) => (
-        <div className={style.wrapper} key={field.id}>
-          <p className={style.subtitle}>{field.label}</p>
-          <div className={style.passwordBox}>
+      {fields.map((field) => (
+        <div className={style.field} key={field.id}>
+          <label className={style.label}>{field.label}</label>
+          <div className={style.inputWrapper}>
             <input
-              type={showPass[field.id as keyof typeof showPass] ? "text" : "password"}
-              value={passwords[field.key as keyof typeof passwords]}
-              onChange={(e) => setPasswords({ ...passwords, [field.key]: e.target.value })}
+              type={showPass[field.id] ? "text" : "password"}
+              value={passwords[field.key]}
+              onChange={(e) => {
+                setPasswords({ ...passwords, [field.key]: e.target.value });
+                if (errors[field.id]) setErrors({ ...errors, [field.id]: "" });
+              }}
               className={`${style.input} ${errors[field.id] ? style.invalid : ''}`}
-              placeholder={field.placeholder}
+              placeholder="••••••••"
             />
-            <span
-              className={style.eyeIcon}
+            <button
+              type="button"
+              className={style.eyeBtn}
               onClick={() => toggleShow(field.id)}
-              role="button"
-              tabIndex={0}
+              aria-label="Toggle password visibility"
             >
-              {showPass[field.id as keyof typeof showPass] ? <FaRegEyeSlash size={20} /> : <FaRegEye size={20} />}
-            </span>
+              {showPass[field.id] ? <FaRegEyeSlash size={18} /> : <FaRegEye size={18} />}
+            </button>
           </div>
-          {errors[field.id] && <p className={style.error}>{errors[field.id]}</p>}
+          {errors[field.id] && <p className={style.errorMsg}>{errors[field.id]}</p>}
         </div>
       ))}
-      <div className={style.forgotRow}>
-        Forgot your current password?{' '}
-        <Link
-          to="/forgot-password"
-          className={style.resetLink}
-        >
-          Reset it here
-        </Link>
-      </div>
 
-      <div className={style.actionRow}>
-        <Button type="submit" disabled={loading} className={style.btn}>
-          {loading ? "Updating Security..." : "Change Password"}
+      <div className={style.footerRow}>
+        <p className={style.forgotText}>
+          Forgot your current password?{' '}
+          <Link to="/forgot-password" className={style.resetLink}>
+            Reset it here
+          </Link>
+        </p>
+
+        <Button
+          type="submit"
+          disabled={loading || !isDirty}
+          className={style.submitBtn}
+        >
+          {loading ? "Updating..." : "Change Password"}
         </Button>
       </div>
     </form>
+      </div>
+    </section>
+    // <form onSubmit={handleSubmit} className={style.form}>
+    //   {[
+    //     { id: 'current', label: 'Current Password', key: 'oldPassword' as const, placeholder: '••••••••' },
+    //     { id: 'new', label: 'New Password', key: 'newPassword' as const, placeholder: '••••••••' },
+    //     { id: 'confirm', label: 'Confirm New Password', key: 'confirmPassword' as const, placeholder: '••••••••' }
+    //   ].map((field) => (
+    //     <div className={style.wrapper} key={field.id}>
+    //       <p className={style.subtitle}>{field.label}</p>
+    //       <div className={style.passwordBox}>
+    //         <input
+    //           type={showPass[field.id as keyof typeof showPass] ? "text" : "password"}
+    //           value={passwords[field.key as keyof typeof passwords]}
+    //           onChange={(e) => setPasswords({ ...passwords, [field.key]: e.target.value })}
+    //           className={`${style.input} ${errors[field.id] ? style.invalid : ''}`}
+    //           placeholder={field.placeholder}
+    //         />
+    //         <span
+    //           className={style.eyeIcon}
+    //           onClick={() => toggleShow(field.id)}
+    //           role="button"
+    //           tabIndex={0}
+    //         >
+    //           {showPass[field.id as keyof typeof showPass] ? <FaRegEyeSlash size={20} /> : <FaRegEye size={20} />}
+    //         </span>
+    //       </div>
+    //       {errors[field.id] && <p className={style.error}>{errors[field.id]}</p>}
+    //     </div>
+    //   ))}
+    //   <div className={style.forgotRow}>
+    //     Forgot your current password?{' '}
+    //     <Link
+    //       to="/forgot-password"
+    //       className={style.resetLink}
+    //     >
+    //       Reset it here
+    //     </Link>
+    //   </div>
+
+    //   <div className={style.actionRow}>
+    //     <Button type="submit" disabled={loading} className={style.btn}>
+    //       {loading ? "Updating Security..." : "Change Password"}
+    //     </Button>
+    //   </div>
+    // </form>
   );
 };
 
