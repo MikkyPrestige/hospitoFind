@@ -1,58 +1,61 @@
-import { useState, useEffect } from "react";
-import useAxiosPrivate from "@/hooks/useAxiosPrivate";
-import { FiAward, FiCheckCircle, FiPlusSquare } from "react-icons/fi";
+import { FiAward, FiCheckCircle, FiPlusSquare, FiActivity } from "react-icons/fi";
+import { useStats } from "@/hooks/useStats";
 import styles from "./styles/scss/accountStats/accountStats.module.scss";
 
 const AccountStats = () => {
-    const [stats, setStats] = useState<any>(null);
-    const [loading, setLoading] = useState(true);
-    const axiosPrivate = useAxiosPrivate();
+    const { stats, loading, error } = useStats();
 
-    useEffect(() => {
-        const fetchStats = async () => {
-            try {
-                const { data } = await axiosPrivate.get("/user/stats");
-                setStats(data);
-            } catch (err) {
-                console.error("Stats fetch failed");
-            } finally {
-                setLoading(false);
-            }
-        };
-        fetchStats();
-    }, []);
+    if (loading) {
+        return (
+            <div className={styles.skeletonGrid}>
+                {[1, 2, 3].map((i) => <div key={i} className={styles.skeletonCard} />)}
+            </div>
+        );
+    }
 
-    if (loading) return <div className={styles.statsLoader}>Gathering your impact...</div>;
+    if (error) return null;
 
     return (
         <div className={styles.statsGrid}>
             <div className={styles.statCard}>
-                <div className={`${styles.iconCircle} ${styles.blue}`}>
-                    <FiPlusSquare />
+                <div className={styles.cardHeader}>
+                    <div className={`${styles.iconWrapper} ${styles.blue}`}>
+                        <FiPlusSquare />
+                    </div>
+                    <span className={styles.trend}>+12% this month</span>
                 </div>
-                <div className={styles.statInfo}>
-                    <span>Total Added</span>
+                <div className={styles.cardBody}>
                     <h3>{stats?.totalSubmissions || 0}</h3>
+                    <p>Total Facilities Added</p>
                 </div>
             </div>
 
             <div className={styles.statCard}>
-                <div className={`${styles.iconCircle} ${styles.green}`}>
-                    <FiCheckCircle />
+                <div className={styles.cardHeader}>
+                    <div className={`${styles.iconWrapper} ${styles.green}`}>
+                        <FiCheckCircle />
+                    </div>
+                    <div className={styles.verifiedBadge}>Active</div>
                 </div>
-                <div className={styles.statInfo}>
-                    <span>Verified</span>
+                <div className={styles.cardBody}>
                     <h3>{stats?.verifiedSubmissions || 0}</h3>
+                    <p>Verified Records</p>
                 </div>
             </div>
 
             <div className={styles.statCard}>
-                <div className={`${styles.iconCircle} ${styles.purple}`}>
-                    <FiAward />
+                <div className={styles.cardHeader}>
+                    <div className={`${styles.iconWrapper} ${styles.purple}`}>
+                        <FiAward />
+                    </div>
+                    <FiActivity className={styles.pulseIcon} />
                 </div>
-                <div className={styles.statInfo}>
-                    <span>Rank</span>
-                    <h3>{stats?.contributorLevel}</h3>
+                <div className={styles.cardBody}>
+                    <h3 className={styles.rankText}>{stats?.contributorLevel || "Novice"}</h3>
+                    <p>Community Rank</p>
+                    <div className={styles.progressContainer}>
+                        <div className={styles.progressBar} style={{ width: '65%' }}></div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -60,3 +63,67 @@ const AccountStats = () => {
 };
 
 export default AccountStats;
+
+
+// import { useState, useEffect } from "react";
+// import useAxiosPrivate from "@/hooks/useAxiosPrivate";
+// import { FiAward, FiCheckCircle, FiPlusSquare } from "react-icons/fi";
+// import styles from "./styles/scss/accountStats/accountStats.module.scss";
+
+// const AccountStats = () => {
+//     const [stats, setStats] = useState<any>(null);
+//     const [loading, setLoading] = useState(true);
+//     const axiosPrivate = useAxiosPrivate();
+
+//     useEffect(() => {
+//         const fetchStats = async () => {
+//             try {
+//                 const { data } = await axiosPrivate.get("/user/stats");
+//                 setStats(data);
+//             } catch (err) {
+//                 console.error("Stats fetch failed");
+//             } finally {
+//                 setLoading(false);
+//             }
+//         };
+//         fetchStats();
+//     }, []);
+
+//     if (loading) return <div className={styles.statsLoader}>Gathering your impact...</div>;
+
+//     return (
+//         <div className={styles.statsGrid}>
+//             <div className={styles.statCard}>
+//                 <div className={`${styles.iconCircle} ${styles.blue}`}>
+//                     <FiPlusSquare />
+//                 </div>
+//                 <div className={styles.statInfo}>
+//                     <span>Total Added</span>
+//                     <h3>{stats?.totalSubmissions || 0}</h3>
+//                 </div>
+//             </div>
+
+//             <div className={styles.statCard}>
+//                 <div className={`${styles.iconCircle} ${styles.green}`}>
+//                     <FiCheckCircle />
+//                 </div>
+//                 <div className={styles.statInfo}>
+//                     <span>Verified</span>
+//                     <h3>{stats?.verifiedSubmissions || 0}</h3>
+//                 </div>
+//             </div>
+
+//             <div className={styles.statCard}>
+//                 <div className={`${styles.iconCircle} ${styles.purple}`}>
+//                     <FiAward />
+//                 </div>
+//                 <div className={styles.statInfo}>
+//                     <span>Rank</span>
+//                     <h3>{stats?.contributorLevel}</h3>
+//                 </div>
+//             </div>
+//         </div>
+//     );
+// };
+
+// export default AccountStats;

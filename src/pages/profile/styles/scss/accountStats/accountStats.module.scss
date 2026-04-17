@@ -1,67 +1,154 @@
 .statsGrid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    display: flex;
+    flex-direction: column;
     gap: 1.5rem;
-    margin: 1rem;
+    padding: 1.5rem 0;
+    width: 100%;
+
+    @include respond(tab-land) {
+        flex-direction: row;
+        align-items: stretch;
+        justify-content: space-between;
+    }
 }
 
 .statCard {
     background: var(--color-white);
-    padding: 1rem;
-    border-radius: 16px;
     border: 1px solid var(--color-border);
+    border-radius: 1.5rem;
+    padding: 1.5rem;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    flex: 1 1 0;
+    min-width: 220px;
     display: flex;
-    align-items: center;
-    gap: 1.25rem;
-    box-shadow: var(--shadow-card);
+    flex-direction: column;
+    justify-content: space-between;
+
+    &:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 12px 24px rgba(0, 0, 0, 0.06);
+    }
 }
 
-.iconCircle {
-    width: 50px;
-    height: 50px;
-    border-radius: 12px;
+.cardHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+}
+
+.iconWrapper {
+    width: 44px;
+    height: 44px;
+    border-radius: 1rem;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 1.4rem;
+    font-size: 1.5rem;
 
-    &.blue {
-        background: var(--bg-blue-tag);
-        color: var(--color-blue);
-    }
-
-    &.green {
-        background: var(--color-success-bg);
-        color: var(--color-success);
-    }
-
-    &.purple {
-        background: var(--primary-light);
-        color: var(--color-indigo);
-    }
+    &.blue { background: #eff6ff; color: var(--color-blue); }
+    &.green { background: #ecfdf5; color: var(--color-success); }
+    &.purple { background: #f5f3ff; color: var(--color-indigo); }
 }
 
-.statInfo {
-    span {
-        display: block;
-        font-size: 1rem;
-        color: var(--color-gray);
-        font-weight: 500;
-        margin-bottom: 0.2rem;
-        font-family: var(--font-inter);
-    }
+.cardBody {
     h3 {
-        font-size: 1.5rem;
+        font-size: 2rem;
+        font-weight: 700;
         color: var(--color-black);
         margin: 0;
         font-family: var(--font-plus);
     }
+
+    p {
+        font-size: 1.1rem;
+        color: var(--color-gray);
+        margin: 0.25rem 0 0 0;
+        font-family: var(--font-inter);
+    }
+
+    .rankText {
+        font-size: 1.5rem;
+        color: var(--color-blue-dark);
+    }
 }
 
-.statsLoader {
-    padding: 2rem;
-    text-align: center;
-    color: var(--icon-gray);
-    font-style: italic;
-    font-family: var(--font-inter);
+.trend {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--color-success);
+    background: var(--color-ash);
+    padding: 2px 8px;
+    border-radius: 1rem;
+}
+
+.progressContainer {
+    width: 100%;
+    height: 6px;
+    background: var(--color-black);
+    border-radius: 1rem;
+    margin-top: 1rem;
+    overflow: hidden;
+}
+
+.progressBar {
+    height: 100%;
+    background: linear-gradient(90deg, #6366f1, #a855f7);
+    border-radius: 1rem;
+}
+
+.skeletonGrid {
+    @extend .statsGrid;
+}
+
+.skeletonCard {
+   flex: 1 1 0;
+    min-width: 220px;
+    height: 160px;
+    background: linear-gradient(90deg, #f8fafc 25%, #f1f5f9 50%, #f8fafc 75%);
+    background-size: 200% 100%;
+    animation: shimmer 1.5s infinite;
+    border-radius: 1.5rem;
+}
+
+.verifiedBadge {
+    font-size: 0.85rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    padding: 4px 10px;
+    background: rgba(16, 185, 129, 0.1);
+    color: var(--color-success);
+    border-radius: 2rem;
+    letter-spacing: 0.5px;
+    border: 1px solid rgba(16, 185, 129, 0.2);
+}
+
+.pulseIcon {
+    font-size: 1.2rem;
+    color: var(--color-indigo);
+    opacity: 0.6;
+    animation: heartBeat 2s infinite ease-in-out;
+}
+
+@keyframes heartBeat {
+    0% {
+        transform: scale(1);
+        opacity: 0.4;
+    }
+    50% {
+        transform: scale(1.3);
+        opacity: 1;
+        filter: drop-shadow(0 0 4px rgba(99, 102, 241, 0.4));
+    }
+    100% {
+        transform: scale(1);
+        opacity: 0.4;
+    }
+}
+
+@keyframes shimmer {
+    0% { background-position: 200% 0; }
+    100% { background-position: -200% 0; }
 }
