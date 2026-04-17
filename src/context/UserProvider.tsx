@@ -14,10 +14,7 @@ const initialState: AuthState = {
   accessToken: localStorage.getItem("accessToken") || null,
   password: null,
   newPassword: null,
-  // username: "TestUser",
-  // role: "user",
 };
-
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
 // --- REDUCER LOGIC ---

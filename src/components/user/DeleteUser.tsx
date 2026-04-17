@@ -11,7 +11,7 @@ const DeleteBtn = () => {
   const { loading, deleteUser } = useDelete();
   const [password, setPassword] = useState("");
   const [confirmUsername, setConfirmUsername] = useState("");
-  const [showPassword,] = useState(false);
+  // const [showPassword,] = useState(false);
 
   const isSocial = !!state.auth0Id;
 
@@ -29,56 +29,108 @@ const DeleteBtn = () => {
       return;
     }
 
-    if (window.confirm("FINAL WARNING: This will permanently delete your account. Proceed?")) {
-      deleteUser(state.username!, isSocial ? undefined : password)
+    if (window.confirm("FINAL WARNING: This will permanently delete your account. This cannot be undone. Proceed?")) {
+      deleteUser(state.username!, isSocial ? undefined : password);
     }
   };
 
   return (
     <div className={style.container}>
-      <BsFillExclamationTriangleFill style={{ fill: "#FF033E", fontSize: "4rem" }} />
-      <p className={style.subhead}>
-        This action is <strong>permanent</strong>. To confirm, please follow the steps below.
-      </p>
-
-      <form onSubmit={handleDelete} className={style.form}>
-        {!isSocial && (
-          <div className={style.inputWrapper}>
-            <input
-              type={showPassword ? "text" : "password"}
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              className={style.minimalInput}
-              placeholder="Confirm Password"
-              required
-            />
-          </div>
-        )}
-
-        <div className={style.confirmWrapper}>
-          <p className={style.instruction}>
-            Type <span className={style.usernameHighlight}>{state.username}</span> to continue:
+      <div className={style.dangerCard}>
+        <div className={style.warningHeader}>
+          <BsFillExclamationTriangleFill className={style.warningIcon} />
+          <h2 className={style.dangerTitle}>Account Deletion</h2>
+          <p className={style.subhead}>
+            This action is <strong>permanent</strong>. All your submitted data, hospital listings, and saved collections will be erased forever.
           </p>
-          <input
-            type="text"
-            value={confirmUsername}
-            onChange={(e) => setConfirmUsername(e.target.value)}
-            className={style.minimalInput}
-            placeholder="Username"
-            required
-            autoComplete="off"
-          />
         </div>
 
-        <Button
-          type="submit"
-          disabled={loading || confirmUsername !== state.username}
-          className={style.dangerBtn}
-        >
-          {loading ? "Deleting..." : "Permanently Delete"}
-        </Button>
-      </form>
+        <form onSubmit={handleDelete} className={style.form}>
+          {!isSocial && (
+            <div className={style.field}>
+              <label className={style.label}>Verify Password</label>
+              <input
+                type="password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                className={style.input}
+                placeholder="Enter your password"
+                required
+              />
+            </div>
+          )}
+
+          <div className={style.field}>
+            <p className={style.instruction}>
+              To confirm, type <span className={style.usernameHighlight}>{state.username}</span> below:
+            </p>
+            <input
+              type="text"
+              value={confirmUsername}
+              onChange={(e) => setConfirmUsername(e.target.value)}
+              className={style.input}
+              placeholder="Type username here"
+              required
+              autoComplete="off"
+            />
+          </div>
+
+          <div className={style.actionWrapper}>
+            <Button
+              type="submit"
+              disabled={loading || confirmUsername !== state.username}
+              className={style.dangerBtn}
+            >
+              {loading ? "Processing..." : "Permanently Delete Account"}
+            </Button>
+          </div>
+        </form>
+      </div>
     </div>
+    // <div className={style.container}>
+    //   <BsFillExclamationTriangleFill style={{ fill: "#FF033E", fontSize: "4rem" }} />
+    //   <p className={style.subhead}>
+    //     This action is <strong>permanent</strong>. To confirm, please follow the steps below.
+    //   </p>
+
+    //   <form onSubmit={handleDelete} className={style.form}>
+    //     {!isSocial && (
+    //       <div className={style.inputWrapper}>
+    //         <input
+    //           type={showPassword ? "text" : "password"}
+    //           value={password}
+    //           onChange={(e) => setPassword(e.target.value)}
+    //           className={style.minimalInput}
+    //           placeholder="Confirm Password"
+    //           required
+    //         />
+    //       </div>
+    //     )}
+
+    //     <div className={style.confirmWrapper}>
+    //       <p className={style.instruction}>
+    //         Type <span className={style.usernameHighlight}>{state.username}</span> to continue:
+    //       </p>
+    //       <input
+    //         type="text"
+    //         value={confirmUsername}
+    //         onChange={(e) => setConfirmUsername(e.target.value)}
+    //         className={style.minimalInput}
+    //         placeholder="Username"
+    //         required
+    //         autoComplete="off"
+    //       />
+    //     </div>
+
+    //     <Button
+    //       type="submit"
+    //       disabled={loading || confirmUsername !== state.username}
+    //       className={style.dangerBtn}
+    //     >
+    //       {loading ? "Deleting..." : "Permanently Delete"}
+    //     </Button>
+    //   </form>
+    // </div>
   );
 };
 

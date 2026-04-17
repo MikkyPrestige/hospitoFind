@@ -1,37 +1,47 @@
 .settingsCard {
   background: var(--color-white);
-  border-radius: 12px;
+  border-radius: 1rem;
   border: 1px solid var(--color-border);
   overflow: hidden;
 }
 
 .infoGrid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  gap: 2.5rem;
+  grid-template-columns: 1fr;
+  gap: 2rem;
+}
 
-  @media (min-width: 48.0625em) {
-    gap: 1.2rem;
+@media (min-width: 48em) {
+  .infoGrid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2.5rem 2rem;
+  }
+}
+
+@media (min-width: 64em) {
+  .infoGrid {
+    grid-template-columns: repeat(4, 1fr);
   }
 }
 
 .infoItem {
   display: flex;
   flex-direction: column;
-  gap: 0.5rem;
+  align-items: flex-start;
+  /gap: 0.6rem;
 }
 
 .infoItem label {
-  font-size: 1.3rem;
+  font-size: 1.1rem;
   font-weight: 700;
   color: var(--color-gray);
   text-transform: uppercase;
-  letter-spacing: 0.025em;
+  letter-spacing: 0.05em;
   font-family: var(--font-plus);
 }
 
 .infoItem p {
-  font-size: 1.1rem;
+  font-size: 1.2rem;
   font-weight: 500;
   color: var(--color-black);
   margin: 0;
@@ -39,87 +49,90 @@
 }
 
 .badge {
-  display: inline-block;
+  display: inline-flex;
+  align-items: center;
   padding: 0.4rem 1rem;
-  background-color: var(--bg-blue-tag);
-  color: var(--color-blue-light);
+  background-color: var(--bg-blue-tag, rgba(37, 99, 235, 0.1));
+  color: var(--color-blue-light, #3b82f6);
   border-radius: 9999px;
-  font-size: 1rem;
+  font-size: 1.1rem;
   font-weight: 600;
-  border: 1px solid var(--color-blue-light);
+  border: 1px solid var(--color-blue-light, #3b82f6);
+  white-space: nowrap;
+}
+
+.actionRow {
+  grid-column: 1 / -1;
+  margin-top: 0.5rem;
 }
 
 .editBtn {
   background-color: var(--color-blue);
-  color: #f9fbff;
-  padding: 1rem 1.8rem;
+  color: var(--color-invert);
+  padding: 0.75rem 1.5rem;
   border-radius: 8px;
   font-size: 1.2rem;
   font-weight: 600;
   border: none;
   cursor: pointer;
-  transition: background 0.2s ease;
+  transition: all 0.2s ease;
 }
 
-.editBtn:hover {
+.editBtn:hover:not(:disabled) {
   background-color: var(--color-blue-dark);
+  transform: translateY(-1px);
 }
 
-.cancelBtn {
-  background: none;
-  border: 1px solid var(--color-border);
-  color: var(--text-slate);
-  font-size: 1.2rem;
-  padding: 0.8rem 1.6rem;
-  border-radius: 6px;
-  cursor: pointer;
-  margin-top: 1rem;
-}
-
-.cancelBtn:hover {
-  background-color: var(--color-ash);
+.editBtn:disabled {
+  background-color: var(--color-gray);
+  opacity: 0.7;
+  cursor: not-allowed;
 }
 
 .joinDate {
   grid-column: 1 / -1;
-  margin-top: 1rem;
+  margin-top: 1.5rem;
   padding-top: 1.5rem;
   border-top: 1px dashed var(--color-border);
   display: flex;
   align-items: center;
   gap: 0.8rem;
-  font-size: 1rem;
+  font-size: 1.2rem;
   color: var(--color-gray);
 }
 
 .joinDate svg {
-  width: 16px;
-  height: 16px;
+  width: 1.6rem;
+  height: 1.6rem;
 }
 
 .socialWarning {
   grid-column: 1 / -1;
-  background-color: #fffaf0;
+  background-color: var(--color-bg);
   border: 1px solid var(--warning-color);
-  padding: 1rem 1.5rem;
-  border-radius: .8rem;
+  padding: 1.2rem 1.5rem;
+  border-radius: 0.8rem;
   display: flex;
-  align-items: flex-start;
-  gap: 1rem;
-  margin-top: 1rem;
+  align-items: center;
+  gap: 1.2rem;
+  margin-top: 0.5rem;
 }
 
 .socialWarning svg {
-  width: 2rem;
-  height: 2rem;
+  width: 2.4rem;
+  height: 2.4rem;
   color: var(--warning-color);
   flex-shrink: 0;
 }
 
 .socialWarning p {
-  font-size: .2;
+  font-size: 1.2rem;
   color: #744210;
   margin: 0;
-  line-height: 1.4;
+  line-height: 1.5;
   font-family: var(--font-inter);
+}
+
+.socialWarning strong {
+  font-weight: 700;
 }

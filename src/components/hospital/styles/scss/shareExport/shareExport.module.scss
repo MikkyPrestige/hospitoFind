@@ -1,199 +1,155 @@
 .cta {
-  position: relative;
   display: flex;
   flex-direction: column;
-  gap: 1.2rem;
+  gap: 1rem;
   width: 100%;
-  align-items: center;
+  position: relative;
 
   @include respond(tab-port) {
     flex-direction: row;
-    justify-content: center;
-    gap: 1.5rem;
+    align-items: center;
   }
 }
 
 .btn {
-  width: 100%;
-  max-width: 320px;
-  height: 3.8rem;
-  color: var(--color-white);
+  flex: 1;
+  padding: 1rem 1.5rem;
   border: none;
-  border-radius: 12px;
-  font-size: 1.1rem;
+  border-radius: 1rem;
+  font-size: 1.2rem;
   font-weight: 700;
   cursor: pointer;
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
   display: flex;
   align-items: center;
   justify-content: center;
-  font-family: var(--font-inter);
-  position: relative;
+  color: var(--color-invert);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
 
   &:disabled {
-    opacity: 0.7;
+    opacity: 0.6;
+    filter: grayscale(0.5);
     cursor: not-allowed;
-  }
-
-  &:active {
-    transform: scale(0.97);
   }
 
   .span {
     display: flex;
     align-items: center;
-    gap: 0.8rem;
-    text-transform: capitalize;
+    gap: 0.6rem;
+    text-wrap: nowrap;
   }
 
   .icon {
-    font-size: 1.8rem;
+    font-size: 1.4rem;
   }
 
   &.share {
-    background: linear-gradient(135deg, var(--color-blue), var(--color-blue-dark));
-
+    background: var(--color-blue);
     &:hover:not(:disabled) {
       background: var(--color-blue-dark);
       transform: translateY(-2px);
-      box-shadow: var(--shadow-card-blue);
+      box-shadow: 0 8px 20px rgba(79, 70, 229, 0.2);
     }
   }
 
   &.export {
-    background: linear-gradient(135deg, var(--color-success), #15803d);
+    background: var(--color-success);
 
     &:hover:not(:disabled) {
-      background: #15803d;
+      background: #059669;
       transform: translateY(-2px);
-      box-shadow: 0 8px 20px rgba(40, 167, 69, 0.2);
+      box-shadow: 0 8px 20px rgba(16, 185, 129, 0.2);
     }
   }
 
   &.successBtn {
-    background: var(--color-blue);
+    background: var(--color-blue-dark);
     pointer-events: none;
   }
 }
 
 .btnLink {
   position: absolute;
-  top: 0;
-  left: 50%;
-  transform: translateX(-50%);
-  margin: 0 auto;
+  bottom: 25%;
+  left: 0;
   width: 100%;
-  max-width: 320px;
-  z-index: 50;
-  display: flex;
-  justify-content: center;
-  animation: fadeIn 0.3s ease forwards;
-  filter: drop-shadow(0 10px 15px rgba(0,0,0,0.15));
+  z-index: 100;
+  filter: drop-shadow(0 1rem 2rem rgba(0,0,0,0.1));
 
   .linkWrapper {
     display: flex;
     align-items: center;
-   background: var(--color-white);;
+    background: var(--color-white);
     border: 1px solid var(--color-border);
-    border-radius: 10px;
-    padding: 2px;
-    width: 100%;
+    border-radius: 1rem;
+    padding: 0.4rem;
+    gap: 0.5rem;
 
-    &::before {
+    &::after {
       content: "";
       position: absolute;
-      top: -6px;
-      left: 50%;
-      transform: translateX(-50%) rotate(45deg);
+      bottom: -6px;
+      left: 20%;
+      transform: rotate(45deg);
       width: 12px;
       height: 12px;
-     background: var(--color-white);
-      border-left: 1px solid var(--color-border);
-      border-top: 1px solid var(--color-border);
+      background: var(--color-white);
+      border-right: 1px solid var(--color-border);
+      border-bottom: 1px solid var(--color-border);
     }
   }
 
   .link {
     flex: 1;
-    background: transparent;
+    background: var(--color-bg);
     border: none;
-   color: var(--color-black);
-    padding: 0.8rem 1rem;
-    font-size: 1rem;
-    font-weight: 700;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    min-width: 0;
+    border-radius: 8px;
+    padding: 0.6rem 1rem;
     font-family: monospace;
+    font-size: 1.1rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
 
-    &:hover {
-      color: var(--color-blue);
-    }
-
-    .copyIcon {
-      font-size: 1.2rem;
-      margin-left: 0.5rem;
-      color: var(--color-blue);
-    }
+    &:hover { background: var(--color-ash); }
   }
 
   .clearBtn {
-    background: var(--color-ash);
+    background: transparent;
     border: none;
-    color: var(--icon-gray);
-    width: 2.5rem;
-    height: 2.5rem;
-    border-radius: 8px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    font-size: 1.4rem;
     cursor: pointer;
-    transition: all 0.2s;
-    margin-right: 2px;
-
-    &:hover {
-      background: #fee2e2;
-      color: var(--color-red);
-    }
+    color: var(--text-slate);
+    &:hover { color: var(--color-red); }
   }
 }
 
 .toast {
   position: fixed;
-  bottom: 3rem;
+  bottom: 1rem;
   left: 50%;
   transform: translateX(-50%);
-  padding: 1.2rem 2.5rem;
-  border-radius: 50px;
-  color: var(--color-white);
-  font-weight: 700;
-  z-index: 10000;
-  backdrop-filter: blur(8px);
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
-  font-family: var(--font-plus);
-
-  &.success { background: var(--color-success); opacity: 0.95; }
-  &.error { background: var(--color-error); opacity: 0.95; }
-}
-
-.error {
-  color: var(--color-error);
-  font-size: 0.9rem;
+  padding: 1rem 2rem;
+  border-radius: 1rem;
+  background: var(--color-blue-dark);
+  color: var(--color-invert);
   font-weight: 600;
-  text-align: center;
-  margin-top: 0.5rem;
-}
+  font-size: 1.2rem;
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
 
-@keyframes slideUpFade {
-  0% { opacity: 0; transform: translate(-50%, 20px); }
-  15%, 85% { opacity: 1; transform: translate(-50%, 0); }
-  100% { opacity: 0; transform: translate(-50%, -20px); }
-}
-
-@keyframes fadeIn {
-  from { opacity: 0; transform: translateY(-5px); }
-  to { opacity: 1; transform: translateY(0); }
+  &.success {
+    border-left: 4px solid var(--color-success);
+    background: rgba(16, 185, 129, 0.02);
+    color: var(--color-success);
+   }
+  &.error {
+    background: rgba(255, 51, 51, 0.1);
+    border-left: 4px solid var(--color-error);
+     color: var(--color-red);
+  }
 }
