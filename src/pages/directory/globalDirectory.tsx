@@ -2,7 +2,7 @@ import { useEffect, useState, useMemo } from "react";
 import { Link } from "react-router-dom";
 import { FiSearch, FiMapPin, FiGlobe } from "react-icons/fi";
 import CountryCard from "@/components/hospital/CountryCard";
-import { Hospital } from "@/src/types/hospital";
+import { Hospital } from "@/types/hospital";
 import Motion from "@/components/ui/Motion";
 import { BASE_URL } from "@/context/UserProvider";
 import { fadeUp, zoomIn, sectionReveal } from "@/utils/animations";

@@ -57,31 +57,6 @@ const ForgotPassword = () => {
                     </div>
                 </div>
             </main>
-            {/* <div className={styles.authContainer}>
-                <div className={styles.authCard}>
-                    <h2>Forgot Password?</h2>
-                    <p>Enter your email and we'll send you a reset link.</p>
-
-                    <form onSubmit={handleSubmit}>
-                        <div className={styles.inputGroup}>
-                            <input
-                                type="email"
-                                placeholder="Enter your email"
-                                value={email}
-                                onChange={(e) => setEmail(e.target.value)}
-                                required
-                            />
-                        </div>
-                        <button type="submit" disabled={loading} className={styles.submitBtn}>
-                            {loading ? "Sending..." : "Send Reset Link"}
-                        </button>
-                    </form>
-
-                    <div className={styles.authFooter}>
-                        <Link to="/login">Back to Login</Link>
-                    </div>
-                </div>
-            </div> */}
             <SimpleFooter />
         </>
     );

@@ -110,7 +110,7 @@
   width: 100% !important;
   background-color: var(--color-error) !important;
   color: var(--color-invert) !important;
-  padding: 1.1rem !important;
+  padding: 1rem !important;
   border-radius: 1rem !important;
   font-weight: 700 !important;
   font-size: 1.2rem !important;
@@ -129,22 +129,6 @@
     opacity: 0.5;
   filter: grayscale(1);
   cursor: not-allowed;
-}
-
-.cancelBtn {
-  background: transparent;
-  border: none;
-  color: var(--color-gray);
-  font-weight: 600;
-  font-size: 1.2rem;
-  cursor: pointer;
-  text-decoration: underline;
-  text-underline-offset: 4px;
-  transition: color 0.2s;
-}
-
-.cancelBtn:hover:not(:disabled) {
-  color: var(--color-black);
 }
 
 @media (min-width: 768px) {

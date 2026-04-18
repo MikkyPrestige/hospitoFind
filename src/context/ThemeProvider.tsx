@@ -17,13 +17,11 @@ export const ThemeProvider = ({ children }: { children: React.ReactNode }) => {
         return "light";
     });
 
-    // Sync with DOM and LocalStorage whenever theme changes
     useEffect(() => {
         const root = document.documentElement;
         root.setAttribute("data-theme", theme);
         localStorage.setItem("theme", theme);
 
-        // Update Browser Bar Color (Mobile)
         const metaThemeColor = document.querySelector('meta[name="theme-color"]');
         if (metaThemeColor) {
             metaThemeColor.setAttribute("content", theme === "dark" ? "#020617" : "#f8faff");

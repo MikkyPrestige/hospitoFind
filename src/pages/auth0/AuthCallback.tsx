@@ -4,7 +4,7 @@ import { useAuth0 } from "@auth0/auth0-react";
 import { BASE_URL } from "@/context/UserProvider";
 import { useNavigate } from "react-router-dom";
 import { useAuthContext } from "@/context/UserProvider";
-import { IdToken } from "@/src/types/user";
+import { IdToken } from "@/types/user";
 import style from "./styles/callback.module.css";
 
 const Callback = () => {
@@ -61,7 +61,7 @@ const Callback = () => {
             navigate(redirectPath, { replace: true });
           }
         } catch (error) {
-          console.error("❌ Auth0 Callback Error:", error);
+          // console.error("Auth0 Callback Error:", error);
           localStorage.removeItem("accessToken");
           navigate("/login", { replace: true });
         }

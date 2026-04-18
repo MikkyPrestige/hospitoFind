@@ -53,7 +53,6 @@ const UpdateUser = ({ onSuccess }: UpdateUserProps) => {
   return (
     <section className={style.section}>
       <div className={style.editCard}>
-        {/* <h3 className={style.cardTitle}>Edit Profile</h3> */}
         <form onSubmit={handleUserUpdate} className={style.form}>
           <div className={style.field}>
             <label className={style.label}>Full Name</label>
@@ -115,51 +114,6 @@ const UpdateUser = ({ onSuccess }: UpdateUserProps) => {
         </form>
       </div>
     </section>
-    // <section className={style.section}>
-    //   <form onSubmit={handleUserUpdate} className={style.form}>
-    //     <div className={style.wrapper}>
-    //       <p className={style.subtitle}>Full Name</p>
-    //       <input
-    //         type="text"
-    //         name="name"
-    //         value={formData.name}
-    //         onChange={handleInput}
-    //         className={style.input}
-    //         placeholder="Change your name"
-    //       />
-    //     </div>
-    //     <div className={style.wrapper}>
-    //       <p className={style.subtitle}>Email Address</p>
-    //       <input
-    //         type="email"
-    //         name="email"
-    //         value={formData.email}
-    //         onChange={handleInput}
-    //         className={style.input}
-    //         placeholder="Change your email"
-    //       />
-    //     </div>
-    //     <div className={style.wrapper}>
-    //       <p className={style.subtitle}>Confirm with Password</p>
-    //       <input
-    //         type="password"
-    //         name="password"
-    //         value={formData.password}
-    //         onChange={handleInput}
-    //         className={style.input}
-    //         placeholder="Enter current password to save changes"
-    //         required
-    //       />
-    //     </div>
-    //     <Button
-    //       type="submit"
-    //       disabled={loading}
-    //       className={style.btn2}
-    //     >
-    //       {loading ? "Saving..." : "Update Profile"}
-    //     </Button>
-    //   </form>
-    // </section>
   );
 }
 
