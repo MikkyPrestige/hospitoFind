@@ -7,7 +7,7 @@ import React, {
 } from "react";
 import { useParams, Link } from "react-router-dom";
 import HospitalCard from "@/components/hospital/HospitalCard";
-import { Hospital } from "@/src/types/hospital";
+import { Hospital } from "@/types/hospital";
 import { FiArrowLeft, FiSearch } from "react-icons/fi";
 import style from "./styles/countryRegistry.module.css";
 import Motion from "@/components/ui/Motion";

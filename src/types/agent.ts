@@ -1,4 +1,3 @@
-//  Message types
 export type MessageRole = 'user' | 'assistant';
 
 export interface Message {
@@ -6,14 +5,12 @@ export interface Message {
   content: string;
 }
 
-//  Patient profile extracted by the agent
 export interface PatientProfile {
   symptoms: string[];
   location: string;
   additionalNeeds: string;
 }
 
-//  Hospital match returned by /agent/match
 export interface HospitalMatch {
   _id: string;
   name: string;
@@ -35,7 +32,6 @@ export interface HospitalMatch {
   matchReason: string;
 }
 
-// ─── Agent state
 export type AgentPhase =
   | 'idle'        // widget not yet started
   | 'chatting'    // conversation in progress
@@ -55,7 +51,6 @@ export interface AgentState {
   contextLocation: string | null;
 }
 
-//  API response shapes
 export interface ChatResponse {
   type: 'MESSAGE' | 'MATCH_READY';
   message?: string;

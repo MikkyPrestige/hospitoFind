@@ -181,7 +181,6 @@ const AgentWidget = ({
         hospitalContextRef.current = hospitalContext;
     }, [hospitalContext]);
 
-    // Prevents starting the conversation more than once per session
     const startedRef = useRef(false);
 
     const {
@@ -191,7 +190,6 @@ const AgentWidget = ({
         sendMessage, startOver, reset,
     } = useAgent();
 
-    // Fire onSessionComplete when user starts new conversation after results
     const prevPhaseRef = useRef<string>('');
     useEffect(() => {
         if (prevPhaseRef.current === 'results' && phase === 'chatting' && onSessionComplete) {
@@ -212,7 +210,6 @@ const AgentWidget = ({
         }
     }, [isOpen, isEmbedded, phase]);
 
-    //  Core start function
     const startWithContext = useCallback(() => {
         if (startedRef.current) return;
         startedRef.current = true;
