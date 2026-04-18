@@ -10,7 +10,7 @@ import { findHospitals } from "@/services/api";
 import PopularHospitals from "@/components/hospital/PopularHospitals";
 import Motion from "@/components/ui/Motion";
 import { fadeUp, sectionReveal, zoomIn } from "@/utils/animations";
-import { Hospital } from "@/src/types/hospital";
+import { Hospital } from "@/types/hospital";
 import { FaHospital, FaMapMarkerAlt, FaSearch } from "react-icons/fa";
 import { Avatar } from "@/components/ui/Avatar";
 import HospitalPic from "@/assets/images/hospital-logo.jpg";

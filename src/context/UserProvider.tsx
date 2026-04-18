@@ -1,7 +1,6 @@
 import { useContext, createContext, useReducer, ReactNode } from "react";
 import { AuthState, AuthAction, AuthContextType } from "@/src/types/user";
 
-// --- INITIAL STATE ---
 const initialState: AuthState = {
   _id: localStorage.getItem("_id") || localStorage.getItem("id") || null,
   username: localStorage.getItem("username") || null,
@@ -15,9 +14,9 @@ const initialState: AuthState = {
   password: null,
   newPassword: null,
 };
+
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
-// --- REDUCER LOGIC ---
 const authReducer = (state: AuthState, action: AuthAction): AuthState => {
   switch (action.type) {
     case "LOGIN":
@@ -82,7 +81,6 @@ const authReducer = (state: AuthState, action: AuthAction): AuthState => {
   }
 };
 
-// --- PROVIDER ---
 export const ContextProvider = ({ children }: { children: ReactNode }) => {
   const [state, dispatch] = useReducer(authReducer, initialState);
 
@@ -95,7 +93,6 @@ export const ContextProvider = ({ children }: { children: ReactNode }) => {
 
 
 export const BASE_URL = import.meta.env.VITE_BASE_URL;
-// export const BASE_URL = import.meta.env.VITE_BASE_URLLocal;
 
 export const useAuthContext = (): AuthContextType => {
   const context = useContext(AuthContext);

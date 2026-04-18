@@ -74,7 +74,7 @@
 
 .updateBtn {
   width: 100% !important;
-  padding: 0.75rem 1.5rem !important;
+  padding: 1rem !important;
   background-color: var(--color-blue) !important;
   color: var(--color-invert) !important;
   font-weight: 700 !important;
@@ -107,7 +107,7 @@
 }
 
 .cancelBtn:hover {
-  background: var(--color-border);
+  background: var(--color-blue);
 }
 
 @media (min-width: 768px) {

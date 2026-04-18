@@ -2,7 +2,6 @@ import { Hospital } from "../types/hospital";
 import axios from "axios";
 import { BASE_URL } from "@/context/UserProvider"
 
-// get all hospitals
 export async function getHospitals() {
   try {
     const response = await axios.get(`${BASE_URL}/hospitals`);
@@ -31,7 +30,6 @@ export async function getHospitalDetails(params: any) {
   }
 }
 
-// get hospital randomly
 export async function getRandomHospitals() {
   try {
     const response = await axios.get(`${BASE_URL}/hospitals/random`);
@@ -42,7 +40,6 @@ export async function getRandomHospitals() {
   }
 }
 
-// get hospital by name
 export async function getHospitalByName(name: string) {
   try {
     const response = await axios.get(`${BASE_URL}/hospitals/${name}`);
@@ -53,7 +50,6 @@ export async function getHospitalByName(name: string) {
   }
 }
 
-// find hospital by name or address
 export async function findHospitals(query: string) {
   try {
     const response = await axios.get(`${BASE_URL}/hospitals/find?${query}`);
@@ -63,7 +59,6 @@ export async function findHospitals(query: string) {
   }
 }
 
-// share hospital
 export const shareHospital = async (searchParams: any) => {
   try {
     const response = await axios.post(`${BASE_URL}/hospitals/share`, { searchParams });
@@ -78,7 +73,6 @@ export const shareHospital = async (searchParams: any) => {
   }
 };
 
-// export hospital in csv download format
 export async function exportHospital(searchParams: any) {
   try {
     const { data } = await axios.get(`${BASE_URL}/hospitals/export`, {
@@ -93,7 +87,6 @@ export async function exportHospital(searchParams: any) {
   }
 }
 
-// add new hospital
 export async function addHospital(hospital: Hospital) {
   try {
     const response = await axios.post(`${BASE_URL}/hospitals`, hospital);
@@ -104,7 +97,6 @@ export async function addHospital(hospital: Hospital) {
   }
 }
 
-// update hospital
 export async function updateHospital(hospital: Hospital, id: number) {
   try {
     const response = await axios.patch(`${BASE_URL}/hospitals/${id}`, hospital);
@@ -115,7 +107,6 @@ export async function updateHospital(hospital: Hospital, id: number) {
   }
 }
 
-// delete hospital
 export async function deleteHospital(id: number) {
   try {
     const response = await axios.delete(`${BASE_URL}/hospitals/${id}`);
@@ -128,7 +119,6 @@ export async function deleteHospital(id: number) {
 
 // axios api
 let activeRequests = 0;
-// Manage the loading state outside of React components
 const showLoader = () => {
   const loader = document.getElementById("global-loader");
   if (loader) {

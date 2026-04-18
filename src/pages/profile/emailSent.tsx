@@ -1,97 +1,74 @@
 import { useLocation, Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import { Mail, ArrowLeft, ExternalLink, RefreshCw } from "lucide-react";
-import { useState } from "react";
-import axios from "axios";
-import { toast } from "react-toastify";
-import { BASE_URL } from "@/context/UserProvider";
+import { useResendVerification } from '@/hooks/useResendVerification';
 import SimpleHeader from "@/layouts/header/simpleHeader";
 import SimpleFooter from "@/layouts/footer/simpleFooter";
 import Logo from "@/assets/images/logo.svg";
+import styles from "./styles/scss/emailSent/emailSent.module.scss";
 
 const EmailSent = () => {
     const location = useLocation();
     const email = location.state?.email || "your email";
-    const [resending, setResending] = useState(false);
 
-    const handleResend = async () => {
-        setResending(true);
-        try {
-            await axios.post(`${BASE_URL}/auth/resend-verification`, { email });
-            toast.success("A new link has been dispatched!");
-        } catch (err: any) {
-            toast.error(err.response?.data?.message || "Could not resend link.");
-        } finally {
-            setResending(false);
-        }
+    const { resendEmail, resending } = useResendVerification();
+
+    const handleResend = () => {
+        resendEmail(email);
     };
 
     return (
         <>
             <SimpleHeader />
-            <div style={{
-                height: "100vh", display: "flex", alignItems: "center", justifyContent: "center",
-                background: "linear-gradient(180deg, #f9fbff 0%, #ffffff 100%)", padding: "20px"
-            }}>
+            <div className={styles.wrapper}>
                 <motion.div
-                    initial={{ opacity: 0, scale: 0.9 }}
-                    animate={{ opacity: 1, scale: 1 }}
-                    style={{
-                        maxWidth: "500px", width: "100%", backgroundColor: "#fff",
-                        padding: "3rem", borderRadius: "24px", textAlign: "center",
-                        boxShadow: "0 20px 40px rgba(14, 61, 183, 0.05)"
-                    }}
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.4, ease: "easeOut" }}
+                    className={styles.card}
                 >
                     <motion.img
                         src={Logo}
-                        animate={{ scale: [1, 1.1, 1] }}
-                        transition={{ duration: 2, repeat: Infinity }}
-                        style={{ width: 80, marginBottom: "2rem" }}
+                        alt="Hospital Logo"
+                        animate={{ scale: [1, 1.05, 1] }}
+                        transition={{ duration: 2.5, repeat: Infinity, ease: "easeInOut" }}
+                        className={styles.logo}
                     />
 
-                    <h1 style={{ color: "#0e3db7", fontSize: "1.8rem", fontWeight: 800, marginBottom: "1rem" }}>
-                        Verify your email
-                    </h1>
+                    <h1 className={styles.title}>Verify your email</h1>
 
-                    <p style={{ color: "#4a5568", lineHeight: "1.6", marginBottom: "2rem" }}>
+                    <p className={styles.description}>
                         We've sent a verification link to <br />
-                        <strong style={{ color: "#1a202c" }}>{email}</strong>. <br />
+                        <strong>{email}</strong>. <br />
                         Click the link in the email to activate your account.
                     </p>
 
-                    <div style={{ display: "flex", flexDirection: "column", gap: "1rem" }}>
+                    <div className={styles.actionGroup}>
                         <a
                             href="https://mail.google.com/"
                             target="_blank"
                             rel="noreferrer"
-                            style={{
-                                display: "flex", alignItems: "center", justifyContent: "center", gap: "10px",
-                                backgroundColor: "#0e3db7", color: "#fff", padding: "1rem",
-                                borderRadius: "12px", textDecoration: "none", fontWeight: 700
-                            }}
+                            className={styles.primaryBtn}
                         >
-                            <ExternalLink size={18} /> Open Gmail
+                            <ExternalLink size={20} /> Open Gmail
                         </a>
 
                         <button
                             onClick={handleResend}
                             disabled={resending}
-                            style={{
-                                background: "none", border: "1px solid #e2e8f0", color: "#4a5568",
-                                padding: "1rem", borderRadius: "12px", fontWeight: 600, cursor: "pointer",
-                                display: "flex", alignItems: "center", justifyContent: "center", gap: "10px"
-                            }}
+                            className={styles.secondaryBtn}
                         >
-                            {resending ? <RefreshCw size={18} className="animate-spin" /> : <Mail size={18} />}
+                            {resending ? (
+                                <RefreshCw size={20} className={styles.spin} />
+                            ) : (
+                                <Mail size={20} />
+                            )}
                             {resending ? "Resending..." : "Resend Email"}
                         </button>
                     </div>
 
-                    <Link to="/login" style={{
-                        marginTop: "2rem", display: "inline-flex", alignItems: "center", gap: "5px",
-                        color: "#718096", textDecoration: "none", fontSize: "0.9rem"
-                    }}>
-                        <ArrowLeft size={16} /> Back to Login
+                    <Link to="/login" className={styles.backLink}>
+                        <ArrowLeft size={18} /> Back to Login
                     </Link>
                 </motion.div>
             </div>

@@ -1,0 +1,127 @@
+.wrapper {
+  min-height: calc(100vh - 160px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(180deg, var(--color-bg) 0%, var(--color-bg-contrast) 100%);
+  padding: 2rem;
+}
+
+.card {
+  max-width: 480px;
+  width: 100%;
+  background-color: var(--color-bg);
+  padding: 2.5rem;
+  border-radius: 2rem;
+  text-align: center;
+  margin-top: 7rem;
+  box-shadow: 0 12px 40px rgba(14, 61, 183, 0.08);
+  border: 1px solid rgba(14, 61, 183, 0.05);
+}
+
+.logo {
+  width: 72px;
+  height: auto;
+  margin-bottom: 2rem;
+}
+
+.title {
+  color: var(--color-blue);
+  font-size: 1.8rem;
+  font-weight: 800;
+  margin-bottom: 1rem;
+  letter-spacing: -0.02em;
+}
+
+.description {
+  color: var(--color-gray);
+  line-height: 1.6;
+  margin-bottom: 2.5rem;
+  font-size: 1.2rem;
+}
+.description strong {
+  color: var(--color-black);
+  font-weight: 700;
+}
+
+.actionGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.primaryBtn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  background: var(--color-blue);
+  color: var(--color-invert);
+  padding: 1rem;
+  border-radius: 14px;
+  text-decoration: none;
+  font-weight: 700;
+  font-size: 1.05rem;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.primaryBtn:hover {
+  background: var(--color-blue-dark);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(14, 61, 183, 0.2);
+}
+.primaryBtn:active {
+  transform: scale(0.98);
+}
+
+.secondaryBtn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  background: transparent;
+  border: 2px solid var(--color-border);
+  color: var(--color-gray);
+  padding: 1rem;
+  border-radius: 14px;
+  font-weight: 600;
+  font-size: 1.05rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+.secondaryBtn:hover:not(:disabled) {
+  background: #f8fafc;
+  border-color: #cbd5e1;
+  color: var(--color-black);
+}
+.secondaryBtn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.backLink {
+  margin-top: 2.5rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: var(--color-gray);
+  text-decoration: none;
+  font-size: 1.2rem;
+  font-weight: 600;
+  transition: color 0.2s;
+}
+.backLink:hover {
+  color: var(--color-blue);
+}
+
+.spin {
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}/*# sourceMappingURL=emailSent.module.css.map */

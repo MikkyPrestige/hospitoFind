@@ -23,7 +23,7 @@ import DeleteBtn from "@/components/user/DeleteUser";
 import Logout from "@/components/user/LogoutUser";
 import AccountStats from "./accountStats";
 import MySubmissions from "./Submissions";
-import ProfileDisplay from "./profileDisplay";
+import ProfileDisplay from "../../components/user/profileDisplay";
 import HealthTimeline from './HealthTimeline';
 import { useUserActivity } from "@/hooks/useUserActivity";
 import style from "./styles/scss/dashboard/dashboard.module.scss";
