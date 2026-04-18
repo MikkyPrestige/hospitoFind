@@ -1,6 +1,9 @@
-import { Avatar } from "@/components/ui/Avatar";
-import Error404 from "@/assets/images/error-404.gif";
+import { motion } from "framer-motion";
+import { Home, MoveLeft } from "lucide-react";
 import { Helmet } from "react-helmet-async";
+import Error404 from "@/assets/images/error-404.gif";
+import styles from "./styles/error404.module.scss";
+import { Link } from "react-router-dom";
 
 const Error404Page = () => {
   return (
@@ -9,20 +12,39 @@ const Error404Page = () => {
         <title>Page Not Found | HospitoFind</title>
         <meta name="robots" content="noindex, nofollow" />
       </Helmet>
-      <div style={{
-        display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center",
-        minHeight: "100vh",
-        paddingTop: "5rem",
-        backgroundColor: "#f8f9fa",
-      }}>
-        <Avatar image={Error404} alt="Error 404" style={{ width: "100%", maxWidth: "600px", height: "auto", borderRadius: "1.2rem", objectFit: "contain" }} />
-        <p style={{ fontSize: "1.5rem", color: "#6c757d", textAlign: "center", maxWidth: "600px" }}>
-          Oops! The page you're looking for doesn't exist. It might have been moved or deleted.
-        </p>
-      </div >
 
+      <div className={styles.wrapper}>
+        <motion.div
+          initial={{ opacity: 0, scale: 0.95 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 0.4 }}
+          className={styles.content}
+        >
+          <img
+            src={Error404}
+            alt="Page not found illustration"
+            className={styles.illustration}
+          />
+
+          <h1 className={styles.title}>Lost in the clouds?</h1>
+
+          <p className={styles.text}>
+            Oops! The page you're looking for doesn't exist.
+            It might have been moved, deleted, or perhaps it never existed in the first place.
+          </p>
+
+          <Link to="/" className={styles.homeBtn}>
+            <Home size={20} />
+            Back to Homepage
+          </Link>
+
+          <Link to={-1 as any} className={styles.backBtn}>
+            <MoveLeft size={16} /> Go Back
+          </Link>
+        </motion.div>
+      </div>
     </>
-  )
-}
+  );
+};
 
 export default Error404Page;

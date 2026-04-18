@@ -1,4 +1,4 @@
-import { Hospital } from "@/src/types/hospital";
+import { Hospital } from "@/types/hospital";
 
 const toSlug = (text: string | undefined | null) => {
   if (!text) return "";
@@ -20,7 +20,6 @@ const standardizeText = (text: string) => {
         .join(' ');
 };
 
-// Helper to remove duplicates from the dropdown
 const getUniqueCities = (hospitals: Hospital[]) => {
   const seen = new Set();
   return (hospitals || [])

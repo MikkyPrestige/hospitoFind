@@ -52,12 +52,12 @@
   display: inline-flex;
   align-items: center;
   padding: 0.4rem 1rem;
-  background-color: var(--bg-blue-tag, rgba(37, 99, 235, 0.1));
-  color: var(--color-blue-light, #3b82f6);
+  background-color: var(--bg-blue-tag);
+  color: var(--color-blue-light);
   border-radius: 9999px;
   font-size: 1.1rem;
   font-weight: 600;
-  border: 1px solid var(--color-blue-light, #3b82f6);
+  border: 1px solid var(--color-blue-light);
   white-space: nowrap;
 }
 
@@ -69,8 +69,8 @@
 .editBtn {
   background-color: var(--color-blue);
   color: var(--color-invert);
-  padding: 0.75rem 1.5rem;
-  border-radius: 8px;
+  padding: 1rem;
+  border-radius: 1rem;
   font-size: 1.2rem;
   font-weight: 600;
   border: none;
@@ -84,7 +84,7 @@
 }
 
 .editBtn:disabled {
-  background-color: var(--color-gray);
+  background-color: var(--bg-blue-tag);
   opacity: 0.7;
   cursor: not-allowed;
 }
@@ -127,7 +127,7 @@
 
 .socialWarning p {
   font-size: 1.2rem;
-  color: #744210;
+  color: var(--warning-color);
   margin: 0;
   line-height: 1.5;
   font-family: var(--font-inter);

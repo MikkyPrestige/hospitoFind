@@ -32,32 +32,6 @@ const ShareButton = ({ searchParams }: SearchProps) => {
       setTimeout(() => setToast(null), 3000);
     }
   };
-  // const handleShare = async () => {
-  //   const { city, state, address } = searchParams;
-  //   if (!city && !state && !address) {
-  //     setToast({ message: '⚠️ Select a location first', type: 'error' });
-  //     return;
-  //   }
-
-  //   setGenerating(true);
-
-  //   try {
-  //     const linkId = await shareHospital(searchParams);
-
-  //     if (typeof linkId !== 'string') {
-  //       throw new Error("Invalid ID received");
-  //     }
-
-  //     setShareableLink(linkId);
-  //     setToast({ message: '✅ Link generated!', type: 'success' });
-
-  //   } catch (error) {
-  //     setToast({ message: '❌ Link generation failed', type: 'error' });
-  //   } finally {
-  //     setGenerating(false);
-  //     setTimeout(() => setToast(null), 4000);
-  //   }
-  // };
 
   const handleCopyLink = async () => {
     const fullPath = `${window.location.origin}/hospitals/share/${shareableLink}`;
@@ -70,22 +44,6 @@ const ShareButton = ({ searchParams }: SearchProps) => {
       setShareableLink('');
     }, 2000);
   };
-  // const handleCopyLink = async () => {
-  //   try {
-  //     const fullPath = `${window.location.origin}/hospitals/share/${shareableLink}`;
-  //     await navigator.clipboard.writeText(fullPath);
-  //     setCopied(true);
-  //     setToast({ message: '📋 Link copied to clipboard!', type: 'success' });
-
-  //     setTimeout(() => {
-  //       setCopied(false);
-  //       setShareableLink('');
-  //       setToast(null);
-  //     }, 2500);
-  //   } catch {
-  //     setToast({ message: '❌ Failed to copy link', type: 'error' });
-  //   }
-  // };
 
   return (
     <div className={style.cta}>
@@ -122,40 +80,6 @@ const ShareButton = ({ searchParams }: SearchProps) => {
         </Motion>
       )}
     </div>
-    // <div className={style.cta}>
-    //   <button
-    //     type="button"
-    //     onClick={handleShare}
-    //     disabled={generating}
-    //     className={`${style.btn} ${style.share}`}
-    //   >
-    //     {generating ? (
-    //       <span>Generating...</span>
-    //     ) : (
-    //       <span className={style.span}>
-    //         Generate Link <CgShare className={style.icon} />
-    //       </span>
-    //     )}
-    //   </button>
-
-    //   <AnimatePresence>
-    //     {shareableLink && (
-    //       <Motion variants={fadeUp} className={style.btnLink}>
-    //         <div className={style.linkWrapper}>
-    //           <button onClick={handleCopyLink} className={style.link}>
-    //             {copied ? 'Copied!' : `${shareableLink.substring(0, 15)}...`}
-    //             <CgCopy className={style.copyIcon} />
-    //           </button>
-    //           <button onClick={() => setShareableLink('')} className={style.clearBtn}>
-    //             <CgClose />
-    //           </button>
-    //         </div>
-    //       </Motion>
-    //     )}
-    //   </AnimatePresence>
-
-    //   {toast && <div className={`${style.toast} ${style[toast.type]}`}>{toast.message}</div>}
-    // </div>
   );
 };
 

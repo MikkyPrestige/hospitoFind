@@ -10,7 +10,6 @@ import { SEOHelmet } from '@/components/ui/SeoHelmet'
 import { FiSearch, FiCheckCircle, FiHeart } from 'react-icons/fi'
 import { HiSparkles } from 'react-icons/hi2'
 
-// ── Typewriter phrases ────────────────────────────────────────────────────────
 const TYPEWRITER_PHRASES = [
   'Describe your symptoms.',
   'Find care near you.',
@@ -39,7 +38,6 @@ const HOW_IT_WORKS = [
   },
 ]
 
-// ── Typewriter hook ───────────────────────────────────────────────────────────
 const useTypewriter = (
   phrases: string[],
   typingSpeed = 55,
@@ -80,7 +78,6 @@ const useTypewriter = (
   return displayed
 }
 
-// ── Component ─────────────────────────────────────────────────────────────────
 const Home = () => {
   const [hospitalCount, setHospitalCount] = useState<number | null>(null)
   const [countryCount, setCountryCount] = useState<number | null>(null)

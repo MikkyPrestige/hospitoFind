@@ -111,50 +111,6 @@ const UpdatePassword = () => {
     </form>
       </div>
     </section>
-    // <form onSubmit={handleSubmit} className={style.form}>
-    //   {[
-    //     { id: 'current', label: 'Current Password', key: 'oldPassword' as const, placeholder: '••••••••' },
-    //     { id: 'new', label: 'New Password', key: 'newPassword' as const, placeholder: '••••••••' },
-    //     { id: 'confirm', label: 'Confirm New Password', key: 'confirmPassword' as const, placeholder: '••••••••' }
-    //   ].map((field) => (
-    //     <div className={style.wrapper} key={field.id}>
-    //       <p className={style.subtitle}>{field.label}</p>
-    //       <div className={style.passwordBox}>
-    //         <input
-    //           type={showPass[field.id as keyof typeof showPass] ? "text" : "password"}
-    //           value={passwords[field.key as keyof typeof passwords]}
-    //           onChange={(e) => setPasswords({ ...passwords, [field.key]: e.target.value })}
-    //           className={`${style.input} ${errors[field.id] ? style.invalid : ''}`}
-    //           placeholder={field.placeholder}
-    //         />
-    //         <span
-    //           className={style.eyeIcon}
-    //           onClick={() => toggleShow(field.id)}
-    //           role="button"
-    //           tabIndex={0}
-    //         >
-    //           {showPass[field.id as keyof typeof showPass] ? <FaRegEyeSlash size={20} /> : <FaRegEye size={20} />}
-    //         </span>
-    //       </div>
-    //       {errors[field.id] && <p className={style.error}>{errors[field.id]}</p>}
-    //     </div>
-    //   ))}
-    //   <div className={style.forgotRow}>
-    //     Forgot your current password?{' '}
-    //     <Link
-    //       to="/forgot-password"
-    //       className={style.resetLink}
-    //     >
-    //       Reset it here
-    //     </Link>
-    //   </div>
-
-    //   <div className={style.actionRow}>
-    //     <Button type="submit" disabled={loading} className={style.btn}>
-    //       {loading ? "Updating Security..." : "Change Password"}
-    //     </Button>
-    //   </div>
-    // </form>
   );
 };
 
