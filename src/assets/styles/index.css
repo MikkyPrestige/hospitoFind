@@ -11,12 +11,10 @@
   -moz-osx-font-smoothing: grayscale;
   -webkit-text-size-adjust: 100%;
 
-  /* Fonts */
   --font-sans: 'DM Sans', sans-serif;
   --font-inter: 'Inter', sans-serif;
   --font-plus: 'Plus Jakarta Sans', sans-serif;
 
-  /* Transitions */
   --transition-theme: background-color 0.3s ease, border-color 0.3s ease,
     color 0.3s ease, box-shadow 0.3s ease;
 }
@@ -24,7 +22,6 @@
 /* --- LIGHT THEME (Default) --- */
 :root,
 [data-theme='light'] {
-  /* Backgrounds */
   --color-bg: #f8faff;
   --color-bg-light: #f9fbff;
   --color-bg-contrast: #f1f5f9;
@@ -32,34 +29,28 @@
   --color-ash: #f8fafc;
   --color-invert: #fff;
 
-  /* Text */
   --color-black: #1e293b;
   --color-gray: #64748b;
   --icon-gray: #94a3b8;
   --text-slate: #475569;
   --text-white: #ffffff;
-  /* --color-text-secondary: #64748b; */
+  --color-text-secondary: #64748b;
 
-  /* Borders */
   --color-border: #e2e8f0;
 
-  /* Brand Colors (Mapped) */
   --color-blue: #08299b;
   --color-blue-dark: #06237e;
   --color-blue-light: #2563eb;
   --color-indigo: #4f46e5;
 
-  /* Status Colors */
   --color-success: #10b981;
   --color-success-bg: rgba(46, 125, 50, 0.08);
   --color-error: #ef4444;
   --color-red: #ff033e;
   --warning-color: #f59e0b;
 
-  /* Specific Components */
   --bg-blue-tag: #eff6ff;
 
-  /* Shadows */
   --shadow-card: 0 4px 6px -1px rgba(0, 0, 0, 0.1),
     0 2px 4px -1px rgba(0, 0, 0, 0.06);
   --shadow-card-blue: 0 8px 20px rgba(8, 41, 155, 0.08);
@@ -81,23 +72,19 @@
   --color-ash: #1e293b;
   --color-invert: #fff;
 
-  /* Text: White/Off-White */
   --color-black: #f8fafc;
   --color-gray: #cbd5e1;
   --icon-gray: #cbd5e1;
   --text-slate: #e2e8f0;
   --color-text-secondary: #cbd5e1;
 
-  /* Borders: Darker & Subtle */
   --color-border: #334155;
 
-  /* Brand Colors: Adjusted for contrast */
   --color-blue: #3b82f6;
   --color-blue-dark: #2563eb;
   --color-blue-light: #60a5fa;
   --color-indigo: #818cf8;
 
-  /* Status Colors */
   --color-success: #34d399;
   --color-success-bg: rgba(16, 185, 129, 0.1);
   --color-error: #f87171;
@@ -105,10 +92,8 @@
   --warning-color: #fbbf24;
   --text-dark: #0f172a;
 
-  /* Specific Components */
   --bg-blue-tag: rgba(59, 130, 246, 0.15);
 
-  /* Shadows: More subtle or removed in dark mode */
   --shadow-card: 0 4px 6px -1px rgba(0, 0, 0, 0.3);
   --shadow-card-blue: 0 8px 20px rgba(0, 0, 0, 0.4);
   --shadow-card-blue-hover: 0 10px 26px rgba(0, 0, 0, 0.5);

@@ -1,13 +1,6 @@
-/**
- * useHealthHistory.ts
- * Fetches and manages the user's health history sessions.
- * Uses useAxiosPrivate so the access token is sent automatically.
- */
-
 import { useState, useEffect, useCallback } from 'react';
 import useAxiosPrivate from '@/hooks/useAxiosPrivate';
 
-// ── Types ─────────────────────────────────────────────────────────────────────
 export interface MatchedHospital {
   hospitalId: {
     _id: string;
@@ -42,14 +35,12 @@ export interface FeedbackPayload {
   feedback?: string;
 }
 
-// ── Hook ──────────────────────────────────────────────────────────────────────
 export const useHealthHistory = () => {
   const axiosPrivate = useAxiosPrivate();
   const [history, setHistory] = useState<HealthSession[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
-  // ── Fetch all sessions ──────────────────────────────────────────────────────
   const fetchHistory = useCallback(async () => {
     setIsLoading(true);
     setError(null);
@@ -67,7 +58,6 @@ export const useHealthHistory = () => {
     fetchHistory();
   }, [fetchHistory]);
 
-  // ── Save feedback for a session ─────────────────────────────────────────────
   const saveFeedback = useCallback(
     async (sessionId: string, payload: FeedbackPayload) => {
       try {
@@ -75,9 +65,6 @@ export const useHealthHistory = () => {
           `/user/health-history/${sessionId}/feedback`,
           payload
         );
-        // Update local state immediately — no need to refetch
-        // Only spread rating and feedback (primitives) — not hospitalVisited
-        // since local state holds the populated object, not the ID string
         setHistory((prev) =>
           prev.map((s) =>
             s._id === sessionId
@@ -100,7 +87,6 @@ export const useHealthHistory = () => {
     [axiosPrivate]
   );
 
-  // ── Delete a single session ─────────────────────────────────────────────────
   const deleteSession = useCallback(
     async (sessionId: string) => {
       try {
@@ -117,7 +103,6 @@ export const useHealthHistory = () => {
     [axiosPrivate]
   );
 
-  // ── Clear all history ───────────────────────────────────────────────────────
   const clearHistory = useCallback(async () => {
     try {
       await axiosPrivate.delete('/user/health-history');

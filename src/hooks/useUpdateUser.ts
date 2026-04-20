@@ -1,17 +1,18 @@
 import { useState } from 'react';
 import { User } from '@/src/types/user';
 import { useAuthContext } from '@/context/UserProvider';
-import { api } from '@/services/api';
+import useAxiosPrivate from '@/hooks/useAxiosPrivate';
 import { toast } from "react-toastify";
 
 const useUpdate = () => {
   const [loading, setLoading] = useState(false);
   const { dispatch } = useAuthContext();
+  const axiosPrivate = useAxiosPrivate();
 
   const update = async (user: User, onSuccess?: () => void) => {
     setLoading(true);
     try {
-      const response = await api.patch<User>(`/user`, user);
+      const response = await axiosPrivate.patch<User>(`/user`, user);
 
       dispatch({
         type: 'UPDATE',
