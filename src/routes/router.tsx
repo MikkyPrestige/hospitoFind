@@ -6,6 +6,7 @@ import RootLayout from "@/layouts/RootLayout";
 import MainLayout from "@/layouts/mainLayout";
 import PersistLogin from "@/components/auth/persistLogin";
 import RequireAuth from "@/components/auth/requireAuth";
+import GuestRoute from "@/components/auth/GuestRoute";
 import { ComponentPulse } from "@/components/ui/LoadingPulse";
 
 const Home = lazy(() => import("@/pages/home/home"));
@@ -83,9 +84,16 @@ export const router = createBrowserRouter([
                 ]
             },
 
+            // GUEST ONLY ROUTES
+            {
+                element: <GuestRoute />,
+                children: [
+                    { path: "login", element: Loadable(LogIn)({}) },
+                    { path: "signup", element: Loadable(SignUp)({}) },
+                ]
+            },
+
             // AUTH PAGES
-            { path: "login", element: Loadable(LogIn)({}) },
-            { path: "signup", element: Loadable(SignUp)({}) },
             { path: "verify-email", element: Loadable(VerifyEmail)({}) },
             { path: "email-sent", element: <EmailSent /> },
             { path: "callback", element: Loadable(Callback)({}) },
@@ -125,6 +133,7 @@ export const router = createBrowserRouter([
                 ],
             },
 
+            // 404
             {
                 element: <MainLayout />,
                 children: [

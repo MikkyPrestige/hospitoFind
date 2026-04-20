@@ -2,19 +2,20 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAuthContext } from '@/context/UserProvider';
 import { useAuth0 } from "@auth0/auth0-react";
-import { api } from '@/services/api';
+import useAxiosPrivate from './useAxiosPrivate'
 import { toast } from "react-toastify";
 
 const useDelete = () => {
   const [loading, setLoading] = useState(false);
   const { dispatch } = useAuthContext();
+  const axiosPrivate = useAxiosPrivate();
   const { logout, isAuthenticated } = useAuth0();
   const navigate = useNavigate();
 
   const deleteUser = async (username: string, password?: string) => {
     setLoading(true);
     try {
-      await api.delete(`/user`, {
+      await axiosPrivate.delete(`/user`, {
         data: { username, password },
       });
 

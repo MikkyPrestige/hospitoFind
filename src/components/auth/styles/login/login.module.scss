@@ -297,9 +297,9 @@
         .verificationAlert {
           margin-top: 0.5rem;
           padding: 1.2rem;
-          background-color: #fff5f5;
-          border: 1px solid #feb2b2;
-          border-radius: 12px;
+          background-color: rgba(239, 68, 68, 0.05);
+          border: 1px solid rgba(229, 62, 62, 0.1);
+          border-radius: 1rem;
           text-align: center;
           animation: fadeUp 0.4s ease-out;
 
