@@ -1,14 +1,6 @@
 import { useState, useEffect } from "react";
 import useAxiosPrivate from "@/hooks/useAxiosPrivate";
 
-// const isDev = import.meta.env.MODE === 'development';
-
-// const MOCK_STATS = {
-//     totalSubmissions: 12,
-//     verifiedSubmissions: 8,
-//     contributorLevel: "Elite Guardian"
-// };
-
 export const useStats = () => {
     const [stats, setStats] = useState<any>(null);
     const [loading, setLoading] = useState(true);
@@ -16,11 +8,6 @@ export const useStats = () => {
     const axiosPrivate = useAxiosPrivate();
 
     const fetchStats = async () => {
-        // if (isDev) {
-        //     setStats(MOCK_STATS);
-        //     setLoading(false);
-        //     return;
-        // }
         try {
             setLoading(true);
             const { data } = await axiosPrivate.get("/user/stats");

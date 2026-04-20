@@ -138,95 +138,24 @@ const hideLoader = () => {
   }
 };
 
-// Custom instance
 export const api = axios.create({
   baseURL: BASE_URL,
   withCredentials: true,
 });
 
-/**
- * REQUEST INTERCEPTOR
- */
-api.interceptors.request.use(
-  (config) => {
-     const isAgentRequest = config.url?.includes('/agent/');
-    if (!isAgentRequest) {
-      showLoader();
-    }
-
-    const token = localStorage.getItem("accessToken");
-    if (token && !config.headers["Authorization"]) {
-      config.headers["Authorization"] = `Bearer ${token}`;
-    }
+api.interceptors.request.use((config) => {
+    const isAgentRequest = config.url?.includes('/agent/');
+    if (!isAgentRequest) showLoader();
     return config;
-  },
-  (error) => {
+}, (error) => {
     hideLoader();
     return Promise.reject(error);
-  }
-);
+});
 
-/**
- * RESPONSE INTERCEPTOR
- */
-api.interceptors.response.use(
-  (response) => {
-      const isAgentRequest = response.config.url?.includes('/agent/');
-    if (!isAgentRequest) {
-      hideLoader();
-    }
+api.interceptors.response.use((response) => {
+    hideLoader();
     return response;
-  },
-  async (error) => {
-      const isAgentRequest = error?.config?.url?.includes('/agent/');
-    if (!isAgentRequest) {
-      hideLoader();
-    }
-    const prevRequest = error?.config;
-    const tokenInStorage = localStorage.getItem("accessToken");
-
-    const isAuthError = error?.response?.status === 401 || error?.response?.status === 403;
-
-    if (isAuthError && !prevRequest?._retry && tokenInStorage) {
-      prevRequest._retry = true;
-
-      try {
-        const response = await axios.get(`${BASE_URL}/auth/refresh`, {
-            withCredentials: true,
-        });
-
-        const newAuthData = response.data;
-        const { accessToken } = newAuthData;
-
-        localStorage.setItem("accessToken", accessToken);
-
-        Object.entries(newAuthData).forEach(([key, value]) => {
-            if (value && key !== 'accessToken') localStorage.setItem(key, value.toString());
-        });
-
-        prevRequest.headers["Authorization"] = `Bearer ${accessToken}`;
-
-        return api(prevRequest);
-
-      } catch (refreshError) {
-        console.error("Refresh failed:", refreshError);
-        localStorage.removeItem("accessToken");
-        localStorage.removeItem("username");
-        localStorage.removeItem("role");
-        localStorage.removeItem("id");
-        localStorage.removeItem("email");
-        localStorage.removeItem("auth0.is_authenticated");
-
-        if (!window.location.pathname.includes('/login')) {
-             window.location.href = "/login?expired=true";
-        }
-        return Promise.reject(refreshError);
-      } finally {
-        hideLoader();
-      }
-    }
-
+}, (error) => {
     hideLoader();
     return Promise.reject(error);
-  }
-);
+});

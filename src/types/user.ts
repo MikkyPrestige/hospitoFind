@@ -41,7 +41,7 @@ export interface AuthState {
 }
 
 export type AuthAction = {
-  type: "LOGIN" | "REGISTER" | "UPDATE" | "REFRESH" | "PASSWORD-UPDATE" | "DELETE" | "LOGOUT";
+  type: "LOGIN" | "REGISTER" | "UPDATE" | "REFRESH" | "PASSWORD-UPDATE" | "REFRESH_TOKEN" | "DELETE" | "LOGOUT";
   payload?: Partial<AuthState>;
 };
 
