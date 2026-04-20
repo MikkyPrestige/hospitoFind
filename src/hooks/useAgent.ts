@@ -1,5 +1,5 @@
 import { useState, useCallback } from 'react';
-import { api } from '@/services/api';
+import useAxiosPrivate from '@/hooks/useAxiosPrivate';
 import type {
   AgentState,
   Message,
@@ -25,10 +25,7 @@ const GREETING: Message = {
   content: "👋 Hi there! I'm HospitoFind's care assistant. I'll help match you with the right hospital. What symptoms or health concerns are you experiencing today?",
 };
 
-/**
- * Build a context-aware greeting when user arrives from a hospital profile page.
- * Includes the hospital name and location so the agent knows where they are.
- */
+
 const buildContextGreeting = (ctx: HospitalContext): Message => {
   const location = [ctx.city, ctx.country].filter(Boolean).join(', ');
   const locationPart = location ? ` in **${location}**` : '';
@@ -41,12 +38,12 @@ const buildContextGreeting = (ctx: HospitalContext): Message => {
 export const useAgent = () => {
   const [state, setState] = useState<AgentState>(INITIAL_STATE);
   const [isLoading, setIsLoading] = useState(false);
+  const axiosPrivate = useAxiosPrivate();
 
   const update = useCallback((patch: Partial<AgentState>) => {
     setState((prev) => ({ ...prev, ...patch }));
   }, []);
 
-  // ── Standard start ────────────────────────────────────────────────────────
   const startConversation = useCallback(() => {
     setState({
       ...INITIAL_STATE,
@@ -56,20 +53,16 @@ export const useAgent = () => {
     });
   }, []);
 
-  // ── Context-aware start (from hospital profile page) ──────────────────────
-  // Stores the hospital's location in state so sendMessage can pass it
-  // to the backend as userLocation — preventing the agent from asking again
   const startConversationWithContext = useCallback((ctx: HospitalContext) => {
     const location = [ctx.city, ctx.country].filter(Boolean).join(', ');
     setState({
       ...INITIAL_STATE,
       phase: 'chatting',
       messages: [buildContextGreeting(ctx)],
-      contextLocation: location || null,  // ← stored here, used in sendMessage
+      contextLocation: location || null,
     });
   }, []);
 
-  // ── Send a user message ───────────────────────────────────────────────────
   const sendMessage = useCallback(
     async (content: string) => {
       if (!content.trim() || isLoading) return;
@@ -81,9 +74,6 @@ export const useAgent = () => {
       setIsLoading(true);
 
       try {
-        // Priority: contextLocation (from hospital page) → localStorage → undefined
-        // contextLocation is set when user arrives via "Match Me Here" button
-        // so the agent already knows their location and won't ask again
         const userLocation =
           state.contextLocation ||
           localStorage.getItem('userCity') ||
@@ -93,7 +83,7 @@ export const useAgent = () => {
           .filter((m) => !(m.role === 'assistant' && m.content.startsWith('👋')))
           .map(({ role, content }) => ({ role, content }));
 
-        const { data } = await api.post<ChatResponse>('/agent/chat', {
+        const { data } = await axiosPrivate.post<ChatResponse>('/agent/chat', {
           messages: apiMessages,
           userLocation,
         });
@@ -122,7 +112,6 @@ export const useAgent = () => {
     [state.messages, state.contextLocation, isLoading, update]
   );
 
-  // ── Run hospital matching ─────────────────────────────────────────────────
   const runMatch = useCallback(
     async (profile: PatientProfile, currentMessages: Message[]) => {
       const transitionMessage: Message = {
@@ -140,7 +129,7 @@ export const useAgent = () => {
       }));
 
       try {
-        const { data } = await api.post<MatchResponse>('/agent/match', {
+        const { data } = await axiosPrivate.post<MatchResponse>('/agent/match', {
           symptoms: profile.symptoms,
           location: profile.location,
           additionalNeeds: profile.additionalNeeds,
