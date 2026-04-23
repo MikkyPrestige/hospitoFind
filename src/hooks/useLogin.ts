@@ -2,9 +2,8 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAuthContext } from '@/context/UserProvider';
 import { api } from '@/services/api';
-import { Login } from '@/src/types/user';
+import { Login } from '@/types/auth';
 import { toast } from 'react-toastify';
-
 
 const useLogin = () => {
   const [loading, setLoading] = useState(false);

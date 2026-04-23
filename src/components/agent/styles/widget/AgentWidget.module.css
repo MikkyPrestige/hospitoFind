@@ -132,25 +132,26 @@
 .headerAvatar {
   width: 2.5rem;
   height: 2.5rem;
-  background: rgba(255, 255, 255, 0.15);
-  border: 2px solid rgba(255, 255, 255, 0.4);
+  background: var(--color-blue);
+  border: 2px solid var(--color-border);
+  color: var(--color-invert) !important;
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
   font-weight: 700;
-  font-size: 1.1rem;
+  font-size: 1.5rem;
   color: inherit;
 }
 
-.header_dashboard .headerAvatar {
-  background: #f1f5f9;
+.header_dashboard {
+  background: var(--color-white);
   border-color: var(--color-border);
   color: var(--color-blue);
 }
 
 .headerName {
-  font-size: 1rem;
+  font-size: 1.2rem;
   font-weight: 600;
   letter-spacing: -0.01em;
   margin-bottom: 0.15rem;
@@ -160,7 +161,7 @@
   display: flex;
   align-items: center;
   gap: 0.4rem;
-  font-size: 0.75rem;
+  font-size: 1rem;
   opacity: 0.9;
 }
 
@@ -182,8 +183,8 @@
   background: transparent;
   border: none;
   color: inherit;
-  width: 2rem;
-  height: 2rem;
+  width: 2.2rem;
+  height: 2.2rem;
   border-radius: 50%;
   display: flex;
   align-items: center;
@@ -258,6 +259,7 @@
   border-radius: 1.25rem 1.25rem 0.25rem 1.25rem;
   box-shadow: 0 4px 12px rgba(37, 99, 235, 0.15);
   font-weight: 400;
+  font-size: 1rem;
 }
 .bubble.assistant {
   align-self: flex-start;
@@ -271,8 +273,8 @@
 }
 
 .avatar {
-  width: 1.75rem;
-  height: 1.75rem;
+  width: 2rem;
+  height: 2rem;
   background: var(--color-blue);
   color: var(--color-invert);
   border-radius: 50%;
@@ -287,7 +289,7 @@
 
 .bubbleContent {
   padding: 0.85rem 1.1rem;
-  font-size: 0.92rem;
+  font-size: 1rem;
   line-height: 1.5;
   word-break: break-word;
 }
@@ -307,7 +309,8 @@
   display: flex;
   align-items: center;
   gap: 5px;
-  background: var(--color-invert);
+  background: var(--color-blue);
+  color: var(--color-invert);
   border: 1px solid var(--color-border);
   padding: 1rem 1.25rem;
   border-radius: 1.25rem 1.25rem 1.25rem 0.25rem;
@@ -318,7 +321,7 @@
 .typingIndicator span {
   width: 6px;
   height: 6px;
-  background: #94a3b8;
+  background: var(--color-invert);
   border-radius: 50%;
   animation: typing 1.4s infinite ease-in-out;
 }
@@ -346,15 +349,15 @@
   justify-content: center;
   gap: 1rem;
   padding: 2rem;
-  color: #64748b;
-  font-size: 0.9rem;
+  color: var(--color-ash);
+  font-size: 1.2rem;
 }
 
 .matchingSpinner {
   width: 2.5rem;
   height: 2.5rem;
-  border: 3px solid #e2e8f0;
-  border-top-color: var(--color-blue, #2563eb);
+  border: 3px solid var(--color-border);
+  border-top-color: var(--color-blue);
   border-radius: 50%;
   animation: spin 0.8s linear infinite;
 }
@@ -365,11 +368,11 @@
   }
 }
 .errorMsg {
-  background: #fef2f2;
-  border: 1px solid #fca5a5;
+  background: rgba(239, 68, 68, 0.05);
+  border: 1px solid rgba(229, 62, 62, 0.1);
   border-radius: 0.75rem;
   padding: 0.85rem 1rem;
-  font-size: 0.85rem;
+  font-size: 1.2rem;
   color: var(--color-red);
   text-align: center;
   margin: 0 1.25rem;
@@ -380,6 +383,7 @@
   border: none;
   color: var(--color-red);
   font-weight: 600;
+  font-size: 1.2rem;
   cursor: pointer;
   text-decoration: underline;
 }
@@ -398,23 +402,22 @@
   flex: 1;
   border: 1px solid var(--color-border);
   padding: 0.8rem 1.25rem;
-  font-size: 0.95rem;
-  background: #f8fafc;
+  font-size: 1.2rem;
+  background: transparent;
   border-radius: 14px;
-  color: #1e293b;
+  color: #020617;
   outline: none;
   transition: all 0.2s ease;
 }
 .input:focus {
-  background: var(--color-invert);
   border-color: var(--color-blue);
   box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15);
 }
 .input::-moz-placeholder {
-  color: #94a3b8;
+  color: var(--color-ash);
 }
 .input::placeholder {
-  color: #94a3b8;
+  color: var(--color-ash);
 }
 .input:disabled {
   opacity: 0.6;
@@ -425,19 +428,19 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 2.85rem;
-  height: 2.85rem;
+  width: 2.875rem;
+  height: 2.875rem;
   background: var(--color-blue);
   color: var(--color-invert);
   border: none;
-  border-radius: 12px;
+  border-radius: 1rem;
   cursor: pointer;
   flex-shrink: 0;
   transition: all 0.2s ease;
   box-shadow: 0 4px 10px rgba(37, 99, 235, 0.2);
 }
 .sendBtn:hover:not(:disabled) {
-  background: #1d4ed8;
+  background: var(--color-blue);
   transform: scale(1.04);
 }
 .sendBtn:disabled {

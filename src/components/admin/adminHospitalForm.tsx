@@ -1,22 +1,13 @@
-import { FiSave, FiMapPin, FiClock, FiImage, FiActivity, FiZap, FiSearch, FiAlertTriangle, FiCheck, FiMessageSquare, FiPlus, FiX } from "react-icons/fi";
-import styles from "./styles/adminHospitalForm.module.scss";
-import { standardizeText } from "@/utils/formatters";
-import { useState } from "react";
 import { toast } from "react-toastify";
-import useAxiosPrivate from "@/hooks/useAxiosPrivate";
-import { Hours } from "@/src/types/hospital";
-
-interface AdminHospitalFormProps {
-    formData: any;
-    setFormData: (data: any) => void;
-    onSubmit: (e: React.FormEvent) => void;
-    loading: boolean;
-    title: string;
-}
+import { FiSave, FiMapPin, FiClock, FiImage, FiActivity, FiZap, FiSearch, FiMessageSquare, FiPlus, FiX } from "react-icons/fi";
+import { useCheckDuplicateHospital } from "@/hooks/useCheckDuplicateHospital";
+import { Hours } from "@/types/hospital";
+import { AdminHospitalFormProps } from "@/types/admin";
+import { standardizeText } from "@/utils/formatters";
+import styles from "./styles/adminHospitalForm.module.scss";
 
 const AdminHospitalForm = ({ formData, setFormData, onSubmit, loading, title }: AdminHospitalFormProps) => {
-    const [dupCheckLoading, setDupCheckLoading] = useState(false);
-    const axiosPrivate = useAxiosPrivate();
+    const { checkDuplicate, dupCheckLoading } = useCheckDuplicateHospital();
 
     const handleStandardize = () => {
         setFormData({
@@ -66,32 +57,6 @@ const AdminHospitalForm = ({ formData, setFormData, onSubmit, loading, title }: 
         setFormData({ ...formData, hours: fullWeek247 });
     };
 
-    const handleCheckDuplicate = async () => {
-        const name = formData.name;
-        const city = formData.address?.city;
-
-        if (!name || !city) {
-            return toast.warn("Enter Name and City first to check for duplicates.");
-        }
-
-        setDupCheckLoading(true);
-        try {
-            const { data } = await axiosPrivate.get(
-                `/hospitals/check-duplicate?name=${encodeURIComponent(name)}&city=${encodeURIComponent(city)}&currentId=${formData._id || ""}`
-            );
-
-            if (data.isDuplicate) {
-                toast.error(data.message, { icon: <FiAlertTriangle /> });
-            } else {
-                toast.success("No duplicates found in this city.", { icon: <FiCheck /> });
-            }
-        } catch (err) {
-            toast.error("Duplicate check unavailable.");
-        } finally {
-            setDupCheckLoading(false);
-        }
-    };
-
     return (
         <form onSubmit={onSubmit} className={styles.adminForm}>
             <div className={styles.formHeaderRow}>
@@ -106,7 +71,6 @@ const AdminHospitalForm = ({ formData, setFormData, onSubmit, loading, title }: 
                 </button>
             </div>
 
-            {/* --- Photo Section --- */}
             <div className={styles.photoPreviewSection}>
                 <label className={styles.sectionLabel}><FiImage /> Facility Media</label>
                 <div className={styles.previewContainer}>
@@ -131,7 +95,6 @@ const AdminHospitalForm = ({ formData, setFormData, onSubmit, loading, title }: 
                 </div>
             </div>
 
-            {/* --- General Info --- */}
             <div className={styles.formSection}>
                 <label className={styles.sectionLabel}><FiActivity /> Identification</label>
                 <div className={styles.inputWithAction}>
@@ -144,7 +107,7 @@ const AdminHospitalForm = ({ formData, setFormData, onSubmit, loading, title }: 
                     />
                     <button
                         type="button"
-                        onClick={handleCheckDuplicate}
+                        onClick={() => checkDuplicate(formData.name, formData.address?.city, formData._id)}
                         disabled={dupCheckLoading}
                         className={styles.innerActionBtn}
                         title="Check database for existing entry"
@@ -162,7 +125,6 @@ const AdminHospitalForm = ({ formData, setFormData, onSubmit, loading, title }: 
                 </div>
             </div>
 
-            {/* --- Location --- */}
             <div className={styles.formSection}>
                 <label className={styles.sectionLabel}><FiMapPin /> Location Geography</label>
                 <div className={styles.inputGroup}>
@@ -203,7 +165,6 @@ const AdminHospitalForm = ({ formData, setFormData, onSubmit, loading, title }: 
                 </div>
             </div>
 
-            {/* --- Contact --- */}
             <div className={styles.formSection}>
                 <label className={styles.sectionLabel}><FiImage /> Communication</label>
                 <div className={styles.formRow}>
@@ -219,7 +180,6 @@ const AdminHospitalForm = ({ formData, setFormData, onSubmit, loading, title }: 
                 </div>
             </div>
 
-            {/* --- Services & Comments --- */}
             <div className={styles.formSection}>
                 <label className={styles.sectionLabel}><FiZap /> Clinical Services</label>
                 <textarea
@@ -240,7 +200,6 @@ const AdminHospitalForm = ({ formData, setFormData, onSubmit, loading, title }: 
                 />
             </div>
 
-            {/* --- Operating Hours --- */}
             <div className={styles.formSection}>
                 <div className={styles.labelHeader}>
                     <label className={styles.sectionLabel}><FiClock /> Operating Hours</label>

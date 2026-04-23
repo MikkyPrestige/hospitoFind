@@ -88,6 +88,13 @@
   transform: scale(1.05);
 }
 
+.avatar {
+  width: 100%;
+  height: 100%;
+  border-radius: 0;
+  object-fit: cover;
+}
+
 .details {
   display: flex;
   flex-direction: column;
@@ -175,6 +182,13 @@
   overflow: hidden;
   border-radius: 1.2rem;
   margin-bottom: 1rem;
+}
+
+.shareAvatar {
+  width: 100%;
+  height: 100%;
+  border-radius: 1.2rem;
+  object-fit: cover;
 }
 
 @media (max-width: 768px) {

@@ -6,8 +6,8 @@ import type {
   ChatResponse,
   MatchResponse,
   PatientProfile,
-} from '@/src/types/agent';
-import type { HospitalContext } from '@/components/agent/AgentWidget';
+  HospitalContext
+} from '@/types/agent';
 
 const INITIAL_STATE: AgentState = {
   phase: 'idle',

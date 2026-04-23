@@ -1,45 +1,14 @@
-import { useEffect, useState } from "react";
+import { useHealthNews } from "@/hooks/useHealthNews";
 import Motion from "@/components/ui/Motion";
 import { fadeUp, sectionReveal } from "@/utils/animations";
 import AnimatedLoader from "@/components/ui/AnimatedLoader";
+import { FiExternalLink, FiCalendar, FiActivity, FiRefreshCw } from "react-icons/fi";
 import style from "./styles/newsData.module.css";
-import { BASE_URL } from "@/context/UserProvider";
-import { FiExternalLink, FiCalendar, FiActivity } from "react-icons/fi";
-
-type Article = {
-    title: string;
-    description: string;
-    link: string;
-    image_url?: string;
-    pubDate?: string;
-    source_id?: string;
-};
+import { SEOHelmet } from "@/src/components/ui/SeoHelmet";
 
 const NewsData = () => {
-    const [articles, setArticles] = useState<Article[]>([]);
-    const [loading, setLoading] = useState(true);
-    const [error, setError] = useState<string | null>(null);
+    const { articles, loading, error, refetch } = useHealthNews(12);
 
-    useEffect(() => {
-        const fetchNews = async () => {
-            try {
-                setLoading(true);
-                setError(null);
-                const res = await fetch(`${BASE_URL}/health/news`);
-                if (!res.ok) throw new Error("Failed to fetch health news");
-                const data = await res.json();
-                const list = Array.isArray(data) ? data : (data.results || []);
-                setArticles(list.slice(0, 12));
-            } catch (err) {
-                setError("Unable to load the latest headlines. Please check your connection.");
-            } finally {
-                setLoading(false);
-            }
-        };
-        fetchNews();
-    }, []);
-
-    // Format date
     const formatDate = (dateString?: string) => {
         if (!dateString) return "Recent Update";
         try {
@@ -53,6 +22,16 @@ const NewsData = () => {
 
     return (
         <>
+            <SEOHelmet
+                title="Global Health News & Medical Updates"
+                description="Stay informed with the latest global health news, medical research, breakthroughs, disease alerts, and healthcare innovations from trusted sources. Updated daily."
+                canonical="https://hospitofind.online/health-news"
+                schemaType="healthNews"
+                schemaData={articles}
+                autoBreadcrumbs={true}
+                lang="en"
+            />
+
             <section className={style.section}>
                 <Motion variants={sectionReveal} className={style.pageHeader}>
                     <div className={style.titleGroup}>
@@ -78,8 +57,8 @@ const NewsData = () => {
                     ) : error ? (
                         <div className={style.errorBox}>
                             <p>{error}</p>
-                            <button onClick={() => window.location.reload()} className={style.retryBtn}>
-                                Try Again
+                            <button onClick={refetch} className={style.retryBtn}>
+                                <FiRefreshCw />Try Again
                             </button>
                         </div>
                     ) : (
@@ -100,7 +79,7 @@ const NewsData = () => {
                                             </div>
                                         )}
                                         <div className={style.sourceTag}>
-                                            {article.source_id || "Health News"}
+                                            {article.source_id || "Verified Source"}
                                         </div>
                                     </div>
 
@@ -109,7 +88,7 @@ const NewsData = () => {
                                         <p className={style.newsDesc}>
                                             {article.description
                                                 ? `${article.description.slice(0, 120)}...`
-                                                : "Read the full details of this medical update at the source link below."}
+                                                : "Read the full details of this medical update at the source link."}
                                         </p>
 
                                         <div className={style.newsFooter}>

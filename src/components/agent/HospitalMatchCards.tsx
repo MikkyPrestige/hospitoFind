@@ -1,18 +1,9 @@
 import { Link } from 'react-router-dom';
 import { FiPhone, FiMapPin, FiExternalLink, FiCheckCircle, FiStar, FiSearch } from 'react-icons/fi';
 import { HiSparkles } from 'react-icons/hi2';
-import type { HospitalMatch, PatientProfile } from '@/src/types/agent';
+import type { HospitalMatchCardsProps } from '@/types/agent';
 import HospitalPic from '@/assets/images/hospital-logo.jpg';
 import style from './styles/cards/HospitalMatchCards.module.scss';
-
-interface Props {
-    hospitals: HospitalMatch[];
-    profile: PatientProfile | null;
-    onStartOver: () => void;
-    noResults?: boolean;
-    noResultsRegion?: string | null;
-    noResultsMessage?: string | null;
-}
 
 const ScoreBadge = ({ score }: { score: number }) => {
     const level =
@@ -35,7 +26,7 @@ const HospitalMatchCards = ({
     noResults = false,
     noResultsRegion,
     noResultsMessage,
-}: Props) => {
+}: HospitalMatchCardsProps) => {
 
     if (noResults) {
         return (

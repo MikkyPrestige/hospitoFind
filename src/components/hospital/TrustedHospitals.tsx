@@ -1,6 +1,4 @@
 import { motion } from "framer-motion";
-import style from "./styles/trustedHospitals.module.css";
-
 import Logo1 from "@/assets/images/fmc.jpg";
 import Logo2 from "@/assets/images/UNIBEN.webp";
 import Logo3 from "@/assets/images/misr.jpg";
@@ -13,6 +11,7 @@ import Logo9 from "@/assets/images/milpark.jpg";
 import Logo10 from "@/assets/images/Tygerberg.png";
 import Logo11 from "@/assets/images/alexandra.jpg";
 import Logo12 from "@/assets/images/CBRM.jpg";
+import style from "./styles/trustedHospitals.module.css";
 
 const hospitalPartners = [
     { logo: Logo1, name: "Federal Medical Centre" },

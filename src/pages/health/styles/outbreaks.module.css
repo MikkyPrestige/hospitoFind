@@ -60,7 +60,6 @@
   margin-top: 5px;
 }
 
-/* --- LAYOUT --- */
 .layout {
   max-width: 1280px;
   margin: 0 auto;
@@ -69,7 +68,6 @@
   gap: 2rem;
 }
 
-/* --- FEED LIST --- */
 .list {
   list-style: none;
   padding: 0;
@@ -118,7 +116,6 @@
   flex: 1;
 }
 
-/* Source Badges */
 .sourceWHO,
 .sourceArchived,
 .sourceMedia,
@@ -132,11 +129,11 @@
 }
 
 .sourceWHO {
-  background: #fee2e2;
+  background: rgba(239, 68, 68, 0.05);
   color: var(--color-red);
 }
 .sourceArchived {
-  background: var(--color-ash-dark);
+  background: var(--color-ash);
   color: var(--color-gray);
 }
 .sourceMedia {
@@ -144,8 +141,8 @@
   color: var(--color-blue-light);
 }
 .sourceDefault {
-  background: #dcfce7;
-  color: var(--color-green);
+  background: rgba(34, 197, 94, 0.1);
+  color: var(--color-success);
 }
 
 .date {
@@ -187,7 +184,6 @@
   text-decoration: underline;
 }
 
-/* --- SIDEBAR CARDS --- */
 .safetyCard,
 .emergencyCard,
 .regionCard {
@@ -217,7 +213,7 @@ background: var(--color-white);
 }
 
 .sidebarHint {
-  font-size: 1rem;
+  font-size: 1.2rem;
   color: var(--color-gray);
   margin-bottom: 1rem;
   font-weight: 500;
@@ -226,11 +222,11 @@ background: var(--color-white);
 .regionSelect {
   width: 100%;
   padding: 0.8rem 1rem;
-  border-radius: 12px;
- border: 1px solid var(--color-border);
+  border-radius: 1rem;
+  border: 1px solid var(--color-border);
   background-color: var(--color-ash);
   color: var(--color-black);
-  font-size: 1rem;
+  font-size: 1.2rem;
   font-weight: 600;
   cursor: pointer;
   transition: all 0.2s;
@@ -251,7 +247,7 @@ background: var(--color-white);
 .protocolList li {
  padding: 0.8rem 0;
   border-bottom: 1px solid var(--color-border);
-  font-size: 1rem;
+  font-size: 1.2rem;
   color: var(--text-slate);
   display: flex;
   align-items: flex-start;
@@ -271,17 +267,17 @@ background: var(--color-white);
 
 .contactItem {
   margin: 1rem 0;
-  font-size: 1rem;
+  font-size: 1.2rem;
   padding: 1.2rem;
-  background: #fef2f2;
-  border-radius: 12px;
-  border: 1px solid #fecaca;
-  color: #991b1b;
+  background: rgba(239, 68, 68, 0.05);
+  border-radius: 1rem;
+  border: 1px solid rgba(239, 68, 68, 0.1);
+  color: var(--color-red);
 }
 
 .contactItem strong {
   display: block;
-  font-size: 1rem;
+  font-size: 1.1rem;
   text-transform: uppercase;
   letter-spacing: 0.05em;
   margin-bottom: 0.2rem;
@@ -302,10 +298,43 @@ background: var(--color-white);
 .noAlerts {
   text-align: center;
   padding: 4rem;
-color: var(--color-gray);
+  color: var(--color-gray);
   font-weight: 600;
   background: var(--color-white);
-  border-radius: 20px;
+  border-radius: 2rem;
+}
+
+.errorBox {
+  text-align: center;
+  padding: 4rem 2rem;
+  background: var(--color-white);
+  border-radius: 2rem;
+  box-shadow: var(--shadow-card);
+  max-width: 500px;
+  margin: 0 auto;
+}
+
+.errorBox p {
+  color: var(--color-error);
+  font-weight: 600;
+  margin-bottom: 1rem;
+  font-size: 1.2rem;
+}
+
+.retryBtn {
+  background: var(--color-blue);
+  color: var(--color-white);
+  border: none;
+  padding: 0.8rem 2rem;
+  border-radius: 50px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: transform 0.2s;
+}
+
+.retryBtn:hover {
+  background: var(--color-blue-light);
+  transform: translateY(-2px);
 }
 
 @media (min-width: 1024px) {

@@ -1,18 +1,21 @@
+import { ShieldCheck, Database, Eye, RefreshCcw, Mail } from "lucide-react";
 import { SEOHelmet } from "@/components/ui/SeoHelmet";
 import Motion from "@/components/ui/Motion";
 import { fadeUp } from "@/utils/animations";
-import { ShieldCheck, Database, Eye, RefreshCcw, Mail } from "lucide-react";
 import style from "./styles/policy.module.css";
 
 const Policy = () => {
-    const lastUpdated = "December 24, 2025";
+    const lastUpdated = "January 20, 2026";
 
     return (
         <>
             <SEOHelmet
                 title="Privacy Policy"
-                description="Understand how HospitoFind handles your data and protects your information within our verified hospital directory."
+                description="Read HospitoFind's Privacy Policy to understand how we collect, use, protect, and share your personal information while helping you find verified hospitals and healthcare services worldwide."
                 canonical="https://hospitofind.online/policy"
+                schemaType="policy"
+                autoBreadcrumbs={true}
+                lang="en"
             />
 
             <main className={style.policyContainer}>

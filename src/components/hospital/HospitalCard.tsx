@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { FiArrowRight, FiExternalLink, FiPhone, FiMail, FiMapPin, FiCheckCircle } from "react-icons/fi";
-import { HospitalCardProps } from "@/src/types/hospital";
+import { HospitalCardProps } from "@/types/hospital";
 import style from "./styles/hospitalCard.module.css";
 
 const HospitalCard: React.FC<HospitalCardProps> = ({ hospital }) => {

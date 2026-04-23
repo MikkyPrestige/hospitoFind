@@ -4,13 +4,17 @@ import { fadeUp } from "@/utils/animations";
 import style from "./styles/terms.module.css";
 
 const Terms = () => {
-    const lastUpdated = "December 24, 2025";
+    const lastUpdated = "January 20, 2026";
 
     return (
         <>
             <SEOHelmet
                 title="Terms of Service"
-                description="Read the terms and conditions for using the HospitoFind hospital directory simulation."
+                description="Read the complete Terms of Service for HospitoFind. Understand the rules, user responsibilities, limitations, and guidelines for using our global verified hospital directory and healthcare services."
+                canonical="https://hospitofind.online/terms"
+                schemaType="terms"
+                autoBreadcrumbs={true}
+                lang="en"
             />
 
             <main className={style.termsContainer}>

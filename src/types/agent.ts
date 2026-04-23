@@ -1,4 +1,5 @@
 export type MessageRole = 'user' | 'assistant';
+export type AgentVariant = 'hero' | 'dashboard' | 'floating';
 
 export interface Message {
   role: MessageRole;
@@ -51,6 +52,12 @@ export interface AgentState {
   contextLocation: string | null;
 }
 
+export interface HospitalContext {
+    name: string;
+    city?: string;
+    country?: string;
+}
+
 export interface ChatResponse {
   type: 'MESSAGE' | 'MATCH_READY';
   message?: string;
@@ -65,4 +72,42 @@ export interface MatchResponse {
   message?: string;
   profile: PatientProfile;
   hospitals: HospitalMatch[];
+}
+
+export interface AgentWidgetProps {
+    variant?: AgentVariant;
+    embedded?: boolean;
+    onSessionComplete?: () => void;
+    onStartOver?: () => void;
+    hospitalContext?: HospitalContext | null;
+}
+
+export interface ChatPanelProps {
+    variant: AgentVariant;
+    phase: string;
+    messages: Message[];
+    profile: PatientProfile | null;
+    hospitals: HospitalMatch[];
+    error: string | null;
+    isLoading: boolean;
+    inputValue: string;
+    inputRef: React.RefObject<HTMLInputElement>;
+    messagesContainerRef: React.RefObject<HTMLDivElement>;
+    noResults: boolean;
+    noResultsMessage: string | null;
+    noResultsRegion: string | null;
+    onInputChange: (val: string) => void;
+    onKeyDown: (e: React.KeyboardEvent<HTMLInputElement>) => void;
+    onSend: () => void;
+    onStartOver: () => void;
+    onClose: () => void;
+}
+
+export interface HospitalMatchCardsProps {
+    hospitals: HospitalMatch[];
+    profile: PatientProfile | null;
+    onStartOver: () => void;
+    noResults?: boolean;
+    noResultsRegion?: string | null;
+    noResultsMessage?: string | null;
 }

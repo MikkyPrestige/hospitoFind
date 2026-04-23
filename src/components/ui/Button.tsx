@@ -1,19 +1,24 @@
-import React from 'react';
+import React from 'react'
+import { ButtonProps } from "@/src/types/ui";
 
-type ButtonProps = {
-  children: React.ReactNode;
-} & React.ButtonHTMLAttributes<HTMLButtonElement>;
+export const Button = ({ children, className, style: inlineStyle, ...props }: ButtonProps) => {
+  const baseStyle: React.CSSProperties = {
+    backgroundColor: "var(--color-blue)",
+    color: "var(--color-invert)",
+    padding: ".5rem 1rem",
+    borderRadius: "1.5rem",
+    border: "none",
+    cursor: "pointer",
+    ...inlineStyle
+  };
 
-export const Button = ({ children, ...props }: ButtonProps) => {
-  return (<button {...props}
-    style={{
-      backgroundColor: "#08299B",
-      color: "#ffffff",
-        padding: ".5rem 1rem",
-      borderRadius: "1.5rem",
-    }}
-  >
-    {children}
-  </button>
+  return (
+    <button
+      {...props}
+      className={className}
+      style={baseStyle}
+    >
+      {children}
+    </button>
   )
 };

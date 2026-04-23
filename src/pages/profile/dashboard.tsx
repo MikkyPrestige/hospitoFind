@@ -14,35 +14,34 @@ import {
 } from "react-icons/tb";
 import { AiOutlineUserDelete, AiOutlineDown, AiOutlineUp } from "react-icons/ai";
 import Logo from "@/assets/images/logo.svg";
+import HospitalPic from "@/assets/images/hospital-logo.jpg";
 import { useAuthContext } from "@/context/UserProvider";
-import SearchForm from "@/components/search/Search";
+import { useUserActivity } from "@/hooks/useUserActivity";
 import Editor from "@/markDown/editor";
+import SearchForm from "@/components/search/Search";
 import UpdateUser from "@/components/user/UpdateUser";
 import UpdatePassword from "@/components/user/UpdatePassword";
 import DeleteBtn from "@/components/user/DeleteUser";
 import Logout from "@/components/user/LogoutUser";
+import ProfileDisplay from "@/components/user/profileDisplay";
+import { Avatar } from "@/components/ui/Avatar";
 import AccountStats from "./accountStats";
 import MySubmissions from "./Submissions";
-import ProfileDisplay from "../../components/user/profileDisplay";
 import HealthTimeline from './HealthTimeline';
-import { useUserActivity } from "@/hooks/useUserActivity";
-import style from "./styles/scss/dashboard/dashboard.module.scss";
-import HospitalPic from "@/assets/images/hospital-logo.jpg";
-import { Avatar } from "@/components/ui/Avatar";
 import Motion from "@/components/ui/Motion";
 import { fadeUp, sectionReveal, settingsTabVariants } from "@/utils/animations";
 import { AnimatePresence } from "framer-motion";
-import useAxiosPrivate from "@/hooks/useAxiosPrivate";
-import { toast } from "react-toastify";
+import style from "./styles/scss/dashboard/dashboard.module.scss";
 
 const Dashboard = () => {
+  const { state } = useAuthContext();
+  const { fetchActivity, removeFavoriteItem, removeHistoryItem } = useUserActivity();
+  const location = useLocation();
+  const navigate = useNavigate();
   const [selected, setSelected] = useState<string>("find-hospital");
   const [sidebarExpanded, setSidebarExpanded] = useState<boolean>(false);
   const [settingsTab, setSettingsTab] = useState<"profile" | "security" | "danger">("profile");
   const [isEditing, setIsEditing] = useState(false);
-  const { state } = useAuthContext();
-  const axiosPrivate = useAxiosPrivate();
-  const { fetchActivity } = useUserActivity();
   const userPrefix = state?.username || "guest";
   const FAVORITES_KEY = `${userPrefix}_favorites`;
   const RECENTLY_KEY = `${userPrefix}_recentlyViewed`;
@@ -50,8 +49,6 @@ const Dashboard = () => {
   const [favorites, setFavorites] = useState<any[]>([]);
   const [recentlyViewed, setRecentlyViewed] = useState<any[]>([]);
   const [weeklyViews, setWeeklyViews] = useState<number>(0);
-  const location = useLocation();
-  const navigate = useNavigate();
   const [savedHospitalContext, setSavedHospitalContext] = useState<{
     name: string; city?: string; country?: string;
   } | null>(null);
@@ -135,33 +132,28 @@ const Dashboard = () => {
   };
 
   const removeFavorite = async (e: React.MouseEvent, id: string) => {
-    e.preventDefault(); e.stopPropagation();
+    e.preventDefault();
+    e.stopPropagation();
 
-    const next = favorites.filter((item: any) => item._id !== id);
-    setFavorites(next);
-    localStorage.setItem(FAVORITES_KEY, JSON.stringify(next));
+    const success = await removeFavoriteItem(id);
 
-    try {
-      await axiosPrivate.delete(`/user/favorites/${id}`);
-      toast.success("Removed from saved collections");
-    } catch (err) {
-      console.error("Failed to delete favorite", err);
-      toast.error("Could not sync with server");
+    if (success) {
+      const next = favorites.filter((item: any) => item._id !== id);
+      setFavorites(next);
+      localStorage.setItem(FAVORITES_KEY, JSON.stringify(next));
     }
   };
 
   const removeRecent = async (e: React.MouseEvent, id: string) => {
-    e.preventDefault(); e.stopPropagation();
+    e.preventDefault();
+    e.stopPropagation();
 
-    const next = recentlyViewed.filter((item: any) => item._id !== id);
-    setRecentlyViewed(next);
-    localStorage.setItem(RECENTLY_KEY, JSON.stringify(next));
-    try {
-      await axiosPrivate.delete(`/user/history/${id}`);
-      toast.success("Removed from recent history");
-    } catch (err) {
-      console.error("Failed to delete history item", err);
-      toast.error("Could not sync with server");
+    const success = await removeHistoryItem(id);
+
+    if (success) {
+      const next = recentlyViewed.filter((item: any) => item._id !== id);
+      setRecentlyViewed(next);
+      localStorage.setItem(RECENTLY_KEY, JSON.stringify(next));
     }
   };
 
@@ -332,7 +324,7 @@ const Dashboard = () => {
           {selected === "add-hospital" && (
             <Motion variants={fadeUp} className={style.viewPanel}>
               <Editor />
-              </Motion>
+            </Motion>
           )}
 
           {selected === "my-submissions" && (

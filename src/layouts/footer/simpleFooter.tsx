@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import { FaCopyright } from 'react-icons/fa';
 import styles from "./styles/simpleFooter.module.css";
 
 const SimpleFooter = () => {
@@ -7,7 +8,7 @@ const SimpleFooter = () => {
     return (
         <footer className={styles.footer}>
             <div className={styles.copyright}>
-                © {year} HospitoFind. All rights reserved.
+                <FaCopyright /> {year} HospitoFind. All rights reserved.
             </div>
 
             <div className={styles.links}>

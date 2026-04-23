@@ -1,78 +1,43 @@
 import { useState, useEffect } from "react";
-import useAxiosPrivate from "@/hooks/useAxiosPrivate";
 import { Check, Trash2, MapPin, Globe, Phone, Clock } from "lucide-react";
 import { FiClock, FiEdit, FiImage, FiX } from "react-icons/fi";
-import { toast } from 'react-toastify';
-import styles from "./styles/adminPendingList.module.css";
-import { Hospital } from "@/src/types/hospital";
+import { useAdminPending } from "@/hooks/useAdminPending";
+import { Hospital } from "@/types/hospital";
 import AdminHospitalForm from "@/components/admin/adminHospitalForm";
+import styles from "./styles/adminPendingList.module.css";
 
 const AdminPendingList = () => {
-    const [hospitals, setHospitals] = useState<Hospital[]>([]);
+    const {
+        hospitals,
+        isLoading,
+        getPendingHospitals,
+        approveHospital,
+        updateAndApprove,
+        deleteSubmission
+    } = useAdminPending();
     const [isEditing, setIsEditing] = useState(false);
     const [selectedHospital, setSelectedHospital] = useState<Hospital | null>(null);
-    const [isLoading, setIsLoading] = useState(true);
-    const axiosPrivate = useAxiosPrivate();
-
-    const getPendingHospitals = async () => {
-        try {
-            setIsLoading(true);
-            const response = await axiosPrivate.get(`/admin/hospitals/pending`);
-            setHospitals(response.data);
-        } catch (err: any) {
-            toast.error(err.response?.data?.message || "Failed to load pending hospitals");
-        } finally {
-            setIsLoading(false);
-        }
-    };
 
     useEffect(() => {
         getPendingHospitals();
-    }, []);
-
-    const handleApprove = async (id: string) => {
-        try {
-            await axiosPrivate.patch(`/admin/hospitals/approve/${id}`);
-            setHospitals((prev) => prev.filter((h) => h._id !== id));
-            toast.success("Hospital approved and is now live!");
-        } catch (err: any) {
-            toast.error(err.response?.data?.message || "Approval failed");
-        }
-    };
+    }, [getPendingHospitals]);
 
     const handleEditClick = (hospital: Hospital) => {
         setSelectedHospital(hospital);
         setIsEditing(true);
     };
 
-    const handleUpdateAndApprove = async (e: React.FormEvent) => {
+    const handleFormSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
         if (!selectedHospital) return;
-
-        try {
-            await axiosPrivate.patch(
-                `/admin/hospitals/approve/${selectedHospital._id}`,
-                selectedHospital
-            );
-
-            setHospitals((prev) => prev.filter((h) => h._id !== selectedHospital._id));
-            setIsEditing(false);
-            toast.success("Hospital corrected and published live!");
-        } catch (err) {
-            toast.error("Failed to update and approve");
-        }
+        const success = await updateAndApprove(selectedHospital);
+        if (success) setIsEditing(false);
     };
 
-    const handleDelete = async (id: string) => {
+    const handleConfirmDelete = async (id: string) => {
         const target = hospitals.find(h => h._id === id);
-        if (!window.confirm(`Reject and delete "${target?.name || 'this entry'}"? This cannot be undone.`)) return;
-
-        try {
-            await axiosPrivate.delete(`/admin/hospitals/${id}`);
-            setHospitals((prev) => prev.filter((h) => h._id !== id));
-            toast.info("Submission rejected and removed.");
-        } catch (err: any) {
-            toast.error("Failed to reject submission.");
+        if (window.confirm(`Reject and delete "${target?.name || 'this entry'}"?`)) {
+            await deleteSubmission(id);
         }
     };
 
@@ -170,13 +135,13 @@ const AdminPendingList = () => {
                                 </div>
                             </div>
                             <div className={styles.cardActions}>
-                                <button onClick={() => handleApprove(hospital._id)} className={styles.btnApprove}>
+                                <button onClick={() => approveHospital(hospital._id)} className={styles.btnApprove}>
                                     <Check size={18} /> Approve
                                 </button>
                                 <button onClick={() => handleEditClick(hospital)} className={styles.btnEdit}>
                                     <FiEdit size={18} /> Review & Fix
                                 </button>
-                                <button onClick={() => handleDelete(hospital._id)} className={styles.btnDelete}>
+                                <button onClick={() => handleConfirmDelete(hospital._id)} className={styles.btnDelete}>
                                     <Trash2 size={18} />
                                 </button>
                             </div>
@@ -195,7 +160,7 @@ const AdminPendingList = () => {
                         <AdminHospitalForm
                             formData={selectedHospital}
                             setFormData={setSelectedHospital}
-                            onSubmit={handleUpdateAndApprove}
+                            onSubmit={handleFormSubmit}
                             loading={false}
                             title="Fix typos before approving"
                         />
