@@ -4,7 +4,7 @@ import { fadeUp, sectionReveal } from "@/utils/animations";
 import { useHealthTips } from "@/hooks/useHealthTips";
 import { FiExternalLink, FiSun, FiActivity, FiHeart } from "react-icons/fi";
 import style from "./styles/healthTips.module.css";
-import { SEOHelmet } from "@/src/components/ui/SeoHelmet";
+import { SEOHelmet } from "@/components/ui/SeoHelmet";
 
 const HealthTips = () => {
     const { tips, loading } = useHealthTips();

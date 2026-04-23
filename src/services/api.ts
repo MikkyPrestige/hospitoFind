@@ -1,6 +1,6 @@
-import { Hospital } from "../types/hospital";
 import axios from "axios";
-import { BASE_URL } from "@/context/UserProvider"
+import { BASE_URL } from "@/context/UserProvider";
+import { Hospital } from "@/types/hospital";
 
 export async function getHospitals() {
   try {

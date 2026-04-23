@@ -1,5 +1,5 @@
 import { useState, useEffect, useCallback } from "react";
-import { Hospital } from "@/src/types/hospital";
+import { Hospital } from "@/types/hospital";
 import { findHospitals } from "@/services/api";
 import { BASE_URL } from "@/context/UserProvider";
 

@@ -1,7 +1,7 @@
 import React from "react";
 import Skeleton from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
-import { Variant, SectionLoaderProps } from "@/src/types/app"
+import { Variant, SectionLoaderProps } from "@/types/ui"
 import styles from "./styles/sectionLoader.module.css";
 
 
