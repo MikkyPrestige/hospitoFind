@@ -20,19 +20,29 @@ export default function handler(req: VercelRequest, res: VercelResponse) {
   let description = "Instantly locate verified hospitals, clinics, doctors, and healthcare services near you.";
   let image = "https://hospitofind.online/og-default.jpg";
 
+  // === Hospital Detail Page ===
   if (url.includes('/hospital/')) {
-    title = "Hospital Details | HospitoFind";
-    description = "Verified hospital information, services, contact details, opening hours, directions, and real-time availability.";
+    const pathParts = url.split('/').filter(Boolean);
+    const city = pathParts[2] || '';
+    const slug = pathParts[3] || '';
+
+    const hospitalName = slug
+      ? slug.replace(/-/g, ' ').replace(/\b\w/g, c => c.toUpperCase())
+      : 'Hospital';
+
+    title = `${hospitalName} | ${city ? city.charAt(0).toUpperCase() + city.slice(1) : ''} - HospitoFind`;
+    description = `Verified details of ${hospitalName}. View services, doctors, contact info, opening hours, and directions.`;
     image = "https://hospitofind.online/og-hospital.jpg";
   }
+  // === Other Pages ===
   else if (url.includes('/health-tips')) {
     title = "Daily Wellness Tips & Health Advice | HospitoFind";
-    description = "Get daily actionable wellness tips for better physical and mental health. Science-backed advice from trusted experts.";
+    description = "Get daily actionable wellness tips for better physical and mental health.";
     image = "https://hospitofind.online/og-wellness.jpg";
   }
   else if (url.includes('/disease-outbreaks') || url.includes('/outbreaks')) {
     title = "Live Outbreak Alerts & Global Health Warnings | HospitoFind";
-    description = "Stay updated with real-time disease outbreak alerts, health warnings, and safety protocols worldwide.";
+    description = "Real-time disease outbreak alerts and safety protocols worldwide.";
     image = "https://hospitofind.online/og-alerts.jpg";
   }
   else if (url.includes('/health-news')) {
@@ -42,17 +52,17 @@ export default function handler(req: VercelRequest, res: VercelResponse) {
   }
   else if (url.includes('/about')) {
     title = "Our Mission | Making Healthcare Accessible Worldwide";
-    description = "Making global healthcare accessible, transparent, and verified for everyone, everywhere.";
+    description = "Making global healthcare accessible, transparent, and verified for everyone.";
     image = "https://hospitofind.online/og-about.jpg";
   }
   else if (url.includes('/directory') || url.includes('/country')) {
     title = "Global Hospital Directory | HospitoFind";
-    description = "Browse verified hospitals, clinics, and healthcare facilities worldwide by country or continent.";
+    description = "Browse verified hospitals and healthcare facilities worldwide.";
     image = "https://hospitofind.online/og-directory.jpg";
   }
   else if (url.includes('/share/')) {
     title = "Shared Hospitals | HospitoFind";
-    description = "Shared list of verified hospitals and healthcare facilities from HospitoFind.";
+    description = "Shared list of verified hospitals and healthcare facilities.";
     image = "https://hospitofind.online/og-share.jpg";
   }
 
@@ -65,7 +75,6 @@ export default function handler(req: VercelRequest, res: VercelResponse) {
     <title>${title}</title>
     <meta name="description" content="${description}">
 
-    <!-- Open Graph -->
     <meta property="og:title" content="${title}" />
     <meta property="og:description" content="${description}" />
     <meta property="og:type" content="website" />
@@ -74,18 +83,13 @@ export default function handler(req: VercelRequest, res: VercelResponse) {
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
     <meta property="og:image:alt" content="HospitoFind" />
-    <meta property="og:site_name" content="HospitoFind" />
 
-    <!-- Twitter Cards -->
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content="${title}" />
     <meta name="twitter:description" content="${description}" />
     <meta name="twitter:image" content="${image}" />
 </head>
-<body>
-    <h1>HospitoFind</h1>
-    <p>Loading the best healthcare directory...</p>
-</body>
+<body></body>
 </html>`;
 
   res.setHeader('Content-Type', 'text/html; charset=utf-8');
