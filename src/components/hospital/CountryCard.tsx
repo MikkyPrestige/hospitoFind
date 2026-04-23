@@ -3,17 +3,12 @@ import ReactCountryFlag from "react-country-flag";
 import * as countries from "i18n-iso-countries";
 import enLocale from "i18n-iso-countries/langs/en.json";
 import { FiGlobe } from 'react-icons/fi';
+import { CountryCardProps } from "@/types/hospital";
 import style from "./styles/countryCard.module.css";
 
 // @ts-ignore
 const iso = countries.default ? countries.default : countries;
 iso.registerLocale(enLocale);
-
-interface CountryCardProps {
-  country: string;
-  count: number;
-}
-
 
 const CountryCard: React.FC<CountryCardProps> = ({ country, count }) => {
   const getCountryCode = (name: string) => {
@@ -35,9 +30,9 @@ const CountryCard: React.FC<CountryCardProps> = ({ country, count }) => {
             title={country}
           />
         ) : (
-            <span className={style.fallbackEmoji} role="img" aria-label="Globe">
-              <FiGlobe color="royalblue" size="2em" />
-            </span>
+          <span className={style.fallbackEmoji} role="img" aria-label="Globe">
+            <FiGlobe color="royalblue" size="2em" />
+          </span>
         )}
       </div>
 

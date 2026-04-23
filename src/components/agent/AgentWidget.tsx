@@ -3,16 +3,8 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import { FiX, FiSend, FiMessageCircle, FiRefreshCw, FiUser } from 'react-icons/fi';
 import { useAgent } from '@/hooks/useAgent';
 import HospitalMatchCards from './HospitalMatchCards';
+import type { AgentVariant, HospitalContext, ChatPanelProps, AgentWidgetProps } from '@/types/agent';
 import style from './styles/widget/AgentWidget.module.scss';
-import type { Message, PatientProfile, HospitalMatch } from '@/src/types/agent';
-
-export type AgentVariant = 'hero' | 'dashboard' | 'floating';
-
-export interface HospitalContext {
-    name: string;
-    city?: string;
-    country?: string;
-}
 
 const TypingIndicator = () => (
     <div className={style.typingIndicator}>
@@ -32,27 +24,6 @@ const MessageBubble = ({ role, content }: { role: string; content: string }) => 
         </div>
     </div>
 );
-
-interface ChatPanelProps {
-    variant: AgentVariant;
-    phase: string;
-    messages: Message[];
-    profile: PatientProfile | null;
-    hospitals: HospitalMatch[];
-    error: string | null;
-    isLoading: boolean;
-    inputValue: string;
-    inputRef: React.RefObject<HTMLInputElement>;
-    messagesContainerRef: React.RefObject<HTMLDivElement>;
-    noResults: boolean;
-    noResultsMessage: string | null;
-    noResultsRegion: string | null;
-    onInputChange: (val: string) => void;
-    onKeyDown: (e: React.KeyboardEvent<HTMLInputElement>) => void;
-    onSend: () => void;
-    onStartOver: () => void;
-    onClose: () => void;
-}
 
 const ChatPanel = ({
     variant, phase, messages, profile, hospitals, error, isLoading,
@@ -152,14 +123,6 @@ const ChatPanel = ({
 );
 
 //  Main widget
-interface AgentWidgetProps {
-    variant?: AgentVariant;
-    embedded?: boolean;
-    onSessionComplete?: () => void;
-    onStartOver?: () => void;
-    hospitalContext?: HospitalContext | null;
-}
-
 const AgentWidget = ({
     variant: variantProp,
     embedded,
@@ -171,12 +134,12 @@ const AgentWidget = ({
     const navigate = useNavigate();
     const variant: AgentVariant = variantProp ?? (embedded ? 'hero' : 'floating');
     const isEmbedded = variant !== 'floating';
-
     const [isOpen, setIsOpen] = useState(false);
     const [inputValue, setInputValue] = useState('');
     const messagesContainerRef = useRef<HTMLDivElement>(null);
     const inputRef = useRef<HTMLInputElement>(null);
     const hospitalContextRef = useRef<HospitalContext | null | undefined>(hospitalContext);
+
     useEffect(() => {
         hospitalContextRef.current = hospitalContext;
     }, [hospitalContext]);
@@ -202,6 +165,7 @@ const AgentWidget = ({
         const el = messagesContainerRef.current;
         if (el) el.scrollTop = el.scrollHeight;
     }, []);
+
     useEffect(() => { scrollToBottom(); }, [messages, isLoading, scrollToBottom]);
 
     useEffect(() => {
@@ -237,7 +201,6 @@ const AgentWidget = ({
         // Priority 3: Standard greeting
         startConversation();
     }, [startConversation, startConversationWithContext, navigate, location.pathname]);
-    // Note: hospitalContext intentionally NOT in deps — read via ref instead
 
     //  Auto-start
     useEffect(() => {

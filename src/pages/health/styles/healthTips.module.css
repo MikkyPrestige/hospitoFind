@@ -48,7 +48,6 @@ background: var(--bg-blue-tag);
   margin: 0 auto;
 }
 
-/* --- GRID --- */
 .container {
   max-width: 1200px;
   margin: 0 auto;
@@ -62,7 +61,7 @@ background: var(--bg-blue-tag);
 
 .tipCard {
 background: var(--color-white);
-  border-radius: 20px;
+  border-radius: 2rem;
   overflow: hidden;
   box-shadow: var(--shadow-card);
   border: 1px solid var(--color-border);
@@ -78,7 +77,6 @@ background: var(--color-white);
   border-color: rgba(8, 41, 155, 0.2);
 }
 
-/* --- IMAGE --- */
 .imageWrapper {
   height: 200px;
   position: relative;
@@ -113,7 +111,7 @@ background: var(--color-white);
 }
 
 .placeholderIcon {
-  color: var(--icon-gray-light);
+  color: var(--color-gray);
   margin-bottom: 0.2rem;
 }
 
@@ -125,14 +123,13 @@ position: absolute;
   color: var(--color-blue);
   padding: 0.3rem 0.8rem;
   border-radius: 8px;
-  font-size: 1rem;
+  font-size: 1.1rem;
   font-weight: 800;
   text-transform: uppercase;
   letter-spacing: 0.05em;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
 }
 
-/* --- CONTENT --- */
 .content {
   padding: 1.5rem;
   display: flex;
@@ -142,7 +139,7 @@ position: absolute;
 
 .title {
  font-family: var(--font-plus);
-  font-size: 1.3rem;
+  font-size: 1.4rem;
   color: var(--color-black);
   font-weight: 800;
   margin-bottom: 0.5rem;

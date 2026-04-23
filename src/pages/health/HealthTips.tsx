@@ -1,56 +1,14 @@
-import { useEffect, useState } from "react";
 import Motion from "@/components/ui/Motion";
-import { fadeUp, sectionReveal } from "@/utils/animations";
 import AnimatedLoader from "@/components/ui/AnimatedLoader";
-import style from "./styles/healthTips.module.css";
-import { BASE_URL } from "@/context/UserProvider";
+import { fadeUp, sectionReveal } from "@/utils/animations";
+import { useHealthTips } from "@/hooks/useHealthTips";
 import { FiExternalLink, FiSun, FiActivity, FiHeart } from "react-icons/fi";
-
-type Tip = {
-    Title: string;
-    ImageUrl: string;
-    ImageAlt: string;
-    Link: string;
-    Category?: string;
-};
+import style from "./styles/healthTips.module.css";
+import { SEOHelmet } from "@/src/components/ui/SeoHelmet";
 
 const HealthTips = () => {
-    const [tips, setTips] = useState<Tip[]>([]);
-    const [loading, setLoading] = useState(true);
+    const { tips, loading } = useHealthTips();
 
-    useEffect(() => {
-        const today = new Date().toISOString().split("T")[0];
-        const storedTips = localStorage.getItem("dailyHealthTips");
-        const storedDate = localStorage.getItem("dailyHealthTipDate");
-
-        if (storedTips && storedDate === today) {
-            setTips(JSON.parse(storedTips));
-            setLoading(false);
-            return;
-        }
-
-        const fetchTips = async () => {
-            try {
-                setLoading(true);
-                const res = await fetch(`${BASE_URL}/health/tips`);
-                const data = await res.json();
-
-                if (Array.isArray(data) && data.length > 0) {
-                    setTips(data);
-                    localStorage.setItem("dailyHealthTips", JSON.stringify(data));
-                    localStorage.setItem("dailyHealthTipDate", today);
-                }
-            } catch (err) {
-                console.error("Failed to fetch tips", err);
-            } finally {
-                setLoading(false);
-            }
-        };
-
-        fetchTips();
-    }, []);
-
-    // Random icon for placeholder
     const getRandomIcon = (index: number) => {
         const icons = [<FiSun size={30} />, <FiHeart size={30} />, <FiActivity size={30} />];
         return icons[index % icons.length];
@@ -58,6 +16,16 @@ const HealthTips = () => {
 
     return (
         <>
+            <SEOHelmet
+                title="Daily Wellness Tips & Health Advice"
+                description="Get daily actionable wellness tips for better physical and mental health. Science-backed advice on lifestyle, fitness, nutrition, and mindfulness from trusted experts."
+                canonical="https://hospitofind.online/health-tips"
+                schemaType="healthTips"
+                schemaData={tips}
+                autoBreadcrumbs={true}
+                lang="en"
+            />
+
             <section className={style.section}>
                 <Motion variants={sectionReveal} className={style.pageHeader}>
                     <div className={style.titleGroup}>

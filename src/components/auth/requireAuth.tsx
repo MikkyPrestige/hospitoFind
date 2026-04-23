@@ -1,14 +1,12 @@
 import { useLocation, Navigate, Outlet } from "react-router-dom";
-import { useAuthContext } from "@/context/UserProvider";
 import { useAuth0 } from "@auth0/auth0-react";
 import { motion } from "framer-motion";
+import { useAuthContext } from "@/context/UserProvider";
+import { RequireAuthProps } from "@/types/auth";
 import Logo from "@/assets/images/logo.svg";
+import styles from "./styles/requireAuth.module.css";
 
-interface Props {
-    allowedRoles: ("user" | "admin")[];
-}
-
-const RequireAuth = ({ allowedRoles }: Props) => {
+const RequireAuth = ({ allowedRoles }: RequireAuthProps) => {
     const { state } = useAuthContext();
     const { isLoading: auth0Loading } = useAuth0();
     const location = useLocation();
@@ -17,15 +15,11 @@ const RequireAuth = ({ allowedRoles }: Props) => {
 
     if (isSyncing) {
         return (
-            <div style={{
-                display: "flex", flexDirection: "column", justifyContent: "center",
-                alignItems: "center", height: "100vh",
-                backgroundColor: "var(--color-bg)",
-            }}>
+            <div className={styles.loaderContainer}>
                 <motion.img
                     src={Logo}
                     alt="HospitoFind Loading"
-                    style={{ width: 60, height: 60, marginBottom: "1.2rem" }}
+                    className={styles.logo}
                     animate={{
                         scale: [1, 1.15, 1],
                         opacity: [0.6, 1, 0.6]
@@ -36,13 +30,7 @@ const RequireAuth = ({ allowedRoles }: Props) => {
                         ease: "easeInOut"
                     }}
                 />
-                <p style={{
-                    color: "var(--color-blue)",
-                    fontSize: "1rem",
-                    fontWeight: 600,
-                    letterSpacing: "0.5px",
-                    fontFamily: "var(--font-inter)"
-                }}>
+                <p className={styles.statusText}>
                     Verifying permissions...
                 </p>
             </div>

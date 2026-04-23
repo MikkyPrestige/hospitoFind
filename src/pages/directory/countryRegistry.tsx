@@ -1,81 +1,48 @@
 import React, {
-  useEffect,
   useState,
   useRef,
   useCallback,
   useMemo
 } from "react";
 import { useParams, Link } from "react-router-dom";
+import { useCountryHospitals } from "@/hooks/useCountryHospitals";
 import HospitalCard from "@/components/hospital/HospitalCard";
-import { Hospital } from "@/types/hospital";
 import { FiArrowLeft, FiSearch } from "react-icons/fi";
-import style from "./styles/countryRegistry.module.css";
 import Motion from "@/components/ui/Motion";
 import { fadeUp } from "@/utils/animations";
 import { SEOHelmet } from "@/components/ui/SeoHelmet";
 import AnimatedLoader from "@/components/ui/AnimatedLoader";
-
-interface HospitalResponse {
-  hospitals?: Hospital[];
-  totalPages?: number;
-}
+import style from "./styles/countryRegistry.module.css";
 
 const CountryRegistry: React.FC = () => {
   const { country } = useParams<{ country: string }>();
-  const [hospitals, setHospitals] = useState<Hospital[]>([]);
-  const [loading, setLoading] = useState<boolean>(true);
-  const [page, setPage] = useState<number>(1);
-  const [totalPages, setTotalPages] = useState<number>(1);
-  const [fetchingMore, setFetchingMore] = useState<boolean>(false);
   const [searchTerm, setSearchTerm] = useState("");
   const [activeType, setActiveType] = useState("All");
   const observerRef = useRef<IntersectionObserver | null>(null);
-  const decodedCountry = useMemo(() => decodeURIComponent(country || ""), [country]);
+  const {
+    hospitals,
+    loading,
+    fetchingMore,
+    totalPages,
+    page,
+    decodedCountry,
+    loadMore
+  } = useCountryHospitals(country);
 
-  const fetchHospitals = useCallback(async () => {
-    try {
-      if (page === 1) setLoading(true);
-      else setFetchingMore(true);
 
-      const res = await fetch(
-        `${import.meta.env.VITE_BASE_URL}/hospitals/country/${encodeURIComponent(
-          decodedCountry
-        )}?page=${page}&limit=9`
-      );
-
-      if (!res.ok) throw new Error("Fetch failed");
-
-      const data: HospitalResponse | Hospital[] = await res.json();
-      const hospitalData = Array.isArray(data) ? data : data.hospitals || [];
-      const total = Array.isArray(data) ? 1 : data.totalPages || 1;
-
-      setHospitals((prev) => (page === 1 ? hospitalData : [...prev, ...hospitalData]));
-      setTotalPages(total);
-    } catch (err) {
-      console.error("Error fetching:", err);
-    } finally {
-      setLoading(false);
-      setFetchingMore(false);
-    }
-  }, [page, decodedCountry]);
-
-  useEffect(() => {
-    fetchHospitals();
-  }, [fetchHospitals]);
-
-  // Infinite Scroll
+  // Infinite Scroll Observer
   const lastItemRef = useCallback(
     (node: Element | null) => {
       if (loading || fetchingMore || page >= totalPages) return;
       if (observerRef.current) observerRef.current.disconnect();
 
       observerRef.current = new IntersectionObserver((entries) => {
-        if (entries[0].isIntersecting) setPage((p) => p + 1);
+        if (entries[0].isIntersecting) loadMore();
       });
 
       if (node) observerRef.current.observe(node);
     },
-    [loading, fetchingMore, page, totalPages]
+    [loading, fetchingMore, page, totalPages, loadMore]
   );
 
   const filteredHospitals = useMemo(() => {
@@ -89,12 +56,13 @@ const CountryRegistry: React.FC = () => {
   return (
     <>
       <SEOHelmet
-        title={`Verified Hospitals in ${decodedCountry}`}
-        description={`Browse ${hospitals.length}+ verified hospitals and clinics in ${decodedCountry}. View services, contact info, and directions.`}
+        title={`Verified Hospitals in ${decodedCountry} | HospitoFind`}
+        description={`Browse ${hospitals.length}+ verified hospitals, clinics, and emergency centers in ${decodedCountry}. Find detailed services, contact info, directions, opening hours, and real-time availability.`}
         canonical={`https://hospitofind.online/directory/${decodedCountry.toLowerCase()}`}
         schemaType="country"
         schemaData={hospitals}
-        autoBreadcrumbs={true}
+        autoBreadcrumbs={false}
+        lang="en"
       />
 
       <div className={style.layoutContainer}>

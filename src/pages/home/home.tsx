@@ -1,42 +1,14 @@
 import { useState, useEffect, useRef } from 'react'
-import { BASE_URL } from "@/context/UserProvider"
-import HeroImage from '@/assets/images/mother.png'
-import style from './styles/home.module.scss'
+import { HiSparkles } from 'react-icons/hi2'
+import { useGlobalStats } from '@/hooks/useGlobalStats'
+import { TYPEWRITER_PHRASES, HOW_IT_WORKS } from "@/components/constants/homeConstants";
 import NearbyHospitals from '@/components/hospital/NearbyHospital'
 import AgentWidget from '@/components/agent/AgentWidget'
 import Motion from '@/components/ui/Motion'
 import { fadeUp, sectionReveal } from '@/utils/animations'
 import { SEOHelmet } from '@/components/ui/SeoHelmet'
-import { FiSearch, FiCheckCircle, FiHeart } from 'react-icons/fi'
-import { HiSparkles } from 'react-icons/hi2'
-
-const TYPEWRITER_PHRASES = [
-  'Describe your symptoms.',
-  'Find care near you.',
-  'Get matched in seconds.',
-  'Your health journey starts here.',
-]
-
-const HOW_IT_WORKS = [
-  {
-    icon: <FiSearch size={22} />,
-    step: '01',
-    title: 'Describe Your Needs',
-    desc: 'Tell our AI assistant your symptoms and location to get started.',
-  },
-  {
-    icon: <FiCheckCircle size={22} />,
-    step: '02',
-    title: 'Get Matched',
-    desc: 'We surface the best-fit verified hospitals based on your specific situation.',
-  },
-  {
-    icon: <FiHeart size={22} />,
-    step: '03',
-    title: 'Get Care',
-    desc: 'View profiles, get directions, and connect with the right facility fast.',
-  },
-]
+import HeroImage from '@/assets/images/mother.png'
+import style from './styles/home.module.scss'
 
 const useTypewriter = (
   phrases: string[],
@@ -79,55 +51,19 @@ const useTypewriter = (
 }
 
 const Home = () => {
-  const [hospitalCount, setHospitalCount] = useState<number | null>(null)
-  const [countryCount, setCountryCount] = useState<number | null>(null)
+  const { totalHospitals, totalCountries, loading, error } = useGlobalStats();
   const typewriterText = useTypewriter(TYPEWRITER_PHRASES)
 
-  useEffect(() => {
-    const fetchStats = async () => {
-      try {
-        const [countRes, countryRes] = await Promise.all([
-          fetch(`${BASE_URL}/hospitals/count`),
-          fetch(`${BASE_URL}/hospitals/stats/countries`),
-        ])
-        const countData = await countRes.json()
-        const countryData = await countryRes.json()
-        setHospitalCount(countData.total)
-        setCountryCount(countryData.length)
-      } catch (err) {
-        console.error('Failed to fetch stats:', err)
-      }
-    }
-    fetchStats()
-  }, [])
 
   return (
     <>
       <SEOHelmet
         title="Find Trusted Hospitals Near You | Global Healthcare Directory"
-        description="Instantly locate verified hospitals, clinics, and emergency centers worldwide. View services, contact info, and real-time health alerts."
+        description="Instantly locate verified hospitals, clinics, emergency centers, and doctors worldwide. Search by location, specialty, or 24/7 services with real-time availability."
         canonical="https://hospitofind.online"
-        image="/src/assets/images/hero.png"
-        schemaType="global"
-        schemaData={[]}
-        autoBreadcrumbs={false}
-        extraSchema={[
-          {
-            '@context': 'https://schema.org',
-            '@type': 'SiteNavigationElement',
-            name: ['find-hospital', 'About', 'directory', 'Dashboard', 'health-tips', 'disease-outbreaks', 'faq', 'policy', 'terms'],
-            url: [
-              'https://hospitofind.online/find-hospital',
-              'https://hospitofind.online/directory',
-              'https://hospitofind.online/about',
-              'https://hospitofind.online/health-tips',
-              'https://hospitofind.online/disease-outbreaks',
-              'https://hospitofind.online/faq',
-              'https://hospitofind.online/policy',
-              'https://hospitofind.online/terms',
-            ],
-          },
-        ]}
+        schemaType="homepage"
+        lang="en"
+        autoBreadcrumbs={true}
       />
 
       <main className={style.bg}>
@@ -173,17 +109,17 @@ const Home = () => {
           <div className={style.statsBar}>
             <div className={style.statItem}>
               <span className={style.statValue}>
-                {hospitalCount !== null
-                  ? `${hospitalCount.toLocaleString()}+`
-                  : <span className={style.shimmer} />}
+                {!loading && !error && totalHospitals !== null
+                  ? `${totalHospitals.toLocaleString()}+`
+                  : <div className={style.shimmer} aria-busy="true" />}
               </span>
               <span className={style.statLabel}>Verified Hospitals</span>
             </div>
             <div className={style.statItem}>
               <span className={style.statValue}>
-                {countryCount !== null
-                  ? `${countryCount}+`
-                  : <span className={style.shimmer} />}
+                {!loading && !error && totalCountries !== null
+                  ? `${totalCountries}+`
+                  : <div className={style.shimmer} aria-busy="true" />}
               </span>
               <span className={style.statLabel}>Countries Covered</span>
             </div>

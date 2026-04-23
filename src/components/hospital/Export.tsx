@@ -1,10 +1,10 @@
 import { useState } from 'react';
-import { exportHospital } from '@/services/api';
-import style from './styles/scss/shareExport/shareExport.module.scss';
 import { TiExport, TiTick } from 'react-icons/ti';
-import { SearchProps } from '@/src/types/hospital';
+import { exportHospital } from '@/services/api';
+import { SearchProps } from '@/types/hospital';
 import Motion from '@/components/ui/Motion';
 import { fadeUp } from '@/utils/animations';
+import style from './styles/scss/shareExport/shareExport.module.scss';
 
 const ExportButton = ({ searchParams }: SearchProps) => {
   const [exporting, setExporting] = useState<boolean>(false);

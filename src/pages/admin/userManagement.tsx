@@ -1,16 +1,20 @@
-import { useState, useEffect } from "react";
-import useAxiosPrivate from "@/hooks/useAxiosPrivate";
+import { useState } from "react";
 import {
     FiSearch, FiRefreshCcw, FiTrash2, FiUserPlus,
     FiX, FiFilter, FiPower, FiShield
 } from "react-icons/fi";
-import { toast } from "react-toastify";
+import { useAdminUsers } from "@/hooks/useAdminUsers";
 import styles from "./styles/scss/userManagement/userManagement.module.scss";
-import { UserData } from "@/src/types/user";
 
 const UserManagement = () => {
-    const [users, setUsers] = useState<UserData[]>([]);
-    const [isLoading, setIsLoading] = useState(true);
+    const {
+        users,
+        isLoading,
+        createUser,
+        toggleRole,
+        toggleStatus,
+        deleteUser
+    } = useAdminUsers();
     const [searchTerm, setSearchTerm] = useState("");
     const [roleFilter, setRoleFilter] = useState("all");
     const [statusFilter, setStatusFilter] = useState("all");
@@ -19,72 +23,13 @@ const UserManagement = () => {
         username: "", email: "", password: "", role: "user"
     });
 
-    const axiosPrivate = useAxiosPrivate();
-
-    const fetchUsers = async () => {
-        try {
-            setIsLoading(true);
-            const response = await axiosPrivate.get("/admin/users");
-            setUsers(response.data);
-        } catch (err) {
-            console.error("Failed to fetch users", err);
-            toast.error("Could not load user directory");
-        } finally {
-            setIsLoading(false);
-        }
-    };
-
-    useEffect(() => { fetchUsers(); }, []);
-
     const handleCreateUser = async (e: React.FormEvent) => {
         e.preventDefault();
-        try {
-            await axiosPrivate.post("/admin/users", formData);
-            toast.success("User created successfully!");
+        const isSuccess = await createUser(formData);
+
+        if (isSuccess) {
             setShowModal(false);
             setFormData({ username: "", email: "", password: "", role: "user" });
-            fetchUsers();
-        } catch (err: any) {
-            toast.error(err.response?.data?.message || "Error creating user");
-        }
-    };
-
-    const toggleRole = async (userId: string, currentRole: string) => {
-        const newRole = currentRole === "admin" ? "user" : "admin";
-        if (!window.confirm(`Are you sure you want to change this user to ${newRole.toUpperCase()}?`)) return;
-        try {
-            await axiosPrivate.patch("/admin/users/role", { userId, newRole });
-            toast.success(`Role updated to ${newRole}`);
-            fetchUsers();
-        } catch (err) {
-            toast.error("Failed to update role");
-        }
-    };
-
-    const toggleStatus = async (userId: string) => {
-        try {
-            const response = await axiosPrivate.patch(`/admin/users/${userId}`);
-            const newStatus = response.data.isActive;
-            setUsers(prevUsers =>
-                prevUsers.map(user =>
-                    user._id === userId ? { ...user, isActive: newStatus } : user
-                )
-            );
-            toast.success(newStatus ? "User activated" : "User suspended");
-        } catch (err) {
-            console.error(err);
-            toast.error("Failed to update status");
-        }
-    };
-
-    const handleDeleteUser = async (id: string, username: string) => {
-        if (!window.confirm(`PERMANENTLY DELETE ${username}? This cannot be undone.`)) return;
-        try {
-            await axiosPrivate.delete(`/admin/users/${id}`);
-            setUsers(prev => prev.filter(u => u._id !== id));
-            toast.success("User permanently removed");
-        } catch (err) {
-            toast.error("Delete failed");
         }
     };
 
@@ -191,7 +136,7 @@ const UserManagement = () => {
                                             <button onClick={() => toggleRole(user._id, user.role)} title="Change Role" className={styles.roleBtn}>
                                                 <FiRefreshCcw />
                                             </button>
-                                            <button onClick={() => handleDeleteUser(user._id, user.username)} className={styles.deleteBtn} title="Delete Account">
+                                            <button onClick={() => deleteUser(user._id, user.username)} className={styles.deleteBtn} title="Delete Account">
                                                 <FiTrash2 />
                                             </button>
                                         </div>

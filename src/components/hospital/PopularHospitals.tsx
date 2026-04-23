@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { getRandomHospitals } from "@/services/api";
-import { Hospital } from "@/src/types/hospital";
+import { Hospital } from "@/types/hospital";
 import { Avatar } from "@/components/ui/Avatar";
 import Motion from "@/components/ui/Motion";
 import { fadeUp, sectionReveal } from "@/utils/animations";
@@ -63,12 +63,7 @@ const PopularHospitals = () => {
                 <Avatar
                   image={hospital.photoUrl || HospitalPic}
                   alt={`${hospital.name} facility`}
-                  style={{
-                    width: "100%",
-                    height: "100%",
-                    borderRadius: "0",
-                    objectFit: "cover",
-                  }}
+                  className={style.avatar}
                 />
               </div>
               <div className={style.details}>
