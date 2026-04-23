@@ -1,8 +1,7 @@
+import axios from "axios";
 import { useEffect } from "react";
 import { useAuthContext, BASE_URL } from "@/context/UserProvider";
 import { api } from "@/services/api";
-import axios from "axios";
-
 
 const useAxiosPrivate = () => {
     const { state, dispatch } = useAuthContext();

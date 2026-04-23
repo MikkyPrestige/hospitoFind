@@ -1,6 +1,6 @@
+import axios from "axios";
 import { useState, useEffect } from "react";
 import { useLocation } from "react-router-dom";
-import axios from "axios";
 import { useAuthContext, BASE_URL } from "@/context/UserProvider";
 
 export const usePersistLogin = () => {

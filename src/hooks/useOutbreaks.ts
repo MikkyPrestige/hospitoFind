@@ -1,7 +1,7 @@
 import { useState, useEffect, useCallback } from "react";
 import { BASE_URL } from "@/context/UserProvider";
 import { Alert, UseOutbreaksReturn} from "@/types/media";
-import {continentData} from "@/src/components/constants/outbreakConstants"
+import {continentData} from "@/components/constants/outbreakConstants"
 
 export const useOutbreaks = (): UseOutbreaksReturn => {
     const [alerts, setAlerts] = useState<Alert[]>([]);
