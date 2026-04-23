@@ -1,126 +1,34 @@
-import { useEffect, useState, useRef } from "react";
+import { useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
-import { AnimatePresence } from "framer-motion";
-import { fadeUp, sectionReveal } from "@/utils/animations";
-import { useTheme } from "@/context/ThemeProvider";
-import Motion from "@/components/ui/Motion";
-import style from "./styles/hospitalDetails.module.css";
-import { Button } from "@/components/ui/Button";
-import { getHospitalDetails, getHospitalByName } from "@/services/api";
-import useAxiosPrivate from "@/hooks/useAxiosPrivate";
-import { SEOHelmet } from "@/components/ui/SeoHelmet";
-import AnimatedLoader from "@/components/ui/AnimatedLoader";
-import Logo from "@/assets/images/logo.svg";
 import {
     MdLocationOn, MdPhone, MdEmail, MdLanguage, MdVerified,
-    MdOutlinePrint, MdInfoOutline, MdErrorOutline, MdAccessTime, MdLocalHospital
+    MdOutlinePrint, MdInfoOutline, MdErrorOutline, MdAccessTime, MdLocalHospital, MdAutoAwesome
 } from "react-icons/md";
 import { AiFillHeart, AiOutlineHeart, AiOutlineArrowLeft } from "react-icons/ai";
+import { AnimatePresence } from "framer-motion";
 import { useAuthContext } from "@/context/UserProvider";
-import { toast } from "react-toastify";
+import { useTheme } from "@/context/ThemeProvider";
+import { useHospitalDetails } from "@/hooks/useHospitalDetails";
+import Motion from "@/components/ui/Motion";
+import { Button } from "@/components/ui/Button";
+import { SEOHelmet } from "@/components/ui/SeoHelmet";
+import AnimatedLoader from "@/components/ui/AnimatedLoader";
+import { fadeUp, sectionReveal } from "@/utils/animations";
+import Logo from "@/assets/images/logo.svg";
+import style from "./styles/hospitalDetails.module.css";
+import { FaArrowRight } from "react-icons/fa";
 
 const HospitalDetails = () => {
     const { theme } = useTheme();
     const { id, country, city, slug, name } = useParams();
     const { state } = useAuthContext();
-    const [hospital, setHospital] = useState<any>(null);
-    const [loading, setLoading] = useState(true);
-    const [isExiting, setIsExiting] = useState(false);
-    const [isFavorite, setIsFavorite] = useState(false);
-    const lastRecordedId = useRef<string | null>(null);
     const navigate = useNavigate();
-    const axiosPrivate = useAxiosPrivate();
-    const userPrefix = state?.username || "guest";
-    const FAV_KEY = `${userPrefix}_favorites`;
-    const REC_KEY = `${userPrefix}_recentlyViewed`;
-
-    const addToHistory = async (hospitalData: any) => {
-        if (!hospitalData) return;
-        try {
-            const raw = JSON.parse(localStorage.getItem(REC_KEY) || "[]");
-            const next = [
-                { ...hospitalData, viewedAt: Date.now() },
-                ...raw.filter((h: any) => h._id !== hospitalData._id)
-            ].slice(0, 10);
-            localStorage.setItem(REC_KEY, JSON.stringify(next));
-        } catch (e) { console.error("Local history error", e); }
-
-        if (state.accessToken && hospitalData._id) {
-            try {
-                await axiosPrivate.post("/user/view", { hospitalId: hospitalData._id });
-            } catch (err) { console.warn("Background history sync failed"); }
-        }
-    };
-
-    useEffect(() => {
-        const fetchHospital = async () => {
-            try {
-                setLoading(true);
-                let res;
-
-                if (name) {
-                    // Scenario A: Name only
-                    res = await getHospitalByName(name);
-                } else if (slug && country && city) {
-                    // Scenario B: Full SEO Link
-                    res = await getHospitalDetails({ id, country, city, slug });
-                } else if (id) {
-                    // Scenario C: Accessed via ID (Fallback)
-                    res = await getHospitalDetails({ id });
-                }
-
-                if (!res) throw new Error("Hospital data not found");
-
-                setHospital(res);
-
-                const saved = JSON.parse(localStorage.getItem(FAV_KEY) || "[]");
-                const isFav = saved.some((h: any) => h._id === res._id || h.name === res.name);
-                setIsFavorite(isFav);
-
-                if (res?._id && lastRecordedId.current !== res._id) {
-                    addToHistory(res);
-                    lastRecordedId.current = res._id;
-                }
-
-            } catch (err) {
-                console.error("Fetch error:", err);
-            } finally {
-                setLoading(false);
-            }
-        };
-
-        fetchHospital();
-    }, [id, country, city, slug, name, FAV_KEY]);
-
-    const toggleFavorite = async () => {
-        if (!hospital) return;
-        const previousState = isFavorite;
-        setIsFavorite(!previousState);
-
-        const saved = JSON.parse(localStorage.getItem(FAV_KEY) || "[]");
-        let next;
-        if (previousState === true) {
-            next = saved.filter((h: any) => h._id !== hospital._id && h.name !== hospital.name);
-        } else {
-            next = [{ ...hospital, savedAt: Date.now() }, ...saved];
-        }
-        localStorage.setItem(FAV_KEY, JSON.stringify(next));
-
-        if (state.accessToken && hospital._id) {
-            try {
-                await axiosPrivate.post(`/user/favorites-status/${hospital._id}`);
-                if (!previousState) toast.success("Saved to your dashboard");
-                else toast.info("Removed from saved list");
-            } catch (err) {
-                setIsFavorite(previousState);
-                localStorage.setItem(FAV_KEY, JSON.stringify(saved));
-                toast.error("Unable to save changes.");
-            }
-        } else if (!state.accessToken && !previousState) {
-            toast.success("Saved to guest favorites");
-        }
-    };
-
+    const [isExiting, setIsExiting] = useState(false);
+    const { hospital, loading, isFavorite, toggleFavorite } = useHospitalDetails({
+        id, country, city, slug, name,
+        accessToken: state?.accessToken,
+        username: state?.username
+    });
 
     const handleMatchMe = () => {
         const hospitalContext = {
@@ -148,6 +56,7 @@ const HospitalDetails = () => {
 
     const handleBack = () => {
         setIsExiting(true);
+        navigate(-1);
     };
 
     if (loading) {
@@ -188,13 +97,13 @@ const HospitalDetails = () => {
     return (
         <>
             <SEOHelmet
-                title={hospital.name}
-                description={`${hospital.name} - Verified healthcare facility in ${hospital.address?.city || ""}.`}
-                canonical={`https://hospitofind.online/hospital/${hospital.address?.state}/${hospital.address?.city}/${hospital.slug}`}
-                image={hospital.photoUrl}
+                title={`${hospital.name} | ${hospital.address?.city || ""}, ${hospital.address?.country || ""}`}
+                description={`Verified details for ${hospital.name} in ${hospital.address?.city || ""}. View services, doctors, contact number, opening hours, directions, and real-time availability. Book appointments or visit this trusted healthcare facility.`}
+                canonical={`https://hospitofind.online/hospital/${hospital.address?.state?.toLowerCase()}/${hospital.address?.city?.toLowerCase()}/${hospital.slug}`}
                 schemaType="hospital"
                 schemaData={hospital}
                 autoBreadcrumbs={true}
+                lang="en"
             />
 
             <AnimatePresence mode="wait" onExitComplete={() => navigate(-1)}>
@@ -248,7 +157,7 @@ const HospitalDetails = () => {
                                                 <MdOutlinePrint size={20} /> Print
                                             </button>
                                             <button type="button" onClick={handleMatchMe} className={style.matchBtn}>
-                                                ✦ Match Me Here
+                                                <MdAutoAwesome /> Match Me Here
                                             </button>
                                         </div>
                                     </div>
@@ -292,7 +201,7 @@ const HospitalDetails = () => {
                                                 <div className={style.iconWrapper}><MdLanguage /></div>
                                                 <div className={style.contactContent}>
                                                     <span className={style.contactLabel}>Online</span>
-                                                    <a href={hospital.website} target="_blank" rel="noopener noreferrer" className={style.infoLink}>Visit Website →</a>
+                                                    <a href={hospital.website} target="_blank" rel="noopener noreferrer" className={style.infoLink}>Visit Website <FaArrowRight size={20} /></a>
                                                 </div>
                                             </div>
                                         )}
@@ -324,7 +233,6 @@ const HospitalDetails = () => {
                                 </div>
                             </div>
 
-                            {/* SIDEBAR COLUMN */}
                             <aside className={style.sidebarColumn}>
                                 <div className={style.sidebarCard}>
                                     <div className={style.cardHeader}>
@@ -368,7 +276,7 @@ const HospitalDetails = () => {
 
                         <div className={style.backRow}>
                             <Button onClick={handleBack} className={style.finalBackBtn}>
-                                <AiOutlineArrowLeft /> Back to Directory
+                                <AiOutlineArrowLeft /> Go Back
                             </Button>
                         </div>
                     </Motion>

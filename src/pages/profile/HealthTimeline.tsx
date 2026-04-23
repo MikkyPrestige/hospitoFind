@@ -6,9 +6,11 @@ import {
     FiPlusSquare
 } from 'react-icons/fi';
 import { HiSparkles, HiOutlineMapPin } from 'react-icons/hi2';
-import { useHealthHistory, type HealthSession, type FeedbackPayload } from '@/hooks/useHealthHistory';
-import AgentWidget, { type HospitalContext } from '@/components/agent/AgentWidget';
 import { toast } from 'react-toastify';
+import { useHealthHistory } from '@/hooks/useHealthHistory';
+import { HospitalContext } from "@/types/agent";
+import { HealthSession, FeedbackPayload } from "@/types/healthHistory";
+import AgentWidget from '@/components/agent/AgentWidget';
 import style from './styles/scss/healthTimeline/HealthTimeline.module.scss';
 
 const LS_PROMPTED = 'hf_feedback_prompted';
@@ -375,7 +377,7 @@ const HealthTimeline = ({ hospitalContext }: HealthTimelineProps) => {
                     <div className={style.agentWrapper}>
                         {activeContext?.name && (
                             <div className={style.contextBanner}>
-                                <div className={style.contextIcon}><FiPlusSquare/></div>
+                                <div className={style.contextIcon}><FiPlusSquare /></div>
                                 <div className={style.contextText}>
                                     Focused on: <strong>{activeContext.name}</strong>
                                     <span>{activeContext.city ? `, ${activeContext.city}` : ''}</span>

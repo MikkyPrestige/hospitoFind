@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { api } from '@/services/api';
-import { User } from '@/src/types/user';
+import { User } from '@/types/user';
 import { toast } from 'react-toastify';
 
 const useSignup = () => {

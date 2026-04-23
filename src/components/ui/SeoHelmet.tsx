@@ -1,24 +1,26 @@
 import React from "react";
 import { Helmet } from "react-helmet-async";
-import { useParams } from "react-router-dom";
-
-interface SEOProps {
-    title: string;
-    description?: string;
-    canonical?: string;
-    image?: string;
-    includeBrand?: boolean;
-    schemaType?: "about" | "global" | "country" | "hospital" | "search" | "faq" | "policy";
-    schemaData?: any;
-    autoBreadcrumbs?: boolean;
-    extraSchema?: Record<string, any>[];
-}
+import { useParams, useLocation } from "react-router-dom";
+import { SEOProps } from "@/types/app";
 
 const BRAND = "HospitoFind";
+const SITE_URL = "https://hospitofind.online";
+
+//  OG IMAGE MAPPING
+const OG_IMAGES = {
+    default: "https://hospitofind.online/og-default.jpg",
+    hospital: "https://hospitofind.online/og-hospital.jpg",
+    wellness: "https://hospitofind.online/og-wellness.jpg",
+    news: "https://hospitofind.online/og-news.jpg",
+    alerts: "https://hospitofind.online/og-alerts.jpg",
+    about: "https://hospitofind.online/og-about.jpg",
+    directory: "https://hospitofind.online/og-directory.jpg",
+    share: "https://hospitofind.online/og-share.jpg",
+} as const;
 
 export const SEOHelmet: React.FC<SEOProps> = ({
     title,
-    description,
+    description = "Find hospitals, clinics, and healthcare services near you with HospitoFind.",
     canonical,
     image,
     includeBrand = true,
@@ -26,199 +28,314 @@ export const SEOHelmet: React.FC<SEOProps> = ({
     schemaData,
     autoBreadcrumbs = false,
     extraSchema,
-
+    lang = "en",
+    hreflang = [],
+    searchTerm,
+    robots = "index, follow",
 }) => {
+    const location = useLocation();
     const fullTitle = includeBrand ? `${title} | ${BRAND}` : title;
+    const currentCanonical = canonical || `${SITE_URL}${location.pathname}`;
 
-    // Auto breadcrumbs
-    let breadcrumbsLd: any = null;
-    if (autoBreadcrumbs) {
-        const { country, slug } = useParams();
-        const crumbs: { name: string; url: string }[] = [
-            { name: "Home", url: "https://hospitofind.online" },
-        ];
+    // Smart default image based on schemaType
+    const getDefaultImage = (): string => {
+        switch (schemaType) {
+            case "hospital":
+                return OG_IMAGES.hospital;
+            case "healthTips":
+                return OG_IMAGES.wellness;
+            case "healthNews":
+                return OG_IMAGES.news;
+            case "outbreaks":
+                return OG_IMAGES.alerts;
+            case "about":
+                return OG_IMAGES.about;
+            case "global":
+            case "country":
+                return OG_IMAGES.directory;
+            case "sharedList":
+                return OG_IMAGES.share;
+            default:
+                return OG_IMAGES.default;
+        }
+    };
+
+    const ogImage = image || getDefaultImage();
+
+    // Auto Breadcrumbs
+    const buildBreadcrumbs = (): any => {
+        if (!autoBreadcrumbs) return null;
+
+        const { country } = useParams();
+        const crumbs = [{ name: "Home", url: SITE_URL }];
+
         if (country) {
             crumbs.push({
                 name: country,
-                url: `https://hospitofind.online/country/${country
-                    .toLowerCase()
-                    .replace(/\s+/g, "-")}`,
+                url: `${SITE_URL}/country/${country.toLowerCase().replace(/\s+/g, "-")}`,
             });
         }
-        if (slug) {
-            crumbs.push({
-                name: title,
-                url: canonical || "",
-            });
+        if (title) {
+            crumbs.push({ name: title, url: currentCanonical });
         }
-        breadcrumbsLd = {
+
+        return {
             "@context": "https://schema.org",
             "@type": "BreadcrumbList",
-            itemListElement: crumbs.map((b, index) => ({
+            itemListElement: crumbs.map((crumb, index) => ({
                 "@type": "ListItem",
                 position: index + 1,
-                name: b.name,
-                item: b.url,
+                name: crumb.name,
+                item: crumb.url,
             })),
         };
-    }
+    };
 
-    // JSON-LD with fallbacks
-    let jsonLd: any = null;
-
-    switch (schemaType) {
-        case "about":
-            jsonLd = {
-                "@context": "https://schema.org",
-                "@type": "AboutPage",
-                name: "About Hospital Finder",
-                description: description || "HospitoFind is a trusted hospital finder and healthcare directory connecting users with verified medical facilities worldwide. Learn more about our mission to provide easy access to healthcare information and services.",
-                url: canonical,
-            };
-            break;
-
-        case "search":
-            jsonLd = {
-                "@context": "https://schema.org",
-                "@type": "SearchResultsPage",
-                name: "Find Hospitals Near You",
-                description: description || "Use HospitoFind’s hospital finder to search hospitals by name, city, or country. Connect with verified healthcare facilities worldwide.",
-                url: canonical,
-            };
-            break;
-
-        case "hospital":
-            if (schemaData) {
-                jsonLd = {
-                    "@context": "https://schema.org",
-                    "@type": "Hospital",
-                    name: schemaData.name,
-                    ...(description ? { description } : {}),
-                    ...(canonical ? { url: canonical } : {}),
-                    ...(schemaData.photoUrl ? { image: schemaData.photoUrl } : {}),
-                    ...(schemaData.phoneNumber ? { telephone: schemaData.phoneNumber } : {}),
-                    ...(schemaData.address
-                        ? {
-                            address: {
-                                "@type": "PostalAddress",
-                                ...(schemaData.address.street ? { streetAddress: schemaData.address.street } : {}),
-                                ...(schemaData.address.city ? { addressLocality: schemaData.address.city } : {}),
-                                ...(schemaData.address.state ? { addressRegion: schemaData.address.state } : {}),
-                                ...(schemaData.address.country ? { addressCountry: schemaData.address.country } : {}),
-                            },
-                        }
-                        : {}),
-                    ...(schemaData.services?.length ? { medicalSpecialty: schemaData.services } : {}),
-                    ...(schemaData.website ? { sameAs: [schemaData.website] } : {}),
-                };
-            }
-            break;
-
-        case "country":
-            if (schemaData) {
-                jsonLd = {
-                    "@context": "https://schema.org",
-                    "@type": "ItemList",
-                    name: `Hospitals in ${schemaData.country}`,
-                    description: description || `Browse hospitals and medical centers in ${schemaData.country}.`,
-                    url: canonical,
-                    numberOfItems: schemaData.hospitals?.length || 0,
-                    itemListElement: schemaData.hospitals?.map((h: any, index: number) => ({
-                        "@type": "ListItem",
-                        position: index + 1,
-                        name: h.name,
-                        url: `https://hospitofind.online/hospital/${encodeURIComponent(
-                            h.name.toLowerCase().replace(/\s+/g, "-")
-                        )}`,
-                    })),
-                };
-            }
-            break;
-
-        case "global":
-            if (schemaData) {
-                jsonLd = {
+    const buildJsonLd = (): any => {
+        switch (schemaType) {
+            case "homepage":
+                return {
                     "@context": "https://schema.org",
                     "@type": "WebPage",
-                    name: "Browse Hospitals by Country",
-                    description:
-                        description ||
-                        "Explore hospitals worldwide, organized by country. Find verified healthcare facilities.",
-                    url: canonical,
+                    name: title,
+                    description,
+                    url: currentCanonical,
+                    publisher: {
+                        "@type": "Organization",
+                        name: BRAND,
+                        url: SITE_URL,
+                        logo: { "@type": "ImageObject", url: "https://hospitofind.online/logo.png", width: 512, height: 512 },
+                    },
                     mainEntity: {
-                        "@type": "ItemList",
-                        itemListElement: schemaData.map((c: any, index: number) => ({
-                            "@type": "ListItem",
-                            position: index + 1,
-                            name: c.country,
-                            url: `https://hospitofind.online/country/${encodeURIComponent(
-                                c.country.toLowerCase().replace(/\s+/g, "-")
-                            )}`,
-                        })),
+                        "@type": "WebSite",
+                        name: BRAND,
+                        url: SITE_URL,
+                        potentialAction: {
+                            "@type": "SearchAction",
+                            target: { "@type": "EntryPoint", urlTemplate: `${SITE_URL}/find-hospital?query={search_term_string}` },
+                            "query-input": "required name=search_term_string",
+                        },
                     },
                 };
-            }
-            break;
 
-        case "faq":
-            if (schemaData) {
-                jsonLd = {
+            case "about":
+                return {
+                    "@context": "https://schema.org",
+                    "@type": "AboutPage",
+                    name: title,
+                    description,
+                    url: currentCanonical,
+                    mainEntity: {
+                        "@type": "Organization",
+                        name: BRAND,
+                        description,
+                        url: currentCanonical,
+                        logo: { "@type": "ImageObject", url: "https://hospitofind.online/logo.png", width: 512, height: 512 },
+                        areaServed: { "@type": "Country", name: "Global" },
+                        contactPoint: { "@type": "ContactPoint", contactType: "customer service", url: `${SITE_URL}/contact` },
+                    },
+                };
+
+            case "search":
+                return {
+                    "@context": "https://schema.org",
+                    "@type": "SearchResultsPage",
+                    name: title,
+                    description,
+                    url: currentCanonical,
+                    mainEntity: {
+                        "@type": "ItemList",
+                        name: searchTerm ? `Hospitals in ${searchTerm}` : title,
+                        numberOfItems: schemaData?.length || 0,
+                        itemListElement: schemaData?.map((hospital: any, index: number) => ({
+                            "@type": "ListItem",
+                            position: index + 1,
+                            name: hospital.name,
+                            url: `https://hospitofind.online/hospital/${encodeURIComponent(
+                                hospital.name.toLowerCase().replace(/\s+/g, "-")
+                            )}`,
+                        })) || [],
+                    },
+                    potentialAction: {
+                        "@type": "SearchAction",
+                        target: { "@type": "EntryPoint", urlTemplate: `${SITE_URL}/find-hospital?query={search_term_string}` },
+                        "query-input": "required name=search_term_string",
+                    },
+                };
+
+            case "hospital":
+                if (!schemaData) return null;
+                const h = schemaData;
+                return {
+                    "@context": "https://schema.org",
+                    "@type": "Hospital",
+                    name: h.name,
+                    description,
+                    url: currentCanonical,
+                    image: h.photoUrl || ogImage,
+                    telephone: h.phoneNumber,
+                    email: h.email,
+                    address: h.address ? {
+                        "@type": "PostalAddress",
+                        streetAddress: h.address.street,
+                        addressLocality: h.address.city,
+                        addressRegion: h.address.state,
+                        addressCountry: h.address.country,
+                        postalCode: h.address.postalCode,
+                    } : undefined,
+                    geo: h.latitude && h.longitude ? {
+                        "@type": "GeoCoordinates",
+                        latitude: h.latitude,
+                        longitude: h.longitude,
+                    } : undefined,
+                    openingHours: h.openingHours,
+                    department: h.services?.length
+                        ? h.services.map((service: string) => ({ "@type": "MedicalDepartment", name: service }))
+                        : undefined,
+                    medicalSpecialty: h.specialties || h.services,
+                    ...(h.rating ? {
+                        aggregateRating: {
+                            "@type": "AggregateRating",
+                            ratingValue: h.rating,
+                            reviewCount: h.reviewCount || 0,
+                        },
+                    } : {}),
+                    priceRange: h.priceRange || "$$",
+                    sameAs: h.website ? [h.website] : undefined,
+                    hasMap: h.googleMapsUrl,
+                    areaServed: h.address?.city ? { "@type": "City", name: h.address.city } : undefined,
+                };
+
+            case "sharedList":
+                return {
+                    "@context": "https://schema.org",
+                    "@type": "ItemList",
+                    name: title,
+                    description,
+                    url: currentCanonical,
+                    numberOfItems: schemaData?.length || 0,
+                    itemListElement: schemaData?.map((hospital: any, index: number) => ({
+                        "@type": "ListItem",
+                        position: index + 1,
+                        name: hospital.name,
+                        url: `https://hospitofind.online/hospital/${hospital.address?.state?.toLowerCase()}/${hospital.address?.city?.toLowerCase()}/${hospital.slug}`,
+                    })) || [],
+                };
+
+            case "global":
+            case "country":
+            case "healthTips":
+            case "healthNews":
+            case "outbreaks":
+                return {
+                    "@context": "https://schema.org",
+                    "@type": "CollectionPage",
+                    name: title,
+                    description,
+                    url: currentCanonical,
+                    mainEntity: {
+                        "@type": "ItemList",
+                        name: title,
+                        numberOfItems: schemaData?.length || 0,
+                        itemListElement: schemaData?.map((item: any, index: number) => ({
+                            "@type": "ListItem",
+                            position: index + 1,
+                            name: item.name || item.country || item.title || item.Title,
+                            url: item.url || item.link || item.Link,
+                            image: item.image_url || item.ImageUrl || undefined,
+                            datePublished: item.pubDate || item.date || undefined,
+                        })) || [],
+                    },
+                };
+
+            case "faq":
+                return {
                     "@context": "https://schema.org",
                     "@type": "FAQPage",
-                    "mainEntity": schemaData.map((item: any) => ({
+                    name: title,
+                    description,
+                    url: currentCanonical,
+                    mainEntity: schemaData?.map((item: any) => ({
                         "@type": "Question",
-                        "name": item.question,
-                        "acceptedAnswer": {
-                            "@type": "Answer",
-                            "text": item.answer
-                        }
-                    }))
+                        name: item.question,
+                        acceptedAnswer: { "@type": "Answer", text: item.answer },
+                    })) || [],
                 };
-            }
-            break;
 
-        case "policy":
-            jsonLd = {
-                "@context": "https://schema.org",
-                "@type": "WebPage",
-                name: "Privacy Policy",
-                description: description ||
-                    "Read HospitoFind's privacy policy to understand how we handle your data and protect your information.",
-                url: canonical,
-            };
-            break;
+            case "policy":
+            case "terms":
+                return {
+                    "@context": "https://schema.org",
+                    "@type": "WebPage",
+                    name: title,
+                    description,
+                    url: currentCanonical,
+                    mainEntity: {
+                        "@type": "Organization",
+                        name: BRAND,
+                        url: SITE_URL,
+                        logo: { "@type": "ImageObject", url: "https://hospitofind.online/logo.png", width: 512, height: 512 },
+                    },
+                    about: {
+                        "@type": "Thing",
+                        name: schemaType === "policy" ? "Privacy Policy" : "Terms of Service",
+                        description: schemaType === "policy"
+                            ? "How HospitoFind collects, uses, and protects user data"
+                            : "Rules and guidelines for using HospitoFind's global hospital directory",
+                    },
+                };
 
-        default:
-            jsonLd = null;
-    }
+            default:
+                return schemaData ? { "@context": "https://schema.org", ...schemaData } : null;
+        }
+    };
+
+    const jsonLd = buildJsonLd();
+    const breadcrumbsLd = buildBreadcrumbs();
 
     return (
-        <Helmet>
+        <Helmet htmlAttributes={{ lang }}>
             <title>{fullTitle}</title>
+
             {description && <meta name="description" content={description} />}
-            {canonical && <link rel="canonical" href={canonical} />}
+            <link rel="canonical" href={currentCanonical} />
+            <meta name="robots" content={robots} />
+
+            {/* Open Graph */}
             <meta property="og:type" content="website" />
             <meta property="og:title" content={fullTitle} />
             {description && <meta property="og:description" content={description} />}
-            {canonical && <meta property="og:url" content={canonical} />}
-            {image && <meta property="og:image" content={image} />}
+            <meta property="og:url" content={currentCanonical} />
+            <meta property="og:image" content={ogImage} />
+            <meta property="og:image:secure_url" content={ogImage} />
+            <meta property="og:image:width" content="1200" />
+            <meta property="og:image:height" content="630" />
+            <meta property="og:image:alt" content={fullTitle} />
+            <meta property="og:site_name" content={BRAND} />
+
+            {/* Twitter Cards */}
             <meta name="twitter:card" content="summary_large_image" />
             <meta name="twitter:title" content={fullTitle} />
-            {description && (
-                <meta name="twitter:description" content={description} />
+            {description && <meta name="twitter:description" content={description} />}
+            <meta name="twitter:image" content={ogImage} />
+
+            {/* Hreflang */}
+            {hreflang.length > 0 && (
+                <>
+                    {hreflang.map((item, index) => (
+                        <link key={index} rel="alternate" hrefLang={item.lang} href={item.url} />
+                    ))}
+                    <link rel="alternate" hrefLang={lang} href={currentCanonical} />
+                    <link rel="alternate" hrefLang="x-default" href={currentCanonical} />
+                </>
             )}
-            {image && <meta name="twitter:image" content={image} />}
-            {jsonLd && (
-                <script type="application/ld+json">{JSON.stringify(jsonLd)}</script>
-            )}
-            {breadcrumbsLd && (
-                <script type="application/ld+json">{JSON.stringify(breadcrumbsLd)}</script>
-            )}
-            {extraSchema &&
-                extraSchema.map((schema, index) => (
-                    <script key={index} type="application/ld+json">{JSON.stringify(schema)}</script>
-                ))
-            }
+
+            {/* Structured Data */}
+            {jsonLd && <script type="application/ld+json">{JSON.stringify(jsonLd)}</script>}
+            {breadcrumbsLd && <script type="application/ld+json">{JSON.stringify(breadcrumbsLd)}</script>}
+            {extraSchema?.map((schema, index) => (
+                <script key={index} type="application/ld+json">{JSON.stringify(schema)}</script>
+            ))}
         </Helmet>
     );
 };

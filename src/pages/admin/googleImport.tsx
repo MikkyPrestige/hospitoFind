@@ -1,4 +1,5 @@
-import { useState, useEffect, useRef } from "react";
+import { useState } from "react";
+import { toast } from "react-toastify";
 import {
     FiDownloadCloud,
     FiCheckCircle,
@@ -7,77 +8,27 @@ import {
     FiGlobe
 } from "react-icons/fi";
 import { MdOutlineCleaningServices } from "react-icons/md";
-import useAxiosPrivate from "@/hooks/useAxiosPrivate";
-import { toast } from "react-toastify";
+import { useGoogleImport } from "@/hooks/useGoogleImport";
 import styles from "./styles/scss/googleImport/googleImport.module.scss";
-
-interface ImportResult {
-    message: string;
-    imported: number;
-    skipped: number;
-}
 
 const GoogleImport = ({ onSuccess }: { onSuccess?: () => void }) => {
     const [city, setCity] = useState("");
     const [country, setCountry] = useState("");
-    const [loading, setLoading] = useState(false);
-    const [loadingText, setLoadingText] = useState("Connecting to Google...");
-    const [result, setResult] = useState<ImportResult | null>(null);
-
-    // manage timers prevents memory leaks if component unmounts
-    const timersRef = useRef<NodeJS.Timeout[]>([]);
-    const axiosPrivate = useAxiosPrivate();
-
-    useEffect(() => {
-        return () => {
-            timersRef.current.forEach(clearTimeout);
-        };
-    }, []);
+    const { importHospitals, loading, loadingText, result, resetImport } = useGoogleImport(onSuccess);
 
     const handleImport = async (e: React.FormEvent) => {
         e.preventDefault();
-
         if (!city || !country) {
             toast.error("Please enter both City and Country");
             return;
         }
-
-        setLoading(true);
-        setResult(null);
-        setLoadingText("Searching for locations...");
-
-        timersRef.current.forEach(clearTimeout);
-        timersRef.current = [
-            setTimeout(() => setLoadingText("Found locations. Fetching details..."), 2500),
-            setTimeout(() => setLoadingText("Downloading photos & reviews..."), 5500),
-            setTimeout(() => setLoadingText("Finalizing database entries..."), 9000),
-        ];
-
-        try {
-            const { data } = await axiosPrivate.post("/admin/hospitals/import-google", {
-                city: city.trim(),
-                targetCountry: country.trim()
-            });
-
-            setResult(data);
-            toast.success(`Success! Added ${data.imported} locations with rich data.`);
-
-            if (onSuccess) onSuccess();
-
-        } catch (err: any) {
-            const msg = err.response?.data?.message || "Import failed. Check your API limits.";
-            toast.error(msg);
-        } finally {
-            timersRef.current.forEach(clearTimeout);
-            setLoading(false);
-        }
+        await importHospitals(city, country);
     };
 
-    const resetForm = () => {
+    const handleReset = () => {
         setCity("");
         setCountry("");
-        setResult(null);
-        setLoadingText("Connecting to Google...");
+        resetImport();
     };
 
     return (
@@ -93,7 +44,6 @@ const GoogleImport = ({ onSuccess }: { onSuccess?: () => void }) => {
             </header>
 
             {!result ? (
-                /* --- INPUT FORM --- */
                 <form onSubmit={handleImport} className={styles.form}>
                     <div className={styles.inputGroup}>
                         <div className={styles.inputWrapper}>
@@ -144,13 +94,12 @@ const GoogleImport = ({ onSuccess }: { onSuccess?: () => void }) => {
 
                     <p className={styles.resultMsg}>{result.message}</p>
 
-                    <button onClick={resetForm} className={styles.resetBtn}>
+                        <button onClick={handleReset} className={styles.resetBtn}>
                         <MdOutlineCleaningServices /> Import Another Location
                     </button>
                 </div>
             )}
 
-            {/* --- LOADING OVERLAY --- */}
             {loading && (
                 <div className={styles.loaderOverlay}>
                     <div className={styles.spinner}></div>

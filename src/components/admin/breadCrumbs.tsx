@@ -1,5 +1,6 @@
 import { Link, useLocation } from "react-router-dom";
 import ThemeToggle from "@/components/ui/ThemeToggle"
+import style from "./styles/adminBreadcrumbs.module.css";
 
 const AdminBreadcrumbs = () => {
     const location = useLocation();
@@ -8,18 +9,10 @@ const AdminBreadcrumbs = () => {
     if (pathnames.length <= 1) return null;
 
     return (
-        <nav aria-label="breadcrumb" style={{ padding: "1rem 0", marginBottom: "1rem" }}>
-            <ol style={{
-                display: "flex",
-                listStyle: "none",
-                margin: 0,
-                padding: 0,
-                gap: "10px",
-                fontSize: "0.85rem",
-                alignItems: "center"
-            }}>
+        <nav aria-label="breadcrumb" className={style.nav}>
+            <ol className={style.list}>
                 <li>
-                    <Link to="/admin" style={{ color: "var(--color-blue)", textDecoration: "none", fontWeight: 500, fontSize: "1.5rem" }}>
+                    <Link to="/admin" className={`${style.link} ${style.adminRoot}`}>
                         Admin
                     </Link>
                 </li>
@@ -36,12 +29,12 @@ const AdminBreadcrumbs = () => {
                     if (isId) displayName = "Details";
 
                     return (
-                        <li key={to} style={{ display: "flex", alignItems: "center", gap: "10px" }}>
-                            <span style={{ color: "var(--color-gray)", fontSize: "1.5rem", fontWeight: 800, }}>/</span>
+                        <li key={to} className={style.listItem}>
+                            <span className={style.separator}>/</span>
                             {last ? (
-                                <span style={{ color: "var(--color-ash)", fontWeight: 600, fontSize: "1.5rem" }}>{displayName}</span>
+                                <span className={style.currentPath}>{displayName}</span>
                             ) : (
-                                    <Link to={to} style={{ color: "var(--color-blue)", textDecoration: "none" }}>
+                                 <Link to={to} className={style.link}>
                                     {displayName}
                                 </Link>
                             )}

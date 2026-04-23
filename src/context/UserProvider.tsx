@@ -1,5 +1,5 @@
 import { useContext, createContext, useReducer, ReactNode } from "react";
-import { AuthState, AuthAction, AuthContextType } from "@/src/types/user";
+import { AuthState, AuthAction, AuthContextType } from "@/types/auth";
 
 const initialState: AuthState = {
   _id: localStorage.getItem("_id") || localStorage.getItem("id") || null,

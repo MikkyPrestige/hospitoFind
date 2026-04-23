@@ -1,12 +1,9 @@
-import axios from "axios";
 import { NavLink, useNavigate, useSearchParams } from "react-router-dom";
 import { useState, useEffect, useRef } from "react";
 import mapboxgl from "mapbox-gl";
 import "mapbox-gl/dist/mapbox-gl.css";
 import { useTheme } from "@/context/ThemeProvider";
 import { accessToken } from "@/config/mapbox";
-import { BASE_URL } from "@/context/UserProvider";
-import { findHospitals } from "@/services/api";
 import PopularHospitals from "@/components/hospital/PopularHospitals";
 import Motion from "@/components/ui/Motion";
 import { fadeUp, sectionReveal, zoomIn } from "@/utils/animations";
@@ -16,6 +13,7 @@ import { Avatar } from "@/components/ui/Avatar";
 import HospitalPic from "@/assets/images/hospital-logo.jpg";
 import style from "./styles/find.module.scss";
 import { SEOHelmet } from "@/components/ui/SeoHelmet";
+import { useHospitalDiscovery } from "@/hooks/useHospitalDiscovery";
 
 mapboxgl.accessToken = accessToken;
 
@@ -29,17 +27,16 @@ const FindHospital = () => {
     const displayTerm = initialQ || (initialCity && initialState ? `${initialCity}, ${initialState}` : "");
     const [term, setTerm] = useState<string>(displayTerm);
     const [searchedTerm, setSearchedTerm] = useState<string>("");
-    const [hospitals, setHospitals] = useState<Hospital[]>([]);
-    const [, setError] = useState<string>("");
-    const [searching, setSearching] = useState<boolean>(false);
-    const [message, setMessage] = useState<React.ReactNode>(null);
     const mapContainer = useRef<HTMLDivElement | null>(null);
     const [map, setMap] = useState<mapboxgl.Map | null>(null);
     const markersRef = useRef<mapboxgl.Marker[]>([]);
-    const [searchMode, setSearchMode] = useState<"term" | "nearby">("term");
-    const [locationName, setLocationName] = useState<string | null>(null);
     const LIGHT_STYLE = "mapbox://styles/mapbox/streets-v11";
     const DARK_STYLE = "mapbox://styles/mapbox/navigation-night-v1";
+
+    const {
+        hospitals, searching, error, searchMode, locationName,
+        emptyResultQuery, geocodedCenter, performSearch, fetchNearby
+    } = useHospitalDiscovery();
 
     useEffect(() => {
         if (map) return;
@@ -64,14 +61,9 @@ const FindHospital = () => {
 
         geolocate.on("geolocate", async (e: any) => {
             const { latitude, longitude } = e.coords as GeolocationCoordinates;
-            try {
-                const res = await fetch(`${BASE_URL}/hospitals/nearby?lat=${latitude}&lng=${longitude}`);
-                const data = await res.json();
-                const results = data.results || [];
-                setHospitals(results);
+            const results = await fetchNearby(latitude, longitude);
+            if (results.length > 0) {
                 updateMapMarkers(results, mapInstance, [longitude, latitude]);
-            } catch (err) {
-                console.error("Error fetching nearby hospitals:", err);
             }
         });
 
@@ -83,6 +75,13 @@ const FindHospital = () => {
         if (!map) return;
         map.setStyle(theme === 'dark' ? DARK_STYLE : LIGHT_STYLE);
     }, [theme, map]);
+
+    // Handle map movement when geocodedCenter updates (for empty results)
+    useEffect(() => {
+        if (map && geocodedCenter) {
+            map.flyTo({ center: geocodedCenter, zoom: 6 });
+        }
+    }, [geocodedCenter, map]);
 
     const updateMapMarkers = (data: Hospital[], mapInstance: mapboxgl.Map, userCoords?: [number, number]) => {
         markersRef.current.forEach((m) => m.remove());
@@ -114,129 +113,51 @@ const FindHospital = () => {
         }
     };
 
-    const performSearch = async (overrideParams?: { term?: string, city?: string, state?: string }) => {
-        setSearchMode("term");
-        setError("");
-        setMessage(null);
-        setSearching(true);
-
-        try {
-            let apiQuery = "";
-            let displayString = "";
-
-            if (overrideParams?.city && overrideParams?.state) {
-                apiQuery = `city=${encodeURIComponent(overrideParams.city)}&state=${encodeURIComponent(overrideParams.state)}`;
-                displayString = `${overrideParams.city}, ${overrideParams.state}`;
-            } else if (overrideParams?.term) {
-                apiQuery = `term=${encodeURIComponent(overrideParams.term)}`;
-                displayString = overrideParams.term;
-            } else if (term.trim()) {
-                apiQuery = `term=${encodeURIComponent(term.trim())}`;
-                displayString = term.trim();
-            } else {
-                return;
-            }
-
-            const data = await findHospitals(apiQuery);
-
-            if (!data || data.length === 0) {
-                setHospitals([]);
-                setSearchedTerm("");
-                setMessage(
-                    <>
-                        We couldn’t locate any verified facilities in <strong>{displayString}</strong>.
-                        <br />
-                        Know a hospital here? Help expand access by adding it via your{" "}
-                        <span className={style.addLink} onClick={() => navigate("/dashboard")}>
-                            Dashboard
-                        </span>.
-                    </>
-                );
-
-                try {
-                    const geoRes = await axios.get(`https://api.mapbox.com/geocoding/v5/mapbox.places/${encodeURIComponent(displayString)}.json?access_token=${accessToken}`);
-                    const feature = geoRes.data.features?.[0];
-                    if (feature && map) {
-                        map.flyTo({ center: feature.center, zoom: 6 });
-                    }
-                } catch (e) { }
-                return;
-            }
-
-            setHospitals(data);
-            setSearchedTerm(displayString);
-
-            if (map) {
-                updateMapMarkers(data, map);
-                if (data.length === 1 && data[0].longitude && data[0].latitude) {
-                    map.flyTo({
-                        center: [data[0].longitude, data[0].latitude],
-                        zoom: 15,
-                        duration: 2000
-                    });
-                }
-            }
-
-        } catch (err) {
-            setError("We encountered an issue searching for hospitals. Please try again.");
-        } finally {
-            setSearching(false);
-        }
-    };
-
-    // URL SYNC LOGIC (Handles both ?q=... AND ?city=...&state=...)
+    // URL Sync Logic
     useEffect(() => {
         const urlQ = searchParams.get("q");
         const urlCity = searchParams.get("city");
         const urlState = searchParams.get("state");
 
-        if (urlCity && urlState) {
-            setTerm(`${urlCity}, ${urlState}`);
-            performSearch({ city: urlCity, state: urlState });
-        } else if (urlQ) {
-            setTerm(urlQ);
-            performSearch({ term: urlQ });
-        }
+        const executeUrlSearch = async () => {
+            let results: any = { data: [] };
+            if (urlCity && urlState) {
+                setTerm(`${urlCity}, ${urlState}`);
+                results = await performSearch({ city: urlCity, state: urlState });
+            } else if (urlQ) {
+                setTerm(urlQ);
+                results = await performSearch({ term: urlQ });
+            }
+
+            if (results.data.length > 0 && map) {
+                updateMapMarkers(results.data, map);
+                if (results.data.length === 1 && results.data[0].longitude && results.data[0].latitude) {
+                    map.flyTo({
+                        center: [results.data[0].longitude, results.data[0].latitude],
+                        zoom: 15,
+                        duration: 2000
+                    });
+                }
+            }
+            if (results.displayString) setSearchedTerm(results.displayString);
+        };
+
+        executeUrlSearch();
     }, [searchParams]);
 
     const handleSearch = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
-        if (term.trim() === "") {
-            setHospitals([]);
-            setSearchedTerm("");
-            setMessage(null);
-            return;
-        }
-
+        if (term.trim() === "") return;
         navigate(`/find-hospital?q=${encodeURIComponent(term.trim())}`);
     };
 
-    const fetchNearbyHospitals = async () => {
-        setSearching(true);
-        setError("");
-        setMessage(null);
-
+    const handleManualNearbySearch = () => {
         if (navigator.geolocation) {
             navigator.geolocation.getCurrentPosition(async (pos) => {
                 const { latitude, longitude } = pos.coords;
-                try {
-                    const response = await fetch(`${BASE_URL}/hospitals/nearby?lat=${latitude}&lng=${longitude}`);
-                    const data = await response.json();
-                    const results = data.results || [];
-
-                    setHospitals(results);
-                    setSearchMode("nearby");
-                    setSearchedTerm("");
-
-                    if (results.length > 0) {
-                        const { city, state } = results[0].address;
-                        setLocationName(`${city}, ${state}`);
-                        if (map) updateMapMarkers(results, map, [longitude, latitude]);
-                    }
-                } catch (error) {
-                    setError("We could not determine your location. Please check your permissions.");
-                } finally {
-                    setSearching(false);
+                const results = await fetchNearby(latitude, longitude);
+                if (results.length > 0 && map) {
+                    updateMapMarkers(results, map, [longitude, latitude]);
                 }
             });
         }
@@ -245,12 +166,19 @@ const FindHospital = () => {
     return (
         <>
             <SEOHelmet
-                title={term ? `Hospitals in ${term}` : "Find Hospitals & Clinics"}
-                description={term ? `Discover verified hospitals in ${term}.` : "Locate verified hospitals, clinics, and healthcare providers near you."}
-                canonical={term ? `https://hospitofind.online/find-hospital?query=${encodeURIComponent(term)}` : "https://hospitofind.online/find-hospital"}
+                title={term
+                    ? `Hospitals in ${term} | Verified Healthcare Providers`
+                    : "Find Hospitals & Clinics Near You"}
+                description={term
+                    ? `Discover verified hospitals, clinics, emergency centers, and doctors in ${term}. View services, contact info, directions, and real-time availability.`
+                    : "Instantly locate verified hospitals, clinics, emergency centers, and doctors near you. Search by city, country, or specialty."}
+                canonical={term
+                    ? `https://hospitofind.online/find-hospital?query=${encodeURIComponent(term)}`
+                    : "https://hospitofind.online/find-hospital"}
                 schemaType="search"
-                schemaData={[]}
+                schemaData={hospitals}
                 autoBreadcrumbs={true}
+                lang="en"
             />
 
             <main className={style.findSection}>
@@ -275,7 +203,9 @@ const FindHospital = () => {
                                         placeholder="Search by city, state, or facility name..."
                                     />
                                 </div>
-                                <button className={style.cta}>Search</button>
+                                <button className={style.cta} disabled={searching}>
+                                    {searching ? "..." : "Search"}
+                                </button>
                             </form>
                         </div>
 
@@ -304,7 +234,7 @@ const FindHospital = () => {
                                                     <Avatar
                                                         image={hospital.photoUrl || HospitalPic}
                                                         alt={`Photo of ${hospital.name}`}
-                                                        style={{ width: "100%", height: "100%", objectFit: "cover" }}
+                                                        className={style.avatar}
                                                     />
                                                 </div>
                                                 <div className={style.cardDetails}>
@@ -314,7 +244,7 @@ const FindHospital = () => {
                                                         {hospital.address?.street}, {hospital.address?.city}
                                                     </p>
                                                     <NavLink
-                                                        to={`/hospital/${hospital.address.state}/${hospital.address.city}/${hospital.slug}`}
+                                                        to={`/hospital/${hospital.address?.state}/${hospital.address?.city}/${hospital.slug}`}
                                                         className={style.viewBtn}
                                                     >
                                                         View Details
@@ -324,11 +254,23 @@ const FindHospital = () => {
                                         ))}
                                     </div>
                                 </Motion>
-                            ) : message ? (
+                            ) : emptyResultQuery ? (
                                 <Motion variants={fadeUp} className={style.emptyState}>
                                     <div className={style.emptyStateIcon}><FaHospital /></div>
-                                    <p className={style.emptyStateText}>{message}</p>
-                                    <button className={style.retryBtn} onClick={fetchNearbyHospitals}>
+                                    <p className={style.emptyStateText}>
+                                        We couldn’t locate any verified facilities in <strong>{emptyResultQuery}</strong>.
+                                        <br /><br />
+                                        Know a hospital here? Help expand access by adding it via your{" "}
+                                        <span className={style.addLink} onClick={() => navigate("/dashboard")}>
+                                            Dashboard
+                                        </span>.
+                                    </p>
+                                </Motion>
+                            ) : error ? (
+                                <Motion variants={fadeUp} className={style.emptyState}>
+                                    <div className={style.emptyStateIcon}><FaHospital /></div>
+                                    <p className={style.emptyStateText}>{error}</p>
+                                    <button className={style.retryBtn} onClick={handleManualNearbySearch}>
                                         <FaMapMarkerAlt /> Browse facilities near me
                                     </button>
                                 </Motion>

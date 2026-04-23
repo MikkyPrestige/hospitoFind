@@ -1,55 +1,42 @@
-import { useState, useEffect, useCallback } from "react";
 import { Link } from "react-router-dom";
-import useAxiosPrivate from "@/hooks/useAxiosPrivate";
 import {
     FiActivity, FiClock, FiCheckCircle, FiUsers, FiArrowRight, FiUserCheck, FiDatabase, FiLogOut
 } from "react-icons/fi";
-import styles from "./styles/scss/adminDashboard/adminDashboard.module.scss";
+import { FaExclamationTriangle } from 'react-icons/fa';
+import { useAdminDashboard } from "@/hooks/useAdminDashboard";
+import useLogout from "@/hooks/useLogout";
 import GoogleImport from "./googleImport";
 import ThemeToggle from "@/components/ui/ThemeToggle"
-import useLogout from "@/hooks/useLogout";
-
-interface DashboardStats {
-    totalHospitals: number;
-    pendingHospitals: number;
-    liveHospitals: number;
-    totalUsers: number;
-}
+import styles from "./styles/scss/adminDashboard/adminDashboard.module.scss";
 
 const AdminDashboard = () => {
     const { logout } = useLogout();
-    const [stats, setStats] = useState<DashboardStats>({
-        totalHospitals: 0, pendingHospitals: 0, liveHospitals: 0, totalUsers: 0
-    });
-    const [loading, setLoading] = useState(true);
-    const axiosPrivate = useAxiosPrivate();
+    const { stats, loading, error, refresh } = useAdminDashboard();
 
-    const fetchStats = useCallback(async () => {
-        try {
-            const response = await axiosPrivate.get("/hospitals/admin/stats");
-            setStats(response.data);
-        } catch (err) {
-            console.error("Dashboard Stats Error:", err);
-        } finally {
-            setLoading(false);
-        }
-    }, [axiosPrivate]);
-
-    useEffect(() => {
-        fetchStats();
-    }, [fetchStats]);
+    const handleLogout = () => {
+        logout();
+    };
 
     if (loading) {
         return (
             <div className={styles.loadingContainer}>
                 <div className={styles.spinner}></div>
-                <p>Loading Dashboard Analytics...</p>
+                <p>Securing Administrative Session...</p>
             </div>
         );
     }
 
-    const handleLogout = () => {
-        logout()
+    if (error) {
+        return (
+            <div className={styles.dashboardContainer}>
+                <div className={styles.errorContainer}>
+                    <p><FaExclamationTriangle /> {error}</p>
+                    <button onClick={refresh} className={styles.retryBtn}>
+                        Retry Synchronization
+                    </button>
+                </div>
+            </div>
+        );
     }
 
     return (
@@ -62,8 +49,13 @@ const AdminDashboard = () => {
                 </div>
             </header>
 
-            {/* --- STATS GRID --- */}
             <div className={styles.statsGrid}>
+                {loading ? (
+                    Array.from({ length: 4 }).map((_, i) => (
+                        <div key={i} className={styles.skeletonCard} />
+                    ))
+                ) : (
+                    <>
                 <div className={styles.statCard}>
                     <div className={`${styles.iconWrapper} ${styles.iconUsers}`}>
                         <FiUsers size={24} />
@@ -105,9 +97,10 @@ const AdminDashboard = () => {
                         <h3>{stats.liveHospitals.toLocaleString()}</h3>
                     </div>
                 </div>
+                        </>
+                )}
             </div>
 
-            {/* --- Nav --- */}
             <section className={styles.adminNav}>
                 <div className={styles.sectionHeader}>
                     <h2>Management Systems</h2>
@@ -151,7 +144,7 @@ const AdminDashboard = () => {
                 </div>
 
                 <div style={{ marginTop: '1.5rem' }}>
-                    <GoogleImport onSuccess={fetchStats} />
+                    <GoogleImport onSuccess={refresh} />
                 </div>
             </section>
         </div>

@@ -1,103 +1,20 @@
-import { useEffect, useState, useMemo } from "react";
+import { useState, useMemo } from "react";
 import { Link } from "react-router-dom";
 import { FiSearch, FiMapPin, FiGlobe } from "react-icons/fi";
+import { useGlobalDirectory } from "@/hooks/useGlobalDirectory";
 import CountryCard from "@/components/hospital/CountryCard";
-import { Hospital } from "@/types/hospital";
 import Motion from "@/components/ui/Motion";
-import { BASE_URL } from "@/context/UserProvider";
-import { fadeUp, zoomIn, sectionReveal } from "@/utils/animations";
-import style from "./styles/globalDirectory.module.css";
 import { SEOHelmet } from "@/components/ui/SeoHelmet";
 import AnimatedLoader from "@/components/ui/AnimatedLoader";
-import { normalizeName } from "@/utils/formatters"
-import { countries as countriesData } from "countries-list";
-import * as iso from "i18n-iso-countries";
-import enLocale from "i18n-iso-countries/langs/en.json";
-
-// @ts-ignore
-const isoLib = iso.default ? iso.default : iso;
-isoLib.registerLocale(enLocale);
-
-interface CountryData {
-  country: string;
-  continent?: string;
-  hospitals: Hospital[];
-}
-
-interface CountryListEntry {
-  name: string;
-  continent: string;
-}
+import { fadeUp, zoomIn, sectionReveal } from "@/utils/animations";
+import style from "./styles/globalDirectory.module.css";
 
 const CONTINENTS = ["All", "Africa", "Americas", "Asia", "Europe", "Oceania"];
 
 const GlobalDirectory = () => {
-  const [countries, setCountries] = useState<CountryData[]>([]);
-  const [loading, setLoading] = useState(true);
   const [query, setQuery] = useState("");
   const [selectedContinent, setSelectedContinent] = useState("All");
-
-  useEffect(() => {
-    const fetchCountries = async () => {
-      try {
-        const res = await fetch(`${BASE_URL}/hospitals/explore`);
-        if (!res.ok) throw new Error("Failed to fetch");
-        const data = await res.json();
-        setCountries(data);
-      } catch (err) {
-        console.error("Atlas fetch error:", err);
-      } finally {
-        setLoading(false);
-      }
-    };
-    fetchCountries();
-  }, []);
-
-  const getContinent = (countryName: string) => {
-    const cleanName = countryName.trim();
-
-    if (cleanName === "South Korea") return "Asia";
-    if (cleanName === "UAE") return "Asia";
-
-    const code = isoLib.getAlpha2Code(cleanName, "en");
-
-    if (!code) return "Other";
-
-    // @ts-ignore
-    const data = countriesData[code] as CountryListEntry;
-    const continentCode = data?.continent;
-
-    switch (continentCode) {
-      case "AF": return "Africa";
-      case "NA":
-      case "SA": return "Americas";
-      case "AS": return "Asia";
-      case "EU": return "Europe";
-      case "OC": return "Oceania";
-      default: return "Other";
-    }
-  };
-
-  const unifiedCountries = useMemo(() => {
-    const map = new Map<string, CountryData>();
-
-    countries.forEach((item) => {
-      const key = normalizeName(item.country);
-
-      if (map.has(key)) {
-        const existing = map.get(key)!;
-        existing.hospitals = [...existing.hospitals, ...item.hospitals];
-
-        if (item.country.match(/[^\w\s-]/)) {
-          existing.country = item.country;
-        }
-      } else {
-        map.set(key, { ...item, continent: getContinent(item.country) });
-      }
-    });
-
-    return Array.from(map.values());
-  }, [countries]);
+  const { unifiedCountries, loading } = useGlobalDirectory();
 
   const filtered = useMemo(() => {
     return unifiedCountries.filter((c) => {
@@ -114,12 +31,13 @@ const GlobalDirectory = () => {
   return (
     <>
       <SEOHelmet
-        title="Global Directory"
-        description="Navigate our worldwide index of verified healthcare facilities. Browse by country or continent to find medical care anywhere."
+        title="Global Hospital Directory | Browse Healthcare Facilities Worldwide"
+        description="Explore our comprehensive global directory of verified hospitals, clinics, and healthcare providers. Browse by country or continent to find trusted medical care anywhere in the world."
         canonical="https://hospitofind.online/directory"
         schemaType="global"
-        schemaData={countries}
+        schemaData={unifiedCountries}
         autoBreadcrumbs={true}
+        lang="en"
       />
 
       <div className={style.pageWrapper}>
@@ -170,10 +88,10 @@ const GlobalDirectory = () => {
             ) : filtered.length === 0 ? (
               <Motion as="div" className={style.emptyState} variants={fadeUp}>
                 <div className={style.emptyIcon}><FiMapPin /></div>
-                  <h2 className={style.emptyStateTitle}>No Matching Regions Found</h2>
-                  <p className={style.emptyStateSubtitle}>We couldn't locate <strong>{query}</strong> in {selectedContinent}. Please verify the spelling or try a broader region.</p>
+                <h2 className={style.emptyStateTitle}>No Matching Regions Found</h2>
+                <p className={style.emptyStateSubtitle}>We couldn't locate <strong>{query}</strong> in {selectedContinent}. Please verify the spelling or try a broader region.</p>
                 <button onClick={() => { setQuery(""); setSelectedContinent("All"); }} className={style.resetBtn}>
-                    Clear Search
+                  Clear Search
                 </button>
               </Motion>
             ) : (

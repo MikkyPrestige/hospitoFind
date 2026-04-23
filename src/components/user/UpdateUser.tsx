@@ -1,13 +1,9 @@
 import { useState, useEffect } from "react";
-import { User } from "@/src/types/user";
+import { User, UpdateUserProps } from "@/types/user";
 import { useAuthContext } from "@/context/UserProvider";
 import useUpdate from "@/hooks/useUpdateUser";
 import { Button } from "@/components/ui/Button";
 import style from "./styles/updateUser.module.css";
-
-interface UpdateUserProps {
-  onSuccess?: () => void;
-}
 
 const UpdateUser = ({ onSuccess }: UpdateUserProps) => {
   const { state } = useAuthContext();
@@ -62,7 +58,7 @@ const UpdateUser = ({ onSuccess }: UpdateUserProps) => {
               value={formData.name}
               onChange={handleInput}
               className={style.input}
-              placeholder="Elue Michael"
+              placeholder="Type Full Name here"
               autoComplete="name"
             />
           </div>
@@ -75,7 +71,7 @@ const UpdateUser = ({ onSuccess }: UpdateUserProps) => {
               value={formData.email}
               onChange={handleInput}
               className={style.input}
-              placeholder="zero@hospitofind.com"
+              placeholder="name@example.com"
               autoComplete="email"
             />
           </div>

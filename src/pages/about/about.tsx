@@ -1,62 +1,29 @@
-import { useEffect, useState } from "react";
-import { BsGlobe2, BsShieldCheck, BsLightningCharge } from "react-icons/bs";
-import { FaNotesMedical, FaMapMarkedAlt } from "react-icons/fa";
-import { MdStarBorderPurple500, MdOutlineManageSearch } from "react-icons/md";
-import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
-import style from "./styles/about.module.scss";
-import { BASE_URL } from "@/context/UserProvider";
+import { BsShieldCheck, BsLightningCharge } from "react-icons/bs";
+import { MdStarBorderPurple500 } from "react-icons/md";
+import { motion } from "framer-motion";
+import { useGlobalStats } from "@/hooks/useGlobalStats";
+import { features, steps, reviews } from "@/components/constants/aboutConstants";
 import Motion from "@/components/ui/Motion";
 import { Avatar } from "@/components/ui/Avatar";
 import { SEOHelmet } from "@/components/ui/SeoHelmet";
 import { fadeUp, slideLeft, slideRight, zoomIn, sectionReveal } from "@/utils/animations";
-import Stethoscope from "@/assets/images/stethoscope.jpg";
-import Handset from "@/assets/images/handset.jpg";
-import Laptop from "@/assets/images/laptop.jpg";
 import Lobby from "@/assets/images/hospitalLobby.png"
-import Search from "@/assets/images/hospitalSearch.png";
 import PhoneMap from "@/assets/images/phone.jpg";
-import Reviewer2 from "@/assets/images/man1.jpg";
-import Reviewer4 from "@/assets/images/man2.jpg";
-import Reviewer7 from "@/assets/images/woman3.jpg";
-import Reviewer9 from "@/assets/images/woman5.jpg";
-import Reviewer8 from "@/assets/images/woman8.jpg";
-import Reviewer10 from "@/assets/images/woman9.jpg";
-
+import style from "./styles/about.module.scss";
 
 const About = () => {
-  const [count, setCount] = useState<number | null>(null);
-  const [countryCount, setCountryCount] = useState(null);
-
-  useEffect(() => {
-    const fetchGlobalStats = async () => {
-      try {
-        const [countRes, countryRes] = await Promise.all([
-          fetch(`${BASE_URL}/hospitals/count`),
-          fetch(`${BASE_URL}/hospitals/stats/countries`)
-        ]);
-
-        const countData = await countRes.json();
-        const countryData = await countryRes.json();
-
-        setCount(countData.total);
-
-        setCountryCount(countryData.length);
-
-      } catch (err) {
-        console.error("Failed to fetch stats:", err);
-      }
-    };
-
-    fetchGlobalStats();
-  }, []);
+  const { totalHospitals, totalCountries, loading } = useGlobalStats();
 
   return (
     <>
       <SEOHelmet
-        title="Our Mission"
-        description="We are dedicated to making global healthcare accessible, transparent, and verified for everyone, everywhere."
+        title="Our Mission | Making Healthcare Accessible Worldwide"
+        description="We are dedicated to making global healthcare accessible, transparent, and verified for everyone, everywhere. Discover how HospitoFind connects people with trusted hospitals, clinics, and doctors across the globe."
         canonical="https://hospitofind.online/about"
+        schemaType="about"
+        autoBreadcrumbs={true}
+        lang="en"
       />
 
       <main className={style.bg}>
@@ -73,14 +40,14 @@ const About = () => {
             <div className={style.statsRow}>
               <div className={style.statItem}>
                 <span className={style.statNumber}>
-                  {count ? count.toLocaleString() : "500"}+
+                  {loading ? "..." : totalHospitals ? `${totalHospitals.toLocaleString()}+` : "500+"}
                 </span>
                 <span className={style.statLabel}>Verified Facilities</span>
               </div>
               <div className={style.divider}></div>
               <div className={style.statItem}>
                 <span className={style.statNumber}>
-                  {countryCount ? countryCount : "50"}+
+                  {loading ? "..." : totalCountries ? `${totalCountries}+` : "50+"}
                 </span>
                 <span className={style.statLabel}>Countries Covered</span>
               </div>
@@ -93,10 +60,10 @@ const About = () => {
 
           <div className={style.heroImages}>
             <motion.div variants={slideLeft} className={style.img1}>
-              <Avatar image={PhoneMap} alt="HospitoFind Mobile Interface" style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }} />
+              <Avatar image={PhoneMap} alt="HospitoFind Mobile Interface" className={style.avatar} />
             </motion.div>
             <motion.div variants={slideRight} className={style.img2}>
-              <Avatar image={Lobby} alt="Modern Hospital Lobby" style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }} />
+              <Avatar image={Lobby} alt="Modern Hospital Lobby" className={style.avatar} />
             </motion.div>
           </div>
         </Motion>
@@ -159,7 +126,7 @@ const About = () => {
               {steps.map((step, i) => (
                 <motion.div key={i} className={style.stepCard} variants={zoomIn}>
                   <div className={style.stepAvatarWrapper}>
-                    <Avatar image={step.img} alt={step.head} style={{ width: "100%", height: "100%", borderRadius: "50%", objectFit: "cover" }} />
+                    <Avatar image={step.img} alt={step.head} className={style.imgAvatar} />
                     <span className={style.stepNumber}>{i + 1}</span>
                   </div>
                   <h3 className={style.stepHead}>{step.head}</h3>
@@ -180,7 +147,7 @@ const About = () => {
             {reviews.map((review, i) => (
               <motion.div key={i} className={style.review_box} variants={fadeUp}>
                 <div className={style.review_top}>
-                  <Avatar image={review.img} alt={review.name} style={{ width: "3.5rem", height: "3.5rem", borderRadius: "50%" }} />
+                  <Avatar image={review.img} alt={review.name} className={style.reviewAvatar} />
                   <div className={style.userInfo}>
                     <span className={style.userName}>{review.name}</span>
                     <span className={style.userRole}>{review.role}</span>
@@ -200,59 +167,5 @@ const About = () => {
     </>
   );
 };
-
-// --- DATA ARRAYS ---
-const features = [
-  { icon: <FaNotesMedical />, title: "Comprehensive Profiles", text: "Access detailed facility records, including specialized services, accreditation status, and direct contact channels." },
-  { icon: <FaMapMarkedAlt />, title: "Interactive Mapping", text: "Visualize healthcare density in your region with our precision mapping tools and get instant turn-by-turn directions." },
-  { icon: <BsGlobe2 />, title: "Global Directory", text: "Seamlessly switch between countries to find care while traveling or for family members abroad." },
-  { icon: <MdOutlineManageSearch />, title: "Agent Intelligence", text: "Utilize our intelligent routing agent to navigate healthcare networks and find the most suitable, verified facilities tailored to your specific needs." },
-];
-
-const steps = [
-  { img: Search, head: "Search & Discover", text: "Enter your city or region to instantly view a curated list of verified medical facilities near you.", pos: "content1" },
-  { img: Stethoscope, head: "Create Profile", text: "Sign up to save critical contacts, track your history, and unlock advanced search filters.", pos: "content2" },
-  { img: Handset, head: "Save & Share", text: "Export facility details to PDF or share secure links with family members in emergencies.", pos: "content3" },
-  { img: Laptop, head: "Contribute Data", text: "Help the community by submitting new facilities or updating existing records for verification.", pos: "content4" },
-];
-
-const reviews = [
-  {
-    text: "While traveling abroad, HospitoFind helped me quickly locate hospitals in a new country. The map and distance area made it stress free to get care when I needed it most.",
-    img: Reviewer7,
-    name: "Abena A.",
-    role: "International Traveler"
-  },
-  {
-    text: "Creating an account was a game-changer. I tracked my searches, downloaded lists, and shared options with my family while planning a surgery abroad. It’s intuitive and genuinely helpful.",
-    img: Reviewer9,
-    name: "Elena Marquez",
-    role: "Caregiver"
-  },
-  {
-    text: "HospitoFind gave me more than directions. From services to daily health tips, it feels like having a healthcare guide in my pocket.",
-    img: Reviewer2,
-    name: "Oliver Ray",
-    role: "Health Enthusiast"
-  },
-  {
-    text: "The outbreak alerts kept me informed during a local health scare. HospitoFind isn’t just about finding hospitals—it’s about staying safe, prepared, and ahead of the curve.",
-    img: Reviewer8,
-    name: "Bolu Adeboye",
-    role: "Community Member"
-  },
-  {
-    text: "I love that I can contribute by adding verified hospitals. Knowing my input helps others in my community find trusted care makes me feel part of a global movement.",
-    img: Reviewer4,
-    name: "Emeka O.",
-    role: "Contributor"
-  },
-  {
-    text: "The ‘recently viewed’ feature saved me so much time. I didn’t have to repeat searches; I could quickly compare hospitals I checked earlier and finalize my choice.",
-    img: Reviewer10,
-    name: "Amira Solano",
-    role: "Patient"
-  }
-];
 
 export default About;

@@ -1,11 +1,11 @@
-import { shareHospital } from '@/services/api';
-import { SearchProps } from '@/src/types/hospital';
 import { useState } from 'react';
-import style from './styles/scss/shareExport/shareExport.module.scss';
+import { AnimatePresence } from "framer-motion";
 import { CgShare, CgCopy, CgClose } from 'react-icons/cg';
+import { shareHospital } from '@/services/api';
+import { SearchProps } from '@/types/hospital';
 import Motion from "@/components/ui/Motion";
 import { fadeUp } from "@/utils/animations";
-import { AnimatePresence } from "framer-motion";
+import style from './styles/scss/shareExport/shareExport.module.scss';
 
 const ShareButton = ({ searchParams }: SearchProps) => {
   const [shareableLink, setShareableLink] = useState<string>('');

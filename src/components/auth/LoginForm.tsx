@@ -1,8 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useAuth0 } from "@auth0/auth0-react";
-import axios from "axios";
-import { toast } from "react-toastify";
 import { FcGoogle } from "react-icons/fc";
 import {
   FaFacebook,
@@ -13,28 +11,28 @@ import {
 } from "react-icons/fa";
 import { Heart, Mail, Lock, ArrowRight, ShieldCheck, RefreshCw, Globe } from 'lucide-react';
 import useLogin from "@/hooks/useLogin";
+import { useResendVerification } from '@/hooks/useResendVerification';
 import usePageTransition from "@/hooks/usePageTransition";
-import { Login as LoginType } from "@/src/types/user";
+import { Login as LoginType } from "@/types/auth";
 import { Button } from "@/components/ui/Button";
+import { SEOHelmet } from "@/components/ui/SeoHelmet";
 import SimpleHeader from "@/layouts/header/simpleHeader";
 import SimpleFooter from "@/layouts/footer/simpleFooter";
-import { SEOHelmet } from "@/components/ui/SeoHelmet";
-import { BASE_URL } from "@/context/UserProvider";
-import style from "./styles/login/login.module.scss";
 import Logo from "@/assets/images/logo.svg"
+import style from "./styles/login/login.module.scss";
 
 const LoginForm = () => {
+  const { loading, login, success, user } = useLogin();
+  const { loginWithRedirect } = useAuth0();
+  const transitionClass = usePageTransition();
+  const navigate = useNavigate();
+  const { resendEmail, resending } = useResendVerification();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
   const [rememberMe, setRememberMe] = useState(false);
   const [errors, setErrors] = useState<Record<string, string>>({});
   const [needsVerification, setNeedsVerification] = useState(false);
-  const [resending, setResending] = useState(false);
-  const { loading, login, success, user } = useLogin();
-  const { loginWithRedirect } = useAuth0();
-  const transitionClass = usePageTransition();
-  const navigate = useNavigate();
 
   useEffect(() => {
     const savedEmail = localStorage.getItem("remember_email");
@@ -72,10 +70,10 @@ const LoginForm = () => {
       if (rememberMe) {
         localStorage.setItem("remember_email", email);
       } else {
-        localStorage.removeItem("remember_email");
+        localStorage.clearItem("remember_email");
       }
 
-      localStorage.removeItem("accessToken");
+      localStorage.clearItem("accessToken");
       const loginCredentials: LoginType = { email, password };
 
       try {
@@ -89,15 +87,7 @@ const LoginForm = () => {
   };
 
   const handleResendLink = async () => {
-    setResending(true);
-    try {
-      await axios.post(`${BASE_URL}/auth/resend-verification`, { email });
-      toast.success("A new verification link has been sent to your inbox.");
-    } catch (err: any) {
-      toast.error(err.response?.data?.message || "Unable to resend verification link.");
-    } finally {
-      setResending(false);
-    }
+    resendEmail(email);
   };
 
   return (

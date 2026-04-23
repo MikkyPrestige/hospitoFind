@@ -63,7 +63,7 @@ const EmailSent = () => {
                             ) : (
                                 <Mail size={20} />
                             )}
-                            {resending ? "Resending..." : "Resend Email"}
+                            {resending ? "Sending Email..." : "Request New Verification Link"}
                         </button>
                     </div>
 

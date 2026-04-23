@@ -1,112 +1,29 @@
-import { useEffect, useState } from "react";
+import { useOutbreaks } from "@/hooks/useOutbreaks";
 import Motion from "@/components/ui/Motion";
 import { fadeUp, sectionReveal } from "@/utils/animations";
 import AnimatedLoader from "@/components/ui/AnimatedLoader";
+import { FiAlertTriangle, FiCalendar, FiExternalLink, FiGlobe, FiShield, FiPhone, FiInfo, FiRefreshCw } from "react-icons/fi";
 import style from "./styles/outbreaks.module.css";
-import { BASE_URL } from "@/context/UserProvider";
-import { FiAlertTriangle, FiCalendar, FiExternalLink, FiGlobe, FiShield, FiPhone, FiInfo } from "react-icons/fi";
-
-const continentData = {
-    AF: {
-        name: "Africa",
-        agency: "Africa CDC / WHO AFRO",
-        hotline: "Check Local NCDC/Ministry",
-        protocols: [
-            "Follow local disease surveillance guidelines.",
-            "Ensure vaccinations (Yellow Fever, Meningitis) are up to date.",
-            "Practice strict hand hygiene in outbreak zones."
-        ]
-    },
-    EU: {
-        name: "Europe",
-        agency: "ECDC / WHO Europe",
-        hotline: "112 (Universal Emergency)",
-        protocols: [
-            "Follow ECDC travel health notices.",
-            "Consult the 'Re-open EU' platform for travel safety.",
-            "Adhere to local healthcare system entry protocols."
-        ]
-    },
-    NA: {
-        name: "North America",
-        agency: "CDC / PHAC Canada",
-        hotline: "911 (Emergency)",
-        protocols: [
-            "Monitor CDC Health Alert Network (HAN) notices.",
-            "Verify health insurance coverage for cross-border care.",
-            "Follow regional respiratory virus precautions."
-        ]
-    },
-    AS: {
-        name: "Asia",
-        agency: "WHO SEARO / WPRO",
-        hotline: "Contact Local Health Ministry",
-        protocols: [
-            "Be aware of regional vector-borne disease alerts.",
-            "Follow mask-wearing norms in high-density areas.",
-            "Practice food and water safety in tropical regions."
-        ]
-    },
-    GLOBAL: {
-        name: "Global / Other Regions",
-        agency: "World Health Organization",
-        hotline: "Local Emergency Services",
-        protocols: [
-            "Visit WHO.int for International Health Regulations.",
-            "Maintain distance from symptomatic individuals.",
-            "Keep a record of your vaccinations digitally."
-        ]
-    }
-};
-
-type Alert = {
-    title: string;
-    source: string;
-    date: string;
-    summary: string;
-    link: string;
-};
+import { SEOHelmet } from "@/src/components/ui/SeoHelmet";
 
 const Outbreaks = () => {
-    const [alerts, setAlerts] = useState<Alert[]>([]);
-    const [loading, setLoading] = useState(true);
-    const [selectedContinent, setSelectedContinent] = useState("GLOBAL");
-
-    useEffect(() => {
-        const fetchAlerts = async () => {
-            setLoading(true);
-            try {
-                const res = await fetch(`${BASE_URL}/health/alerts`);
-                const data = await res.json();
-                const list = Array.isArray(data) ? data : (data.results || []);
-                setAlerts(list);
-            } catch (err) {
-                console.error("Fetch error:", err);
-            } finally {
-                setLoading(false);
-            }
-        };
-        fetchAlerts();
-    }, []);
-
-    // Region Auto-Detection
-    useEffect(() => {
-        const autoDetectRegion = async () => {
-            try {
-                const res = await fetch('https://ipapi.co/json/');
-                const data = await res.json();
-                if (data.continent_code && continentData[data.continent_code as keyof typeof continentData]) {
-                    setSelectedContinent(data.continent_code);
-                }
-            } catch (err) {}
-        };
-        autoDetectRegion();
-    }, []);
-
-    const activeData = continentData[selectedContinent as keyof typeof continentData] || continentData.GLOBAL;
+    const {
+        alerts, loading, error, selectedContinent,
+        setSelectedContinent, activeData, refetch
+    } = useOutbreaks();
 
     return (
         <>
+            <SEOHelmet
+                title="Live Outbreak Alerts & Global Health Warnings"
+                description="Stay updated with real-time disease outbreak alerts, health warnings, and safety protocols worldwide. Current alerts, regional safety info, and emergency contacts from trusted sources."
+                canonical="https://hospitofind.online/disease-outbreaks"
+                schemaType="outbreaks"
+                schemaData={alerts}
+                autoBreadcrumbs={true}
+                lang="en"
+            />
+
             <div className={style.section}>
                 <Motion variants={sectionReveal} className={style.pageHeader}>
                     <div className={style.titleGroup}>
@@ -123,6 +40,13 @@ const Outbreaks = () => {
                     <main className={style.mainFeed}>
                         {loading ? (
                             <AnimatedLoader message="Scanning global health reports..." variant="list" count={6} />
+                        ) : error ? (
+                            <div className={style.errorBox}>
+                                <p>{error}</p>
+                                <button onClick={refetch} className={style.retryBtn}>
+                                    <FiRefreshCw /> Refresh Data
+                                </button>
+                            </div>
                         ) : alerts.length > 0 ? (
                             <ul className={style.list}>
                                 {alerts.map((a, i) => {
@@ -160,7 +84,6 @@ const Outbreaks = () => {
                         )}
                     </main>
 
-                    {/* --- DYNAMIC SIDEBAR --- */}
                     <aside className={style.sidebar}>
                         <div className={style.regionCard}>
                             <h3><FiGlobe className={style.cardIcon} /> Regional Safety Center</h3>
