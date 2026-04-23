@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { ErrorFallbackProps } from "@/src/types/ui";
+import { ErrorFallbackProps } from "@/types/ui";
 import SimpleHeader from '@/layouts/header/simpleHeader';
 import SimpleFooter from '@/layouts/footer/simpleFooter';
 import style from './styles/fallback.module.css';

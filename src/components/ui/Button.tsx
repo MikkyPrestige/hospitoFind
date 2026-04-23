@@ -1,5 +1,5 @@
 import React from 'react'
-import { ButtonProps } from "@/src/types/ui";
+import { ButtonProps } from "@/types/ui";
 
 export const Button = ({ children, className, style: inlineStyle, ...props }: ButtonProps) => {
   const baseStyle: React.CSSProperties = {
