@@ -4,7 +4,7 @@ import { fadeUp, sectionReveal } from "@/utils/animations";
 import AnimatedLoader from "@/components/ui/AnimatedLoader";
 import { FiAlertTriangle, FiCalendar, FiExternalLink, FiGlobe, FiShield, FiPhone, FiInfo, FiRefreshCw } from "react-icons/fi";
 import style from "./styles/outbreaks.module.css";
-import { SEOHelmet } from "@/src/components/ui/SeoHelmet";
+import { SEOHelmet } from "@/components/ui/SeoHelmet";
 
 const Outbreaks = () => {
     const {

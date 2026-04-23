@@ -1,5 +1,5 @@
 import HospitalPic from "@/assets/images/hospital-logo.jpg";
-import { AvatarProps } from "@/src/types/ui";
+import { AvatarProps } from "@/types/ui";
 
 export const Avatar: React.FC<AvatarProps> = ({
   image = "",

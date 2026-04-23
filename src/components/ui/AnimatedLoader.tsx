@@ -2,7 +2,7 @@ import React from "react";
 import { motion } from "framer-motion";
 import Skeleton from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
-import { AnimatedLoaderProps } from "@/src/types/ui";
+import { AnimatedLoaderProps } from "@/types/ui";
 import styles from "./styles/animatedLoader.module.css";
 
 const fadeVariants = {

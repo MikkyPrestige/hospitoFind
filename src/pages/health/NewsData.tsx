@@ -4,7 +4,7 @@ import { fadeUp, sectionReveal } from "@/utils/animations";
 import AnimatedLoader from "@/components/ui/AnimatedLoader";
 import { FiExternalLink, FiCalendar, FiActivity, FiRefreshCw } from "react-icons/fi";
 import style from "./styles/newsData.module.css";
-import { SEOHelmet } from "@/src/components/ui/SeoHelmet";
+import { SEOHelmet } from "@/components/ui/SeoHelmet";
 
 const NewsData = () => {
     const { articles, loading, error, refetch } = useHealthNews(12);
