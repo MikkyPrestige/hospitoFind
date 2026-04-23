@@ -1,17 +1,22 @@
 import { useState, useEffect } from "react";
-import useAxiosPrivate from "@/hooks/useAxiosPrivate";
 import {
     FiPlus, FiEdit, FiTrash2,
     FiSearch, FiFilter, FiX, FiCheckCircle, FiClock, FiActivity, FiXCircle
 } from "react-icons/fi";
-import { toast } from "react-toastify";
+import { useAdminHospitals } from "@/hooks/useAdminHospitals";
+import { HospitalFormData } from "@/types/hospital";
 import AdminHospitalForm from "@/components/admin/adminHospitalForm";
 import styles from "./styles/scss/hospitalManagement/hospitalManagement.module.scss";
-import { HospitalFormData } from "@/src/types/hospital";
 
 const HospitalManagement = () => {
-    const [hospitals, setHospitals] = useState<any[]>([]);
-    const [isLoading, setIsLoading] = useState(true);
+    const {
+        hospitals,
+        isLoading,
+        fetchHospitals,
+        submitHospital,
+        toggleStatus,
+        removeHospital
+    } = useAdminHospitals();
     const [searchTerm, setSearchTerm] = useState("");
     const [filter, setFilter] = useState("all");
     const [sortBy, setSortBy] = useState("newest");
@@ -37,21 +42,9 @@ const HospitalManagement = () => {
         verified: false
     });
 
-    const axiosPrivate = useAxiosPrivate();
-
-    const fetchHospitals = async () => {
-        try {
-            setIsLoading(true);
-            const response = await axiosPrivate.get("/admin/hospitals");
-            setHospitals(response.data);
-        } catch (err) {
-            toast.error("Failed to load directory");
-        } finally {
-            setIsLoading(false);
-        }
-    };
-
-    useEffect(() => { fetchHospitals(); }, []);
+    useEffect(() => {
+        fetchHospitals();
+    }, [fetchHospitals]);
 
     const handleOpenAdd = () => {
         setIsEditing(false);
@@ -91,43 +84,20 @@ const HospitalManagement = () => {
 
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
-        try {
-            if (isEditing) {
-                await axiosPrivate.patch(`/hospitals/${selectedId}`, formData);
-                toast.success("Hospital updated!");
-            } else {
-                await axiosPrivate.post("/hospitals", formData);
-                toast.success("Hospital created!");
-            }
+        const success = await submitHospital(isEditing, selectedId, formData);
+        if (success) {
             setShowModal(false);
-            fetchHospitals();
-        } catch (err) {
-            toast.error("Operation failed");
         }
     };
-
-    const handleToggleStatus = async (id: string) => {
-        try {
-            await axiosPrivate.patch(`/admin/hospitals/${id}/toggle-status`);
-            toast.success("Status updated successfully");
-            fetchHospitals();
-        } catch (err) {
-            toast.error("Status update failed");
-        }
+    const handleToggleStatus = (id: string) => {
+        toggleStatus(id);
     };
 
-    const handleDelete = async (id: string, name: string) => {
-        if (!window.confirm(`Are you sure you want to delete ${name}?`)) return;
-        try {
-            await axiosPrivate.delete(`/hospitals/${id}`);
-            toast.success("Entry removed");
-            fetchHospitals();
-        } catch (err) {
-            toast.error("Delete failed");
-        }
+    const handleDelete = (id: string, name: string) => {
+        if (!window.confirm(`Security Check: Are you sure you want to permanently delete ${name}?`)) return;
+        removeHospital(id);
     };
 
-    // Search, Filter, and Dynamic Sort
     const filteredHospitals = hospitals
         .filter((h) => {
             const matchesSearch =
@@ -240,7 +210,6 @@ const HospitalManagement = () => {
                 )}
             </div>
 
-            {/* MODAL OVERLAY */}
             {showModal && (
                 <div className={styles.modalOverlay}>
                     <div className={styles.modalContent}>

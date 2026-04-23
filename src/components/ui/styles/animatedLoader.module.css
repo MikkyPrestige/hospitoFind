@@ -1,0 +1,46 @@
+.loaderContainer {
+  width: 100%;
+}
+
+.loadingMessage {
+  margin-bottom: 1rem;
+  color: var(--color-text-secondary, #555);
+  font-family: var(--font-inter, sans-serif);
+}
+
+.cardVariant {
+  border: 1px solid var(--color-border, #eee);
+  border-radius: 1rem;
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  background: var(--color-white, #fff);
+}
+
+.buttonGroup {
+  display: flex;
+  gap: 0.5rem;
+  margin-top: 0.5rem;
+}
+
+.dropdownVariant {
+  padding: 0.75rem 1rem;
+  border-bottom: 1px solid var(--color-border, #eee);
+}
+
+.listVariant {
+  margin-bottom: 1rem;
+}
+
+.textVariant {
+  margin-bottom: 0.5rem;
+}
+
+.skeletonBorderRadius {
+  border-radius: 12px;
+}
+
+.marginTopSmall {
+  margin-top: 0.5rem;
+}

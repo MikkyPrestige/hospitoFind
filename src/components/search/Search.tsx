@@ -1,18 +1,19 @@
 import { useEffect, useRef, useState } from "react";
 import { NavLink, Outlet } from "react-router-dom";
 import { AiFillHeart, AiOutlineHeart, AiOutlineSearch } from "react-icons/ai";
+import { useHospitalSearch } from "@/hooks/useHospitalSearch";
+import { useHospitalInteractions } from "@/hooks/useHospitalInteractions";
 import { LocationInput } from "@/types/hospital";
 import { getUniqueCities } from "@/utils/formatters";
+import { fadeUp } from "@/utils/animations";
 import { Avatar } from "@/components/ui/Avatar";
 import Motion from "@/components/ui/Motion";
-import { fadeUp } from "@/utils/animations";
-import HospitalPic from "@/assets/images/hospital-logo.jpg";
 import ExportButton from "@/components/hospital/Export";
 import ShareButton from "@/components/hospital/Share";
 import AnimatedLoader from "@/components/ui/AnimatedLoader";
+import HospitalPic from "@/assets/images/hospital-logo.jpg";
 import style from "./styles/search.module.scss";
-import { useHospitalSearch } from "@/hooks/useHospitalSearch";
-import { useHospitalInteractions } from "@/hooks/useHospitalInteractions";
+
 
 export default function SearchForm({
   onSearchResultsChange,

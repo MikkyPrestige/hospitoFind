@@ -3,6 +3,7 @@ import { useAuthContext } from "@/context/UserProvider";
 import { useAuth0 } from "@auth0/auth0-react";
 import { motion } from "framer-motion";
 import Logo from "@/assets/images/logo.svg";
+import style from "./styles/guestRoute.module.css";
 
 const GuestRoute = () => {
     const { state } = useAuthContext();
@@ -13,15 +14,11 @@ const GuestRoute = () => {
 
     if (isSyncing) {
         return (
-            <div style={{
-                display: "flex", flexDirection: "column", justifyContent: "center",
-                alignItems: "center", height: "100vh",
-                backgroundColor: "var(--color-bg)",
-            }}>
+            <div className={style.container}>
                 <motion.img
                     src={Logo}
                     alt="HospitoFind Loading"
-                    style={{ width: 60, height: 60, marginBottom: "1.2rem" }}
+                    className={style.logo}
                     animate={{
                         scale: [1, 1.15, 1],
                         opacity: [0.6, 1, 0.6]
@@ -32,15 +29,7 @@ const GuestRoute = () => {
                         ease: "easeInOut"
                     }}
                 />
-                <p style={{
-                    color: "var(--color-blue)",
-                    fontSize: "1rem",
-                    fontWeight: 600,
-                    letterSpacing: "0.5px",
-                    fontFamily: "var(--font-inter)"
-                }}>
-                    Verifying session...
-                </p>
+                <p className={style.loadingText}>Verifying session...</p>
             </div>
         );
     }

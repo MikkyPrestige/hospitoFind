@@ -1,0 +1,73 @@
+.errorContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1.5rem;
+  height: 100vh;
+  padding: 2rem;
+  font-family: 'Inter', sans-serif;
+  text-align: center;
+}
+
+.contentCard {
+  background-color: var(--color-bg-contrast);
+  padding: 2.5rem;
+  border-radius: 1.2rem;
+  box-shadow: 0 1rem 2.5rem rgba(255, 3, 62, 0.1);
+  max-width: 500px;
+  border: 1px solid var(--color-border);
+}
+
+.title {
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: var(--color-red);
+  margin: 0 0 1rem;
+}
+
+.message {
+  font-size: 1.2rem;
+  color: var(--color-gray);
+  margin-bottom: 2rem;
+  line-height: 1.5;
+}
+
+.actions {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.btnRetry {
+  border: none;
+  background-color: var(--color-red);
+  color: var(--color-black);
+  padding: 0.8rem 1.5rem;
+  border-radius: 1rem;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 1.2rem;
+  transition: transform 0.2s, opacity 0.2s;
+}
+
+.btnRetry:hover {
+  transform: translateY(-2px);
+  opacity: 0.9;
+}
+
+.btnHome {
+  text-decoration: none;
+  color: var(--color-black);
+  background-color: var(--color-bg);
+  padding: 0.8rem 1.5rem;
+  border-radius: 1rem;
+  font-weight: 600;
+  font-size: 1.2rem;
+  transition: background-color 0.2s;
+}
+
+.btnHome:hover {
+  background-color: var(--color-bg-contrast);
+}

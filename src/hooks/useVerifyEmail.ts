@@ -18,7 +18,6 @@ export const useVerifyEmail = () => {
             const response = await axios.get(`${BASE_URL}/auth/verify-email?token=${token}`);
             const authData = response.data;
 
-            // Secure the credentials
             localStorage.setItem("accessToken", authData.accessToken);
             localStorage.setItem("role", authData.role);
             localStorage.setItem("username", authData.username);

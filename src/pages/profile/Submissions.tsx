@@ -1,5 +1,4 @@
-import { useState, useEffect, useCallback } from "react";
-import useAxiosPrivate from "@/hooks/useAxiosPrivate";
+import { useState } from "react";
 import {
     FiClock,
     FiCheckCircle,
@@ -12,45 +11,14 @@ import {
     FiActivity,
     FiCircle
 } from "react-icons/fi";
-import { toast } from "react-toastify";
+import { useUserSubmissions } from "@/hooks/useUserSubmissions";
 import styles from "./styles/scss/userSubmissions/userSubmissions.module.scss";
-import { useAuthContext } from "@/context/UserProvider";
 
 const ITEMS_PER_PAGE = 9;
 
 const UserSubmissions = () => {
-    const [submissions, setSubmissions] = useState<any[]>([]);
-    const [loading, setLoading] = useState(true);
-    const [error, setError] = useState(false);
     const [currentPage, setCurrentPage] = useState(1);
-    const axiosPrivate = useAxiosPrivate();
-    const { state } = useAuthContext();
-
-    const fetchMyData = useCallback(async () => {
-        if (!state?.id && !state?.accessToken) return;
-
-        try {
-            setLoading(true);
-            setError(false);
-            const { data } = await axiosPrivate.get("/hospitals/submissions");
-
-            const validData = Array.isArray(data) ? data : [];
-            setSubmissions(validData);
-
-        } catch (err: any) {
-            console.error("Submissions Fetch Error:", err);
-            setError(true);
-            if (err.response?.status !== 401) {
-                toast.error("Could not load your submissions");
-            }
-        } finally {
-            setLoading(false);
-        }
-    }, [state?.id, state?.accessToken, axiosPrivate]);
-
-    useEffect(() => {
-        fetchMyData();
-    }, [fetchMyData]);
+    const { submissions, loading, error, refetch } = useUserSubmissions();
 
     const indexOfLastItem = currentPage * ITEMS_PER_PAGE;
     const indexOfFirstItem = indexOfLastItem - ITEMS_PER_PAGE;
@@ -106,7 +74,7 @@ const UserSubmissions = () => {
                     </div>
                     <h3>Connection Error</h3>
                     <p>We couldn't retrieve your submission data securely. Please check your connection and try again.</p>
-                    <button onClick={fetchMyData} className={styles.retryBtn}>Retry Connection</button>
+                    <button onClick={refetch} className={styles.retryBtn}>Retry Connection</button>
                 </div>
             </div>
         );

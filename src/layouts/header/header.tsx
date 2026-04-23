@@ -3,10 +3,10 @@ import { useEffect, useState } from "react";
 import { MdClose } from "react-icons/md";
 import { FiMenu, FiLogOut, FiLayout, FiShield, FiUser } from "react-icons/fi";
 import Logo from "@/assets/images/logo.svg";
-import style from "./styles/scss/nav.module.scss";
 import { useAuthContext } from "@/context/UserProvider";
 import ThemeToggle from "@/components/ui/ThemeToggle"
 import GoogleTranslate from "@/components/ui/GoogleTranslate";
+import style from "./styles/scss/nav.module.scss";
 
 const Header = () => {
   const [scrolled, setScrolled] = useState(false);
@@ -71,7 +71,6 @@ const Header = () => {
         </div>
       </div>
 
-      {/* MOBILE DRAWER */}
       <div className={`${style.mobileDrawer} ${showMenu ? style.drawerOpen : ""}`}>
         <ul className={style.drawerLinks}>
           <li><NavLink to="/" onClick={toggleMenu}>Home</NavLink></li>
@@ -98,7 +97,7 @@ const Header = () => {
                 <div className={style.userAvatar}><FiUser /></div>
                 <div className={style.userMeta}>
                   <p className={style.uName}>{state.username}</p>
-                  <p className={style.uRole}>{state.role || "Patient"}</p>
+                  <p className={style.uRole}>{state.role || "User"}</p>
                 </div>
               </div>
               <div className={style.userActions}>

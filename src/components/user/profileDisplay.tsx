@@ -1,9 +1,7 @@
+import { AtSign } from "lucide-react";
 import { useAuthContext } from "@/context/UserProvider";
+import { ProfileDisplayProps } from "@/types/user";
 import style from "./styles/profileDisplay.module.css";
-
-interface ProfileDisplayProps {
-    onEditClick: () => void;
-}
 
 const ProfileDisplay = ({ onEditClick }: ProfileDisplayProps) => {
     const { state } = useAuthContext();
@@ -40,7 +38,7 @@ const ProfileDisplay = ({ onEditClick }: ProfileDisplayProps) => {
 
             <div className={style.infoItem}>
                 <label>Username</label>
-                <p>@{state.username}</p>
+                <p><AtSign size={14} /> {state.username}</p>
             </div>
 
             <div className={style.infoItem}>

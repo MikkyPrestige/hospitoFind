@@ -1,17 +1,15 @@
 import { useState } from 'react';
-import useAxiosPrivate from "@/hooks/useAxiosPrivate";
 import ReactMde from 'react-mde';
 import ReactMarkdown from 'react-markdown';
 import 'react-mde/lib/styles/css/react-mde-all.css';
-import { Hospital } from '@/src/types/hospital';
-import { Button } from '@/components/ui/Button';
-import style from './styles/editor.module.css';
 import { MdOutlineRestartAlt, MdErrorOutline, MdCheckCircleOutline, MdViewList, MdCode } from 'react-icons/md';
-import { useAuthContext } from "@/context/UserProvider";
 import { motion, AnimatePresence } from 'framer-motion';
+import { useAuthContext } from "@/context/UserProvider";
+import { useSubmitHospital } from '@/hooks/useSubmitHospital';
+import { HospitalSubmission } from '@/types/hospital';
+import { Button } from '@/components/ui/Button';
 import { zoomIn } from '@/utils/animations';
-
-type HospitalSubmission = Omit<Hospital, '_id' | 'slug' | 'longitude' | 'latitude'>;
+import style from './styles/editor.module.css';
 
 const INITIAL_TEMPLATE = `---
 **Instructions:** Please fill in the details below. Do not remove the headers (lines starting with #).
@@ -52,12 +50,10 @@ const INITIAL_TEMPLATE = `---
 ---`;
 
 const Editor = () => {
+  const { state } = useAuthContext();
+  const { submitHospital, loading, error, showSuccess, resetNetworkState, setError } = useSubmitHospital();
   const [entryMode, setEntryMode] = useState<'form' | 'markdown'>('form');
   const [selectedTab, setSelectedTab] = useState<'write' | 'preview'>('write');
-  const [error, setError] = useState('');
-  const [loading, setLoading] = useState(false);
-  const [showSuccess, setShowSuccess] = useState(false);
-
   const [markdown, setMarkdown] = useState(INITIAL_TEMPLATE);
   const [formData, setFormData] = useState({
     name: '',
@@ -74,16 +70,12 @@ const Editor = () => {
     hours: ''
   });
 
-  const { state } = useAuthContext();
-  const axiosPrivate = useAxiosPrivate();
-
   const resetState = () => {
     setMarkdown(INITIAL_TEMPLATE);
     setFormData({
       name: '', street: '', city: '', country: '', phone: '', website: '', email: '', photoUrl: '', type: 'Private', services: '', comments: '', hours: ''
     });
-    setError('');
-    setShowSuccess(false);
+    resetNetworkState();
   };
 
   const handleFormChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
@@ -158,15 +150,7 @@ const Editor = () => {
       return;
     }
 
-    try {
-      setLoading(true);
-      await axiosPrivate.post(`/hospitals`, payload);
-      setShowSuccess(true);
-    } catch (err: any) {
-      setError(err.response?.data?.message || 'Unable to secure connection. Please verify your inputs.');
-    } finally {
-      setLoading(false);
-    }
+    await submitHospital(payload);
   };
 
   return (

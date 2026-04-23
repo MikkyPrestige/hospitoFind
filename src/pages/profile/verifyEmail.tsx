@@ -2,9 +2,9 @@ import { useEffect, useRef } from "react";
 import { useNavigate, useSearchParams, Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import { useVerifyEmail } from "@/hooks/useVerifyEmail";
-import Logo from "@/assets/images/logo.svg";
 import SimpleHeader from "@/layouts/header/simpleHeader";
 import SimpleFooter from "@/layouts/footer/simpleFooter";
+import Logo from "@/assets/images/logo.svg";
 import styles from "./styles/scss/verifyEmail/verifyEmail.module.scss";
 
 const VerifyEmail = () => {

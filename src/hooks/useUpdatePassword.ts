@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { PasswordUpdate } from '@/src/types/user'
+import { PasswordUpdate } from '@/types/auth'
 import useLogout from './useLogout';
 import useAxiosPrivate from './useAxiosPrivate'
 import { toast } from 'react-toastify';

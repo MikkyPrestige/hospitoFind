@@ -1,87 +1,17 @@
-import { useState, useEffect, useCallback } from "react";
 import { useNavigate } from "react-router-dom";
-import style from "./styles/nearbyHospital.module.css";
+import { FiArrowRight, FiMapPin, FiNavigation } from "react-icons/fi";
+import { useNearbyHospitals } from "@/hooks/useNearbyHospitals";
 import AnimatedLoader from "@/components/ui/AnimatedLoader";
 import HospitalPic from "@/assets/images/hospital-logo.jpg";
-import { FiMapPin, FiNavigation } from "react-icons/fi";
-import { BASE_URL } from "@/context/UserProvider";
-
-type Hospital = {
-    _id: string;
-    name: string;
-    slug: string;
-    address?: {
-        state?: string;
-        city?: string;
-    };
-    type?: string;
-    distance?: string;
-    photoUrl?: string;
-    location?: { coordinates: number[] };
-};
+import style from "./styles/nearbyHospital.module.css";
 
 type Props = {
     triggerLocation?: number;
 };
 
 const NearbyHospitals = ({ triggerLocation = 0 }: Props) => {
-    const [hospitals, setHospitals] = useState<Hospital[]>([]);
-    const [loading, setLoading] = useState<boolean>(true);
-    const [message, setMessage] = useState<string>("Locating nearby services...");
+    const { hospitals, loading, message } = useNearbyHospitals({ triggerLocation });
     const navigate = useNavigate();
-
-    const fetchHospitals = useCallback(async (lat?: number, lon?: number) => {
-        setLoading(true);
-        try {
-            const params = new URLSearchParams({ limit: "3" });
-
-            if (typeof lat === 'number' && typeof lon === 'number') {
-                params.append("lat", lat.toString());
-                params.append("lon", lon.toString());
-            }
-
-            const res = await fetch(`${BASE_URL}/hospitals/nearby?${params.toString()}`);
-
-            if (!res.ok) throw new Error("API Request Failed");
-
-            const data = await res.json();
-
-            const results = Array.isArray(data) ? data : (data.results || []);
-            setHospitals(results);
-
-            if (data.message) setMessage(data.message);
-            else if (results.length === 0) setMessage("No hospitals found.");
-
-        } catch (err) {
-            console.error(err);
-            setMessage("Could not load hospitals. Please check connection.");
-            setHospitals([]);
-        } finally {
-            setLoading(false);
-        }
-    }, []);
-
-    // Geolocation Handler
-    useEffect(() => {
-        if (triggerLocation > 0) {
-            if (!navigator.geolocation) {
-                setMessage("Geolocation not supported.");
-                fetchHospitals();
-                return;
-            }
-            setMessage("Acquiring location...");
-            navigator.geolocation.getCurrentPosition(
-                (pos) => fetchHospitals(pos.coords.latitude, pos.coords.longitude),
-                () => {
-                    setMessage("Location denied. Showing popular hospitals.");
-                    fetchHospitals();
-                },
-                { timeout: 10000 }
-            );
-        } else {
-            fetchHospitals();
-        }
-    }, [triggerLocation, fetchHospitals]);
 
     return (
         <section className={style.section}>
@@ -99,7 +29,7 @@ const NearbyHospitals = ({ triggerLocation = 0 }: Props) => {
 
                 {!loading && hospitals.length > 0 && (
                     <button onClick={() => navigate("/directory")} className={style.textLink}>
-                        View full directory →
+                        View full directory <FiArrowRight />
                     </button>
                 )}
             </div>

@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { User } from '@/src/types/user';
+import { User } from '@/types/user';
 import { useAuthContext } from '@/context/UserProvider';
 import useAxiosPrivate from '@/hooks/useAxiosPrivate';
 import { toast } from "react-toastify";

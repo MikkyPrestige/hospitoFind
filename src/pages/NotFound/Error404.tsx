@@ -1,9 +1,9 @@
+import { Link } from "react-router-dom";
+import { Helmet } from "react-helmet-async";
 import { motion } from "framer-motion";
 import { Home, MoveLeft } from "lucide-react";
-import { Helmet } from "react-helmet-async";
 import Error404 from "@/assets/images/error-404.gif";
 import styles from "./styles/error404.module.scss";
-import { Link } from "react-router-dom";
 
 const Error404Page = () => {
   return (
