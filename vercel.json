@@ -5,12 +5,6 @@
       "has": [{ "type": "host", "value": "www.hospitofind.online" }],
       "destination": "https://hospitofind.online/:path*",
       "permanent": true
-    },
-    {
-      "source": "/:path*",
-      "has": [{ "type": "scheme", "value": "http" }],
-      "destination": "https://hospitofind.online/:path*",
-      "permanent": true
     }
   ],
   "rewrites": [
