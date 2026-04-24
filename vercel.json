@@ -2,7 +2,31 @@
   "rewrites": [
     {
       "source": "/api/:path*",
-      "destination": "/api/:path*"
+      "destination": "https://hospitofind-server.onrender.com/api/:path*"
+    },
+    {
+      "source": "/sitemap.xml",
+      "destination": "https://hospitofind-server.onrender.com/sitemap.xml"
+    },
+    {
+      "source": "/sitemap-static.xml",
+      "destination": "https://hospitofind-server.onrender.com/sitemap-static.xml"
+    },
+    {
+      "source": "/sitemap-countries.xml",
+      "destination": "https://hospitofind-server.onrender.com/sitemap-countries.xml"
+    },
+    {
+      "source": "/sitemap-cities.xml",
+      "destination": "https://hospitofind-server.onrender.com/sitemap-cities.xml"
+    },
+    {
+      "source": "/sitemap-hospitals.xml",
+      "destination": "https://hospitofind-server.onrender.com/sitemap-hospitals.xml"
+    },
+    {
+      "source": "/sitemap-images.xml",
+      "destination": "https://hospitofind-server.onrender.com/sitemap-images.xml"
     },
     {
       "source": "/(.*)",
