@@ -1,17 +1,14 @@
 {
   "redirects": [
     {
-      "source": "http://hospitofind.online/:path*",
+      "source": "/:path*",
+      "has": [{ "type": "host", "value": "www.hospitofind.online" }],
       "destination": "https://hospitofind.online/:path*",
       "permanent": true
     },
     {
-      "source": "http://www.hospitofind.online/:path*",
-      "destination": "https://hospitofind.online/:path*",
-      "permanent": true
-    },
-    {
-      "source": "https://www.hospitofind.online/:path*",
+      "source": "/:path*",
+      "has": [{ "type": "scheme", "value": "http" }],
       "destination": "https://hospitofind.online/:path*",
       "permanent": true
     }
