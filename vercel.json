@@ -1,12 +1,4 @@
 {
-  "redirects": [
-    {
-      "source": "/:path*",
-      "has": [{ "type": "host", "value": "www.hospitofind.online" }],
-      "destination": "https://hospitofind.online/:path*",
-      "permanent": true
-    }
-  ],
   "rewrites": [
     {
       "source": "/api/:path*",
