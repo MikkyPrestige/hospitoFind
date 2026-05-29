@@ -70,10 +70,10 @@ const LoginForm = () => {
       if (rememberMe) {
         localStorage.setItem("remember_email", email);
       } else {
-        localStorage.clearItem("remember_email");
+        localStorage.removeItem("remember_email");
       }
 
-      localStorage.clearItem("accessToken");
+      localStorage.removeItem("accessToken");
       const loginCredentials: LoginType = { email, password };
 
       try {

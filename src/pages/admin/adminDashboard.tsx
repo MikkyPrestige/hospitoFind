@@ -6,6 +6,7 @@ import { FaExclamationTriangle } from 'react-icons/fa';
 import { useAdminDashboard } from "@/hooks/useAdminDashboard";
 import useLogout from "@/hooks/useLogout";
 import GoogleImport from "./googleImport";
+import OsmImport from "./OsmImport";
 import ThemeToggle from "@/components/ui/ThemeToggle"
 import styles from "./styles/scss/adminDashboard/adminDashboard.module.scss";
 
@@ -56,48 +57,48 @@ const AdminDashboard = () => {
                     ))
                 ) : (
                     <>
-                <div className={styles.statCard}>
-                    <div className={`${styles.iconWrapper} ${styles.iconUsers}`}>
-                        <FiUsers size={24} />
-                    </div>
-                    <div className={styles.statInfo}>
-                        <span>Platform Users</span>
-                        <h3>{stats.totalUsers.toLocaleString()}</h3>
-                    </div>
-                </div>
+                        <div className={styles.statCard}>
+                            <div className={`${styles.iconWrapper} ${styles.iconUsers}`}>
+                                <FiUsers size={24} />
+                            </div>
+                            <div className={styles.statInfo}>
+                                <span>Platform Users</span>
+                                <h3>{stats.totalUsers.toLocaleString()}</h3>
+                            </div>
+                        </div>
 
-                <div className={styles.statCard}>
-                    <div className={`${styles.iconWrapper} ${styles.iconTotal}`}>
-                        <FiActivity size={24} />
-                    </div>
-                    <div className={styles.statInfo}>
-                        <span>Total Registered</span>
-                        <h3>{stats.totalHospitals.toLocaleString()}</h3>
-                    </div>
-                </div>
+                        <div className={styles.statCard}>
+                            <div className={`${styles.iconWrapper} ${styles.iconTotal}`}>
+                                <FiActivity size={24} />
+                            </div>
+                            <div className={styles.statInfo}>
+                                <span>Total Registered</span>
+                                <h3>{stats.totalHospitals.toLocaleString()}</h3>
+                            </div>
+                        </div>
 
-                <div className={styles.statCard}>
-                    <div className={`${styles.iconWrapper} ${styles.iconPending}`}>
-                        <FiClock size={24} />
-                    </div>
-                    <div className={styles.statInfo}>
-                        <span>Pending Review</span>
-                        <h3 className={stats.pendingHospitals > 0 ? styles.alertText : ''}>
-                            {stats.pendingHospitals}
-                        </h3>
-                    </div>
-                </div>
+                        <div className={styles.statCard}>
+                            <div className={`${styles.iconWrapper} ${styles.iconPending}`}>
+                                <FiClock size={24} />
+                            </div>
+                            <div className={styles.statInfo}>
+                                <span>Pending Review</span>
+                                <h3 className={stats.pendingHospitals > 0 ? styles.alertText : ''}>
+                                    {stats.pendingHospitals}
+                                </h3>
+                            </div>
+                        </div>
 
-                <div className={styles.statCard}>
-                    <div className={`${styles.iconWrapper} ${styles.iconLive}`}>
-                        <FiCheckCircle size={24} />
-                    </div>
-                    <div className={styles.statInfo}>
-                        <span>Live Facilities</span>
-                        <h3>{stats.liveHospitals.toLocaleString()}</h3>
-                    </div>
-                </div>
-                        </>
+                        <div className={styles.statCard}>
+                            <div className={`${styles.iconWrapper} ${styles.iconLive}`}>
+                                <FiCheckCircle size={24} />
+                            </div>
+                            <div className={styles.statInfo}>
+                                <span>Live Facilities</span>
+                                <h3>{stats.liveHospitals.toLocaleString()}</h3>
+                            </div>
+                        </div>
+                    </>
                 )}
             </div>
 
@@ -143,7 +144,8 @@ const AdminDashboard = () => {
                     <div className={styles.headerLine}></div>
                 </div>
 
-                <div style={{ marginTop: '1.5rem' }}>
+                <div className={styles.importToolsRow}>
+                    <OsmImport onSuccess={refresh} />
                     <GoogleImport onSuccess={refresh} />
                 </div>
             </section>
