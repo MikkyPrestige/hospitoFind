@@ -330,26 +330,6 @@
   height: 100%;
 }
 
-.mapPopup {
-  font-family: var(--font-inter);
-  padding: 0.25rem;
-
-  strong {
-    display: block;
-    font-family: var(--font-plus);
-    font-size: 1.05rem;
-    color: var(--color-black);
-    margin-bottom: 0.25rem;
-  }
-
-  span {
-    display: block;
-    color: var(--color-gray);
-    font-size: 0.85rem;
-    margin-bottom: 0.75rem;
-  }
-}
-
 @include respond(laptop) {
   .searchLayout {
     flex-direction: row;
