@@ -97,8 +97,10 @@ const FindHospital = () => {
                     .setLngLat([hospital.longitude, hospital.latitude])
                     .setPopup(
                         new mapboxgl.Popup({ offset: 16, className: theme === 'dark' ? 'dark-popup' : '' }).setHTML(`
-                            <strong>${hospital.name}</strong><br/>
-                            ${hospital.address?.street || ""}, ${hospital.address?.city || ""}<br/>
+                            <strong class="popup-name">${hospital.name}</strong><br/>
+                            <span class="popup-address">
+                            ${hospital.address?.street || ""}, ${hospital.address?.city || ""}
+                            </span><br/>
                             <a href="/hospital/${hospital.address.state}/${hospital.address.city}/${hospital.slug}" class="popup-link">View Details</a>
                         `)
                     )
