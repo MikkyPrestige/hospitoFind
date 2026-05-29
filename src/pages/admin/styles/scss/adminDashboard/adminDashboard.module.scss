@@ -143,6 +143,19 @@ gap: 1.5rem;
     background: linear-gradient(90deg, var(--color-border) 0%, rgba(226, 232, 240, 0) 100%);
 }
 
+.importToolsRow {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem;
+  justify-content: center;
+  margin-top: 1.5rem;
+
+  > * {
+    flex: 1 1 400px;
+    max-width: 100%;
+  }
+}
+
 .navGrid {
     display: flex;
     flex-direction: column;
