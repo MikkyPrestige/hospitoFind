@@ -4,7 +4,7 @@ import { useCheckDuplicateHospital } from "@/hooks/useCheckDuplicateHospital";
 import { Hours } from "@/types/hospital";
 import { AdminHospitalFormProps } from "@/types/admin";
 import { standardizeText } from "@/utils/formatters";
-import styles from "./styles/adminHospitalForm.module.scss";
+import styles from "./styles/scss/adminHospitalForm/adminHospitalForm.module.scss";
 
 const AdminHospitalForm = ({ formData, setFormData, onSubmit, loading, title }: AdminHospitalFormProps) => {
     const { checkDuplicate, dupCheckLoading } = useCheckDuplicateHospital();

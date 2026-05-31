@@ -31,6 +31,7 @@ const AdminDashboard = lazy(() => import("@/pages/admin/adminDashboard"));
 const AdminPendingList = lazy(() => import("@/pages/admin/adminPendingList"));
 const UserManagement = lazy(() => import("@/pages/admin/userManagement"));
 const HospitalManagement = lazy(() => import("@/pages/admin/hospitalManagement"));
+const SymptomMappings = lazy(() => import("@/pages/admin/SymptomMappings"));
 const Unauthorized = lazy(() => import("@/pages/admin/unauthorized"));
 const VerifyEmail = lazy(() => import("@/pages/profile/verifyEmail"));
 const EmailSent = lazy(() => import("@/pages/profile/emailSent"));
@@ -128,6 +129,7 @@ export const router = createBrowserRouter([
                             { path: "admin/pending", element: Loadable(AdminPendingList)({}) },
                             { path: "admin/users", element: Loadable(UserManagement)({}) },
                             { path: "admin/hospitals", element: Loadable(HospitalManagement)({}) },
+                            { path: "admin/symptoms", element: Loadable(SymptomMappings)({}) },
                         ],
                     },
                 ],
