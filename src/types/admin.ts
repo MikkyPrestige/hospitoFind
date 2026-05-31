@@ -18,3 +18,16 @@ export interface ImportResult {
   imported: number;
   skipped: number;
 }
+
+export interface OsmImportResult extends ImportResult {
+  preview?: any[];
+}
+
+
+export interface SymptomMapping {
+  _id: string;
+  symptomKeywords: string[];
+  services: string[];
+  createdAt?: string;
+  updatedAt?: string;
+}

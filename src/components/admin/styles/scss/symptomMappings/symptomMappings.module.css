@@ -1,0 +1,244 @@
+.container {
+  padding: 2rem;
+  width: 80%;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.header {
+  margin-bottom: 2rem;
+}
+.header .titleRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+.header .titleRow h1 {
+  font-size: 1.75rem;
+  font-weight: 700;
+  color: var(--color-black);
+  margin-bottom: 0.25rem;
+}
+.header .titleRow p {
+  color: var(--color-gray);
+  font-size: 0.95rem;
+}
+.header .addBtn {
+  background: var(--color-blue);
+  color: var(--color-invert);
+  border: none;
+  padding: 0.75rem 1rem;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  transition: background 0.2s;
+}
+.header .addBtn:hover {
+  background: var(--color-blue-dark);
+}
+
+.tableWrapper {
+  background: var(--color-white);
+  border-radius: 1rem;
+  border: 1px solid var(--color-border);
+  overflow-x: auto;
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+}
+.table th, .table td {
+  padding: 1rem 1.5rem;
+  text-align: left;
+  border-bottom: 1px solid var(--color-border);
+}
+.table th {
+  font-weight: 600;
+  font-size: 0.85rem;
+  color: var(--color-gray);
+  text-transform: uppercase;
+  background: var(--color-bg-light);
+}
+.table td {
+  font-size: 0.95rem;
+  vertical-align: middle;
+}
+
+.tagList {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+}
+
+.keywordTag {
+  background: var(--bg-blue-tag);
+  color: var(--color-blue);
+  padding: 0.2rem 0.6rem;
+  border-radius: 2rem;
+  font-size: 0.8rem;
+  font-weight: 500;
+}
+
+.serviceTag {
+  background: var(--color-success-bg);
+  color: var(--color-success);
+  padding: 0.2rem 0.6rem;
+  border-radius: 2rem;
+  font-size: 0.8rem;
+  font-weight: 500;
+}
+
+.action {
+  text-align: right !important;
+}
+
+.actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 0.5rem;
+}
+.actions button {
+  background: none;
+  border: 1px solid var(--color-border);
+  padding: 0.5rem;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.15s;
+  color: var(--color-gray);
+}
+.actions button:hover {
+  color: var(--color-black);
+  border-color: var(--color-black);
+}
+.actions .deleteBtn:hover {
+  color: var(--color-red);
+  border-color: var(--color-error);
+}
+
+.empty, .loading {
+  text-align: center;
+  padding: 4rem 1rem;
+  color: var(--color-gray);
+}
+
+/* Modal */
+.modalOverlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.7);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.modalContent {
+  background: var(--color-white);
+  border-radius: 1rem;
+  width: 90%;
+  max-width: 560px;
+  max-height: 90vh;
+  overflow-y: auto;
+}
+
+.modalHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.5rem;
+  border-bottom: 1px solid var(--color-border);
+}
+.modalHeader h2 {
+  margin: 0;
+  font-size: 1.2rem;
+}
+.modalHeader .closeIcon {
+  cursor: pointer;
+  font-size: 1.2rem;
+  color: var(--color-gray);
+}
+.modalHeader .closeIcon:hover {
+  color: var(--color-black);
+}
+
+.modalBody {
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.chipSection label {
+  display: block;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+  font-size: 0.9rem;
+}
+
+.chipInput {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  align-items: center;
+}
+.chipInput input {
+  border: none;
+  outline: none;
+  flex: 1;
+  min-width: 120px;
+  font-size: 0.9rem;
+  padding: 1rem;
+  border-radius: 8px;
+  border: 1px solid var(--color-border);
+}
+.chipInput input:focus {
+  border-color: var(--color-blue);
+}
+
+.chip {
+  background: var(--bg-blue-tag);
+  color: var(--color-blue);
+  padding: 0.25rem 0.6rem;
+  border-radius: 2rem;
+  font-size: 0.8rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+}
+.chip button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: inherit;
+  font-size: 1rem;
+  line-height: 1;
+  padding: 0;
+}
+
+.modalFooter {
+  display: flex;
+  justify-content: flex-end;
+  gap: 1rem;
+  padding: 1rem 1.5rem;
+  border-top: 1px solid var(--color-border);
+}
+.modalFooter button {
+  padding: 0.6rem 1.5rem;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  border: 1px solid var(--color-border);
+  background: var(--color-white);
+}
+.modalFooter button.saveBtn {
+  background: var(--color-blue);
+  color: var(--color-invert);
+  border: none;
+}
+.modalFooter button.saveBtn:hover {
+  background: var(--color-blue-dark);
+}/*# sourceMappingURL=symptomMappings.module.css.map */
