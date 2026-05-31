@@ -114,6 +114,10 @@
   color: var(--color-black);
   border-color: var(--color-black);
 }
+.actions .editBtn:hover {
+  color: var(--color-blue);
+  border-color: var(--color-blue);
+}
 .actions .deleteBtn:hover {
   color: var(--color-red);
   border-color: var(--color-error);
@@ -233,6 +237,13 @@
   cursor: pointer;
   border: 1px solid var(--color-border);
   background: var(--color-white);
+}
+.modalFooter button .cancelBtn {
+  color: var(--color-gray);
+  transition: background 0.2s;
+}
+.modalFooter button .cancelBtn:hover {
+  background: var(--color-bg-light);
 }
 .modalFooter button.saveBtn {
   background: var(--color-blue);
