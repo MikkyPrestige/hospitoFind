@@ -1,11 +1,7 @@
 import { useState, useRef, useEffect } from "react";
 import { toast } from "react-toastify";
 import useAxiosPrivate from "@/hooks/useAxiosPrivate";
-import { ImportResult } from "@/types/admin";
-
-interface OsmImportResult extends ImportResult {
-  preview?: any[];
-}
+import { OsmImportResult } from "@/types/admin";
 
 export const useOsmImport = (onSuccess?: () => void) => {
   const [loading, setLoading] = useState(false);
