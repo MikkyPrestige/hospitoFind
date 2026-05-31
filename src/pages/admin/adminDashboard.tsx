@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import {
-    FiActivity, FiClock, FiCheckCircle, FiUsers, FiArrowRight, FiUserCheck, FiDatabase, FiLogOut
+    FiActivity, FiClock, FiCheckCircle, FiUsers, FiArrowRight, FiUserCheck, FiDatabase, FiLogOut, FiTag
 } from "react-icons/fi";
 import { FaExclamationTriangle } from 'react-icons/fa';
 import { useAdminDashboard } from "@/hooks/useAdminDashboard";
@@ -132,6 +132,15 @@ const AdminDashboard = () => {
                         <div className={styles.navText}>
                             <strong>Review Submission Queue</strong>
                             <p>Verify {stats.pendingHospitals} pending submissions from the community.</p>
+                        </div>
+                        <FiArrowRight className={styles.navArrow} />
+                    </Link>
+
+                    <Link to="/admin/symptoms" className={styles.navCard}>
+                        <div className={styles.navIcon}><FiTag /></div>
+                        <div className={styles.navText}>
+                            <strong>Manage Symptom Mappings</strong>
+                            <p>Update keyword‑to‑service rules for the AI matching engine.</p>
                         </div>
                         <FiArrowRight className={styles.navArrow} />
                     </Link>
