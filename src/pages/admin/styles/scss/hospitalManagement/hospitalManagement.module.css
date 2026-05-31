@@ -25,7 +25,7 @@
   color: var(--color-white);
   border: none;
   padding: 0.75rem 1.5rem;
-  border-radius: 10px;
+  border-radius: 1rem;
   display: flex;
   align-items: center;
   gap: 0.5rem;
@@ -45,8 +45,7 @@
 .controls .searchBar, .controls .filterBox {
   background: var(--color-white);
   border: 1px solid var(--color-border);
-  border-radius: 10px;
-  padding: 0.6rem 1rem;
+  border-radius: 1rem;
   display: flex;
   align-items: center;
   gap: 0.75rem;
@@ -54,6 +53,7 @@
 }
 .controls .searchBar {
   flex: 1;
+  padding: 0 0.5rem;
 }
 .controls .searchBar input {
   border: none;
@@ -63,6 +63,7 @@
   font-family: var(--font-inter);
   background: transparent;
   color: var(--color-black);
+  padding: 0.75rem 1rem;
 }
 .controls .searchBar input::-moz-placeholder {
   color: var(--icon-gray);
@@ -80,6 +81,9 @@
     width: 100%;
   }
 }
+.controls .filterGroup .filterBox {
+  padding: 0 0.5rem;
+}
 .controls .filterGroup .filterBox select {
   border: none;
   outline: none;
@@ -89,6 +93,7 @@
   font-family: var(--font-inter);
   width: 100%;
   color: var(--color-black);
+  padding: 0.75rem 1rem;
 }
 .controls .filterGroup .filterBox select option {
   background-color: var(--color-white);
