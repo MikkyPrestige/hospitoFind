@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { Check, Trash2, MapPin, Globe, Phone, Clock } from "lucide-react";
-import { FiClock, FiEdit, FiImage, FiX } from "react-icons/fi";
+import { FiCheckCircle, FiClock, FiEdit, FiImage, FiX } from "react-icons/fi";
 import { useAdminPending } from "@/hooks/useAdminPending";
 import { Hospital } from "@/types/hospital";
 import AdminHospitalForm from "@/components/admin/adminHospitalForm";
@@ -13,10 +13,22 @@ const AdminPendingList = () => {
         getPendingHospitals,
         approveHospital,
         updateAndApprove,
+        batchApprove,
         deleteSubmission
     } = useAdminPending();
     const [isEditing, setIsEditing] = useState(false);
     const [selectedHospital, setSelectedHospital] = useState<Hospital | null>(null);
+    const [selectedIds, setSelectedIds] = useState<Set<string>>(new Set());
+    const [showBatchConfirm, setShowBatchConfirm] = useState(false);
+
+    const toggleSelect = (id: string) => {
+        setSelectedIds(prev => {
+            const next = new Set(prev);
+            if (next.has(id)) next.delete(id);
+            else next.add(id);
+            return next;
+        });
+    };
 
     useEffect(() => {
         getPendingHospitals();
@@ -48,6 +60,23 @@ const AdminPendingList = () => {
                 <p>Review and verify user-submitted entries</p>
             </header>
 
+            {selectedIds.size > 0 && (
+                <div className={styles.batchBar}>
+                    <span>{selectedIds.size} hospital(s) selected</span>
+                    <button
+                        type="button"
+                        className={styles.batchApproveBtn}
+                        onClick={(e) => {
+                            e.preventDefault();
+                            e.stopPropagation();
+                            setShowBatchConfirm(true);
+                        }}
+                    >
+                        <FiCheckCircle /> Approve Selected
+                    </button>
+                </div>
+            )}
+
             {isLoading ? (
                 <div className={styles.loading}>Checking queue...</div>
             ) : hospitals.length === 0 ? (
@@ -59,6 +88,14 @@ const AdminPendingList = () => {
                 <div className={styles.hospitalGrid}>
                     {hospitals.map((hospital) => (
                         <div key={hospital._id} className={styles.hospitalCard}>
+                            <input
+                                type="checkbox"
+                                checked={selectedIds.has(hospital._id)}
+                                onChange={() => toggleSelect(hospital._id)}
+                                onClick={(e) => e.stopPropagation()}
+                                className={styles.cardCheckbox}
+                            />
+
                             <div className={styles.photoPreview}>
                                 {hospital.photoUrl ? (
                                     <img src={hospital.photoUrl} alt={hospital.name} className={styles.hospitalThumb} />
@@ -147,6 +184,44 @@ const AdminPendingList = () => {
                             </div>
                         </div>
                     ))}
+                </div>
+            )}
+
+            {showBatchConfirm && (
+                <div className={styles.modalOverlay}>
+                    <div className={styles.modalContent}>
+                        <div className={styles.modalHeader}>
+                            <h2>Approve {selectedIds.size} Hospital(s)?</h2>
+                            <FiX onClick={() => setShowBatchConfirm(false)} className={styles.closeIcon} />
+                        </div>
+                        <div className={styles.modalBody}>
+                            <ul className={styles.selectedList}>
+                                {Array.from(selectedIds).map(id => {
+                                    const hospital = hospitals.find(h => h._id === id);
+                                    return hospital ? (
+                                        <li key={id}>
+                                            <strong>{hospital.name}</strong> — {hospital.address?.city}, {hospital.address?.state}
+                                        </li>
+                                    ) : null;
+                                })}
+                            </ul>
+                        </div>
+                        <div className={styles.modalFooter}>
+                            <button className={styles.cancelBtn} onClick={() => setShowBatchConfirm(false)}>
+                                Cancel
+                            </button>
+                            <button
+                                className={styles.confirmApproveBtn}
+                                onClick={async () => {
+                                    await batchApprove(Array.from(selectedIds));
+                                    setSelectedIds(new Set());
+                                    setShowBatchConfirm(false);
+                                }}
+                            >
+                                <FiCheckCircle /> Yes, Approve All
+                            </button>
+                        </div>
+                    </div>
                 </div>
             )}
 

@@ -47,6 +47,16 @@ export const useAdminPending = () => {
         }
     };
 
+    const batchApprove = async (ids: string[]) => {
+  try {
+    const { data } = await axiosPrivate.patch("/admin/hospitals/approve-batch", { ids });
+    setHospitals((prev) => prev.filter((h) => !ids.includes(h._id)));
+    toast.success(data.message || "Hospitals approved!");
+  } catch (err: any) {
+    toast.error(err.response?.data?.message || "Batch approval failed");
+  }
+};
+
     const deleteSubmission = async (id: string) => {
         try {
             await axiosPrivate.delete(`/admin/hospitals/${id}`);
@@ -66,6 +76,7 @@ export const useAdminPending = () => {
         getPendingHospitals,
         approveHospital,
         updateAndApprove,
+        batchApprove,
         deleteSubmission
     };
 };
