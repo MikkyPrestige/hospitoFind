@@ -4,6 +4,7 @@
   "description": "AI‑powered hospital discovery platform",
   "start_url": "/",
   "scope": "/",
+  "id": "/",
   "display": "standalone",
   "orientation": "any",
   "theme_color": "#08299b",
