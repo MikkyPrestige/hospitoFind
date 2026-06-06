@@ -1,7 +1,6 @@
 import { useState, useEffect } from "react";
-import axios from "axios";
 import { Hospital } from "@/types/hospital";
-import { BASE_URL } from "@/context/UserProvider";
+import { api } from "@/services/api";
 
 export const useSharedHospitals = (linkId: string | undefined) => {
     const [hospitalList, setHospitalList] = useState<Hospital[]>([]);
@@ -20,7 +19,8 @@ export const useSharedHospitals = (linkId: string | undefined) => {
             setError("");
 
             try {
-                const { data } = await axios.get(`${BASE_URL}/hospitals/share/${encodeURIComponent(linkId)}`);
+                const response = await api.get(`/hospitals/share/${encodeURIComponent(linkId)}`, { skipErrorToast: true } as any);
+                const data = response.data;
                 setHospitalList(Array.isArray(data) ? data : []);
             } catch (err: any) {
                 console.error("Shared List Fetch Error:", err);

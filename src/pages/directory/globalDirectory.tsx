@@ -14,7 +14,7 @@ const CONTINENTS = ["All", "Africa", "Americas", "Asia", "Europe", "Oceania"];
 const GlobalDirectory = () => {
   const [query, setQuery] = useState("");
   const [selectedContinent, setSelectedContinent] = useState("All");
-  const { unifiedCountries, loading } = useGlobalDirectory();
+  const { unifiedCountries, loading, error, retry } = useGlobalDirectory();
 
   const filtered = useMemo(() => {
     return unifiedCountries.filter((c) => {
@@ -81,11 +81,18 @@ const GlobalDirectory = () => {
           </section>
 
           <section className={style.contentSection}>
-            {loading ? (
+            {error && (
+              <div className={style.errorState}>
+                <p>Could not load the global directory.</p>
+                <button onClick={retry} className={style.retryBtn}>Retry</button>
+              </div>
+            )}
+
+            {!error && loading ?(
               <div className={style.loaderWrapper}>
                 <AnimatedLoader message="Retrieving global index..." variant="card" count={8} />
               </div>
-            ) : filtered.length === 0 ? (
+            ) : !error && filtered.length === 0 ? (
               <Motion as="div" className={style.emptyState} variants={fadeUp}>
                 <div className={style.emptyIcon}><FiMapPin /></div>
                 <h2 className={style.emptyStateTitle}>No Matching Regions Found</h2>
@@ -94,7 +101,7 @@ const GlobalDirectory = () => {
                   Clear Search
                 </button>
               </Motion>
-            ) : (
+              ) : !error && (
               <div className={style.grid}>
                 {filtered.map(({ country, hospitals }) => (
                   <Motion

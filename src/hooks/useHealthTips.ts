@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { BASE_URL } from "@/context/UserProvider";
+import { api } from "@/services/api";
 import {Tip} from "@/types/media";
 
 export const useHealthTips = () => {
@@ -20,8 +20,8 @@ export const useHealthTips = () => {
         const fetchTips = async () => {
             try {
                 setLoading(true);
-                const res = await fetch(`${BASE_URL}/health/tips`);
-                const data = await res.json();
+                const response = await api.get("/health/tips", { skipErrorToast: true } as any);
+                const data = response.data;
 
                 if (Array.isArray(data) && data.length > 0) {
                     setTips(data);

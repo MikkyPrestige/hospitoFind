@@ -26,6 +26,7 @@ const CountryRegistry: React.FC = () => {
     totalPages,
     page,
     decodedCountry,
+    error, retry,
     loadMore
   } = useCountryHospitals(country);
 
@@ -111,9 +112,16 @@ const CountryRegistry: React.FC = () => {
           </section>
 
           <section className={style.contentSection}>
-            {loading && page === 1 ? (
+            {error && (
+              <div className={style.errorState}>
+                <p>Could not load hospitals for {decodedCountry}.</p>
+                <button onClick={retry} className={style.retryBtn}>Retry</button>
+              </div>
+            )}
+
+            {!error && loading && page === 1 ? (
               <AnimatedLoader message={`Syncing ${decodedCountry} records...`} variant="card" count={6} />
-            ) : filteredHospitals.length === 0 ? (
+            ) : !error && filteredHospitals.length === 0 ? (
               <div className={style.emptyState}>
                 <FiSearch size={40} className={style.emptyIcon} />
                 <h2 className={style.emptyStateTitle}>No Facilities Found</h2>
@@ -122,7 +130,7 @@ const CountryRegistry: React.FC = () => {
                   Clear Search/Filter
                 </button>
               </div>
-            ) : (
+              ) : !error && (
               <div className={style.grid}>
                 {filteredHospitals.map((h, i) => (
                   <div

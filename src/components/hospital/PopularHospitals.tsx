@@ -12,25 +12,20 @@ const PopularHospitals = () => {
   const [hospitals, setHospitals] = useState<Hospital[]>([]);
   const [error, setError] = useState<string>("");
 
+  const loadHospitals = async () => {
+    try {
+      const response = await getRandomHospitals();
+      setHospitals(response);
+      setError("");
+    } catch (err: any) {
+      if (err.response) setError(err.response.data?.message || "Server error");
+      else if (err.request) setError("Unable to load recommended hospitals at this time.");
+      else setError(err.message);
+    }
+  };
+
   useEffect(() => {
-    let mounted = true;
-
-    const fetchRandomHospitals = async () => {
-      try {
-        const response = await getRandomHospitals();
-        if (mounted) setHospitals(response);
-      } catch (err: any) {
-        if (mounted) {
-          if (err.data) setError(err.message);
-          else if (err.request) setError("Unable to load recommended hospitals at this time.");
-          else setError(err.message);
-        }
-      }
-    };
-
-    fetchRandomHospitals();
-
-    return () => { mounted = false; };
+    loadHospitals();
   }, []);
 
   if (hospitals.length === 0 && !error) return null;
@@ -49,7 +44,12 @@ const PopularHospitals = () => {
         </p>
       </Motion>
 
-      {error && <p className={style.error}>{error}</p>}
+      {error && (
+        <div className={style.errorContainer}>
+          <p className={style.error}>{error}</p>
+          <button onClick={loadHospitals} className={style.retryBtn}>Try Again</button>
+        </div>
+      )}
 
       {hospitals.length > 0 && (
         <Motion variants={sectionReveal} className={style.wrapper}>

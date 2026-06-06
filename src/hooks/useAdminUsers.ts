@@ -11,7 +11,7 @@ export const useAdminUsers = () => {
     const fetchUsers = useCallback(async () => {
         try {
             setIsLoading(true);
-            const response = await axiosPrivate.get("/admin/users");
+            const response = await axiosPrivate.get("/admin/users", { skipErrorToast: true } as any);
             setUsers(response.data);
         } catch (err) {
             console.error("Failed to fetch users", err);
@@ -27,7 +27,7 @@ export const useAdminUsers = () => {
 
     const createUser = async (formData: any): Promise<boolean> => {
         try {
-            await axiosPrivate.post("/admin/users", formData);
+            await axiosPrivate.post("/admin/users", formData, { skipErrorToast: true } as any);
             toast.success("User created successfully!");
             await fetchUsers();
             return true;
@@ -42,9 +42,9 @@ export const useAdminUsers = () => {
         if (!window.confirm(`Are you sure you want to change this user to ${newRole.toUpperCase()}?`)) return;
 
         try {
-            await axiosPrivate.patch("/admin/users/role", { userId, newRole });
+            await axiosPrivate.patch("/admin/users/role", { userId, newRole }, { skipErrorToast: true } as any);
             toast.success(`Role updated to ${newRole}`);
-            await fetchUsers(); // Refresh to guarantee UI matches database
+            await fetchUsers();
         } catch (err) {
             toast.error("Failed to update user role securely.");
         }
@@ -52,7 +52,7 @@ export const useAdminUsers = () => {
 
     const toggleStatus = async (userId: string) => {
         try {
-            const response = await axiosPrivate.patch(`/admin/users/${userId}`);
+            const response = await axiosPrivate.patch(`/admin/users/${userId}`,  {}, { skipErrorToast: true } as any);
             const newStatus = response.data.isActive;
             setUsers(prevUsers =>
                 prevUsers.map(user =>
@@ -69,7 +69,7 @@ export const useAdminUsers = () => {
     const deleteUser = async (id: string, username: string) => {
         if (!window.confirm(`PERMANENTLY DELETE ${username}? This cannot be undone.`)) return;
         try {
-            await axiosPrivate.delete(`/admin/users/${id}`);
+            await axiosPrivate.delete(`/admin/users/${id}`, { skipErrorToast: true } as any);;
             setUsers(prev => prev.filter(u => u._id !== id));
             toast.success("User permanently removed from the system.");
         } catch (err) {

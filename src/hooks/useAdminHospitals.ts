@@ -11,7 +11,7 @@ export const useAdminHospitals = () => {
     const fetchHospitals = useCallback(async () => {
         try {
             setIsLoading(true);
-            const response = await axiosPrivate.get("/admin/hospitals");
+            const response = await axiosPrivate.get("/admin/hospitals", { skipErrorToast: true } as any);
             setHospitals(response.data);
         } catch (err: any) {
             toast.error(err?.response?.data?.message || "Failed to securely load the hospital directory.");
@@ -23,10 +23,10 @@ export const useAdminHospitals = () => {
     const submitHospital = async (isEditing: boolean, selectedId: string | null, formData: HospitalFormData) => {
         try {
             if (isEditing && selectedId) {
-                await axiosPrivate.patch(`/hospitals/${selectedId}`, formData);
+                await axiosPrivate.patch(`/hospitals/${selectedId}`, formData, { skipErrorToast: true } as any);;
                 toast.success("Hospital record securely updated.");
             } else {
-                await axiosPrivate.post("/hospitals", formData);
+                await axiosPrivate.post("/hospitals", formData, { skipErrorToast: true } as any);
                 toast.success("New hospital securely added to the directory.");
             }
             await fetchHospitals();
@@ -39,7 +39,7 @@ export const useAdminHospitals = () => {
 
     const toggleStatus = async (id: string) => {
         try {
-            await axiosPrivate.patch(`/admin/hospitals/${id}/toggle-status`);
+            await axiosPrivate.patch(`/admin/hospitals/${id}/toggle-status`,  {}, { skipErrorToast: true } as any);
             toast.success("Hospital verification status updated.");
             await fetchHospitals();
         } catch (err: any) {
@@ -49,7 +49,7 @@ export const useAdminHospitals = () => {
 
     const removeHospital = async (id: string) => {
         try {
-            await axiosPrivate.delete(`/hospitals/${id}`);
+            await axiosPrivate.delete(`/hospitals/${id}`, { skipErrorToast: true } as any);;
             toast.success("Hospital record permanently removed.");
             await fetchHospitals();
         } catch (err: any) {

@@ -1,7 +1,6 @@
 import { useState } from 'react';
-import axios from 'axios';
 import { toast } from 'react-toastify';
-import { BASE_URL } from '@/context/UserProvider';
+import { api } from '@/services/api';
 
 export const useResendVerification = () => {
     const [resending, setResending] = useState(false);
@@ -9,7 +8,7 @@ export const useResendVerification = () => {
     const resendEmail = async (email: string) => {
         setResending(true);
         try {
-            await axios.post(`${BASE_URL}/auth/resend-verification`, { email });
+            await api.post('/auth/resend-verification', { email }, { skipErrorToast: true } as any);
             toast.success("A new link has been dispatched!");
             return true;
         } catch (err: any) {

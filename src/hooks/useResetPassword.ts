@@ -1,7 +1,6 @@
 import { useState } from "react";
-import axios from "axios";
 import { toast } from "react-toastify";
-import { BASE_URL } from "@/context/UserProvider";
+import { api } from "@/services/api";
 
 export const useResetPassword = () => {
     const [loading, setLoading] = useState(false);
@@ -9,7 +8,7 @@ export const useResetPassword = () => {
     const resetPassword = async (resetToken: string, password: string) => {
         setLoading(true);
         try {
-            await axios.put(`${BASE_URL}/auth/reset-password/${resetToken}`, { password });
+            await api.put(`/auth/reset-password/${resetToken}`, { password }, { skipErrorToast: true } as any);
             toast.success("Password reset successful! Please log in.");
             return true;
         } catch (error: any) {

@@ -1,7 +1,7 @@
-import axios from "axios";
 import { useState, useEffect } from "react";
 import { useLocation } from "react-router-dom";
-import { useAuthContext, BASE_URL } from "@/context/UserProvider";
+import { useAuthContext } from "@/context/UserProvider";
+import { api } from "@/services/api";
 
 export const usePersistLogin = () => {
     const [isLoading, setIsLoading] = useState(true);
@@ -13,9 +13,7 @@ export const usePersistLogin = () => {
 
         const verifyRefreshToken = async () => {
             try {
-                const response = await axios.get(`${BASE_URL}/auth/refresh`, {
-                    withCredentials: true
-                });
+                const response = await api.get("/auth/refresh", { skipErrorToast: true } as any);
 
                 dispatch({
                     type: 'REFRESH',

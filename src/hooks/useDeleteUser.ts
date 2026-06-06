@@ -17,7 +17,8 @@ const useDelete = () => {
     try {
       await axiosPrivate.delete(`/user`, {
         data: { username, password },
-      });
+        skipErrorToast: true,
+       } as any);
 
       dispatch({ type: 'DELETE' });
       localStorage.clear();

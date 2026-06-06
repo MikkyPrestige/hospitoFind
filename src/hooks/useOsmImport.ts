@@ -37,7 +37,7 @@ export const useOsmImport = (onSuccess?: () => void) => {
       const { data } = await axiosPrivate.post(url, {
         city: city.trim(),
         targetCountry: country.trim(),
-      });
+      },  { skipErrorToast: true } as any);
 
       if (dryRun) {
         setDryRunResult(data);

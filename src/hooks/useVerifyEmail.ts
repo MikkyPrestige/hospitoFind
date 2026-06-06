@@ -1,6 +1,6 @@
 import { useState, useCallback } from "react";
-import axios from "axios";
-import { BASE_URL, useAuthContext } from "@/context/UserProvider";
+import { useAuthContext } from "@/context/UserProvider";
+import { api } from "@/services/api";
 
 export const useVerifyEmail = () => {
     const { dispatch } = useAuthContext();
@@ -15,7 +15,7 @@ export const useVerifyEmail = () => {
         }
 
         try {
-            const response = await axios.get(`${BASE_URL}/auth/verify-email?token=${token}`);
+            const response = await api.get(`/auth/verify-email?token=${token}`, { skipErrorToast: true } as any);
             const authData = response.data;
 
             localStorage.setItem("accessToken", authData.accessToken);
