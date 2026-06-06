@@ -17,7 +17,7 @@ const useLogin = () => {
     setSuccess(false);
 
     try {
-      const response = await api.post(`/auth`, credentials);
+      const response = await api.post(`/auth`, credentials, { skipErrorToast: true } as any);
       const data = response.data;
 
       dispatch({

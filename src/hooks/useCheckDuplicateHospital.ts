@@ -16,8 +16,8 @@ export const useCheckDuplicateHospital = () => {
         setDupCheckLoading(true);
         try {
             const { data } = await axiosPrivate.get(
-                `/hospitals/check-duplicate?name=${encodeURIComponent(name)}&city=${encodeURIComponent(city)}&currentId=${currentId || ""}`
-            );
+                `/hospitals/check-duplicate?name=${encodeURIComponent(name)}&city=${encodeURIComponent(city)}&currentId=${currentId || ""}`,
+                { skipErrorToast: true } as any);
 
         if (data.isDuplicate) {
                  toast.error(data.message, {  icon: () => React.createElement(FiAlertTriangle)});

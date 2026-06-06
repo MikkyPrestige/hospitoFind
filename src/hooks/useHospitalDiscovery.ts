@@ -1,7 +1,6 @@
 import { useState, useCallback } from "react";
 import axios from "axios";
-import { BASE_URL } from "@/context/UserProvider";
-import { findHospitals } from "@/services/api";
+import { api } from "@/services/api";
 import { SearchState } from "@/types/hospital";
 import { accessToken } from "@/config/mapbox";
 
@@ -34,7 +33,8 @@ export const useHospitalDiscovery = () => {
                 return { data: [], displayString: "" };
             }
 
-            const data = await findHospitals(apiQuery);
+            const response = await api.get(`/hospitals/find?${apiQuery}`, { skipErrorToast: true } as any);
+            const data = response.data;
 
             if (!data || data.length === 0) {
                 let center: [number, number] | null = null;
@@ -73,8 +73,8 @@ export const useHospitalDiscovery = () => {
     const fetchNearby = useCallback(async (latitude: number, longitude: number) => {
         setState(prev => ({ ...prev, searching: true, error: "", emptyResultQuery: null }));
         try {
-            const response = await fetch(`${BASE_URL}/hospitals/nearby?lat=${latitude}&lng=${longitude}`);
-            const data = await response.json();
+            const response = await api.get(`/hospitals/nearby?lat=${latitude}&lng=${longitude}`, { skipErrorToast: true } as any);
+            const data = response.data;
             const results = data.results || [];
 
             let locName = null;

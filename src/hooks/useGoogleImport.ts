@@ -31,7 +31,7 @@ export const useGoogleImport = (onSuccess?: () => void) => {
       const { data } = await axiosPrivate.post("/admin/hospitals/import-google", {
         city: city.trim(),
         targetCountry: country.trim()
-      });
+      }, { skipErrorToast: true } as any);
 
       setResult(data);
       toast.success(`Success! Added ${data.imported} locations with rich data.`);

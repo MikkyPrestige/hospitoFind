@@ -83,10 +83,10 @@ export const useAgent = () => {
           .filter((m) => !(m.role === 'assistant' && m.content.startsWith('👋')))
           .map(({ role, content }) => ({ role, content }));
 
-        const { data } = await axiosPrivate.post<ChatResponse>('/agent/chat', {
-          messages: apiMessages,
-          userLocation,
-        });
+        const { data } = await axiosPrivate.post<ChatResponse>('/agent/chat',
+          { messages: apiMessages, userLocation },
+          { skipErrorToast: true } as any
+      );
 
         if (data.type === 'MATCH_READY' && data.profile) {
           await runMatch(data.profile, updatedMessages);
@@ -133,7 +133,9 @@ export const useAgent = () => {
           symptoms: profile.symptoms,
           location: profile.location,
           additionalNeeds: profile.additionalNeeds,
-        });
+        },
+        { skipErrorToast: true } as any
+      );
 
         if (data.noResults) {
           setState((prev) => ({

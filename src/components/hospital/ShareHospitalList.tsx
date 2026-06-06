@@ -3,7 +3,7 @@ import { useSharedHospitals } from "@/hooks/useSharedHospitals";
 import { Avatar } from "@/components/ui/Avatar";
 import AnimatedLoader from "@/components/ui/AnimatedLoader";
 import HospitalPic from "@/assets/images/hospital-logo.jpg";
-import style from "./styles/popular.module.css";
+import style from "./styles/shareHospitalList.module.css";
 import { SEOHelmet } from "../ui/SeoHelmet";
 
 const ShareHospitalList = () => {

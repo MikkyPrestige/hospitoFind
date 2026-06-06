@@ -14,7 +14,7 @@ export const useSubmitHospital = () => {
     setShowSuccess(false);
 
     try {
-      await axiosPrivate.post(`/hospitals`, payload);
+      await axiosPrivate.post(`/hospitals`, payload, { skipErrorToast: true } as any);
       setShowSuccess(true);
       return true;
     } catch (err: any) {

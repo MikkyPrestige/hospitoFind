@@ -13,7 +13,7 @@ import PhoneMap from "@/assets/images/phone.jpg";
 import style from "./styles/about.module.scss";
 
 const About = () => {
-  const { totalHospitals, totalCountries, loading } = useGlobalStats();
+  const { totalHospitals, totalCountries, loading, error, retry } = useGlobalStats();
 
   return (
     <>
@@ -40,18 +40,29 @@ const About = () => {
             <div className={style.statsRow}>
               <div className={style.statItem}>
                 <span className={style.statNumber}>
-                  {loading ? "..." : totalHospitals ? `${totalHospitals.toLocaleString()}+` : "500+"}
+                  {loading && "..."}
+                  {!loading && error && "--"}
+                  {!loading && !error && totalHospitals !== null && `${totalHospitals.toLocaleString()}+`}
                 </span>
                 <span className={style.statLabel}>Verified Facilities</span>
               </div>
               <div className={style.divider}></div>
               <div className={style.statItem}>
                 <span className={style.statNumber}>
-                  {loading ? "..." : totalCountries ? `${totalCountries}+` : "50+"}
+                  {loading && "..."}
+                  {!loading && error && "--"}
+                  {!loading && !error && totalCountries !== null && `${totalCountries}+`}
                 </span>
                 <span className={style.statLabel}>Countries Covered</span>
               </div>
             </div>
+
+            {error && (
+              <div className={style.errorRetry}>
+                <p>Could not load platform stats.</p>
+                <button onClick={retry} className={style.retryBtn}>Retry</button>
+              </div>
+            )}
 
             <Link to="/find-hospital" className={style.ctaLink}>
               Locate a Facility

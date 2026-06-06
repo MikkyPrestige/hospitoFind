@@ -11,7 +11,7 @@ const useSignup = () => {
     setLoading(true);
 
     try {
-      const response = await api.post(`/auth/register`, user);
+      const response = await api.post(`/auth/register`, user, { skipErrorToast: true } as any);
 
      toast.success(response.data.message || "Account created! Verify your email.", {
         position: "top-center"

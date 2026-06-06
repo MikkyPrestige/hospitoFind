@@ -17,7 +17,7 @@ export const useAdminDashboard = () => {
         try {
             setLoading(true);
             setError(null);
-            const response = await axiosPrivate.get("/hospitals/admin/stats");
+            const response = await axiosPrivate.get("/hospitals/admin/stats", { skipErrorToast: true } as any);
             setStats(response.data);
         } catch (err: any) {
             console.error("Dashboard Stats Error:", err);

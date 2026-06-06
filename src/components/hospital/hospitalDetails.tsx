@@ -24,7 +24,7 @@ const HospitalDetails = () => {
     const { state } = useAuthContext();
     const navigate = useNavigate();
     const [isExiting, setIsExiting] = useState(false);
-    const { hospital, loading, isFavorite, toggleFavorite } = useHospitalDetails({
+    const { hospital, loading, error, retry, isFavorite, toggleFavorite } = useHospitalDetails({
         id, country, city, slug, name,
         accessToken: state?.accessToken,
         username: state?.username
@@ -69,6 +69,19 @@ const HospitalDetails = () => {
                 imageHeight={200}
                 showButtons={false}
             />
+        );
+    }
+
+    if (error) {
+        return (
+            <div className={style.errorContainer}>
+                <div className={style.errorCard}>
+                    <MdErrorOutline size={60} className={style.errorIcon} />
+                    <h2 className={style.errorTitle}>Unable to Load Facility</h2>
+                    <p className={style.errorText}>{error}</p>
+                    <button onClick={retry} className={style.errorBtn}>Try Again</button>
+                </div>
+            </div>
         );
     }
 

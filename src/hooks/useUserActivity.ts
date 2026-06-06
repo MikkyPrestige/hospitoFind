@@ -6,7 +6,7 @@ export const useUserActivity = () => {
 
   const syncFavorite = async (hospitalId: string) => {
     try {
-      await axiosPrivate.post("/user/favorites", { hospitalId });
+      await axiosPrivate.post("/user/favorites", { hospitalId }, { skipErrorToast: true } as any);
     } catch (err) {
       console.error("Background Sync Error (Fav):", err);
     }
@@ -14,7 +14,7 @@ export const useUserActivity = () => {
 
   const syncView = async (hospitalId: string) => {
     try {
-      return await axiosPrivate.post("/user/view", { hospitalId });
+      return await axiosPrivate.post("/user/view", { hospitalId }, { skipErrorToast: true } as any);
     } catch (err) {
       console.error("Background Sync Error (View):", err);
     }
@@ -22,7 +22,7 @@ export const useUserActivity = () => {
 
   const fetchActivity = async () => {
     try {
-      const { data } = await axiosPrivate.get("/user/activity");
+      const { data } = await axiosPrivate.get("/user/activity", { skipErrorToast: true } as any);
       return data;
     } catch (err) {
       console.error("Hydration Error:", err);
@@ -32,7 +32,7 @@ export const useUserActivity = () => {
 
   const removeFavoriteItem = async (id: string): Promise<boolean> => {
     try {
-      await axiosPrivate.delete(`/user/favorites/${id}`);
+      await axiosPrivate.delete(`/user/favorites/${id}`, { skipErrorToast: true } as any);
       toast.success("Removed from saved collections");
       return true;
     } catch (err: any) {
@@ -44,7 +44,7 @@ export const useUserActivity = () => {
 
   const removeHistoryItem = async (id: string): Promise<boolean> => {
     try {
-      await axiosPrivate.delete(`/user/history/${id}`);
+      await axiosPrivate.delete(`/user/history/${id}`, { skipErrorToast: true } as any);
       toast.success("Removed from recent history");
       return true;
     } catch (err: any) {

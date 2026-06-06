@@ -9,6 +9,7 @@ export const useCountryHospitals = (country: string | undefined) => {
   const [totalPages, setTotalPages] = useState<number>(1);
   const [fetchingMore, setFetchingMore] = useState<boolean>(false);
   const [error, setError] = useState<string | null>(null);
+  const [retryCounter, setRetryCounter] = useState(0);
 
   const decodedCountry = useMemo(() => decodeURIComponent(country || ""), [country]);
 
@@ -41,13 +42,17 @@ export const useCountryHospitals = (country: string | undefined) => {
 
   useEffect(() => {
     fetchHospitals();
-  }, [fetchHospitals]);
+  }, [fetchHospitals, retryCounter]);
 
   const loadMore = useCallback(() => {
     if (!loading && !fetchingMore && page < totalPages) {
       setPage((p) => p + 1);
     }
   }, [loading, fetchingMore, page, totalPages]);
+
+  const retry = useCallback(() => {
+  setRetryCounter((c) => c + 1);
+}, []);
 
   return {
     hospitals,
@@ -57,6 +62,7 @@ export const useCountryHospitals = (country: string | undefined) => {
     page,
     decodedCountry,
     error,
+    retry,
     loadMore
   };
 };

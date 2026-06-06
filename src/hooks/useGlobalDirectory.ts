@@ -1,4 +1,4 @@
-import { useState, useEffect, useMemo } from "react";
+import { useState, useEffect, useMemo, useCallback  } from "react";
 import { CountryData, CountryListEntry, } from "@/types/hospital";
 import { BASE_URL } from "@/context/UserProvider";
 import { normalizeName } from "@/utils/formatters";
@@ -15,6 +15,7 @@ export const useGlobalDirectory = () => {
   const [countries, setCountries] = useState<CountryData[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+  const [retryCounter, setRetryCounter] = useState(0);
 
   useEffect(() => {
     const fetchCountries = async () => {
@@ -32,7 +33,7 @@ export const useGlobalDirectory = () => {
       }
     };
     fetchCountries();
-  }, []);
+  }, [retryCounter]);
 
   const getContinent = (countryName: string) => {
     const cleanName = countryName.trim();
@@ -75,5 +76,9 @@ export const useGlobalDirectory = () => {
     return Array.from(map.values());
   }, [countries]);
 
-  return { unifiedCountries, loading, error };
+  const retry = useCallback(() => {
+  setRetryCounter(c => c + 1);
+}, []);
+
+  return { unifiedCountries, loading, error, retry  };
 };

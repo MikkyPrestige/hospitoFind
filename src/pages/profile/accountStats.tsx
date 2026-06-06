@@ -3,7 +3,7 @@ import { useStats } from "@/hooks/useStats";
 import styles from "./styles/scss/accountStats/accountStats.module.scss";
 
 const AccountStats = () => {
-    const { stats, loading, error } = useStats();
+    const { stats, loading, error, refresh } = useStats();
 
     if (loading) {
         return (
@@ -13,7 +13,16 @@ const AccountStats = () => {
         );
     }
 
-    if (error) return null;
+    if (error) {
+        return (
+            <div className={styles.statsGrid}>
+                <div className={styles.errorCard}>
+                    <p className={styles.errorText}>Could not load your contribution stats.</p>
+                    <button onClick={refresh} className={styles.retryBtn}>Retry</button>
+                </div>
+            </div>
+        );
+    }
 
     return (
         <div className={styles.statsGrid}>

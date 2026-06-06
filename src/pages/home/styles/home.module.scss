@@ -242,6 +242,37 @@
     letter-spacing: 0.05em;
   }
 
+  .errorValue {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #6b7280;
+}
+
+.errorRetry {
+  text-align: center;
+  margin: 1rem 0;
+  color: #a0a8c0;
+
+  p {
+    margin-bottom: 0.5rem;
+  }
+}
+
+.retryBtn {
+  background: #4ea8de;
+  color: #0a0f1a;
+  border: none;
+  padding: 0.5rem 1.5rem;
+  border-radius: 0.5rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s;
+
+  &:hover {
+    background: #64b5e8;
+  }
+}
+
 
   .howSection {
     padding: 5rem 0 1rem;

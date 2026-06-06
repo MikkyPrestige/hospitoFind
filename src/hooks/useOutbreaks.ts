@@ -1,5 +1,5 @@
 import { useState, useEffect, useCallback } from "react";
-import { BASE_URL } from "@/context/UserProvider";
+import { api } from "@/services/api";
 import { Alert, UseOutbreaksReturn} from "@/types/media";
 import {continentData} from "@/components/constants/outbreakConstants"
 
@@ -13,11 +13,9 @@ export const useOutbreaks = (): UseOutbreaksReturn => {
         try {
             setLoading(true);
             setError(null);
-            const res = await fetch(`${BASE_URL}/health/alerts`);
+            const response = await api.get("/health/alerts", { skipErrorToast: true } as any);
+            const data = response.data;
 
-            if (!res.ok) throw new Error("Could not retrieve alerts.");
-
-            const data = await res.json();
             const list = Array.isArray(data) ? data : (data.results || []);
             setAlerts(list);
         } catch (err) {
