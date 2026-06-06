@@ -12,7 +12,7 @@ const usePasswordUpdate = () => {
   const updatePassword = async (user: PasswordUpdate) => {
     setLoading(true);
     try {
-      await axiosPrivate.patch(`/user/password`, user);
+      await axiosPrivate.patch(`/user/password`, user, { skipErrorToast: true } as any);
 
       toast.success("Password updated successfully!", { position: "top-center" });
       localStorage.removeItem("accessToken");

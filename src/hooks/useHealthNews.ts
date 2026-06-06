@@ -1,5 +1,5 @@
 import { useState, useEffect, useCallback } from "react";
-import { BASE_URL } from "@/context/UserProvider";
+import { api } from "@/services/api";
 import { Article, UseHealthNewsReturn} from "@/types/media";
 
 export const useHealthNews = (limit: number = 12): UseHealthNewsReturn => {
@@ -12,13 +12,9 @@ export const useHealthNews = (limit: number = 12): UseHealthNewsReturn => {
             setLoading(true);
             setError(null);
 
-            const res = await fetch(`${BASE_URL}/health/news`);
+            const response = await api.get("/health/news", { skipErrorToast: true } as any);
+            const data = response.data;
 
-            if (!res.ok) {
-                throw new Error(res.status === 404 ? "News service currently unavailable." : "Server error.");
-            }
-
-            const data = await res.json();
             const list = Array.isArray(data) ? data : (data.results || []);
 
             setArticles(list.slice(0, limit));

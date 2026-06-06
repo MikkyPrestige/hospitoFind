@@ -11,6 +11,7 @@ export const useHospitalDetails = ({
     const [loading, setLoading] = useState(true);
     const [isFavorite, setIsFavorite] = useState(false);
     const [error, setError] = useState<string | null>(null);
+    const [retryCounter, setRetryCounter] = useState(0);
     const lastRecordedId = useRef<string | null>(null);
     const axiosPrivate = useAxiosPrivate();
     const userPrefix = username || "guest";
@@ -41,6 +42,10 @@ export const useHospitalDetails = ({
             }
         }
     }, [REC_KEY, accessToken, axiosPrivate]);
+
+    const retry = useCallback(() => {
+  setRetryCounter(c => c + 1);
+}, []);
 
     useEffect(() => {
         const fetchHospital = async () => {
@@ -81,7 +86,7 @@ export const useHospitalDetails = ({
         };
 
         fetchHospital();
-    }, [id, country, city, slug, name, FAV_KEY, addToHistory]);
+    }, [id, country, city, slug, name, FAV_KEY, addToHistory, retryCounter]);
 
     const toggleFavorite = async () => {
         if (!hospital) return;
@@ -114,5 +119,5 @@ export const useHospitalDetails = ({
         }
     };
 
-    return { hospital, loading, error, isFavorite, toggleFavorite };
+    return { hospital, loading, error, retry, isFavorite, toggleFavorite };
 };

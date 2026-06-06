@@ -1,6 +1,5 @@
-import axios from "axios";
 import { useEffect } from "react";
-import { useAuthContext, BASE_URL } from "@/context/UserProvider";
+import { useAuthContext } from "@/context/UserProvider";
 import { api } from "@/services/api";
 
 const useAxiosPrivate = () => {
@@ -30,9 +29,7 @@ const useAxiosPrivate = () => {
                     prevRequest._retry = true;
 
                     try {
-                        const response = await axios.get(`${BASE_URL}/auth/refresh`, {
-                            withCredentials: true,
-                        });
+                        const response = await api.get("/auth/refresh", { skipErrorToast: true } as any);
 
                         const { accessToken, ...otherData } = response.data;
 

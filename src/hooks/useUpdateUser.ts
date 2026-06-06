@@ -12,7 +12,7 @@ const useUpdate = () => {
   const update = async (user: User, onSuccess?: () => void) => {
     setLoading(true);
     try {
-      const response = await axiosPrivate.patch<User>(`/user`, user);
+      const response = await axiosPrivate.patch<User>(`/user`, user, { skipErrorToast: true } as any);
 
       dispatch({
         type: 'UPDATE',

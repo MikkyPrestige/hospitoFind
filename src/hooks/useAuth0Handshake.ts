@@ -1,7 +1,7 @@
 import { useState } from "react";
-import axios from "axios";
 import { useNavigate } from "react-router-dom";
-import { useAuthContext, BASE_URL } from "@/context/UserProvider";
+import { useAuthContext } from "@/context/UserProvider";
+import { api } from "@/services/api";
 import { IdToken } from "@/types/auth";
 
 export const useAuth0Handshake = () => {
@@ -12,16 +12,15 @@ export const useAuth0Handshake = () => {
 
   const handleCallback = async (idToken: IdToken) => {
     try {
-      const response = await axios.post(
-        `${BASE_URL}/auth/auth0`,
+      const response = await api.post(
+        "/auth/auth0",
         {
           name: idToken.name,
           username: idToken.nickname,
           email: idToken.email,
           idToken: idToken.__raw,
         },
-        { withCredentials: true }
-      );
+        { skipErrorToast: true } as any);
 
       const authData = response.data;
 

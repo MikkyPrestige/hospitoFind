@@ -18,7 +18,7 @@ export const useUserSubmissions = () => {
             setLoading(true);
             setError(false);
 
-            const { data } = await axiosPrivate.get("/hospitals/submissions");
+            const { data } = await axiosPrivate.get("/hospitals/submissions", { skipErrorToast: true } as any);
             const validData = Array.isArray(data) ? data : [];
 
             setSubmissions(validData);

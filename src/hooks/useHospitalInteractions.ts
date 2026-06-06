@@ -34,7 +34,7 @@ export function useHospitalInteractions(
 
     if (state?.accessToken) {
       try {
-        await axiosPrivate.post(`/user/favorites-status/${h._id}`);
+        await axiosPrivate.post(`/user/favorites-status/${h._id}`, {}, { skipErrorToast: true } as any);
       } catch (error) {
         console.error("Sync failed", error);
       }
@@ -70,7 +70,7 @@ export function useHospitalInteractions(
 
     if (state?.accessToken) {
       try {
-        await axiosPrivate.post("/user/view", { hospitalId: hospital._id });
+        await axiosPrivate.post("/user/view", { hospitalId: hospital._id }, { skipErrorToast: true } as any);
       } catch (e) {
          console.error("View sync failed", e);
       }
