@@ -12,7 +12,7 @@ export const useHealthHistory = () => {
     setIsLoading(true);
     setError(null);
     try {
-      const { data } = await axiosPrivate.get('/user/health-history');
+      const { data } = await axiosPrivate.get('/user/health-history', { skipErrorToast: true } as any);
       setHistory(data.history || []);
     } catch (err: any) {
       setError(err?.response?.data?.message || 'Failed to load health history');
@@ -30,8 +30,9 @@ export const useHealthHistory = () => {
       try {
         await axiosPrivate.patch(
           `/user/health-history/${sessionId}/feedback`,
-          payload
-        );
+          payload,
+          { skipErrorToast: true } as any);
+
         setHistory((prev) =>
           prev.map((s) =>
             s._id === sessionId
@@ -57,7 +58,7 @@ export const useHealthHistory = () => {
   const deleteSession = useCallback(
     async (sessionId: string) => {
       try {
-        await axiosPrivate.delete(`/user/health-history/${sessionId}`);
+        await axiosPrivate.delete(`/user/health-history/${sessionId}`, { skipErrorToast: true } as any);
         setHistory((prev) => prev.filter((s) => s._id !== sessionId));
         return { success: true };
       } catch (err: any) {
@@ -72,7 +73,7 @@ export const useHealthHistory = () => {
 
   const clearHistory = useCallback(async () => {
     try {
-      await axiosPrivate.delete('/user/health-history');
+      await axiosPrivate.delete('/user/health-history', { skipErrorToast: true } as any);
       setHistory([]);
       return { success: true };
     } catch (err: any) {

@@ -11,7 +11,7 @@ export const useSymptomMappings = () => {
   const fetchMappings = useCallback(async () => {
     setIsLoading(true);
     try {
-      const { data } = await axiosPrivate.get("/admin/symptoms");
+      const { data } = await axiosPrivate.get("/admin/symptoms", { skipErrorToast: true } as any);
       setMappings(data);
     } catch (err: any) {
       toast.error("Failed to load symptom mappings.");
@@ -22,7 +22,7 @@ export const useSymptomMappings = () => {
 
   const createMapping = useCallback(async (keywords: string[], services: string[]) => {
     try {
-      const { data } = await axiosPrivate.post("/admin/symptoms", { symptomKeywords: keywords, services });
+      const { data } = await axiosPrivate.post("/admin/symptoms", { symptomKeywords: keywords, services }, { skipErrorToast: true } as any);
       setMappings(prev => [...prev, data]);
       toast.success("Symptom mapping created.");
     } catch (err: any) {
@@ -33,7 +33,7 @@ export const useSymptomMappings = () => {
 
   const updateMapping = useCallback(async (id: string, keywords: string[], services: string[]) => {
     try {
-      const { data } = await axiosPrivate.put(`/admin/symptoms/${id}`, { symptomKeywords: keywords, services });
+      const { data } = await axiosPrivate.put(`/admin/symptoms/${id}`, { symptomKeywords: keywords, services }, { skipErrorToast: true } as any);
       setMappings(prev => prev.map(m => m._id === id ? data : m));
       toast.success("Mapping updated.");
     } catch (err: any) {
@@ -44,7 +44,7 @@ export const useSymptomMappings = () => {
 
   const deleteMapping = useCallback(async (id: string) => {
     try {
-      await axiosPrivate.delete(`/admin/symptoms/${id}`);
+      await axiosPrivate.delete(`/admin/symptoms/${id}`, { skipErrorToast: true } as any);
       setMappings(prev => prev.filter(m => m._id !== id));
       toast.success("Mapping deleted.");
     } catch (err: any) {

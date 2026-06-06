@@ -1,14 +1,20 @@
-import { useState, useEffect, useCallback } from "react";
-import { BASE_URL } from "@/context/UserProvider";
+import { useState, useEffect, useCallback, useRef } from "react";
+import { api } from "@/services/api";
 import {NearbyHospital, UseNearbyHospitalsProps} from "@/types/hospital";
 
 export const useNearbyHospitals = ({ triggerLocation = 0 }: UseNearbyHospitalsProps) => {
     const [hospitals, setHospitals] = useState<NearbyHospital[]>([]);
     const [loading, setLoading] = useState<boolean>(true);
     const [message, setMessage] = useState<string>("Locating nearby services...");
+    const [error, setError] = useState(false);
+    const latRef = useRef<number | undefined>();
+    const lonRef = useRef<number | undefined>();
 
     const fetchHospitals = useCallback(async (lat?: number, lon?: number) => {
         setLoading(true);
+        setError(false);
+        latRef.current = lat;
+        lonRef.current = lon;
         try {
             const params = new URLSearchParams({ limit: "3" });
 
@@ -17,11 +23,8 @@ export const useNearbyHospitals = ({ triggerLocation = 0 }: UseNearbyHospitalsPr
                 params.append("lon", lon.toString());
             }
 
-            const res = await fetch(`${BASE_URL}/hospitals/nearby?${params.toString()}`);
-
-            if (!res.ok) throw new Error("API Request Failed");
-
-            const data = await res.json();
+            const response = await api.get(`/hospitals/nearby?${params.toString()}`, { skipErrorToast: true } as any);
+            const data = response.data;
             const results = Array.isArray(data) ? data : (data.results || []);
 
             setHospitals(results);
@@ -33,6 +36,7 @@ export const useNearbyHospitals = ({ triggerLocation = 0 }: UseNearbyHospitalsPr
             console.error("Proximity Fetch Error:", err);
             setMessage("Could not load hospitals. Please check your secure connection.");
             setHospitals([]);
+            setError(true);
         } finally {
             setLoading(false);
         }
@@ -62,5 +66,9 @@ export const useNearbyHospitals = ({ triggerLocation = 0 }: UseNearbyHospitalsPr
         }
     }, [triggerLocation, fetchHospitals]);
 
-    return { hospitals, loading, message };
+    const retry = useCallback(() => {
+    fetchHospitals(latRef.current, lonRef.current);
+  }, [fetchHospitals]);
+
+    return { hospitals, loading, message, error, retry  };
 };

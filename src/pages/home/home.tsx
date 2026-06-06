@@ -109,17 +109,17 @@ const Home = () => {
           <div className={style.statsBar}>
             <div className={style.statItem}>
               <span className={style.statValue}>
-                {!loading && !error && totalHospitals !== null
-                  ? `${totalHospitals.toLocaleString()}+`
-                  : <div className={style.shimmer} aria-busy="true" />}
+                {loading && <div className={style.shimmer} aria-busy="true" />}
+                {!loading && error && <span className={style.errorValue}>--</span>}
+                {!loading && !error && totalHospitals !== null && `${totalHospitals.toLocaleString()}+`}
               </span>
               <span className={style.statLabel}>Verified Hospitals</span>
             </div>
             <div className={style.statItem}>
               <span className={style.statValue}>
-                {!loading && !error && totalCountries !== null
-                  ? `${totalCountries}+`
-                  : <div className={style.shimmer} aria-busy="true" />}
+                {loading && <div className={style.shimmer} aria-busy="true" />}
+                {!loading && error && <span className={style.errorValue}>--</span>}
+                {!loading && !error && totalCountries !== null && `${totalCountries}+`}
               </span>
               <span className={style.statLabel}>Countries Covered</span>
             </div>
@@ -129,6 +129,15 @@ const Home = () => {
             </div>
           </div>
         </Motion>
+
+        {error && (
+          <div className={style.errorRetry}>
+            <p>Could not load hospital stats.</p>
+            <button onClick={() => window.location.reload()} className={style.retryBtn}>
+              Retry
+            </button>
+          </div>
+        )}
 
         <Motion variants={fadeUp} as="section" once={true}>
           <div className={style.howSection}>

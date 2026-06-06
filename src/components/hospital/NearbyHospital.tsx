@@ -10,7 +10,7 @@ type Props = {
 };
 
 const NearbyHospitals = ({ triggerLocation = 0 }: Props) => {
-    const { hospitals, loading, message } = useNearbyHospitals({ triggerLocation });
+    const { hospitals, loading, message, error, retry } = useNearbyHospitals({ triggerLocation });
     const navigate = useNavigate();
 
     return (
@@ -23,6 +23,11 @@ const NearbyHospitals = ({ triggerLocation = 0 }: Props) => {
                         <>
                             <FiNavigation className={style.pulse} />
                             <span>{message}</span>
+                            {error && (
+                                <button onClick={retry} className={style.retryBtn}>
+                                    Retry
+                                </button>
+                            )}
                         </>
                     )}
                 </div>

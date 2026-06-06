@@ -113,6 +113,44 @@
     border-radius: 1.5rem;
 }
 
+.errorCard {
+  flex: 1 1 0;
+  min-width: 220px;
+  background: var(--color-white);
+  border: 1px dashed var(--color-error);
+  border-radius: 1.5rem;
+  padding: 2rem;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  color: var(--color-gray);
+}
+
+.errorText {
+  font-size: 1.1rem;
+  margin: 0;
+}
+
+.retryBtn {
+  background: var(--color-blue);
+  color: var(--color-white);
+  border: none;
+  padding: 0.6rem 1.5rem;
+  border-radius: 0.75rem;
+  font-weight: 600;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background 0.2s;
+  font-family: var(--font-inter);
+
+  &:hover {
+    background: var(--color-blue-dark);
+  }
+}
+
 .verifiedBadge {
     font-size: 0.85rem;
     font-weight: 700;

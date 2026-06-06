@@ -31,7 +31,22 @@
 .pulse {
   color: var(--color-blue);
   animation: pulse-animation 2s infinite;
-  /* font-size: 3rem; */
+}
+
+.retryBtn {
+  background: none;
+  border: none;
+  color: var(--color-blue);
+  font-weight: 700;
+  cursor: pointer;
+  font-size: 0.9rem;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+  padding: 0;
+}
+
+.retryBtn:hover {
+  opacity: 0.8;
 }
 
 .textLink {

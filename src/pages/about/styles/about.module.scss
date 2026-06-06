@@ -99,7 +99,7 @@ h2, .heading {
       display: flex;
       align-items: center;
       gap: 2rem;
-      margin-bottom: 2.5rem;
+      margin-bottom: 1rem;
       padding: 1.5rem;
       background: var(--color-white);
       border-radius: 16px;
@@ -146,6 +146,37 @@ h2, .heading {
         }
       }
     }
+
+    // Error handling for stats
+.errorRetry {
+  margin-bottom: 2.5rem;
+  color: var(--text-slate);
+  font-size: 0.95rem;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+
+  p {
+    margin: 0;
+  }
+}
+
+.retryBtn {
+  background: none;
+  border: none;
+  color: var(--color-blue);
+  font-weight: 700;
+  cursor: pointer;
+  font-size: 0.95rem;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+  padding: 0;
+
+  &:hover {
+    opacity: 0.8;
+  }
+}
 
     .ctaLink {
   display: inline-flex;

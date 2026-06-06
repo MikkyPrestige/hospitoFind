@@ -11,7 +11,7 @@ export const useAdminPending = () => {
     const getPendingHospitals = useCallback(async () => {
         try {
             setIsLoading(true);
-            const response = await axiosPrivate.get(`/admin/hospitals/pending`);
+            const response = await axiosPrivate.get(`/admin/hospitals/pending`, { skipErrorToast: true } as any);
             setHospitals(response.data);
         } catch (err: any) {
             toast.error(err.response?.data?.message || "Failed to load pending queue");
@@ -22,7 +22,7 @@ export const useAdminPending = () => {
 
     const approveHospital = async (id: string) => {
         try {
-            await axiosPrivate.patch(`/admin/hospitals/approve/${id}`);
+            await axiosPrivate.patch(`/admin/hospitals/approve/${id}`, {}, { skipErrorToast: true } as any);
             setHospitals((prev) => prev.filter((h) => h._id !== id));
             toast.success("Hospital approved and is now live!");
             return true;
@@ -36,8 +36,8 @@ export const useAdminPending = () => {
         try {
             await axiosPrivate.patch(
                 `/admin/hospitals/approve/${hospital._id}`,
-                hospital
-            );
+                hospital,
+                { skipErrorToast: true } as any);
             setHospitals((prev) => prev.filter((h) => h._id !== hospital._id));
             toast.success("Entry corrected and published live!");
             return true;
@@ -49,7 +49,7 @@ export const useAdminPending = () => {
 
     const batchApprove = async (ids: string[]) => {
   try {
-    const { data } = await axiosPrivate.patch("/admin/hospitals/approve-batch", { ids });
+    const { data } = await axiosPrivate.patch("/admin/hospitals/approve-batch", { ids }, { skipErrorToast: true } as any);
     setHospitals((prev) => prev.filter((h) => !ids.includes(h._id)));
     toast.success(data.message || "Hospitals approved!");
   } catch (err: any) {
@@ -59,7 +59,7 @@ export const useAdminPending = () => {
 
     const deleteSubmission = async (id: string) => {
         try {
-            await axiosPrivate.delete(`/admin/hospitals/${id}`);
+            await axiosPrivate.delete(`/admin/hospitals/${id}`, { skipErrorToast: true } as any);;
             setHospitals((prev) => prev.filter((h) => h._id !== id));
             toast.info("Submission rejected and removed.");
             return true;

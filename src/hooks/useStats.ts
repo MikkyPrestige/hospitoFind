@@ -10,7 +10,7 @@ export const useStats = () => {
     const fetchStats = async () => {
         try {
             setLoading(true);
-            const { data } = await axiosPrivate.get("/user/stats");
+            const { data } = await axiosPrivate.get("/user/stats", { skipErrorToast: true } as any);
             setStats(data);
             setError(false);
         } catch (err) {

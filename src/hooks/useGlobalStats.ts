@@ -1,6 +1,6 @@
-import { useState, useEffect } from "react";
-import { BASE_URL } from "@/context/UserProvider";
-import {GlobalStats} from "@/types/app";
+import { useState, useEffect, useCallback  } from "react";
+import { api } from "@/services/api";
+import { GlobalStats } from "@/types/app";
 
 export const useGlobalStats = () => {
   const [stats, setStats] = useState<GlobalStats>({
@@ -9,6 +9,11 @@ export const useGlobalStats = () => {
   });
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);
+  const [retryCounter, setRetryCounter] = useState(0);
+
+const retry = useCallback(() => {
+  setRetryCounter((c) => c + 1);
+}, []);
 
   useEffect(() => {
     const fetchGlobalStats = async () => {
@@ -17,22 +22,14 @@ export const useGlobalStats = () => {
         setError(false);
 
         const [countRes, countryRes] = await Promise.all([
-          fetch(`${BASE_URL}/hospitals/count`),
-          fetch(`${BASE_URL}/hospitals/stats/countries`)
+          api.get("/hospitals/count", { skipErrorToast: true } as any),
+          api.get("/hospitals/stats/countries", { skipErrorToast: true } as any)
         ]);
 
-        if (!countRes.ok || !countryRes.ok) {
-            throw new Error("Failed to securely fetch platform statistics.");
-        }
-
-        const countData = await countRes.json();
-        const countryData = await countryRes.json();
-
         setStats({
-          totalHospitals: countData.total,
-          totalCountries: countryData.length,
+          totalHospitals: countRes.data.total,
+          totalCountries: countryRes.data.length,
         });
-
       } catch (err) {
         console.error("Global Stats Sync Error:", err);
         setError(true);
@@ -43,7 +40,7 @@ export const useGlobalStats = () => {
     };
 
     fetchGlobalStats();
-  }, []);
+  }, [retryCounter]);
 
-  return { ...stats, loading, error };
+  return { ...stats, loading, error, retry  };
 };

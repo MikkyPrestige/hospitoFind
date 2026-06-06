@@ -1,7 +1,6 @@
 import { useState, useEffect, useCallback } from "react";
 import { Hospital } from "@/types/hospital";
-import { findHospitals } from "@/services/api";
-import { BASE_URL } from "@/context/UserProvider";
+import { api } from "@/services/api";
 
 export function useHospitalSearch() {
   const [hospitals, setHospitals] = useState<Hospital[]>([]);
@@ -14,9 +13,8 @@ export function useHospitalSearch() {
     let mounted = true;
     (async () => {
       try {
-        const res = await fetch(`${BASE_URL}/hospitals/explore/top`);
-        const data = await res.json();
-        if (mounted) setCountries(Array.isArray(data) ? data : []);
+        const response = await api.get("/hospitals/explore/top", { skipErrorToast: true } as any);
+          if (mounted) setCountries(Array.isArray(response.data) ? response.data : []);
       } catch {
         if (mounted) setCountries([]);
       } finally {
@@ -43,7 +41,8 @@ export function useHospitalSearch() {
       }
 
       if (url) {
-        const data = await findHospitals(url);
+        const response = await api.get(`/hospitals/find?${url}`, { skipErrorToast: true } as any);
+        const data = response.data;
 
         if (data && data.length > 0) {
           setHospitals(data);
