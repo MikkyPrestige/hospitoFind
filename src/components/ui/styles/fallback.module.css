@@ -14,7 +14,7 @@
   background-color: var(--color-bg-contrast);
   padding: 2.5rem;
   border-radius: 1.2rem;
-  box-shadow: 0 1rem 2.5rem rgba(255, 3, 62, 0.1);
+  box-shadow: var(--fallback-shadow);
   max-width: 500px;
   border: 1px solid var(--color-border);
 }
@@ -43,7 +43,7 @@
 .btnRetry {
   border: none;
   background-color: var(--color-red);
-  color: var(--color-black);
+  color: var(--color-invert);
   padding: 0.8rem 1.5rem;
   border-radius: 1rem;
   cursor: pointer;

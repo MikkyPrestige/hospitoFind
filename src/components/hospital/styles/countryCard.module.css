@@ -34,7 +34,7 @@
   height: 2.2rem !important;
   object-fit: cover;
   border-radius: 50%;
-  border: 1px solid rgba(0, 0, 0, 0.05);
+  border: 1px solid var(--color-border);
 }
 
 .fallbackEmoji {

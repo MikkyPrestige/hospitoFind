@@ -4,11 +4,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  background: radial-gradient(
-    circle at center,
-    var(--color-bg) 0%,
-    var(--color-ash-dark) 100%
-  );
+  background: radial-gradient(circle at center, var(--color-bg) 0%, var(--color-bg-contrast) 100%);
   padding: 2rem;
 }
 
@@ -38,7 +34,7 @@
 .contentCard h1 {
   font-size: 2.5rem;
   font-weight: 900;
-  color: var(--primary-dark);
+  color: var(--color-black);
   margin-bottom: 1rem;
   letter-spacing: -0.04em;
   font-family: var(--font-plus);
@@ -75,24 +71,24 @@
 
 .btnBack {
   background: var(--color-ash);
-  color: var(--primary-dark);
+  color: var(--color-black);
   border: 1px solid var(--color-border);
 }
 
 .btnBack:hover {
-  background: var(--color-ash-dark);
+  background: var(--color-bg-contrast);
   transform: translateX(-5px);
 }
 
 .btnHome {
   background: var(--color-indigo);
-  color: var(--color-white);
+  color: var(--color-invert);
   border: none;
   box-shadow: 0 10px 15px -3px rgba(79, 70, 229, 0.3);
 }
 
 .btnHome:hover {
-  background: #4338ca;
+  background: var(--color-indigo);
   transform: translateY(-3px);
   box-shadow: 0 15px 25px -5px rgba(79, 70, 229, 0.4);
 }

@@ -7,7 +7,7 @@
   background: linear-gradient(
     135deg,
     var(--color-bg-light) 0%,
-    var(--primary-light) 100%
+    var(--color-blue) 100%
   );
   color: var(--color-black);
   gap: 2rem;

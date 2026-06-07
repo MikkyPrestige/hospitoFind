@@ -51,16 +51,16 @@
 .input:focus {
   outline: none;
   border-color: var(--color-success);
-  box-shadow: 0 0 0 4px rgba(16, 185, 129, 0.1);
+  box-shadow: var(--input-focus-ring-success);
 }
 
 .passwordInput {
-  border-color: rgba(239, 68, 68, 0.4);
+  border-color: var(--input-error-border);
 }
 
 .passwordInput:focus {
   border-color: var(--color-red);
-  box-shadow: 0 0 0 4px rgba(239, 68, 68, 0.1);
+  box-shadow: var(--error-focus-ring);
 }
 
 .actionArea {

@@ -75,20 +75,24 @@ gap: 1.5rem;
 }
 
 .iconWrapper {
-    width: 56px; height: 56px; border-radius: 12px;
-    display: flex; align-items: center; justify-content: center;
+    width: 56px;
+    height: 56px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     font-size: 1.5rem;
 
     &.iconUsers {
-        background: #e0e7ff;
+        background: var(--icon-bg-users);
         color: var(--color-indigo);
     }
     &.iconTotal {
-        background: #fef3c7;
+        background: var(--icon-bg-total);
         color: var(--warning-color);
     }
     &.iconPending {
-        background: #fee2e2;
+        background: var(--icon-bg-pending);
         color: var(--color-error);
     }
     &.iconLive {
@@ -140,7 +144,7 @@ gap: 1.5rem;
 .headerLine {
     flex: 1;
     height: 2px;
-    background: linear-gradient(90deg, var(--color-border) 0%, rgba(226, 232, 240, 0) 100%);
+    background: linear-gradient(90deg, var(--color-border) 0%, transparent 100%);
 }
 
 .importToolsRow {
@@ -178,7 +182,7 @@ gap: 1.5rem;
     &:hover {
         border-color: var(--color-indigo);
         transform: translateX(10px);
-        box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+        box-shadow: var(--shadow-card);
 
         .navIcon {
             background: var(--color-indigo);
@@ -218,7 +222,7 @@ gap: 1.5rem;
     }
 
     .navArrow {
-        color: #cbd5e1;
+        color: var(--icon-gray);
         font-size: 1.25rem;
         transition: all 0.2s;
     }
@@ -274,12 +278,12 @@ gap: 1.5rem;
   border: none;
   cursor: pointer;
   transition: all 0.2s ease;
-  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+  box-shadow: var(--shadow-card);
 
   &:hover {
     background-color: var(--color-blue-dark);
     transform: translateY(-1px);
-    box-shadow: 0 6px 8px -1px rgba(0, 0, 0, 0.15);
+    box-shadow: var(--shadow-card-blue-hover);
   }
 
   &:active {

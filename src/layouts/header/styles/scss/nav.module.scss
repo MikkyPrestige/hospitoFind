@@ -73,7 +73,6 @@
 .actions {
   display: flex;
   align-items: center;
-  // gap: 2rem;
 }
 
 .desktopUtilities {
@@ -261,7 +260,7 @@
   a, button {
     padding: 1.2rem;
     border-radius: 1rem;
-    background: var(--color-white);
+    background: var(--color-ash);
     text-decoration: none;
     color: var(--color-black);
     font-weight: 600;
@@ -289,7 +288,7 @@
 
   .mobileSignup {
     background: var(--color-blue);
-    color: var(--color-white);
+    color: var(--color-invert);
     padding: 1.8rem;
     border-radius: 1rem;
     text-align: center;

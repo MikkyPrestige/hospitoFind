@@ -133,7 +133,7 @@
   border-radius: 16px;
   overflow: hidden;
   height: fit-content;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03);
+  box-shadow: var(--shadow-card);
 }
 
 .contextBanner {
@@ -368,7 +368,7 @@
 .feedbackPrompt {
   margin-top: 1rem;
   background: var(--bg-blue-tag);
-  border: 1px solid #fae6b1;
+  border: 1px solid var(--feedback-border);
   border-radius: 1rem;
   overflow: hidden;
 }
@@ -389,7 +389,7 @@
     gap: 0.5rem;
     font-size: 1.2rem;
     font-weight: 700;
-    color: #856404;
+    color: var(--feedback-text);
   }
 }
 
@@ -403,7 +403,7 @@
 
 .feedbackForm {
   padding: 1rem;
-  border-top: 1px solid #d97706;
+  border-top: 1px solid var(--feedback-pill-border);
   display: flex;
   flex-direction: column;
   gap: 1.2rem;
@@ -419,7 +419,7 @@
   font-size: 1.2rem;
   font-weight: 800;
   text-transform: uppercase;
-  color: #a1832d;
+  color: var(--feedback-label);
   margin-bottom: 0.2rem;
 }
 
@@ -432,7 +432,7 @@
 .pill {
   padding: 0.4rem 0.9rem;
   background: var(--color-bg);
-  border: 1px solid #d97706;
+  border: 1px solid var(--feedback-pill-border);
   border-radius: 2rem;
   font-size: 1.1rem;
   font-weight: 600;
@@ -442,7 +442,7 @@
   &.pillSelected {
     background: var(--warning-color);
     color: var(--color-invert);
-    border-color: #d97706;
+    border-color: var(--feedback-pill-border);
   }
 }
 

@@ -92,8 +92,8 @@
   transition: all 0.2s ease;
 
   &:hover:not(:disabled) {
-    background: #f8fafc;
-    border-color: #cbd5e1;
+    background: var(--color-ash);
+    border-color: var(--color-gray);
     color: var(--color-black);
   }
 

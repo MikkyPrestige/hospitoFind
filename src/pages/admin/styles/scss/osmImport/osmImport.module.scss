@@ -97,7 +97,7 @@
 
     .importBtn {
       background: var(--color-blue);
-      color: var(--color-white);
+      color: var(--color-invert);
       border: none;
       padding: 0.9rem;
       border-radius: 8px;
@@ -181,7 +181,7 @@
       }
 
       &.skipped {
-        background: #fff7ed;
+        background: var(--import-skipped-bg);
         color: var(--warning-color);
         border: 1px solid var(--warning-color);
       }
@@ -238,8 +238,8 @@
     font-family: var(--font-inter);
 
     &:hover {
-      background: var(--color-white);
-      border-color: var(--color-border);
+      background: var(--color-ash);
+      border-color: var(--color-gray);
     }
   }
 }
@@ -250,7 +250,7 @@
   left: 0;
   right: 0;
   bottom: 0;
-  background: rgba(255, 255, 255, 0.9);
+  background: var(--loader-overlay-bg);
   display: flex;
   flex-direction: column;
   align-items: center;

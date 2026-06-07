@@ -248,19 +248,21 @@
         color: var(--icon-gray);
         transition: all 0.2s;
 
-        &:hover { background: white; }
+        &:hover {
+            background: var(--color-invert);
+        }
     }
 
     .roleBtn:hover {
         color: var(--color-indigo);
         border-color: var(--color-indigo);
-        background: #eef2ff;
+        background: var(--role-hover-bg);
     }
 
     .deleteBtn:hover {
         color: var(--color-error);
         border-color: var(--color-error);
-        background: #fff1f2;
+        background: var(--delete-hover-bg);
     }
 }
 
@@ -283,15 +285,15 @@
 .activeStatus {
     background: var(--color-success-bg);
     color: var(--color-success);
-    border-color: #bbf7d0;
-    &:hover { background: #dcfce7; }
+    border-color: var(--active-status-border);
+    &:hover { background: var(--active-status-hover-bg); }
 }
 
 .suspendedStatus {
-    background: #fff1f2;
+    background: var(--suspended-status-bg);
     color: var(--color-error);
-    border-color: #fecaca;
-    &:hover { background: #fee2e2; }
+    border-color: var(--suspended-status-border);
+    &:hover { background: var(--suspended-status-hover-bg); }
 }
 
 .suspendedRow {
@@ -379,7 +381,7 @@
 
     .submitBtn {
         background: var(--color-indigo);
-        color: var(--color-white);
+        color: var(--color-invert);
         padding: 1rem;
         border-radius: 12px;
         border: none;
@@ -390,7 +392,9 @@
         transition: background 0.2s;
         font-family: var(--font-inter);
 
-        &:hover { background: #4338ca; }
+        &:hover {
+            background: var(--submit-hover-bg);
+        }
     }
 }
 

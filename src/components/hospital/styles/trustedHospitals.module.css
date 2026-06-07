@@ -18,7 +18,7 @@
 }
 
 .badge {
-  background: var(--bg-blue-faint);
+  background: var(--bg-blue-tag);
   color: var(--color-blue);
   font-size: 1rem;
   font-weight: 700;

@@ -34,7 +34,7 @@
   --icon-gray: #94a3b8;
   --text-slate: #475569;
   --text-white: #ffffff;
-  --color-text-secondary: #64748b;
+  --color-text-secondary: var(--color-gray);
 
   --color-border: #e2e8f0;
 
@@ -61,6 +61,134 @@
   --footer-text: #94a3b8;
   --footer-heading: #ffffff;
   --footer-border: rgba(255, 255, 255, 0.1);
+
+  --cta-button-bg: var(--footer-heading);
+  --cta-button-color: var(--color-blue);
+  --search-header-bg: rgba(255, 255, 255, 0.95);
+  --search-bar-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+  --card-hover-shadow: 0 4px 12px rgba(0, 0, 0, 0.04);
+  --text-on-white: #1e293b;
+
+  --icon-bg-blue: #eff6ff;
+  --icon-bg-green: #ecfdf5;
+  --icon-bg-purple: #f5f3ff;
+  --stat-card-shadow: 0 4px 20px rgba(0, 0, 0, 0.03);
+  --stat-card-hover-shadow: 0 12px 24px rgba(0, 0, 0, 0.06);
+  --skeleton-gradient: linear-gradient(
+    90deg,
+    #f8fafc 25%,
+    #f1f5f9 50%,
+    #f8fafc 75%
+  );
+
+  --feedback-bg: #fef9e7;
+  --feedback-border: #fae6b1;
+  --feedback-text: #856404;
+  --feedback-label: #a1832d;
+  --feedback-pill-border: #d97706;
+
+  --status-pending-bg: #fef3c7;
+  --status-pending-border: #fde68a;
+  --status-approved-bg: #dcfce7;
+  --status-approved-border: #bbf7d0;
+
+  --icon-bg-users: #e0e7ff;
+  --icon-bg-total: var(--status-pending-bg);
+  --icon-bg-pending: #fee2e2;
+
+  --empty-success-bg: #f0fdf4;
+  --empty-success-border: #bbf7d0;
+  --empty-success-text: #166534;
+  --approve-hover-bg: #047857;
+  --delete-border: #feb2b2;
+  --delete-hover-bg-admin: #fff5f5;
+  --comment-bg: #fff7ed;
+  --comment-title: #9a3412;
+  --comment-text: #431407;
+  --selected-list-border: #eee;
+
+  --import-skipped-bg: #fff7ed;
+  --loader-overlay-bg: rgba(255, 255, 255, 0.9);
+
+  --status-verified-bg: #ecfdf5;
+  --status-pending-hm-bg: #fef2f2;
+  --edit-hover-bg: #f5f3ff;
+  --action-delete-hover-bg: #fff1f2;
+  --unverify-hover-bg: #fffbeb;
+  --add-btn-hover-bg: #4338ca;
+
+  --role-hover-bg: #eef2ff;
+  --delete-hover-bg: #fff1f2;
+  --active-status-border: #bbf7d0;
+  --active-status-hover-bg: #dcfce7;
+  --suspended-status-bg: #fff1f2;
+  --suspended-status-border: #fecaca;
+  --suspended-status-hover-bg: #fee2e2;
+  --submit-hover-bg: #4338ca;
+
+  --standardize-bg: #f0f9ff;
+  --standardize-color: #0369a1;
+  --standardize-border: #bae6fd;
+  --standardize-hover-bg: #e0f2fe;
+  --standardize-hover-border: #0ea5e9;
+  --standardize-svg: #0ea5e9;
+
+  --add-btn-bg: #ecfdf5;
+  --add-btn-color: #059669;
+  --add-btn-border: #a7f3d0;
+  --add-btn-hover-bg: #d1fae5;
+  --add-btn-hover-border: #059669;
+
+  --zap-btn-bg: #fffbeb;
+  --zap-btn-color: #b45309;
+  --zap-btn-border: #fde68a;
+  --zap-btn-hover-bg: #fef3c7;
+  --zap-btn-hover-border: #b45309;
+
+  --remove-btn-bg: #fef2f2;
+  --remove-btn-color: #ef4444;
+  --remove-btn-border: #fee2e2;
+  --remove-btn-hover-bg: #fee2e2;
+  --remove-btn-hover-border: #ef4444;
+
+  --badge-excellent-bg: #dcfce7;
+  --badge-excellent-color: #16a34a;
+  --badge-good-bg: #dbeafe;
+  --badge-good-color: var(--color-blue);
+  --badge-fair-bg: #fef9c3;
+  --badge-fair-color: #ca8a04;
+  --match-card-hover-border: rgba(8, 41, 155, 0.2);
+  --match-card-hover-shadow: 0 4px 16px rgba(8, 41, 155, 0.07);
+
+  --export-hover-bg: #059669;
+  --toast-success-bg: rgba(16, 185, 129, 0.05);
+  --toast-error-bg: rgba(255, 51, 51, 0.08);
+
+  --no-image-gradient: linear-gradient(135deg, #f1f5f9 0%, #e2e8f0 100%);
+  --verified-badge-bg: rgba(34, 197, 94, 0.1);
+  --soft-shadow: 0 4px 24px rgba(0, 0, 0, 0.04);
+  --nearby-card-hover-shadow: 0 20px 40px rgba(0, 0, 0, 0.08);
+  --error-bg-tint: #fee2e2;
+
+  --search-input-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
+  --search-input-focus-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
+  --dropdown-shadow: 0 12px 40px rgba(0, 0, 0, 0.12);
+  --hospital-card-shadow: 0 12px 30px rgba(0, 0, 0, 0.08);
+
+  --error-focus-ring: 0 0 0 4px rgba(239, 68, 68, 0.1);
+  --input-focus-ring-success: 0 0 0 4px rgba(16, 185, 129, 0.1);
+  --input-focus-bg-success: rgba(16, 185, 129, 0.02);
+  --input-error-border: rgba(239, 68, 68, 0.4);
+
+  --skeleton-base: #ebebeb;
+  --skeleton-highlight: #f5f5f5;
+
+  --fallback-shadow: 0 1rem 2.5rem rgba(255, 3, 62, 0.1);
+  --error-border-tint: rgba(229, 62, 62, 0.1);
+
+  --login-card-shadow: 0 1rem 4rem rgba(0, 0, 0, 0.04);
+  --login-card-shadow-lg: 0 2rem 6rem rgba(0, 0, 0, 0.06);
+  --social-hover-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
 }
 
 /* --- DARK THEME  --- */
@@ -76,7 +204,7 @@
   --color-gray: #cbd5e1;
   --icon-gray: #cbd5e1;
   --text-slate: #e2e8f0;
-  --color-text-secondary: #cbd5e1;
+  --color-text-secondary: var(--color-gray);
 
   --color-border: #334155;
 
@@ -102,6 +230,134 @@
   --footer-bg: #020617;
   --footer-text: #64748b;
   --footer-heading: #f8fafc;
+
+  --cta-button-bg: var(--color-blue);
+  --cta-button-color: var(--footer-heading);
+  --search-header-bg: rgba(18, 18, 18, 0.95);
+  --search-bar-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+  --card-hover-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  --text-on-white: #1e293b;
+
+  --icon-bg-blue: rgba(59, 130, 246, 0.15);
+  --icon-bg-green: rgba(52, 211, 153, 0.15);
+  --icon-bg-purple: rgba(129, 140, 248, 0.15);
+  --stat-card-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+  --stat-card-hover-shadow: 0 12px 24px rgba(0, 0, 0, 0.3);
+  --skeleton-gradient: linear-gradient(
+    90deg,
+    #1e293b 25%,
+    #334155 50%,
+    #1e293b 75%
+  );
+
+  --feedback-bg: rgba(251, 191, 36, 0.08);
+  --feedback-border: rgba(251, 191, 36, 0.25);
+  --feedback-text: #fbbf24;
+  --feedback-label: #fcd34d;
+  --feedback-pill-border: #fbbf24;
+
+  --status-pending-bg: rgba(251, 191, 36, 0.15);
+  --status-pending-border: rgba(251, 191, 36, 0.35);
+  --status-approved-bg: rgba(52, 211, 153, 0.15);
+  --status-approved-border: rgba(52, 211, 153, 0.35);
+
+  --icon-bg-users: rgba(99, 102, 241, 0.15);
+  --icon-bg-total: var(--status-pending-bg);
+  --icon-bg-pending: rgba(248, 113, 113, 0.15);
+
+  --empty-success-bg: rgba(52, 211, 153, 0.1);
+  --empty-success-border: rgba(52, 211, 153, 0.3);
+  --empty-success-text: #34d399;
+  --approve-hover-bg: var(--color-success);
+  --delete-border: rgba(248, 113, 113, 0.3);
+  --delete-hover-bg-admin: rgba(248, 113, 113, 0.1);
+  --comment-bg: rgba(251, 146, 60, 0.1);
+  --comment-title: #fb923c;
+  --comment-text: #fed7aa;
+  --selected-list-border: var(--color-border);
+
+  --import-skipped-bg: rgba(251, 146, 60, 0.1);
+  --loader-overlay-bg: rgba(2, 6, 23, 0.9);
+
+  --status-verified-bg: rgba(52, 211, 153, 0.15);
+  --status-pending-hm-bg: rgba(248, 113, 113, 0.15);
+  --edit-hover-bg: rgba(129, 140, 248, 0.15);
+  --action-delete-hover-bg: rgba(248, 113, 113, 0.1);
+  --unverify-hover-bg: rgba(251, 191, 36, 0.15);
+  --add-btn-hover-bg: var(--color-indigo);
+
+  --role-hover-bg: rgba(99, 102, 241, 0.15);
+  --delete-hover-bg: rgba(248, 113, 113, 0.1);
+  --active-status-border: rgba(52, 211, 153, 0.3);
+  --active-status-hover-bg: rgba(52, 211, 153, 0.2);
+  --suspended-status-bg: rgba(248, 113, 113, 0.15);
+  --suspended-status-border: rgba(248, 113, 113, 0.3);
+  --suspended-status-hover-bg: rgba(248, 113, 113, 0.2);
+  --submit-hover-bg: var(--color-indigo);
+
+  --standardize-bg: rgba(14, 165, 233, 0.1);
+  --standardize-color: #38bdf8;
+  --standardize-border: rgba(14, 165, 233, 0.3);
+  --standardize-hover-bg: rgba(14, 165, 233, 0.15);
+  --standardize-hover-border: #0ea5e9;
+  --standardize-svg: #38bdf8;
+
+  --add-btn-bg: rgba(5, 150, 105, 0.1);
+  --add-btn-color: #34d399;
+  --add-btn-border: rgba(5, 150, 105, 0.3);
+  --add-btn-hover-bg: rgba(5, 150, 105, 0.15);
+  --add-btn-hover-border: #34d399;
+
+  --zap-btn-bg: rgba(180, 83, 9, 0.1);
+  --zap-btn-color: #fbbf24;
+  --zap-btn-border: rgba(251, 191, 36, 0.3);
+  --zap-btn-hover-bg: rgba(251, 191, 36, 0.15);
+  --zap-btn-hover-border: #fbbf24;
+
+  --remove-btn-bg: rgba(239, 68, 68, 0.1);
+  --remove-btn-color: #f87171;
+  --remove-btn-border: rgba(239, 68, 68, 0.3);
+  --remove-btn-hover-bg: rgba(239, 68, 68, 0.15);
+  --remove-btn-hover-border: #ef4444;
+
+  --badge-excellent-bg: rgba(52, 211, 153, 0.15);
+  --badge-excellent-color: #34d399;
+  --badge-good-bg: rgba(59, 130, 246, 0.15);
+  --badge-good-color: var(--color-blue-light);
+  --badge-fair-bg: rgba(250, 204, 21, 0.15);
+  --badge-fair-color: #facc15;
+  --match-card-hover-border: rgba(59, 130, 246, 0.3);
+  --match-card-hover-shadow: 0 4px 16px rgba(59, 130, 246, 0.15);
+
+  --export-hover-bg: var(--color-success);
+  --toast-success-bg: rgba(16, 185, 129, 0.12);
+  --toast-error-bg: rgba(255, 51, 51, 0.15);
+
+  --no-image-gradient: linear-gradient(135deg, #1e293b 0%, #334155 100%);
+  --verified-badge-bg: rgba(52, 211, 153, 0.15);
+  --soft-shadow: 0 4px 24px rgba(0, 0, 0, 0.2);
+  --nearby-card-hover-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+  --error-bg-tint: rgba(248, 113, 113, 0.15);
+
+  --search-input-shadow: 0 4px 20px rgba(0, 0, 0, 0.25);
+  --search-input-focus-shadow: 0 8px 30px rgba(0, 0, 0, 0.35);
+  --dropdown-shadow: 0 12px 40px rgba(0, 0, 0, 0.4);
+  --hospital-card-shadow: 0 12px 30px rgba(0, 0, 0, 0.3);
+
+  --error-focus-ring: 0 0 0 4px rgba(248, 113, 113, 0.2);
+  --input-focus-ring-success: 0 0 0 4px rgba(52, 211, 153, 0.2);
+  --input-focus-bg-success: rgba(52, 211, 153, 0.05);
+  --input-error-border: rgba(248, 113, 113, 0.4);
+
+  --skeleton-base: #334155;
+  --skeleton-highlight: #475569;
+
+  --fallback-shadow: 0 1rem 2.5rem rgba(248, 113, 113, 0.15);
+  --error-border-tint: rgba(248, 113, 113, 0.2);
+
+  --login-card-shadow: 0 1rem 4rem rgba(0, 0, 0, 0.2);
+  --login-card-shadow-lg: 0 2rem 6rem rgba(0, 0, 0, 0.25);
+  --social-hover-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
 }
 
 [data-theme='dark'] .goog-te-gadget-simple {
@@ -345,6 +601,11 @@ div[id^='sidebar-tip'],
 .react-tooltip {
   z-index: 9999 !important;
   opacity: 1 !important;
+}
+
+.react-loading-skeleton {
+  --base-color: var(--skeleton-base) !important;
+  --highlight-color: var(--skeleton-highlight) !important;
 }
 
 /* --- FIX INPUT ZOOM ON MOBILE --- */
