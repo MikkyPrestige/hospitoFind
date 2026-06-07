@@ -151,7 +151,7 @@
   font-weight: 500;
   width: 100%;
   padding: 1rem;
-  background: #fee2e2;
+  background: var(--error-bg-tint);
   border-radius: 8px;
 }
 

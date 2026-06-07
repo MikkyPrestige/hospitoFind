@@ -63,7 +63,7 @@ h2, .heading {
     .badge {
       display: inline-block;
       padding: 0.5rem 1rem;
-      background: rgba(37, 99, 235, 0.1);
+      background: var(--bg-blue-tag);
       color: var(--color-blue);
       border-radius: 50px;
       font-size: 0.875rem;
@@ -190,7 +190,7 @@ h2, .heading {
   text-decoration: none;
   font-size: 1.2rem;
   transition: all 0.3s ease;
-  box-shadow: 0 4px 14px rgba(37, 99, 235, 0.25);
+  box-shadow: 0 4px 14px rgba(8, 41, 155, 0.15);
   border: 1px solid transparent;
 
   &:hover {
@@ -198,7 +198,7 @@ h2, .heading {
     color: var(--color-blue);
     border-color: var(--color-blue);
     transform: translateY(-2px);
-    box-shadow: 0 6px 20px rgba(37, 99, 235, 0.15);
+    box-shadow: 0 6px 20px rgba(8, 41, 155, 0.1);
   }
 }
   }
@@ -290,7 +290,7 @@ h2, .heading {
         align-items: flex-start;
 
         .iconBox {
-          background: rgba(37, 99, 235, 0.1);
+          background: var(--bg-blue-tag);
           width: 4rem;
           height: 4rem;
           border-radius: 16px;
@@ -358,7 +358,7 @@ h2, .heading {
       }
 
       .iconWrapper {
-        background: rgba(37, 99, 235, 0.1);
+        background: var(--bg-blue-tag);
         color: var(--color-blue);
         width: 4rem;
         height: 4rem;

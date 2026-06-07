@@ -305,7 +305,7 @@
 
   &:hover {
     transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.04);
+    box-shadow: var(--card-hover-shadow);
     border-color: var(--color-blue);
   }
 

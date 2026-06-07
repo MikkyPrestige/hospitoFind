@@ -60,7 +60,7 @@ background: var(--bg-blue-tag);
 }
 
 .tipCard {
-background: var(--color-white);
+  background: var(--color-white);
   border-radius: 2rem;
   overflow: hidden;
   box-shadow: var(--shadow-card);
@@ -73,8 +73,7 @@ background: var(--color-white);
 
 .tipCard:hover {
   transform: translateY(-8px);
- box-shadow: var(--shadow-card-blue-hover);
-  border-color: rgba(8, 41, 155, 0.2);
+  box-shadow: var(--shadow-card-blue-hover);
 }
 
 .imageWrapper {
@@ -173,11 +172,11 @@ position: absolute;
 }
 
 .emptyState {
-text-align: center;
+  text-align: center;
   padding: 5rem;
   color: var(--color-gray);
   font-weight: 600;
   background: var(--color-white);
   border-radius: 20px;
-  border: 1px dashed var(--icon-gray-light);
+  border: 1px dashed var(--color-border);
 }

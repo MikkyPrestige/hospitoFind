@@ -19,7 +19,7 @@
     var(--color-blue) 0%,
     var(--color-blue-dark) 100%
   );
-  color: var(--color-white);
+  color: var(--color-invert);
   padding: 3rem 1.5rem 5.5rem;
   position: relative;
   overflow: hidden;
@@ -108,7 +108,7 @@
   align-items: center;
   padding: 0.5rem 1.5rem;
   border-radius: 1.5rem;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+  box-shadow: var(--search-bar-shadow);
   border: 1px solid var(--color-border);
   transition: all 0.3s ease;
 }
@@ -178,7 +178,7 @@
 
 .activeChip {
   background: var(--color-blue) !important;
-  color: var(--color-white) !important;
+  color: var(--color-invert) !important;
   border-color: var(--color-blue) !important;
   box-shadow: 0 4px 12px rgba(8, 41, 155, 0.2);
 }
@@ -207,7 +207,7 @@
 
 .retryBtn {
   background: var(--color-blue);
-  color: var(--color-white);
+  color: var(--color-invert);
   border: none;
   padding: 0.75rem 2rem;
   border-radius: 2rem;

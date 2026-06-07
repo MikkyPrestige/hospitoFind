@@ -152,7 +152,7 @@
       max-width: 520px;
       animation: fadeUp 0.6s ease-out;
       border: 1px solid var(--color-border);
-      box-shadow: 0 1rem 4rem rgba(0, 0, 0, 0.04);
+      box-shadow: 0 1rem 4rem var(--login-card-shadow);
       padding: 2.5rem 2rem;
 
       @include respond(laptop) {
@@ -258,7 +258,7 @@
 
               &.invalid {
                 border-color: var(--color-error);
-                background-color: rgba(239, 68, 68, 0.05);
+                background-color: var(--error-bg-tint);
               }
             }
 
@@ -376,7 +376,7 @@
             border-color: var(--color-blue-light);
             background: var(--color-bg);
             transform: translateY(-2px);
-             box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+             box-shadow: var(--social-hover-shadow);
           }
         }
       }

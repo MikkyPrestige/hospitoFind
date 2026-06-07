@@ -100,7 +100,7 @@
   background: var(--color-white);
   padding: 0.5rem 1.5rem;
   border-radius: 1.5rem;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+  box-shadow: var(--search-bar-shadow);
   border: 1px solid var(--color-border);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
@@ -172,7 +172,7 @@
 
 .active {
   background: var(--color-blue) !important;
-  color: var(--color-white) !important;
+  color: var(--color-invert) !important;
   border-color: var(--color-blue) !important;
   font-weight: 600;
   box-shadow: 0 4px 12px rgba(8, 41, 155, 0.2);
@@ -202,7 +202,7 @@
 
 .retryBtn {
   background: var(--color-blue);
-  color: var(--color-white);
+  color: var(--color-invert);
   border: none;
   padding: 0.75rem 2rem;
   border-radius: 2rem;
@@ -258,7 +258,7 @@
 }
 
 .resetBtn {
-  background: var(--color-white);
+  background: var(--color-invert);
   color: var(--color-blue);
   border: 1px solid var(--color-blue);
   padding: 0.75rem 1.5rem;

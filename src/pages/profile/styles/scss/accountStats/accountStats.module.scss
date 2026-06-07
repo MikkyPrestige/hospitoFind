@@ -17,7 +17,7 @@
     border: 1px solid var(--color-border);
     border-radius: 1.5rem;
     padding: 1.5rem;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03);
+    box-shadow: var(--stat-card-shadow);
     transition: transform 0.2s ease, box-shadow 0.2s ease;
     flex: 1 1 0;
     min-width: 220px;
@@ -27,7 +27,7 @@
 
     &:hover {
         transform: translateY(-4px);
-        box-shadow: 0 12px 24px rgba(0, 0, 0, 0.06);
+        box-shadow: var(--stat-card-hover-shadow);
     }
 }
 
@@ -48,9 +48,9 @@
     justify-content: center;
     font-size: 1.5rem;
 
-    &.blue { background: #eff6ff; color: var(--color-blue); }
-    &.green { background: #ecfdf5; color: var(--color-success); }
-    &.purple { background: #f5f3ff; color: var(--color-indigo); }
+    &.blue { background: var(--icon-bg-blue); color: var(--color-blue); }
+    &.green { background: var(--icon-bg-green); color: var(--color-success); }
+    &.purple { background: var(--icon-bg-purple); color: var(--color-indigo); }
 }
 
 .cardBody {
@@ -107,7 +107,7 @@
    flex: 1 1 0;
     min-width: 220px;
     height: 160px;
-    background: linear-gradient(90deg, #f8fafc 25%, #f1f5f9 50%, #f8fafc 75%);
+    background: var(--skeleton-gradient);
     background-size: 200% 100%;
     animation: shimmer 1.5s infinite;
     border-radius: 1.5rem;
@@ -136,7 +136,7 @@
 
 .retryBtn {
   background: var(--color-blue);
-  color: var(--color-white);
+  color: var(--color-invert);
   border: none;
   padding: 0.6rem 1.5rem;
   border-radius: 0.75rem;

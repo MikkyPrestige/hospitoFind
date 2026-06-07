@@ -97,7 +97,7 @@
 
     &:hover {
         transform: translateY(-2px);
-        box-shadow: 0 12px 24px -8px rgba(0, 0, 0, 0.08);
+        box-shadow: var(--shadow-card-blue-hover);
         border-color: var(--color-blue);
     }
 
@@ -191,15 +191,15 @@
 }
 
 .statusPending {
-    background: #fef3c7;
+    background: var(--status-pending-bg);
     color: var(--warning-color);
-    border: 1px solid #fde68a;
+    border: 1px solid var(--status-pending-border);
 }
 
 .statusApproved {
-    background: #dcfce7;
+    background: var(--status-approved-bg);
     color: var(--color-success);
-    border: 1px solid #bbf7d0;
+    border: 1px solid var(--status-approved-border);
 }
 
 .pagination {
@@ -234,7 +234,7 @@
         font-weight: 500;
         color: var(--color-black);
         transition: all 0.2s ease;
-        box-shadow: 0 1px 2px rgba(0,0,0,0.02);
+        box-shadow: var(--shadow-soft);
 
         &:hover:not(:disabled) {
             background: var(--color-bg-light);
@@ -328,7 +328,7 @@
     width: 48px;
     height: 48px;
     border-radius: 12px;
-    background: linear-gradient(90deg, #f0f0f0 25%, #f8f8f8 50%, #f0f0f0 75%);
+    background: var(--skeleton-gradient);
     background-size: 200% 100%;
     animation: shimmer 1.5s infinite linear;
 }
@@ -344,7 +344,7 @@
     height: 16px;
     width: 40%;
     border-radius: 4px;
-    background: linear-gradient(90deg, #f0f0f0 25%, #f8f8f8 50%, #f0f0f0 75%);
+    background: var(--skeleton-gradient);
     background-size: 200% 100%;
     animation: shimmer 1.5s infinite linear;
 }
@@ -353,7 +353,7 @@
     height: 12px;
     width: 60%;
     border-radius: 4px;
-    background: linear-gradient(90deg, #f0f0f0 25%, #f8f8f8 50%, #f0f0f0 75%);
+    background: var(--skeleton-gradient);
     background-size: 200% 100%;
     animation: shimmer 1.5s infinite linear;
 }
@@ -362,7 +362,7 @@
     width: 100px;
     height: 28px;
     border-radius: 20px;
-    background: linear-gradient(90deg, #f0f0f0 25%, #f8f8f8 50%, #f0f0f0 75%);
+    background: var(--skeleton-gradient);
     background-size: 200% 100%;
     animation: shimmer 1.5s infinite linear;
 }

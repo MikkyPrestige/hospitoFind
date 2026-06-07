@@ -213,7 +213,7 @@
 }
 
 .errorBox {
-  background: rgba(239, 68, 68, 0.05);
+  background: var(--error-bg-tint);
   color: var(--color-error);
   padding: 1rem 1.5rem;
   border-radius: 1rem;
@@ -222,7 +222,7 @@
   justify-content: center;
   gap: 1rem;
   font-weight: 600;
-  border: 1px solid rgba(229, 62, 62, 0.1);
+  border: 1px solid var(--error-border-tint);
   margin-top: 1rem;
   font-size: 1.2rem;
 }
@@ -253,7 +253,7 @@
   margin-bottom: 1rem;
   display: inline-flex;
   padding: 1rem;
-  background: rgba(16, 185, 129, 0.1);
+  background: var(--color-success-bg);
   border-radius: 50%;
 }
 

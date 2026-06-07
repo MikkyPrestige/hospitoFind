@@ -4,7 +4,7 @@
 
 .message {
   margin-bottom: 1rem;
-  color: var(--color-ash);
+  color: var(--color-text-secondary);
   font-size: 0.95rem;
   font-weight: 500;
 }

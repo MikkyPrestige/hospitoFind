@@ -323,7 +323,7 @@ background: var(--color-white);
 
 .retryBtn {
   background: var(--color-blue);
-  color: var(--color-white);
+  color: var(--color-invert);
   border: none;
   padding: 0.8rem 2rem;
   border-radius: 50px;

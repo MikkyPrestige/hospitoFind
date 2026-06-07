@@ -73,7 +73,7 @@
 }
 
 .usernameHighlight {
-  background: rgba(239, 68, 68, 0.1);
+  background: var(--error-bg-tint);
   padding: 2px 8px;
   border-radius: 4px;
   font-family: 'JetBrains Mono', monospace;
@@ -95,7 +95,7 @@
 .input:focus {
   outline: none;
   border-color: var(--color-error);
-  box-shadow: 0 0 0 4px rgba(239, 68, 68, 0.1);
+  box-shadow: var(--error-focus-ring);
 }
 
 .actionWrapper {
