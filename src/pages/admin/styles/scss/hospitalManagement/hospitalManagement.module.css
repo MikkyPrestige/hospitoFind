@@ -22,7 +22,7 @@
 
 .addBtn {
   background: var(--color-indigo);
-  color: var(--color-white);
+  color: var(--color-invert);
   border: none;
   padding: 0.75rem 1.5rem;
   border-radius: 1rem;
@@ -34,7 +34,7 @@
   font-family: var(--font-inter);
 }
 .addBtn:hover {
-  background: #4338ca;
+  background: var(--add-btn-hover-bg);
 }
 
 .controls {
@@ -142,7 +142,7 @@
 
 .statusVerified {
   color: var(--color-success);
-  background: #ecfdf5;
+  background: var(--status-verified-bg);
   padding: 0.4rem 0.8rem;
   border-radius: 20px;
   font-weight: 700;
@@ -154,7 +154,7 @@
 
 .statusPending {
   color: var(--color-error);
-  background: #fef2f2;
+  background: var(--status-pending-hm-bg);
   padding: 0.4rem 0.8rem;
   border-radius: 20px;
   font-weight: 700;
@@ -183,12 +183,12 @@
 .actions .editBtn:hover {
   color: var(--color-indigo);
   border-color: var(--color-indigo);
-  background: #f5f3ff;
+  background: var(--edit-hover-bg);
 }
 .actions .deleteBtn:hover {
   color: var(--color-error);
   border-color: var(--color-error);
-  background: #fff1f2;
+  background: var(--action-delete-hover-bg);
 }
 
 .modalOverlay {
@@ -234,7 +234,7 @@
   color: var(--color-success);
 }
 .verifyBtn:hover {
-  background: #ecfdf5;
+  background: var(--status-verified-bg);
   border-color: var(--color-success);
 }
 
@@ -242,7 +242,7 @@
   color: var(--warning-color);
 }
 .unverifyBtn:hover {
-  background: #fffbeb;
+  background: var(--unverify-hover-bg);
   border-color: var(--warning-color);
 }
 

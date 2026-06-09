@@ -74,7 +74,7 @@
   background: transparent;
 }
 .cards::-webkit-scrollbar-thumb {
-  background: rgba(8, 41, 155, 0.15);
+  background: var(--color-border);
   border-radius: 2px;
 }
 
@@ -105,8 +105,8 @@
   animation-delay: 0.25s;
 }
 .card:hover {
-  border-color: rgba(8, 41, 155, 0.2);
-  box-shadow: 0 4px 16px rgba(8, 41, 155, 0.07);
+  border-color: var(--match-card-hover-border);
+  box-shadow: var(--match-card-hover-shadow);
 }
 
 @keyframes cardIn {
@@ -208,16 +208,16 @@
   font-family: var(--font-inter);
 }
 .badge.excellent {
-  background: #dcfce7;
-  color: #16a34a;
+  background: var(--badge-excellent-bg);
+  color: var(--badge-excellent-color);
 }
 .badge.good {
-  background: #dbeafe;
-  color: var(--color-blue);
+  background: var(--badge-good-bg);
+  color: var(--badge-good-color);
 }
 .badge.fair {
-  background: #fef9c3;
-  color: #ca8a04;
+  background: var(--badge-fair-bg);
+  color: var(--badge-fair-color);
 }
 
 .location {
@@ -364,7 +364,7 @@
   justify-content: center;
   gap: 0.4rem;
   background: var(--color-blue);
-  color: #ffffff;
+  color: var(--text-white);
   border-radius: 50px;
   padding: 0.55rem 1.2rem;
   font-size: 0.82rem;

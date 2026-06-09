@@ -241,17 +241,17 @@
   transition: all 0.2s;
 }
 .actionBtns button:hover {
-  background: white;
+  background: var(--color-invert);
 }
 .actionBtns .roleBtn:hover {
   color: var(--color-indigo);
   border-color: var(--color-indigo);
-  background: #eef2ff;
+  background: var(--role-hover-bg);
 }
 .actionBtns .deleteBtn:hover {
   color: var(--color-error);
   border-color: var(--color-error);
-  background: #fff1f2;
+  background: var(--delete-hover-bg);
 }
 
 /* --- Status Toggles --- */
@@ -274,19 +274,19 @@
 .activeStatus {
   background: var(--color-success-bg);
   color: var(--color-success);
-  border-color: #bbf7d0;
+  border-color: var(--active-status-border);
 }
 .activeStatus:hover {
-  background: #dcfce7;
+  background: var(--active-status-hover-bg);
 }
 
 .suspendedStatus {
-  background: #fff1f2;
+  background: var(--suspended-status-bg);
   color: var(--color-error);
-  border-color: #fecaca;
+  border-color: var(--suspended-status-border);
 }
 .suspendedStatus:hover {
-  background: #fee2e2;
+  background: var(--suspended-status-hover-bg);
 }
 
 .suspendedRow {
@@ -369,7 +369,7 @@
 }
 .modalForm .submitBtn {
   background: var(--color-indigo);
-  color: var(--color-white);
+  color: var(--color-invert);
   padding: 1rem;
   border-radius: 12px;
   border: none;
@@ -381,7 +381,7 @@
   font-family: var(--font-inter);
 }
 .modalForm .submitBtn:hover {
-  background: #4338ca;
+  background: var(--submit-hover-bg);
 }
 
 /* --- Loading Animation --- */
