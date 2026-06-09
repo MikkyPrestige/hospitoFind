@@ -34,7 +34,7 @@ const ChatPanel = ({
         <div className={`${style.panelHeader} ${style[`header_${variant}`]}`}>
             <div className={style.headerLeft}>
                 <div className={style.headerAvatar}><FiUser /></div>
-                <div>
+                <div className={style.headerInfo}>
                     <p className={style.headerName}>HospitoFind Assistant</p>
                     <p className={style.headerStatus}>
                         <span className={style.statusDot} />

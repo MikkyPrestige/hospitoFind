@@ -55,7 +55,7 @@ const PopularHospitals = () => {
         <Motion variants={sectionReveal} className={style.wrapper}>
           {hospitals.map((hospital) => (
             <Motion
-              key={hospital.slug || hospital.name}
+              key={hospital._id}
               variants={fadeUp}
               className={style.card}
             >

@@ -29,7 +29,6 @@ const FindHospital = () => {
     const [searchedTerm, setSearchedTerm] = useState<string>("");
     const mapContainer = useRef<HTMLDivElement | null>(null);
     const [map, setMap] = useState<mapboxgl.Map | null>(null);
-    const markersRef = useRef<mapboxgl.Marker[]>([]);
     const LIGHT_STYLE = "mapbox://styles/mapbox/streets-v11";
     const DARK_STYLE = "mapbox://styles/mapbox/navigation-night-v1";
 
@@ -50,6 +49,15 @@ const FindHospital = () => {
             accessToken,
         });
 
+        // Suppress noisy tile fetch errors in console
+        mapInstance.on('error', (e) => {
+            const isTileFetchError = e.error && e.error.message && e.error.message.startsWith('Failed to fetch');
+            if (isTileFetchError) {
+                e.preventDefault();
+                return;
+            }
+        });
+
         const geolocate = new mapboxgl.GeolocateControl({
             positionOptions: { enableHighAccuracy: true },
             trackUserLocation: true,
@@ -63,7 +71,7 @@ const FindHospital = () => {
             const { latitude, longitude } = e.coords as GeolocationCoordinates;
             const results = await fetchNearby(latitude, longitude);
             if (results.length > 0) {
-                updateMapMarkers(results, mapInstance, [longitude, latitude]);
+                updateMapMarkers(results, mapInstance);
             }
         });
 
@@ -83,34 +91,163 @@ const FindHospital = () => {
         }
     }, [geocodedCenter, map]);
 
-    const updateMapMarkers = (data: Hospital[], mapInstance: mapboxgl.Map, userCoords?: [number, number]) => {
-        markersRef.current.forEach((m) => m.remove());
-        markersRef.current = [];
+    // Plot markers when map becomes available with existing hospitals
+    useEffect(() => {
+        if (map && hospitals.length > 0) {
+            updateMapMarkers(hospitals, map);
+        }
+    }, [map, hospitals]);
+
+    const updateMapMarkers = (data: Hospital[], mapInstance: mapboxgl.Map) => {
         if (!mapInstance) return;
 
-        const bounds = new mapboxgl.LngLatBounds();
-        if (userCoords) bounds.extend(userCoords);
+        const geojson: GeoJSON.FeatureCollection = {
+            type: "FeatureCollection",
+            features: data
+                .filter((h) => h.longitude && h.latitude)
+                .map((h) => ({
+                    type: "Feature" as const,
+                    geometry: {
+                        type: "Point" as const,
+                        coordinates: [h.longitude!, h.latitude!],
+                    },
+                    properties: {
+                        id: h._id,
+                        name: h.name,
+                        street: h.address?.street || "",
+                        city: h.address?.city || "",
+                        state: h.address?.state || "",
+                        slug: h.slug,
+                    },
+                })),
+        };
 
-        data.forEach((hospital) => {
-            if (hospital.longitude && hospital.latitude) {
-                const marker = new mapboxgl.Marker({ color: "var(--color-blue-light)" })
-                    .setLngLat([hospital.longitude, hospital.latitude])
-                    .setPopup(
-                        new mapboxgl.Popup({ offset: 16, className: theme === 'dark' ? 'dark-popup' : '' }).setHTML(`
-                            <strong class="popup-name">${hospital.name}</strong><br/>
-                            <span class="popup-address">
-                            ${hospital.address?.street || ""}, ${hospital.address?.city || ""}
-                            </span><br/>
-                            <a href="/hospital/${hospital.address.state}/${hospital.address.city}/${hospital.slug}" class="popup-link">View Details</a>
-                        `)
-                    )
-                    .addTo(mapInstance);
-                markersRef.current.push(marker);
-                bounds.extend([hospital.longitude, hospital.latitude]);
-            }
-        });
+        const source = mapInstance.getSource("hospitals") as mapboxgl.GeoJSONSource;
+        if (source) {
+            source.setData(geojson);
+        } else {
+            mapInstance.addSource("hospitals", {
+                type: "geojson",
+                data: geojson,
+                cluster: true,
+                clusterMaxZoom: 14,
+                clusterRadius: 50,
+            });
 
-        if (!bounds.isEmpty()) {
+            // Cluster circles
+            mapInstance.addLayer({
+                id: "clusters",
+                type: "circle",
+                source: "hospitals",
+                filter: ["has", "point_count"],
+                paint: {
+                    "circle-color": [
+                        "step",
+                        ["get", "point_count"],
+                        "#08299b",
+                        10,
+                        "#2563eb",
+                        30,
+                        "#60a5fa",
+                    ],
+                    "circle-radius": ["step", ["get", "point_count"], 20, 10, 30, 30, 40],
+                    "circle-stroke-width": 2,
+                    "circle-stroke-color": "#ffffff",
+                },
+            });
+
+            // Cluster counts
+            mapInstance.addLayer({
+                id: "cluster-count",
+                type: "symbol",
+                source: "hospitals",
+                filter: ["has", "point_count"],
+                layout: {
+                    "text-field": "{point_count_abbreviated}",
+                    "text-font": ["DIN Pro Medium", "Arial Unicode MS Bold"],
+                    "text-size": 12,
+                },
+                paint: {
+                    "text-color": "#ffffff",
+                },
+            });
+
+            // Unclustered points
+            mapInstance.addLayer({
+                id: "unclustered-point",
+                type: "circle",
+                source: "hospitals",
+                filter: ["!", ["has", "point_count"]],
+                paint: {
+                    "circle-color": "#08299b",
+                    "circle-radius": 8,
+                    "circle-stroke-width": 2,
+                    "circle-stroke-color": "#ffffff",
+                },
+            });
+
+            // Unified click handler for both clusters and points
+            mapInstance.on("click", (e) => {
+                const features = mapInstance.queryRenderedFeatures(e.point, {
+                    layers: ["clusters", "cluster-count", "unclustered-point"],
+                });
+                if (features.length === 0) return;
+
+                const feature = features[0];
+                const layerId = feature.layer?.id;
+
+                if (layerId === "clusters" || layerId === "cluster-count") {
+                    const clusterId = feature.properties?.cluster_id;
+                    const src = mapInstance.getSource("hospitals") as mapboxgl.GeoJSONSource;
+                    src.getClusterExpansionZoom(clusterId, (err, zoom) => {
+                        if (err) return;
+                        const coords = (feature.geometry as GeoJSON.Point).coordinates as [
+                            number,
+                            number,
+                        ];
+                        mapInstance.flyTo({ center: coords, zoom: zoom ?? 12 });
+                    });
+                } else if (layerId === "unclustered-point") {
+                    const props = feature.properties as Record<string, string>;
+                    const html = `
+            <strong class="popup-name">${props.name}</strong><br/>
+            <span class="popup-address">${props.street}, ${props.city}</span><br/>
+            <a href="/hospital/${props.state}/${props.city}/${props.slug}" class="popup-link">View Details</a>
+        `;
+                    new mapboxgl.Popup({
+                        offset: 16,
+                        className: theme === "dark" ? "dark-popup" : "",
+                    })
+                        .setLngLat(
+                            (feature.geometry as GeoJSON.Point).coordinates as [number, number]
+                        )
+                        .setHTML(html)
+                        .addTo(mapInstance);
+                }
+            });
+
+            // Change cursor on hover
+            mapInstance.on("mouseenter", "clusters", () => {
+                mapInstance.getCanvas().style.cursor = "pointer";
+            });
+            mapInstance.on("mouseleave", "clusters", () => {
+                mapInstance.getCanvas().style.cursor = "";
+            });
+            mapInstance.on("mouseenter", "unclustered-point", () => {
+                mapInstance.getCanvas().style.cursor = "pointer";
+            });
+            mapInstance.on("mouseleave", "unclustered-point", () => {
+                mapInstance.getCanvas().style.cursor = "";
+            });
+        }
+
+        // Fit map to the new set of points
+        if (geojson.features.length > 0) {
+            const bounds = new mapboxgl.LngLatBounds();
+            geojson.features.forEach((feature) => {
+                const [lng, lat] = (feature.geometry as GeoJSON.Point).coordinates;
+                bounds.extend([lng, lat]);
+            });
             mapInstance.fitBounds(bounds, { padding: 80, maxZoom: 12, duration: 1000 });
         }
     };
@@ -159,7 +296,7 @@ const FindHospital = () => {
                 const { latitude, longitude } = pos.coords;
                 const results = await fetchNearby(latitude, longitude);
                 if (results.length > 0 && map) {
-                    updateMapMarkers(results, map, [longitude, latitude]);
+                    updateMapMarkers(results, map);
                 }
             });
         }

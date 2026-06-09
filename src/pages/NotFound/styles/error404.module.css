@@ -24,7 +24,7 @@
   width: 100%;
   max-width: 500px;
   border-radius: 2rem;
-  box-shadow: 0 2rem 4rem rgba(0, 0, 0, 0.05);
+  box-shadow: var(--shadow-card);
   margin-bottom: 1rem;
 }
 
