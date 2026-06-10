@@ -421,6 +421,23 @@ const Dashboard = () => {
                               <p className={style.noticeFooter}>
                                 To update your password or email, please visit your {getProviderName()} account settings.
                               </p>
+
+                              {/* MFA section — only for Auth0 users */}
+                              <div className={style.mfaSection}>
+                                <h4 className={style.mfaTitle}>Two-Factor Authentication (MFA)</h4>
+                                <p className={style.mfaText}>
+                                  Your account is secured with multi‑factor authentication.
+                                  To review recovery codes or disable MFA, visit your Auth0 security settings.
+                                </p>
+                                <a
+                                  href={`https://${import.meta.env.VITE_Auth0_Domain}/account`}
+                                  target="_blank"
+                                  rel="noopener noreferrer"
+                                  className={style.mfaLink}
+                                >
+                                  Manage MFA Settings
+                                </a>
+                              </div>
                             </div>
                           ) : (
                             <div className={style.cardBody}>

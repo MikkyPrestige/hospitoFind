@@ -19,12 +19,17 @@ This document lists planned improvements for the HospitoFind frontend.
 - **Multi‑language support** – translate UI and support non‑English queries in the AI chat.
 - **Saved user preferences** – let users set preferred hospital types, languages, or accessibility needs; auto‑apply in search and matching.
 - **Two‑factor authentication (TOTP) setup and management** – enable/configure 2FA for user and admin accounts via Auth0 (requires backend support).
+- **Distance display on hospital cards** – show how far each hospital is from the user using browser geolocation and existing coordinate data.
+- **Nearby hospitals carousel on details page** – display a scrollable list of nearby verified hospitals at the bottom of the hospital detail page, using the existing `/nearby` endpoint.
+- **Autocomplete suggestions in search bar** – suggest hospital names and cities as the user types in the directory search, making the search experience feel fast and modern.
 
 ## Admin UI
 
 - **Dashboard charts** – visual insights (hospitals approved per month, users by country, popular search terms). Requires backend aggregation endpoints.
 - **OSM import scheduling UI** – expose scheduling controls for automatic OSM imports (if backend adds scheduled imports).
 - **Fuzzy duplicate detection UI** – highlight potential duplicates during review with merge options.
+- **Batch‑delete selected pending submissions** – extend the existing checkbox system with a “Reject Selected” button and confirmation modal (requires backend endpoint).
+- **Typo‑tolerant search (“Did you mean…?”)** – when the directory search returns no results, suggest the closest matching hospital name or city using a simple edit‑distance algorithm.
 - **Batch‑delete selected pending submissions** – extend the existing checkbox system with a “Reject Selected” button and confirmation modal (requires backend endpoint).
 
 ## Code Quality
