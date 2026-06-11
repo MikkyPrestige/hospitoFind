@@ -86,6 +86,7 @@
 
 .editBtn:disabled {
   background-color: var(--bg-blue-tag);
+  color: var(--color-blue-light);
   opacity: 0.7;
   cursor: not-allowed;
 }

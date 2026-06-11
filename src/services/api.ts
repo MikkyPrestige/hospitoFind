@@ -178,3 +178,24 @@ export async function deleteHospital(id: number) {
     throw error
   }
 }
+
+// TOTP
+export async function setupTotp() {
+  const { data } = await api.post("/user/totp/setup", {}, { skipErrorToast: true } as any);
+  return data;
+}
+
+export async function verifyTotpSetup(setupToken: string, code: string) {
+  const { data } = await api.post("/user/totp/verify", { setupToken, code }, { skipErrorToast: true } as any);
+  return data;
+}
+
+export async function disableTotp(passwordOrCode: { password?: string; code?: string }) {
+  const { data } = await api.post("/user/totp/disable", passwordOrCode, { skipErrorToast: true } as any);
+  return data;
+}
+
+export async function regenerateRecoveryCodes(passwordOrCode: { password?: string; code?: string }) {
+  const { data } = await api.post("/user/totp/recovery-codes", passwordOrCode, { skipErrorToast: true } as any);
+  return data;
+}

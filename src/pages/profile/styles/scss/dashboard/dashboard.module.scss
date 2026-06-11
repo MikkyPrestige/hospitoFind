@@ -574,42 +574,6 @@
     font-size: 1.2rem;
     color: var(--icon-gray);
   }
-
-  .mfaSection {
-  margin-top: 1.5rem;
-  padding-top: 1.5rem;
-  border-top: 1px solid var(--color-border);
-}
-
-.mfaTitle {
-  font-size: 1rem;
-  font-weight: 600;
-  margin-bottom: 0.5rem;
-  color: var(--color-black);
-}
-
-.mfaText {
-  font-size: 0.875rem;
-  color: var(--text-slate);
-  margin-bottom: 1rem;
-  line-height: 1.5;
-}
-
-.mfaLink {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.25rem;
-  font-size: 0.875rem;
-  font-weight: 500;
-  color: var(--color-blue);
-  text-decoration: none;
-  transition: opacity 0.2s;
-
-  &:hover {
-    opacity: 0.8;
-    text-decoration: underline;
-  }
-}
 }
 
  &.dangerZone {
