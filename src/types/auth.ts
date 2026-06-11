@@ -29,6 +29,7 @@ export interface AuthState  {
   createdAt?: string | null;
   updatedAt?: string | null;
   accessToken: string | null;
+  totpEnabled?: boolean;
   password?: string | null;
   newPassword?: string | null;
 }

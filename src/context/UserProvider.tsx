@@ -11,6 +11,7 @@ const initialState: AuthState = {
   createdAt: localStorage.getItem("createdAt") || null,
   updatedAt: localStorage.getItem("updatedAt") || null,
   accessToken: localStorage.getItem("accessToken") || null,
+  totpEnabled: localStorage.getItem("totpEnabled") === "true",
   password: null,
   newPassword: null,
 };
@@ -42,6 +43,7 @@ const authReducer = (state: AuthState, action: AuthAction): AuthState => {
         id: data.id,
         createdAt: data.createdAt,
         auth0Id: data.auth0Id || null,
+        totpEnabled: data.totpEnabled !== undefined ? data.totpEnabled : state.totpEnabled,
       };
 
     case "LOGOUT":
@@ -55,6 +57,7 @@ const authReducer = (state: AuthState, action: AuthAction): AuthState => {
         "id",
         "_id",
         "auth0Id",
+        "totpEnabled",
         "createdAt",
         "updatedAt",
         "auth0.is_authenticated",

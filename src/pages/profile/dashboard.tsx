@@ -18,6 +18,7 @@ import HospitalPic from "@/assets/images/hospital-logo.jpg";
 import { useAuthContext } from "@/context/UserProvider";
 import { useUserActivity } from "@/hooks/useUserActivity";
 import Editor from "@/markDown/editor";
+import TotpManager from "@/components/user/TotpManager";
 import SearchForm from "@/components/search/Search";
 import UpdateUser from "@/components/user/UpdateUser";
 import UpdatePassword from "@/components/user/UpdatePassword";
@@ -34,7 +35,7 @@ import { AnimatePresence } from "framer-motion";
 import style from "./styles/scss/dashboard/dashboard.module.scss";
 
 const Dashboard = () => {
-  const { state } = useAuthContext();
+  const { state, dispatch } = useAuthContext();
   const { fetchActivity, removeFavoriteItem, removeHistoryItem } = useUserActivity();
   const location = useLocation();
   const navigate = useNavigate();
@@ -421,29 +422,19 @@ const Dashboard = () => {
                               <p className={style.noticeFooter}>
                                 To update your password or email, please visit your {getProviderName()} account settings.
                               </p>
-
-                              {/* MFA section — only for Auth0 users */}
-                              <div className={style.mfaSection}>
-                                <h4 className={style.mfaTitle}>Two-Factor Authentication (MFA)</h4>
-                                <p className={style.mfaText}>
-                                  Your account is secured with multi‑factor authentication.
-                                  To review recovery codes or disable MFA, visit your Auth0 security settings.
-                                </p>
-                                <a
-                                  href={`https://${import.meta.env.VITE_Auth0_Domain}/account`}
-                                  target="_blank"
-                                  rel="noopener noreferrer"
-                                  className={style.mfaLink}
-                                >
-                                  Manage MFA Settings
-                                </a>
-                              </div>
                             </div>
                           ) : (
                             <div className={style.cardBody}>
                               <UpdatePassword />
                             </div>
                           )}
+
+                          <TotpManager
+                            totpEnabled={state.totpEnabled ?? false}
+                            onStatusChange={(enabled) => {
+                              dispatch({ type: "UPDATE", payload: { totpEnabled: enabled } });
+                            }}
+                          />
                         </div>
                       </Motion>
                     )}
