@@ -10,7 +10,7 @@ const GuestRoute = () => {
     const { isLoading: auth0Loading } = useAuth0();
     const location = useLocation();
 
-    const isSyncing = auth0Loading || (localStorage.getItem("accessToken") && !state.role);
+    const isSyncing = (!state.accessToken && auth0Loading) || (state.accessToken && !state.role);
 
     if (isSyncing) {
         return (
