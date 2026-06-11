@@ -20,6 +20,9 @@ const TotpManager = ({ totpEnabled, onStatusChange }: Props) => {
     const [setupToken, setSetupToken] = useState("");
     const [code, setCode] = useState("");
     const [recoveryCodes, setRecoveryCodes] = useState<string[]>([]);
+    const [password, setPassword] = useState("");
+    const [showPasswordPrompt, setShowPasswordPrompt] = useState(false);
+    const [actionType, setActionType] = useState<"disable" | "regenerate" | null>(null);
 
     const handleEnable = async () => {
         setLoading(true);
@@ -51,28 +54,35 @@ const TotpManager = ({ totpEnabled, onStatusChange }: Props) => {
         }
     };
 
-    const handleDisable = async () => {
-        setLoading(true);
-        try {
-            await disableTotp({});
-            onStatusChange(false);
-            setView("idle");
-            toast.success("TOTP disabled");
-        } catch (err: any) {
-            toast.error(err?.response?.data?.message || "Failed to disable TOTP");
-        } finally {
-            setLoading(false);
-        }
+    const handleDisable = () => {
+        setShowPasswordPrompt(true);
+        setActionType("disable");
     };
 
-    const handleRegenerate = async () => {
+    const handleRegenerate = () => {
+        setShowPasswordPrompt(true);
+        setActionType("regenerate");
+    };
+
+    const doAction = async () => {
+        if (!password) return toast.warn("Password is required");
         setLoading(true);
         try {
-            const data = await regenerateRecoveryCodes({});
-            setRecoveryCodes(data.recoveryCodes);
-            setView("recovery");
+            if (actionType === "regenerate") {
+                const data = await regenerateRecoveryCodes({ password });
+                setRecoveryCodes(data.recoveryCodes);
+                setView("recovery");
+            } else if (actionType === "disable") {
+                await disableTotp({ password });
+                onStatusChange(false);
+                setView("idle");
+                toast.success("TOTP disabled");
+            }
+            setShowPasswordPrompt(false);
+            setPassword("");
+            setActionType(null);
         } catch (err: any) {
-            toast.error(err?.response?.data?.message || "Failed to regenerate recovery codes");
+            toast.error(err?.response?.data?.message || "Failed");
         } finally {
             setLoading(false);
         }
@@ -139,7 +149,8 @@ const TotpManager = ({ totpEnabled, onStatusChange }: Props) => {
             {view === "recovery" && (
                 <div>
                     <p className={style.text}>
-                        Save these recovery codes in a safe place. They can be used if you lose access to your authenticator app.
+                        Save these recovery codes in a safe place. They can be used if you lose
+                        access to your authenticator app.
                     </p>
                     <ul className={style.recoveryList}>
                         {recoveryCodes.map((rc) => (
@@ -173,6 +184,35 @@ const TotpManager = ({ totpEnabled, onStatusChange }: Props) => {
                             Regenerate Recovery Codes
                         </button>
                     </div>
+
+                    {showPasswordPrompt && (
+                        <div className={style.passwordPrompt}>
+                            <input
+                                type="password"
+                                placeholder="Enter your password"
+                                value={password}
+                                onChange={(e) => setPassword(e.target.value)}
+                                className={style.codeInput}
+                            />
+                            <button
+                                className={style.btn}
+                                onClick={doAction}
+                                disabled={loading || !password}
+                            >
+                                Confirm
+                            </button>
+                            <button
+                                className={style.cancelBtn}
+                                onClick={() => {
+                                    setShowPasswordPrompt(false);
+                                    setPassword("");
+                                    setActionType(null);
+                                }}
+                            >
+                                Cancel
+                            </button>
+                        </div>
+                    )}
                 </div>
             )}
         </div>

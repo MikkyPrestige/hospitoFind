@@ -22,7 +22,8 @@ import Logo from "@/assets/images/logo.svg"
 import style from "./styles/login/login.module.scss";
 
 const LoginForm = () => {
-  const { loading, login, success, user } = useLogin();
+  const { loading, login, success, user, totpToken, submitTotp } = useLogin();
+  console.log("LoginForm totpToken:", totpToken);
   const { loginWithRedirect } = useAuth0();
   const transitionClass = usePageTransition();
   const navigate = useNavigate();
@@ -33,6 +34,7 @@ const LoginForm = () => {
   const [rememberMe, setRememberMe] = useState(false);
   const [errors, setErrors] = useState<Record<string, string>>({});
   const [needsVerification, setNeedsVerification] = useState(false);
+  const [totpCode, setTotpCode] = useState("");
 
   useEffect(() => {
     const savedEmail = localStorage.getItem("remember_email");
@@ -138,7 +140,6 @@ const LoginForm = () => {
 
             <form onSubmit={handleLogin} className={style.form}>
               <div className={style.form_wrapper}>
-
                 <div className={style.form_group}>
                   <label htmlFor="email">Email Address</label>
                   <div className={style.inputWrapper}>
@@ -180,6 +181,41 @@ const LoginForm = () => {
                 </div>
               </div>
 
+              {totpToken && (
+                <div className={style.totpSection}>
+                  <label htmlFor="totp" className={style.totpLabel}>
+                    Two-Factor Authentication Code
+                  </label>
+                  <div className={style.totpInputWrapper}>
+                    <input
+                      id="totp"
+                      type="text"
+                      placeholder="Enter 6‑digit code"
+                      value={totpCode}
+                      onChange={(e) => setTotpCode(e.target.value)}
+                      maxLength={6}
+                      className={style.totpInput}
+                      autoFocus
+                    />
+                  </div>
+                  <Button
+                    disabled={loading || totpCode.length < 6}
+                    className={style.totpButton}
+                    onClick={async () => {
+                      try {
+                        await submitTotp(totpCode);
+                      } catch {
+                        // error toast already shown by submitTotp
+                      }
+                    }}
+                    type="button"
+                  >
+                    {loading ? "Verifying..." : "Verify Code"}
+                    <ArrowRight className={style.arrowIcon} size={18} />
+                  </Button>
+                </div>
+              )}
+
               {needsVerification && (
                 <div className={style.verificationAlert} role="alert">
                   <p className={style.alertMessage}>Action Required: Email Verification Pending</p>
@@ -209,10 +245,12 @@ const LoginForm = () => {
                 </Link>
               </div>
 
-              <Button disabled={loading} className={style.form_button} type="submit">
-                {loading ? "Authenticating..." : "Access Dashboard"}
-                <ArrowRight className={style.arrowIcon} size={18} />
-              </Button>
+              {!totpToken && (
+                <Button disabled={loading} className={style.form_button} type="submit">
+                  {loading ? "Authenticating..." : "Access Dashboard"}
+                  <ArrowRight className={style.arrowIcon} size={18} />
+                </Button>
+              )}
             </form>
 
             <div className={style.divider}><span className={style.dividerText}>Or sign in using</span></div>
