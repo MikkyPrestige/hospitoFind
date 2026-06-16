@@ -22,14 +22,14 @@
 }
 
 .title {
-  font-size: 0.95rem;
+  font-size: 1.2rem;
   font-weight: 700;
   color: var(--color-black);
   font-family: var(--font-plus);
 }
 
 .subtitle {
-  font-size: 0.78rem;
+  font-size: 1rem;
   color: var(--color-gray);
   font-family: var(--font-inter);
   line-height: 1.4;
@@ -37,7 +37,7 @@
 .subtitle strong {
   color: var(--color-blue);
   font-weight: 600;
-  font-size: 1rem;
+  font-size: 1.1rem;
 }
 
 .startOverBtn {
@@ -45,7 +45,7 @@
   border: 1.5px solid var(--color-border);
   border-radius: 2rem;
   padding: 0.3rem 0.8rem;
-  font-size: 0.78rem;
+  font-size: 1rem;
   font-weight: 600;
   color: var(--color-gray);
   cursor: pointer;
@@ -125,7 +125,7 @@
   left: 0.75rem;
   background: var(--color-blue);
   color: var(--text-white);
-  font-size: 0.65rem;
+  font-size: 0.85rem;
   font-weight: 800;
   font-family: var(--font-plus);
   padding: 0.15rem 0.4rem;
@@ -164,7 +164,7 @@
 }
 
 .name {
-  font-size: 0.9rem;
+  font-size: 1.1rem;
   font-weight: 700;
   color: var(--color-black);
   font-family: var(--font-plus);
@@ -186,7 +186,7 @@
 }
 
 .type {
-  font-size: 0.7rem;
+  font-size: 0.875rem;
   font-weight: 600;
   color: var(--color-gray);
   background: var(--color-bg-light);
@@ -201,7 +201,7 @@
   display: inline-flex;
   align-items: center;
   gap: 0.3rem;
-  font-size: 0.7rem;
+  font-size: 0.875rem;
   font-weight: 700;
   padding: 0.25rem 0.5rem;
   border-radius: 50px;
@@ -224,7 +224,7 @@
   display: flex;
   align-items: center;
   gap: 0.5rem;
-  font-size: 0.78rem;
+  font-size: 1rem;
   color: var(--color-gray);
   font-family: var(--font-inter);
 }
@@ -232,9 +232,15 @@
   flex-shrink: 0;
   color: var(--color-blue);
 }
+.location .distance {
+  font-size: 1rem;
+  color: var(--color-success);
+  margin-top: 0.15rem;
+  margin-bottom: 0.15rem;
+}
 
 .reason {
-  font-size: 0.75rem;
+  font-size: 0.875rem;
   color: var(--color-gray);
   font-family: var(--font-inter);
   line-height: 1.4;
@@ -256,7 +262,7 @@
   background: var(--color-success-bg);
   color: var(--color-success);
   border-radius: 50px;
-  font-size: 0.78rem;
+  font-size: 0.875rem;
   font-weight: 700;
   font-family: var(--font-inter);
   text-decoration: none;
@@ -274,7 +280,7 @@
   background: var(--color-blue);
   color: var(--text-white);
   border-radius: 50px;
-  font-size: 0.78rem;
+  font-size: 0.875rem;
   font-weight: 700;
   font-family: var(--font-inter);
   text-decoration: none;
@@ -295,7 +301,7 @@
   text-align: center;
   color: var(--color-gray);
   font-family: var(--font-inter);
-  font-size: 0.9rem;
+  font-size: 1rem;
 }
 
 .retryBtn {
@@ -305,7 +311,7 @@
   border-radius: 50px;
   padding: 0.6rem 1.5rem;
   font-weight: 700;
-  font-size: 0.9rem;
+  font-size: 1rem;
   cursor: pointer;
   font-family: var(--font-plus);
 }
@@ -342,7 +348,7 @@
 }
 
 .noResultsText {
-  font-size: 0.82rem;
+  font-size: 1rem;
   color: var(--color-gray);
   font-family: var(--font-inter);
   line-height: 1.6;
@@ -367,7 +373,7 @@
   color: var(--text-white);
   border-radius: 50px;
   padding: 0.55rem 1.2rem;
-  font-size: 0.82rem;
+  font-size: 1rem;
   font-weight: 700;
   font-family: var(--font-inter);
   text-decoration: none;
@@ -382,7 +388,7 @@
   border: 1.5px solid var(--color-border);
   border-radius: 50px;
   padding: 0.5rem 1.2rem;
-  font-size: 0.82rem;
+  font-size: 1rem;
   font-weight: 600;
   color: var(--color-gray);
   cursor: pointer;

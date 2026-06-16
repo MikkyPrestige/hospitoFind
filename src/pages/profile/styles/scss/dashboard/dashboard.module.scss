@@ -340,6 +340,13 @@
        color: var(--text-slate);
        }
 
+       .distanceLine {
+  font-size: 1.2rem;
+  color: var(--color-success);
+  display: block;
+  margin-top: 0.15rem;
+}
+
     .ctaText {
       font-size: 1.1rem;
       color: var(--color-blue);

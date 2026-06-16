@@ -156,6 +156,15 @@
   font-weight: 600;
 }
 
+.distance {
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+  font-size: 1.2rem;
+  color: var(--color-success);
+  margin-top: 0.25rem;
+}
+
 .contactGrid {
   margin: 1rem 0;
   display: flex;

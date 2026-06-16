@@ -1,12 +1,13 @@
-import { NavLink, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { useSharedHospitals } from "@/hooks/useSharedHospitals";
-import { Avatar } from "@/components/ui/Avatar";
+import HospitalCard from "@/components/hospital/HospitalCard";
+import { useGeolocation } from "@/hooks/useGeolocation";
 import AnimatedLoader from "@/components/ui/AnimatedLoader";
-import HospitalPic from "@/assets/images/hospital-logo.jpg";
 import style from "./styles/shareHospitalList.module.css";
 import { SEOHelmet } from "../ui/SeoHelmet";
 
 const ShareHospitalList = () => {
+  const userCoords = useGeolocation();
   const { linkId } = useParams<{ linkId: string }>();
   const { hospitalList, loading, error } = useSharedHospitals(linkId);
 
@@ -37,32 +38,8 @@ const ShareHospitalList = () => {
           <AnimatedLoader message="Retrieving shared facility list..." variant="card" count={3} />
         ) : (
           <div className={`${style.shareContent} ${style.wrapper}`}>
-            {hospitalList.map((hospital, id) => (
-              <li key={id} className={style.card}>
-                <div className={style.shareImg}>
-                  {hospital?.photoUrl ?
-                    <Avatar
-                      image={hospital.photoUrl}
-                      alt={`Photo of ${hospital.name} in ${hospital.address.city}`}
-                      className={style.shareAvatar}
-                    /> :
-                    <Avatar
-                      image={HospitalPic}
-                      alt="Photo of an hospital"
-                      className={style.shareAvatar}
-                    />}
-                </div>
-                <div className={style.details}>
-                  <h3 className={style.name}>{hospital.name}</h3>
-                  <h3 className={style.address}>{hospital?.address.street}</h3>
-                  <NavLink
-                    to={`/hospital/${hospital.address.state}/${hospital.address.city}/${hospital.slug}`}
-                    className={style.btn}
-                  >
-                    View Hospital
-                  </NavLink>
-                </div>
-              </li>
+            {hospitalList.map((hospital) => (
+              <HospitalCard key={hospital._id} hospital={hospital} userCoords={userCoords} />
             ))}
           </div>
         )}

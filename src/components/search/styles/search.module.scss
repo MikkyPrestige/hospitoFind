@@ -191,7 +191,7 @@
   h3 {
     font-size: 1.4rem;
     font-weight: 700;
-    color: var(--color-black);
+    color: var(--color-blue);
     margin-bottom: 0.4rem;
     line-height: 1.3;
   }
@@ -201,6 +201,12 @@
     color: var(--color-gray);
     margin-bottom: 1rem;
   }
+
+  .distance {
+  font-size: 1.2rem;
+  color: var(--color-success);
+  margin-top: 0.25rem;
+}
 }
 
 .cardActions {

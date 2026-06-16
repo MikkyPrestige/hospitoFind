@@ -2,11 +2,21 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { FiArrowRight, FiExternalLink, FiPhone, FiMail, FiMapPin, FiCheckCircle } from "react-icons/fi";
 import { HospitalCardProps } from "@/types/hospital";
+import { getDistance, formatDistance } from "@/utils/distance";
+import { useGeolocation } from "@/hooks/useGeolocation";
 import style from "./styles/hospitalCard.module.css";
 
 const HospitalCard: React.FC<HospitalCardProps> = ({ hospital }) => {
   const { name, type, address, phoneNumber, email, website, photoUrl } = hospital;
   const hasImage = Boolean(photoUrl);
+
+  const userCoords = useGeolocation();
+  let distanceText: string | null = null;
+  console.log("distance debug", { userCoords, lat: hospital.latitude, lon: hospital.longitude, distanceText });
+  if (userCoords.lat !== null && userCoords.lon !== null && hospital.latitude !== undefined && hospital.longitude !== undefined) {
+    const km = getDistance(userCoords.lat, userCoords.lon, hospital.latitude, hospital.longitude);
+    distanceText = formatDistance(km);
+  }
 
   return (
     <article className={style.card}>
@@ -42,10 +52,15 @@ const HospitalCard: React.FC<HospitalCardProps> = ({ hospital }) => {
           <div className={style.location}>
             <FiMapPin className={style.icon} />
             <span className={style.addressText}>
-              {address?.city && <span>{address.city}, </span>}
-              {address?.country}
+              {address?.street}, {address.city}, {address?.state}
             </span>
           </div>
+
+          {distanceText && (
+            <div className={style.distance}>
+              {distanceText}
+            </div>
+          )}
         </div>
 
         <div className={style.contactGrid}>
@@ -77,7 +92,7 @@ const HospitalCard: React.FC<HospitalCardProps> = ({ hospital }) => {
             to={`/hospital/${encodeURIComponent(address.country || "location")}/${encodeURIComponent(address.city)}/${hospital.slug || hospital._id}`}
             className={style.profileBtn}
           >
-            Full Profile <FiArrowRight />
+            View Profile <FiArrowRight />
           </Link>
         </div>
       </div>

@@ -1,26 +1,26 @@
-import { NavLink, useNavigate, useSearchParams } from "react-router-dom";
+import { useNavigate, useSearchParams } from "react-router-dom";
 import { useState, useEffect, useRef } from "react";
 import mapboxgl from "mapbox-gl";
 import "mapbox-gl/dist/mapbox-gl.css";
 import { useTheme } from "@/context/ThemeProvider";
 import { accessToken } from "@/config/mapbox";
+import { Hospital } from "@/types/hospital";
+import { useHospitalDiscovery } from "@/hooks/useHospitalDiscovery";
+import { useGeolocation } from "@/hooks/useGeolocation";
+import HospitalCard from "@/components/hospital/HospitalCard";
 import PopularHospitals from "@/components/hospital/PopularHospitals";
 import Motion from "@/components/ui/Motion";
-import { fadeUp, sectionReveal, zoomIn } from "@/utils/animations";
-import { Hospital } from "@/types/hospital";
-import { FaHospital, FaMapMarkerAlt, FaSearch } from "react-icons/fa";
-import { Avatar } from "@/components/ui/Avatar";
-import HospitalPic from "@/assets/images/hospital-logo.jpg";
-import style from "./styles/find.module.scss";
 import { SEOHelmet } from "@/components/ui/SeoHelmet";
-import { useHospitalDiscovery } from "@/hooks/useHospitalDiscovery";
-
+import { fadeUp, sectionReveal, zoomIn } from "@/utils/animations";
+import { FaHospital, FaMapMarkerAlt, FaSearch } from "react-icons/fa";
+import style from "./styles/find.module.scss";
 mapboxgl.accessToken = accessToken;
 
 const FindHospital = () => {
     const { theme } = useTheme();
     const navigate = useNavigate();
     const [searchParams] = useSearchParams();
+    const userCoords = useGeolocation();
     const initialQ = searchParams.get("q") || "";
     const initialCity = searchParams.get("city");
     const initialState = searchParams.get("state");
@@ -368,27 +368,8 @@ const FindHospital = () => {
 
                                     <div className={style.cardsWrapper}>
                                         {hospitals.map((hospital, id) => (
-                                            <Motion key={id} variants={fadeUp} className={style.card}>
-                                                <div className={style.cardImageWrapper}>
-                                                    <Avatar
-                                                        image={hospital.photoUrl || HospitalPic}
-                                                        alt={`Photo of ${hospital.name}`}
-                                                        className={style.avatar}
-                                                    />
-                                                </div>
-                                                <div className={style.cardDetails}>
-                                                    <h3 className={style.cardName}>{hospital.name}</h3>
-                                                    <p className={style.cardAddress}>
-                                                        <FaMapMarkerAlt className={style.pinIcon} />
-                                                        {hospital.address?.street}, {hospital.address?.city}
-                                                    </p>
-                                                    <NavLink
-                                                        to={`/hospital/${hospital.address?.state}/${hospital.address?.city}/${hospital.slug}`}
-                                                        className={style.viewBtn}
-                                                    >
-                                                        View Details
-                                                    </NavLink>
-                                                </div>
+                                            <Motion key={id} variants={fadeUp}>
+                                                <HospitalCard hospital={hospital} userCoords={userCoords} />
                                             </Motion>
                                         ))}
                                     </div>

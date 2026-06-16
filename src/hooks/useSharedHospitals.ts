@@ -21,7 +21,14 @@ export const useSharedHospitals = (linkId: string | undefined) => {
             try {
                 const response = await api.get(`/hospitals/share/${encodeURIComponent(linkId)}`, { skipErrorToast: true } as any);
                 const data = response.data;
-                setHospitalList(Array.isArray(data) ? data : []);
+                const normalized = (Array.isArray(data) ? data : []).map((item: any) => ({
+                    ...item,
+                    _id: item.hospitalId,
+                    phoneNumber: item.phoneNumber || item.phone || undefined,
+                    latitude: item.latitude ?? undefined,
+                    longitude: item.longitude ?? undefined,
+                }));
+                setHospitalList(normalized);
             } catch (err: any) {
                 console.error("Shared List Fetch Error:", err);
                 const errorMsg = err.response?.data?.message || "Unable to retrieve the shared facility list. The link may be invalid or expired.";
