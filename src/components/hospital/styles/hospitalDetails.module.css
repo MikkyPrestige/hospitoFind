@@ -260,6 +260,12 @@
   margin-bottom: 2px;
 }
 
+.distanceLine {
+  font-size: 1.2rem;
+  color: var(--color-success);
+  margin-top: 0.25rem;
+}
+
 .infoLink {
   color: var(--color-blue);
   font-weight: 500;

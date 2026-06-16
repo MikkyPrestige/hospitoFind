@@ -2,6 +2,8 @@ import { Link } from 'react-router-dom';
 import { FiPhone, FiMapPin, FiExternalLink, FiCheckCircle, FiStar, FiSearch } from 'react-icons/fi';
 import { HiSparkles } from 'react-icons/hi2';
 import type { HospitalMatchCardsProps } from '@/types/agent';
+import { useGeolocation } from "@/hooks/useGeolocation";
+import { getDistance, formatDistance } from "@/utils/distance";
 import HospitalPic from '@/assets/images/hospital-logo.jpg';
 import style from './styles/cards/HospitalMatchCards.module.scss';
 
@@ -69,6 +71,8 @@ const HospitalMatchCards = ({
         );
     }
 
+    const userCoords = useGeolocation();
+
     //  Results
     return (
         <div className={style.wrapper}>
@@ -119,6 +123,13 @@ const HospitalMatchCards = ({
                                 <FiMapPin size={12} />
                                 <span>{hospital.city}, {hospital.state}</span>
                             </div>
+
+                            {userCoords.lat != null && userCoords.lon != null &&
+                                hospital.latitude != null && hospital.longitude != null && (
+                                    <div className={style.distance}>
+                                        {formatDistance(getDistance(userCoords.lat, userCoords.lon, hospital.latitude, hospital.longitude))}
+                                    </div>
+                                )}
 
                             <p className={style.reason}>{hospital.matchReason}</p>
 

@@ -9,6 +9,8 @@ import { AnimatePresence } from "framer-motion";
 import { useAuthContext } from "@/context/UserProvider";
 import { useTheme } from "@/context/ThemeProvider";
 import { useHospitalDetails } from "@/hooks/useHospitalDetails";
+import { useGeolocation } from "@/hooks/useGeolocation";
+import { getDistance, formatDistance } from "@/utils/distance";
 import Motion from "@/components/ui/Motion";
 import { Button } from "@/components/ui/Button";
 import { SEOHelmet } from "@/components/ui/SeoHelmet";
@@ -20,6 +22,7 @@ import { FaArrowRight } from "react-icons/fa";
 
 const HospitalDetails = () => {
     const { theme } = useTheme();
+    const userCoords = useGeolocation();
     const { id, country, city, slug, name } = useParams();
     const { state } = useAuthContext();
     const navigate = useNavigate();
@@ -101,6 +104,17 @@ const HospitalDetails = () => {
             </div>
         </div>
     );
+
+    let distanceText: string | null = null;
+    if (
+        userCoords.lat !== null &&
+        userCoords.lon !== null &&
+        hospital.latitude !== undefined &&
+        hospital.longitude !== undefined
+    ) {
+        const km = getDistance(userCoords.lat, userCoords.lon, hospital.latitude, hospital.longitude);
+        distanceText = formatDistance(km);
+    }
 
     const API_KEY = import.meta.env.VITE_Google_API_Key;
     const mapQuery = encodeURIComponent(`${hospital.name}, ${hospital.address?.city}, ${hospital.address?.state}`);
@@ -189,6 +203,9 @@ const HospitalDetails = () => {
                                             <div className={style.contactContent}>
                                                 <span className={style.contactLabel}>Address</span>
                                                 <span>{hospital.address?.street}, {hospital.address?.city}, {hospital.address?.state}</span>
+                                                {distanceText && (
+                                                    <span className={style.distanceLine}>{distanceText}</span>
+                                                )}
                                             </div>
                                         </div>
                                         {hospital.phoneNumber && (

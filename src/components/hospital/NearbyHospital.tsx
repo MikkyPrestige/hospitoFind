@@ -1,17 +1,17 @@
 import { useNavigate } from "react-router-dom";
-import { FiArrowRight, FiMapPin, FiNavigation } from "react-icons/fi";
+import { FiArrowRight, FiNavigation } from "react-icons/fi";
+import { Hospital } from "@/types/hospital";
+import { UseNearbyHospitalsProps } from "@/types/hospital";
 import { useNearbyHospitals } from "@/hooks/useNearbyHospitals";
+import { useGeolocation } from "@/hooks/useGeolocation";
+import HospitalCard from "@/components/hospital/HospitalCard";
 import AnimatedLoader from "@/components/ui/AnimatedLoader";
-import HospitalPic from "@/assets/images/hospital-logo.jpg";
 import style from "./styles/nearbyHospital.module.css";
 
-type Props = {
-    triggerLocation?: number;
-};
-
-const NearbyHospitals = ({ triggerLocation = 0 }: Props) => {
+const NearbyHospitals = ({ triggerLocation = 0 }: UseNearbyHospitalsProps) => {
     const { hospitals, loading, message, error, retry } = useNearbyHospitals({ triggerLocation });
     const navigate = useNavigate();
+    const userCoords = useGeolocation();
 
     return (
         <section className={style.section}>
@@ -46,43 +46,7 @@ const NearbyHospitals = ({ triggerLocation = 0 }: Props) => {
                     {hospitals.length > 0 ? (
                         <div className={style.grid}>
                             {hospitals.map((h) => (
-                                <article key={h._id} className={style.card}>
-                                    <div className={style.imageContainer}>
-                                        <img
-                                            src={h.photoUrl || HospitalPic}
-                                            alt={h.name}
-                                            className={style.image}
-                                            loading="lazy"
-                                        />
-                                        {h.distance && <span className={style.distBadge}>{h.distance}</span>}
-                                    </div>
-
-                                    <div className={style.cardContent}>
-                                        <div className={style.cardHeader}>
-                                            {h.type && (
-                                                <span className={`${style.typeBadge} ${h.type.toLowerCase() === 'private' ? style.privateBadge : style.publicBadge}`}>
-                                                    {h.type}
-                                                </span>
-                                            )}
-                                        </div>
-
-                                        <h3 className={style.title}>{h.name}</h3>
-
-                                        <p className={style.location}>
-                                            <FiMapPin className={style.pinIcon} />
-                                            {h.address?.city || h.address?.state
-                                                ? [h.address?.city, h.address?.state].filter(Boolean).join(", ")
-                                                : "Verified Facility"}
-                                        </p>
-
-                                        <button
-                                            className={style.viewBtn}
-                                            onClick={() => navigate(`/hospital/${h.address?.state}/${h.address?.city}/${h.slug}`)}
-                                        >
-                                            View Details
-                                        </button>
-                                    </div>
-                                </article>
+                                <HospitalCard key={h._id} hospital={h as Hospital} userCoords={userCoords} />
                             ))}
                         </div>
                     ) : (

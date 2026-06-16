@@ -26,7 +26,7 @@ export interface Hospital {
   verified: boolean;
   longitude?: number;
   latitude?: number;
- isFeatured?: boolean;
+  isFeatured?: boolean;
   createdBy?: string;
   createdAt?: string;
   updatedAt?: string;
@@ -72,6 +72,7 @@ export interface NearbyHospital {
     name: string;
     slug: string;
     address?: {
+        street?: string;
         state?: string;
         city?: string;
     };
@@ -115,6 +116,7 @@ export interface UseNearbyHospitalsProps {
 
 export interface HospitalCardProps {
   hospital: Hospital;
+  userCoords?: { lat: number | null; lon: number | null } | null;
 }
 
 export interface CountryCardProps {

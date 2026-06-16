@@ -1,14 +1,14 @@
-import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { getRandomHospitals } from "@/services/api";
 import { Hospital } from "@/types/hospital";
-import { Avatar } from "@/components/ui/Avatar";
+import { useGeolocation } from "@/hooks/useGeolocation";
+import HospitalCard from "@/components/hospital/HospitalCard";
 import Motion from "@/components/ui/Motion";
 import { fadeUp, sectionReveal } from "@/utils/animations";
-import HospitalPic from "@/assets/images/hospital-logo.jpg";
 import style from "./styles/popular.module.css";
 
 const PopularHospitals = () => {
+  const userCoords = useGeolocation();
   const [hospitals, setHospitals] = useState<Hospital[]>([]);
   const [error, setError] = useState<string>("");
 
@@ -54,30 +54,8 @@ const PopularHospitals = () => {
       {hospitals.length > 0 && (
         <Motion variants={sectionReveal} className={style.wrapper}>
           {hospitals.map((hospital) => (
-            <Motion
-              key={hospital._id}
-              variants={fadeUp}
-              className={style.card}
-            >
-              <div className={style.imgContainer}>
-                <Avatar
-                  image={hospital.photoUrl || HospitalPic}
-                  alt={`${hospital.name} facility`}
-                  className={style.avatar}
-                />
-              </div>
-              <div className={style.details}>
-                <h3 className={style.name}>{hospital.name}</h3>
-                <p className={style.address}>
-                  {hospital.address?.street}, {hospital.address?.city}
-                </p>
-                <Link
-                  to={`/hospital/${hospital.address?.state}/${hospital.address?.city}/${hospital.slug}`}
-                  className={style.btn}
-                >
-                  View Profile <span className={style.srOnly}>for {hospital.name}</span>
-                </Link>
-              </div>
+            <Motion key={hospital._id} variants={fadeUp}>
+              <HospitalCard hospital={hospital} userCoords={userCoords} />
             </Motion>
           ))}
         </Motion>

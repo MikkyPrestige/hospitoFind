@@ -1,9 +1,11 @@
 import { useEffect, useRef, useState } from "react";
 import { NavLink, Outlet } from "react-router-dom";
 import { AiFillHeart, AiOutlineHeart, AiOutlineSearch } from "react-icons/ai";
+import { LocationInput } from "@/types/hospital";
 import { useHospitalSearch } from "@/hooks/useHospitalSearch";
 import { useHospitalInteractions } from "@/hooks/useHospitalInteractions";
-import { LocationInput } from "@/types/hospital";
+import { useGeolocation } from "@/hooks/useGeolocation";
+import { getDistance, formatDistance } from "@/utils/distance";
 import { getUniqueCities } from "@/utils/formatters";
 import { fadeUp } from "@/utils/animations";
 import { Avatar } from "@/components/ui/Avatar";
@@ -26,6 +28,7 @@ export default function SearchForm({
   onRecentUpdate?: () => void;
   onWeeklyViewsChange?: (count: number) => void;
 }) {
+  const userCoords = useGeolocation();
   const [query, setQuery] = useState("");
   const [location, setLocation] = useState<LocationInput>({ address: "", city: "", state: "" });
   const [dropdownOpen, setDropdownOpen] = useState(false);
@@ -154,7 +157,12 @@ export default function SearchForm({
                 <Avatar image={h.photoUrl || HospitalPic} alt={h.name} className={style.cardAvatar} />
                 <div className={style.hospitalInfo}>
                   <h3>{h.name}</h3>
-                  <p>{h.address?.city} — {h.address?.state}</p>
+                  <p>{h.address?.street}, {h.address?.city}. {""} {h.address?.state}</p>
+                  {userCoords.lat != null && userCoords.lon != null && h.latitude != null && h.longitude != null && (
+                    <p className={style.distance}>
+                      {formatDistance(getDistance(userCoords.lat, userCoords.lon, h.latitude, h.longitude))}
+                    </p>
+                  )}
                   <div className={style.cardActions}>
                     <NavLink
                       to={`/hospital/${h.address.state}/${h.address.city}/${h.slug}`}

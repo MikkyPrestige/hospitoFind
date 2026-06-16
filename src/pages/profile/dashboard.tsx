@@ -17,6 +17,8 @@ import Logo from "@/assets/images/logo.svg";
 import HospitalPic from "@/assets/images/hospital-logo.jpg";
 import { useAuthContext } from "@/context/UserProvider";
 import { useUserActivity } from "@/hooks/useUserActivity";
+import { useGeolocation } from "@/hooks/useGeolocation";
+import { getDistance, formatDistance } from "@/utils/distance";
 import Editor from "@/markDown/editor";
 import TotpManager from "@/components/user/TotpManager";
 import SearchForm from "@/components/search/Search";
@@ -39,6 +41,7 @@ const Dashboard = () => {
   const { fetchActivity, removeFavoriteItem, removeHistoryItem } = useUserActivity();
   const location = useLocation();
   const navigate = useNavigate();
+  const userCoords = useGeolocation();
   const [selected, setSelected] = useState<string>("find-hospital");
   const [sidebarExpanded, setSidebarExpanded] = useState<boolean>(false);
   const [settingsTab, setSettingsTab] = useState<"profile" | "security" | "danger">("profile");
@@ -261,6 +264,12 @@ const Dashboard = () => {
                                     <div className={style.cardInfo}>
                                       <span className={style.cardName}>{h.name}</span>
                                       <span className={style.cardLocation}>{h.address.city}, {h.address.country}</span>
+                                      {userCoords.lat != null && userCoords.lon != null &&
+                                        h.latitude != null && h.longitude != null && (
+                                          <span className={style.distanceLine}>
+                                            {formatDistance(getDistance(userCoords.lat, userCoords.lon, h.latitude, h.longitude))}
+                                          </span>
+                                        )}
                                       <span className={style.ctaText}>View details &rarr;</span>
                                     </div>
                                   </Link>
@@ -299,6 +308,12 @@ const Dashboard = () => {
                                     <div className={style.cardInfo}>
                                       <span className={style.cardName}>{r.name}</span>
                                       <span className={style.cardLocation}>{r.address.city}, {r.address.country}</span>
+                                      {userCoords.lat != null && userCoords.lon != null &&
+                                        r.latitude != null && r.longitude != null && (
+                                          <span className={style.distanceLine}>
+                                            {formatDistance(getDistance(userCoords.lat, userCoords.lon, r.latitude, r.longitude))}
+                                          </span>
+                                        )}
                                       <span className={style.ctaText}>View details &rarr;</span>
                                     </div>
                                   </Link>

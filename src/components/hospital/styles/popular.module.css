@@ -11,17 +11,6 @@
   text-align: center;
 }
 
-.srOnly {
-  position: absolute;
-  width: 1px;
-  height: 1px;
-  padding: 0;
-  margin: -1px;
-  overflow: hidden;
-  clip: rect(0, 0, 0, 0);
-  border: 0;
-}
-
 .heading {
   font-size: 1.8rem;
   font-weight: 700;
@@ -43,106 +32,10 @@
 }
 
 .wrapper {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 2rem;
-  width: 100%;
-  max-width: 1200px;
-}
-
-.card {
-  background: var(--color-bg);
-  border-radius: 1.2rem;
-  box-shadow: var(--shadow-card);
-  overflow: hidden;
-  transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
-  border: 1px solid transparent;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: flex-start;
+  gap: 1.25rem;
   width: 100%;
-}
-
-.card:hover {
-  transform: translateY(-8px);
-  box-shadow: var(--shadow-card-blue-hover);
-  border-color: var(--color-blue-light);
-}
-
-.imgContainer {
-  width: 100%;
-  aspect-ratio: 16 / 9;
-  overflow: hidden;
-  background-color: var(--color-ash);
-}
-
-.imgContainer img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  transition: transform 0.5s ease;
-}
-
-.imgContainer:hover img {
-  transform: scale(1.05);
-}
-
-.avatar {
-  width: 100%;
-  height: 100%;
-  border-radius: 0;
-  object-fit: cover;
-}
-
-.details {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 0.5rem;
-  padding: 1.5rem;
-  width: 100%;
-  flex: 1;
-}
-
-.name {
-  font-size: 1.4rem;
-  font-weight: 700;
-  color: var(--color-black);
-  line-height: 1.3;
-  margin: 0;
-}
-
-.address {
-  font-size: 1.2rem;
-  color: var(--color-gray);
-  margin-bottom: 0.5rem;
-  text-align: center;
-}
-
-.btn {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: center;
-  padding: 0.75rem 1.5rem;
-  margin-top: auto;
-  background: transparent;
-  color: var(--color-blue);
-  border-radius: 8px;
-  border: 1.5px solid var(--color-blue);
-  font-size: 1.2rem;
-  font-weight: 600;
-  cursor: pointer;
-  text-decoration: none;
-  transition: all 0.2s ease;
-  width: 100%;
-}
-
-.btn:hover {
-  background-color: var(--color-blue);
-  color: var(--color-invert);
 }
 
 .error {
