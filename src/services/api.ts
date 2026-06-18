@@ -179,6 +179,14 @@ export async function deleteHospital(id: number) {
   }
 }
 
+export async function autocompleteHospitals(query: string) {
+  const { data } = await api.get("/hospitals/autocomplete", {
+    params: { q: query },
+    skipErrorToast: true,
+  } as any);
+  return data;
+}
+
 // TOTP
 export async function setupTotp() {
   const { data } = await api.post("/user/totp/setup", {}, { skipErrorToast: true } as any);
