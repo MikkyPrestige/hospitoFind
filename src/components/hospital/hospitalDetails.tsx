@@ -15,6 +15,7 @@ import Motion from "@/components/ui/Motion";
 import { Button } from "@/components/ui/Button";
 import { SEOHelmet } from "@/components/ui/SeoHelmet";
 import AnimatedLoader from "@/components/ui/AnimatedLoader";
+import NearbyCarousel from "@/components/hospital/NearbyCarousel";
 import { fadeUp, sectionReveal } from "@/utils/animations";
 import Logo from "@/assets/images/logo.svg";
 import style from "./styles/hospitalDetails.module.css";
@@ -303,6 +304,15 @@ const HospitalDetails = () => {
                                 )}
                             </aside>
                         </Motion>
+
+                        {/* Nearby Hospitals Carousel */}
+                        {hospital.latitude && hospital.longitude && (
+                            <NearbyCarousel
+                                lat={hospital.latitude}
+                                lon={hospital.longitude}
+                                city={hospital.address?.city}
+                            />
+                        )}
 
                         <div className={style.backRow}>
                             <Button onClick={handleBack} className={style.finalBackBtn}>
