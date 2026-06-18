@@ -1,0 +1,24 @@
+.section {
+  margin-top: 5rem;
+}
+
+.heading {
+  font-size: 1.4rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+  color: var(--color-black);
+}
+
+.carousel {
+  display: flex;
+  gap: 1rem;
+  overflow-x: auto;
+  padding-bottom: 1rem;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+}
+
+.cardWrapper {
+  flex: 0 0 400px;
+  scroll-snap-align: start;
+}
