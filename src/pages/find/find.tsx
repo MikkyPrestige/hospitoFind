@@ -5,6 +5,7 @@ import "mapbox-gl/dist/mapbox-gl.css";
 import { useTheme } from "@/context/ThemeProvider";
 import { accessToken } from "@/config/mapbox";
 import { Hospital } from "@/types/hospital";
+import { autocompleteHospitals } from "@/services/api";
 import { useHospitalDiscovery } from "@/hooks/useHospitalDiscovery";
 import { useGeolocation } from "@/hooks/useGeolocation";
 import HospitalCard from "@/components/hospital/HospitalCard";
@@ -27,6 +28,9 @@ const FindHospital = () => {
     const displayTerm = initialQ || (initialCity && initialState ? `${initialCity}, ${initialState}` : "");
     const [term, setTerm] = useState<string>(displayTerm);
     const [searchedTerm, setSearchedTerm] = useState<string>("");
+    const [suggestions, setSuggestions] = useState<any[]>([]);
+    const [suggestionsOpen, setSuggestionsOpen] = useState(false);
+    const suggestionsRef = useRef<HTMLDivElement | null>(null);
     const mapContainer = useRef<HTMLDivElement | null>(null);
     const [map, setMap] = useState<mapboxgl.Map | null>(null);
     const LIGHT_STYLE = "mapbox://styles/mapbox/streets-v11";
@@ -284,6 +288,35 @@ const FindHospital = () => {
         executeUrlSearch();
     }, [searchParams]);
 
+    // Autocomplete suggestions
+    useEffect(() => {
+        if (term.trim().length < 2) {
+            setSuggestions([]);
+            return;
+        }
+
+        const timer = setTimeout(async () => {
+            try {
+                const data = await autocompleteHospitals(term);
+                setSuggestions(data || []);
+            } catch {
+                setSuggestions([]);
+            }
+        }, 250);
+
+        return () => clearTimeout(timer);
+    }, [term]);
+
+    useEffect(() => {
+        const handler = (e: MouseEvent) => {
+            if (suggestionsRef.current && !suggestionsRef.current.contains(e.target as Node)) {
+                setSuggestionsOpen(false);
+            }
+        };
+        document.addEventListener("mousedown", handler);
+        return () => document.removeEventListener("mousedown", handler);
+    }, []);
+
     const handleSearch = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         if (term.trim() === "") return;
@@ -338,9 +371,32 @@ const FindHospital = () => {
                                     <input
                                         className={style.input}
                                         value={term}
-                                        onChange={(e) => setTerm(e.target.value)}
+                                        onChange={(e) => {
+                                            setTerm(e.target.value);
+                                            setSuggestionsOpen(true);
+                                        }}
+                                        onFocus={() => setSuggestionsOpen(true)}
                                         placeholder="Search by city, state, or facility name..."
                                     />
+                                    {suggestionsOpen && suggestions.length > 0 && (
+                                        <div ref={suggestionsRef} className={style.suggestionsDropdown}>
+                                            {suggestions.map((s: any, i: number) => (
+                                                <button
+                                                    key={i}
+                                                    type="button"
+                                                    className={style.suggestionItem}
+                                                    onMouseDown={() => {
+                                                        setTerm(`${s.name}, ${s.city}, ${s.state}`);
+                                                        setSuggestionsOpen(false);
+                                                        navigate(`/find-hospital?q=${encodeURIComponent(s.name)}`);
+                                                    }}
+                                                >
+                                                    <span className={style.suggestionName}>{s.name}</span>
+                                                    <span className={style.suggestionLocation}>{s.city}, {s.state}</span>
+                                                </button>
+                                            ))}
+                                        </div>
+                                    )}
                                 </div>
                                 <button className={style.cta} disabled={searching}>
                                     {searching ? "..." : "Search"}

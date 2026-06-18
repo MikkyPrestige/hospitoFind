@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import { NavLink, Outlet } from "react-router-dom";
 import { AiFillHeart, AiOutlineHeart, AiOutlineSearch } from "react-icons/ai";
 import { LocationInput } from "@/types/hospital";
+import { autocompleteHospitals } from "@/services/api";
 import { useHospitalSearch } from "@/hooks/useHospitalSearch";
 import { useHospitalInteractions } from "@/hooks/useHospitalInteractions";
 import { useGeolocation } from "@/hooks/useGeolocation";
@@ -33,6 +34,7 @@ export default function SearchForm({
   const [location, setLocation] = useState<LocationInput>({ address: "", city: "", state: "" });
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const dropdownRef = useRef<HTMLDivElement | null>(null);
+  const [autocompleteSuggestions, setAutocompleteSuggestions] = useState<any[]>([]);
 
   const {
     hospitals,
@@ -80,6 +82,25 @@ export default function SearchForm({
     return () => clearTimeout(id);
   }, [query, location.city, location.state, performSearch, clearSearch, onSearchResultsChange]);
 
+  // Autocomplete suggestions
+  useEffect(() => {
+    if (query.trim().length < 2) {
+      setAutocompleteSuggestions([]);
+      return;
+    }
+
+    const timer = setTimeout(async () => {
+      try {
+        const data = await autocompleteHospitals(query);
+        setAutocompleteSuggestions(data || []);
+      } catch {
+        setAutocompleteSuggestions([]);
+      }
+    }, 250);
+
+    return () => clearTimeout(timer);
+  }, [query]);
+
   const filteredCountries = countries.map(c => ({
     ...c, hospitals: (c.hospitals || []).filter(h => {
       const q = query.toLowerCase();
@@ -114,13 +135,31 @@ export default function SearchForm({
 
         {dropdownOpen && (
           <div className={style.dropdown}>
-            {loadingCountries ? (
+            {autocompleteSuggestions.length > 0 ? (
+              autocompleteSuggestions.map((s, i) => (
+                <button
+                  key={i}
+                  type="button"
+                  className={style.suggestionItem}
+                  onMouseDown={() => {
+                    setQuery(`${s.name}, ${s.city}`);
+                    setDropdownOpen(false);
+                    performSearch(
+                      { typedQuery: s.name, city: s.city, country: s.state },
+                      onSearchResultsChange
+                    );
+                  }}
+                >
+                  <span className={style.suggestionName}>{s.name}</span>
+                  <span className={style.suggestionLocation}>{s.city}, {s.state}</span>
+                </button>
+              ))
+            ) : loadingCountries ? (
               <AnimatedLoader message="Loading locations..." variant="dropdown" count={2} />
             ) : filteredCountries.length ? (
               filteredCountries.map((g) => (
                 <div key={g.country} className={style.dropdownGroup}>
                   <div className={style.dropdownCountry}>{g.country}</div>
-
                   {getUniqueCities(g.hospitals).map(city => (
                     <div
                       key={city as string}
@@ -129,7 +168,6 @@ export default function SearchForm({
                         setLocation({ city: city as string, state: g.country, address: "" });
                         setQuery(`${city}, ${g.country}`);
                         setDropdownOpen(false);
-
                         performSearch(
                           { city: city as string, country: g.country },
                           onSearchResultsChange
@@ -141,7 +179,9 @@ export default function SearchForm({
                   ))}
                 </div>
               ))
-            ) : <div className={style.dropdownItem}>No matching locations found</div>}
+            ) : (
+              <div className={style.dropdownItem}>No matching locations found</div>
+            )}
           </div>
         )}
       </div>

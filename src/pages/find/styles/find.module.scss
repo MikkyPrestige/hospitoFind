@@ -73,6 +73,7 @@
   align-items: center;
   flex: 1;
   gap: 0.75rem;
+  position: relative;
 }
 
 .searchIcon {
@@ -97,6 +98,48 @@
     color: var(--color-gray);
     opacity: 0.7;
   }
+}
+
+.suggestionsDropdown {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  background: var(--color-white);
+  border: 1px solid var(--color-border);
+  border-top: none;
+  border-radius: 0 0 8px 8px;
+  z-index: 20;
+  max-height: 220px;
+  overflow-y: auto;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+.suggestionItem {
+  display: flex;
+  flex-direction: column;
+  padding: 0.6rem 1rem;
+  width: 100%;
+  text-align: left;
+  background: none;
+  border: none;
+  cursor: pointer;
+  transition: background 0.15s;
+
+  &:hover {
+    background: var(--color-bg-contrast);
+  }
+}
+
+.suggestionName {
+  font-weight: 600;
+  font-size: 1.1rem;
+  color: var(--color-black);
+}
+
+.suggestionLocation {
+  font-size: 1rem;
+  color: var(--color-gray);
 }
 
 .cta {
