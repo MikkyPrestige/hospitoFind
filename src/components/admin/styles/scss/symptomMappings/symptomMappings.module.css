@@ -51,7 +51,8 @@
   width: 100%;
   border-collapse: collapse;
 }
-.table th, .table td {
+.table th,
+.table td {
   padding: 1rem 1.5rem;
   text-align: left;
   border-bottom: 1px solid var(--color-border);
@@ -123,7 +124,8 @@
   border-color: var(--color-error);
 }
 
-.empty, .loading {
+.empty,
+.loading {
   text-align: center;
   padding: 4rem 1rem;
   color: var(--color-gray);
@@ -252,4 +254,4 @@
 }
 .modalFooter button.saveBtn:hover {
   background: var(--color-blue-dark);
-}/*# sourceMappingURL=symptomMappings.module.css.map */
+} /*# sourceMappingURL=symptomMappings.module.css.map */

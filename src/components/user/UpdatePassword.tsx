@@ -1,117 +1,147 @@
-import { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
-import usePasswordUpdate from "@/hooks/useUpdatePassword";
-import { useAuthContext } from "@/context/UserProvider";
-import { Button } from "@/components/ui/Button";
-import style from "./styles/updatePassword.module.css";
-import { FaRegEye, FaRegEyeSlash } from "react-icons/fa";
+import { useState } from 'react'
+import { Link } from 'react-router-dom'
+import usePasswordUpdate from '@/hooks/useUpdatePassword'
+import { useAuthContext } from '@/hooks/useAuthContext'
+import { Button } from '@/components/ui/Button'
+import style from './styles/updatePassword.module.css'
+import { FaRegEye, FaRegEyeSlash } from 'react-icons/fa'
 
 const UpdatePassword = () => {
-  const { state } = useAuthContext();
-  const { loading, updatePassword } = usePasswordUpdate();
+  const { state } = useAuthContext()
+  const { loading, updatePassword } = usePasswordUpdate()
 
   const [passwords, setPasswords] = useState({
-    oldPassword: "",
-    newPassword: "",
-    confirmPassword: ""
-  });
-  const [errors, setErrors] = useState<Record<string, string>>({});
-  const [showPass, setShowPass] = useState({ old: false, new: false, confirm: false });
-  const [isDirty, setIsDirty] = useState(false);
-
-  useEffect(() => {
-    setIsDirty(!!(passwords.oldPassword && passwords.newPassword && passwords.confirmPassword));
-  }, [passwords]);
+    oldPassword: '',
+    newPassword: '',
+    confirmPassword: '',
+  })
+  const isDirty = !!(
+    passwords.oldPassword &&
+    passwords.newPassword &&
+    passwords.confirmPassword
+  )
+  const [errors, setErrors] = useState<Record<string, string>>({})
+  const [showPass, setShowPass] = useState({
+    old: false,
+    new: false,
+    confirm: false,
+  })
 
   const validate = () => {
-    const newErrors: Record<string, string> = {};
-    const passRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{6,}$/;
+    const newErrors: Record<string, string> = {}
+    const passRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{6,}$/
 
-    if (!passwords.oldPassword) newErrors.old = "Current password is required";
+    if (!passwords.oldPassword) newErrors.old = 'Current password is required'
     if (!passRegex.test(passwords.newPassword)) {
-      newErrors.new = "Must contain 6+ chars, 1 uppercase, 1 lowercase & 1 number";
+      newErrors.new =
+        'Must contain 6+ chars, 1 uppercase, 1 lowercase & 1 number'
     }
     if (passwords.newPassword !== passwords.confirmPassword) {
-      newErrors.confirm = "Passwords do not match";
+      newErrors.confirm = 'Passwords do not match'
     }
 
-    setErrors(newErrors);
-    return Object.keys(newErrors).length === 0;
-  };
+    setErrors(newErrors)
+    return Object.keys(newErrors).length === 0
+  }
 
   const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
+    e.preventDefault()
     if (validate()) {
       updatePassword({
-        username: state.username || "",
+        username: state.username || '',
         password: passwords.oldPassword,
-        newPassword: passwords.newPassword
-      });
-      setPasswords({ oldPassword: "", newPassword: "", confirmPassword: "" });
+        newPassword: passwords.newPassword,
+      })
+      setPasswords({ oldPassword: '', newPassword: '', confirmPassword: '' })
     }
-  };
+  }
 
   const toggleShow = (key: string) => {
-    setShowPass(prev => ({ ...prev, [key]: !prev[key as keyof typeof showPass] }));
-  };
+    setShowPass((prev) => ({
+      ...prev,
+      [key]: !prev[key as keyof typeof showPass],
+    }))
+  }
 
   const fields = [
-    { id: 'old' as const, label: 'Current Password', key: 'oldPassword' as const, placeholder: '••••••••' },
-    { id: 'new' as const, label: 'New Password', key: 'newPassword' as const, placeholder: '••••••••' },
-    { id: 'confirm' as const, label: 'Confirm New Password', key: 'confirmPassword' as const, placeholder: '••••••••' }
-  ];
+    {
+      id: 'old' as const,
+      label: 'Current Password',
+      key: 'oldPassword' as const,
+      placeholder: '••••••••',
+    },
+    {
+      id: 'new' as const,
+      label: 'New Password',
+      key: 'newPassword' as const,
+      placeholder: '••••••••',
+    },
+    {
+      id: 'confirm' as const,
+      label: 'Confirm New Password',
+      key: 'confirmPassword' as const,
+      placeholder: '••••••••',
+    },
+  ]
 
   return (
     <section className={style.section}>
       <div className={style.securityCard}>
-    <form onSubmit={handleSubmit} className={style.form}>
-      {fields.map((field) => (
-        <div className={style.field} key={field.id}>
-          <label className={style.label}>{field.label}</label>
-          <div className={style.inputWrapper}>
-            <input
-              type={showPass[field.id] ? "text" : "password"}
-              value={passwords[field.key]}
-              onChange={(e) => {
-                setPasswords({ ...passwords, [field.key]: e.target.value });
-                if (errors[field.id]) setErrors({ ...errors, [field.id]: "" });
-              }}
-              className={`${style.input} ${errors[field.id] ? style.invalid : ''}`}
-              placeholder="••••••••"
-            />
-            <button
-              type="button"
-              className={style.eyeBtn}
-              onClick={() => toggleShow(field.id)}
-              aria-label="Toggle password visibility"
+        <form onSubmit={handleSubmit} className={style.form}>
+          {fields.map((field) => (
+            <div className={style.field} key={field.id}>
+              <label className={style.label}>{field.label}</label>
+              <div className={style.inputWrapper}>
+                <input
+                  type={showPass[field.id] ? 'text' : 'password'}
+                  value={passwords[field.key]}
+                  onChange={(e) => {
+                    setPasswords({ ...passwords, [field.key]: e.target.value })
+                    if (errors[field.id])
+                      setErrors({ ...errors, [field.id]: '' })
+                  }}
+                  className={`${style.input} ${errors[field.id] ? style.invalid : ''}`}
+                  placeholder="••••••••"
+                />
+                <button
+                  type="button"
+                  className={style.eyeBtn}
+                  onClick={() => toggleShow(field.id)}
+                  aria-label="Toggle password visibility"
+                >
+                  {showPass[field.id] ? (
+                    <FaRegEyeSlash size={18} />
+                  ) : (
+                    <FaRegEye size={18} />
+                  )}
+                </button>
+              </div>
+              {errors[field.id] && (
+                <p className={style.errorMsg}>{errors[field.id]}</p>
+              )}
+            </div>
+          ))}
+
+          <div className={style.footerRow}>
+            <p className={style.forgotText}>
+              Forgot your current password?{' '}
+              <Link to="/forgot-password" className={style.resetLink}>
+                Reset it here
+              </Link>
+            </p>
+
+            <Button
+              type="submit"
+              disabled={loading || !isDirty}
+              className={style.submitBtn}
             >
-              {showPass[field.id] ? <FaRegEyeSlash size={18} /> : <FaRegEye size={18} />}
-            </button>
+              {loading ? 'Updating...' : 'Change Password'}
+            </Button>
           </div>
-          {errors[field.id] && <p className={style.errorMsg}>{errors[field.id]}</p>}
-        </div>
-      ))}
-
-      <div className={style.footerRow}>
-        <p className={style.forgotText}>
-          Forgot your current password?{' '}
-          <Link to="/forgot-password" className={style.resetLink}>
-            Reset it here
-          </Link>
-        </p>
-
-        <Button
-          type="submit"
-          disabled={loading || !isDirty}
-          className={style.submitBtn}
-        >
-          {loading ? "Updating..." : "Change Password"}
-        </Button>
-      </div>
-    </form>
+        </form>
       </div>
     </section>
-  );
-};
+  )
+}
 
-export default UpdatePassword;
+export default UpdatePassword

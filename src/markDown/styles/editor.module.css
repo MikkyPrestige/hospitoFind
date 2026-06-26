@@ -287,7 +287,9 @@
   border: none;
   cursor: pointer;
   box-shadow: 0 10px 20px rgba(8, 41, 155, 0.15);
-  transition: transform 0.2s, box-shadow 0.2s;
+  transition:
+    transform 0.2s,
+    box-shadow 0.2s;
   width: 100%;
   font-size: 1.2rem;
 }

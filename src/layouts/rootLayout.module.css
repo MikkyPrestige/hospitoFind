@@ -1,14 +1,18 @@
-.nprogressOverride :global(#nprogress .bar) {
-  background: var(--color-blue) !important;
-  height: 3px !important;
-  box-shadow: 0 0 10px var(--color-blue-light);
-  z-index: 10001 !important;
+.nprogressOverride {
+  :global {
+    #nprogress .bar {
+      background: var(--color-blue) !important;
+      height: 3px !important;
+      box-shadow: 0 0 10px var(--color-blue-light);
+      z-index: 10001 !important;
+    }
+    #nprogress .peg {
+      box-shadow:
+        0 0 10px var(--color-blue),
+        0 0 5px var(--color-blue) !important;
+    }
+  }
 }
-
-.nprogressOverride :global(#nprogress .peg) {
-  box-shadow:
-    0 0 10px var(--color-blue),
-    0 0 5px var(--color-blue) !important;
 }
 
 .globalLoader {

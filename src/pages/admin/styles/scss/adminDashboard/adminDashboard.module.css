@@ -43,14 +43,20 @@
   border: 1px solid var(--color-border);
 }
 .skeletonCard::after {
-  content: "";
+  content: '';
   position: absolute;
   top: 0;
   right: 0;
   bottom: 0;
   left: 0;
   transform: translateX(-100%);
-  background: linear-gradient(90deg, transparent 0, rgba(255, 255, 255, 0.2) 20%, rgba(255, 255, 255, 0.5) 60%, transparent);
+  background: linear-gradient(
+    90deg,
+    transparent 0,
+    rgba(255, 255, 255, 0.2) 20%,
+    rgba(255, 255, 255, 0.5) 60%,
+    transparent
+  );
   animation: shimmer 2s infinite;
 }
 
@@ -284,4 +290,4 @@
   to {
     transform: rotate(360deg);
   }
-}/*# sourceMappingURL=adminDashboard.module.css.map */
+} /*# sourceMappingURL=adminDashboard.module.css.map */

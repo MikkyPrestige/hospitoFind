@@ -1,32 +1,35 @@
-import { useState, useMemo } from "react";
-import { Link } from "react-router-dom";
-import { FiSearch, FiMapPin, FiGlobe } from "react-icons/fi";
-import { useGlobalDirectory } from "@/hooks/useGlobalDirectory";
-import CountryCard from "@/components/hospital/CountryCard";
-import Motion from "@/components/ui/Motion";
-import { SEOHelmet } from "@/components/ui/SeoHelmet";
-import AnimatedLoader from "@/components/ui/AnimatedLoader";
-import { fadeUp, zoomIn, sectionReveal } from "@/utils/animations";
-import style from "./styles/globalDirectory.module.css";
+import { useState, useMemo } from 'react'
+import { Link } from 'react-router-dom'
+import { FiSearch, FiMapPin, FiGlobe } from 'react-icons/fi'
+import { useGlobalDirectory } from '@/hooks/useGlobalDirectory'
+import CountryCard from '@/components/hospital/CountryCard'
+import Motion from '@/components/ui/Motion'
+import { SEOHelmet } from '@/components/ui/SeoHelmet'
+import AnimatedLoader from '@/components/ui/AnimatedLoader'
+import { fadeUp, zoomIn, sectionReveal } from '@/utils/animations'
+import style from './styles/globalDirectory.module.css'
 
-const CONTINENTS = ["All", "Africa", "Americas", "Asia", "Europe", "Oceania"];
+const CONTINENTS = ['All', 'Africa', 'Americas', 'Asia', 'Europe', 'Oceania']
 
 const GlobalDirectory = () => {
-  const [query, setQuery] = useState("");
-  const [selectedContinent, setSelectedContinent] = useState("All");
-  const { unifiedCountries, loading, error, retry } = useGlobalDirectory();
+  const [query, setQuery] = useState('')
+  const [selectedContinent, setSelectedContinent] = useState('All')
+  const { unifiedCountries, loading, error, retry } = useGlobalDirectory()
 
   const filtered = useMemo(() => {
     return unifiedCountries.filter((c) => {
-      const countryName = c.country.trim();
-      const matchesSearch = countryName.toLowerCase().includes(query.trim().toLowerCase());
+      const countryName = c.country.trim()
+      const matchesSearch = countryName
+        .toLowerCase()
+        .includes(query.trim().toLowerCase())
 
-      const continent = c.continent || "Other";
-      const matchesContinent = selectedContinent === "All" || continent === selectedContinent;
+      const continent = c.continent || 'Other'
+      const matchesContinent =
+        selectedContinent === 'All' || continent === selectedContinent
 
-      return matchesSearch && matchesContinent;
-    });
-  }, [unifiedCountries, query, selectedContinent]);
+      return matchesSearch && matchesContinent
+    })
+  }, [unifiedCountries, query, selectedContinent])
 
   return (
     <>
@@ -44,12 +47,22 @@ const GlobalDirectory = () => {
         <main className={style.directory}>
           <header className={style.hero}>
             <div className={style.heroContainer}>
-              <Motion as="div" className={style.heroContent} variants={sectionReveal}>
-                <span className={style.badge}><FiGlobe />Global Healthcare Directory</span>
-                <h1 className={style.heroTitle}>Navigate Verified Care Globally</h1>
+              <Motion
+                as="div"
+                className={style.heroContent}
+                variants={sectionReveal}
+              >
+                <span className={style.badge}>
+                  <FiGlobe />
+                  Global Healthcare Directory
+                </span>
+                <h1 className={style.heroTitle}>
+                  Navigate Verified Care Globally
+                </h1>
                 <p className={style.heroSubtitle}>
-                  Access our comprehensive index of accredited hospitals and medical centers,
-                  organized by region to ensure you find trusted care wherever you go.
+                  Access our comprehensive index of accredited hospitals and
+                  medical centers, organized by region to ensure you find
+                  trusted care wherever you go.
                 </p>
               </Motion>
             </div>
@@ -71,7 +84,7 @@ const GlobalDirectory = () => {
               {CONTINENTS.map((continent) => (
                 <button
                   key={continent}
-                  className={`${style.filterBtn} ${selectedContinent === continent ? style.active : ""}`}
+                  className={`${style.filterBtn} ${selectedContinent === continent ? style.active : ''}`}
                   onClick={() => setSelectedContinent(continent)}
                 >
                   {continent}
@@ -84,43 +97,65 @@ const GlobalDirectory = () => {
             {error && (
               <div className={style.errorState}>
                 <p>Could not load the global directory.</p>
-                <button onClick={retry} className={style.retryBtn}>Retry</button>
+                <button onClick={retry} className={style.retryBtn}>
+                  Retry
+                </button>
               </div>
             )}
 
-            {!error && loading ?(
+            {!error && loading ? (
               <div className={style.loaderWrapper}>
-                <AnimatedLoader message="Retrieving global index..." variant="card" count={8} />
+                <AnimatedLoader
+                  message="Retrieving global index..."
+                  variant="card"
+                  count={8}
+                />
               </div>
             ) : !error && filtered.length === 0 ? (
               <Motion as="div" className={style.emptyState} variants={fadeUp}>
-                <div className={style.emptyIcon}><FiMapPin /></div>
-                <h2 className={style.emptyStateTitle}>No Matching Regions Found</h2>
-                <p className={style.emptyStateSubtitle}>We couldn't locate <strong>{query}</strong> in {selectedContinent}. Please verify the spelling or try a broader region.</p>
-                <button onClick={() => { setQuery(""); setSelectedContinent("All"); }} className={style.resetBtn}>
+                <div className={style.emptyIcon}>
+                  <FiMapPin />
+                </div>
+                <h2 className={style.emptyStateTitle}>
+                  No Matching Regions Found
+                </h2>
+                <p className={style.emptyStateSubtitle}>
+                  We couldn't locate <strong>{query}</strong> in{' '}
+                  {selectedContinent}. Please verify the spelling or try a
+                  broader region.
+                </p>
+                <button
+                  onClick={() => {
+                    setQuery('')
+                    setSelectedContinent('All')
+                  }}
+                  className={style.resetBtn}
+                >
                   Clear Search
                 </button>
               </Motion>
-              ) : !error && (
-              <div className={style.grid}>
-                {filtered.map(({ country, hospitals }) => (
-                  <Motion
-                    as={Link}
-                    key={country}
-                    to={`/directory/${encodeURIComponent(country.toLowerCase())}`}
-                    className={style.cardLink}
-                    variants={zoomIn}
-                  >
-                    <CountryCard country={country} count={hospitals.length} />
-                  </Motion>
-                ))}
-              </div>
+            ) : (
+              !error && (
+                <div className={style.grid}>
+                  {filtered.map(({ country, hospitals }) => (
+                    <Motion
+                      as={Link}
+                      key={country}
+                      to={`/directory/${encodeURIComponent(country.toLowerCase())}`}
+                      className={style.cardLink}
+                      variants={zoomIn}
+                    >
+                      <CountryCard country={country} count={hospitals.length} />
+                    </Motion>
+                  ))}
+                </div>
+              )
             )}
           </section>
         </main>
       </div>
     </>
-  );
-};
+  )
+}
 
-export default GlobalDirectory;
+export default GlobalDirectory

@@ -1,29 +1,31 @@
-import { useState, useEffect } from "react";
-import useAxiosPrivate from "@/hooks/useAxiosPrivate";
+import { useState, useCallback, useEffect } from 'react'
+import useAxiosPrivate from '@/hooks/useAxiosPrivate'
+import { UserStats } from '@/types/user'
 
 export const useStats = () => {
-    const [stats, setStats] = useState<any>(null);
-    const [loading, setLoading] = useState(true);
-    const [error, setError] = useState(false);
-    const axiosPrivate = useAxiosPrivate();
+  const [stats, setStats] = useState<UserStats | null>(null)
+  const [loading, setLoading] = useState(true)
+  const [error, setError] = useState(false)
+  const axiosPrivate = useAxiosPrivate()
 
-    const fetchStats = async () => {
-        try {
-            setLoading(true);
-            const { data } = await axiosPrivate.get("/user/stats", { skipErrorToast: true } as any);
-            setStats(data);
-            setError(false);
-        } catch (err) {
-            console.error("Stats fetch failed");
-            setError(true);
-        } finally {
-            setLoading(false);
-        }
-    };
+  const fetchStats = useCallback(async () => {
+    try {
+      setLoading(true)
+      const { data } = await axiosPrivate.get('/user/stats', {
+        skipErrorToast: true,
+      })
+      setStats(data)
+      setError(false)
+    } catch {
+      setError(true)
+    } finally {
+      setLoading(false)
+    }
+  }, [axiosPrivate])
 
-    useEffect(() => {
-        fetchStats();
-    }, []);
+  useEffect(() => {
+    fetchStats()
+  }, [fetchStats])
 
-    return { stats, loading, error, refresh: fetchStats };
-};
+  return { stats, loading, error, refresh: fetchStats }
+}

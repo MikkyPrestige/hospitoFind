@@ -48,7 +48,9 @@
 .fadeOut {
   opacity: 0;
   transform: scale(0.98);
-  transition: opacity 0.6s ease, transform 0.6s ease;
+  transition:
+    opacity 0.6s ease,
+    transform 0.6s ease;
 }
 
 @media (max-width: 600px) {

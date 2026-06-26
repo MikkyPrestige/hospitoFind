@@ -1,1 +1,1 @@
-export { default } from "@/components/admin/SymptomMappings";
+export { default } from '@/components/admin/SymptomMappings'

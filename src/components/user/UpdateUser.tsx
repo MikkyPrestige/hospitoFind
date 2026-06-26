@@ -1,50 +1,44 @@
-import { useState, useEffect } from "react";
-import { User, UpdateUserProps } from "@/types/user";
-import { useAuthContext } from "@/context/UserProvider";
-import useUpdate from "@/hooks/useUpdateUser";
-import { Button } from "@/components/ui/Button";
-import style from "./styles/updateUser.module.css";
+import { useState } from 'react'
+import { User, UpdateUserProps } from '@/types/user'
+import { useAuthContext } from '@/hooks/useAuthContext'
+import useUpdate from '@/hooks/useUpdateUser'
+import { Button } from '@/components/ui/Button'
+import style from './styles/updateUser.module.css'
 
 const UpdateUser = ({ onSuccess }: UpdateUserProps) => {
-  const { state } = useAuthContext();
-  const { loading, update } = useUpdate();
-  const [isDirty, setIsDirty] = useState(false);
-
+  const { state } = useAuthContext()
+  const { loading, update } = useUpdate()
   const [formData, setFormData] = useState({
-    name: state.name || "",
-    email: state.email || "",
-    password: ""
-  });
-
-  useEffect(() => {
-    const hasChanges =
-      formData.name !== (state.name || "") ||
-      formData.email !== (state.email || "");
-    setIsDirty(hasChanges);
-  }, [formData, state.name, state.email]);
+    name: state.name || '',
+    email: state.email || '',
+    password: '',
+  })
+  const isDirty =
+    formData.name !== (state.name || '') ||
+    formData.email !== (state.email || '')
 
   const handleInput = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
-  };
+    setFormData({ ...formData, [e.target.name]: e.target.value })
+  }
 
   const handleCancel = () => {
     setFormData({
-      name: state.name || "",
-      email: state.email || "",
-      password: ""
-    });
-  };
+      name: state.name || '',
+      email: state.email || '',
+      password: '',
+    })
+  }
 
   const handleUserUpdate = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
+    e.preventDefault()
     const userUpdate: User = {
       ...formData,
-      username: state.username || "",
-      role: state.role || "user"
-    };
-    update(userUpdate, onSuccess);
-    setFormData(prev => ({ ...prev, password: "" }));
-  };
+      username: state.username || '',
+      role: state.role || 'user',
+    }
+    update(userUpdate, onSuccess)
+    setFormData((prev) => ({ ...prev, password: '' }))
+  }
 
   return (
     <section className={style.section}>
@@ -95,7 +89,7 @@ const UpdateUser = ({ onSuccess }: UpdateUserProps) => {
               disabled={loading || !isDirty || !formData.password}
               className={style.updateBtn}
             >
-              {loading ? "Saving Changes..." : "Update Profile"}
+              {loading ? 'Saving Changes...' : 'Update Profile'}
             </Button>
 
             <button
@@ -110,7 +104,7 @@ const UpdateUser = ({ onSuccess }: UpdateUserProps) => {
         </form>
       </div>
     </section>
-  );
+  )
 }
 
-export default UpdateUser;
+export default UpdateUser

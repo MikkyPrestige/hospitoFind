@@ -1,82 +1,89 @@
-import React, { useEffect, useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
-import { useAuth0 } from "@auth0/auth0-react";
-import { FcGoogle } from "react-icons/fc";
+import React, { useEffect, useState } from 'react'
+import { Link, useNavigate } from 'react-router-dom'
+import { useAuth0 } from '@auth0/auth0-react'
+import { FcGoogle } from 'react-icons/fc'
 import {
   FaFacebook,
   FaTwitter,
   FaLinkedin,
   FaRegEyeSlash,
   FaRegEye,
-} from "react-icons/fa";
+} from 'react-icons/fa'
 import {
-  Heart, Mail, Lock, User, UserCircle,
-  ArrowRight, MapPin, Globe, ShieldCheck
-} from "lucide-react";
+  Heart,
+  Mail,
+  Lock,
+  User,
+  UserCircle,
+  ArrowRight,
+  MapPin,
+  Globe,
+  ShieldCheck,
+} from 'lucide-react'
 
-import useSignUp from "@/hooks/useSignup";
-import usePageTransition from "@/hooks/usePageTransition";
-import { User as UserType } from "@/types/user";
-import { Button } from "@/components/ui/Button";
-import { SEOHelmet } from "@/components/ui/SeoHelmet";
-import SimpleHeader from "@/layouts/header/simpleHeader";
-import SimpleFooter from "@/layouts/footer/simpleFooter";
-import Logo from "@/assets/images/logo.svg"
-import style from "./styles/signup/signup.module.scss";
+import useSignUp from '@/hooks/useSignup'
+import usePageTransition from '@/hooks/usePageTransition'
+import { User as UserType } from '@/types/user'
+import { Button } from '@/components/ui/Button'
+import { SEOHelmet } from '@/components/ui/SeoHelmet'
+import SimpleHeader from '@/layouts/header/simpleHeader'
+import SimpleFooter from '@/layouts/footer/simpleFooter'
+import Logo from '@/assets/images/logo.svg'
+import style from './styles/signup/signup.module.scss'
 
 const SignUp = () => {
-  const [name, setName] = useState("");
-  const [username, setUsername] = useState("");
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [confirmPassword, setConfirmPassword] = useState("");
-  const [showPassword, setShowPassword] = useState(false);
-  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
-  const [errors, setErrors] = useState<Record<string, string>>({});
-  const { loading, signUp, success } = useSignUp();
-  const { loginWithRedirect } = useAuth0();
-  const transitionClass = usePageTransition();
-  const navigate = useNavigate();
+  const [name, setName] = useState('')
+  const [username, setUsername] = useState('')
+  const [email, setEmail] = useState('')
+  const [password, setPassword] = useState('')
+  const [confirmPassword, setConfirmPassword] = useState('')
+  const [showPassword, setShowPassword] = useState(false)
+  const [showConfirmPassword, setShowConfirmPassword] = useState(false)
+  const [errors, setErrors] = useState<Record<string, string>>({})
+  const { loading, signUp, success } = useSignUp()
+  const { loginWithRedirect } = useAuth0()
+  const transitionClass = usePageTransition()
+  const navigate = useNavigate()
 
   const validateForm = () => {
-    const newErrors: Record<string, string> = {};
+    const newErrors: Record<string, string> = {}
 
-    if (!name.trim()) newErrors.name = "Please enter your full name";
-    if (!username.trim()) newErrors.username = "A unique username is required";
-    if (!email.trim()) newErrors.email = "Email address is required";
+    if (!name.trim()) newErrors.name = 'Please enter your full name'
+    if (!username.trim()) newErrors.username = 'A unique username is required'
+    if (!email.trim()) newErrors.email = 'Email address is required'
     else if (!/^[\w.-]+@([\w-]+\.)+[\w-]{2,4}$/.test(email))
-      newErrors.email = "Please enter a valid email address";
+      newErrors.email = 'Please enter a valid email address'
 
-    if (!password.trim())
-      newErrors.password = "Password is required";
+    if (!password.trim()) newErrors.password = 'Password is required'
     else if (!/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{6,}$/.test(password))
-      newErrors.password = "Must contain 6+ chars, 1 uppercase, 1 lowercase, & 1 number";
+      newErrors.password =
+        'Must contain 6+ chars, 1 uppercase, 1 lowercase, & 1 number'
 
     if (password !== confirmPassword)
-      newErrors.confirmPassword = "Passwords do not match";
+      newErrors.confirmPassword = 'Passwords do not match'
 
-    setErrors(newErrors);
-    return Object.keys(newErrors).length === 0;
-  };
+    setErrors(newErrors)
+    return Object.keys(newErrors).length === 0
+  }
 
   useEffect(() => {
     if (success) {
-      navigate("/email-sent", { state: { email: email } });
+      navigate('/email-sent', { state: { email: email } })
     }
-  }, [success, navigate, email]);
+  }, [success, navigate, email])
 
   const handleSignUp = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
+    e.preventDefault()
     if (validateForm()) {
       const user: UserType = {
         name,
         username,
         email,
-        password
-      };
-      signUp(user);
+        password,
+      }
+      signUp(user)
     }
-  };
+  }
 
   return (
     <>
@@ -100,20 +107,27 @@ const SignUp = () => {
 
             <h2 className={style.welcome}>Join a Global Health Network</h2>
             <p className={style.tagline}>
-              Gain instant access to verified hospital data, personalized health alerts, and a community dedicated to safe healthcare access.
+              Gain instant access to verified hospital data, personalized health
+              alerts, and a community dedicated to safe healthcare access.
             </p>
 
             <div className={style.features}>
               <div className={style.feature}>
-                <div className={style.iconCircle}><MapPin size={20} /></div>
+                <div className={style.iconCircle}>
+                  <MapPin size={20} />
+                </div>
                 <p>Locate Care Instantly</p>
               </div>
               <div className={style.feature}>
-                <div className={style.iconCircle}><Globe size={20} /></div>
+                <div className={style.iconCircle}>
+                  <Globe size={20} />
+                </div>
                 <p>Worldwide Coverage</p>
               </div>
               <div className={style.feature}>
-                <div className={style.iconCircle}><ShieldCheck size={20} /></div>
+                <div className={style.iconCircle}>
+                  <ShieldCheck size={20} />
+                </div>
                 <p>Data Privacy Guaranteed</p>
               </div>
             </div>
@@ -144,13 +158,15 @@ const SignUp = () => {
                       placeholder="e.g. John Doe"
                       value={name}
                       onChange={(e) => {
-                        setName(e.target.value);
-                        if (errors.name) setErrors({ ...errors, name: "" });
+                        setName(e.target.value)
+                        if (errors.name) setErrors({ ...errors, name: '' })
                       }}
-                      className={`${style.form_input} ${errors.name ? style.invalid : ""}`}
+                      className={`${style.form_input} ${errors.name ? style.invalid : ''}`}
                     />
                   </div>
-                  {errors.name && <p className={style.form_error}>{errors.name}</p>}
+                  {errors.name && (
+                    <p className={style.form_error}>{errors.name}</p>
+                  )}
                 </div>
 
                 <div className={style.form_group}>
@@ -163,13 +179,16 @@ const SignUp = () => {
                       placeholder="e.g. john_doe"
                       value={username}
                       onChange={(e) => {
-                        setUsername(e.target.value);
-                        if (errors.username) setErrors({ ...errors, username: "" });
+                        setUsername(e.target.value)
+                        if (errors.username)
+                          setErrors({ ...errors, username: '' })
                       }}
-                      className={`${style.form_input} ${errors.username ? style.invalid : ""}`}
+                      className={`${style.form_input} ${errors.username ? style.invalid : ''}`}
                     />
                   </div>
-                  {errors.username && <p className={style.form_error}>{errors.username}</p>}
+                  {errors.username && (
+                    <p className={style.form_error}>{errors.username}</p>
+                  )}
                 </div>
 
                 <div className={`${style.form_group} ${style.fullWidth}`}>
@@ -182,13 +201,15 @@ const SignUp = () => {
                       placeholder="name@example.com"
                       value={email}
                       onChange={(e) => {
-                        setEmail(e.target.value);
-                        if (errors.email) setErrors({ ...errors, email: "" });
+                        setEmail(e.target.value)
+                        if (errors.email) setErrors({ ...errors, email: '' })
                       }}
-                      className={`${style.form_input} ${errors.email ? style.invalid : ""}`}
+                      className={`${style.form_input} ${errors.email ? style.invalid : ''}`}
                     />
                   </div>
-                  {errors.email && <p className={style.form_error}>{errors.email}</p>}
+                  {errors.email && (
+                    <p className={style.form_error}>{errors.email}</p>
+                  )}
                 </div>
 
                 <div className={style.form_group}>
@@ -197,24 +218,31 @@ const SignUp = () => {
                     <Lock className={style.inputIcon} />
                     <input
                       id="password"
-                      type={showPassword ? "text" : "password"}
+                      type={showPassword ? 'text' : 'password'}
                       placeholder="••••••••"
                       value={password}
                       onChange={(e) => {
-                        setPassword(e.target.value);
-                        if (errors.password) setErrors({ ...errors, password: "" });
+                        setPassword(e.target.value)
+                        if (errors.password)
+                          setErrors({ ...errors, password: '' })
                       }}
-                      className={`${style.form_input} ${errors.password ? style.invalid : ""}`}
+                      className={`${style.form_input} ${errors.password ? style.invalid : ''}`}
                     />
                     <button
                       type="button"
                       className={style.togglePassword}
                       onClick={() => setShowPassword(!showPassword)}
                     >
-                      {showPassword ? <FaRegEyeSlash size={18} /> : <FaRegEye size={18} />}
+                      {showPassword ? (
+                        <FaRegEyeSlash size={18} />
+                      ) : (
+                        <FaRegEye size={18} />
+                      )}
                     </button>
                   </div>
-                  {errors.password && <p className={style.form_error}>{errors.password}</p>}
+                  {errors.password && (
+                    <p className={style.form_error}>{errors.password}</p>
+                  )}
                 </div>
 
                 <div className={style.form_group}>
@@ -223,24 +251,33 @@ const SignUp = () => {
                     <Lock className={style.inputIcon} />
                     <input
                       id="confirmPassword"
-                      type={showConfirmPassword ? "text" : "password"}
+                      type={showConfirmPassword ? 'text' : 'password'}
                       placeholder="••••••••"
                       value={confirmPassword}
                       onChange={(e) => {
-                        setConfirmPassword(e.target.value);
-                        if (errors.confirmPassword) setErrors({ ...errors, confirmPassword: "" });
+                        setConfirmPassword(e.target.value)
+                        if (errors.confirmPassword)
+                          setErrors({ ...errors, confirmPassword: '' })
                       }}
-                      className={`${style.form_input} ${errors.confirmPassword ? style.invalid : ""}`}
+                      className={`${style.form_input} ${errors.confirmPassword ? style.invalid : ''}`}
                     />
                     <button
                       type="button"
                       className={style.togglePassword}
-                      onClick={() => setShowConfirmPassword(!showConfirmPassword)}
+                      onClick={() =>
+                        setShowConfirmPassword(!showConfirmPassword)
+                      }
                     >
-                      {showConfirmPassword ? <FaRegEyeSlash size={18} /> : <FaRegEye size={18} />}
+                      {showConfirmPassword ? (
+                        <FaRegEyeSlash size={18} />
+                      ) : (
+                        <FaRegEye size={18} />
+                      )}
                     </button>
                   </div>
-                  {errors.confirmPassword && <p className={style.form_error}>{errors.confirmPassword}</p>}
+                  {errors.confirmPassword && (
+                    <p className={style.form_error}>{errors.confirmPassword}</p>
+                  )}
                 </div>
               </div>
 
@@ -249,7 +286,7 @@ const SignUp = () => {
                 className={style.form_button}
                 type="submit"
               >
-                {loading ? "Initializing Profile..." : "Create Free Account"}
+                {loading ? 'Initializing Profile...' : 'Create Free Account'}
                 <ArrowRight className={style.arrowIcon} size={18} />
               </Button>
             </form>
@@ -259,22 +296,54 @@ const SignUp = () => {
             </div>
 
             <div className={style.socialBtn}>
-              <button onClick={() => loginWithRedirect({ authorizationParams: { connection: 'google-oauth2' } })} className={style.social} title="Google">
+              <button
+                onClick={() =>
+                  loginWithRedirect({
+                    authorizationParams: { connection: 'google-oauth2' },
+                  })
+                }
+                className={style.social}
+                title="Google"
+              >
                 <FcGoogle size={22} />
               </button>
-              <button onClick={() => loginWithRedirect({ authorizationParams: { connection: 'facebook' } })} className={style.social} title="Facebook">
+              <button
+                onClick={() =>
+                  loginWithRedirect({
+                    authorizationParams: { connection: 'facebook' },
+                  })
+                }
+                className={style.social}
+                title="Facebook"
+              >
                 <FaFacebook size={22} color="#1877F2" />
               </button>
-              <button onClick={() => loginWithRedirect({ authorizationParams: { connection: 'twitter' } })} className={style.social} title="Twitter">
+              <button
+                onClick={() =>
+                  loginWithRedirect({
+                    authorizationParams: { connection: 'twitter' },
+                  })
+                }
+                className={style.social}
+                title="Twitter"
+              >
                 <FaTwitter size={22} color="#1DA1F2" />
               </button>
-              <button onClick={() => loginWithRedirect({ authorizationParams: { connection: 'linkedin' } })} className={style.social} title="LinkedIn">
+              <button
+                onClick={() =>
+                  loginWithRedirect({
+                    authorizationParams: { connection: 'linkedin' },
+                  })
+                }
+                className={style.social}
+                title="LinkedIn"
+              >
                 <FaLinkedin size={22} color="#0A66C2" />
               </button>
             </div>
 
             <p className={style.link}>
-              Already have an account?{" "}
+              Already have an account?{' '}
               <Link to="/login" className={style.login}>
                 Login
               </Link>
@@ -285,7 +354,7 @@ const SignUp = () => {
 
       <SimpleFooter />
     </>
-  );
-};
+  )
+}
 
-export default SignUp;
+export default SignUp

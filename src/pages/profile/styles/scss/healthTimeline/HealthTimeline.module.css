@@ -356,7 +356,7 @@
   overflow: hidden;
 }
 .matchedItem .scoreBar::after {
-  content: "";
+  content: '';
   position: absolute;
   left: 0;
   top: 0;
@@ -457,7 +457,9 @@
   cursor: pointer;
   padding: 4px;
   color: var(--color-border);
-  transition: color 0.2s ease, transform 0.2s ease;
+  transition:
+    color 0.2s ease,
+    transform 0.2s ease;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -659,4 +661,4 @@
 .emptyHistory p {
   color: var(--color-gray);
   font-size: 0.9rem;
-}/*# sourceMappingURL=HealthTimeline.module.css.map */
+} /*# sourceMappingURL=HealthTimeline.module.css.map */

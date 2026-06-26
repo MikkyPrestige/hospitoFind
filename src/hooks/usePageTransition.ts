@@ -1,18 +1,25 @@
-import { useEffect, useState } from "react";
-import { useLocation } from "react-router-dom";
+import { useEffect, useState } from 'react'
+import { useLocation } from 'react-router-dom'
 
 export default function usePageTransition() {
-    const [transitionClass, setTransitionClass] = useState("pageTransition");
-    const location = useLocation();
+  const [transitionClass, setTransitionClass] = useState('pageTransition')
+  const location = useLocation()
 
-    useEffect(() => {
-        setTransitionClass("pageTransitionExit");
-        const timeout = setTimeout(() => {
-            setTransitionClass("pageTransition");
-        }, 400);
+  useEffect(() => {
+    const exitTimer = setTimeout(
+      () => setTransitionClass('pageTransitionExit'),
+      0
+    )
+    const enterTimer = setTimeout(
+      () => setTransitionClass('pageTransition'),
+      400
+    )
 
-        return () => clearTimeout(timeout);
-    }, [location.pathname]);
+    return () => {
+      clearTimeout(exitTimer)
+      clearTimeout(enterTimer)
+    }
+  }, [location.pathname])
 
-    return transitionClass;
+  return transitionClass
 }

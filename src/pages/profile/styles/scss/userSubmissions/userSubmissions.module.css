@@ -72,7 +72,7 @@
   overflow: hidden;
 }
 .subCard::before {
-  content: "";
+  content: '';
   position: absolute;
   left: 0;
   top: 0;
@@ -245,7 +245,8 @@
   border-radius: 16px;
   border: 1px dashed var(--color-border);
 }
-.emptyState .emptyIconWrapper, .emptyState .emptyIconWrapperError {
+.emptyState .emptyIconWrapper,
+.emptyState .emptyIconWrapperError {
   width: 64px;
   height: 64px;
   background: var(--bg-blue-tag);
@@ -350,4 +351,4 @@
   100% {
     background-position: -200% 0;
   }
-}/*# sourceMappingURL=userSubmissions.module.css.map */
+} /*# sourceMappingURL=userSubmissions.module.css.map */

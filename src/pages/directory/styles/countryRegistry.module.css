@@ -318,9 +318,9 @@
   .filterGroup {
     justify-content: center;
     overflow-x: visible;
-  -webkit-overflow-scrolling: touch;
-  scrollbar-width: none;
-  -ms-overflow-style: none;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
   }
 }
 

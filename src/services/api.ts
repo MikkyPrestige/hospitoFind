@@ -1,110 +1,131 @@
-import axios from "axios";
-import { toast } from "react-toastify";
-import { BASE_URL } from "@/context/UserProvider";
-import { Hospital } from "@/types/hospital";
+import axios from 'axios'
+import { toast } from 'react-toastify'
+import { BASE_URL } from '@/config/api'
+import { Hospital } from '@/types/hospital'
 
-const getErrorMessage = (error: any): string => {
-  // Zod validation errors from backend
-  if (error?.response?.data?.errors?.length > 0) {
-    return error.response.data.errors[0].message;
-  }
-  // Standard backend message
-  if (error?.response?.data?.message) {
-    return error.response.data.message;
-  }
-  // Network error (no response)
-  if (error.code === "ERR_NETWORK" || !error.response) {
-    return "Network error. Please check your connection.";
-  }
-  // Timeout
-  if (error.code === "ECONNABORTED") {
-    return "Request timed out. Please try again.";
-  }
-  // Fallback
-  return "Something went wrong. Please try again.";
-};
-
-// axios api
-let activeRequests = 0;
-const showLoader = () => {
-  const loader = document.getElementById("global-loader");
-  if (loader) {
-    activeRequests++;
-    loader.style.display = "flex";
-  }
-};
-
-const hideLoader = () => {
-  const loader = document.getElementById("global-loader");
-  if (loader) {
-    activeRequests--;
-    if (activeRequests <= 0) {
-      activeRequests = 0;
-      loader.style.display = "none";
+const getErrorMessage = (error: unknown): string => {
+  if (axios.isAxiosError(error)) {
+    const response = error.response
+    if (response) {
+      // Zod validation errors from backend
+      if (response.data?.errors?.length > 0) {
+        return response.data.errors[0].message
+      }
+      // Standard backend message
+      if (response.data?.message) {
+        return response.data.message
+      }
+    }
+    // Network error (no response)
+    if (!response || error.code === 'ERR_NETWORK') {
+      return 'Network error. Please check your connection.'
+    }
+    // Timeout
+    if (error.code === 'ECONNABORTED') {
+      return 'Request timed out. Please try again.'
     }
   }
-};
+  // Fallback
+  return 'Something went wrong. Please try again.'
+}
+
+// axios api
+let activeRequests = 0
+const showLoader = () => {
+  const loader = document.getElementById('global-loader')
+  if (loader) {
+    activeRequests++
+    loader.style.display = 'flex'
+  }
+}
+
+const hideLoader = () => {
+  const loader = document.getElementById('global-loader')
+  if (loader) {
+    activeRequests--
+    if (activeRequests <= 0) {
+      activeRequests = 0
+      loader.style.display = 'none'
+    }
+  }
+}
 
 export const api = axios.create({
   baseURL: BASE_URL,
   withCredentials: true,
-});
+})
 
-api.interceptors.request.use((config) => {
-    const isAgentRequest = config.url?.includes('/agent/');
-    if (!isAgentRequest) showLoader();
-    return config;
-}, (error) => {
-    hideLoader();
-    return Promise.reject(error);
-});
+api.interceptors.request.use(
+  (config) => {
+    const isAgentRequest = config.url?.includes('/agent/')
+    if (!isAgentRequest) showLoader()
+    return config
+  },
+  (error) => {
+    hideLoader()
+    return Promise.reject(error)
+  }
+)
 
-api.interceptors.response.use((response) => {
-    hideLoader();
-    return response;
-}, (error) => {
-    hideLoader();
-      // Show error toast unless the request explicitly opts out
+api.interceptors.response.use(
+  (response) => {
+    hideLoader()
+    return response
+  },
+  (error) => {
+    hideLoader()
+    // Show error toast unless the request explicitly opts out
     if (!error.config?.skipErrorToast) {
-      toast.error(getErrorMessage(error));
+      toast.error(getErrorMessage(error))
     }
-    return Promise.reject(error);
-});
+    return Promise.reject(error)
+  }
+)
 
 export async function getHospitals() {
   try {
-    const response = await api.get("/hospitals", { skipErrorToast: true } as any);
+    const response = await api.get('/hospitals', {
+      skipErrorToast: true,
+    })
     const hospitals = response.data
-    return hospitals;
+    return hospitals
   } catch (error) {
     throw error
   }
 }
 
 // get hospital details by id or slug
-export async function getHospitalDetails(params: any) {
+export async function getHospitalDetails(params: {
+  id?: string
+  country?: string
+  city?: string
+  slug?: string
+}) {
   try {
     if (params.slug) {
       const response = await api.get(
         `/hospitals/${params.country}/${params.city}/${params.slug}`,
-        { skipErrorToast: true } as any
-      );
-      return response.data;
+        { skipErrorToast: true }
+      )
+      return response.data
     }
 
-    const response = await api.get(`/hospitals/${params.id}`, { skipErrorToast: true } as any);
-    return response.data;
-
+    const response = await api.get(`/hospitals/${params.id}`, {
+      skipErrorToast: true,
+    })
+    return response.data
   } catch (error) {
-    throw error;
+    throw error
   }
 }
 
 export async function getRandomHospitals() {
   try {
-    const response = await api.get("/hospitals/random", { skipErrorToast: true } as any);
-    const randomHospital = response.data;
-    return randomHospital;
+    const response = await api.get('/hospitals/random', {
+      skipErrorToast: true,
+    })
+    const randomHospital = response.data
+    return randomHospital
   } catch (error) {
     throw error
   }
@@ -112,38 +133,54 @@ export async function getRandomHospitals() {
 
 export async function getHospitalByName(name: string) {
   try {
-    const response = await api.get(`/hospitals/${name}`, { skipErrorToast: true } as any);
-    const hospital = response.data;
-    return hospital;
+    const response = await api.get(`/hospitals/${name}`, {
+      skipErrorToast: true,
+    })
+    const hospital = response.data
+    return hospital
   } catch (error) {
     throw error
   }
 }
 
-export const shareHospital = async (searchParams: any) => {
+export async function shareHospital(searchParams: {
+  address?: string
+  city?: string
+  state?: string
+}) {
   try {
-    const response = await api.post(`/hospitals/share`, { searchParams }, { skipErrorToast: true } as any);
+    const response = await api.post(
+      `/hospitals/share`,
+      { searchParams },
+      {
+        skipErrorToast: true,
+      }
+    )
 
     if (response.data && response.data.linkId) {
-        return response.data.linkId;
+      return response.data.linkId
     }
 
-    return response.data;
+    return response.data
   } catch (error) {
-    throw error;
+    throw error
   }
-};
+}
 
-export async function exportHospital(searchParams: any) {
+export async function exportHospital(searchParams: {
+  address?: string
+  city?: string
+  state?: string
+}) {
   try {
     const { data } = await api.get(`/hospitals/export`, {
-      responseType: "blob",
+      responseType: 'blob',
       params: searchParams,
       skipErrorToast: true,
-      } as any)
+    })
 
-    const exportedData = data;
-    return exportedData;
+    const exportedData = data
+    return exportedData
   } catch (error) {
     throw error
   }
@@ -151,9 +188,11 @@ export async function exportHospital(searchParams: any) {
 
 export async function addHospital(hospital: Hospital) {
   try {
-    const response = await api.post("/hospitals", hospital, { skipErrorToast: true } as any);
-    const newHospital = response.data;
-    return newHospital;
+    const response = await api.post('/hospitals', hospital, {
+      skipErrorToast: true,
+    })
+    const newHospital = response.data
+    return newHospital
   } catch (error) {
     throw error
   }
@@ -161,9 +200,11 @@ export async function addHospital(hospital: Hospital) {
 
 export async function updateHospital(hospital: Hospital, id: number) {
   try {
-    const response = await api.patch(`/hospitals/${id}`, hospital, { skipErrorToast: true } as any);
-    const updatedHospital = response.data;
-    return updatedHospital;
+    const response = await api.patch(`/hospitals/${id}`, hospital, {
+      skipErrorToast: true,
+    })
+    const updatedHospital = response.data
+    return updatedHospital
   } catch (error) {
     throw error
   }
@@ -171,39 +212,63 @@ export async function updateHospital(hospital: Hospital, id: number) {
 
 export async function deleteHospital(id: number) {
   try {
-    const response = await api.delete(`/hospitals/${id}`, { skipErrorToast: true } as any);
-    const deletedHospital = response.data;
-    return deletedHospital;
+    const response = await api.delete(`/hospitals/${id}`, {
+      skipErrorToast: true,
+    })
+    const deletedHospital = response.data
+    return deletedHospital
   } catch (error) {
     throw error
   }
 }
 
 export async function autocompleteHospitals(query: string) {
-  const { data } = await api.get("/hospitals/autocomplete", {
+  const { data } = await api.get('/hospitals/autocomplete', {
     params: { q: query },
     skipErrorToast: true,
-  } as any);
-  return data;
+  })
+  return data
 }
 
 // TOTP
 export async function setupTotp() {
-  const { data } = await api.post("/user/totp/setup", {}, { skipErrorToast: true } as any);
-  return data;
+  const { data } = await api.post(
+    '/user/totp/setup',
+    {},
+    {
+      skipErrorToast: true,
+    }
+  )
+  return data
 }
 
 export async function verifyTotpSetup(setupToken: string, code: string) {
-  const { data } = await api.post("/user/totp/verify", { setupToken, code }, { skipErrorToast: true } as any);
-  return data;
+  const { data } = await api.post(
+    '/user/totp/verify',
+    { setupToken, code },
+    {
+      skipErrorToast: true,
+    }
+  )
+  return data
 }
 
-export async function disableTotp(passwordOrCode: { password?: string; code?: string }) {
-  const { data } = await api.post("/user/totp/disable", passwordOrCode, { skipErrorToast: true } as any);
-  return data;
+export async function disableTotp(passwordOrCode: {
+  password?: string
+  code?: string
+}) {
+  const { data } = await api.post('/user/totp/disable', passwordOrCode, {
+    skipErrorToast: true,
+  })
+  return data
 }
 
-export async function regenerateRecoveryCodes(passwordOrCode: { password?: string; code?: string }) {
-  const { data } = await api.post("/user/totp/recovery-codes", passwordOrCode, { skipErrorToast: true } as any);
-  return data;
+export async function regenerateRecoveryCodes(passwordOrCode: {
+  password?: string
+  code?: string
+}) {
+  const { data } = await api.post('/user/totp/recovery-codes', passwordOrCode, {
+    skipErrorToast: true,
+  })
+  return data
 }

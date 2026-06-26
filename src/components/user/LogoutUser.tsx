@@ -1,20 +1,20 @@
-import { useNavigate } from "react-router-dom";
-import useLogout from "@/hooks/useLogout";
-import { AiOutlineExclamationCircle } from "react-icons/ai";
-import { Button } from "@/components/ui/Button";
-import style from "./styles/logoutUser.module.css";
+import { useNavigate } from 'react-router-dom'
+import useLogout from '@/hooks/useLogout'
+import { AiOutlineExclamationCircle } from 'react-icons/ai'
+import { Button } from '@/components/ui/Button'
+import style from './styles/logoutUser.module.css'
 
 const Logout = () => {
-  const { logout, loading } = useLogout();
-  const navigate = useNavigate();
+  const { logout, loading } = useLogout()
+  const navigate = useNavigate()
 
   const handleLogout = () => {
-    logout();
-  };
+    logout()
+  }
 
   const handleCancel = () => {
-    navigate(-1);
-  };
+    navigate(-1)
+  }
 
   return (
     <div className={style.container}>
@@ -36,7 +36,7 @@ const Logout = () => {
             disabled={loading}
             className={style.confirmBtn}
           >
-            {loading ? "Signing out..." : "Confirm Log Out"}
+            {loading ? 'Signing out...' : 'Confirm Log Out'}
           </Button>
 
           <button
@@ -49,7 +49,7 @@ const Logout = () => {
         </div>
       </div>
     </div>
-  );
+  )
 }
 
-export default Logout;
+export default Logout

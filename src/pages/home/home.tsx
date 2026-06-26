@@ -1,7 +1,10 @@
 import { useState, useEffect, useRef } from 'react'
 import { HiSparkles } from 'react-icons/hi2'
 import { useGlobalStats } from '@/hooks/useGlobalStats'
-import { TYPEWRITER_PHRASES, HOW_IT_WORKS } from "@/components/constants/homeConstants";
+import {
+  TYPEWRITER_PHRASES,
+  HOW_IT_WORKS,
+} from '@/components/constants/homeConstants'
 import NearbyHospitals from '@/components/hospital/NearbyHospital'
 import AgentWidget from '@/components/agent/AgentWidget'
 import Motion from '@/components/ui/Motion'
@@ -30,7 +33,10 @@ const useTypewriter = (
           setDisplayed(currentPhrase.slice(0, displayed.length + 1))
           timeoutRef.current = setTimeout(tick, typingSpeed)
         } else {
-          timeoutRef.current = setTimeout(() => setIsDeleting(true), pauseDuration)
+          timeoutRef.current = setTimeout(
+            () => setIsDeleting(true),
+            pauseDuration
+          )
         }
       } else {
         if (displayed.length > 0) {
@@ -43,17 +49,29 @@ const useTypewriter = (
       }
     }
 
-    timeoutRef.current = setTimeout(tick, isDeleting ? deletingSpeed : typingSpeed)
-    return () => { if (timeoutRef.current) clearTimeout(timeoutRef.current) }
-  }, [displayed, isDeleting, phraseIndex, phrases, typingSpeed, pauseDuration, deletingSpeed])
+    timeoutRef.current = setTimeout(
+      tick,
+      isDeleting ? deletingSpeed : typingSpeed
+    )
+    return () => {
+      if (timeoutRef.current) clearTimeout(timeoutRef.current)
+    }
+  }, [
+    displayed,
+    isDeleting,
+    phraseIndex,
+    phrases,
+    typingSpeed,
+    pauseDuration,
+    deletingSpeed,
+  ])
 
   return displayed
 }
 
 const Home = () => {
-  const { totalHospitals, totalCountries, loading, error } = useGlobalStats();
+  const { totalHospitals, totalCountries, loading, error } = useGlobalStats()
   const typewriterText = useTypewriter(TYPEWRITER_PHRASES)
-
 
   return (
     <>
@@ -68,14 +86,19 @@ const Home = () => {
 
       <main className={style.bg}>
         <section className={style.heroSection}>
-          <Motion className={style.heroHeader} variants={sectionReveal} as="div">
+          <Motion
+            className={style.heroHeader}
+            variants={sectionReveal}
+            as="div"
+          >
             <h1 className={style.title}>
-              Find Trusted Care,{' '}
-              <span className={style.accent}>Anywhere.</span>
+              Find Trusted Care, <span className={style.accent}>Anywhere.</span>
             </h1>
             <p className={style.subtitle}>
               <span className={style.typewriter}>{typewriterText}</span>
-              <span className={style.cursor} aria-hidden="true">|</span>
+              <span className={style.cursor} aria-hidden="true">
+                |
+              </span>
             </p>
           </Motion>
 
@@ -101,7 +124,6 @@ const Home = () => {
                 />
               </div>
             </div>
-
           </Motion>
         </section>
 
@@ -110,16 +132,26 @@ const Home = () => {
             <div className={style.statItem}>
               <span className={style.statValue}>
                 {loading && <div className={style.shimmer} aria-busy="true" />}
-                {!loading && error && <span className={style.errorValue}>--</span>}
-                {!loading && !error && totalHospitals !== null && `${totalHospitals.toLocaleString()}+`}
+                {!loading && error && (
+                  <span className={style.errorValue}>--</span>
+                )}
+                {!loading &&
+                  !error &&
+                  totalHospitals !== null &&
+                  `${totalHospitals.toLocaleString()}+`}
               </span>
               <span className={style.statLabel}>Verified Hospitals</span>
             </div>
             <div className={style.statItem}>
               <span className={style.statValue}>
                 {loading && <div className={style.shimmer} aria-busy="true" />}
-                {!loading && error && <span className={style.errorValue}>--</span>}
-                {!loading && !error && totalCountries !== null && `${totalCountries}+`}
+                {!loading && error && (
+                  <span className={style.errorValue}>--</span>
+                )}
+                {!loading &&
+                  !error &&
+                  totalCountries !== null &&
+                  `${totalCountries}+`}
               </span>
               <span className={style.statLabel}>Countries Covered</span>
             </div>
@@ -133,7 +165,10 @@ const Home = () => {
         {error && (
           <div className={style.errorRetry}>
             <p>Could not load hospital stats.</p>
-            <button onClick={() => window.location.reload()} className={style.retryBtn}>
+            <button
+              onClick={() => window.location.reload()}
+              className={style.retryBtn}
+            >
               Retry
             </button>
           </div>
@@ -159,10 +194,9 @@ const Home = () => {
         <Motion variants={fadeUp} as="section" once={true}>
           <NearbyHospitals triggerLocation={0} />
         </Motion>
-
       </main>
     </>
   )
 }
 
-export default Home;
+export default Home

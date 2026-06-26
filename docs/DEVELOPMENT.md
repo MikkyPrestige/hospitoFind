@@ -8,18 +8,18 @@ The HospitoFind frontend is a React single‑page application that provides the 
 
 ### Tech Stack
 
-| Layer           | Technology                            |
-|-----------------|---------------------------------------|
-| Framework       | React 18 (with hooks & context)       |
-| Language        | TypeScript                            |
-| Build Tool      | Vite                                  |
-| Routing         | React Router v6                       |
-| Styling         | SCSS Modules                          |
-| HTTP Client     | Axios (with interceptors)             |
-| Authentication  | Auth0 (social) + local JWT            |
-| Maps            | Mapbox GL JS                          |
-| State Management| React Context + useReducer            |
-| PWA             | Service worker + web manifest         |
+| Layer            | Technology                      |
+| ---------------- | ------------------------------- |
+| Framework        | React 18 (with hooks & context) |
+| Language         | TypeScript                      |
+| Build Tool       | Vite                            |
+| Routing          | React Router v6                 |
+| Styling          | SCSS Modules                    |
+| HTTP Client      | Axios (with interceptors)       |
+| Authentication   | Auth0 (social) + local JWT      |
+| Maps             | Mapbox GL JS                    |
+| State Management | React Context + useReducer      |
+| PWA              | Service worker + web manifest   |
 
 ### Folder Structure
 

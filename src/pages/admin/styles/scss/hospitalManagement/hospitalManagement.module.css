@@ -42,7 +42,8 @@
   gap: 1rem;
   margin-bottom: 2rem;
 }
-.controls .searchBar, .controls .filterBox {
+.controls .searchBar,
+.controls .filterBox {
   background: var(--color-white);
   border: 1px solid var(--color-border);
   border-radius: 1rem;
@@ -256,4 +257,4 @@
   font-weight: 600;
   text-align: center;
   font-family: var(--font-inter);
-}/*# sourceMappingURL=hospitalManagement.module.css.map */
+} /*# sourceMappingURL=hospitalManagement.module.css.map */

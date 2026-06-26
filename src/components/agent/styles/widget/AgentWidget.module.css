@@ -320,7 +320,8 @@
 }
 
 @keyframes typing {
-  0%, 100% {
+  0%,
+  100% {
     opacity: 0.4;
     transform: translateY(0);
   }
@@ -433,4 +434,4 @@
   opacity: 0.5;
   cursor: not-allowed;
   box-shadow: none;
-}/*# sourceMappingURL=AgentWidget.module.css.map */
+} /*# sourceMappingURL=AgentWidget.module.css.map */

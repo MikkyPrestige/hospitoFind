@@ -68,8 +68,14 @@
 }
 
 @keyframes slideUp {
-  from { opacity: 0; transform: translateY(16px); }
-  to   { opacity: 1; transform: translateY(0); }
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 .panel {
@@ -205,8 +211,12 @@
   gap: 1.25rem;
   scroll-behavior: smooth;
 
-  &::-webkit-scrollbar { width: 6px; }
-  &::-webkit-scrollbar-track { background: transparent; }
+  &::-webkit-scrollbar {
+    width: 6px;
+  }
+  &::-webkit-scrollbar-track {
+    background: transparent;
+  }
   &::-webkit-scrollbar-thumb {
     background: var(--color-gray);
     border-radius: 4px;
@@ -280,8 +290,14 @@
 }
 
 @keyframes fadeIn {
-  from { opacity: 0; transform: translateY(8px); }
-  to   { opacity: 1; transform: translateY(0); }
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 .typingIndicator {
@@ -304,14 +320,25 @@
     border-radius: 50%;
     animation: typing 1.4s infinite ease-in-out;
 
-    &:nth-child(2) { animation-delay: 0.2s; }
-    &:nth-child(3) { animation-delay: 0.4s; }
+    &:nth-child(2) {
+      animation-delay: 0.2s;
+    }
+    &:nth-child(3) {
+      animation-delay: 0.4s;
+    }
   }
 }
 
 @keyframes typing {
-  0%, 100% { opacity: 0.4; transform: translateY(0); }
-  50%      { opacity: 1;   transform: translateY(-4px); }
+  0%,
+  100% {
+    opacity: 0.4;
+    transform: translateY(0);
+  }
+  50% {
+    opacity: 1;
+    transform: translateY(-4px);
+  }
 }
 
 .matchingState {
@@ -334,7 +361,11 @@
   animation: spin 0.8s linear infinite;
 }
 
-@keyframes spin { to { transform: rotate(360deg); } }
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
 
 .errorMsg {
   background: rgba(239, 68, 68, 0.05);
@@ -383,8 +414,13 @@
     box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15);
   }
 
-  &::placeholder { color: var(--color-gray); }
-  &:disabled { opacity: 0.6; cursor: not-allowed; }
+  &::placeholder {
+    color: var(--color-gray);
+  }
+  &:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+  }
 }
 
 .sendBtn {

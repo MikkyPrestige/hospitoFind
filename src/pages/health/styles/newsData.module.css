@@ -21,7 +21,7 @@
 }
 
 .headerIcon {
- color: var(--color-blue);
+  color: var(--color-blue);
   font-size: 3rem;
   vertical-align: middle;
   margin-right: 0.5rem;
@@ -91,7 +91,7 @@
   height: 220px;
   position: relative;
   overflow: hidden;
- background-color: var(--color-bg-contrast);
+  background-color: var(--color-bg-contrast);
 }
 
 .newsImage {
@@ -110,7 +110,7 @@
   top: 1rem;
   left: 1rem;
   background: var(--color-bg-contrast);
- color: var(--color-blue);
+  color: var(--color-blue);
   padding: 0.3rem 0.8rem;
   border-radius: 8px;
   font-size: 1rem;
@@ -120,7 +120,7 @@
 }
 
 .imagePlaceholder {
- width: 100%;
+  width: 100%;
   height: 100%;
   background: var(--color-ash);
   display: flex;
@@ -139,7 +139,7 @@
 }
 
 .newsTitle {
-font-family: var(--font-plus);
+  font-family: var(--font-plus);
   font-size: 1.3rem;
   font-weight: 700;
   color: var(--color-black);
@@ -152,7 +152,7 @@ font-family: var(--font-plus);
 }
 
 .newsDesc {
- font-family: var(--font-inter);
+  font-family: var(--font-inter);
   font-size: 1.2rem;
   color: var(--color-gray);
   line-height: 1.6;

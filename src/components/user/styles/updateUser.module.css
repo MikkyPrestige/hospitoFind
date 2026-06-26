@@ -80,7 +80,9 @@
   font-weight: 700 !important;
   font-size: 1.2rem !important;
   border-radius: 1rem !important;
-  transition: transform 0.2s, opacity 0.2s !important;
+  transition:
+    transform 0.2s,
+    opacity 0.2s !important;
 }
 
 .updateBtn:hover:not(:disabled) {

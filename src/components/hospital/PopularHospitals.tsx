@@ -1,34 +1,44 @@
-import { useEffect, useState } from "react";
-import { getRandomHospitals } from "@/services/api";
-import { Hospital } from "@/types/hospital";
-import { useGeolocation } from "@/hooks/useGeolocation";
-import HospitalCard from "@/components/hospital/HospitalCard";
-import Motion from "@/components/ui/Motion";
-import { fadeUp, sectionReveal } from "@/utils/animations";
-import style from "./styles/popular.module.css";
+import { useEffect, useState } from 'react'
+import { getRandomHospitals } from '@/services/api'
+import { Hospital } from '@/types/hospital'
+import { useGeolocation } from '@/hooks/useGeolocation'
+import HospitalCard from '@/components/hospital/HospitalCard'
+import Motion from '@/components/ui/Motion'
+import { fadeUp, sectionReveal } from '@/utils/animations'
+import style from './styles/popular.module.css'
 
 const PopularHospitals = () => {
-  const userCoords = useGeolocation();
-  const [hospitals, setHospitals] = useState<Hospital[]>([]);
-  const [error, setError] = useState<string>("");
-
-  const loadHospitals = async () => {
-    try {
-      const response = await getRandomHospitals();
-      setHospitals(response);
-      setError("");
-    } catch (err: any) {
-      if (err.response) setError(err.response.data?.message || "Server error");
-      else if (err.request) setError("Unable to load recommended hospitals at this time.");
-      else setError(err.message);
-    }
-  };
+  const userCoords = useGeolocation()
+  const [hospitals, setHospitals] = useState<Hospital[]>([])
+  const [, setRetryCount] = useState(0)
+  const [error, setError] = useState<string>('')
 
   useEffect(() => {
-    loadHospitals();
-  }, []);
+    let cancelled = false
+    const fetchHospitals = async () => {
+      try {
+        const response = await getRandomHospitals()
+        if (!cancelled) {
+          setHospitals(response)
+          setError('')
+        }
+      } catch (err: unknown) {
+        if (!cancelled) {
+          if (err instanceof Error) {
+            setError(err.message || 'Server error')
+          } else {
+            setError('Unable to load recommended hospitals at this time.')
+          }
+        }
+      }
+    }
+    fetchHospitals()
+    return () => {
+      cancelled = true
+    }
+  }, [])
 
-  if (hospitals.length === 0 && !error) return null;
+  if (hospitals.length === 0 && !error) return null
 
   return (
     <Motion
@@ -40,14 +50,20 @@ const PopularHospitals = () => {
       <Motion variants={fadeUp}>
         <h2 className={style.heading}>Verified Healthcare Providers</h2>
         <p className={style.subtitle}>
-          Explore top-rated hospitals and clinics verified for quality standards and patient care.
+          Explore top-rated hospitals and clinics verified for quality standards
+          and patient care.
         </p>
       </Motion>
 
       {error && (
         <div className={style.errorContainer}>
           <p className={style.error}>{error}</p>
-          <button onClick={loadHospitals} className={style.retryBtn}>Try Again</button>
+          <button
+            onClick={() => setRetryCount((c) => c + 1)}
+            className={style.retryBtn}
+          >
+            Try Again
+          </button>
         </div>
       )}
 
@@ -61,7 +77,7 @@ const PopularHospitals = () => {
         </Motion>
       )}
     </Motion>
-  );
-};
+  )
+}
 
-export default PopularHospitals;
+export default PopularHospitals

@@ -95,13 +95,17 @@
   max-height: 0;
   opacity: 0;
   overflow: hidden;
-  transition: max-height 0.5s cubic-bezier(0, 1, 0, 1), opacity 0.3s ease;
+  transition:
+    max-height 0.5s cubic-bezier(0, 1, 0, 1),
+    opacity 0.3s ease;
 }
 
 .open {
   max-height: 1000px;
   opacity: 1;
-  transition: max-height 0.8s ease-in-out, opacity 0.5s ease;
+  transition:
+    max-height 0.8s ease-in-out,
+    opacity 0.5s ease;
 }
 
 .answerInner {

@@ -1,9 +1,9 @@
-import { useTheme } from "@/context/ThemeProvider";
-import { FiSun, FiMoon } from 'react-icons/fi';
-import styles from './styles/themeToggle.module.css';
+import { useTheme } from '@/hooks/useTheme'
+import { FiSun, FiMoon } from 'react-icons/fi'
+import styles from './styles/themeToggle.module.css'
 
 const ThemeToggle = () => {
-  const { theme, toggleTheme } = useTheme();
+  const { theme, toggleTheme } = useTheme()
 
   return (
     <button
@@ -17,7 +17,7 @@ const ThemeToggle = () => {
         <FiSun className={styles.icon} />
       )}
     </button>
-  );
-};
+  )
+}
 
-export default ThemeToggle;
+export default ThemeToggle

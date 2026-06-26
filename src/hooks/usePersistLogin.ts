@@ -1,49 +1,53 @@
-import { useState, useEffect } from "react";
-import { useLocation } from "react-router-dom";
-import { useAuthContext } from "@/context/UserProvider";
-import { api } from "@/services/api";
+import { useState, useEffect } from 'react'
+import { useLocation } from 'react-router-dom'
+import { useAuthContext } from '@/hooks/useAuthContext'
+import { api } from '@/services/api'
 
 export const usePersistLogin = () => {
-    const [isLoading, setIsLoading] = useState(true);
-    const { state, dispatch } = useAuthContext();
-    const location = useLocation();
+  const [isLoading, setIsLoading] = useState(true)
+  const { state, dispatch } = useAuthContext()
+  const location = useLocation()
 
-    useEffect(() => {
-        let isMounted = true;
+  useEffect(() => {
+    let isMounted = true
 
-        const verifyRefreshToken = async () => {
-            try {
-                const response = await api.get("/auth/refresh", { skipErrorToast: true } as any);
+    const verifyRefreshToken = async () => {
+      try {
+        const response = await api.get('/auth/refresh', {
+          skipErrorToast: true,
+        })
 
-                dispatch({
-                    type: 'REFRESH',
-                    payload: response.data
-                });
-            } catch (err) {
-                const authPages = ['/login', '/signup', '/verify-email', '/email-sent'];
-                const isAuthPage = authPages.some(path => location.pathname.includes(path));
+        dispatch({
+          type: 'REFRESH',
+          payload: response.data,
+        })
+      } catch {
+        const authPages = ['/login', '/signup', '/verify-email', '/email-sent']
+        const isAuthPage = authPages.some((path) =>
+          location.pathname.includes(path)
+        )
 
-                if (!isAuthPage) {
-                    localStorage.removeItem("accessToken");
-                    dispatch({ type: 'LOGOUT' });
-                }
-            } finally {
-                if (isMounted) setIsLoading(false);
-            }
-        };
-
-        const storedToken = localStorage.getItem("accessToken");
-
-        if (!state?.accessToken && storedToken) {
-            verifyRefreshToken();
-        } else {
-            setIsLoading(false);
+        if (!isAuthPage) {
+          localStorage.removeItem('accessToken')
+          dispatch({ type: 'LOGOUT' })
         }
+      } finally {
+        if (isMounted) setIsLoading(false)
+      }
+    }
 
-        return () => {
-            isMounted = false;
-        };
-    }, [location.pathname, dispatch, state?.accessToken]);
+    const storedToken = localStorage.getItem('accessToken')
 
-    return { isLoading };
-};
+    if (!state?.accessToken && storedToken) {
+      verifyRefreshToken()
+    } else {
+      setIsLoading(false)
+    }
+
+    return () => {
+      isMounted = false
+    }
+  }, [location.pathname, dispatch, state?.accessToken])
+
+  return { isLoading }
+}

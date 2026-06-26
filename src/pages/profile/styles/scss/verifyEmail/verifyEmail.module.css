@@ -4,7 +4,11 @@
   align-items: center;
   justify-content: center;
   padding: 2rem;
-  background: linear-gradient(180deg, var(--color-bg) 0%, var(--color-bg-contrast) 100%);
+  background: linear-gradient(
+    180deg,
+    var(--color-bg) 0%,
+    var(--color-bg-contrast) 100%
+  );
 }
 
 .card {
@@ -63,4 +67,4 @@
   background-color: var(--color-blue-dark);
   transform: translateY(-2px);
   box-shadow: 0 8px 20px rgba(14, 61, 183, 0.2);
-}/*# sourceMappingURL=verifyEmail.module.css.map */
+} /*# sourceMappingURL=verifyEmail.module.css.map */

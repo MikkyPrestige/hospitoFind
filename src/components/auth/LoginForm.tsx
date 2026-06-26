@@ -1,102 +1,108 @@
-import React, { useEffect, useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
-import { useAuth0 } from "@auth0/auth0-react";
-import { FcGoogle } from "react-icons/fc";
+import React, { useEffect, useState } from 'react'
+import axios from 'axios'
+import { Link, useNavigate } from 'react-router-dom'
+import { useAuth0 } from '@auth0/auth0-react'
+import { FcGoogle } from 'react-icons/fc'
 import {
   FaFacebook,
   FaTwitter,
   FaLinkedin,
   FaRegEyeSlash,
   FaRegEye,
-} from "react-icons/fa";
-import { Heart, Mail, Lock, ArrowRight, ShieldCheck, RefreshCw, Globe } from 'lucide-react';
-import useLogin from "@/hooks/useLogin";
-import { useResendVerification } from '@/hooks/useResendVerification';
-import usePageTransition from "@/hooks/usePageTransition";
-import { Login as LoginType } from "@/types/auth";
-import { Button } from "@/components/ui/Button";
-import { SEOHelmet } from "@/components/ui/SeoHelmet";
-import SimpleHeader from "@/layouts/header/simpleHeader";
-import SimpleFooter from "@/layouts/footer/simpleFooter";
-import Logo from "@/assets/images/logo.svg"
-import style from "./styles/login/login.module.scss";
+} from 'react-icons/fa'
+import {
+  Heart,
+  Mail,
+  Lock,
+  ArrowRight,
+  ShieldCheck,
+  RefreshCw,
+  Globe,
+} from 'lucide-react'
+import useLogin from '@/hooks/useLogin'
+import { useResendVerification } from '@/hooks/useResendVerification'
+import usePageTransition from '@/hooks/usePageTransition'
+import { Login as LoginType } from '@/types/auth'
+import { Button } from '@/components/ui/Button'
+import { SEOHelmet } from '@/components/ui/SeoHelmet'
+import SimpleHeader from '@/layouts/header/simpleHeader'
+import SimpleFooter from '@/layouts/footer/simpleFooter'
+import Logo from '@/assets/images/logo.svg'
+import style from './styles/login/login.module.scss'
 
 const LoginForm = () => {
-  const { loading, login, success, user, totpToken, submitTotp } = useLogin();
-  console.log("LoginForm totpToken:", totpToken);
-  const { loginWithRedirect } = useAuth0();
-  const transitionClass = usePageTransition();
-  const navigate = useNavigate();
-  const { resendEmail, resending } = useResendVerification();
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [showPassword, setShowPassword] = useState(false);
-  const [rememberMe, setRememberMe] = useState(false);
-  const [errors, setErrors] = useState<Record<string, string>>({});
-  const [needsVerification, setNeedsVerification] = useState(false);
-  const [totpCode, setTotpCode] = useState("");
-
-  useEffect(() => {
-    const savedEmail = localStorage.getItem("remember_email");
-    if (savedEmail) {
-      setEmail(savedEmail);
-      setRememberMe(true);
-    }
-  }, []);
+  const { loading, login, success, user, totpToken, submitTotp } = useLogin()
+  console.log('LoginForm totpToken:', totpToken)
+  const { loginWithRedirect } = useAuth0()
+  const transitionClass = usePageTransition()
+  const navigate = useNavigate()
+  const { resendEmail, resending } = useResendVerification()
+  const [email, setEmail] = useState(
+    () => localStorage.getItem('remember_email') || ''
+  )
+  const [rememberMe, setRememberMe] = useState(
+    () => !!localStorage.getItem('remember_email')
+  )
+  const [password, setPassword] = useState('')
+  const [showPassword, setShowPassword] = useState(false)
+  const [errors, setErrors] = useState<Record<string, string>>({})
+  const [needsVerification, setNeedsVerification] = useState(false)
+  const [totpCode, setTotpCode] = useState('')
 
   useEffect(() => {
     if (success && user) {
       const timer = setTimeout(() => {
-        const targetPath = user.role === "admin" ? "/admin" : "/dashboard";
-        navigate(targetPath, { replace: true });
-      }, 1000);
+        const targetPath = user.role === 'admin' ? '/admin' : '/dashboard'
+        navigate(targetPath, { replace: true })
+      }, 1000)
 
-      return () => clearTimeout(timer);
+      return () => clearTimeout(timer)
     }
-  }, [success, user, navigate]);
-
+  }, [success, user, navigate])
 
   const validateForm = () => {
-    const newErrors: Record<string, string> = {};
-    if (!email.trim()) newErrors.email = "Please enter your registered email";
-    if (!password.trim()) newErrors.password = "Password is required";
-    setErrors(newErrors);
-    return Object.keys(newErrors).length === 0;
-  };
+    const newErrors: Record<string, string> = {}
+    if (!email.trim()) newErrors.email = 'Please enter your registered email'
+    if (!password.trim()) newErrors.password = 'Password is required'
+    setErrors(newErrors)
+    return Object.keys(newErrors).length === 0
+  }
 
   const handleLogin = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    setNeedsVerification(false);
+    e.preventDefault()
+    setNeedsVerification(false)
 
     if (validateForm()) {
       if (rememberMe) {
-        localStorage.setItem("remember_email", email);
+        localStorage.setItem('remember_email', email)
       } else {
-        localStorage.removeItem("remember_email");
+        localStorage.removeItem('remember_email')
       }
 
-      localStorage.removeItem("accessToken");
-      const loginCredentials: LoginType = { email, password };
+      localStorage.removeItem('accessToken')
+      const loginCredentials: LoginType = { email, password }
 
       try {
-        await login(loginCredentials);
-      } catch (err: any) {
-        if (err.response?.status === 403) {
-          setNeedsVerification(true);
+        await login(loginCredentials)
+      } catch (err: unknown) {
+        if (axios.isAxiosError(err) && err.response?.status === 403) {
+          setNeedsVerification(true)
         }
       }
     }
-  };
+  }
 
   const handleResendLink = async () => {
-    resendEmail(email);
-  };
+    resendEmail(email)
+  }
 
   return (
     <>
-      <SEOHelmet title="Secure Login" description="Sign in to access your saved hospitals and track your healthcare history." />
+      <SEOHelmet
+        title="Secure Login"
+        description="Sign in to access your saved hospitals and track your healthcare history."
+      />
       <SimpleHeader />
-
 
       <main className={`${style.section} ${style[transitionClass]}`}>
         <section className={style.left}>
@@ -111,16 +117,22 @@ const LoginForm = () => {
 
             <h2 className={style.welcome}>Continue Your Journey</h2>
             <p className={style.tagline}>
-              Reconnect with your personalized healthcare dashboard. Access saved facilities, track your history, and contribute to the network.
+              Reconnect with your personalized healthcare dashboard. Access
+              saved facilities, track your history, and contribute to the
+              network.
             </p>
 
             <div className={style.features}>
               <div className={style.feature}>
-                <div className={style.iconCircle}><Globe size={20} /></div>
+                <div className={style.iconCircle}>
+                  <Globe size={20} />
+                </div>
                 <p>Sync History Across Devices</p>
               </div>
               <div className={style.feature}>
-                <div className={style.iconCircle}><ShieldCheck size={20} /></div>
+                <div className={style.iconCircle}>
+                  <ShieldCheck size={20} />
+                </div>
                 <p>Secure and Private Account</p>
               </div>
             </div>
@@ -135,7 +147,9 @@ const LoginForm = () => {
           <div className={style.wrapper}>
             <div className={style.header}>
               <h1 className={style.title}>Secure Login</h1>
-              <p className={style.subtitle}>Enter your credentials to access your dashboard.</p>
+              <p className={style.subtitle}>
+                Enter your credentials to access your dashboard.
+              </p>
             </div>
 
             <form onSubmit={handleLogin} className={style.form}>
@@ -150,10 +164,14 @@ const LoginForm = () => {
                       placeholder="name@example.com"
                       value={email}
                       onChange={(e) => setEmail(e.target.value)}
-                      className={`${style.form_input} ${errors.email ? style.invalid : ""}`}
+                      className={`${style.form_input} ${errors.email ? style.invalid : ''}`}
                     />
                   </div>
-                  {errors.email && <span className={style.form_error} role="alert">{errors.email}</span>}
+                  {errors.email && (
+                    <span className={style.form_error} role="alert">
+                      {errors.email}
+                    </span>
+                  )}
                 </div>
 
                 <div className={style.form_group}>
@@ -162,22 +180,32 @@ const LoginForm = () => {
                     <Lock className={style.inputIcon} />
                     <input
                       id="password"
-                      type={showPassword ? "text" : "password"}
+                      type={showPassword ? 'text' : 'password'}
                       placeholder="••••••••"
                       value={password}
                       onChange={(e) => setPassword(e.target.value)}
-                      className={`${style.form_input} ${errors.password ? style.invalid : ""}`}
+                      className={`${style.form_input} ${errors.password ? style.invalid : ''}`}
                     />
                     <button
                       type="button"
                       className={style.togglePassword}
                       onClick={() => setShowPassword(!showPassword)}
-                      aria-label={showPassword ? "Hide password" : "Show password"}
+                      aria-label={
+                        showPassword ? 'Hide password' : 'Show password'
+                      }
                     >
-                      {showPassword ? <FaRegEyeSlash size={20} /> : <FaRegEye size={20} />}
+                      {showPassword ? (
+                        <FaRegEyeSlash size={20} />
+                      ) : (
+                        <FaRegEye size={20} />
+                      )}
                     </button>
                   </div>
-                  {errors.password && <span className={style.form_error} role="alert">{errors.password}</span>}
+                  {errors.password && (
+                    <span className={style.form_error} role="alert">
+                      {errors.password}
+                    </span>
+                  )}
                 </div>
               </div>
 
@@ -203,14 +231,14 @@ const LoginForm = () => {
                     className={style.totpButton}
                     onClick={async () => {
                       try {
-                        await submitTotp(totpCode);
+                        await submitTotp(totpCode)
                       } catch {
                         // error toast already shown by submitTotp
                       }
                     }}
                     type="button"
                   >
-                    {loading ? "Verifying..." : "Verify Code"}
+                    {loading ? 'Verifying...' : 'Verify Code'}
                     <ArrowRight className={style.arrowIcon} size={18} />
                   </Button>
                 </div>
@@ -218,15 +246,21 @@ const LoginForm = () => {
 
               {needsVerification && (
                 <div className={style.verificationAlert} role="alert">
-                  <p className={style.alertMessage}>Action Required: Email Verification Pending</p>
+                  <p className={style.alertMessage}>
+                    Action Required: Email Verification Pending
+                  </p>
                   <button
                     type="button"
                     disabled={resending}
                     onClick={handleResendLink}
                     className={style.alertButton}
                   >
-                    {resending && <RefreshCw size={14} className={style.spinIcon} />}
-                    {resending ? "Sending Email..." : "Request New Verification Link"}
+                    {resending && (
+                      <RefreshCw size={14} className={style.spinIcon} />
+                    )}
+                    {resending
+                      ? 'Sending Email...'
+                      : 'Request New Verification Link'}
                   </button>
                 </div>
               )}
@@ -246,19 +280,29 @@ const LoginForm = () => {
               </div>
 
               {!totpToken && (
-                <Button disabled={loading} className={style.form_button} type="submit">
-                  {loading ? "Authenticating..." : "Access Dashboard"}
+                <Button
+                  disabled={loading}
+                  className={style.form_button}
+                  type="submit"
+                >
+                  {loading ? 'Authenticating...' : 'Access Dashboard'}
                   <ArrowRight className={style.arrowIcon} size={18} />
                 </Button>
               )}
             </form>
 
-            <div className={style.divider}><span className={style.dividerText}>Or sign in using</span></div>
+            <div className={style.divider}>
+              <span className={style.dividerText}>Or sign in using</span>
+            </div>
 
             <div className={style.socialBtn}>
               <button
                 type="button"
-                onClick={() => loginWithRedirect({ authorizationParams: { connection: 'google-oauth2' } })}
+                onClick={() =>
+                  loginWithRedirect({
+                    authorizationParams: { connection: 'google-oauth2' },
+                  })
+                }
                 className={style.social}
                 aria-label="Sign in with Google"
               >
@@ -266,7 +310,11 @@ const LoginForm = () => {
               </button>
               <button
                 type="button"
-                onClick={() => loginWithRedirect({ authorizationParams: { connection: 'facebook' } })}
+                onClick={() =>
+                  loginWithRedirect({
+                    authorizationParams: { connection: 'facebook' },
+                  })
+                }
                 className={style.social}
                 aria-label="Sign in with Facebook"
               >
@@ -274,7 +322,11 @@ const LoginForm = () => {
               </button>
               <button
                 type="button"
-                onClick={() => loginWithRedirect({ authorizationParams: { connection: 'twitter' } })}
+                onClick={() =>
+                  loginWithRedirect({
+                    authorizationParams: { connection: 'twitter' },
+                  })
+                }
                 className={style.social}
                 aria-label="Sign in with Twitter"
               >
@@ -282,7 +334,11 @@ const LoginForm = () => {
               </button>
               <button
                 type="button"
-                onClick={() => loginWithRedirect({ authorizationParams: { connection: 'linkedin' } })}
+                onClick={() =>
+                  loginWithRedirect({
+                    authorizationParams: { connection: 'linkedin' },
+                  })
+                }
                 className={style.social}
                 aria-label="Sign in with LinkedIn"
               >
@@ -291,14 +347,17 @@ const LoginForm = () => {
             </div>
 
             <p className={style.link}>
-              New to HospitoFind? <Link to="/signup" className={style.login}>Create an Account</Link>
+              New to HospitoFind?{' '}
+              <Link to="/signup" className={style.login}>
+                Create an Account
+              </Link>
             </p>
           </div>
         </section>
       </main>
       <SimpleFooter />
     </>
-  );
-};
+  )
+}
 
-export default LoginForm;
+export default LoginForm

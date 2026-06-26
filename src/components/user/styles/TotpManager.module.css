@@ -80,7 +80,9 @@
   background: var(--color-blue);
   color: var(--text-white);
   cursor: pointer;
-  transition: background 0.2s, opacity 0.2s;
+  transition:
+    background 0.2s,
+    opacity 0.2s;
   display: inline-flex;
   align-items: center;
   justify-content: center;

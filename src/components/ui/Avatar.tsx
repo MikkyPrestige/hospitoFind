@@ -1,25 +1,25 @@
-import HospitalPic from "@/assets/images/hospital-logo.jpg";
-import { AvatarProps } from "@/types/ui";
+import HospitalPic from '@/assets/images/hospital-logo.jpg'
+import { AvatarProps } from '@/types/ui'
 
 export const Avatar: React.FC<AvatarProps> = ({
-  image = "",
-  alt = "",
+  image = '',
+  alt = '',
   style = {},
-  className = ""
+  className = '',
 }) => {
-  const handleError = (e: any) => {
-    e.currentTarget.onerror = null;
-    e.currentTarget.src = HospitalPic;
-  };
+  const handleError = (e: React.SyntheticEvent<HTMLImageElement>) => {
+    e.currentTarget.onerror = null
+    e.currentTarget.src = HospitalPic
+  }
 
   return (
     <img
       src={image || HospitalPic}
-      alt={alt || "HospitoFind"}
+      alt={alt || 'HospitoFind'}
       className={className}
       style={style}
       onError={handleError}
       loading="lazy"
     />
-  );
-};
+  )
+}

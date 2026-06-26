@@ -29,7 +29,7 @@
   transition: color 0.2s;
 }
 .top .sidebarToggle:hover {
-  color: #08299B;
+  color: #08299b;
 }
 
 .mainLayout {
@@ -90,7 +90,7 @@
   background: rgba(8, 41, 155, 0.05);
 }
 .menuItem.active {
-  background: #08299B;
+  background: #08299b;
   color: var(--color-white);
 }
 .menuItem.active .icon {
@@ -118,7 +118,7 @@
   margin-bottom: 1.5rem;
 }
 .greetingHeader h1 .userName {
-  color: #08299B;
+  color: #08299b;
 }
 .greetingHeader .activityStats {
   color: #64748b;
@@ -211,7 +211,7 @@
   font-size: 0.8rem;
 }
 .dashboardCard .cardInfo .ctaText {
-  color: #08299B;
+  color: #08299b;
   font-size: 0.75rem;
   margin-top: 0.25rem;
   font-weight: 600;
@@ -226,7 +226,7 @@
   cursor: pointer;
 }
 .dashboardCard .removeBtn:hover {
-  color: #FF033E;
+  color: #ff033e;
 }
 
 .settingsHub {
@@ -274,7 +274,7 @@
   color: #64748b;
 }
 .hubHeader .metaStats .metaItem svg {
-  color: #08299B;
+  color: #08299b;
 }
 
 .settingsCard {
@@ -293,7 +293,7 @@
 }
 .settingsCard .cardHeader svg {
   font-size: 1.3rem;
-  color: #08299B;
+  color: #08299b;
 }
 .settingsCard .cardHeader h3 {
   font-size: 1.1rem;
@@ -309,8 +309,9 @@
 .settingsCard.dangerZone .cardHeader {
   background: #fff5f5;
 }
-.settingsCard.dangerZone .cardHeader svg, .settingsCard.dangerZone .cardHeader h3 {
-  color: #FF033E;
+.settingsCard.dangerZone .cardHeader svg,
+.settingsCard.dangerZone .cardHeader h3 {
+  color: #ff033e;
 }
 .settingsCard.dangerZone p {
   font-size: 0.9rem;
@@ -339,4 +340,4 @@
   color: #64748b;
   font-style: italic;
   font-size: 0.9rem;
-}/*# sourceMappingURL=dashboard.module.css.map */
+} /*# sourceMappingURL=dashboard.module.css.map */

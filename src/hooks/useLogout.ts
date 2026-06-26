@@ -1,58 +1,58 @@
-import { useState } from "react";
-import { useAuth0 } from "@auth0/auth0-react";
-import { useAuthContext } from "@/context/UserProvider";
-import { useNavigate } from "react-router-dom";
-import { api } from "@/services/api";
-import { toast } from "react-toastify";
+import { useState } from 'react'
+import { useAuth0 } from '@auth0/auth0-react'
+import { useAuthContext } from '@/hooks/useAuthContext'
+import { useNavigate } from 'react-router-dom'
+import { api } from '@/services/api'
+import { toast } from 'react-toastify'
 
 const useLogout = () => {
-  const [loading, setLoading] = useState(false);
-  const { logout: logoutAuth0 } = useAuth0();
-  const { state, dispatch } = useAuthContext();
-  const navigate = useNavigate();
+  const [loading, setLoading] = useState(false)
+  const { logout: logoutAuth0 } = useAuth0()
+  const { state, dispatch } = useAuthContext()
+  const navigate = useNavigate()
 
   const logout = async (localOnly = false) => {
-    setLoading(true);
+    setLoading(true)
     try {
       if (!localOnly) {
-        await api.post("/auth/logout");
+        await api.post('/auth/logout')
       }
-    } catch (error) {
-      console.error("Backend logout skipped or failed");
+    } catch {
+      console.error('Backend logout skipped or failed')
     } finally {
       if (!state.auth0Id) {
-        navigate("/", { replace: true });
+        navigate('/', { replace: true })
       }
 
       const keysToRemove = [
-        "accessToken",
-        "username",
-        "role",
-        "id",
-        "auth0.is_authenticated",
-        "selectedLink",
-        "email"
-      ];
+        'accessToken',
+        'username',
+        'role',
+        'id',
+        'auth0.is_authenticated',
+        'selectedLink',
+        'email',
+      ]
 
-      keysToRemove.forEach((key) => localStorage.removeItem(key));
+      keysToRemove.forEach((key) => localStorage.removeItem(key))
 
-      dispatch({ type: "LOGOUT" });
+      dispatch({ type: 'LOGOUT' })
 
-if (state.auth0Id) {
-        logoutAuth0({ logoutParams: { returnTo: window.location.origin } });
+      if (state.auth0Id) {
+        logoutAuth0({ logoutParams: { returnTo: window.location.origin } })
       } else {
         if (localOnly) {
-          window.location.href = "/login";
+          window.location.href = '/login'
         } else {
-          toast.success("Logged out successfully");
+          toast.success('Logged out successfully')
         }
       }
 
-      setLoading(false);
+      setLoading(false)
     }
-  };
+  }
 
-  return { logout, loading };
-};
+  return { logout, loading }
+}
 
-export default useLogout;
+export default useLogout

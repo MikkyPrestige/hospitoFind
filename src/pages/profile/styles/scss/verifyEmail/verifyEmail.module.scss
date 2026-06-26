@@ -4,7 +4,11 @@
   align-items: center;
   justify-content: center;
   padding: 2rem;
-  background: linear-gradient(180deg, var(--color-bg) 0%,var(--color-bg-contrast) 100%);
+  background: linear-gradient(
+    180deg,
+    var(--color-bg) 0%,
+    var(--color-bg-contrast) 100%
+  );
 }
 
 .card {
@@ -29,9 +33,15 @@
   margin-bottom: 1rem;
   letter-spacing: -0.02em;
 
-  &.loading { color: var(--color-blue);}
-  &.success { color: var(--color-success);}
-  &.error { color: var(--color-red); }
+  &.loading {
+    color: var(--color-blue);
+  }
+  &.success {
+    color: var(--color-success);
+  }
+  &.error {
+    color: var(--color-red);
+  }
 }
 
 .message {

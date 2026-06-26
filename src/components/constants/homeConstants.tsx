@@ -1,4 +1,4 @@
-import { FiCheckCircle, FiHeart, FiSearch } from "react-icons/fi"
+import { FiCheckCircle, FiHeart, FiSearch } from 'react-icons/fi'
 
 export const TYPEWRITER_PHRASES = [
   'Describe your symptoms.',

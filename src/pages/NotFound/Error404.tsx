@@ -1,9 +1,10 @@
-import { Link } from "react-router-dom";
-import { Helmet } from "react-helmet-async";
-import { motion } from "framer-motion";
-import { Home, MoveLeft } from "lucide-react";
-import Error404 from "@/assets/images/error-404.gif";
-import styles from "./styles/error404.module.scss";
+import { Link } from 'react-router-dom'
+import type { To } from 'react-router-dom'
+import { Helmet } from 'react-helmet-async'
+import { motion } from 'framer-motion'
+import { Home, MoveLeft } from 'lucide-react'
+import Error404 from '@/assets/images/error-404.gif'
+import styles from './styles/error404.module.scss'
 
 const Error404Page = () => {
   return (
@@ -29,8 +30,8 @@ const Error404Page = () => {
           <h1 className={styles.title}>Lost in the clouds?</h1>
 
           <p className={styles.text}>
-            Oops! The page you're looking for doesn't exist.
-            It might have been moved, deleted, or perhaps it never existed in the first place.
+            Oops! The page you're looking for doesn't exist. It might have been
+            moved, deleted, or perhaps it never existed in the first place.
           </p>
 
           <Link to="/" className={styles.homeBtn}>
@@ -38,13 +39,13 @@ const Error404Page = () => {
             Back to Homepage
           </Link>
 
-          <Link to={-1 as any} className={styles.backBtn}>
+          <Link to={-1 as unknown as To} className={styles.backBtn}>
             <MoveLeft size={16} /> Go Back
           </Link>
         </motion.div>
       </div>
     </>
-  );
-};
+  )
+}
 
-export default Error404Page;
+export default Error404Page

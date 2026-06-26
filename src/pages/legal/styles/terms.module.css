@@ -1,6 +1,6 @@
 .termsContainer {
   background-color: var(--color-bg);
-   padding: 10rem 2rem 5rem;
+  padding: 10rem 2rem 5rem;
   display: flex;
   justify-content: center;
 }

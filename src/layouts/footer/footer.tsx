@@ -1,10 +1,10 @@
-import { Link } from "react-router-dom";
-import { FaLinkedin, FaEnvelope, FaTwitter, FaCopyright } from "react-icons/fa";
-import { Heart, ArrowRight, ShieldCheck, Mail } from "lucide-react";
-import Motion from "@/components/ui/Motion";
-import { fadeUp, sectionReveal } from "@/utils/animations";
-import BrandLogo from "@/assets/images/logo.svg";
-import style from "./styles/scss/footer.module.scss";
+import { Link } from 'react-router-dom'
+import { FaLinkedin, FaEnvelope, FaTwitter, FaCopyright } from 'react-icons/fa'
+import { Heart, ArrowRight, ShieldCheck, Mail } from 'lucide-react'
+import Motion from '@/components/ui/Motion'
+import { fadeUp, sectionReveal } from '@/utils/animations'
+import BrandLogo from '@/assets/images/logo.svg'
+import style from './styles/scss/footer.module.scss'
 
 const Footer = () => {
   return (
@@ -28,17 +28,32 @@ const Footer = () => {
           <div className={style.brandCol}>
             <div className={style.brandColContent}>
               <Link to="/" className={style.logoLink}>
-                <img src={BrandLogo} alt="HospitoFind" className={style.brandLogo} />
+                <img
+                  src={BrandLogo}
+                  alt="HospitoFind"
+                  className={style.brandLogo}
+                />
               </Link>
               <p className={style.brandDesc}>
-                Connecting patients with world-class medical facilities through transparency,
-                technology, and trust.
+                Connecting patients with world-class medical facilities through
+                transparency, technology, and trust.
               </p>
             </div>
             <div className={style.socialRow}>
-              <a href="https://www.linkedin.com/company/findhospital/" target="_blank" rel="noreferrer"  aria-label="LinkedIn"><FaLinkedin /></a>
-              <a href="#" aria-label="Twitter"><FaTwitter /></a>
-              <a href="mailto:hospitofind@outlook.com" aria-label="Email"><FaEnvelope /></a>
+              <a
+                href="https://www.linkedin.com/company/findhospital/"
+                target="_blank"
+                rel="noreferrer"
+                aria-label="LinkedIn"
+              >
+                <FaLinkedin />
+              </a>
+              <a href="#" aria-label="Twitter">
+                <FaTwitter />
+              </a>
+              <a href="mailto:hospitofind@outlook.com" aria-label="Email">
+                <FaEnvelope />
+              </a>
             </div>
           </div>
 
@@ -68,7 +83,10 @@ const Footer = () => {
           <div className={style.newsletterCol}>
             <h3>Stay Updated</h3>
             <p>Get the latest health insights delivered to your inbox.</p>
-            <form className={style.subscribeForm} onSubmit={(e) => e.preventDefault()}>
+            <form
+              className={style.subscribeForm}
+              onSubmit={(e) => e.preventDefault()}
+            >
               <input type="email" placeholder="Enter your email" />
               <button type="submit" aria-label="Subscribe">
                 <Mail size={18} />
@@ -79,7 +97,9 @@ const Footer = () => {
 
         <div className={style.bottomBar}>
           <div className={style.legalLinks}>
-            <p><FaCopyright />  {new Date().getFullYear()} HospitoFind Inc.</p>
+            <p>
+              <FaCopyright /> {new Date().getFullYear()} HospitoFind Inc.
+            </p>
             <span className={style.divider}>|</span>
             <Link to="/policy">Privacy</Link>
             <Link to="/terms">Terms</Link>
@@ -88,12 +108,13 @@ const Footer = () => {
             <ShieldCheck size={16} /> <span>SSL Secured Directory</span>
           </div>
           <div className={style.credit}>
-            Built with <Heart size={14} className={style.heartIcon} /> for a healthier life.
+            Built with <Heart size={14} className={style.heartIcon} /> for a
+            healthier life.
           </div>
         </div>
       </div>
     </Motion>
-  );
-};
+  )
+}
 
-export default Footer;
+export default Footer

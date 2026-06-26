@@ -1,38 +1,38 @@
-import { useContext, createContext, useReducer, ReactNode } from "react";
-import { AuthState, AuthAction, AuthContextType } from "@/types/auth";
+import { createContext, useReducer, ReactNode } from 'react'
+import { AuthState, AuthAction, AuthContextType } from '@/types/auth'
 
 const initialState: AuthState = {
-  _id: localStorage.getItem("_id") || localStorage.getItem("id") || null,
-  username: localStorage.getItem("username") || null,
-  name: localStorage.getItem("name") || null,
-  email: localStorage.getItem("email") || null,
-  role: (localStorage.getItem("role") as "user" | "admin") || null,
-  auth0Id: localStorage.getItem("auth0Id") || null,
-  createdAt: localStorage.getItem("createdAt") || null,
-  updatedAt: localStorage.getItem("updatedAt") || null,
-  accessToken: localStorage.getItem("accessToken") || null,
-  totpEnabled: localStorage.getItem("totpEnabled") === "true",
+  _id: localStorage.getItem('_id') || localStorage.getItem('id') || null,
+  username: localStorage.getItem('username') || null,
+  name: localStorage.getItem('name') || null,
+  email: localStorage.getItem('email') || null,
+  role: (localStorage.getItem('role') as 'user' | 'admin') || null,
+  auth0Id: localStorage.getItem('auth0Id') || null,
+  createdAt: localStorage.getItem('createdAt') || null,
+  updatedAt: localStorage.getItem('updatedAt') || null,
+  accessToken: localStorage.getItem('accessToken') || null,
+  totpEnabled: localStorage.getItem('totpEnabled') === 'true',
   password: null,
   newPassword: null,
-};
+}
 
-const AuthContext = createContext<AuthContextType | undefined>(undefined);
+export const AuthContext = createContext<AuthContextType | undefined>(undefined)
 
 const authReducer = (state: AuthState, action: AuthAction): AuthState => {
   switch (action.type) {
-    case "LOGIN":
-    case "REGISTER":
-    case "UPDATE":
-    case "REFRESH":
+    case 'LOGIN':
+    case 'REGISTER':
+    case 'UPDATE':
+    case 'REFRESH':
       if (action.payload) {
         Object.entries(action.payload).forEach(([key, value]) => {
           if (value !== undefined && value !== null) {
-            localStorage.setItem(key, value.toString());
+            localStorage.setItem(key, value.toString())
           }
-        });
+        })
       }
 
-      const data = action.payload as AuthState;
+      const data = action.payload as AuthState
       return {
         ...state,
         accessToken: data.accessToken,
@@ -43,27 +43,28 @@ const authReducer = (state: AuthState, action: AuthAction): AuthState => {
         id: data.id,
         createdAt: data.createdAt,
         auth0Id: data.auth0Id || null,
-        totpEnabled: data.totpEnabled !== undefined ? data.totpEnabled : state.totpEnabled,
-      };
+        totpEnabled:
+          data.totpEnabled !== undefined ? data.totpEnabled : state.totpEnabled,
+      }
 
-    case "LOGOUT":
-    case "DELETE":
+    case 'LOGOUT':
+    case 'DELETE':
       const keysToRemove = [
-        "accessToken",
-        "username",
-        "name",
-        "email",
-        "role",
-        "id",
-        "_id",
-        "auth0Id",
-        "totpEnabled",
-        "createdAt",
-        "updatedAt",
-        "auth0.is_authenticated",
-        "selectedLink"
-      ];
-      keysToRemove.forEach(key => localStorage.removeItem(key));
+        'accessToken',
+        'username',
+        'name',
+        'email',
+        'role',
+        'id',
+        '_id',
+        'auth0Id',
+        'totpEnabled',
+        'createdAt',
+        'updatedAt',
+        'auth0.is_authenticated',
+        'selectedLink',
+      ]
+      keysToRemove.forEach((key) => localStorage.removeItem(key))
       return {
         ...initialState,
         _id: null,
@@ -77,31 +78,19 @@ const authReducer = (state: AuthState, action: AuthAction): AuthState => {
         accessToken: null,
         password: null,
         newPassword: null,
-      };
+      }
 
     default:
-      return state;
+      return state
   }
-};
+}
 
 export const ContextProvider = ({ children }: { children: ReactNode }) => {
-  const [state, dispatch] = useReducer(authReducer, initialState);
+  const [state, dispatch] = useReducer(authReducer, initialState)
 
   return (
     <AuthContext.Provider value={{ state, dispatch }}>
       {children}
     </AuthContext.Provider>
-  );
-};
-
-
-export const BASE_URL = `${import.meta.env.VITE_BASE_URL}/api/v1`;
-// export const BASE_URL = `${import.meta.env.VITE_BASE_URLLocal}/api/v1`;
-
-export const useAuthContext = (): AuthContextType => {
-  const context = useContext(AuthContext);
-  if (!context) {
-    throw new Error("useAuthContext must be used within a ContextProvider");
-  }
-  return context;
-};
+  )
+}

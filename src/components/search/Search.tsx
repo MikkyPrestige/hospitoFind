@@ -1,22 +1,22 @@
-import { useEffect, useRef, useState } from "react";
-import { NavLink, Outlet } from "react-router-dom";
-import { AiFillHeart, AiOutlineHeart, AiOutlineSearch } from "react-icons/ai";
-import { LocationInput } from "@/types/hospital";
-import { autocompleteHospitals } from "@/services/api";
-import { useHospitalSearch } from "@/hooks/useHospitalSearch";
-import { useHospitalInteractions } from "@/hooks/useHospitalInteractions";
-import { useGeolocation } from "@/hooks/useGeolocation";
-import { getDistance, formatDistance } from "@/utils/distance";
-import { getUniqueCities } from "@/utils/formatters";
-import { fadeUp } from "@/utils/animations";
-import { Avatar } from "@/components/ui/Avatar";
-import Motion from "@/components/ui/Motion";
-import ExportButton from "@/components/hospital/Export";
-import ShareButton from "@/components/hospital/Share";
-import AnimatedLoader from "@/components/ui/AnimatedLoader";
-import HospitalPic from "@/assets/images/hospital-logo.jpg";
-import style from "./styles/search.module.scss";
-
+import { useEffect, useRef, useState } from 'react'
+import { NavLink, Outlet } from 'react-router-dom'
+import { AiFillHeart, AiOutlineHeart, AiOutlineSearch } from 'react-icons/ai'
+import { LocationInput } from '@/types/hospital'
+import { autocompleteHospitals } from '@/services/api'
+import { useHospitalSearch } from '@/hooks/useHospitalSearch'
+import { useHospitalInteractions } from '@/hooks/useHospitalInteractions'
+import { useGeolocation } from '@/hooks/useGeolocation'
+import { AutocompleteSuggestion } from '@/types/agent'
+import { getDistance, formatDistance } from '@/utils/distance'
+import { getUniqueCities } from '@/utils/formatters'
+import { fadeUp } from '@/utils/animations'
+import { Avatar } from '@/components/ui/Avatar'
+import Motion from '@/components/ui/Motion'
+import ExportButton from '@/components/hospital/Export'
+import ShareButton from '@/components/hospital/Share'
+import AnimatedLoader from '@/components/ui/AnimatedLoader'
+import HospitalPic from '@/assets/images/hospital-logo.jpg'
+import style from './styles/search.module.scss'
 
 export default function SearchForm({
   onSearchResultsChange,
@@ -24,17 +24,23 @@ export default function SearchForm({
   onRecentUpdate,
   onWeeklyViewsChange,
 }: {
-  onSearchResultsChange?: (hasResults: boolean) => void;
-  onFavoritesUpdate?: () => void;
-  onRecentUpdate?: () => void;
-  onWeeklyViewsChange?: (count: number) => void;
+  onSearchResultsChange?: (hasResults: boolean) => void
+  onFavoritesUpdate?: () => void
+  onRecentUpdate?: () => void
+  onWeeklyViewsChange?: (count: number) => void
 }) {
-  const userCoords = useGeolocation();
-  const [query, setQuery] = useState("");
-  const [location, setLocation] = useState<LocationInput>({ address: "", city: "", state: "" });
-  const [dropdownOpen, setDropdownOpen] = useState(false);
-  const dropdownRef = useRef<HTMLDivElement | null>(null);
-  const [autocompleteSuggestions, setAutocompleteSuggestions] = useState<any[]>([]);
+  const userCoords = useGeolocation()
+  const [query, setQuery] = useState('')
+  const [location, setLocation] = useState<LocationInput>({
+    address: '',
+    city: '',
+    state: '',
+  })
+  const [dropdownOpen, setDropdownOpen] = useState(false)
+  const dropdownRef = useRef<HTMLDivElement | null>(null)
+  const [autocompleteSuggestions, setAutocompleteSuggestions] = useState<
+    AutocompleteSuggestion[]
+  >([])
 
   const {
     hospitals,
@@ -43,77 +49,96 @@ export default function SearchForm({
     countries,
     loadingCountries,
     performSearch,
-    clearSearch
-  } = useHospitalSearch();
+    clearSearch,
+  } = useHospitalSearch()
 
   const { favorites, toggleFav, handleExplore } = useHospitalInteractions(
     onFavoritesUpdate,
     onRecentUpdate,
     onWeeklyViewsChange
-  );
+  )
 
   useEffect(() => {
     const handler = (e: MouseEvent) => {
-      if (dropdownRef.current && !dropdownRef.current.contains(e.target as Node)) {
-        setDropdownOpen(false);
+      if (
+        dropdownRef.current &&
+        !dropdownRef.current.contains(e.target as Node)
+      ) {
+        setDropdownOpen(false)
       }
-    };
-    document.addEventListener("mousedown", handler);
-    return () => document.removeEventListener("mousedown", handler);
-  }, []);
+    }
+    document.addEventListener('mousedown', handler)
+    return () => document.removeEventListener('mousedown', handler)
+  }, [])
 
   useEffect(() => {
-    const hasLocation = location.city && location.state;
-    const hasText = query && query.trim().length >= 2;
+    const hasLocation = location.city && location.state
+    const hasText = query && query.trim().length >= 2
 
     if (!hasText && !hasLocation) {
-      clearSearch();
-      onSearchResultsChange?.(false);
-      return;
+      clearSearch()
+      onSearchResultsChange?.(false)
+      return
     }
 
     const id = setTimeout(() => {
       performSearch(
         { typedQuery: query, city: location.city, country: location.state },
         onSearchResultsChange
-      );
-    }, 350);
+      )
+    }, 350)
 
-    return () => clearTimeout(id);
-  }, [query, location.city, location.state, performSearch, clearSearch, onSearchResultsChange]);
+    return () => clearTimeout(id)
+  }, [
+    query,
+    location.city,
+    location.state,
+    performSearch,
+    clearSearch,
+    onSearchResultsChange,
+  ])
 
   // Autocomplete suggestions
   useEffect(() => {
-    if (query.trim().length < 2) {
-      setAutocompleteSuggestions([]);
-      return;
-    }
-
+    let cancelled = false
     const timer = setTimeout(async () => {
-      try {
-        const data = await autocompleteHospitals(query);
-        setAutocompleteSuggestions(data || []);
-      } catch {
-        setAutocompleteSuggestions([]);
+      if (query.trim().length < 2) {
+        if (!cancelled) setAutocompleteSuggestions([])
+        return
       }
-    }, 250);
+      try {
+        const data = await autocompleteHospitals(query)
+        if (!cancelled) setAutocompleteSuggestions(data || [])
+      } catch {
+        if (!cancelled) setAutocompleteSuggestions([])
+      }
+    }, 250)
 
-    return () => clearTimeout(timer);
-  }, [query]);
+    return () => {
+      cancelled = true
+      clearTimeout(timer)
+    }
+  }, [query])
 
-  const filteredCountries = countries.map(c => ({
-    ...c, hospitals: (c.hospitals || []).filter(h => {
-      const q = query.toLowerCase();
-      return (h.address?.city || "").toLowerCase().includes(q) || (c.country || "").toLowerCase().includes(q);
-    })
-  })).filter(c => (c.hospitals || []).length > 0);
+  const filteredCountries = countries
+    .map((c) => ({
+      ...c,
+      hospitals: (c.hospitals || []).filter((h) => {
+        const q = query.toLowerCase()
+        return (
+          (h.address?.city || '').toLowerCase().includes(q) ||
+          (c.country || '').toLowerCase().includes(q)
+        )
+      }),
+    }))
+    .filter((c) => (c.hospitals || []).length > 0)
 
   const handleClearResults = () => {
-    clearSearch();
-    setQuery("");
-    setLocation({ address: "", city: "", state: "" });
-    onSearchResultsChange?.(false);
-  };
+    clearSearch()
+    setQuery('')
+    setLocation({ address: '', city: '', state: '' })
+    onSearchResultsChange?.(false)
+  }
 
   return (
     <div className={style.searchContainer}>
@@ -122,15 +147,17 @@ export default function SearchForm({
           <input
             value={query}
             onChange={(e) => {
-              setQuery(e.target.value);
-              setLocation({ address: "", city: "", state: "" });
-              setDropdownOpen(true);
+              setQuery(e.target.value)
+              setLocation({ address: '', city: '', state: '' })
+              setDropdownOpen(true)
             }}
             onFocus={() => setDropdownOpen(true)}
             placeholder="Search hospitals, clinics, or regions..."
             className={style.input}
           />
-          <button className={style.searchBtn}><AiOutlineSearch /></button>
+          <button className={style.searchBtn}>
+            <AiOutlineSearch />
+          </button>
         </div>
 
         {dropdownOpen && (
@@ -142,36 +169,46 @@ export default function SearchForm({
                   type="button"
                   className={style.suggestionItem}
                   onMouseDown={() => {
-                    setQuery(`${s.name}, ${s.city}`);
-                    setDropdownOpen(false);
+                    setQuery(`${s.name}, ${s.city}`)
+                    setDropdownOpen(false)
                     performSearch(
                       { typedQuery: s.name, city: s.city, country: s.state },
                       onSearchResultsChange
-                    );
+                    )
                   }}
                 >
                   <span className={style.suggestionName}>{s.name}</span>
-                  <span className={style.suggestionLocation}>{s.city}, {s.state}</span>
+                  <span className={style.suggestionLocation}>
+                    {s.city}, {s.state}
+                  </span>
                 </button>
               ))
             ) : loadingCountries ? (
-              <AnimatedLoader message="Loading locations..." variant="dropdown" count={2} />
+              <AnimatedLoader
+                message="Loading locations..."
+                variant="dropdown"
+                count={2}
+              />
             ) : filteredCountries.length ? (
               filteredCountries.map((g) => (
                 <div key={g.country} className={style.dropdownGroup}>
                   <div className={style.dropdownCountry}>{g.country}</div>
-                  {getUniqueCities(g.hospitals).map(city => (
+                  {getUniqueCities(g.hospitals).map((city) => (
                     <div
                       key={city as string}
                       className={style.dropdownCity}
                       onMouseDown={() => {
-                        setLocation({ city: city as string, state: g.country, address: "" });
-                        setQuery(`${city}, ${g.country}`);
-                        setDropdownOpen(false);
+                        setLocation({
+                          city: city as string,
+                          state: g.country,
+                          address: '',
+                        })
+                        setQuery(`${city}, ${g.country}`)
+                        setDropdownOpen(false)
                         performSearch(
                           { city: city as string, country: g.country },
                           onSearchResultsChange
-                        );
+                        )
                       }}
                     >
                       {city as string}
@@ -180,29 +217,56 @@ export default function SearchForm({
                 </div>
               ))
             ) : (
-              <div className={style.dropdownItem}>No matching locations found</div>
+              <div className={style.dropdownItem}>
+                No matching locations found
+              </div>
             )}
           </div>
         )}
       </div>
 
       <div className={style.results}>
-        {loading && <AnimatedLoader message="Locating facilities..." variant="card" count={3} showImage imageHeight={150} />}
+        {loading && (
+          <AnimatedLoader
+            message="Locating facilities..."
+            variant="card"
+            count={3}
+            showImage
+            imageHeight={150}
+          />
+        )}
         {!loading && error && <div className={style.error}>{error}</div>}
 
         {!loading && hospitals.length > 0 && (
           <div className={style.resultsGrid}>
             {hospitals.map((h) => (
               <div key={h._id} className={style.hospitalCard}>
-                <Avatar image={h.photoUrl || HospitalPic} alt={h.name} className={style.cardAvatar} />
+                <Avatar
+                  image={h.photoUrl || HospitalPic}
+                  alt={h.name}
+                  className={style.cardAvatar}
+                />
                 <div className={style.hospitalInfo}>
                   <h3>{h.name}</h3>
-                  <p>{h.address?.street}, {h.address?.city}. {""} {h.address?.state}</p>
-                  {userCoords.lat != null && userCoords.lon != null && h.latitude != null && h.longitude != null && (
-                    <p className={style.distance}>
-                      {formatDistance(getDistance(userCoords.lat, userCoords.lon, h.latitude, h.longitude))}
-                    </p>
-                  )}
+                  <p>
+                    {h.address?.street}, {h.address?.city}. {''}{' '}
+                    {h.address?.state}
+                  </p>
+                  {userCoords.lat != null &&
+                    userCoords.lon != null &&
+                    h.latitude != null &&
+                    h.longitude != null && (
+                      <p className={style.distance}>
+                        {formatDistance(
+                          getDistance(
+                            userCoords.lat,
+                            userCoords.lon,
+                            h.latitude,
+                            h.longitude
+                          )
+                        )}
+                      </p>
+                    )}
                   <div className={style.cardActions}>
                     <NavLink
                       to={`/hospital/${h.address.state}/${h.address.city}/${h.slug}`}
@@ -211,8 +275,15 @@ export default function SearchForm({
                     >
                       View Profile
                     </NavLink>
-                    <button onClick={() => toggleFav(h)} className={style.favBtn}>
-                      {favorites.some(f => f.name === h.name) ? <AiFillHeart color="#f33" /> : <AiOutlineHeart />}
+                    <button
+                      onClick={() => toggleFav(h)}
+                      className={style.favBtn}
+                    >
+                      {favorites.some((f) => f.name === h.name) ? (
+                        <AiFillHeart color="#f33" />
+                      ) : (
+                        <AiOutlineHeart />
+                      )}
                     </button>
                   </div>
                 </div>
@@ -239,5 +310,5 @@ export default function SearchForm({
       )}
       <Outlet />
     </div>
-  );
+  )
 }

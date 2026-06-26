@@ -1,46 +1,42 @@
-import { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
-import { ErrorFallbackProps } from "@/types/ui";
-import SimpleHeader from '@/layouts/header/simpleHeader';
-import SimpleFooter from '@/layouts/footer/simpleFooter';
-import style from './styles/fallback.module.css';
+import { useEffect, useState } from 'react'
+import { Link } from 'react-router-dom'
+import { ErrorFallbackProps } from '@/types/ui'
+import SimpleHeader from '@/layouts/header/simpleHeader'
+import SimpleFooter from '@/layouts/footer/simpleFooter'
+import style from './styles/fallback.module.css'
 
 export const Fallback = ({ error, resetErrorBoundary }: ErrorFallbackProps) => {
-  const [shouldShow, setShouldShow] = useState(false);
+  const [shouldShow, setShouldShow] = useState(false)
 
   useEffect(() => {
-    const errorMessage = error?.message?.toLowerCase() || "";
+    const errorMessage = error?.message?.toLowerCase() || ''
 
-    // handle state-sync errors gracefully
     const isStateError =
       errorMessage.includes("reading 'role'") ||
       errorMessage.includes("reading 'username'") ||
       errorMessage.includes("reading 'accesstoken'") ||
-      errorMessage.includes("undefined") ||
-      errorMessage.includes("null");
+      errorMessage.includes('undefined') ||
+      errorMessage.includes('null')
 
-    if (isStateError) {
-      const timer = setTimeout(() => {
-        setShouldShow(true);
-      }, 800);
-      return () => clearTimeout(timer);
-    } else {
-      setShouldShow(true);
-    }
-  }, [error]);
+    const delay = isStateError ? 800 : 0
+    const timer = setTimeout(() => {
+      setShouldShow(true)
+    }, delay)
 
-  if (!shouldShow) return null;
+    return () => clearTimeout(timer)
+  }, [error])
+
+  if (!shouldShow) return null
 
   return (
     <>
       <SimpleHeader />
       <div className={style.errorContainer} role="alert">
         <div className={style.contentCard}>
-          <h1 className={style.title}>
-            Oops! Something went wrong.
-          </h1>
+          <h1 className={style.title}>Oops! Something went wrong.</h1>
           <p className={style.message}>
-            {error?.message || "An unexpected error occurred during synchronization."}
+            {error?.message ||
+              'An unexpected error occurred during synchronization.'}
           </p>
 
           <div className={style.actions}>
@@ -51,7 +47,7 @@ export const Fallback = ({ error, resetErrorBoundary }: ErrorFallbackProps) => {
               Try again
             </button>
 
-            <Link to='/' className={style.btnHome}>
+            <Link to="/" className={style.btnHome}>
               Home
             </Link>
           </div>
@@ -59,5 +55,5 @@ export const Fallback = ({ error, resetErrorBoundary }: ErrorFallbackProps) => {
       </div>
       <SimpleFooter />
     </>
-  );
-};
+  )
+}

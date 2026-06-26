@@ -34,8 +34,8 @@
 }
 
 .nativeSelect option {
-    background: var(--color-white);
-    padding: 0.5rem 1rem !important;
+  background: var(--color-white);
+  padding: 0.5rem 1rem !important;
 }
 
 .goog-te-banner-frame {

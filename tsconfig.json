@@ -1,17 +1,13 @@
 {
   "compilerOptions": {
     "target": "ESNext",
-    "lib": [
-      "DOM",
-      "DOM.Iterable",
-      "ESNext"
-    ],
+    "lib": ["DOM", "DOM.Iterable", "ESNext"],
     "types": ["node"],
     "module": "ESNext",
     "skipLibCheck": true,
-   "paths": {
-  "@/src/*": ["./src/*"],
-  "@/*": ["./src/*"]
+    "paths": {
+      "@/src/*": ["./src/*"],
+      "@/*": ["./src/*"]
     },
     "esModuleInterop": true,
     "moduleResolution": "bundler",
@@ -25,9 +21,7 @@
     "noUnusedParameters": true,
     "noFallthroughCasesInSwitch": true
   },
-  "include": [
-    "src"
-  ],
+  "include": ["src"],
   "references": [
     {
       "path": "./tsconfig.node.json"

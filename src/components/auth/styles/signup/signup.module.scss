@@ -17,7 +17,11 @@
       display: flex;
       flex: 1;
       position: relative;
-      background: linear-gradient(135deg, var(--color-blue) 0%, var(--color-blue-dark) 100%);
+      background: linear-gradient(
+        135deg,
+        var(--color-blue) 0%,
+        var(--color-blue-dark) 100%
+      );
       align-items: center;
       justify-content: center;
       color: var(--color-invert);
@@ -28,7 +32,8 @@
     .overlay {
       position: absolute;
       inset: 0;
-      background: url('https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?auto=format&fit=crop&w=1200&q=80') center/cover no-repeat;
+      background: url('https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?auto=format&fit=crop&w=1200&q=80')
+        center/cover no-repeat;
       opacity: 0.08;
       pointer-events: none;
     }
@@ -240,7 +245,7 @@
               font-size: 1.1rem;
               height: 5rem;
 
-            @include respond(tab-port) {
+              @include respond(tab-port) {
                 height: 3.5rem;
               }
 
@@ -274,7 +279,9 @@
               padding: 0;
               transition: color 0.2s;
 
-              &:hover { color: var(--color-blue); }
+              &:hover {
+                color: var(--color-blue);
+              }
             }
           }
 
@@ -304,8 +311,8 @@
           height: 4.5rem;
           font-size: 1.2rem;
 
-            @include respond(tab-port) {
-          height: 3.5rem;
+          @include respond(tab-port) {
+            height: 3.5rem;
           }
 
           &:hover:not(:disabled) {
@@ -335,7 +342,7 @@
         margin: 2rem 0;
 
         &::before {
-          content: "";
+          content: '';
           position: absolute;
           top: 50%;
           left: 0;
@@ -376,7 +383,7 @@
             border-color: var(--color-blue-light);
             background: var(--color-bg);
             transform: translateY(-2px);
-             box-shadow: var(--social-hover-shadow);
+            box-shadow: var(--social-hover-shadow);
           }
         }
       }
@@ -406,6 +413,12 @@
 }
 
 @keyframes fadeUp {
-  from { opacity: 0; transform: translateY(15px); }
-  to { opacity: 1; transform: translateY(0); }
+  from {
+    opacity: 0;
+    transform: translateY(15px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }

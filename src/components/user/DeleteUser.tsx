@@ -1,37 +1,44 @@
-import { useState } from "react";
-import { BsFillExclamationTriangleFill } from "react-icons/bs";
-import useDelete from "@/hooks/useDeleteUser";
-import { useAuthContext } from "@/context/UserProvider";
-import { Button } from "@/components/ui/Button";
-import style from "./styles/deleteUser.module.css";
-import { toast } from "react-toastify";
+import { useState } from 'react'
+import { BsFillExclamationTriangleFill } from 'react-icons/bs'
+import useDelete from '@/hooks/useDeleteUser'
+import { useAuthContext } from '@/hooks/useAuthContext'
+import { Button } from '@/components/ui/Button'
+import style from './styles/deleteUser.module.css'
+import { toast } from 'react-toastify'
 
 const DeleteBtn = () => {
-  const { state } = useAuthContext();
-  const { loading, deleteUser } = useDelete();
-  const [password, setPassword] = useState("");
-  const [confirmUsername, setConfirmUsername] = useState("");
+  const { state } = useAuthContext()
+  const { loading, deleteUser } = useDelete()
+  const [password, setPassword] = useState('')
+  const [confirmUsername, setConfirmUsername] = useState('')
 
-  const isSocial = !!state.auth0Id;
+  const isSocial = !!state.auth0Id
 
   const handleDelete = (e: React.FormEvent) => {
-    e.preventDefault();
+    e.preventDefault()
     if (!isSocial && password.length < 6) {
-      toast.warn("Please enter your full password.", { position: "top-center" });
-      return;
+      toast.warn('Please enter your full password.', { position: 'top-center' })
+      return
     }
 
     if (confirmUsername !== state.username) {
-      toast.error(`Confirmation failed. You must type "${state.username}" correctly.`, {
-        position: "top-center"
-      });
-      return;
+      toast.error(
+        `Confirmation failed. You must type "${state.username}" correctly.`,
+        {
+          position: 'top-center',
+        }
+      )
+      return
     }
 
-    if (window.confirm("FINAL WARNING: This will permanently delete your account. This cannot be undone. Proceed?")) {
-      deleteUser(state.username!, isSocial ? undefined : password);
+    if (
+      window.confirm(
+        'FINAL WARNING: This will permanently delete your account. This cannot be undone. Proceed?'
+      )
+    ) {
+      deleteUser(state.username!, isSocial ? undefined : password)
     }
-  };
+  }
 
   return (
     <div className={style.container}>
@@ -40,7 +47,8 @@ const DeleteBtn = () => {
           <BsFillExclamationTriangleFill className={style.warningIcon} />
           <h2 className={style.dangerTitle}>Account Deletion</h2>
           <p className={style.subhead}>
-            This action is <strong>permanent</strong>. All your submitted data, hospital listings, and saved collections will be erased forever.
+            This action is <strong>permanent</strong>. All your submitted data,
+            hospital listings, and saved collections will be erased forever.
           </p>
         </div>
 
@@ -61,7 +69,9 @@ const DeleteBtn = () => {
 
           <div className={style.field}>
             <p className={style.instruction}>
-              To confirm, type <span className={style.usernameHighlight}>{state.username}</span> below:
+              To confirm, type{' '}
+              <span className={style.usernameHighlight}>{state.username}</span>{' '}
+              below:
             </p>
             <input
               type="text"
@@ -80,13 +90,13 @@ const DeleteBtn = () => {
               disabled={loading || confirmUsername !== state.username}
               className={style.dangerBtn}
             >
-              {loading ? "Processing..." : "Permanently Delete Account"}
+              {loading ? 'Processing...' : 'Permanently Delete Account'}
             </Button>
           </div>
         </form>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default DeleteBtn;
+export default DeleteBtn

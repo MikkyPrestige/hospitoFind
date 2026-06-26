@@ -21,7 +21,7 @@
 }
 
 .pageTitle {
-font-family: var(--font-plus);
+  font-family: var(--font-plus);
   font-size: clamp(2.2rem, 5vw, 3.2rem);
   font-weight: 600;
   color: var(--color-black);
@@ -30,7 +30,7 @@ font-family: var(--font-plus);
 }
 
 .dateBadge {
-background: var(--bg-blue-tag);
+  background: var(--bg-blue-tag);
   color: var(--color-blue-light);
   padding: 0.5rem 1rem;
   border-radius: 50px;
@@ -40,7 +40,7 @@ background: var(--bg-blue-tag);
 }
 
 .pageSubtitle {
- font-family: var(--font-inter);
+  font-family: var(--font-inter);
   font-size: 1.25rem;
   color: var(--color-gray);
   line-height: 1.6;
@@ -80,7 +80,7 @@ background: var(--bg-blue-tag);
   height: 200px;
   position: relative;
   overflow: hidden;
- background-color: var(--color-bg-contrast);
+  background-color: var(--color-bg-contrast);
 }
 
 .tipImage {
@@ -95,7 +95,7 @@ background: var(--bg-blue-tag);
 }
 
 .imagePlaceholder {
- width: 100%;
+  width: 100%;
   height: 100%;
   background: var(--color-ash);
   display: flex;
@@ -115,7 +115,7 @@ background: var(--bg-blue-tag);
 }
 
 .categoryTag {
-position: absolute;
+  position: absolute;
   top: 1rem;
   left: 1rem;
   background: var(--color-bg-contrast);
@@ -137,7 +137,7 @@ position: absolute;
 }
 
 .title {
- font-family: var(--font-plus);
+  font-family: var(--font-plus);
   font-size: 1.4rem;
   color: var(--color-black);
   font-weight: 800;
@@ -146,7 +146,7 @@ position: absolute;
 }
 
 .shortDesc {
- font-family: var(--font-inter);
+  font-family: var(--font-inter);
   color: var(--color-gray);
   font-size: 1.2rem;
   line-height: 1.6;

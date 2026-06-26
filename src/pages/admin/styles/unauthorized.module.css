@@ -4,7 +4,11 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  background: radial-gradient(circle at center, var(--color-bg) 0%, var(--color-bg-contrast) 100%);
+  background: radial-gradient(
+    circle at center,
+    var(--color-bg) 0%,
+    var(--color-bg-contrast) 100%
+  );
   padding: 2rem;
 }
 

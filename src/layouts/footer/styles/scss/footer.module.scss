@@ -22,10 +22,10 @@
   z-index: 10;
   transform: translateY(-50%);
 
-   @include respond(tab-land) {
+  @include respond(tab-land) {
     margin-top: 0rem;
     margin-bottom: -3rem;
-   }
+  }
 }
 
 .ctaBar {
@@ -48,32 +48,32 @@
   }
 
   .ctaContent {
-  display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
 
     h2 {
-    font-size: clamp(1.5rem, 4vw, 2rem);
-    font-weight: 800;
-    color: var(--footer-heading);
-    margin-bottom: 0.5rem;
+      font-size: clamp(1.5rem, 4vw, 2rem);
+      font-weight: 800;
+      color: var(--footer-heading);
+      margin-bottom: 0.5rem;
+    }
+
+    p {
+      color: rgba(255, 255, 255, 0.8);
+      font-size: 1.2rem;
+    }
+
+    @include respond(tab-land) {
+      max-width: 60%;
+    }
   }
 
-  p {
-    color: rgba(255, 255, 255, 0.8);
-    font-size: 1.2rem;
+  .ctaActions {
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
-
-  @include respond(tab-land) {
-    max-width: 60%;
-  }
-}
-
-.ctaActions {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
 }
 
 .ctaButton {
@@ -112,55 +112,55 @@
   gap: 1rem;
 
   .brandColContent {
-  display: flex;
-  align-items: center;
-  justify-content: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 
     .logoLink {
-  display: inline-flex;
-  align-items: center;
-  transition: opacity 0.3s ease;
-  height: 10rem;
+      display: inline-flex;
+      align-items: center;
+      transition: opacity 0.3s ease;
+      height: 10rem;
 
-   &:hover {
-    opacity: 0.8;
-  }
+      &:hover {
+        opacity: 0.8;
+      }
 
-    .brandLogo {
-    height: 100%;
-    width: auto;
-    filter: brightness(0) invert(1);
+      .brandLogo {
+        height: 100%;
+        width: auto;
+        filter: brightness(0) invert(1);
       }
     }
 
-  .brandDesc {
-    font-size: 1.2rem;
-    line-height: 1.6;
-    color: var(--footer-text);
-    margin-bottom: 1rem;
+    .brandDesc {
+      font-size: 1.2rem;
+      line-height: 1.6;
+      color: var(--footer-text);
+      margin-bottom: 1rem;
     }
   }
 
   .socialRow {
-  display: flex;
-  gap: 1rem;
-
-  a {
-    width: 5rem;
-    height: 5rem;
-    border-radius: 1rem;
-    background: rgba(255, 255, 255, 0.05);
     display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 1.2rem;
-    color: var(--footer-text);
-    transition: all 0.3s ease;
+    gap: 1rem;
 
-    &:hover {
-      background: var( --color-blue-light);
-      color: var(--footer-heading);
-      transform: translateY(-3px);
+    a {
+      width: 5rem;
+      height: 5rem;
+      border-radius: 1rem;
+      background: rgba(255, 255, 255, 0.05);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.2rem;
+      color: var(--footer-text);
+      transition: all 0.3s ease;
+
+      &:hover {
+        background: var(--color-blue-light);
+        color: var(--footer-heading);
+        transform: translateY(-3px);
       }
     }
   }
@@ -230,19 +230,23 @@
     flex: 1;
     outline: none;
     width: 100%;
-    &::placeholder { color: var(--footer-text); }
+    &::placeholder {
+      color: var(--footer-text);
+    }
   }
 
   button {
     background: var(--color-blue);
-    color: var(--footer-heading);;
+    color: var(--footer-heading);
     border: none;
     padding: 0.8rem;
     border-radius: 8px;
     cursor: pointer;
     transition: 0.3s;
 
-    &:hover { background: var(--color-blue); }
+    &:hover {
+      background: var(--color-blue);
+    }
   }
 }
 
@@ -253,7 +257,7 @@
   flex-direction: column;
   align-items: center;
   gap: 1.5rem;
-  color: var(--footer-text);;
+  color: var(--footer-text);
   font-size: 0.9rem;
 
   @include respond(tab-land) {
@@ -268,13 +272,15 @@
   align-items: center;
   font-size: 1.2rem;
 
-  a:hover { color: var(--footer-heading); }
+  a:hover {
+    color: var(--footer-heading);
+  }
 
   .divider {
-  color: var(--footer-border, rgba(255, 255, 255, 0.1));
-  font-weight: 300;
-  user-select: none;
-}
+    color: var(--footer-border, rgba(255, 255, 255, 0.1));
+    font-weight: 300;
+    user-select: none;
+  }
 }
 
 .security {
@@ -292,17 +298,26 @@
   color: var(--footer-text);
 
   .heartIcon {
-      color: var(--color-red);
-  display: inline;
+    color: var(--color-red);
+    display: inline;
     animation: heartBeat 1.5s ease-in-out infinite;
   }
 }
 
-
 @keyframes heartBeat {
-  0% { transform: scale(1); }
-  14% { transform: scale(1.3); }
-  28% { transform: scale(1); }
-  42% { transform: scale(1.3); }
-  70% { transform: scale(1); }
+  0% {
+    transform: scale(1);
+  }
+  14% {
+    transform: scale(1.3);
+  }
+  28% {
+    transform: scale(1);
+  }
+  42% {
+    transform: scale(1.3);
+  }
+  70% {
+    transform: scale(1);
+  }
 }

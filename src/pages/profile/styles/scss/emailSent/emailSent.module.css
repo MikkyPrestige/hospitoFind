@@ -3,7 +3,11 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  background: linear-gradient(180deg, var(--color-bg) 0%, var(--color-bg-contrast) 100%);
+  background: linear-gradient(
+    180deg,
+    var(--color-bg) 0%,
+    var(--color-bg-contrast) 100%
+  );
   padding: 2rem;
 }
 
@@ -124,4 +128,4 @@
   to {
     transform: rotate(360deg);
   }
-}/*# sourceMappingURL=emailSent.module.css.map */
+} /*# sourceMappingURL=emailSent.module.css.map */

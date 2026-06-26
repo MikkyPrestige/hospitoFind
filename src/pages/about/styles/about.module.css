@@ -15,7 +15,8 @@
   margin: 0 auto 3rem;
   padding: 0 5%;
 }
-.sectionHeaderCenter h2, .sectionHeaderCenter .heading {
+.sectionHeaderCenter h2,
+.sectionHeaderCenter .heading {
   font-size: clamp(2.2rem, 5vw, 3rem);
   font-weight: 800;
   color: var(--color-black);
@@ -24,10 +25,12 @@
   line-height: 1.2;
   letter-spacing: -0.02em;
 }
-.sectionHeaderCenter h2 span, .sectionHeaderCenter .heading span {
+.sectionHeaderCenter h2 span,
+.sectionHeaderCenter .heading span {
   color: var(--color-blue);
 }
-.sectionHeaderCenter p, .sectionHeaderCenter .subHeading {
+.sectionHeaderCenter p,
+.sectionHeaderCenter .subHeading {
   font-size: clamp(1.1rem, 2vw, 1.25rem);
   color: var(--text-slate);
   line-height: 1.6;
@@ -168,18 +171,24 @@
     position: relative;
   }
 }
-.heroWrapper .heroImages .img1, .heroWrapper .heroImages .img2 {
+.heroWrapper .heroImages .img1,
+.heroWrapper .heroImages .img2 {
   border-radius: 24px;
   overflow: hidden;
   box-shadow: var(--shadow-card);
   height: 85%;
   position: relative;
 }
-.heroWrapper .heroImages .img1::after, .heroWrapper .heroImages .img2::after {
-  content: "";
+.heroWrapper .heroImages .img1::after,
+.heroWrapper .heroImages .img2::after {
+  content: '';
   position: absolute;
   inset: 0;
-  background: linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.1) 100%);
+  background: linear-gradient(
+    180deg,
+    rgba(0, 0, 0, 0) 0%,
+    rgba(0, 0, 0, 0.1) 100%
+  );
   pointer-events: none;
 }
 .heroWrapper .heroImages .img1 {
@@ -343,7 +352,7 @@
     gap: 2rem;
   }
   .howItWorksWrapper .howItWorks_inner .stepsGrid::before {
-    content: "";
+    content: '';
     position: absolute;
     top: 3.5rem;
     left: 10%;
@@ -374,7 +383,12 @@
   padding: 0.5rem;
   box-shadow: var(--shadow-soft);
 }
-.howItWorksWrapper .howItWorks_inner .stepsGrid .stepCard .stepAvatarWrapper .stepNumber {
+.howItWorksWrapper
+  .howItWorks_inner
+  .stepsGrid
+  .stepCard
+  .stepAvatarWrapper
+  .stepNumber {
   position: absolute;
   top: -5px;
   right: -5px;
@@ -482,4 +496,4 @@
   color: var(--text-slate);
   font-size: 1.1rem;
   flex-grow: 1;
-}/*# sourceMappingURL=about.module.css.map */
+} /*# sourceMappingURL=about.module.css.map */

@@ -1,13 +1,14 @@
-import { useState, useCallback } from 'react';
-import useAxiosPrivate from '@/hooks/useAxiosPrivate';
+import axios from 'axios'
+import { useState, useCallback } from 'react'
+import useAxiosPrivate from '@/hooks/useAxiosPrivate'
 import type {
   AgentState,
   Message,
   ChatResponse,
   MatchResponse,
   PatientProfile,
-  HospitalContext
-} from '@/types/agent';
+  HospitalContext,
+} from '@/types/agent'
 
 const INITIAL_STATE: AgentState = {
   phase: 'idle',
@@ -18,31 +19,31 @@ const INITIAL_STATE: AgentState = {
   noResultsRegion: null,
   noResultsMessage: null,
   contextLocation: null,
-};
+}
 
 const GREETING: Message = {
   role: 'assistant',
-  content: "👋 Hi there! I'm HospitoFind's care assistant. I'll help match you with the right hospital. What symptoms or health concerns are you experiencing today?",
-};
-
+  content:
+    "👋 Hi there! I'm HospitoFind's care assistant. I'll help match you with the right hospital. What symptoms or health concerns are you experiencing today?",
+}
 
 const buildContextGreeting = (ctx: HospitalContext): Message => {
-  const location = [ctx.city, ctx.country].filter(Boolean).join(', ');
-  const locationPart = location ? ` in **${location}**` : '';
+  const location = [ctx.city, ctx.country].filter(Boolean).join(', ')
+  const locationPart = location ? ` in **${location}**` : ''
   return {
     role: 'assistant',
     content: `👋 I see you're interested in **${ctx.name}**${locationPart}. I'll help match you with the best hospital for your needs. What symptoms or health concerns are you experiencing today?`,
-  };
-};
+  }
+}
 
 export const useAgent = () => {
-  const [state, setState] = useState<AgentState>(INITIAL_STATE);
-  const [isLoading, setIsLoading] = useState(false);
-  const axiosPrivate = useAxiosPrivate();
+  const [state, setState] = useState<AgentState>(INITIAL_STATE)
+  const [isLoading, setIsLoading] = useState(false)
+  const axiosPrivate = useAxiosPrivate()
 
   const update = useCallback((patch: Partial<AgentState>) => {
-    setState((prev) => ({ ...prev, ...patch }));
-  }, []);
+    setState((prev) => ({ ...prev, ...patch }))
+  }, [])
 
   const startConversation = useCallback(() => {
     setState({
@@ -50,74 +51,25 @@ export const useAgent = () => {
       phase: 'chatting',
       messages: [GREETING],
       contextLocation: null,
-    });
-  }, []);
+    })
+  }, [])
 
   const startConversationWithContext = useCallback((ctx: HospitalContext) => {
-    const location = [ctx.city, ctx.country].filter(Boolean).join(', ');
+    const location = [ctx.city, ctx.country].filter(Boolean).join(', ')
     setState({
       ...INITIAL_STATE,
       phase: 'chatting',
       messages: [buildContextGreeting(ctx)],
       contextLocation: location || null,
-    });
-  }, []);
-
-  const sendMessage = useCallback(
-    async (content: string) => {
-      if (!content.trim() || isLoading) return;
-
-      const userMessage: Message = { role: 'user', content: content.trim() };
-      const updatedMessages: Message[] = [...state.messages, userMessage];
-
-      setState((prev) => ({ ...prev, messages: updatedMessages, error: null }));
-      setIsLoading(true);
-
-      try {
-        const userLocation =
-          state.contextLocation ||
-          localStorage.getItem('userCity') ||
-          undefined;
-
-        const apiMessages = updatedMessages
-          .filter((m) => !(m.role === 'assistant' && m.content.startsWith('👋')))
-          .map(({ role, content }) => ({ role, content }));
-
-        const { data } = await axiosPrivate.post<ChatResponse>('/agent/chat',
-          { messages: apiMessages, userLocation },
-          { skipErrorToast: true } as any
-      );
-
-        if (data.type === 'MATCH_READY' && data.profile) {
-          await runMatch(data.profile, updatedMessages);
-        } else if (data.type === 'MESSAGE' && data.message) {
-          setState((prev) => ({
-            ...prev,
-            messages: [
-              ...prev.messages,
-              { role: 'assistant', content: data.message! },
-            ],
-          }));
-        }
-      } catch (err: any) {
-        update({
-          error:
-            err?.response?.data?.message ||
-            'Something went wrong. Please try again.',
-        });
-      } finally {
-        setIsLoading(false);
-      }
-    },
-    [state.messages, state.contextLocation, isLoading, update]
-  );
+    })
+  }, [])
 
   const runMatch = useCallback(
     async (profile: PatientProfile, currentMessages: Message[]) => {
       const transitionMessage: Message = {
         role: 'assistant',
         content: `Perfect, thank you! 🔍 Finding the best hospitals for you in **${profile.location}**...`,
-      };
+      }
 
       setState((prev) => ({
         ...prev,
@@ -126,16 +78,18 @@ export const useAgent = () => {
         profile,
         noResultsRegion: null,
         noResultsMessage: null,
-      }));
+      }))
 
       try {
-        const { data } = await axiosPrivate.post<MatchResponse>('/agent/match', {
-          symptoms: profile.symptoms,
-          location: profile.location,
-          additionalNeeds: profile.additionalNeeds,
-        },
-        { skipErrorToast: true } as any
-      );
+        const { data } = await axiosPrivate.post<MatchResponse>(
+          '/agent/match',
+          {
+            symptoms: profile.symptoms,
+            location: profile.location,
+            additionalNeeds: profile.additionalNeeds,
+          },
+          { skipErrorToast: true }
+        )
 
         if (data.noResults) {
           setState((prev) => ({
@@ -145,8 +99,8 @@ export const useAgent = () => {
             noResultsRegion: data.region || 'your area',
             noResultsMessage:
               data.message || "We couldn't find hospitals in your area yet.",
-          }));
-          return;
+          }))
+          return
         }
 
         setState((prev) => ({
@@ -155,26 +109,83 @@ export const useAgent = () => {
           hospitals: data.hospitals,
           noResultsRegion: null,
           noResultsMessage: null,
-        }));
-      } catch (err: any) {
+        }))
+      } catch {
         update({
           phase: 'error',
           error: 'Could not find hospitals right now. Please try again.',
-        });
+        })
       }
     },
-    [update]
-  );
+    [update, axiosPrivate]
+  )
+
+  const sendMessage = useCallback(
+    async (content: string) => {
+      if (!content.trim() || isLoading) return
+
+      const userMessage: Message = { role: 'user', content: content.trim() }
+      const updatedMessages: Message[] = [...state.messages, userMessage]
+
+      setState((prev) => ({ ...prev, messages: updatedMessages, error: null }))
+      setIsLoading(true)
+
+      try {
+        const userLocation =
+          state.contextLocation || localStorage.getItem('userCity') || undefined
+
+        const apiMessages = updatedMessages
+          .filter(
+            (m) => !(m.role === 'assistant' && m.content.startsWith('👋'))
+          )
+          .map(({ role, content }) => ({ role, content }))
+
+        const { data } = await axiosPrivate.post<ChatResponse>(
+          '/agent/chat',
+          { messages: apiMessages, userLocation },
+          { skipErrorToast: true }
+        )
+
+        if (data.type === 'MATCH_READY' && data.profile) {
+          await runMatch(data.profile, updatedMessages)
+        } else if (data.type === 'MESSAGE' && data.message) {
+          setState((prev) => ({
+            ...prev,
+            messages: [
+              ...prev.messages,
+              { role: 'assistant', content: data.message! },
+            ],
+          }))
+        }
+      } catch (err: unknown) {
+        const message =
+          axios.isAxiosError(err) && err.response?.data?.message
+            ? err.response.data.message
+            : 'Something went wrong. Please try again.'
+        update({ error: message })
+      } finally {
+        setIsLoading(false)
+      }
+    },
+    [
+      state.messages,
+      state.contextLocation,
+      isLoading,
+      update,
+      axiosPrivate,
+      runMatch,
+    ]
+  )
 
   const reset = useCallback(() => {
-    setState(INITIAL_STATE);
-    setIsLoading(false);
-  }, []);
+    setState(INITIAL_STATE)
+    setIsLoading(false)
+  }, [])
 
   const startOver = useCallback(() => {
-    startConversation();
-    setIsLoading(false);
-  }, [startConversation]);
+    startConversation()
+    setIsLoading(false)
+  }, [startConversation])
 
   return {
     ...state,
@@ -184,5 +195,5 @@ export const useAgent = () => {
     sendMessage,
     reset,
     startOver,
-  };
-};
+  }
+}

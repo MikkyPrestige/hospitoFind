@@ -1,23 +1,23 @@
-import React from "react";
-import ReactCountryFlag from "react-country-flag";
-import * as countries from "i18n-iso-countries";
-import enLocale from "i18n-iso-countries/langs/en.json";
-import { FiGlobe } from 'react-icons/fi';
-import { CountryCardProps } from "@/types/hospital";
-import style from "./styles/countryCard.module.css";
+import React from 'react'
+import ReactCountryFlag from 'react-country-flag'
+import * as countries from 'i18n-iso-countries'
+import enLocale from 'i18n-iso-countries/langs/en.json'
+import { FiGlobe } from 'react-icons/fi'
+import { CountryCardProps } from '@/types/hospital'
+import style from './styles/countryCard.module.css'
 
-// @ts-ignore
-const iso = countries.default ? countries.default : countries;
-iso.registerLocale(enLocale);
+// @ts-expect-error iso library default export handling
+const iso = countries.default ? countries.default : countries
+iso.registerLocale(enLocale)
 
 const CountryCard: React.FC<CountryCardProps> = ({ country, count }) => {
   const getCountryCode = (name: string) => {
-    const cleanName = name.trim();
+    const cleanName = name.trim()
 
-    return iso.getAlpha2Code(cleanName, "en");
-  };
+    return iso.getAlpha2Code(cleanName, 'en')
+  }
 
-  const code = getCountryCode(country);
+  const code = getCountryCode(country)
 
   return (
     <div className={style.card} role="button" aria-label={`Explore ${country}`}>
@@ -39,8 +39,7 @@ const CountryCard: React.FC<CountryCardProps> = ({ country, count }) => {
       <h3 className={style.name}>{country}</h3>
       <p className={style.count}>{count} hospitals</p>
     </div>
-  );
-};
+  )
+}
 
-
-export default CountryCard;
+export default CountryCard

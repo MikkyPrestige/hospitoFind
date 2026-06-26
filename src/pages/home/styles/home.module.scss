@@ -1,8 +1,16 @@
 .bg {
   background: var(--color-bg);
   background-image:
-    radial-gradient(circle at 10% 20%, rgba(59, 130, 246, 0.05) 0%, transparent 40%),
-    radial-gradient(circle at 90% 80%, rgba(59, 130, 246, 0.05) 0%, transparent 40%);
+    radial-gradient(
+      circle at 10% 20%,
+      rgba(59, 130, 246, 0.05) 0%,
+      transparent 40%
+    ),
+    radial-gradient(
+      circle at 90% 80%,
+      rgba(59, 130, 246, 0.05) 0%,
+      transparent 40%
+    );
   min-height: 100vh;
   width: 100%;
   padding: 12rem 3rem 2rem;
@@ -86,33 +94,33 @@
 
   .widgetCol {
     position: relative;
-  background: var(--color-bg);
-  backdrop-filter: blur(20px);
-  border: 1px solid var(--color-border);
-  border-radius: 2.5rem;
-  padding: 1.5rem;
-  box-shadow: 0 2rem 4rem -1rem rgba(0, 0, 0, 0.1);
-  display: flex;
-  flex-direction: column;
-  gap: 1.5rem;
+    background: var(--color-bg);
+    backdrop-filter: blur(20px);
+    border: 1px solid var(--color-border);
+    border-radius: 2.5rem;
+    padding: 1.5rem;
+    box-shadow: 0 2rem 4rem -1rem rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
 
     @include respond(phone) {
-    padding: 1.5rem;
-    border-radius: 1.5rem;
-  }
+      padding: 1.5rem;
+      border-radius: 1.5rem;
+    }
   }
 
   .aiBadge {
     align-self: flex-start;
-  padding: 0.5rem 1rem;
-  background: rgba(8, 41, 155, 0.2);
-  color: var(--color-blue);
-  border-radius: 100px;
-  font-size: 0.85rem;
-  font-weight: 700;
-  display: flex;
-  align-items: center;
-  gap: 0.6rem;
+    padding: 0.5rem 1rem;
+    background: rgba(8, 41, 155, 0.2);
+    color: var(--color-blue);
+    border-radius: 100px;
+    font-size: 0.85rem;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
     letter-spacing: 0.04em;
   }
 
@@ -142,33 +150,33 @@
   .imageCol {
     position: relative;
 
-      .imageWrapper {
-    height: 100%;
-    min-height: 450px;
-    border-radius: 2.5rem;
-    overflow: hidden;
-    position: relative;
-    border: 1px solid var(--color-border);
+    .imageWrapper {
+      height: 100%;
+      min-height: 450px;
+      border-radius: 2.5rem;
+      overflow: hidden;
+      position: relative;
+      border: 1px solid var(--color-border);
 
-    &::after {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(to top, rgba(15, 23, 42, 0.4), transparent);
-    }
+      &::after {
+        content: '';
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(to top, rgba(15, 23, 42, 0.4), transparent);
+      }
 
       .heroImage {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    transition: transform 0.8s cubic-bezier(0.2, 0, 0.2, 1);
-    box-shadow: 0 2rem 5rem rgba(8, 41, 155, 0.12);
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform 0.8s cubic-bezier(0.2, 0, 0.2, 1);
+        box-shadow: 0 2rem 5rem rgba(8, 41, 155, 0.12);
 
-    &:hover .heroImage {
-    transform: scale(1.05);
-  }
-  }
-  }
+        &:hover .heroImage {
+          transform: scale(1.05);
+        }
+      }
+    }
   }
 
   .statsBar {
@@ -185,12 +193,12 @@
     max-width: 700px;
 
     @include respond(tab-port) {
-    border-radius: 2rem;
-    padding: 2rem;
-    gap: 2rem;
-    flex-wrap: wrap;
-    justify-content: center;
-  }
+      border-radius: 2rem;
+      padding: 2rem;
+      gap: 2rem;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
   }
 
   .statItem {
@@ -243,36 +251,35 @@
   }
 
   .errorValue {
-  font-size: 1.5rem;
-  font-weight: 700;
-  color: var(--color-text-secondary);
-}
-
-.errorRetry {
-  text-align: center;
-  margin: 1rem 0;
-  color: var(--color-text-secondary);
-
-  p {
-    margin-bottom: 0.5rem;
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--color-text-secondary);
   }
-}
 
-.retryBtn {
-  background: var(--color-blue-light);
-  color: var(--color-invert);
-  border: none;
-  padding: 0.5rem 1.5rem;
-  border-radius: 0.5rem;
-  font-weight: 600;
-  cursor: pointer;
-  transition: background 0.2s;
+  .errorRetry {
+    text-align: center;
+    margin: 1rem 0;
+    color: var(--color-text-secondary);
 
-  &:hover {
-    background:  var(--color-blue);
+    p {
+      margin-bottom: 0.5rem;
+    }
   }
-}
 
+  .retryBtn {
+    background: var(--color-blue-light);
+    color: var(--color-invert);
+    border: none;
+    padding: 0.5rem 1.5rem;
+    border-radius: 0.5rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.2s;
+
+    &:hover {
+      background: var(--color-blue);
+    }
+  }
 
   .howSection {
     padding: 5rem 0 1rem;
@@ -280,7 +287,7 @@
   }
 
   .howEyebrow {
-     font-size: clamp(1.5rem, 3vw, 2rem);
+    font-size: clamp(1.5rem, 3vw, 2rem);
     font-weight: 700;
     letter-spacing: 0.15em;
     text-transform: uppercase;
@@ -303,8 +310,8 @@
     margin-top: 2.5rem;
 
     @include respond(tab-port) {
-     grid-template-columns: repeat(3, 1fr);
-  }
+      grid-template-columns: repeat(3, 1fr);
+    }
   }
 
   .howCard {
@@ -373,11 +380,20 @@
 }
 
 @keyframes shimmer {
-  0%   { background-position: 200% 0; }
-  100% { background-position: -200% 0; }
+  0% {
+    background-position: 200% 0;
+  }
+  100% {
+    background-position: -200% 0;
+  }
 }
 
 @keyframes blink {
-  0%, 100% { opacity: 1; }
-  50%       { opacity: 0; }
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0;
+  }
 }
