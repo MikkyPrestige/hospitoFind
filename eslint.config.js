@@ -30,5 +30,23 @@ export default tseslint.config(
       ],
     },
   },
+  {
+    files: ['e2e/**/*.ts'],
+    plugins: {
+      '@typescript-eslint': tseslint.plugin,
+    },
+    languageOptions: {
+      ecmaVersion: 'latest',
+      sourceType: 'module',
+      globals: { ...globals.node },
+      parser: tseslint.parser,
+    },
+    rules: {
+      '@typescript-eslint/no-unused-vars': [
+        'error',
+        { argsIgnorePattern: '^_' },
+      ],
+    },
+  },
   eslintConfigPrettier
 )

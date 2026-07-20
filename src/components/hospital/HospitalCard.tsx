@@ -20,12 +20,6 @@ const HospitalCard: React.FC<HospitalCardProps> = ({ hospital }) => {
 
   const userCoords = useGeolocation()
   let distanceText: string | null = null
-  console.log('distance debug', {
-    userCoords,
-    lat: hospital.latitude,
-    lon: hospital.longitude,
-    distanceText,
-  })
   if (
     userCoords.lat !== null &&
     userCoords.lon !== null &&

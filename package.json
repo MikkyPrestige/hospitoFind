@@ -38,9 +38,10 @@
     "vite-plugin-imagemin": "^0.6.1"
   },
   "devDependencies": {
+    "@playwright/test": "^1.61.1",
     "@types/mapbox-gl": "^2.7.11",
     "@types/minimatch": "^3.0.2",
-    "@types/node": "^25.6.0",
+    "@types/node": "^25.9.5",
     "@types/nprogress": "^0.2.3",
     "@types/react": "^18.2.11",
     "@types/react-dom": "^18.0.11",
@@ -50,6 +51,7 @@
     "@typescript-eslint/parser": "^8.54.0",
     "@vercel/node": "^5.7.13",
     "@vitejs/plugin-react": "^6.0.2",
+    "dotenv": "^17.4.2",
     "eslint": "^9.39.2",
     "eslint-config-prettier": "^10.1.8",
     "eslint-plugin-prettier": "^5.5.6",

@@ -74,6 +74,12 @@ export default defineConfig({
       webp: { quality: 80 },
     }),
   ],
+  server: {
+    proxy: {
+      '/auth': 'http://localhost:5000',
+      '/api': 'http://localhost:5000',
+    },
+  },
   preview: {
     port: 5173,
   },

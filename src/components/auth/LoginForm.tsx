@@ -32,7 +32,6 @@ import style from './styles/login/login.module.scss'
 
 const LoginForm = () => {
   const { loading, login, success, user, totpToken, submitTotp } = useLogin()
-  console.log('LoginForm totpToken:', totpToken)
   const { loginWithRedirect } = useAuth0()
   const transitionClass = usePageTransition()
   const navigate = useNavigate()
