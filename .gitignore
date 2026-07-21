@@ -26,3 +26,4 @@ dist-ssr
 *.sw?
 .vercel
 vite.config.ts.timestamp-*
+.env*
