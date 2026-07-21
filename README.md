@@ -1,6 +1,6 @@
 # HospitoFind Frontend
 
-Frontend web application for the HospitoFind hospital discovery platform. Built with React and TypeScript, it provides the user interface for hospital search, AI-assisted matching, and administrative tools.
+Frontend web application for HospitoFind; A hospital discovery platform. Built with React and TypeScript, it provides the user interface for hospital search, AI-assisted matching, and administrative tools.
 
 ## About
 
@@ -36,5 +36,9 @@ The application is organised into reusable components, custom hooks, and lazy-lo
 ## Related Repository
 
 - [Backend API](https://github.com/MikkyPrestige/hospitoFind-server)
+
+## Staging
+
+See [docs/STAGING.md](docs/STAGING.md) for details on the staging environment.
 
 ---
