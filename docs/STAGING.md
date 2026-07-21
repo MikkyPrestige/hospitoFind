@@ -34,25 +34,25 @@ The backend is deployed as a separate Render web service from the `staging` bran
 ### Seeding the staging database
 
 ```bash
-MONGODB_URI="mongodb+srv://staging-user:DB_PASSWORD@cluster0.mqvrcxt.mongodb.net/hospitofind-staging?retryWrites=true&w=majority&appName=Cluster0" MAPBOX_TOKEN="MAPBOX_TOKEN" node scripts/seedHospitals.js
+MONGODB_URI="<staging-mongodb-uri>" MAPBOX_TOKEN="<your-mapbox-token>" node scripts/seedHospitals.js
 ```
 
 Then mark all hospitals as verified (one‑off):
 
 ```bash
-node -e "import('mongoose').then(async (mongoose) => { const uri='mongodb+srv://staging-user:DB_PASSWORD@cluster0.mqvrcxt.mongodb.net/hospitofind-staging?retryWrites=true&w=majority&appName=Cluster0'; await mongoose.connect(uri); const Hospital=mongoose.model('Hospital', new mongoose.Schema({}, { strict: false, collection: 'hospitals' })); const r=await Hospital.updateMany({}, { \$set: { verified: true } }); console.log(\`Set \${r.modifiedCount} hospitals to verified.\`); await mongoose.disconnect(); })"
+node -e "import('mongoose').then(async (mongoose) => { const uri='<staging-mongodb-uri>'; await mongoose.connect(uri); const Hospital=mongoose.model('Hospital', new mongoose.Schema({}, { strict: false, collection: 'hospitals' })); const r=await Hospital.updateMany({}, { \$set: { verified: true } }); console.log(\`Set \${r.modifiedCount} hospitals to verified.\`); await mongoose.disconnect(); })"
 ```
 
 ### Environment variables
 
 All variables are set in Render under the `hospitofind-server-staging` service → Environment tab. The key ones:
 
-| Variable        | Value                                                    |
-| --------------- | -------------------------------------------------------- |
-| `MONGODB_URI`   | `mongodb+srv://staging-user:.../hospitofind-staging?...` |
-| `FRONTEND_URL`  | `https://hospitofind-staging.vercel.app`                 |
-| `BACKEND_URL`   | `https://hospitofind-server-staging.onrender.com`        |
-| `COOKIE_DOMAIN` | `.vercel.app`                                            |
+| Variable        | Value                                             |
+| --------------- | ------------------------------------------------- |
+| `MONGODB_URI`   | `<staging-mongodb-uri>`                           |
+| `FRONTEND_URL`  | `https://hospitofind-staging.vercel.app`          |
+| `BACKEND_URL`   | `https://hospitofind-server-staging.onrender.com` |
+| `COOKIE_DOMAIN` | `.vercel.app`                                     |
 
 ## Frontend (Vercel)
 
