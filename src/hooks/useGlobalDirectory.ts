@@ -1,8 +1,9 @@
 import { useState, useEffect, useMemo, useCallback } from 'react'
-import { CountryData, CountryListEntry } from '@/types/hospital'
+import { CountrySummary } from '@/types/hospital'
 import { BASE_URL } from '@/config/api'
 import { normalizeName } from '@/utils/formatters'
 import { countries as countriesData } from 'countries-list'
+import type { ICountryData } from 'countries-list'
 import * as iso from 'i18n-iso-countries'
 import enLocale from 'i18n-iso-countries/langs/en.json'
 
@@ -11,8 +12,35 @@ import enLocale from 'i18n-iso-countries/langs/en.json'
 const isoLib = iso.default ? iso.default : iso
 isoLib.registerLocale(enLocale)
 
+const getContinent = (countryName: string) => {
+  const cleanName = countryName.trim()
+  if (cleanName === 'South Korea') return 'Asia'
+  if (cleanName === 'UAE') return 'Asia'
+  const code = isoLib.getAlpha2Code(cleanName, 'en')
+  if (!code) return 'Other'
+  const data = countriesData[code as keyof typeof countriesData] as
+    | ICountryData
+    | undefined
+  const continentCode = data?.continent
+  switch (continentCode) {
+    case 'AF':
+      return 'Africa'
+    case 'NA':
+    case 'SA':
+      return 'Americas'
+    case 'AS':
+      return 'Asia'
+    case 'EU':
+      return 'Europe'
+    case 'OC':
+      return 'Oceania'
+    default:
+      return 'Other'
+  }
+}
+
 export const useGlobalDirectory = () => {
-  const [countries, setCountries] = useState<CountryData[]>([])
+  const [countries, setCountries] = useState<CountrySummary[]>([])
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState<string | null>(null)
   const [retryCounter, setRetryCounter] = useState(0)
@@ -37,52 +65,22 @@ export const useGlobalDirectory = () => {
     fetchCountries()
   }, [retryCounter])
 
-  const getContinent = (countryName: string) => {
-    const cleanName = countryName.trim()
-    if (cleanName === 'South Korea') return 'Asia'
-    if (cleanName === 'UAE') return 'Asia'
-
-    const code = isoLib.getAlpha2Code(cleanName, 'en')
-    if (!code) return 'Other'
-
-    const data = countriesData[
-      code as keyof typeof countriesData
-    ] as unknown as CountryListEntry
-    const continentCode = data?.continent
-
-    switch (continentCode) {
-      case 'AF':
-        return 'Africa'
-      case 'NA':
-      case 'SA':
-        return 'Americas'
-      case 'AS':
-        return 'Asia'
-      case 'EU':
-        return 'Europe'
-      case 'OC':
-        return 'Oceania'
-      default:
-        return 'Other'
-    }
-  }
-
+  // Unify duplicate country entries and add continent
   const unifiedCountries = useMemo(() => {
-    const map = new Map<string, CountryData>()
-
+    const map = new Map<string, CountrySummary & { continent: string }>()
     countries.forEach((item) => {
       const key = normalizeName(item.country)
       if (map.has(key)) {
         const existing = map.get(key)!
-        existing.hospitals = [...existing.hospitals, ...item.hospitals]
-        if (item.country.match(/[^\w\s-]/)) {
-          existing.country = item.country
-        }
+        existing.totalHospitals += item.totalHospitals
       } else {
-        map.set(key, { ...item, continent: getContinent(item.country) })
+        map.set(key, {
+          country: item.country,
+          totalHospitals: item.totalHospitals,
+          continent: getContinent(item.country),
+        })
       }
     })
-
     return Array.from(map.values())
   }, [countries])
 

@@ -1,5 +1,5 @@
 import axios from 'axios'
-import { useState, useEffect, useCallback } from 'react'
+import { useState, useCallback, useEffect } from 'react'
 import useAxiosPrivate from '@/hooks/useAxiosPrivate'
 import { toast } from 'react-toastify'
 import { UserData } from '@/types/user'
@@ -7,24 +7,36 @@ import { UserData } from '@/types/user'
 export const useAdminUsers = () => {
   const [users, setUsers] = useState<UserData[]>([])
   const [isLoading, setIsLoading] = useState(true)
+  const [page, setPage] = useState(1)
+  const [totalPages, setTotalPages] = useState(1)
+  const [total, setTotal] = useState(0)
   const axiosPrivate = useAxiosPrivate()
 
-  const fetchUsers = useCallback(async () => {
-    try {
-      setIsLoading(true)
-      const response = await axiosPrivate.get('/admin/users', {
-        skipErrorToast: true,
-      })
-      setUsers(response.data)
-    } catch (err) {
-      console.error('Failed to fetch users', err)
-      toast.error(
-        'Could not load user directory. Please ensure your session is active.'
-      )
-    } finally {
-      setIsLoading(false)
-    }
-  }, [axiosPrivate])
+  const fetchUsers = useCallback(
+    async (requestedPage?: number) => {
+      const currentPage = requestedPage || page
+      try {
+        setIsLoading(true)
+        const response = await axiosPrivate.get('/admin/users', {
+          params: { page: currentPage },
+          skipErrorToast: true,
+        })
+        const data = response.data
+        setUsers(data.users || [])
+        setPage(data.page || currentPage)
+        setTotalPages(data.totalPages || 1)
+        setTotal(data.total || 0)
+      } catch (err) {
+        console.error('Failed to fetch users', err)
+        toast.error(
+          'Could not load user directory. Please ensure your session is active.'
+        )
+      } finally {
+        setIsLoading(false)
+      }
+    },
+    [axiosPrivate, page]
+  )
 
   useEffect(() => {
     fetchUsers()
@@ -38,7 +50,7 @@ export const useAdminUsers = () => {
         skipErrorToast: true,
       })
       toast.success('User created successfully!')
-      await fetchUsers()
+      await fetchUsers(page) // refetch current page after creation
       return true
     } catch (err: unknown) {
       const message =
@@ -63,15 +75,13 @@ export const useAdminUsers = () => {
       await axiosPrivate.patch(
         '/admin/users/role',
         { userId, newRole },
-        {
-          skipErrorToast: true,
-        }
+        { skipErrorToast: true }
       )
       toast.success(`Role updated to ${newRole}`)
-      await fetchUsers()
+      await fetchUsers(page)
     } catch (err: unknown) {
       console.error(err instanceof Error ? err.message : err)
-      toast.error('Failed to update status. Please try again.')
+      toast.error('Failed to update role. Please try again.')
     }
   }
 
@@ -80,11 +90,10 @@ export const useAdminUsers = () => {
       const response = await axiosPrivate.patch(
         `/admin/users/${userId}`,
         {},
-        {
-          skipErrorToast: true,
-        }
+        { skipErrorToast: true }
       )
       const newStatus = response.data.isActive
+      // Update local state without full refetch
       setUsers((prevUsers) =>
         prevUsers.map((user) =>
           user._id === userId ? { ...user, isActive: newStatus } : user
@@ -106,8 +115,8 @@ export const useAdminUsers = () => {
       await axiosPrivate.delete(`/admin/users/${id}`, {
         skipErrorToast: true,
       })
-      setUsers((prev) => prev.filter((u) => u._id !== id))
       toast.success('User permanently removed from the system.')
+      await fetchUsers(page) // refetch current page
     } catch {
       toast.error('Failed to execute deletion securely.')
     }
@@ -116,6 +125,11 @@ export const useAdminUsers = () => {
   return {
     users,
     isLoading,
+    page,
+    totalPages,
+    total,
+    setPage: (p: number) => setPage(p),
+    fetchUsers,
     createUser,
     toggleRole,
     toggleStatus,

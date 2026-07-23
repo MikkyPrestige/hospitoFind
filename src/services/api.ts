@@ -157,10 +157,6 @@ export async function shareHospital(searchParams: {
       }
     )
 
-    if (response.data && response.data.linkId) {
-      return response.data.linkId
-    }
-
     return response.data
   } catch (error) {
     throw error
@@ -173,14 +169,19 @@ export async function exportHospital(searchParams: {
   state?: string
 }) {
   try {
-    const { data } = await api.get(`/hospitals/export`, {
+    const response = await api.get(`/hospitals/export`, {
       responseType: 'blob',
       params: searchParams,
       skipErrorToast: true,
     })
 
-    const exportedData = data
-    return exportedData
+    return {
+      blob: response.data,
+      truncated: response.headers['x-export-truncated'] === 'true',
+      totalFound: response.headers['x-export-total-found']
+        ? parseInt(response.headers['x-export-total-found'], 10)
+        : undefined,
+    }
   } catch (error) {
     throw error
   }

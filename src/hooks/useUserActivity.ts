@@ -1,4 +1,5 @@
 import axios from 'axios'
+import { useCallback } from 'react'
 import useAxiosPrivate from './useAxiosPrivate'
 import { toast } from 'react-toastify'
 
@@ -33,7 +34,7 @@ export const useUserActivity = () => {
     }
   }
 
-  const fetchActivity = async () => {
+  const fetchActivity = useCallback(async () => {
     try {
       const { data } = await axiosPrivate.get('/user/activity', {
         skipErrorToast: true,
@@ -43,7 +44,7 @@ export const useUserActivity = () => {
       console.error('Hydration Error:', err)
       return null
     }
-  }
+  }, [axiosPrivate])
 
   const removeFavoriteItem = async (id: string): Promise<boolean> => {
     try {

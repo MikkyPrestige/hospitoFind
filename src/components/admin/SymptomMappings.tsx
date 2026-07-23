@@ -8,6 +8,9 @@ const SymptomMappings = () => {
   const {
     mappings,
     isLoading,
+    page,
+    totalPages,
+    total,
     fetchMappings,
     createMapping,
     updateMapping,
@@ -135,6 +138,28 @@ const SymptomMappings = () => {
           </table>
         )}
       </div>
+
+      {totalPages > 1 && (
+        <div className={styles.pagination}>
+          <button
+            onClick={() => fetchMappings(page - 1)}
+            disabled={page <= 1}
+            className={styles.pageBtn}
+          >
+            Previous
+          </button>
+          <span className={styles.pageInfo}>
+            Page {page} of {totalPages} ({total} total)
+          </span>
+          <button
+            onClick={() => fetchMappings(page + 1)}
+            disabled={page >= totalPages}
+            className={styles.pageBtn}
+          >
+            Next
+          </button>
+        </div>
+      )}
 
       {showModal && (
         <div className={styles.modalOverlay}>

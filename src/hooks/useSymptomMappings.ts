@@ -8,35 +8,46 @@ export const useSymptomMappings = () => {
   const axiosPrivate = useAxiosPrivate()
   const [mappings, setMappings] = useState<SymptomMapping[]>([])
   const [isLoading, setIsLoading] = useState(false)
+  const [page, setPage] = useState(1)
+  const [totalPages, setTotalPages] = useState(1)
+  const [total, setTotal] = useState(0)
 
-  const fetchMappings = useCallback(async () => {
-    setIsLoading(true)
-    try {
-      const { data } = await axiosPrivate.get('/admin/symptoms', {
-        skipErrorToast: true,
-      })
-      setMappings(data)
-    } catch (err: unknown) {
-      const message =
-        axios.isAxiosError(err) && err.response?.data?.message
-          ? err.response.data.message
-          : 'Failed to load symptom mappings.'
-      toast.error(message)
-    } finally {
-      setIsLoading(false)
-    }
-  }, [axiosPrivate])
+  const fetchMappings = useCallback(
+    async (requestedPage?: number) => {
+      const currentPage = requestedPage || page
+      setIsLoading(true)
+      try {
+        const { data } = await axiosPrivate.get('/admin/symptoms', {
+          params: { page: currentPage },
+          skipErrorToast: true,
+        })
+        setMappings(data.mappings || [])
+        setPage(data.page || currentPage)
+        setTotalPages(data.totalPages || 1)
+        setTotal(data.total || 0)
+      } catch (err: unknown) {
+        const message =
+          axios.isAxiosError(err) && err.response?.data?.message
+            ? err.response.data.message
+            : 'Failed to load symptom mappings.'
+        toast.error(message)
+      } finally {
+        setIsLoading(false)
+      }
+    },
+    [axiosPrivate, page]
+  )
 
   const createMapping = useCallback(
     async (keywords: string[], services: string[]) => {
       try {
-        const { data } = await axiosPrivate.post(
+        await axiosPrivate.post(
           '/admin/symptoms',
           { symptomKeywords: keywords, services },
           { skipErrorToast: true }
         )
-        setMappings((prev) => [...prev, data])
         toast.success('Symptom mapping created.')
+        await fetchMappings(page) // refetch current page
       } catch (err: unknown) {
         const message =
           axios.isAxiosError(err) && err.response?.data?.message
@@ -46,19 +57,19 @@ export const useSymptomMappings = () => {
         throw err
       }
     },
-    [axiosPrivate]
+    [axiosPrivate, fetchMappings, page]
   )
 
   const updateMapping = useCallback(
     async (id: string, keywords: string[], services: string[]) => {
       try {
-        const { data } = await axiosPrivate.put(
+        await axiosPrivate.put(
           `/admin/symptoms/${id}`,
           { symptomKeywords: keywords, services },
           { skipErrorToast: true }
         )
-        setMappings((prev) => prev.map((m) => (m._id === id ? data : m)))
         toast.success('Mapping updated.')
+        await fetchMappings(page)
       } catch (err: unknown) {
         const message =
           axios.isAxiosError(err) && err.response?.data?.message
@@ -68,7 +79,7 @@ export const useSymptomMappings = () => {
         throw err
       }
     },
-    [axiosPrivate]
+    [axiosPrivate, fetchMappings, page]
   )
 
   const deleteMapping = useCallback(
@@ -77,18 +88,22 @@ export const useSymptomMappings = () => {
         await axiosPrivate.delete(`/admin/symptoms/${id}`, {
           skipErrorToast: true,
         })
-        setMappings((prev) => prev.filter((m) => m._id !== id))
         toast.success('Mapping deleted.')
+        await fetchMappings(page)
       } catch {
         toast.error('Failed to delete mapping.')
       }
     },
-    [axiosPrivate]
+    [axiosPrivate, fetchMappings, page]
   )
 
   return {
     mappings,
     isLoading,
+    page,
+    totalPages,
+    total,
+    setPage,
     fetchMappings,
     createMapping,
     updateMapping,

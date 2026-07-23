@@ -17,22 +17,38 @@ const ShareButton = ({ searchParams }: SearchProps) => {
   } | null>(null)
 
   const handleShare = async () => {
-    if (!searchParams.city && !searchParams.state) {
-      setToast({ message: 'Please select a location first', type: 'error' })
+    const missing: string[] = []
+    if (!searchParams.city) missing.push('city')
+    if (!searchParams.state) missing.push('country')
+
+    if (missing.length > 0) {
+      const fields = missing.join(' and ')
+      setToast({
+        message: `Please enter a ${fields} before sharing.`,
+        type: 'error',
+      })
       setTimeout(() => setToast(null), 3000)
       return
     }
 
     setGenerating(true)
     try {
-      const linkId = await shareHospital(searchParams)
-      setShareableLink(linkId)
-      setToast({ message: 'Link generated successfully', type: 'success' })
+      const data = await shareHospital(searchParams)
+      setShareableLink(data.linkId)
+
+      if (data.truncated) {
+        setToast({
+          message: `Only the first 100 results were included. Refine your search for a complete list.`,
+          type: 'error',
+        })
+      } else {
+        setToast({ message: 'Link generated successfully', type: 'success' })
+      }
     } catch {
       setToast({ message: 'Failed to generate link', type: 'error' })
     } finally {
       setGenerating(false)
-      setTimeout(() => setToast(null), 3000)
+      setTimeout(() => setToast(null), 5000)
     }
   }
 

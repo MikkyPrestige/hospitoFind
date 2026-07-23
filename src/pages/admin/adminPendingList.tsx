@@ -10,6 +10,9 @@ const AdminPendingList = () => {
   const {
     hospitals,
     isLoading,
+    page,
+    totalPages,
+    total,
     getPendingHospitals,
     approveHospital,
     updateAndApprove,
@@ -283,6 +286,28 @@ const AdminPendingList = () => {
               </div>
             </div>
           ))}
+        </div>
+      )}
+
+      {totalPages > 1 && (
+        <div className={styles.pagination}>
+          <button
+            onClick={() => getPendingHospitals(page - 1)}
+            disabled={page <= 1}
+            className={styles.pageBtn}
+          >
+            Previous
+          </button>
+          <span className={styles.pageInfo}>
+            Page {page} of {totalPages} ({total} total)
+          </span>
+          <button
+            onClick={() => getPendingHospitals(page + 1)}
+            disabled={page >= totalPages}
+            className={styles.pageBtn}
+          >
+            Next
+          </button>
         </div>
       )}
 
