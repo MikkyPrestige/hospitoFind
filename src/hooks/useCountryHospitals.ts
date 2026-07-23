@@ -22,7 +22,7 @@ export const useCountryHospitals = (country: string | undefined) => {
       else setFetchingMore(true)
       setError(null)
 
-      const endpoint = `${BASE_URL}/hospitals/country/${encodeURIComponent(decodedCountry)}?page=${page}&limit=9`
+      const endpoint = `${BASE_URL}/hospitals/country/${encodeURIComponent(decodedCountry)}?page=${page}&limit=15`
 
       const res = await fetch(endpoint)
 

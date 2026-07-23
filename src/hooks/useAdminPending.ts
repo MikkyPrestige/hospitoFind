@@ -7,36 +7,47 @@ import { Hospital } from '@/types/hospital'
 export const useAdminPending = () => {
   const [hospitals, setHospitals] = useState<Hospital[]>([])
   const [isLoading, setIsLoading] = useState(true)
+  const [page, setPage] = useState(1)
+  const [totalPages, setTotalPages] = useState(1)
+  const [total, setTotal] = useState(0)
   const axiosPrivate = useAxiosPrivate()
 
-  const getPendingHospitals = useCallback(async () => {
-    try {
-      setIsLoading(true)
-      const response = await axiosPrivate.get(`/admin/hospitals/pending`, {
-        skipErrorToast: true,
-      })
-      setHospitals(response.data)
-    } catch (err: unknown) {
-      const message =
-        axios.isAxiosError(err) && err.response?.data?.message
-          ? err.response.data.message
-          : 'Failed to load pending queue'
-      toast.error(message)
-    } finally {
-      setIsLoading(false)
-    }
-  }, [axiosPrivate])
+  const getPendingHospitals = useCallback(
+    async (requestedPage?: number) => {
+      const currentPage = requestedPage || page
+      try {
+        setIsLoading(true)
+        const response = await axiosPrivate.get(`/admin/hospitals/pending`, {
+          params: { page: currentPage },
+          skipErrorToast: true,
+        })
+        const data = response.data
+        setHospitals(data.hospitals || [])
+        setPage(data.page || currentPage)
+        setTotalPages(data.totalPages || 1)
+        setTotal(data.total || 0)
+      } catch (err: unknown) {
+        const message =
+          axios.isAxiosError(err) && err.response?.data?.message
+            ? err.response.data.message
+            : 'Failed to load pending queue'
+        toast.error(message)
+      } finally {
+        setIsLoading(false)
+      }
+    },
+    [axiosPrivate, page]
+  )
 
   const approveHospital = async (id: string) => {
     try {
       await axiosPrivate.patch(
         `/admin/hospitals/approve/${id}`,
         {},
-        {
-          skipErrorToast: true,
-        }
+        { skipErrorToast: true }
       )
-      setHospitals((prev) => prev.filter((h) => h._id !== id))
+      // Refetch current page to stay consistent
+      await getPendingHospitals(page)
       toast.success('Hospital approved and is now live!')
       return true
     } catch (err: unknown) {
@@ -56,7 +67,7 @@ export const useAdminPending = () => {
         hospital,
         { skipErrorToast: true }
       )
-      setHospitals((prev) => prev.filter((h) => h._id !== hospital._id))
+      await getPendingHospitals(page)
       toast.success('Entry corrected and published live!')
       return true
     } catch {
@@ -72,7 +83,7 @@ export const useAdminPending = () => {
         { ids },
         { skipErrorToast: true }
       )
-      setHospitals((prev) => prev.filter((h) => !ids.includes(h._id)))
+      await getPendingHospitals(page)
       toast.success(data.message || 'Hospitals approved!')
     } catch (err: unknown) {
       const message =
@@ -88,7 +99,7 @@ export const useAdminPending = () => {
       await axiosPrivate.delete(`/admin/hospitals/${id}`, {
         skipErrorToast: true,
       })
-      setHospitals((prev) => prev.filter((h) => h._id !== id))
+      await getPendingHospitals(page)
       toast.info('Submission rejected and removed.')
       return true
     } catch {
@@ -101,6 +112,10 @@ export const useAdminPending = () => {
     hospitals,
     setHospitals,
     isLoading,
+    page,
+    totalPages,
+    total,
+    setPage,
     getPendingHospitals,
     approveHospital,
     updateAndApprove,

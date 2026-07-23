@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react'
-import { NavLink, Outlet } from 'react-router-dom'
+import { NavLink, Outlet, useNavigate } from 'react-router-dom'
 import { AiFillHeart, AiOutlineHeart, AiOutlineSearch } from 'react-icons/ai'
 import { LocationInput } from '@/types/hospital'
 import { autocompleteHospitals } from '@/services/api'
@@ -29,6 +29,7 @@ export default function SearchForm({
   onRecentUpdate?: () => void
   onWeeklyViewsChange?: (count: number) => void
 }) {
+  const navigate = useNavigate()
   const userCoords = useGeolocation()
   const [query, setQuery] = useState('')
   const [location, setLocation] = useState<LocationInput>({
@@ -169,11 +170,9 @@ export default function SearchForm({
                   type="button"
                   className={style.suggestionItem}
                   onMouseDown={() => {
-                    setQuery(`${s.name}, ${s.city}`)
                     setDropdownOpen(false)
-                    performSearch(
-                      { typedQuery: s.name, city: s.city, country: s.state },
-                      onSearchResultsChange
+                    navigate(
+                      `/hospital/${encodeURIComponent(s.state)}/${encodeURIComponent(s.city)}/${encodeURIComponent(s.slug)}`
                     )
                   }}
                 >

@@ -1,4 +1,4 @@
-import React, { useState, useRef, useCallback, useMemo } from 'react'
+import React, { useState, useMemo } from 'react'
 import { useParams, Link } from 'react-router-dom'
 import { useCountryHospitals } from '@/hooks/useCountryHospitals'
 import HospitalCard from '@/components/hospital/HospitalCard'
@@ -13,7 +13,6 @@ const CountryRegistry: React.FC = () => {
   const { country } = useParams<{ country: string }>()
   const [searchTerm, setSearchTerm] = useState('')
   const [activeType, setActiveType] = useState('All')
-  const observerRef = useRef<IntersectionObserver | null>(null)
   const {
     hospitals,
     loading,
@@ -25,21 +24,6 @@ const CountryRegistry: React.FC = () => {
     retry,
     loadMore,
   } = useCountryHospitals(country)
-
-  // Infinite Scroll Observer
-  const lastItemRef = useCallback(
-    (node: Element | null) => {
-      if (loading || fetchingMore || page >= totalPages) return
-      if (observerRef.current) observerRef.current.disconnect()
-
-      observerRef.current = new IntersectionObserver((entries) => {
-        if (entries[0].isIntersecting) loadMore()
-      })
-
-      if (node) observerRef.current.observe(node)
-    },
-    [loading, fetchingMore, page, totalPages, loadMore]
-  )
 
   const filteredHospitals = useMemo(() => {
     return hospitals.filter((h) => {
@@ -148,26 +132,36 @@ const CountryRegistry: React.FC = () => {
               </div>
             ) : (
               !error && (
-                <div className={style.grid}>
-                  {filteredHospitals.map((h, i) => (
-                    <div
-                      key={h._id || i}
-                      ref={i === hospitals.length - 1 ? lastItemRef : null}
-                      className={style.cardWrapper}
-                    >
-                      <Motion variants={fadeUp}>
-                        <HospitalCard hospital={h} />
-                      </Motion>
-                    </div>
-                  ))}
-                </div>
+                <>
+                  <div className={style.grid}>
+                    {filteredHospitals.map((h, i) => (
+                      <div key={h._id || i} className={style.cardWrapper}>
+                        <Motion variants={fadeUp} style={{ height: '100%' }}>
+                          <HospitalCard hospital={h} />
+                        </Motion>
+                      </div>
+                    ))}
+                  </div>
+
+                  <div className={style.pagination}>
+                    {page < totalPages ? (
+                      <button
+                        onClick={loadMore}
+                        disabled={fetchingMore}
+                        className={style.loadMoreBtn}
+                      >
+                        {fetchingMore ? 'Loading...' : 'Load More Hospitals'}
+                      </button>
+                    ) : (
+                      <p className={style.endMessage}>
+                        All hospitals in {decodedCountry} have been loaded.
+                      </p>
+                    )}
+                  </div>
+                </>
               )
             )}
           </section>
-
-          {fetchingMore && (
-            <div className={style.loadingMore}>Fetching more records...</div>
-          )}
         </main>
       </div>
     </>

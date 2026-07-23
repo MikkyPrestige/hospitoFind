@@ -13,8 +13,18 @@ import { useAdminUsers } from '@/hooks/useAdminUsers'
 import styles from './styles/scss/userManagement/userManagement.module.scss'
 
 const UserManagement = () => {
-  const { users, isLoading, createUser, toggleRole, toggleStatus, deleteUser } =
-    useAdminUsers()
+  const {
+    users,
+    isLoading,
+    page,
+    totalPages,
+    total,
+    fetchUsers,
+    createUser,
+    toggleRole,
+    toggleStatus,
+    deleteUser,
+  } = useAdminUsers()
   const [searchTerm, setSearchTerm] = useState('')
   const [roleFilter, setRoleFilter] = useState('all')
   const [statusFilter, setStatusFilter] = useState('all')
@@ -183,6 +193,28 @@ const UserManagement = () => {
           </table>
         )}
       </div>
+
+      {totalPages > 1 && (
+        <div className={styles.pagination}>
+          <button
+            onClick={() => fetchUsers(page - 1)}
+            disabled={page <= 1}
+            className={styles.pageBtn}
+          >
+            Previous
+          </button>
+          <span className={styles.pageInfo}>
+            Page {page} of {totalPages} ({total} total users)
+          </span>
+          <button
+            onClick={() => fetchUsers(page + 1)}
+            disabled={page >= totalPages}
+            className={styles.pageBtn}
+          >
+            Next
+          </button>
+        </div>
+      )}
 
       {showModal && (
         <div className={styles.modalOverlay}>

@@ -509,6 +509,34 @@
   }
 }
 
+.pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 2rem;
+}
+
+.pageBtn {
+  background: var(--color-blue);
+  color: var(--color-invert);
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.pageBtn:disabled {
+  background: var(--color-gray);
+  color: var(--color-white);
+  cursor: not-allowed;
+}
+
+.pageInfo {
+  font-size: 1.2rem;
+  color: var(--text-slate);
+}
+
 @keyframes pulse {
   0% {
     opacity: 0.6;

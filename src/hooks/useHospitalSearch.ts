@@ -46,8 +46,11 @@ export function useHospitalSearch() {
 
       try {
         let url = ''
-        if (city && country) {
-          url = `city=${encodeURIComponent(city)}&state=${encodeURIComponent(country)}`
+        const trimmedCity = city?.trim()
+        const trimmedCountry = country?.trim()
+
+        if (trimmedCity && trimmedCountry) {
+          url = `city=${encodeURIComponent(trimmedCity)}&state=${encodeURIComponent(trimmedCountry)}`
         } else if (typedQuery && typedQuery.trim().length >= 2) {
           url = `term=${encodeURIComponent(typedQuery.trim())}`
         }
@@ -63,7 +66,9 @@ export function useHospitalSearch() {
             onSearchResultsChange?.(true)
           } else {
             setHospitals([])
-            setError('No facilities found matching your criteria.')
+            setError(
+              'We couldn’t find any hospitals matching your search. Please try adjusting your search terms or location.'
+            )
             onSearchResultsChange?.(false)
           }
         }

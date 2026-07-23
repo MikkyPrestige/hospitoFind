@@ -278,6 +278,7 @@
   display: grid;
   gap: 2rem;
   grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  height: 100%;
 }
 
 .cardWrapper {
@@ -287,6 +288,7 @@
   transition: all 0.3s ease;
   text-decoration: none;
   border: 1px solid var(--color-border);
+  height: 100%;
 }
 
 .cardWrapper:hover {
@@ -295,23 +297,37 @@
   border-color: var(--color-blue-light);
 }
 
-.loadingMore {
-  margin-top: 4rem;
-  color: var(--color-blue);
-  font-weight: 600;
+.pagination {
   display: flex;
-  align-items: center;
-  gap: 0.75rem;
+  justify-content: center;
+  margin: 2rem 0;
 }
 
-.loadingMore::after {
-  content: '';
-  width: 1.2rem;
-  height: 1.2rem;
-  border: 2px solid var(--color-blue);
-  border-top-color: transparent;
-  border-radius: 50%;
-  animation: spin 0.8s linear infinite;
+.loadMoreBtn {
+  padding: 0.75rem 2rem;
+  background-color: var(--color-blue);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 1.3rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.loadMoreBtn:hover {
+  background-color: var(--color-blue);
+}
+
+.loadMoreBtn:disabled {
+  background-color: var(--color-gray);
+  cursor: not-allowed;
+}
+
+.endMessage {
+  color: var(--text-slate);
+  font-size: 1.2rem;
+  text-align: center;
 }
 
 @media (min-width: 768px) {

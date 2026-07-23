@@ -157,6 +157,11 @@ export interface CountryListEntry {
   continent: string
 }
 
+export interface CountrySummary {
+  country: string
+  totalHospitals: number
+}
+
 export interface RawSharedItem {
   hospitalId: string
   phoneNumber?: string

@@ -1,4 +1,3 @@
-import { useState } from 'react'
 import {
   FiClock,
   FiCheckCircle,
@@ -14,27 +13,27 @@ import {
 import { useUserSubmissions } from '@/hooks/useUserSubmissions'
 import styles from './styles/scss/userSubmissions/userSubmissions.module.scss'
 
-const ITEMS_PER_PAGE = 9
-
 const UserSubmissions = () => {
-  const [currentPage, setCurrentPage] = useState(1)
-  const { submissions, loading, error, refetch } = useUserSubmissions()
-
-  const indexOfLastItem = currentPage * ITEMS_PER_PAGE
-  const indexOfFirstItem = indexOfLastItem - ITEMS_PER_PAGE
-  const currentItems = submissions.slice(indexOfFirstItem, indexOfLastItem)
-  const totalPages = Math.ceil(submissions.length / ITEMS_PER_PAGE)
+  const {
+    submissions,
+    loading,
+    error,
+    page,
+    totalPages,
+    total,
+    refetch, // alias for fetchSubmissions
+  } = useUserSubmissions()
 
   const handleNext = () => {
-    if (currentPage < totalPages) {
-      setCurrentPage((prev) => prev + 1)
+    if (page < totalPages) {
+      refetch(page + 1)
       window.scrollTo({ top: 0, behavior: 'smooth' })
     }
   }
 
   const handlePrev = () => {
-    if (currentPage > 1) {
-      setCurrentPage((prev) => prev - 1)
+    if (page > 1) {
+      refetch(page - 1)
       window.scrollTo({ top: 0, behavior: 'smooth' })
     }
   }
@@ -77,7 +76,7 @@ const UserSubmissions = () => {
             We couldn't retrieve your submission data securely. Please check
             your connection and try again.
           </p>
-          <button onClick={refetch} className={styles.retryBtn}>
+          <button onClick={() => refetch(page)} className={styles.retryBtn}>
             Retry Connection
           </button>
         </div>
@@ -95,9 +94,9 @@ const UserSubmissions = () => {
             contributed.
           </p>
         </div>
-        {!loading && submissions.length > 0 && (
+        {!loading && total > 0 && (
           <div className={styles.countBadge}>
-            <span className={styles.countNumber}>{submissions.length}</span>
+            <span className={styles.countNumber}>{total}</span>
             <span className={styles.countLabel}>Total</span>
           </div>
         )}
@@ -119,7 +118,7 @@ const UserSubmissions = () => {
       ) : submissions.length > 0 ? (
         <>
           <div className={styles.list}>
-            {currentItems.map((hosp) => (
+            {submissions.map((hosp) => (
               <div
                 key={hosp._id}
                 className={`${styles.subCard} ${hosp.verified ? styles.cardApproved : styles.cardPending}`}
@@ -157,20 +156,20 @@ const UserSubmissions = () => {
             <div className={styles.pagination}>
               <button
                 onClick={handlePrev}
-                disabled={currentPage === 1}
+                disabled={page <= 1}
                 className={styles.pageBtn}
               >
                 <FiChevronLeft /> Previous
               </button>
 
               <span className={styles.pageInfo}>
-                Page <strong>{currentPage}</strong> of{' '}
-                <strong>{totalPages}</strong>
+                Page <strong>{page}</strong> of <strong>{totalPages}</strong> (
+                {total} total)
               </span>
 
               <button
                 onClick={handleNext}
-                disabled={currentPage === totalPages}
+                disabled={page >= totalPages}
                 className={styles.pageBtn}
               >
                 Next <FiChevronRight />

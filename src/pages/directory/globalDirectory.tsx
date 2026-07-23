@@ -1,9 +1,9 @@
 import { useState, useMemo } from 'react'
-import { Link } from 'react-router-dom'
 import { FiSearch, FiMapPin, FiGlobe } from 'react-icons/fi'
 import { useGlobalDirectory } from '@/hooks/useGlobalDirectory'
 import CountryCard from '@/components/hospital/CountryCard'
 import Motion from '@/components/ui/Motion'
+import MotionLink from '@/components/ui/MotionLink'
 import { SEOHelmet } from '@/components/ui/SeoHelmet'
 import AnimatedLoader from '@/components/ui/AnimatedLoader'
 import { fadeUp, zoomIn, sectionReveal } from '@/utils/animations'
@@ -137,16 +137,15 @@ const GlobalDirectory = () => {
             ) : (
               !error && (
                 <div className={style.grid}>
-                  {filtered.map(({ country, hospitals }) => (
-                    <Motion
-                      as={Link}
+                  {filtered.map(({ country, totalHospitals }) => (
+                    <MotionLink
                       key={country}
                       to={`/directory/${encodeURIComponent(country.toLowerCase())}`}
                       className={style.cardLink}
                       variants={zoomIn}
                     >
-                      <CountryCard country={country} count={hospitals.length} />
-                    </Motion>
+                      <CountryCard country={country} count={totalHospitals} />
+                    </MotionLink>
                   ))}
                 </div>
               )

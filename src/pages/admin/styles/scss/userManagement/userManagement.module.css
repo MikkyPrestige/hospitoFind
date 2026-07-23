@@ -201,7 +201,7 @@
 }
 
 .emailCell {
-  color: var(--icon-gray);
+  color: var(--text-slate);
   font-size: 0.95rem;
   font-family: var(--font-inter);
 }
@@ -297,11 +297,39 @@
 }
 .suspendedRow .username,
 .suspendedRow .emailCell {
-  color: var(--icon-gray);
+  color: var(--input-error-border);
   text-decoration: line-through;
 }
 .suspendedRow .avatar {
   opacity: 0.5;
+}
+
+/* --- Pagination --- */
+.pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 2rem;
+}
+
+.pageBtn {
+  background: var(--color-blue);
+  color: var(--color-invert);
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 6px;
+  cursor: pointer;
+}
+.pageBtn:disabled {
+  background: var(--color-gray);
+  color: var(--color-white);
+  cursor: not-allowed;
+}
+
+.pageInfo {
+  font-size: 1.2rem;
+  color: var(--text-slate);
 }
 
 /* --- Modal --- */
