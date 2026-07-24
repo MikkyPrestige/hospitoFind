@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import axios from 'axios'
 import { TiExport, TiTick } from 'react-icons/ti'
 import { exportHospital } from '@/services/api'
 import { SearchProps } from '@/types/hospital'
@@ -53,8 +54,13 @@ const ExportButton = ({ searchParams }: SearchProps) => {
       }
 
       setTimeout(() => setDownloaded(false), 4000)
-    } catch {
-      setToast({ message: 'Export failed. Please try again.', type: 'error' })
+    } catch (err: unknown) {
+      let message = 'Export failed. Please try again.'
+      if (axios.isAxiosError(err) && err.response?.status === 429) {
+        message =
+          'Too many export requests. Please wait a moment and try again.'
+      }
+      setToast({ message, type: 'error' })
     } finally {
       setExporting(false)
       setTimeout(() => setToast(null), 5000)

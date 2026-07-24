@@ -50,7 +50,14 @@ export const useGlobalDirectory = () => {
       try {
         setLoading(true)
         const res = await fetch(`${BASE_URL}/hospitals/explore`)
-        if (!res.ok) throw new Error('Network response was not ok')
+        if (!res.ok) {
+          if (res.status === 429) {
+            throw new Error(
+              'Too many requests. Please wait a moment and try again.'
+            )
+          }
+          throw new Error('Network response was not ok')
+        }
         const data = await res.json()
         setCountries(data)
       } catch (err: unknown) {
