@@ -1,32 +1,43 @@
 import axios from 'axios'
 import { useState, useCallback } from 'react'
 import useAxiosPrivate from '@/hooks/useAxiosPrivate'
-import { Hospital } from '@/types/hospital'
+import { Hospital, HospitalFormData } from '@/types/hospital'
 import { toast } from 'react-toastify'
-import { HospitalFormData } from '@/types/hospital'
 
 export const useAdminHospitals = () => {
   const [hospitals, setHospitals] = useState<Hospital[]>([])
   const [isLoading, setIsLoading] = useState(true)
+  const [page, setPage] = useState(1)
+  const [totalPages, setTotalPages] = useState(1)
+  const [total, setTotal] = useState(0)
   const axiosPrivate = useAxiosPrivate()
 
-  const fetchHospitals = useCallback(async () => {
-    try {
-      setIsLoading(true)
-      const response = await axiosPrivate.get('/admin/hospitals', {
-        skipErrorToast: true,
-      })
-      setHospitals(response.data)
-    } catch (err: unknown) {
-      const message =
-        axios.isAxiosError(err) && err.response?.data?.message
-          ? err.response.data.message
-          : 'Failed to securely load the hospital directory.'
-      toast.error(message)
-    } finally {
-      setIsLoading(false)
-    }
-  }, [axiosPrivate])
+  const fetchHospitals = useCallback(
+    async (requestedPage?: number) => {
+      const currentPage = requestedPage || page
+      try {
+        setIsLoading(true)
+        const response = await axiosPrivate.get('/admin/hospitals', {
+          params: { page: currentPage },
+          skipErrorToast: true,
+        })
+        const data = response.data
+        setHospitals(data.hospitals || [])
+        setPage(data.page || currentPage)
+        setTotalPages(data.totalPages || 1)
+        setTotal(data.total || 0)
+      } catch (err: unknown) {
+        const message =
+          axios.isAxiosError(err) && err.response?.data?.message
+            ? err.response.data.message
+            : 'Failed to securely load the hospital directory.'
+        toast.error(message)
+      } finally {
+        setIsLoading(false)
+      }
+    },
+    [axiosPrivate, page]
+  )
 
   const submitHospital = async (
     isEditing: boolean,
@@ -45,7 +56,7 @@ export const useAdminHospitals = () => {
         })
         toast.success('New hospital securely added to the directory.')
       }
-      await fetchHospitals()
+      await fetchHospitals(page)
       return true
     } catch (err: unknown) {
       const message =
@@ -53,6 +64,7 @@ export const useAdminHospitals = () => {
           ? err.response.data.message
           : 'Failed to securely load the hospital directory.'
       toast.error(message)
+      return false
     }
   }
 
@@ -61,12 +73,10 @@ export const useAdminHospitals = () => {
       await axiosPrivate.patch(
         `/admin/hospitals/${id}/toggle-status`,
         {},
-        {
-          skipErrorToast: true,
-        }
+        { skipErrorToast: true }
       )
       toast.success('Hospital verification status updated.')
-      await fetchHospitals()
+      await fetchHospitals(page)
     } catch {
       toast.error(
         'Status update failed. Please verify your connection and try again.'
@@ -76,11 +86,11 @@ export const useAdminHospitals = () => {
 
   const removeHospital = async (id: string) => {
     try {
-      await axiosPrivate.delete(`/hospitals/${id}`, {
+      await axiosPrivate.delete(`/admin/hospitals/${id}`, {
         skipErrorToast: true,
       })
       toast.success('Hospital record permanently removed.')
-      await fetchHospitals()
+      await fetchHospitals(page)
     } catch {
       toast.error(
         'Deletion failed. Ensure you have the correct administrative permissions.'
@@ -91,6 +101,10 @@ export const useAdminHospitals = () => {
   return {
     hospitals,
     isLoading,
+    page,
+    totalPages,
+    total,
+    setPage,
     fetchHospitals,
     submitHospital,
     toggleStatus,

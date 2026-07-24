@@ -17,7 +17,7 @@ export const useAdminDashboard = () => {
     try {
       setLoading(true)
       setError(null)
-      const response = await axiosPrivate.get('/hospitals/admin/stats', {
+      const response = await axiosPrivate.get('/admin/stats', {
         skipErrorToast: true,
       })
       setStats(response.data)

@@ -47,8 +47,12 @@ const FindHospital = () => {
     locationName,
     emptyResultQuery,
     geocodedCenter,
+    page,
+    totalPages,
+    total,
     performSearch,
     fetchNearby,
+    loadMore,
   } = useHospitalDiscovery()
 
   const updateMapMarkers = useCallback(
@@ -225,27 +229,40 @@ const FindHospital = () => {
     [theme]
   )
 
+  // Refs to hold the latest values without triggering effect re-runs
+  const mapInitialized = useRef(false)
+  const themeRef = useRef(theme)
+  const fetchNearbyRef = useRef(fetchNearby)
+  const updateMapMarkersRef = useRef(updateMapMarkers)
+
+  // Keep refs in sync
   useEffect(() => {
-    if (map) return
+    themeRef.current = theme
+  }, [theme])
+
+  useEffect(() => {
+    fetchNearbyRef.current = fetchNearby
+  }, [fetchNearby])
+
+  useEffect(() => {
+    updateMapMarkersRef.current = updateMapMarkers
+  }, [updateMapMarkers])
+
+  useEffect(() => {
+    if (mapInitialized.current || !mapContainer.current) return
 
     const mapInstance = new mapboxgl.Map({
-      container: mapContainer.current!,
-      style: theme === 'dark' ? DARK_STYLE : LIGHT_STYLE,
+      container: mapContainer.current,
+      style: themeRef.current === 'dark' ? DARK_STYLE : LIGHT_STYLE,
       center: [0, 0],
       zoom: 1.5,
       attributionControl: false,
       accessToken,
     })
 
-    // Suppress noisy tile fetch errors in console
     mapInstance.on('error', (e) => {
-      const isTileFetchError =
-        e.error &&
-        e.error.message &&
-        e.error.message.startsWith('Failed to fetch')
-      if (isTileFetchError) {
+      if (e.error?.message?.startsWith('Failed to fetch')) {
         e.preventDefault()
-        return
       }
     })
 
@@ -255,22 +272,35 @@ const FindHospital = () => {
       showUserHeading: true,
       fitBoundsOptions: { maxZoom: 10 },
     })
-
     mapInstance.addControl(geolocate, 'top-left')
 
     geolocate.on('geolocate', async (e?: object) => {
       if (!e) return
       const { latitude, longitude } = (e as { coords: GeolocationCoordinates })
         .coords
-      const results = await fetchNearby(latitude, longitude)
+      const results = await fetchNearbyRef.current(latitude, longitude)
       if (results.length > 0) {
-        updateMapMarkers(results, mapInstance)
+        updateMapMarkersRef.current(results, mapInstance)
       }
     })
 
+    const observer = new ResizeObserver(() => {
+      mapInstance.resize()
+    })
+    observer.observe(mapContainer.current)
+
+    setTimeout(() => {
+      mapInstance.resize()
+    }, 200)
+
     setMap(mapInstance)
-    return () => mapInstance.remove()
-  }, [map, theme, fetchNearby, updateMapMarkers])
+
+    return () => {
+      observer.disconnect()
+      mapInstance.remove()
+      setMap(null)
+    }
+  }, [])
 
   useEffect(() => {
     if (!map) return
@@ -473,33 +503,36 @@ const FindHospital = () => {
                 >
                   <div className={style.resultsMeta}>
                     <h2 className={style.heading}>
-                      {hospitals.length === 1 &&
-                      hospitals[0].name
+                      {total === 1 &&
+                      hospitals[0]?.name
                         .toLowerCase()
                         .includes(searchedTerm.toLowerCase()) ? (
                         <>
+                          {' '}
                           Match found:{' '}
                           <span className={style.highlight}>
                             "{hospitals[0].name}"
-                          </span>
+                          </span>{' '}
                         </>
                       ) : searchMode === 'nearby' ? (
                         <>
-                          {hospitals.length} facilities near{' '}
+                          {' '}
+                          {total} facilities near{' '}
                           {locationName ? (
                             <span className={style.highlight}>
                               {locationName}
                             </span>
                           ) : (
                             'you'
-                          )}
+                          )}{' '}
                         </>
                       ) : (
                         <>
-                          {hospitals.length} facilities in{' '}
+                          {' '}
+                          {total} facilities in{' '}
                           <span className={style.highlight}>
                             "{searchedTerm || term}"
-                          </span>
+                          </span>{' '}
                         </>
                       )}
                     </h2>
@@ -519,6 +552,16 @@ const FindHospital = () => {
                       </Motion>
                     ))}
                   </div>
+
+                  {page < totalPages && (
+                    <button
+                      onClick={loadMore}
+                      disabled={searching}
+                      className={style.loadMoreBtn}
+                    >
+                      {searching ? 'Loading...' : 'Load More Hospitals'}
+                    </button>
+                  )}
                 </Motion>
               ) : emptyResultQuery ? (
                 <Motion variants={fadeUp} className={style.emptyState}>
