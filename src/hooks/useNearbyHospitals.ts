@@ -46,6 +46,8 @@ export const useNearbyHospitals = ({
       setMessage(message)
       setHospitals([])
       setError(true)
+    } finally {
+      setLoading(false)
     }
   }, [])
 
@@ -53,7 +55,6 @@ export const useNearbyHospitals = ({
   useEffect(() => {
     if (triggerLocation > 0) {
       if (!navigator.geolocation) {
-        // eslint-disable-next-line react-hooks/set-state-in-effect
         setMessage('Geolocation not supported.')
         fetchHospitals()
         return
