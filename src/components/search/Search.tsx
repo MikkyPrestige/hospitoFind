@@ -49,7 +49,10 @@ export default function SearchForm({
     error,
     countries,
     loadingCountries,
+    page,
+    totalPages,
     performSearch,
+    loadMore,
     clearSearch,
   } = useHospitalSearch()
 
@@ -291,6 +294,16 @@ export default function SearchForm({
           </div>
         )}
       </div>
+
+      {!loading && hospitals.length > 0 && page < totalPages && (
+        <button
+          onClick={loadMore}
+          disabled={loading}
+          className={style.loadMoreBtn}
+        >
+          {loading ? 'Loading...' : 'Load More Hospitals'}
+        </button>
+      )}
 
       {!loading && hospitals.length > 0 && (
         <Motion variants={fadeUp} className={style.actionButtons}>

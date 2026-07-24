@@ -1,5 +1,5 @@
 import { useState, useEffect, useCallback } from 'react'
-import { Hospital } from '@/types/hospital'
+import { Hospital, SearchParams } from '@/types/hospital'
 import { api } from '@/services/api'
 
 export function useHospitalSearch() {
@@ -10,6 +10,10 @@ export function useHospitalSearch() {
     { country: string; hospitals: Hospital[] }[]
   >([])
   const [loadingCountries, setLoadingCountries] = useState(true)
+  const [page, setPage] = useState(1)
+  const [totalPages, setTotalPages] = useState(1)
+  const [total, setTotal] = useState(0)
+  const [lastParams, setLastParams] = useState<SearchParams | null>(null)
 
   useEffect(() => {
     let mounted = true
@@ -33,43 +37,56 @@ export function useHospitalSearch() {
 
   const performSearch = useCallback(
     async (
-      {
-        typedQuery,
-        city,
-        country,
-      }: { typedQuery?: string; city?: string; country?: string },
-      onSearchResultsChange?: (hasResults: boolean) => void
+      params: SearchParams,
+      onSearchResultsChange?: (hasResults: boolean) => void,
+      pageToFetch: number = 1
     ) => {
       setLoading(true)
       setError('')
-      setHospitals([])
+      if (pageToFetch === 1) setHospitals([])
+      setLastParams(params)
 
       try {
         let url = ''
-        const trimmedCity = city?.trim()
-        const trimmedCountry = country?.trim()
+        const trimmedCity = params.city?.trim()
+        const trimmedCountry = params.country?.trim()
 
         if (trimmedCity && trimmedCountry) {
           url = `city=${encodeURIComponent(trimmedCity)}&state=${encodeURIComponent(trimmedCountry)}`
-        } else if (typedQuery && typedQuery.trim().length >= 2) {
-          url = `term=${encodeURIComponent(typedQuery.trim())}`
+        } else if (params.typedQuery && params.typedQuery.trim().length >= 2) {
+          url = `term=${encodeURIComponent(params.typedQuery.trim())}`
         }
 
         if (url) {
-          const response = await api.get(`/hospitals/find?${url}`, {
-            skipErrorToast: true,
-          })
+          const response = await api.get(
+            `/hospitals/find?${url}&page=${pageToFetch}&limit=15`,
+            {
+              skipErrorToast: true,
+            }
+          )
           const data = response.data
 
-          if (data && data.length > 0) {
-            setHospitals(data)
+          const results = data.results || []
+          const total = data.total || 0
+          const totalPages = data.totalPages || 1
+          const currentPage = data.page || pageToFetch
+
+          if (results.length > 0) {
+            setHospitals((prev) =>
+              pageToFetch === 1 ? results : [...prev, ...results]
+            )
+            setTotal(total)
+            setTotalPages(totalPages)
+            setPage(currentPage)
             onSearchResultsChange?.(true)
           } else {
-            setHospitals([])
-            setError(
-              'We couldn’t find any hospitals matching your search. Please try adjusting your search terms or location.'
-            )
-            onSearchResultsChange?.(false)
+            if (pageToFetch === 1) {
+              setHospitals([])
+              setError(
+                'We couldn’t find any hospitals matching your search. Please try adjusting your search terms or location.'
+              )
+              onSearchResultsChange?.(false)
+            }
           }
         }
       } catch (err) {
@@ -83,9 +100,18 @@ export function useHospitalSearch() {
     []
   )
 
+  const loadMore = useCallback(() => {
+    if (lastParams && page < totalPages && !loading) {
+      performSearch(lastParams, undefined, page + 1)
+    }
+  }, [lastParams, page, totalPages, loading, performSearch])
+
   const clearSearch = useCallback(() => {
     setHospitals([])
     setError('')
+    setPage(1)
+    setTotalPages(1)
+    setTotal(0)
   }, [])
 
   return {
@@ -94,7 +120,11 @@ export function useHospitalSearch() {
     error,
     countries,
     loadingCountries,
+    page,
+    totalPages,
+    total,
     performSearch,
+    loadMore,
     clearSearch,
   }
 }

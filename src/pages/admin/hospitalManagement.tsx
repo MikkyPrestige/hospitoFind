@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import {
   FiPlus,
   FiEdit,
@@ -10,6 +10,8 @@ import {
   FiClock,
   FiActivity,
   FiXCircle,
+  FiChevronLeft,
+  FiChevronRight,
 } from 'react-icons/fi'
 import { useAdminHospitals } from '@/hooks/useAdminHospitals'
 import { Hospital, HospitalFormData } from '@/types/hospital'
@@ -20,6 +22,9 @@ const HospitalManagement = () => {
   const {
     hospitals,
     isLoading,
+    page,
+    totalPages,
+    total,
     fetchHospitals,
     submitHospital,
     toggleStatus,
@@ -49,10 +54,15 @@ const HospitalManagement = () => {
     isFeatured: false,
     verified: false,
   })
+  const fetchHospitalsRef = useRef(fetchHospitals)
 
   useEffect(() => {
-    fetchHospitals()
+    fetchHospitalsRef.current = fetchHospitals
   }, [fetchHospitals])
+
+  useEffect(() => {
+    fetchHospitalsRef.current()
+  }, [])
 
   const handleOpenAdd = () => {
     setIsEditing(false)
@@ -105,13 +115,10 @@ const HospitalManagement = () => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
     const success = await submitHospital(isEditing, selectedId, formData)
-    if (success) {
-      setShowModal(false)
-    }
+    if (success) setShowModal(false)
   }
-  const handleToggleStatus = (id: string) => {
-    toggleStatus(id)
-  }
+
+  const handleToggleStatus = (id: string) => toggleStatus(id)
 
   const handleDelete = (id: string, name: string) => {
     if (
@@ -128,13 +135,10 @@ const HospitalManagement = () => {
       const matchesSearch =
         h.name?.toLowerCase().includes(searchTerm.toLowerCase()) ||
         h.address?.city?.toLowerCase().includes(searchTerm.toLowerCase())
-
       const isVerified = h.verified === true
       const isPending = h.verified === false || h.verified === undefined
-
       if (filter === 'verified') return matchesSearch && isVerified
       if (filter === 'unverified') return matchesSearch && isPending
-
       return matchesSearch
     })
     .sort((a, b) => {
@@ -150,7 +154,7 @@ const HospitalManagement = () => {
         <div className={styles.titleRow}>
           <div>
             <h1>Hospital Directory</h1>
-            <p>Managing {hospitals.length} entries in the global database</p>
+            <p>Managing {total} entries in the global database</p>
           </div>
           <button className={styles.addBtn} onClick={handleOpenAdd}>
             <FiPlus /> Add New Hospital
@@ -168,7 +172,6 @@ const HospitalManagement = () => {
             onChange={(e) => setSearchTerm(e.target.value)}
           />
         </div>
-
         <div className={styles.filterGroup}>
           <div className={styles.filterBox}>
             <FiFilter />
@@ -178,7 +181,6 @@ const HospitalManagement = () => {
               <option value="unverified">Pending Review</option>
             </select>
           </div>
-
           <div className={styles.filterBox}>
             <FiActivity />
             <select value={sortBy} onChange={(e) => setSortBy(e.target.value)}>
@@ -242,7 +244,6 @@ const HospitalManagement = () => {
                     >
                       {h.verified ? <FiXCircle /> : <FiCheckCircle />}
                     </button>
-
                     <button
                       onClick={() => handleOpenEdit(h)}
                       className={styles.editBtn}
@@ -264,6 +265,28 @@ const HospitalManagement = () => {
           </table>
         )}
       </div>
+
+      {totalPages > 1 && (
+        <div className={styles.pagination}>
+          <button
+            onClick={() => fetchHospitals(page - 1)}
+            disabled={page <= 1}
+            className={styles.pageBtn}
+          >
+            <FiChevronLeft /> Previous
+          </button>
+          <span className={styles.pageInfo}>
+            Page {page} of {totalPages} ({total} total)
+          </span>
+          <button
+            onClick={() => fetchHospitals(page + 1)}
+            disabled={page >= totalPages}
+            className={styles.pageBtn}
+          >
+            Next <FiChevronRight />
+          </button>
+        </div>
+      )}
 
       {showModal && (
         <div className={styles.modalOverlay}>

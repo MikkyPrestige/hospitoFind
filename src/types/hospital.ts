@@ -106,6 +106,12 @@ export interface SearchProps {
   }
 }
 
+export interface SearchParams {
+  typedQuery?: string
+  city?: string
+  country?: string
+}
+
 export interface SearchState {
   hospitals: Hospital[]
   searching: boolean
@@ -114,6 +120,20 @@ export interface SearchState {
   locationName: string | null
   emptyResultQuery: string | null
   geocodedCenter: [number, number] | null
+}
+
+export interface DiscoveryState {
+  hospitals: Hospital[]
+  searching: boolean
+  error: string
+  searchMode: 'term' | 'nearby' | ''
+  locationName: string | null
+  emptyResultQuery: string | null
+  geocodedCenter: [number, number] | null
+  page: number
+  totalPages: number
+  total: number
+  lastParams: { term?: string; city?: string; state?: string } | null
 }
 
 export interface UseHospitalDetailsProps {
