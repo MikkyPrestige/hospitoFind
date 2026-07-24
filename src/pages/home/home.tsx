@@ -135,10 +135,10 @@ const Home = () => {
                 {!loading && error && (
                   <span className={style.errorValue}>--</span>
                 )}
-                {!loading && !error && typeof totalHospitals === 'number'
-                  ? `${totalHospitals.toLocaleString()}+`
-                  : !loading &&
-                    !error && <span className={style.errorValue}>--</span>}
+                {!loading &&
+                  !error &&
+                  totalHospitals !== null &&
+                  `${totalHospitals.toLocaleString()}+`}
               </span>
               <span className={style.statLabel}>Verified Hospitals</span>
             </div>
@@ -148,10 +148,10 @@ const Home = () => {
                 {!loading && error && (
                   <span className={style.errorValue}>--</span>
                 )}
-                {!loading && !error && typeof totalCountries === 'number'
-                  ? `${totalCountries}+`
-                  : !loading &&
-                    !error && <span className={style.errorValue}>--</span>}
+                {!loading &&
+                  !error &&
+                  totalCountries !== null &&
+                  `${totalCountries}+`}
               </span>
               <span className={style.statLabel}>Countries Covered</span>
             </div>
