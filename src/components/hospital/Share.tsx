@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import axios from 'axios'
 import { AnimatePresence } from 'framer-motion'
 import { CgShare, CgCopy, CgClose } from 'react-icons/cg'
 import { shareHospital } from '@/services/api'
@@ -44,8 +45,12 @@ const ShareButton = ({ searchParams }: SearchProps) => {
       } else {
         setToast({ message: 'Link generated successfully', type: 'success' })
       }
-    } catch {
-      setToast({ message: 'Failed to generate link', type: 'error' })
+    } catch (err: unknown) {
+      let message = 'Failed to generate link'
+      if (axios.isAxiosError(err) && err.response?.status === 429) {
+        message = 'Too many share requests. Please wait a moment and try again.'
+      }
+      setToast({ message, type: 'error' })
     } finally {
       setGenerating(false)
       setTimeout(() => setToast(null), 5000)

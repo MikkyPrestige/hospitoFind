@@ -1,4 +1,5 @@
 import { useState, useEffect, useCallback, useMemo } from 'react'
+import axios from 'axios'
 import { HospitalResponse, Hospital } from '@/types/hospital'
 import { BASE_URL } from '@/config/api'
 
@@ -37,8 +38,12 @@ export const useCountryHospitals = (country: string | undefined) => {
       )
       setTotalPages(total)
     } catch (err: unknown) {
-      const message =
-        err instanceof Error ? err.message : 'An unexpected error occurred.'
+      let message = 'An unexpected error occurred.'
+      if (axios.isAxiosError(err) && err.response?.status === 429) {
+        message = 'Too many requests. Please wait a moment and try again.'
+      } else if (err instanceof Error) {
+        message = err.message
+      }
       setError(message)
     } finally {
       setLoading(false)

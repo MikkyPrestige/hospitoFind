@@ -98,10 +98,15 @@ export const useHospitalDiscovery = () => {
         return { data, displayString }
       } catch (err) {
         console.error('Search Error:', err)
+        let message =
+          'We encountered an issue searching for hospitals. Please try again.'
+        if (axios.isAxiosError(err) && err.response?.status === 429) {
+          message =
+            'Too many search requests. Please wait a moment and try again.'
+        }
         setState((prev) => ({
           ...prev,
-          error:
-            'We encountered an issue searching for hospitals. Please try again.',
+          error: message,
           searching: false,
         }))
         return { data: [], displayString: '' }

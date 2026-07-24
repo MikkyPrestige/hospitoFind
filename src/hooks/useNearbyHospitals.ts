@@ -1,4 +1,5 @@
 import { useState, useEffect, useCallback, useRef } from 'react'
+import axios from 'axios'
 import { api } from '@/services/api'
 import { NearbyHospital, UseNearbyHospitalsProps } from '@/types/hospital'
 
@@ -37,13 +38,14 @@ export const useNearbyHospitals = ({
       else if (results.length === 0) setMessage('No hospitals found.')
     } catch (err) {
       console.error('Proximity Fetch Error:', err)
-      setMessage(
+      let message =
         'Could not load hospitals. Please check your secure connection.'
-      )
+      if (axios.isAxiosError(err) && err.response?.status === 429) {
+        message = 'Too many requests. Please wait a moment and try again.'
+      }
+      setMessage(message)
       setHospitals([])
       setError(true)
-    } finally {
-      setLoading(false)
     }
   }, [])
 
@@ -51,6 +53,7 @@ export const useNearbyHospitals = ({
   useEffect(() => {
     if (triggerLocation > 0) {
       if (!navigator.geolocation) {
+        // eslint-disable-next-line react-hooks/set-state-in-effect
         setMessage('Geolocation not supported.')
         fetchHospitals()
         return

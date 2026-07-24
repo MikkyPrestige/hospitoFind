@@ -1,4 +1,6 @@
 import { useState, useEffect, useCallback } from 'react'
+import axios from 'axios'
+import { toast } from 'react-toastify'
 import { Hospital, SearchParams } from '@/types/hospital'
 import { api } from '@/services/api'
 
@@ -24,8 +26,11 @@ export function useHospitalSearch() {
         })
         if (mounted)
           setCountries(Array.isArray(response.data) ? response.data : [])
-      } catch {
+      } catch (err: unknown) {
         if (mounted) setCountries([])
+        if (axios.isAxiosError(err) && err.response?.status === 429) {
+          toast.error('Too many requests. Please wait a moment and try again.')
+        }
       } finally {
         if (mounted) setLoadingCountries(false)
       }
@@ -91,7 +96,12 @@ export function useHospitalSearch() {
         }
       } catch (err) {
         console.error(err)
-        setError('Unable to process search request.')
+        let message = 'Unable to process search request.'
+        if (axios.isAxiosError(err) && err.response?.status === 429) {
+          message =
+            'Too many search requests. Please wait a moment and try again.'
+        }
+        setError(message)
         onSearchResultsChange?.(false)
       } finally {
         setLoading(false)
