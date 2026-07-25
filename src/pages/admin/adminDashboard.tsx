@@ -15,6 +15,7 @@ import { useAdminDashboard } from '@/hooks/useAdminDashboard'
 import useLogout from '@/hooks/useLogout'
 import GoogleImport from './googleImport'
 import OsmImport from './OsmImport'
+import SpellDictionaryRebuild from '@/components/admin/SpellDictionaryRebuild'
 import ThemeToggle from '@/components/ui/ThemeToggle'
 import styles from './styles/scss/adminDashboard/adminDashboard.module.scss'
 
@@ -174,6 +175,8 @@ const AdminDashboard = () => {
             </div>
             <FiArrowRight className={styles.navArrow} />
           </Link>
+
+          <SpellDictionaryRebuild />
         </div>
       </section>
 
