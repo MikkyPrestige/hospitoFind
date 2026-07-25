@@ -127,6 +127,7 @@ export interface DiscoveryState {
   searching: boolean
   error: string
   searchMode: 'term' | 'nearby' | ''
+  correctedTerm?: string | null
   locationName: string | null
   emptyResultQuery: string | null
   geocodedCenter: [number, number] | null

@@ -57,6 +57,7 @@ export const useHospitalDiscovery = () => {
           }
         )
         const data = response.data
+        const correctedTerm = data?.correctedTerm || null
 
         if (!data || !data.results || data.results.length === 0) {
           let center: [number, number] | null = null
@@ -78,6 +79,7 @@ export const useHospitalDiscovery = () => {
             emptyResultQuery: displayString,
             geocodedCenter: center,
             searching: false,
+            correctedTerm,
             totalPages: data?.totalPages || 1,
             total: data?.total || 0,
           }))
@@ -91,6 +93,7 @@ export const useHospitalDiscovery = () => {
               ? data.results
               : [...prev.hospitals, ...data.results],
           searching: false,
+          correctedTerm,
           page: data.page,
           totalPages: data.totalPages,
           total: data.total,

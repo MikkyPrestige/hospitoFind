@@ -16,6 +16,7 @@ export function useHospitalSearch() {
   const [totalPages, setTotalPages] = useState(1)
   const [total, setTotal] = useState(0)
   const [lastParams, setLastParams] = useState<SearchParams | null>(null)
+  const [correctedTerm, setCorrectedTerm] = useState<string | null>(null)
 
   useEffect(() => {
     let mounted = true
@@ -70,6 +71,8 @@ export function useHospitalSearch() {
             }
           )
           const data = response.data
+          const corrected = data?.correctedTerm || null
+          setCorrectedTerm(corrected)
 
           const results = data.results || []
           const total = data.total || 0
@@ -122,6 +125,7 @@ export function useHospitalSearch() {
     setPage(1)
     setTotalPages(1)
     setTotal(0)
+    setCorrectedTerm(null)
   }, [])
 
   return {
@@ -134,6 +138,7 @@ export function useHospitalSearch() {
     totalPages,
     total,
     performSearch,
+    correctedTerm,
     loadMore,
     clearSearch,
   }

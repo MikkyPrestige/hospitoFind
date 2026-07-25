@@ -193,6 +193,24 @@
   color: var(--color-blue);
 }
 
+.correctionNotice {
+  font-size: 1.2rem;
+  color: var(--color-gray);
+  font-style: italic;
+  margin-top: 0.25rem;
+  margin-bottom: 0.5rem;
+
+  strong {
+    font-weight: 600;
+    color: var(--color-black);
+  }
+
+  em {
+    font-style: normal;
+    text-decoration: line-through;
+  }
+}
+
 .subtitle {
   font-size: 1.2rem;
   color: var(--color-gray);

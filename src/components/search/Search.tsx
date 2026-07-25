@@ -52,6 +52,7 @@ export default function SearchForm({
     page,
     totalPages,
     performSearch,
+    correctedTerm,
     loadMore,
     clearSearch,
   } = useHospitalSearch()
@@ -238,6 +239,13 @@ export default function SearchForm({
           />
         )}
         {!loading && error && <div className={style.error}>{error}</div>}
+
+        {correctedTerm && query && correctedTerm !== query && (
+          <p className={style.correctionNotice}>
+            Showing results for <strong>{correctedTerm}</strong> (corrected from{' '}
+            <em>{query}</em>)
+          </p>
+        )}
 
         {!loading && hospitals.length > 0 && (
           <div className={style.resultsGrid}>

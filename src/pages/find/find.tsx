@@ -46,6 +46,7 @@ const FindHospital = () => {
     searchMode,
     locationName,
     emptyResultQuery,
+    correctedTerm,
     geocodedCenter,
     page,
     totalPages,
@@ -536,6 +537,14 @@ const FindHospital = () => {
                         </>
                       )}
                     </h2>
+                    {correctedTerm &&
+                      searchedTerm &&
+                      correctedTerm !== searchedTerm && (
+                        <p className={style.correctionNotice}>
+                          Showing results for <strong>{correctedTerm}</strong>{' '}
+                          (corrected from <em>{searchedTerm}</em>)
+                        </p>
+                      )}
                     <p className={style.subtitle}>
                       Connect with top-rated medical centers and verified
                       healthcare providers.
