@@ -141,6 +141,30 @@
   }
 }
 
+.maintenanceRow {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  margin-top: 1.5rem;
+
+  > div {
+    flex: 1 1 250px;
+    max-width: 350px;
+    border: 1px solid var(--border-strong);
+    background: var(--card-bg);
+    border-radius: 12px;
+    padding: 1.25rem;
+    cursor: pointer;
+    transition:
+      background 0.2s,
+      box-shadow 0.2s;
+    &:hover {
+      background: var(--hover-bg);
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    }
+  }
+}
+
 .headerLine {
   flex: 1;
   height: 2px;

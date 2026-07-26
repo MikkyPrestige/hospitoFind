@@ -16,6 +16,8 @@ import useLogout from '@/hooks/useLogout'
 import GoogleImport from '@/components/admin/googleImport'
 import OsmImport from '@/components/admin/OsmImport'
 import SpellDictionaryRebuild from '@/components/admin/SpellDictionaryRebuild'
+import AiRefreshAllowedServices from '@/components/admin/AiRefreshAllowedServices'
+import AiClearClassifierCache from '@/components/admin/AiClearClassifierCache'
 import ThemeToggle from '@/components/ui/ThemeToggle'
 import styles from './styles/scss/adminDashboard/adminDashboard.module.scss'
 
@@ -175,8 +177,18 @@ const AdminDashboard = () => {
             </div>
             <FiArrowRight className={styles.navArrow} />
           </Link>
+        </div>
+      </section>
 
+      <section className={styles.adminNav} style={{ marginTop: '3rem' }}>
+        <div className={styles.sectionHeader}>
+          <h2>Maintenance Actions</h2>
+          <div className={styles.headerLine}></div>
+        </div>
+        <div className={styles.maintenanceRow}>
           <SpellDictionaryRebuild />
+          <AiRefreshAllowedServices />
+          <AiClearClassifierCache />
         </div>
       </section>
 
