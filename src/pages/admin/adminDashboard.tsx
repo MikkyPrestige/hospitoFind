@@ -9,6 +9,7 @@ import {
   FiDatabase,
   FiLogOut,
   FiTag,
+  FiStar,
 } from 'react-icons/fi'
 import { FaExclamationTriangle } from 'react-icons/fa'
 import { useAdminDashboard } from '@/hooks/useAdminDashboard'
@@ -174,6 +175,17 @@ const AdminDashboard = () => {
             <div className={styles.navText}>
               <strong>Manage Symptom Mappings</strong>
               <p>Update keyword‑to‑service rules for the AI matching engine.</p>
+            </div>
+            <FiArrowRight className={styles.navArrow} />
+          </Link>
+
+          <Link to="/admin/reviews" className={styles.navCard}>
+            <div className={styles.navIcon}>
+              <FiStar />
+            </div>
+            <div className={styles.navText}>
+              <strong>Review Moderation</strong>
+              <p>View and delete user reviews.</p>
             </div>
             <FiArrowRight className={styles.navArrow} />
           </Link>

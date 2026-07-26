@@ -10,6 +10,9 @@ import type {
   HospitalContext,
 } from '@/types/agent'
 
+let msgIdCounter = Date.now()
+const generateMsgId = () => `msg_${++msgIdCounter}`
+
 const INITIAL_STATE: AgentState = {
   phase: 'idle',
   messages: [],
@@ -22,17 +25,19 @@ const INITIAL_STATE: AgentState = {
 }
 
 const GREETING: Message = {
+  id: 'greeting_1',
   role: 'assistant',
   content:
-    "👋 Hi there! I'm HospitoFind's care assistant. I'll help match you with the right hospital. What symptoms or health concerns are you experiencing today?",
+    "Hi there! I'm HospitoFind's care assistant. I'll help match you with the right hospital. What symptoms or health concerns are you experiencing today?",
 }
 
 const buildContextGreeting = (ctx: HospitalContext): Message => {
   const location = [ctx.city, ctx.country].filter(Boolean).join(', ')
   const locationPart = location ? ` in **${location}**` : ''
   return {
+    id: `ctx_${Date.now()}`,
     role: 'assistant',
-    content: `👋 I see you're interested in **${ctx.name}**${locationPart}. I'll help match you with the best hospital for your needs. What symptoms or health concerns are you experiencing today?`,
+    content: `I see you're interested in **${ctx.name}**${locationPart}. I'll help match you with the best hospital for your needs. What symptoms or health concerns are you experiencing today?`,
   }
 }
 
@@ -67,8 +72,9 @@ export const useAgent = () => {
   const runMatch = useCallback(
     async (profile: PatientProfile, currentMessages: Message[]) => {
       const transitionMessage: Message = {
+        id: generateMsgId(),
         role: 'assistant',
-        content: `Perfect, thank you! 🔍 Finding the best hospitals for you in **${profile.location}**...`,
+        content: `Perfect, thank you! Finding the best hospitals for you in **${profile.location}**...`,
       }
 
       setState((prev) => ({
@@ -124,7 +130,11 @@ export const useAgent = () => {
     async (content: string) => {
       if (!content.trim() || isLoading) return
 
-      const userMessage: Message = { role: 'user', content: content.trim() }
+      const userMessage: Message = {
+        id: generateMsgId(),
+        role: 'user',
+        content: content.trim(),
+      }
       const updatedMessages: Message[] = [...state.messages, userMessage]
 
       setState((prev) => ({ ...prev, messages: updatedMessages, error: null }))
@@ -135,9 +145,7 @@ export const useAgent = () => {
           state.contextLocation || localStorage.getItem('userCity') || undefined
 
         const apiMessages = updatedMessages
-          .filter(
-            (m) => !(m.role === 'assistant' && m.content.startsWith('👋'))
-          )
+          .filter((m) => !(m.id === 'greeting_1' || m.id.startsWith('ctx_')))
           .map(({ role, content }) => ({ role, content }))
 
         const { data } = await axiosPrivate.post<ChatResponse>(
@@ -153,7 +161,11 @@ export const useAgent = () => {
             ...prev,
             messages: [
               ...prev.messages,
-              { role: 'assistant', content: data.message! },
+              {
+                id: generateMsgId(),
+                role: 'assistant',
+                content: data.message!,
+              },
             ],
           }))
         }

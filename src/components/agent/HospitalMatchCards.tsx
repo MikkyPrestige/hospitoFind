@@ -6,6 +6,8 @@ import {
   FiCheckCircle,
   FiStar,
   FiSearch,
+  FiThumbsDown,
+  FiThumbsUp,
 } from 'react-icons/fi'
 import { HiSparkles } from 'react-icons/hi2'
 import type { HospitalMatchCardsProps } from '@/types/agent'
@@ -32,6 +34,9 @@ const HospitalMatchCards = ({
   noResults = false,
   noResultsRegion,
   noResultsMessage,
+  onThumbUp,
+  onThumbDown,
+  pendingRating,
 }: HospitalMatchCardsProps) => {
   const userCoords = useGeolocation()
 
@@ -61,6 +66,29 @@ const HospitalMatchCards = ({
             Try a different location
           </button>
         </div>
+
+        {onThumbUp && onThumbDown && (
+          <div className={style.feedbackBtns}>
+            <button
+              type="button"
+              className={`${style.thumbBtn} ${pendingRating === 'up' ? style.active : ''}`}
+              onClick={onThumbUp}
+              disabled={pendingRating === 'up'}
+              aria-label="Thumbs up"
+            >
+              <FiThumbsUp size={14} />
+            </button>
+            <button
+              type="button"
+              className={`${style.thumbBtn} ${pendingRating === 'down' ? style.active : ''}`}
+              onClick={onThumbDown}
+              disabled={pendingRating === 'down'}
+              aria-label="Thumbs down"
+            >
+              <FiThumbsDown size={14} />
+            </button>
+          </div>
+        )}
       </div>
     )
   }
@@ -89,13 +117,35 @@ const HospitalMatchCards = ({
             </p>
           )}
         </div>
-        <button
-          type="button"
-          className={style.startOverBtn}
-          onClick={onStartOver}
-        >
-          New search
-        </button>
+        <div className={style.headerActions}>
+          <button
+            type="button"
+            className={style.startOverBtn}
+            onClick={onStartOver}
+          >
+            New search
+          </button>
+          <div className={style.feedbackBtns}>
+            <button
+              type="button"
+              className={`${style.thumbBtn} ${pendingRating === 'up' ? style.active : ''}`}
+              onClick={onThumbUp}
+              disabled={pendingRating === 'up'}
+              aria-label="Thumbs up"
+            >
+              <FiThumbsUp size={14} />
+            </button>
+            <button
+              type="button"
+              className={`${style.thumbBtn} ${pendingRating === 'down' ? style.active : ''}`}
+              onClick={onThumbDown}
+              disabled={pendingRating === 'down'}
+              aria-label="Thumbs down"
+            >
+              <FiThumbsDown size={14} />
+            </button>
+          </div>
+        </div>
       </div>
 
       <div className={style.cards}>

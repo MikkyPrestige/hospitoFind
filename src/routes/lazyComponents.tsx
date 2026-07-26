@@ -32,6 +32,7 @@ const HospitalManagement = lazy(
   () => import('@/pages/admin/hospitalManagement')
 )
 const SymptomMappings = lazy(() => import('@/pages/admin/SymptomMappings'))
+const AdminReviews = lazy(() => import('@/pages/admin/AdminReviews'))
 const Unauthorized = lazy(() => import('@/pages/admin/unauthorized'))
 const VerifyEmail = lazy(() => import('@/pages/profile/verifyEmail'))
 const EmailSent = lazy(() => import('@/pages/profile/emailSent'))
@@ -69,6 +70,7 @@ export {
   UserManagement,
   HospitalManagement,
   SymptomMappings,
+  AdminReviews,
   Unauthorized,
   VerifyEmail,
   EmailSent,

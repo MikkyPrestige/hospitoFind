@@ -28,6 +28,8 @@ export interface Hospital {
   specialties?: string[]
   rating?: number
   reviewCount?: number
+  reviewStats?: ReviewStats
+  recentReviews?: Review[]
   priceRange?: string
   googleMapsUrl?: string
   verified: boolean
@@ -190,4 +192,20 @@ export interface RawSharedItem {
   latitude?: number
   longitude?: number
   [key: string]: unknown
+}
+
+export interface ReviewStats {
+  averageRating: number
+  totalReviews: number
+}
+
+export interface Review {
+  _id: string
+  userId: string
+  name?: string
+  hospitalId: string
+  rating: number
+  text?: string
+  createdAt: string
+  updatedAt: string
 }

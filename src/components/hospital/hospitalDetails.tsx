@@ -26,6 +26,7 @@ import { Button } from '@/components/ui/Button'
 import { SEOHelmet } from '@/components/ui/SeoHelmet'
 import AnimatedLoader from '@/components/ui/AnimatedLoader'
 import NearbyCarousel from '@/components/hospital/NearbyCarousel'
+import ReviewSection from '@/components/hospital/ReviewSection'
 import { fadeUp, sectionReveal } from '@/utils/animations'
 import Logo from '@/assets/images/logo.svg'
 import style from './styles/hospitalDetails.module.css'
@@ -411,6 +412,15 @@ const HospitalDetails = () => {
                       ))}
                     </ul>
                   </div>
+                )}
+
+                {/* Reviews Section */}
+                {hospital.reviewStats && (
+                  <ReviewSection
+                    hospitalId={hospital._id}
+                    reviewStats={hospital.reviewStats}
+                    recentReviews={hospital.recentReviews || []}
+                  />
                 )}
               </aside>
             </Motion>

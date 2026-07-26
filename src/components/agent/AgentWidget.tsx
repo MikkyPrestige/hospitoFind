@@ -6,8 +6,11 @@ import {
   FiMessageCircle,
   FiRefreshCw,
   FiUser,
+  FiThumbsUp,
+  FiThumbsDown,
 } from 'react-icons/fi'
 import { useAgent } from '@/hooks/useAgent'
+import { useChatFeedback } from '@/hooks/useChatFeedback'
 import HospitalMatchCards from './HospitalMatchCards'
 import type {
   AgentVariant,
@@ -28,9 +31,18 @@ const TypingIndicator = () => (
 const MessageBubble = ({
   role,
   content,
+  messageId,
+  onThumbUp,
+  onThumbDown,
+  pendingRating,
 }: {
   role: string
   content: string
+  messageId?: string
+  hospitalId?: string
+  onThumbUp?: () => void
+  onThumbDown?: () => void
+  pendingRating?: 'up' | 'down'
 }) => (
   <div className={`${style.bubble} ${style[role]}`}>
     {role === 'assistant' && (
@@ -48,6 +60,30 @@ const MessageBubble = ({
             <span key={i}>{part}</span>
           )
         )}
+
+      {/* Feedback buttons for assistant messages */}
+      {role === 'assistant' && messageId && onThumbUp && onThumbDown && (
+        <div className={style.feedbackBtns}>
+          <button
+            type="button"
+            onClick={onThumbUp}
+            disabled={pendingRating === 'up'}
+            className={`${style.thumbBtn} ${pendingRating === 'up' ? style.active : ''}`}
+            aria-label="Thumbs up"
+          >
+            <FiThumbsUp size={14} />
+          </button>
+          <button
+            type="button"
+            onClick={onThumbDown}
+            disabled={pendingRating === 'down'}
+            className={`${style.thumbBtn} ${pendingRating === 'down' ? style.active : ''}`}
+            aria-label="Thumbs down"
+          >
+            <FiThumbsDown size={14} />
+          </button>
+        </div>
+      )}
     </div>
   </div>
 )
@@ -71,112 +107,159 @@ const ChatPanel = ({
   onSend,
   onStartOver,
   onClose,
-}: ChatPanelProps) => (
-  <div className={`${style.panel} ${style[`panel_${variant}`]}`}>
-    <div className={`${style.panelHeader} ${style[`header_${variant}`]}`}>
-      <div className={style.headerLeft}>
-        <div className={style.headerAvatar}>
-          <FiUser />
-        </div>
-        <div className={style.headerInfo}>
-          <p className={style.headerName}>HospitoFind Assistant</p>
-          <p className={style.headerStatus}>
-            <span className={style.statusDot} />
-            Online
-          </p>
-        </div>
-      </div>
-      <div className={style.headerActions}>
-        {phase !== 'idle' && (
-          <button
-            type="button"
-            className={style.iconBtn}
-            onClick={onStartOver}
-            title="Start over"
-            aria-label="Start new conversation"
-          >
-            <FiRefreshCw size={15} />
-          </button>
-        )}
-        {variant === 'floating' && (
-          <button
-            type="button"
-            className={style.iconBtn}
-            onClick={onClose}
-            title="Close"
-            aria-label="Close assistant"
-          >
-            <FiX size={17} />
-          </button>
-        )}
-      </div>
-    </div>
+  onThumbUp,
+  onThumbDown,
+  pendingFeedback,
+}: ChatPanelProps) => {
+  const lastAssistantMsg = [...messages]
+    .reverse()
+    .find((m) => m.role === 'assistant')
+  const feedbackMessageId = lastAssistantMsg?.id ?? ''
 
-    <div className={style.body}>
-      {phase === 'results' || phase === 'no_results' ? (
-        <HospitalMatchCards
-          hospitals={hospitals}
-          profile={profile}
-          onStartOver={onStartOver}
-          noResults={noResults}
-          noResultsMessage={noResultsMessage}
-          noResultsRegion={noResultsRegion}
-        />
-      ) : (
-        <>
-          <div className={style.messages} ref={messagesContainerRef}>
-            <div className={style.messagesSpacer} />
-            {messages.map((msg, i) => (
-              <MessageBubble key={i} role={msg.role} content={msg.content} />
-            ))}
-            {phase === 'matching' && (
-              <div className={style.matchingState}>
-                <div className={style.matchingSpinner} />
-                <p>Searching hospitals near you...</p>
-              </div>
-            )}
-            {isLoading && phase === 'chatting' && <TypingIndicator />}
-            {error && (
-              <div className={style.errorMsg}>
-                <p>{error}</p>
-                <button type="button" onClick={onStartOver}>
-                  Try again
+  return (
+    <div className={`${style.panel} ${style[`panel_${variant}`]}`}>
+      <div className={`${style.panelHeader} ${style[`header_${variant}`]}`}>
+        <div className={style.headerLeft}>
+          <div className={style.headerAvatar}>
+            <FiUser />
+          </div>
+          <div className={style.headerInfo}>
+            <p className={style.headerName}>HospitoFind Assistant</p>
+            <p className={style.headerStatus}>
+              <span className={style.statusDot} />
+              Online
+            </p>
+          </div>
+        </div>
+        <div className={style.headerActions}>
+          {phase !== 'idle' && (
+            <button
+              type="button"
+              className={style.iconBtn}
+              onClick={onStartOver}
+              title="Start over"
+              aria-label="Start new conversation"
+            >
+              <FiRefreshCw size={15} />
+            </button>
+          )}
+          {variant === 'floating' && (
+            <button
+              type="button"
+              className={style.iconBtn}
+              onClick={onClose}
+              title="Close"
+              aria-label="Close assistant"
+            >
+              <FiX size={17} />
+            </button>
+          )}
+        </div>
+      </div>
+
+      <div className={style.body}>
+        {phase === 'results' || phase === 'no_results' ? (
+          <HospitalMatchCards
+            hospitals={hospitals}
+            profile={profile}
+            onStartOver={onStartOver}
+            noResults={noResults}
+            noResultsMessage={noResultsMessage}
+            noResultsRegion={noResultsRegion}
+            onThumbUp={
+              onThumbUp && feedbackMessageId
+                ? () => onThumbUp(feedbackMessageId)
+                : undefined
+            }
+            onThumbDown={
+              onThumbDown && feedbackMessageId
+                ? () => onThumbDown(feedbackMessageId)
+                : undefined
+            }
+            pendingRating={
+              feedbackMessageId
+                ? pendingFeedback?.[feedbackMessageId]
+                : undefined
+            }
+          />
+        ) : (
+          <>
+            <div className={style.messages} ref={messagesContainerRef}>
+              <div className={style.messagesSpacer} />
+              {messages.map((msg, index) => {
+                const isLastAssistant =
+                  msg.role === 'assistant' &&
+                  index === messages.length - 1 &&
+                  (phase === 'results' || phase === 'no_results')
+
+                return (
+                  <MessageBubble
+                    key={msg.id}
+                    role={msg.role}
+                    content={msg.content}
+                    messageId={isLastAssistant ? msg.id : undefined}
+                    onThumbUp={
+                      isLastAssistant ? () => onThumbUp?.(msg.id) : undefined
+                    }
+                    onThumbDown={
+                      isLastAssistant ? () => onThumbDown?.(msg.id) : undefined
+                    }
+                    pendingRating={
+                      isLastAssistant ? pendingFeedback?.[msg.id] : undefined
+                    }
+                  />
+                )
+              })}
+
+              {phase === 'matching' && (
+                <div className={style.matchingState}>
+                  <div className={style.matchingSpinner} />
+                  <p>Searching hospitals near you...</p>
+                </div>
+              )}
+              {isLoading && phase === 'chatting' && <TypingIndicator />}
+              {error && (
+                <div className={style.errorMsg}>
+                  <p>{error}</p>
+                  <button type="button" onClick={onStartOver}>
+                    Try again
+                  </button>
+                </div>
+              )}
+              <div className={style.scrollAnchor} />
+            </div>
+
+            {(phase === 'chatting' || phase === 'idle') && (
+              <div className={style.inputBar}>
+                <input
+                  ref={inputRef}
+                  type="text"
+                  className={style.input}
+                  placeholder="Describe your symptoms..."
+                  value={inputValue}
+                  onChange={(e) => onInputChange(e.target.value)}
+                  onKeyDown={onKeyDown}
+                  disabled={isLoading}
+                  aria-label="Type your message"
+                  maxLength={500}
+                />
+                <button
+                  type="button"
+                  className={style.sendBtn}
+                  onClick={onSend}
+                  disabled={!inputValue.trim() || isLoading}
+                  aria-label="Send message"
+                >
+                  <FiSend size={16} />
                 </button>
               </div>
             )}
-            <div className={style.scrollAnchor} />
-          </div>
-
-          {(phase === 'chatting' || phase === 'idle') && (
-            <div className={style.inputBar}>
-              <input
-                ref={inputRef}
-                type="text"
-                className={style.input}
-                placeholder="Describe your symptoms..."
-                value={inputValue}
-                onChange={(e) => onInputChange(e.target.value)}
-                onKeyDown={onKeyDown}
-                disabled={isLoading}
-                aria-label="Type your message"
-                maxLength={500}
-              />
-              <button
-                type="button"
-                className={style.sendBtn}
-                onClick={onSend}
-                disabled={!inputValue.trim() || isLoading}
-                aria-label="Send message"
-              >
-                <FiSend size={16} />
-              </button>
-            </div>
-          )}
-        </>
-      )}
+          </>
+        )}
+      </div>
     </div>
-  </div>
-)
+  )
+}
 
 //  Main widget
 const AgentWidget = ({
@@ -188,6 +271,7 @@ const AgentWidget = ({
 }: AgentWidgetProps) => {
   const location = useLocation()
   const navigate = useNavigate()
+  const { sendFeedback, pending } = useChatFeedback()
   const variant: AgentVariant = variantProp ?? (embedded ? 'hero' : 'floating')
   const isEmbedded = variant !== 'floating'
   const [isOpen, setIsOpen] = useState(false)
@@ -203,6 +287,9 @@ const AgentWidget = ({
   }, [hospitalContext])
 
   const startedRef = useRef(false)
+
+  const handleThumbUp = (messageId: string) => sendFeedback(messageId, 'up')
+  const handleThumbDown = (messageId: string) => sendFeedback(messageId, 'down')
 
   const {
     phase,
@@ -344,6 +431,9 @@ const AgentWidget = ({
     onSend: handleSend,
     onStartOver: handleStartOver,
     onClose: handleClose,
+    onThumbUp: handleThumbUp,
+    onThumbDown: handleThumbDown,
+    pendingFeedback: pending,
   }
 
   if (isEmbedded) {

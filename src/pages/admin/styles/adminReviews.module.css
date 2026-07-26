@@ -1,0 +1,95 @@
+.adminContainer {
+  padding: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+.adminHeader h1 {
+  font-size: 2rem;
+  margin-bottom: 0.5rem;
+}
+.adminHeader p {
+  color: var(--color-gray);
+  margin-bottom: 2rem;
+}
+.loading,
+.emptyState {
+  text-align: center;
+  padding: 3rem;
+  color: var(--color-gray);
+}
+.tableWrapper {
+  overflow-x: auto;
+  background: var(--color-white);
+  border-radius: 12px;
+  border: 1px solid var(--color-border);
+  box-shadow: var(--soft-shadow);
+}
+.table {
+  width: 100%;
+  border-collapse: collapse;
+}
+.table th,
+.table td {
+  padding: 0.8rem 1rem;
+  text-align: left;
+  border-bottom: 1px solid var(--color-border);
+  font-size: 0.95rem;
+}
+.table th {
+  background: var(--color-bg);
+  font-weight: 600;
+  color: var(--color-black);
+}
+.hospitalCell {
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+}
+.stars {
+  display: flex;
+  gap: 2px;
+}
+.reviewText {
+  max-width: 250px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.noText {
+  color: var(--color-ash);
+  font-style: italic;
+}
+.deleteBtn {
+  background: none;
+  border: 1px solid var(--color-border);
+  border-radius: 6px;
+  padding: 0.3rem;
+  cursor: pointer;
+  color: var(--color-red);
+  transition: background 0.2s;
+}
+.deleteBtn:hover {
+  background: rgba(239, 68, 68, 0.1);
+}
+.pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 2rem;
+}
+.pageBtn {
+  padding: 0.5rem 1rem;
+  border: 1px solid var(--color-border);
+  border-radius: 6px;
+  background: var(--color-white);
+  cursor: pointer;
+  font-weight: 500;
+}
+.pageBtn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+.pageInfo {
+  color: var(--color-gray);
+}

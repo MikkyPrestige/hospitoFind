@@ -2,6 +2,7 @@ export type MessageRole = 'user' | 'assistant'
 export type AgentVariant = 'hero' | 'dashboard' | 'floating'
 
 export interface Message {
+  id: string
   role: MessageRole
   content: string
 }
@@ -96,6 +97,9 @@ export interface ChatPanelProps {
   noResults: boolean
   noResultsMessage: string | null
   noResultsRegion: string | null
+  onThumbUp?: (messageId: string) => void
+  onThumbDown?: (messageId: string) => void
+  pendingFeedback?: Record<string, 'up' | 'down'>
   onInputChange: (val: string) => void
   onKeyDown: (e: React.KeyboardEvent<HTMLInputElement>) => void
   onSend: () => void
@@ -110,6 +114,10 @@ export interface HospitalMatchCardsProps {
   noResults?: boolean
   noResultsRegion?: string | null
   noResultsMessage?: string | null
+  onThumbUp?: () => void
+  onThumbDown?: () => void
+  pendingRating?: 'up' | 'down'
+  feedbackMessageId?: string
 }
 
 export interface AutocompleteSuggestion {
