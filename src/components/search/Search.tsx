@@ -175,14 +175,23 @@ export default function SearchForm({
                   className={style.suggestionItem}
                   onMouseDown={() => {
                     setDropdownOpen(false)
-                    navigate(
-                      `/hospital/${encodeURIComponent(s.state)}/${encodeURIComponent(s.city)}/${encodeURIComponent(s.slug)}`
-                    )
+                    if (s.type === 'service' || s.type === 'type') {
+                      setQuery(s.name)
+                      setLocation({ address: '', city: '', state: '' })
+                      performSearch(
+                        { typedQuery: s.name },
+                        onSearchResultsChange
+                      )
+                    } else {
+                      navigate(
+                        `/hospital/${encodeURIComponent(s.state)}/${encodeURIComponent(s.city)}/${encodeURIComponent(s.slug)}`
+                      )
+                    }
                   }}
                 >
                   <span className={style.suggestionName}>{s.name}</span>
                   <span className={style.suggestionLocation}>
-                    {s.city}, {s.state}
+                    {s.city || s.state ? `${s.city}, ${s.state}` : ''}
                   </span>
                 </button>
               ))

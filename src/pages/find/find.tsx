@@ -472,16 +472,23 @@ const FindHospital = () => {
                           type="button"
                           className={style.suggestionItem}
                           onMouseDown={() => {
-                            setTerm(`${s.name}, ${s.city}, ${s.state}`)
                             setSuggestionsOpen(false)
-                            navigate(
-                              `/find-hospital?q=${encodeURIComponent(s.name)}`
-                            )
+                            if (s.type === 'service' || s.type === 'type') {
+                              setTerm(s.name)
+                              navigate(
+                                `/find-hospital?q=${encodeURIComponent(s.name)}`
+                              )
+                            } else {
+                              setTerm(`${s.name}, ${s.city}, ${s.state}`)
+                              navigate(
+                                `/find-hospital?q=${encodeURIComponent(s.name)}`
+                              )
+                            }
                           }}
                         >
                           <span className={style.suggestionName}>{s.name}</span>
                           <span className={style.suggestionLocation}>
-                            {s.city}, {s.state}
+                            {s.city || s.state ? `${s.city}, ${s.state}` : ''}
                           </span>
                         </button>
                       ))}
