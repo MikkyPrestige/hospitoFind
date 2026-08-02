@@ -39,6 +39,7 @@ const HospitalMatchCards = ({
   pendingRating,
 }: HospitalMatchCardsProps) => {
   const userCoords = useGeolocation()
+  const maxScore = hospitals.reduce((max, h) => Math.max(max, h.matchScore), 0)
 
   if (noResults) {
     return (
@@ -107,6 +108,17 @@ const HospitalMatchCards = ({
   //  Results
   return (
     <div className={style.wrapper}>
+      {maxScore <= 30 && (
+        <div className={style.lowScoreBanner}>
+          <FiSearch size={16} />
+          <span>
+            We couldn't pinpoint specific symptoms, showing general healthcare
+            facilities
+            {profile?.location ? ` in ${profile.location}` : ' near you'}.
+          </span>
+        </div>
+      )}
+
       <div className={style.header}>
         <div className={style.headerText}>
           <h3 className={style.title}>Top matches for you</h3>

@@ -5,6 +5,24 @@
   overflow: hidden;
 }
 
+.lowScoreBanner {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.75rem 0.5rem;
+  margin-bottom: 0.5rem;
+  background: rgba(245, 158, 11, 0.1);
+  border: 1px solid rgba(245, 158, 11, 0.3);
+  color: var(--color-black);
+  font-size: 1.1rem;
+  line-height: 1.4;
+
+  svg {
+    flex-shrink: 0;
+    color: var(--warning-color);
+  }
+}
+
 .header {
   display: flex;
   align-items: flex-start;
